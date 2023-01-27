@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+// front-end, just test
+import React, { useState, useEffect } from 'react';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:8887/api/users')
+            .then(res => res.json())
+            .then(data => setUsers(data));
+    }, []);
+
+    return (
+        <div>
+            {users.map(user => (
+                <div key={user.name}>
+                    <h2>{user.name}</h2>
+                    <p>{user.age}</p>
+                </div>
+            ))}
+        </div>
+    );
 }
 
 export default App;
