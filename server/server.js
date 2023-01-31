@@ -1,11 +1,13 @@
+//back-end just test
 const express = require('express');
 const app = express();
 
-app.get("/api", (req, res) => {
-    res.json({ "user": ["userOne","userTwo", "userThree"] });
-})
+app.get('/api/users', (req, res) => {
+    const users = [{ name: 'John', age: 30 }, { name: 'Samantha', age: 25 }];
+    res.json(users);
+});
 
-
-app.listen(8880, () => {
-    console.log("Server is running on port 8880");
-})
+const port = 8887;
+app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
+});
