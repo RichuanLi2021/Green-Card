@@ -19,44 +19,14 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-import App from '../App';
-import LoginIndex from './Login/LoginIndex';
-// Topic pages added based on Issues found on Jira board on Feb 14th 2023
-import AntipsychoticsGuide from './Topics/AntipsychoticsGuide';
-import CognitiveEnhancersGuide from './Topics/CognitiveEnhancersGuide';
-import InsomniaManagement from './Topics/InsomniaManagement';
-// Looks like GPGC-84 and GPGC-81 are duplicates for Antidepressants.
-import AntidepressantClinicalGuide from './Topics/AntidepressantClinicalGuide';
-import MoodStabilizersGuide from './Topics/MoodStabilizersGuide';
-import DeliriumManagement from './Topics/DeliriumManagement';
-import NeuropsychiatricSymptomsECT from './Topics/NeuropsychiatricSymptomsECT';
-import Navigation from './Navigation';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter, Routes ,Route }from "react-router-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <BrowserRouter>
-    <Routes>
-    <Route path="/" element={<App/>} />
-      <Route path="/login" element={<LoginIndex/>}/>
-      <Route path="/navigation" element={<Navigation/>}/>
-      <Route path="/AntipsychoticsGuide" element={<AntipsychoticsGuide/>}/>
-      <Route path="/CognitiveEnhancersGuide" element={<CognitiveEnhancersGuide/>}/>
-      <Route path="/InsomniaManagement" element={<InsomniaManagement/>}/>
-      <Route path="/AntidepressantClinicalGuide" element={<AntidepressantClinicalGuide/>}/>
-      <Route path="/MoodStabilizersGuide" element={<MoodStabilizersGuide/>}/>
-      <Route path="/DeliriumManagement" element={<DeliriumManagement/>}/>
-      <Route path="/NeuropsychiatricSymptomsECT" element={<NeuropsychiatricSymptomsECT/>}/>
-    </Routes>
-  </BrowserRouter>
-
-
-);
 
 
 
+const theme = createTheme();
 
 
 // This code is a function called SignIn() that renders a form with an username and password field, and a submit button. When the submit button is clicked, the handleSubmit() function is called which prevents the default action from occuring, creates a FormData object from the currentTarget of the event, and logs an object containing the username and password values to the console.
@@ -81,7 +51,7 @@ export default function SignIn() {
             <a href='login'>Login</a>
           </Typography>
           <Typography component="h1" variant="h5">
-            <a href='Antipsychotics Guide'>Antipsychotics Guide</a>
+            <a href='AntipsychoticsGuide'>Antipsychotics Guide</a>
           </Typography>
           <Typography component="h1" variant="h5">
             <a href='CognitiveEnhancersGuide'>Cognitive Enhancers Guide</a>
@@ -106,5 +76,3 @@ export default function SignIn() {
     </ThemeProvider>
   );
 }
-
-const theme = createTheme();

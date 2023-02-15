@@ -19,41 +19,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-import App from '../../App';
-import LoginIndex from '../Login/LoginIndex';
-// Topic pages added based on Issues found on Jira board on Feb 14th 2023
-import AntipsychoticsGuide from './AntipsychoticsGuide';
-import CognitiveEnhancersGuide from './CognitiveEnhancersGuide';
-import InsomniaManagement from './InsomniaManagement';
-// Looks like GPGC-84 and GPGC-81 are duplicates for Antidepressants.
-import AntidepressantClinicalGuide from './AntidepressantClinicalGuide';
-import MoodStabilizersGuide from './MoodStabilizersGuide';
-import DeliriumManagement from './DeliriumManagement';
-import NeuropsychiatricSymptomsECT from './NeuropsychiatricSymptomsECT';
-import Navigation from '../Navigation';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter, Routes ,Route }from "react-router-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App/>} />
-      <Route path="/login" element={<LoginIndex/>}/>
-      <Route path="/navigation" element={<Navigation/>}/>
-      <Route path="/AntipsychoticsGuide" element={<AntipsychoticsGuide/>}/>
-      <Route path="/CognitiveEnhancersGuide" element={<CognitiveEnhancersGuide/>}/>
-      <Route path="/InsomniaManagement" element={<InsomniaManagement/>}/>
-      <Route path="/AntidepressantClinicalGuide" element={<AntidepressantClinicalGuide/>}/>
-      <Route path="/MoodStabilizersGuide" element={<MoodStabilizersGuide/>}/>
-      <Route path="/DeliriumManagement" element={<DeliriumManagement/>}/>
-      <Route path="/NeuropsychiatricSymptomsECT" element={<NeuropsychiatricSymptomsECT/>}/>
-    </Routes>
-  </BrowserRouter>
-
-
-);
 
 
 const theme = createTheme();
@@ -75,10 +44,10 @@ export default function SignIn() {
         >
           
           <Typography component="h1" variant="h2">
-            Navigation
+            Delirium Management
           </Typography>
           <Typography component="h1" variant="h5">
-            <a href='login'>Login</a>
+            <a href='Navigation'>Return to Navigation</a>
           </Typography>
         </Box>
       </Container>
