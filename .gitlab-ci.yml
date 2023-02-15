@@ -12,6 +12,7 @@ cache:
 build:
   stage: build
   script:
+    - cd my-app
     - npm install
     - npm run build
 
