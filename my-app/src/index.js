@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import LoginIndex from './views/Login/LoginIndex';
-import Navigation from './views/Navigation';
+import Navigation from './views/Navigation/navigation';
 
 import App from './App';
 // Topic pages added based on Issues found on Jira board on Feb 14th 2023

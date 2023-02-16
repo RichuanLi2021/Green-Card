@@ -38,30 +38,47 @@ function App() {
                 <Container component="main" maxWidth="xs">
                     <CssBaseline />
                     <Box
-                    sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
+                        sx={{
+                            marginTop: 8,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                        }}
                     >
-                    
-                    <Typography component="h1" variant="h2">
-                        The Green Gard
-                    </Typography>
-                    <Typography component="h1" variant="h5">
-                        <a href='Navigation'>Navigation</a>
-                    </Typography>
+                        <Typography component="h1" variant="h2">
+                            Navigation
+                        </Typography>
+                        <Typography component="h1" variant="h5">
+                            <a href='login'>Login</a>
+                        </Typography>
+                        <Typography component="h1" variant="h5">
+                            <a href='AntipsychoticsGuide'>Antipsychotics Guide</a>
+                        </Typography>
+                        <Typography component="h1" variant="h5">
+                            <a href='CognitiveEnhancersGuide'>Cognitive Enhancers Guide</a>
+                        </Typography>
+                        <Typography component="h1" variant="h5">
+                            <a href='InsomniaManagement'>Insomnia Management</a>
+                        </Typography>
+                        <Typography component="h1" variant="h5">
+                            <a href='AntidepressantClinicalGuide'>Antidepressant Clinical Guide</a>
+                        </Typography>
+                        <Typography component="h1" variant="h5">
+                            <a href='MoodStabilizersGuide'>Mood Stabilizers Guide</a>
+                        </Typography>
+                        <Typography component="h1" variant="h5">
+                            <a href='DeliriumManagement'>Delirium Management</a>
+                        </Typography>
+                        <Typography component="h1" variant="h5">
+                            <a href='NeuropsychiatricSymptomsECT'>Neuropsychiatric Symptoms ECT</a>
+                        </Typography>
                     </Box>
                 </Container>
             </ThemeProvider>
         </div>
     );
 }
-
-
 export default App;
-
 /*
 
 // Citations:
