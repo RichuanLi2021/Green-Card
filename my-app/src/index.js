@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import LoginIndex from './views/Login/LoginIndex';
 import { BrowserRouter, Routes ,Route }from "react-router-dom";
+import SearchBar from './views/searchBar/searchBar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -12,6 +13,7 @@ root.render(
     <Routes>
       <Route path="/" element={<App/>} />
       <Route path="/login" element={<LoginIndex/>}/>
+      <Route path = "/searchBar" element={<SearchBar/>}/>
     </Routes>
   </BrowserRouter>
 
