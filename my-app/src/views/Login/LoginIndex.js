@@ -17,6 +17,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import {Link} from "react-router-dom";
 
 const theme = createTheme();
 
@@ -37,6 +40,18 @@ export default function SignIn() {
 // A TextField component is used for both username and password inputs, as well as a FormControlLabel with a Checkbox for "Remember me". A Button component is used for submitting the form, and two Grid components are used with Link components for "Forgot Password" and "Don't have an account? Sign Up". Finally, a Copyright component is rendered at the bottom of the page.
   return (
     <ThemeProvider theme={theme}>
+      <AppBar position="relative" style={{background: '#96D2B0'}}>
+        <Toolbar sx={{ justifyContent: "space-between" }}>
+          <Typography variant="h5" color="black" noWrap>
+            Geriatric Psychiatry Green Card
+          </Typography>
+          <ul className="nav-list">
+            <li className="nav-item">
+              <Link to="/" className="nav-link">Home</Link>
+            </li>
+          </ul>
+        </Toolbar>
+      </AppBar>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
