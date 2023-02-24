@@ -7,7 +7,6 @@ import Navigation from './views/Navigation/navigation';
 
 import App from './App';
 // Topic pages added based on Issues found on Jira board on Feb 14th 2023
-import AntipsychoticsGuide from './views/Topics/AntipsychoticsGuide';
 import CognitiveEnhancersGuide from './views/Topics/CognitiveEnhancersGuide';
 import InsomniaManagement from './views/Topics/InsomniaManagement';
 // Looks like GPGC-84 and GPGC-81 are duplicates for Antidepressants.
