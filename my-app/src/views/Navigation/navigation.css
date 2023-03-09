@@ -1,0 +1,52 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: bisque;
+  padding: 10px 20px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  font-family:Arial, Helvetica, sans-serif
+}
+
+nav {
+  display: flex;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    font-size: large;
+    font-family: 'Times New Roman', Times, serif;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-item {
+    flex: 1;
+    text-align: center;
+    margin-right: 10px;
+  }
+  
+  .nav-link {
+    color: black;
+    background-color: beige;
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+  }
+  
+  .nav-link:hover {
+    background-color: green;
+    color: aliceblue;
+    padding: 0.5rem 1rem;
+    justify-content: space-between;
+    margin-right: 10px;
+  }
+
+

@@ -3,11 +3,14 @@ import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import {Link} from "react-router-dom";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 
 
@@ -63,51 +66,65 @@ import { styled } from '@mui/material/styles';
           
           export default function AntipsychoticsGuide() {
             return (
-              <div id="antipsychoticsGuide">
-              <h1 id="heading">Antipsychotics Guide</h1>
-              <TableContainer component={Paper} >
-                <Table sx={{ minWidth: 700 }} aria-label="customized table" >
-                  <TableHead>
-                    <TableRow >
-                      <StyledTableCell >Name</StyledTableCell>
-                      <StyledTableCell align="right">Approx equiv.dose</StyledTableCell>
-                      <StyledTableCell align="right">Half-life&nbsp;</StyledTableCell>
-                      <StyledTableCell align="right">Frequency&nbsp;</StyledTableCell>
-                      <StyledTableCell align="right">Tab Strength/ Form Supplied&nbsp;</StyledTableCell>
-                      <StyledTableCell align="right">NPS&nbsp;</StyledTableCell>
-                      <StyledTableCell align="right">PP&nbsp;</StyledTableCell>
-                      <StyledTableCell align="right">MDE(AD augment)&nbsp;</StyledTableCell>
-                      <StyledTableCell align="right">MDE(w.psychosis)&nbsp;</StyledTableCell>
-                      <StyledTableCell align="right">Delirium&nbsp;</StyledTableCell>
-                      <StyledTableCell align="right">EO-SCZ&nbsp;</StyledTableCell>
-                      <StyledTableCell align="right">LO-SCZ&nbsp;</StyledTableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {rows.map((row) => (
-                      <StyledTableRow key={row.name} >
-                        <StyledTableCell component="th" scope="row">
-                          {row.name}
-                        </StyledTableCell>
-                        <StyledTableCell align="right">{row.dose}</StyledTableCell>
-                        <StyledTableCell align="right">{row.halfLife}</StyledTableCell>
-                        <StyledTableCell align="right">{row.frequency}</StyledTableCell>
-                        <StyledTableCell align="right">{row.tabStrength}</StyledTableCell>
-                        <StyledTableCell align="right">{row.nps}</StyledTableCell>
-                        <StyledTableCell align="right">{row.pp}</StyledTableCell>
-                        <StyledTableCell align="right">{row.augmentMDE}</StyledTableCell>
-                        <StyledTableCell align="right">{row.psychosisMDE}</StyledTableCell>
-                        <StyledTableCell align="right">{row.delirium}</StyledTableCell>
-                        <StyledTableCell align="right">{row.eoSCZ}</StyledTableCell>
-                        <StyledTableCell align="right">{row.loSCZ}</StyledTableCell>
-                      </StyledTableRow>
-                    ))}
-                    
-                  </TableBody>
-                </Table>
-              </TableContainer>
-              <footer id ="footer"> <b>Key:</b> AD: antidepressant; er: extended release; ir: immediate release; EO-SCZ: early-onset schizophrenia; LO-SCZ: late-onset schizophrenia; MDE: major depressive disorder; NPS: neuropsychiatric symptoms of dementia; NR: not recommended; PP: Parkinson's psychosis; †0.25 of adult equivalent dose shown (see Yellow Card); ‡take with meal (≥350 kcal); ^accounts for half-life of active metabolites; **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data. <b>NOTES:</b> doses may not reflect manufacturers' recommendations but are based on clinical literature and opinion. Half lives are estimates based on adult data and in older adults they can often be increased up to 170%.</footer>
-              </div>
+              <><AppBar position="relative" style={{ background: '#96D2B0' }}>
+                <Toolbar sx={{ justifyContent: "space-between" }}>
+                  <Typography variant="h5" color="black" noWrap>
+                    Geriatric Psychiatry Green Card
+                  </Typography>
+                  <ul className="nav-list">
+                    <li className="nav-item">
+                      <Link to="/" className="nav-link">Home</Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to="/login" className="nav-link">Login</Link>
+                    </li>
+                  </ul>
+                </Toolbar>
+              </AppBar><div id="antipsychoticsGuide">
+                  <h1 id="heading">Antipsychotics Guide</h1>
+                  <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                      <TableHead>
+                        <TableRow>
+                          <StyledTableCell>Name</StyledTableCell>
+                          <StyledTableCell align="right">Approx equiv.dose</StyledTableCell>
+                          <StyledTableCell align="right">Half-life&nbsp;</StyledTableCell>
+                          <StyledTableCell align="right">Frequency&nbsp;</StyledTableCell>
+                          <StyledTableCell align="right">Tab Strength/ Form Supplied&nbsp;</StyledTableCell>
+                          <StyledTableCell align="right">NPS&nbsp;</StyledTableCell>
+                          <StyledTableCell align="right">PP&nbsp;</StyledTableCell>
+                          <StyledTableCell align="right">MDE(AD augment)&nbsp;</StyledTableCell>
+                          <StyledTableCell align="right">MDE(w.psychosis)&nbsp;</StyledTableCell>
+                          <StyledTableCell align="right">Delirium&nbsp;</StyledTableCell>
+                          <StyledTableCell align="right">EO-SCZ&nbsp;</StyledTableCell>
+                          <StyledTableCell align="right">LO-SCZ&nbsp;</StyledTableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {rows.map((row) => (
+                          <StyledTableRow key={row.name}>
+                            <StyledTableCell component="th" scope="row">
+                              {row.name}
+                            </StyledTableCell>
+                            <StyledTableCell align="right">{row.dose}</StyledTableCell>
+                            <StyledTableCell align="right">{row.halfLife}</StyledTableCell>
+                            <StyledTableCell align="right">{row.frequency}</StyledTableCell>
+                            <StyledTableCell align="right">{row.tabStrength}</StyledTableCell>
+                            <StyledTableCell align="right">{row.nps}</StyledTableCell>
+                            <StyledTableCell align="right">{row.pp}</StyledTableCell>
+                            <StyledTableCell align="right">{row.augmentMDE}</StyledTableCell>
+                            <StyledTableCell align="right">{row.psychosisMDE}</StyledTableCell>
+                            <StyledTableCell align="right">{row.delirium}</StyledTableCell>
+                            <StyledTableCell align="right">{row.eoSCZ}</StyledTableCell>
+                            <StyledTableCell align="right">{row.loSCZ}</StyledTableCell>
+                          </StyledTableRow>
+                        ))}
+
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                  <footer id="footer"> <b>Key:</b> AD: antidepressant; er: extended release; ir: immediate release; EO-SCZ: early-onset schizophrenia; LO-SCZ: late-onset schizophrenia; MDE: major depressive disorder; NPS: neuropsychiatric symptoms of dementia; NR: not recommended; PP: Parkinson's psychosis; †0.25 of adult equivalent dose shown (see Yellow Card); ‡take with meal (≥350 kcal); ^accounts for half-life of active metabolites; **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data. <b>NOTES:</b> doses may not reflect manufacturers' recommendations but are based on clinical literature and opinion. Half lives are estimates based on adult data and in older adults they can often be increased up to 170%.</footer>
+                </div></>
             );
           }
         
