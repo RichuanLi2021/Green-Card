@@ -34,7 +34,7 @@ root.render(
       <Route path="/AntidepressantClinicalGuide" element={<AntidepressantClinicalGuide/>}/>
       <Route path="/MoodStabilizersGuide" element={<MoodStabilizersGuide/>}/>
       <Route path="/DeliriumManagement" element={<DeliriumManagement/>}/>
-      <Route path="/NeuropsychiatricSymptomsECT" element={<NeuropsychiatricSymptomsECT/>}/>
+      <Route path="/NeuropsychiatricSymptoms" element={<NeuropsychiatricSymptoms/>}/>
 my-app/src/index.js
     </Routes>
   </BrowserRouter>
