@@ -1,10 +1,15 @@
-const message = "Hello World"
+const pool = require('../../database');
 
-const authController = {
-    getLogin: (req, res, next) => {
-        res.send(message);
-    }
+const getUsers = async () => {
+  const [rows, fields] = await pool.query('SELECT * FROM user_model');
+  return rows;
 };
 
-//export
+const authController = {
+  getLogin: async (req, res, next) => {
+    const users = await getUsers();
+    res.send(users);
+  }
+};
+
 module.exports = authController;
