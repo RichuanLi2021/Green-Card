@@ -13,7 +13,6 @@ import InsomniaManagement from './views/Topics/InsomniaManagement';
 import AntidepressantClinicalGuide from './views/Topics/AntidepressantClinicalGuide';
 import MoodStabilizersGuide from './views/Topics/MoodStabilizersGuide';
 import DeliriumManagement from './views/Topics/DeliriumManagement';
-import NeuropsychiatricSymptomsECT from './views/Topics/NeuropsychiatricSymptomsECT';
 import { BrowserRouter, Routes ,Route }from "react-router-dom";
 import SearchBar from './views/searchBar/searchBar';
 import AntipsychoticsGuide from './views/antipsychoticsGuide/antipsychoticsGuide';
