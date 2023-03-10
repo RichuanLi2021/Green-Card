@@ -13,10 +13,10 @@ import InsomniaManagement from './views/Topics/InsomniaManagement';
 import AntidepressantClinicalGuide from './views/Topics/AntidepressantClinicalGuide';
 import MoodStabilizersGuide from './views/Topics/MoodStabilizersGuide';
 import DeliriumManagement from './views/Topics/DeliriumManagement';
+import NeuropsychiatricSymptomsECT from './views/Topics/NeuropsychiatricSymptomsECT';
 import { BrowserRouter, Routes ,Route }from "react-router-dom";
 import SearchBar from './views/searchBar/searchBar';
 import AntipsychoticsGuide from './views/antipsychoticsGuide/antipsychoticsGuide';
-import NeuropsychiatricSymptoms from './views/neuropsychiatricSymptoms/neuropsychiatricSymptoms';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -33,7 +33,7 @@ root.render(
       <Route path="/AntidepressantClinicalGuide" element={<AntidepressantClinicalGuide/>}/>
       <Route path="/MoodStabilizersGuide" element={<MoodStabilizersGuide/>}/>
       <Route path="/DeliriumManagement" element={<DeliriumManagement/>}/>
-      <Route path="/NeuropsychiatricSymptoms" element={<NeuropsychiatricSymptoms/>}/>
+      <Route path="/NeuropsychiatricSymptomsECT" element={<NeuropsychiatricSymptomsECT/>}/>
 my-app/src/index.js
     </Routes>
   </BrowserRouter>

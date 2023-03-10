@@ -20,19 +20,42 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import {Link} from "react-router-dom";
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+
 
 const theme = createTheme();
 
 // This code is a function called SignIn() that renders a form with an username and password field, and a submit button. When the submit button is clicked, the handleSubmit() function is called which prevents the default action from occuring, creates a FormData object from the currentTarget of the event, and logs an object containing the username and password values to the console.
 export default function SignIn() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:8887/api/login')
+      .then(response => {
+        setData(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+    });
+  }, []);  
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    const dataCredential = new FormData(event.currentTarget);
     console.log({
-      username: data.get('username'),
-      password: data.get('password'),
+      username: dataCredential.get('username'),
+      password: dataCredential.get('password'),
     });
-    return (data)
+
+    // go through the data array and check if the username and password match
+    data.forEach((item) => {
+      if (item.username === dataCredential.get('username') && item.password === dataCredential.get('password')) {
+        // window allert
+        alert("login successful");
+      }
+    });
+
+    return (dataCredential)
   };
 
 // This code is a React component that renders a sign in form. It uses the ThemeProvider component to set the theme, and the Container component to set the maxWidth of the page. The CssBaseline component is used to reset any global styles. 
