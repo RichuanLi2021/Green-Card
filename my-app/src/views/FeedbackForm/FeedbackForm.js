@@ -1,13 +1,11 @@
 import { useState } from 'react';
-import {
-  Box,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  FormLabel,
-  TextField,
-  Typography,
-} from '@material-ui/core';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import FormLabel from '@mui/material/FormLabel';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import { Close } from '@material-ui/icons';
 import Rating from '@mui/material/Rating';
 import './FeedbackForm.css';
