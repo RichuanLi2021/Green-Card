@@ -15,6 +15,8 @@ import {Dialog, DialogActions, DialogContent, DialogTitle, IconButton} from "@mu
 import CloseIcon from '@mui/icons-material/Close';
 import Button from "@mui/material/Button";
 import {useEffect} from "react";
+import FeedbackFormHandler from './views/FeedbackForm/FeedbackFormHandler';
+import "./views/FeedbackForm/FeedbackForm.css";
 
 //Sourced from https://mui.com/material-ui/react-dialog/
 const GreenCardDisclaimer = styled(Dialog)(({ theme }) => ({
@@ -69,6 +71,7 @@ export default function Green() {
         setOpen(false);
     };
     return (
+        <>
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <AppBar position="relative" style={{background: '#96D2B0'}}>
@@ -209,6 +212,8 @@ export default function Green() {
             {/*</Box>*/}
             {/* End footer */}
         </ThemeProvider>
+        <FeedbackFormHandler/>
+        </>
     );
 }
 
