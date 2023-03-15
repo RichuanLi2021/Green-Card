@@ -19,14 +19,14 @@ build:
     - npm install
     - npm run build
 
-# test:
-#   stage: test
-#   script:
-#     - npm install
-#     - npm run test
+test:
+  stage: test
+  script:
+    - npm install
+    - npm run test
 
-# deploy:
-#   stage: deploy
-#   script:
-#     - npm install
-#     - npm run deploy
+deploy:
+  stage: deploy
+  script:
+    - npm install
+    - npm run deploy
