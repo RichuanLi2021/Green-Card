@@ -20,6 +20,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import {Link} from "react-router-dom";
+import Footer from '../../components/footer';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
@@ -133,6 +134,7 @@ export default function SignIn() {
             </Button>
           </Box>
         </Box>
+        <Footer />
       </Container>
     </ThemeProvider>
   );
