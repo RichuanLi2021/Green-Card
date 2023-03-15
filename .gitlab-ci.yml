@@ -14,6 +14,7 @@ build:
   script:
     - cd my-app
     - npm install
+    - npm install @material-ui/core --legacy-peer-deps
     - npm run build
 
 # test:
