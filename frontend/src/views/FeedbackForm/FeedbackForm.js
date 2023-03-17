@@ -6,7 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { Close } from '@material-ui/icons';
+import Close from '@mui/material/Button';
 import Rating from '@mui/material/Rating';
 import './FeedbackForm.css';
 
