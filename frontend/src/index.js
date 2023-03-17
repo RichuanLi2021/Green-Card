@@ -6,15 +6,15 @@ import LoginIndex from './views/Login/LoginIndex';
 import Navigation from './views/Navigation/navigation';
 
 import App from './App';
-import CognitiveEnhancersGuide from './views/Topics/CognitiveEnhancersGuide';
-import InsomniaManagement from './views/Topics/InsomniaManagement';
-import AntidepressantClinicalGuide from './views/Topics/AntidepressantClinicalGuide';
-import MoodStabilizersGuide from './views/Topics/MoodStabilizersGuide';
-import DeliriumManagement from './views/Topics/DeliriumManagement';
-import NeuropsychiatricSymptomsECT from './views/Topics/NeuropsychiatricSymptomsECT';
+import CognitiveEnhancersGuide from './views/Topics/CognitiveEnhancersGuide/CognitiveEnhancersGuide';
+import InsomniaManagement from './views/Topics/InsomniaManagement/InsomniaManagement';
+import AntidepressantClinicalGuide from './views/Topics/AntidepressantClinicalGuide/AntidepressantClinicalGuide';
+import MoodStabilizersGuide from './views/Topics/MoodStabilizersGuide/MoodStabilizersGuide';
+import DeliriumManagement from './views/Topics/DeliriumManagement/DeliriumManagement';
+import NeuropsychiatricSymptomsECT from './views/Topics/NeuropsychiatricSymptoms/neuropsychiatricSymptoms';
 import { BrowserRouter, Routes ,Route }from "react-router-dom";
 import SearchBar from './views/searchBar/searchBar';
-import AntipsychoticsGuide from './views/antipsychoticsGuide/antipsychoticsGuide';
+import AntipsychoticsGuide from './views/Topics/AntipsychoticsGuide/antipsychoticsGuide';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
