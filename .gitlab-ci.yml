@@ -9,11 +9,10 @@ cache:
   paths:
     - node_modules/
 
-
 build:
   stage: build
   script:
-    - cd my-app
+    - cd frontend
     - npm install
     - npm run build
 
