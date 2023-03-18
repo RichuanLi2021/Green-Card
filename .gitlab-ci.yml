@@ -14,11 +14,10 @@ build:
   script:
     - cd frontend
     - npm install
+    - npm run build
     - cd ../backend
     - npm install
-    - cd ..
-    - npm install
-    - npm run
+    - npm run build
 
 # test:
 #   stage: test
