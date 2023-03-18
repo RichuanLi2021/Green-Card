@@ -1,22 +1,20 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {createTheme, styled, ThemeProvider} from '@mui/material/styles';
 import './views/Navigation/navigation.css';
-import {Link} from "react-router-dom";
 import {Dialog, DialogActions, DialogContent, DialogTitle, IconButton} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import Button from "@mui/material/Button";
 import {useEffect} from "react";
 import FeedbackFormHandler from './views/FeedbackForm/FeedbackFormHandler';
 import "./views/FeedbackForm/FeedbackForm.css";
+import Navigation from './/views//Navigation//navigation';
 
 //Sourced from https://mui.com/material-ui/react-dialog/
 const GreenCardDisclaimer = styled(Dialog)(({ theme }) => ({
@@ -74,21 +72,7 @@ export default function Green() {
         <>
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <AppBar position="relative" style={{background: '#96D2B0'}}>
-                <Toolbar sx={{ justifyContent: "space-between" }}>
-                    <Typography variant="h5" color="black" noWrap>
-                        Geriatric Psychiatry Green Card
-                    </Typography>
-                    <ul className="nav-list">
-                        <li className="nav-item">
-                            <Link to="/" className="nav-link">Home</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/login" className="nav-link">Login</Link>
-                        </li>
-                    </ul>
-                </Toolbar>
-            </AppBar>
+            <Navigation/>
             <main>
                 {/*Disclaimer pop-up*/}
                 <div>

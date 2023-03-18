@@ -20,8 +20,7 @@ const FeedbackFormHandler = () => {
         variant="contained"
         onClick={handleOpenForm}
         className="feedback-icon-button"
-        class="feedback-icon-button"
-        style={{  font: "inherit", opacity: 0.7, background: '#96d2b0', position: 'fixed', top: '50%', right: '20px'}}
+        sx={{ position: 'fixed', borderRadius: '50%', font: "inherit", opacity: 0.7, background: '#96d2b0', color: '#000', ":hover": { opacity: 1, background: '#96d2b0' }}}
         >
         Open Feedback Form
     </Button>

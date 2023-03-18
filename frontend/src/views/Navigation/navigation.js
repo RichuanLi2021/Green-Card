@@ -1,27 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './navigation.css';
+import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import Button from '@mui/material/Button';
 
-const Navigation = () => (
-  <header className="header">
-    <div className="title">Geriatric Psychiatry Green Card</div>
-    <nav>
-      <ul className="nav-list">
-        <li className="nav-item">
-          <Link to="/" className="nav-link">Home</Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/guide" className="nav-link">Guides</Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/help" className="nav-link">Help</Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/login" className="nav-link">Admin Login</Link>
-        </li>
-      </ul>
-    </nav>
-  </header>
-);
+const Navbar = () => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
 
-export default Navigation;
+  const handleMenuToggle = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <AppBar position="static">
+      <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#fff', textDecoration: 'none', fontSize: '1.5rem'}}>
+          Geriatric Psychiatry Green Card
+        </Typography>
+
+        <IconButton
+          size="large"
+          edge="end"
+          aria-label="menu"
+          aria-haspopup="true"
+          onClick={handleMenuToggle}
+          sx={{ display: { xs: 'block', md: 'none' }, color: '#fff' }}
+        >
+          <MenuIcon />
+        </IconButton>
+
+        <Menu
+          id="menu-appbar"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleMenuClose}
+          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+          transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+          sx={{ marginTop: '40px' }}
+        >
+          <MenuItem onClick={handleMenuClose}>
+            <Button component={Link} to="/" sx={{ color: '#000' }}>Home</Button>
+          </MenuItem>
+          {window.location.pathname !== '/login' && (
+            <MenuItem onClick={handleMenuClose}>
+              <Button component={Link} to="/login" sx={{ color: '#000' }}>Admin Login</Button>
+            </MenuItem>
+          )}
+        </Menu>
+
+        <div className="navbar__menu">
+          <Button component={Link} to="/" sx={{ color: '#fff', fontSize: '1.2rem'}}>Home</Button>
+          {window.location.pathname !== '/login' && (
+            <Button component={Link} to="/login" sx={{ color: '#fff', fontSize: '1.2rem' }}>Admin Login</Button>
+          )}
+        </div>
+      </Toolbar>
+    </AppBar>
+  );
+};
+
+export default Navbar;

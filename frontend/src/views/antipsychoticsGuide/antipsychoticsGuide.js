@@ -80,7 +80,8 @@ import { styled } from '@mui/material/styles';
                     </li>
                   </ul>
                 </Toolbar>
-              </AppBar><div id="antipsychoticsGuide">
+              </AppBar>
+              <div id="antipsychoticsGuide">
                   <h1 id="heading">Antipsychotics Guide</h1>
                   <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">
