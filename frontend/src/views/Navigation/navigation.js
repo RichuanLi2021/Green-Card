@@ -19,7 +19,7 @@ const Navbar = () => {
   return (
     <AppBar position="static">
       <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#fff', textDecoration: 'none', fontSize: '1.5rem'}}>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none', fontSize: '1.5rem' }}>
           Geriatric Psychiatry Green Card
         </Typography>
 
@@ -29,7 +29,7 @@ const Navbar = () => {
           aria-label="menu"
           aria-haspopup="true"
           onClick={handleMenuToggle}
-          sx={{ display: { xs: 'block', md: 'none' }, color: '#fff' }}
+          sx={{ display: { xs: 'block', md: 'none' }, color: '#000' }}
         >
           <MenuIcon />
         </IconButton>
@@ -54,9 +54,9 @@ const Navbar = () => {
         </Menu>
 
         <div className="navbar__menu">
-          <Button component={Link} to="/" sx={{ color: '#fff', fontSize: '1.2rem'}}>Home</Button>
+          <Button component={Link} to="/" sx={{ color: '#000', fontSize: '1.2rem' }}>Home</Button>
           {window.location.pathname !== '/login' && (
-            <Button component={Link} to="/login" sx={{ color: '#fff', fontSize: '1.2rem' }}>Admin Login</Button>
+            <Button component={Link} to="/login" sx={{ color: '#000', fontSize: '1.2rem' }}>Admin Login</Button>
           )}
         </div>
       </Toolbar>

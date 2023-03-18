@@ -30,12 +30,12 @@ export default function SignIn() {
   // Setting up state, fetching data using axios and navigating pages using useNavigate
   const navigate = useNavigate();
   const [data, setData] = useState([]);
-  
+
   useEffect(() => {
     axios.get('http://localhost:8887/api/login')
       .then(response => setData(response.data))
       .catch(error => console.log(error));
-  }, []);  
+  }, []);
 
   const handleSubmit = (event) => {
     // Preventing page from refreshing on submission and checking for validity of login credentials and navigating
@@ -53,7 +53,7 @@ export default function SignIn() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Navigation/>
+      <Navigation />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         {/* Setting up sign in form */}

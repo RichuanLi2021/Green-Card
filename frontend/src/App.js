@@ -1,11 +1,6 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import CssBaseline from '@mui/material/CssBaseline';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import {createTheme, styled, ThemeProvider} from '@mui/material/styles';
 import './views/Navigation/navigation.css';
 import {Dialog, DialogActions, DialogContent, DialogTitle, IconButton} from "@mui/material";
@@ -14,7 +9,7 @@ import Button from "@mui/material/Button";
 import {useEffect} from "react";
 import FeedbackFormHandler from './views/FeedbackForm/FeedbackFormHandler';
 import "./views/FeedbackForm/FeedbackForm.css";
-import Navigation from './/views//Navigation//navigation';
+import HomePage from './views/HomePage/HomePage';
 
 //Sourced from https://mui.com/material-ui/react-dialog/
 const GreenCardDisclaimer = styled(Dialog)(({ theme }) => ({
@@ -72,7 +67,6 @@ export default function Green() {
         <>
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Navigation/>
             <main>
                 {/*Disclaimer pop-up*/}
                 <div>
@@ -104,80 +98,7 @@ export default function Green() {
                     </GreenCardDisclaimer>
                 </div>
                 {/* Hero unit */}
-                <Box
-                    sx={{
-                        pt: 8,
-                        pb: 6,
-                    }}
-                >
-                </Box>
-                <Container>
-                    {/* End hero unit */}
-                    <Grid container spacing={4} direction={"column"} alignItems={"center"} justify={"center"}>
-                            <Grid>
-                                <Card
-                                    sx={{ height: '100%', display: 'flex', flexDirection: 'column'}}
-                                >
-                                    <CardContent sx={{ flexGrow: 1}}>
-                                        <Typography component="h1" variant="h5">
-                                            <a href='AntipsychoticsGuide'>Antipsychotics Guide</a>
-                                        </Typography>
-                                        <Typography>
-                                            This link will take you to the Antipsychotics Guide.
-                                        </Typography>
-                                    </CardContent>
-                                    <CardContent sx={{ flexGrow: 1 }}>
-                                        <Typography component="h1" variant="h5">
-                                            <a href='CognitiveEnhancersGuide'>Cognitive Enhancers Guide</a>
-                                        </Typography>
-                                        <Typography>
-                                            This link will take you to the Cognitive Enhancers Guide.
-                                        </Typography>
-                                    </CardContent>
-                                    <CardContent sx={{ flexGrow: 1 }}>
-                                        <Typography component="h1" variant="h5">
-                                            <a href='InsomniaManagement'>Insomnia Management</a>
-                                        </Typography>
-                                        <Typography>
-                                            This link will take you to Insomnia Management.
-                                        </Typography>
-                                    </CardContent>
-                                    <CardContent sx={{ flexGrow: 1 }}>
-                                        <Typography component="h1" variant="h5">
-                                            <a href='AntidepressantClinicalGuide'>Antidepressant Clinical Guide</a>
-                                        </Typography>
-                                        <Typography>
-                                            This link will take you to the Antidepressant Clinical Guide.
-                                        </Typography>
-                                    </CardContent>
-                                    <CardContent sx={{ flexGrow: 1 }}>
-                                        <Typography component="h1" variant="h5">
-                                            <a href='MoodStabilizersGuide'>Mood Stabilizers Guide</a>
-                                        </Typography>
-                                        <Typography>
-                                            This link will take you to the Mood Stabilizers Guide.
-                                        </Typography>
-                                    </CardContent>
-                                    <CardContent sx={{ flexGrow: 1 }}>
-                                        <Typography component="h1" variant="h5">
-                                            <a href='DeliriumManagement'>Delirium Management</a>
-                                        </Typography>
-                                        <Typography>
-                                            This link will take you to Delirium Management.
-                                        </Typography>
-                                    </CardContent>
-                                    <CardContent sx={{ flexGrow: 1 }}>
-                                        <Typography component="h1" variant="h5">
-                                            <a href='NeuropsychiatricSymptomsECT'>NPS Management & ECT & Psychoactive Meds</a>
-                                        </Typography>
-                                        <Typography>
-                                            This link will take you to NPS Management & ECT & Psychoactive Meds.
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                    </Grid>
-                </Container>
+                <HomePage/>
             </main>
         </ThemeProvider>
         <FeedbackFormHandler/>

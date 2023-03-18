@@ -8,7 +8,16 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Close from '@mui/material/Button';
 import Rating from '@mui/material/Rating';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './FeedbackForm.css';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#96d2b0',
+    },
+  },
+});
 
 const FeedbackForm = ({ onClose }) => {
   const [name, setName] = useState('');
@@ -40,82 +49,84 @@ const FeedbackForm = ({ onClose }) => {
   };
 
   return (
-    <Box className="form-container">
-      <Box display="flex" justifyContent="space-between">
-        <Typography variant="h5" className="title">
-          Feedback Form
-        </Typography>
-        <Button onClick={onClose}>
-          <Close />
-        </Button>
-      </Box>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          label="Name"
-          variant="filled"
-          className="input-field"
-          fullWidth
-          value={name}
-          onChange={handleNameChange}
-          required
-        />
-        <Box mt={2}>
-          <TextField
-            label="Email"
-            variant="filled"
-            className="input-field"
-            fullWidth
-            type="email"
-            value={email}
-            onChange={handleEmailChange}
-            required
-          />
-        </Box>
-        <Box mt={2}>
-          <TextField
-            label="Comment"
-            variant="filled"
-            className="input-field"
-            fullWidth
-            multiline
-            value={comment}
-            onChange={handleCommentChange}
-            required
-          />
-        </Box>
-        <Box mt={2}>
-          <FormLabel component="legend">Overall Rating</FormLabel>
-          <Rating
-            name="rating"
-            value={rating}
-            onChange={handleRatingChange}
-            required
-          />
-        </Box>
-        <Box mt={2}>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={subscribe}
-                onChange={(event) => setSubscribe(event.target.checked)}
-                name="subscribe"
-              />
-            }
-            label="We can send you follow-up questions via email."
-          />
-        </Box>
-        <Box mt={2} display="flex" justifyContent="center">
-          <Button
-            type="submit"
-            variant="contained"
-            className="submit-button"
-            style={{  font: "inherit", background: '#96d2b0'}}
-          >
-            Submit
+    <ThemeProvider theme={theme}>
+      <Box className="form-container">
+        <Box display="flex" justifyContent="space-between">
+          <Typography variant="h5" className="title">
+            Feedback Form
+          </Typography>
+          <Button onClick={onClose}>
+            <Close />
           </Button>
         </Box>
-      </form>
-    </Box>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            label="Name"
+            variant="filled"
+            className="input-field"
+            fullWidth
+            value={name}
+            onChange={handleNameChange}
+            required
+          />
+          <Box mt={2}>
+            <TextField
+              label="Email"
+              variant="filled"
+              className="input-field"
+              fullWidth
+              type="email"
+              value={email}
+              onChange={handleEmailChange}
+              required
+            />
+          </Box>
+          <Box mt={2}>
+            <TextField
+              label="Comment"
+              variant="filled"
+              className="input-field"
+              fullWidth
+              multiline
+              value={comment}
+              onChange={handleCommentChange}
+              required
+            />
+          </Box>
+          <Box mt={2}>
+            <FormLabel component="legend">Overall Rating</FormLabel>
+            <Rating
+              name="rating"
+              value={rating}
+              onChange={handleRatingChange}
+              required
+            />
+          </Box>
+          <Box mt={2}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={subscribe}
+                  onChange={(event) => setSubscribe(event.target.checked)}
+                  name="subscribe"
+                />
+              }
+              label="We can send you follow-up questions via email."
+            />
+          </Box>
+          <Box mt={2} display="flex" justifyContent="center">
+            <Button
+              type="submit"
+              variant="contained"
+              className="submit-button"
+              color="primary"
+            >
+              Submit
+            </Button>
+          </Box>
+        </form>
+      </Box>
+    </ThemeProvider>
   );
 };
 
