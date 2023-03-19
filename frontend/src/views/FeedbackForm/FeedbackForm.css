@@ -78,3 +78,9 @@
     margin-top: 16px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .feedback-icon-button {
+    bottom: 70px;
+  }
+}

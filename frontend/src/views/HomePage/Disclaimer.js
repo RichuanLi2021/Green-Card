@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import { createTheme, ThemeProvider } from "@mui/material";
+import './Disclaimer.css';
 
 const theme = createTheme({
     palette: {
@@ -17,9 +18,28 @@ const theme = createTheme({
 const GreenCardDisclaimer = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
         padding: theme.spacing(2),
+        fontSize: "16px",
+        [theme.breakpoints.down('sm')]: {
+            fontSize: "14px",
+        },
     },
     '& .MuiDialogActions-root': {
         padding: theme.spacing(1),
+        display: "flex",
+        flexDirection: "column",
+        "& button": {
+            marginBottom: '8px', 
+        },
+        [theme.breakpoints.down('sm')]: {
+            flexDirection: "column",
+        },
+    },
+    '& .MuiPaper-root': {
+        [theme.breakpoints.down('sm')]: {
+            margin: 0,
+            width: '100%',
+            borderRadius: 0,
+        },
     },
 }));
 
@@ -38,8 +58,7 @@ function GreenCardDisclaimerTitle(props) {
                         right: 8,
                         top: 8,
                         color: (theme) => theme.palette.grey[500],
-                    }}
-                >
+                    }}>
                     <CloseIcon />
                 </IconButton>
             ) : null}

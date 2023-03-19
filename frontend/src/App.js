@@ -5,6 +5,7 @@ import FeedbackFormHandler from './views/FeedbackForm/FeedbackFormHandler';
 import "./views/FeedbackForm/FeedbackForm.css";
 import HomePage from './views/HomePage/HomePage';
 import Disclaimer from './views/HomePage/Disclaimer';
+import Footer from './views/Footer/Footer';
 
 export default function Green() {
     return (
@@ -13,6 +14,7 @@ export default function Green() {
             <main>
                 <Disclaimer />
                 <HomePage />
+                <Footer/>
             </main>
             <FeedbackFormHandler />
         </>
