@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import Rating from '@mui/material/Rating';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import submitFeedback from './FeedbackBackend';
 import './FeedbackForm.css';
 
 const theme = createTheme({
@@ -45,8 +46,15 @@ const FeedbackForm = ({ onClose }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log({ name, email, comment, rating, subscribe });
-    window.alert('Feedback submitted!');
-    onClose();
+    submitFeedback(name, email, comment, rating, subscribe)
+      .then((data) => {
+        window.alert('Feedback submitted!');
+        onClose();
+      })
+      .catch((error) => {
+        console.error(error);
+        window.alert('Failed to submit feedback!');
+      });
   };
 
   return (
@@ -102,7 +110,6 @@ const FeedbackForm = ({ onClose }) => {
                 name="rating"
                 value={rating}
                 onChange={handleRatingChange}
-                required
               />
             </Box>
           </Box>
