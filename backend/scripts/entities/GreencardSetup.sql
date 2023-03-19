@@ -16,6 +16,20 @@ CREATE TABLE IF NOT EXISTS `green_card`.`user_model` (
   PRIMARY KEY (`id`)
   );
 
+  -- -----------------------------------------------------
+-- Table `green_card`.`feedback`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `feedback`;
+
+CREATE TABLE feedback (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  comment TEXT NOT NULL,
+  overall_rating TINYINT DEFAULT NULL,
+  subscribe BOOLEAN NOT NULL
+);
+
 
 -- -----------------------------------------------------
 -- Table `green_card`.`ANTIPSYCHOTICS GUIDE`
