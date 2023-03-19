@@ -1,10 +1,9 @@
-import React from 'react';
-import './FeedbackForm'; // Import the CSS file
+import React, { useState } from 'react';
 import FeedbackForm from './FeedbackForm';
 import Button from '@mui/material/Button';
 
 const FeedbackFormHandler = () => {
-  const [showForm, setShowForm] = React.useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   const handleOpenForm = () => {
     setShowForm(true);
@@ -16,14 +15,21 @@ const FeedbackFormHandler = () => {
 
   return (
     <>
-    <Button
+      <Button
         variant="contained"
         onClick={handleOpenForm}
         className="feedback-icon-button"
-        sx={{ position: 'fixed', borderRadius: '50%', font: "inherit", opacity: 0.7, background: '#96d2b0', color: '#000', ":hover": { opacity: 1, background: '#96d2b0' }}}
-        >
+        sx={{
+          position: 'fixed',
+          borderRadius: '50%',
+          font: 'inherit',
+          opacity: 0.7,
+          background: '#c7d296',
+          color: '#000',
+          ':hover': { opacity: 1, background: '#96d2b0' },
+        }}>
         Open Feedback Form
-    </Button>
+      </Button>
       {showForm && (
         <>
           <div className="feedback-form-backdrop" onClick={handleCloseForm} />
@@ -33,4 +39,5 @@ const FeedbackFormHandler = () => {
     </>
   );
 };
+
 export default FeedbackFormHandler;

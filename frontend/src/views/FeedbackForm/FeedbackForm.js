@@ -6,7 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Close from '@mui/material/Button';
+import CloseIcon from '@mui/icons-material/Close';
 import Rating from '@mui/material/Rating';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './FeedbackForm.css';
@@ -45,35 +45,38 @@ const FeedbackForm = ({ onClose }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log({ name, email, comment, rating, subscribe });
+    window.alert('Feedback submitted!');
     onClose();
   };
 
   return (
     <ThemeProvider theme={theme}>
-      <Box className="form-container">
-        <Box display="flex" justifyContent="space-between">
-          <Typography variant="h5" className="title">
-            Feedback Form
-          </Typography>
-          <Button onClick={onClose}>
-            <Close />
-          </Button>
-        </Box>
+      <div className="form-container">
+        <div className="form-header">
+          <Box display="flex" justifyContent="space-between" alignItems="center">
+            <Typography variant="h5" className="title">
+              Feedback Form
+            </Typography>
+            <Button onClick={onClose}>
+              <CloseIcon />
+            </Button>
+          </Box>
+        </div>
         <form onSubmit={handleSubmit}>
-          <TextField
-            label="Name"
-            variant="filled"
-            className="input-field"
-            fullWidth
-            value={name}
-            onChange={handleNameChange}
-            required
-          />
-          <Box mt={2}>
+          <Box sx={{ m: 1.5 }}>
+            <TextField
+              label="Name"
+              variant="filled"
+              fullWidth
+              value={name}
+              onChange={handleNameChange}
+              required
+            />
+          </Box>
+          <Box sx={{ m: 1.5 }}>
             <TextField
               label="Email"
               variant="filled"
-              className="input-field"
               fullWidth
               type="email"
               value={email}
@@ -81,11 +84,10 @@ const FeedbackForm = ({ onClose }) => {
               required
             />
           </Box>
-          <Box mt={2}>
+          <Box sx={{ m: 1.5 }}>
             <TextField
               label="Comment"
               variant="filled"
-              className="input-field"
               fullWidth
               multiline
               value={comment}
@@ -93,16 +95,18 @@ const FeedbackForm = ({ onClose }) => {
               required
             />
           </Box>
-          <Box mt={2}>
-            <FormLabel component="legend">Overall Rating</FormLabel>
-            <Rating
-              name="rating"
-              value={rating}
-              onChange={handleRatingChange}
-              required
-            />
+          <Box sx={{ m: 1.5 }}>
+            <FormLabel component="legend" required>Overall Rating</FormLabel>
+            <Box sx={{ mt: 1 }}>
+              <Rating
+                name="rating"
+                value={rating}
+                onChange={handleRatingChange}
+                required
+              />
+            </Box>
           </Box>
-          <Box mt={2}>
+          <Box sx={{ m: 1.5 }}>
             <FormControlLabel
               control={
                 <Checkbox
@@ -114,18 +118,17 @@ const FeedbackForm = ({ onClose }) => {
               label="We can send you follow-up questions via email."
             />
           </Box>
-          <Box mt={2} display="flex" justifyContent="center">
+          <Box sx={{ m: 1.5, display: 'flex', justifyContent: 'center' }}>
             <Button
               type="submit"
               variant="contained"
               className="submit-button"
-              color="primary"
-            >
+              color="primary">
               Submit
             </Button>
           </Box>
         </form>
-      </Box>
+      </div>
     </ThemeProvider>
   );
 };
