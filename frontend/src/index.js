@@ -15,6 +15,7 @@ import NeuropsychiatricSymptomsECT from './views/Topics/NeuropsychiatricSymptoms
 import { BrowserRouter, Routes ,Route }from "react-router-dom";
 import SearchBar from './views/searchBar/searchBar';
 import AntipsychoticsGuide from './views/Topics/AntipsychoticsGuide/antipsychoticsGuide';
+import AntidepressantsGuide from './views/antidepressantsGuide/antidepressantsGuide';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -26,6 +27,7 @@ root.render(
       <Route path = "/searchBar" element={<SearchBar/>}/>
       <Route path="/navigation" element={<Navigation/>}/>
       <Route path="/AntipsychoticsGuide" element={<AntipsychoticsGuide/>}/>
+      <Route path="/AntidepressantsGuide" element={<AntidepressantsGuide/>}/>
       <Route path="/CognitiveEnhancersGuide" element={<CognitiveEnhancersGuide/>}/>
       <Route path="/InsomniaManagement" element={<InsomniaManagement/>}/>
       <Route path="/AntidepressantClinicalGuide" element={<AntidepressantClinicalGuide/>}/>
