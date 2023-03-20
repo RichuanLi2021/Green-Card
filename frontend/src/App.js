@@ -157,7 +157,7 @@ export default function Green() {
                                     </CardContent>
                                     <CardContent sx={{ flexGrow: 1 }}>
                                         <Typography component="h1" variant="h5">
-                                            <a href='AntidepressantClinicalGuide'>Antidepressant Clinical Guide</a>
+                                            <a href='antidepressantClinicalGuide'>Antidepressant Clinical Guide</a>
                                         </Typography>
                                         <Typography>
                                             This link will take you to the Antidepressant Clinical Guide.
