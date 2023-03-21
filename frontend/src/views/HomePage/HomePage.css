@@ -1,0 +1,20 @@
+.main-container {
+    overflow: auto;
+    margin-top: 35px;
+    margin-bottom: 150px;
+    top: 64px;
+}
+
+@media (max-width:600px) {
+    .main-container {
+        width: 100%;
+    }
+
+    .MuiCardContent-root {
+        font-size: 16px;
+    }
+
+    .MuiCard-root {
+        width: 100%;
+    }
+}
