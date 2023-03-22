@@ -15,13 +15,13 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import './AntidepressantClinicalGuide.css'
-
+import Navigation from '../../Navigation/navigation';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {Link} from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-
+import Footer from '../../Footer/Footer';
 
 const theme = createTheme({
   typography: {
@@ -51,21 +51,7 @@ export default function AntidepressantClinical() {
   };
   return (
     <ThemeProvider theme={theme}>
-        <AppBar position="relative" style={{background: '#96D2B0'}}>
-            <Toolbar sx={{ justifyContent: "space-between" }}>
-                <Typography variant="heading" color="black" noWrap>
-                    Geriatric Psychiatry Green Card
-                </Typography>
-                <ul className="nav-list">
-                    <li className="nav-item">
-                        <Link to="/" className="nav-link">Home</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to="/login" className="nav-link">Login</Link>
-                    </li>
-                </ul>
-            </Toolbar>
-        </AppBar>
+    <Navigation />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -148,7 +134,9 @@ export default function AntidepressantClinical() {
     </div>
         </Box>
       </Container>
+      <Footer/>
     </ThemeProvider>
+    
     
   );
 }
