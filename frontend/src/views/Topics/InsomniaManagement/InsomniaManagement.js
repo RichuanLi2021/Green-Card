@@ -10,12 +10,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-
-
+import Navigation from '../../Navigation/navigation';
+import Footer from '../../Footer/Footer';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {Link} from "react-router-dom";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 
 
 const theme = createTheme();
@@ -25,21 +22,7 @@ const theme = createTheme();
 export default function SignIn() {
   return (
     <ThemeProvider theme={theme}>
-        <AppBar position="relative" style={{background: '#96D2B0'}}>
-            <Toolbar sx={{ justifyContent: "space-between" }}>
-                <Typography variant="h5" color="black" noWrap>
-                    Geriatric Psychiatry Green Card
-                </Typography>
-                <ul className="nav-list">
-                    <li className="nav-item">
-                        <Link to="/" className="nav-link">Home</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to="/login" className="nav-link">Login</Link>
-                    </li>
-                </ul>
-            </Toolbar>
-        </AppBar>
+      <Navigation />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -56,6 +39,9 @@ export default function SignIn() {
           </Typography>
         </Box>
       </Container>
+      <Footer/>
     </ThemeProvider>
+    
   );
+
 }

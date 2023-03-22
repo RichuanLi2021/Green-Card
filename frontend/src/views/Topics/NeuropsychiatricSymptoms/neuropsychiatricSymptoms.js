@@ -5,10 +5,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import {Link} from "react-router-dom";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-
+import Navigation from '../../Navigation/navigation';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -17,13 +14,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-
+import Footer from '../../Footer/Footer';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.success.main,
     color:theme.palette.common.white,
     fontWeight:'bold',
-    fontStyle:'italic',
     textDecorationLine:'underline',
     
   
@@ -70,56 +66,42 @@ export default function neuropsychiatricSymptoms() {
     return(
       
       
-    <div id = "neuropsychiatricSymptoms">
-              <AppBar position="relative" style={{background: '#96D2B0'}}>
-            <Toolbar sx={{ justifyContent: "space-between" }}>
-                <Typography variant="h5" color="black" noWrap>
-                    Geriatric Psychiatry Green Card
-                </Typography>
-                <ul className="nav-list">
-                    <li className="nav-item">
-                        <Link to="/" className="nav-link">Home</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to="/login" className="nav-link">Login</Link>
-                    </li>
-                </ul>
-            </Toolbar>
-        </AppBar>
-      
-        <h1 id ="head">NEUROPSYCHIATRIC SYMPTOMS OF DEMENTIA (NPS) MANAGEMENT</h1>
+    <><div id="neuropsychiatricSymptoms">
+        <Navigation />
+
+        <h1 id="head">NEUROPSYCHIATRIC SYMPTOMS OF DEMENTIA (NPS) MANAGEMENT</h1>
         <Accordion id="firstAccordion">
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography><b>Nonpharmacological Approach</b></Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            <ul>
-              <li>Individualize approach to patient </li>
-              <li>Examine ABCs of behavior and identify the issue</li>
-              <li>General: comforting presence/physical contact,distraction, backing away, reminiscence/sensory/relaxation therapy</li>
-              <li>Optimize engagement in environment, decrease under/overstimulation, establish routine, regular exercise & recreation</li>
-              <li> Resistance to care: personalize the experience (ie: offering choices), bed baths</li>
-            </ul>
-          
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion id="secondAccordion">
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography><b>Pharmacological Approach</b></Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography><b>Nonpharmacological Approach</b></Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              <ul>
+                <li>Individualize approach to patient </li>
+                <li>Examine ABCs of behavior and identify the issue</li>
+                <li>General: comforting presence/physical contact,distraction, backing away, reminiscence/sensory/relaxation therapy</li>
+                <li>Optimize engagement in environment, decrease under/overstimulation, establish routine, regular exercise & recreation</li>
+                <li> Resistance to care: personalize the experience (ie: offering choices), bed baths</li>
+              </ul>
+
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion id="secondAccordion">
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography><b>Pharmacological Approach</b></Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+
               <ul>
                 <li>Only use if clinically signficant distress/agitation/aggression, when benefits{'>'}harm, and non pharmacological approach failed</li>
                 <li>Psychosis: atypical antipsychotic*</li>
@@ -129,56 +111,56 @@ export default function neuropsychiatricSymptoms() {
                 <li>Treatment should be evaluated for tapering or discontinuation every 3-6 months</li>
                 <li>See antipsychotic table for additional information</li>
               </ul>
-              
-          <p><b>Key:</b> ABC: antecedent, behavior, consequence. *Recommended atypical antipsychotics include <br></br>
-          risperidone, olanzapine, and aripiprazole according to the 4th Canadian Consensus Conference on <br></br>
-          the Diagnosis and Treatment of Dementia</p>
 
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+              <p><b>Key:</b> ABC: antecedent, behavior, consequence. *Recommended atypical antipsychotics include <br></br>
+                risperidone, olanzapine, and aripiprazole according to the 4th Canadian Consensus Conference on <br></br>
+                the Diagnosis and Treatment of Dementia</p>
 
-      <Accordion id="thirdAccordion">
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography><b>ECT & PSYCHOACTIVE MEDICATIONS</b></Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-          <TableContainer component={Paper} >
-                <Table sx={{ minWidth: 700 }} aria-label="customized table" id="table" >
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+
+        <Accordion id="thirdAccordion">
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography><b>ECT & PSYCHOACTIVE MEDICATIONS</b></Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 700 }} aria-label="customized table" id="table">
                   <TableHead>
-                    <TableRow >
-                      <StyledTableCell >Medication</StyledTableCell>
-                      <StyledTableCell >Recommended Action</StyledTableCell>
+                    <TableRow>
+                      <StyledTableCell>Medication</StyledTableCell>
+                      <StyledTableCell>Recommended Action</StyledTableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
                     {rows.map((row) => (
-                      <StyledTableRow key={row.medication} >
+                      <StyledTableRow key={row.medication}>
                         <StyledTableCell component="th" scope="row">
                           {row.medication}
                         </StyledTableCell>
-                        <StyledTableCell >{row.recommendedAction}</StyledTableCell>
-                        
+                        <StyledTableCell>{row.recommendedAction}</StyledTableCell>
+
                       </StyledTableRow>
                     ))}
-                    
+
                   </TableBody>
                 </Table>
               </TableContainer><br></br><br></br>
               <p><b>Key:</b> ChEIs:cholinesterase inhibitors; MAOIs: monoamine oxidase inhibitors; *If highly tolerant (and <br></br>high doses), do not taper abruptly due to risk of prolonged seizure </p>
 
 
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
 
-      <footer id ="bottom"> 1st edition: October 2018<br></br> To order copies:psychiatry@dal.ca</footer>
-    </div>);
+      </div>
+      <Footer /></>);
 
 
 }
