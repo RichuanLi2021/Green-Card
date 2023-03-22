@@ -9,8 +9,53 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Navigation from '../../Navigation/navigation';
+import axios from 'axios';
+import {useState, useEffect} from 'react';
 
+//AHHHHHHHHHHHHHHHHHHHHH
+const FeedbackForm = ({ onClose }) => {
+  const [name, setName] = useState('');
+  const [approx_equiv_dose, setApprox] = useState('');
+  const [half_ife , setHalfLife] = useState('');
+  const [frequency, setFrequency] = useState('');
+  const [tab_strength_form_supplied, setTabStrength] = useState('');
+  const [nps, setNps] = useState('');
+  const [pp, setPP] = useState('');
+  const [mde_w_psychosis, setMDE] = useState('');
+  const [delirium, setDelirium] = useState('');
+  const [eo_scz, setEoScz] = useState('');
+  const [lo_scz, setLoScz] = useState('');
+  
 
+  // const antipsychoticsGuideChange = (event) => {
+  //   setName(event.target.value);
+  // };
+
+  // const handleEmailChange = (event) => {
+  //   setEmail(event.target.value);
+  // };
+
+  // const handleCommentChange = (event) => {
+  //   setComment(event.target.value);
+  // };
+
+  // const handleRatingChange = (event, value) => {
+  //   setRating(value);
+  // };
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   console.log({ name, email, comment, rating, subscribe });
+  //   submitFeedback(name, email, comment, rating, subscribe)
+  //     .then((data) => {
+  //       window.alert('Feedback submitted!');
+  //       onClose();
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //       window.alert('Failed to submit feedback!');
+  //     });
+  // };
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -43,24 +88,34 @@ function createData(name, dose, halfLife, frequency, tabStrength, nps, pp, augme
 }
 
 
-const rows = [
-  createData(<i><b><u>Novel</u></b></i>),
-  createData('aripiprazole(Abilify)', "7.5", "75-94h^", "od", "2,5,10,15,20,30/tab", "5-10mg", "?", "2-15mg", "2-15mg", "NR", "2-20mg", "2-10mg"),
-  createData('clozapine(Clozanil)', "100", "14h", "hs-tid", "20,50,100,200/tab", "NR", "6.25-50mg", "NR", "NR", "NR", "25-400mg", "25-200mg"),
-  createData('lurasidone(Latuda)', "n/a", "18h", "od", "40,80,120/tab", "NR", "NR", "NR", "?(20-80mg)", "NR", "?(20-80mg)", "?(20-40mg)"),
-  createData('olanzapine(zyprexa)', "5", "21-54h", "hs", "2.5,5,7.5,10,15,20/inj,tab,diss tab", "2.5-15mg", "NR", "?(2.5-10mg)", "2.5-20mg", "1.25-15mg", "2.5-20mg", "2.5-15mg"),
-  createData('paliperidone(invega)', "2", "23h", "hs", "3,6,9/er tabs", "NR", "NR", "NR", "?", "NR", "3-8mg", "3-4mg"),
-  createData('quetiapine(Seroquel)', "150", "6-12h^", "hs-bid", "20,50,100,150,200,300,400/ir&er tabs", "?(12.5-200mg)", "?(12.5-400mg)**", "25-300mg", "25-400mg", "12.5-200mg", "25-500mg", "25-300mg"),
-  createData('risperidone(Risperdal)', '1.5', '20-24h^', 'hs-bid', '0.25,0.5,1,2,3,4/tab,diss tab,liq', "0.25-2mg**", "NR", "?(0.5-2mg)", "?(0.5-2mg)", "0.25-3mg", "0.5-4mg", "0.5-2mg"),
-  createData(<i><b><u>Conventional</u></b></i>),
-  createData('haloperidol(Haldol)', "2.5", "20h", "hs-bid", "0.5,1,2,5,10,20/inj,tab,liq", "NR", "NR", "NR", "NR", "0.25-2mg**", "0.5-5mg", "?(0.5-2mg)"),
-  createData('loxapine(Loxapac)', '15', '5-19h^', 'hs-tid', '2.5,5,10,25,50/inj,tab,liq', "?(2.5-20mg)", "NR", "NR", "NR", "5-100mg", "2-100mg", "?(2-50mg)"),
-  createData(<i><b><u>Long acting injectables (depots)</u></b></i>),
-  createData('Often used for chronic schizophrenia and other psychotic disorders'),
+// const rows = [
+//   createData(<i><b><u>Novel</u></b></i>),
+//   createData('aripiprazole(Abilify)', "7.5", "75-94h^", "od", "2,5,10,15,20,30/tab", "5-10mg", "?", "2-15mg", "2-15mg", "NR", "2-20mg", "2-10mg"),
+//   createData('clozapine(Clozanil)', "100", "14h", "hs-tid", "20,50,100,200/tab", "NR", "6.25-50mg", "NR", "NR", "NR", "25-400mg", "25-200mg"),
+//   createData('lurasidone(Latuda)', "n/a", "18h", "od", "40,80,120/tab", "NR", "NR", "NR", "?(20-80mg)", "NR", "?(20-80mg)", "?(20-40mg)"),
+//   createData('olanzapine(zyprexa)', "5", "21-54h", "hs", "2.5,5,7.5,10,15,20/inj,tab,diss tab", "2.5-15mg", "NR", "?(2.5-10mg)", "2.5-20mg", "1.25-15mg", "2.5-20mg", "2.5-15mg"),
+//   createData('paliperidone(invega)', "2", "23h", "hs", "3,6,9/er tabs", "NR", "NR", "NR", "?", "NR", "3-8mg", "3-4mg"),
+//   createData('quetiapine(Seroquel)', "150", "6-12h^", "hs-bid", "20,50,100,150,200,300,400/ir&er tabs", "?(12.5-200mg)", "?(12.5-400mg)**", "25-300mg", "25-400mg", "12.5-200mg", "25-500mg", "25-300mg"),
+//   createData('risperidone(Risperdal)', '1.5', '20-24h^', 'hs-bid', '0.25,0.5,1,2,3,4/tab,diss tab,liq', "0.25-2mg**", "NR", "?(0.5-2mg)", "?(0.5-2mg)", "0.25-3mg", "0.5-4mg", "0.5-2mg"),
+//   createData(<i><b><u>Conventional</u></b></i>),
+//   createData('haloperidol(Haldol)', "2.5", "20h", "hs-bid", "0.5,1,2,5,10,20/inj,tab,liq", "NR", "NR", "NR", "NR", "0.25-2mg**", "0.5-5mg", "?(0.5-2mg)"),
+//   createData('loxapine(Loxapac)', '15', '5-19h^', 'hs-tid', '2.5,5,10,25,50/inj,tab,liq', "?(2.5-20mg)", "NR", "NR", "NR", "5-100mg", "2-100mg", "?(2-50mg)"),
+//   createData(<i><b><u>Long acting injectables (depots)</u></b></i>),
+//   createData('Often used for chronic schizophrenia and other psychotic disorders'),
 
-];
+// ];
 
 export default function AntipsychoticsGuide() {
+  const [data, setData] = useState([]);
+            useEffect(() => {
+              axios.get('http://localhost:8887/api/antipsychoticsGuide')
+                .then(response => {
+                  console.log(response.data);
+                })
+                .catch(error => {
+                  console.log(error);
+              });
+            }, []);
   return (
     <>
     <Navigation />
@@ -70,7 +125,7 @@ export default function AntipsychoticsGuide() {
           <Table sx={{ minWidth: 700 }} aria-label="customized table" id="table">
             <TableHead>
               <TableRow>
-                <StyledTableCell style={{width:15}}>Name</StyledTableCell>
+                <StyledTableCell style={{width:15}}>{name}</StyledTableCell>
                 <StyledTableCell align="left" style={{width:15}}>Approx equiv.dose</StyledTableCell>
                 <StyledTableCell align="right">Half-life&nbsp;</StyledTableCell>
                 <StyledTableCell align="right">Frequency&nbsp;</StyledTableCell>
@@ -111,5 +166,3 @@ export default function AntipsychoticsGuide() {
       </div>
       </>
   );
-}
-
