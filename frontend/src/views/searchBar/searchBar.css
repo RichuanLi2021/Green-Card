@@ -1,0 +1,41 @@
+.heading{
+    background-color:#8fbc8f;
+    color:#A52A2A;
+    width:10%;
+    border-radius: 12px;
+    height:30px;
+    padding-left:10px;
+    flex-direction:row;
+    border: solid black;
+    
+    
+}
+#form{
+    flex-direction:row;
+}
+
+.searchBar {
+    display:flex;
+}
+
+.inputField{
+    
+    height:27px;
+    background-color:#98fb98;
+    color:#DC143C;
+    border-radius: 12px;
+    margin-top:20px;
+    border: solid black;
+    
+}
+.search{
+   margin-top:20px;
+   height:32px;
+   flex-direction:row;
+   color:white;
+   font-weight:bold;
+   font-size:14pt;
+   background-color:#008000;
+   border-radius: 12px;
+   border: solid black;
+}

@@ -1,0 +1,23 @@
+#head{
+    color:black;
+    background-color:#96d2b0;
+    text-align:center;
+    font-style:bold;
+    text-decoration:underline;
+    font-size:20pt;
+}
+
+#firstAccordion, #secondAccordion, #thirdAccordion{
+    background-color:#96d2b0;
+    color:black;
+    
+}
+#bottom{
+    text-align:center;
+    background-color:black;
+    color:white;
+    font-size: 14pt;
+    font-style:bold;
+    margin-top:50px;
+
+}
