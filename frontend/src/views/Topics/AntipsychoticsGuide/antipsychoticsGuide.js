@@ -17,7 +17,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     backgroundColor: theme.palette.success.main,
     color: theme.palette.common.white,
     fontWeight: 'bold',
-    fontStyle: 'italic',
     textDecorationLine: 'underline',
 
 
