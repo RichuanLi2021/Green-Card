@@ -90,7 +90,7 @@ export default function AntipsychoticsGuide() {
                   <StyledTableCell component="th" scope="row">
                     {row.name}
                   </StyledTableCell>
-                  <StyledTableCell align="right">{row.dose}</StyledTableCell>
+                  <StyledTableCell align="left">{row.dose}</StyledTableCell>
                   <StyledTableCell align="right">{row.halfLife}</StyledTableCell>
                   <StyledTableCell align="right">{row.frequency}</StyledTableCell>
                   <StyledTableCell align="right">{row.tabStrength}</StyledTableCell>
