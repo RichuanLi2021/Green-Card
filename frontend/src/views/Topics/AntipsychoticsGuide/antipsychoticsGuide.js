@@ -67,11 +67,11 @@ export default function AntipsychoticsGuide() {
       <div id="antipsychoticsGuide">
         <h1 id="heading">Antipsychotics Guide</h1>
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <Table sx={{ minWidth: 700 }} aria-label="customized table" id="table">
             <TableHead>
               <TableRow>
-                <StyledTableCell>Name</StyledTableCell>
-                <StyledTableCell align="right">Approx equiv.dose</StyledTableCell>
+                <StyledTableCell style={{width:15}}>Name</StyledTableCell>
+                <StyledTableCell align="left" style={{width:15}}>Approx equiv.dose</StyledTableCell>
                 <StyledTableCell align="right">Half-life&nbsp;</StyledTableCell>
                 <StyledTableCell align="right">Frequency&nbsp;</StyledTableCell>
                 <StyledTableCell align="right">Tab Strength/ Form Supplied&nbsp;</StyledTableCell>
