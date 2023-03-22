@@ -1,10 +1,3 @@
-// Citations:
-// Title: Sign-in template
-// Author: Michal Dudak and Samuel Sycamore
-// Date: Oct 27, 2022
-// Date accessed: Feb 01, 2023
-// Code version: 3f88e94
-// Availability: https://github.com/mui/material-ui/tree/v5.11.7/docs/data/material/getting-started/templates/sign-in
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -34,13 +27,10 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-
-          <Typography component="h1" variant="h2">
-            Delirium Management
-          </Typography>
+          <Typography variant="h3"> Delirium Management</Typography>
         </Box>
       </Container>
     </ThemeProvider>
-    <Footer /></>
+      <Footer /></>
   );
 }

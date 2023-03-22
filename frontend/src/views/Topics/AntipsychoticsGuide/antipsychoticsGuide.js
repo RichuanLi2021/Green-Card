@@ -10,6 +10,7 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
+import { Box, Typography } from '@mui/material';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -64,7 +65,16 @@ export default function AntipsychoticsGuide() {
     <>
     <Navigation />
       <div id="antipsychoticsGuide">
-        <h1 id="heading">Antipsychotics Guide</h1>
+      <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+            <Typography variant="h3"> Antipsychotics Guide</Typography>
+        </Box>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table" id="table">
             <TableHead>
