@@ -14,9 +14,6 @@ import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {Link} from "react-router-dom";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 
 const theme = createTheme();
 
