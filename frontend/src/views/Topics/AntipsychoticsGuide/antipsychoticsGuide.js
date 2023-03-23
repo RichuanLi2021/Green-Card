@@ -50,6 +50,18 @@ export default function AntipsychoticsGuide() {
           console.log(error);
         });
   }, []);
+  const [name, setName] = useState('');
+  const [approx_equiv_dose, setApprox] = useState('');
+  const [half_ife , setHalfLife] = useState('');
+  const [frequency, setFrequency] = useState('');
+  const [tab_strength_form_supplied, setTabStrength] = useState('');
+  const [nps, setNps] = useState('');
+  const [pp, setPP] = useState('');
+  const [mde_w_psychosis, setMDE] = useState('');
+  const [delirium, setDelirium] = useState('');
+  const [eo_scz, setEoScz] = useState('');
+  const [lo_scz, setLoScz] = useState('');
+
   if(data.length > 0)
   {
     return (
