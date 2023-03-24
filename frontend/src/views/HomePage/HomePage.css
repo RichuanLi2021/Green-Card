@@ -5,6 +5,14 @@
     top: 64px;
 }
 
+.accordion {
+    height: 60px;
+    display: flexbox;
+    align-items: center;
+    justify-content: center;
+    margin-left: 25px;
+}
+
 @media (max-width:600px) {
     .main-container {
         width: 100%;
@@ -17,4 +25,5 @@
     .MuiCard-root {
         width: 100%;
     }
+
 }
