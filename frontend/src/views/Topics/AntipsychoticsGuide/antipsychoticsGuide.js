@@ -66,6 +66,8 @@ export default function AntipsychoticsGuide() {
   const approx_equiv_dose_change = (event) => {
     if(admin)
     {
+      console.log(event.target.value);
+      console.log(event.target.id);
       setApprox(event.target.value);
     }
     else
@@ -76,6 +78,7 @@ export default function AntipsychoticsGuide() {
   const half_life_change = (event) => {
     if(admin)
     {
+      console.log(event.target.value);
       setHalfLife(event.target.value);
     }
     else
@@ -83,6 +86,7 @@ export default function AntipsychoticsGuide() {
       alert("You must be an administrator to edit");
     }
   };
+  //passing data to the backend (calling the query to insert)
 
   if(data.length > 0)
   {
@@ -113,17 +117,13 @@ export default function AntipsychoticsGuide() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  if(admin)
-                  {
-
-                  }
                   {data.map((dataObj, index) => (
                       <StyledTableRow key={index}>
                         <StyledTableCell component="th" scope="row">
                           {dataObj.Name}
                         </StyledTableCell>
-                        <StyledTableCell align="left"><TextField onChange={approx_equiv_dose_change} value={dataObj[`Approx. equiv. dose`]}/></StyledTableCell>
-                        <StyledTableCell align="right"><TextField onChange={half_life_change} value={dataObj[`Half-life`]}/></StyledTableCell>
+                        <StyledTableCell align="left"><input id='approxDose' type='number' onChange={approx_equiv_dose_change} defaultValue={dataObj[`Approx. equiv. dose`]}/></StyledTableCell>
+                        <StyledTableCell align="right"><input type='text' onChange={half_life_change} defaultValue={dataObj[`Half-life`]}/></StyledTableCell>
                         <StyledTableCell align="right">{dataObj[`Frequency`]}</StyledTableCell>
                         <StyledTableCell align="right">{dataObj[`Tab Strength/Form Supplied`]}</StyledTableCell>
                         <StyledTableCell align="right">{dataObj[`NPS`]}</StyledTableCell>
