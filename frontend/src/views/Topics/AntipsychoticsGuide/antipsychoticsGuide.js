@@ -11,6 +11,7 @@ import { styled } from '@mui/material/styles';
 import Navigation from '../../Navigation/navigation';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
+import {TextField} from "@mui/material";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -19,8 +20,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontWeight: 'bold',
     fontStyle: 'italic',
     textDecorationLine: 'underline',
-
-
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
@@ -50,9 +49,10 @@ export default function AntipsychoticsGuide() {
           console.log(error);
         });
   }, []);
+
   const [name, setName] = useState('');
   const [approx_equiv_dose, setApprox] = useState('');
-  const [half_ife , setHalfLife] = useState('');
+  const [half_life , setHalfLife] = useState('');
   const [frequency, setFrequency] = useState('');
   const [tab_strength_form_supplied, setTabStrength] = useState('');
   const [nps, setNps] = useState('');
@@ -61,6 +61,28 @@ export default function AntipsychoticsGuide() {
   const [delirium, setDelirium] = useState('');
   const [eo_scz, setEoScz] = useState('');
   const [lo_scz, setLoScz] = useState('');
+  const admin = localStorage.getItem('admin');
+
+  const approx_equiv_dose_change = (event) => {
+    if(admin)
+    {
+      setApprox(event.target.value);
+    }
+    else
+    {
+      alert("You must be an administrator to edit");
+    }
+  };
+  const half_life_change = (event) => {
+    if(admin)
+    {
+      setHalfLife(event.target.value);
+    }
+    else
+    {
+      alert("You must be an administrator to edit");
+    }
+  };
 
   if(data.length > 0)
   {
@@ -93,8 +115,8 @@ export default function AntipsychoticsGuide() {
                         <StyledTableCell component="th" scope="row">
                           {dataObj.Name}
                         </StyledTableCell>
-                        <StyledTableCell align="left">{dataObj[`Approx. equiv. dose`]}</StyledTableCell>
-                        <StyledTableCell align="right">{dataObj[`Half-life`]}</StyledTableCell>
+                        <StyledTableCell align="left"><TextField onChange={approx_equiv_dose_change} value={dataObj[`Approx. equiv. dose`]}/></StyledTableCell>
+                        <StyledTableCell align="right"><TextField onChange={half_life_change} value={dataObj[`Half-life`]}/></StyledTableCell>
                         <StyledTableCell align="right">{dataObj[`Frequency`]}</StyledTableCell>
                         <StyledTableCell align="right">{dataObj[`Tab Strength/Form Supplied`]}</StyledTableCell>
                         <StyledTableCell align="right">{dataObj[`NPS`]}</StyledTableCell>
