@@ -45,6 +45,7 @@ export default function SignIn() {
     const user = data.find(item => item.username === dataCredential.get('username'));
     if (user && user.password === dataCredential.get('password')) {
       alert("Login Success");
+      localStorage.setItem('admin', 'true');
       navigate("/");
     } else {
       alert("Incorrect Username or Password");
