@@ -15,7 +15,7 @@ import NeuropsychiatricSymptomsECT from './views/Topics/NeuropsychiatricSymptoms
 import { BrowserRouter, Routes ,Route }from "react-router-dom";
 import SearchBar from './views/searchBar/searchBar';
 import AntipsychoticsGuide from './views/Topics/AntipsychoticsGuide/antipsychoticsGuide';
-import AntidepressantsGuide from './views/antidepressantsGuide/antidepressantsGuide';
+import AntidepressantsGuide from './views/Topics/antidepressantsGuide/antidepressantsGuide';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

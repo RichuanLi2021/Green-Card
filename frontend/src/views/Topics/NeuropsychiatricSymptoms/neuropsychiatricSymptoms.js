@@ -15,6 +15,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Footer from '../../Footer/Footer';
+import { Box } from '@mui/system';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.success.main,
@@ -68,8 +69,16 @@ export default function neuropsychiatricSymptoms() {
       
     <><div id="neuropsychiatricSymptoms">
         <Navigation />
-
-        <h1 id="head">NEUROPSYCHIATRIC SYMPTOMS OF DEMENTIA (NPS) MANAGEMENT</h1>
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+            <Typography variant="h3"> NPS Management & ECT & Psychoactive Meds</Typography>
+        </Box>
         <Accordion id="firstAccordion">
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -80,13 +89,13 @@ export default function neuropsychiatricSymptoms() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              <ul>
+
                 <li>Individualize approach to patient </li>
                 <li>Examine ABCs of behavior and identify the issue</li>
                 <li>General: comforting presence/physical contact,distraction, backing away, reminiscence/sensory/relaxation therapy</li>
                 <li>Optimize engagement in environment, decrease under/overstimulation, establish routine, regular exercise & recreation</li>
                 <li> Resistance to care: personalize the experience (ie: offering choices), bed baths</li>
-              </ul>
+
 
             </Typography>
           </AccordionDetails>
@@ -102,7 +111,7 @@ export default function neuropsychiatricSymptoms() {
           <AccordionDetails>
             <Typography>
 
-              <ul>
+
                 <li>Only use if clinically signficant distress/agitation/aggression, when benefits{'>'}harm, and non pharmacological approach failed</li>
                 <li>Psychosis: atypical antipsychotic*</li>
                 <li>No psychosis: SSRI, trazadone, or atypical antipsychotic*</li>
@@ -110,7 +119,7 @@ export default function neuropsychiatricSymptoms() {
                 <li>Pharmacological approach generally not helpful for primary wandering or vocalizing</li>
                 <li>Treatment should be evaluated for tapering or discontinuation every 3-6 months</li>
                 <li>See antipsychotic table for additional information</li>
-              </ul>
+
 
               <p><b>Key:</b> ABC: antecedent, behavior, consequence. *Recommended atypical antipsychotics include <br></br>
                 risperidone, olanzapine, and aripiprazole according to the 4th Canadian Consensus Conference on <br></br>
