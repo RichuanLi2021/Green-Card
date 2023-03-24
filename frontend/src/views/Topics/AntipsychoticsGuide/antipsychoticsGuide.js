@@ -63,9 +63,9 @@ const rows = [
 export default function AntipsychoticsGuide() {
   return (
     <>
-    <Navigation />
+      <Navigation />
       <div id="antipsychoticsGuide">
-      <Box
+        <Box
           sx={{
             marginTop: 8,
             display: 'flex',
@@ -73,14 +73,14 @@ export default function AntipsychoticsGuide() {
             alignItems: 'center',
           }}
         >
-            <Typography variant="h3"> Antipsychotics Guide</Typography>
+          <Typography variant="h3"> Antipsychotics Guide</Typography>
         </Box>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table" id="table">
             <TableHead>
               <TableRow>
-                <StyledTableCell style={{width:15}}>Name</StyledTableCell>
-                <StyledTableCell align="left" style={{width:15}}>Approx equiv.dose</StyledTableCell>
+                <StyledTableCell style={{ width: 15 }}>Name</StyledTableCell>
+                <StyledTableCell align="left" style={{ width: 15 }}>Approx equiv.dose</StyledTableCell>
                 <StyledTableCell align="right">Half-life&nbsp;</StyledTableCell>
                 <StyledTableCell align="right">Frequency&nbsp;</StyledTableCell>
                 <StyledTableCell align="right">Tab Strength/ Form Supplied&nbsp;</StyledTableCell>
@@ -118,8 +118,8 @@ export default function AntipsychoticsGuide() {
         </TableContainer>
         <footer id="footer" > <b>Key:</b> AD: antidepressant; er: extended release; ir: immediate release; EO-SCZ: early-onset schizophrenia; LO-SCZ: late-onset schizophrenia; MDE: major depressive disorder; NPS: neuropsychiatric symptoms of dementia; NR: not recommended; PP: Parkinson's psychosis; †0.25 of adult equivalent dose shown (see Yellow Card); ‡take with meal (≥350 kcal); ^accounts for half-life of active metabolites; **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data. <b>NOTES:</b> doses may not reflect manufacturers' recommendations but are based on clinical literature and opinion. Half lives are estimates based on adult data and in older adults they can often be increased up to 170%.</footer>
       </div>
-      <Footer/>
-      </>
+      <Footer />
+    </>
   );
 }
 
