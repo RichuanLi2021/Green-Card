@@ -20,6 +20,7 @@ const theme = createTheme({
 const HomePage = () => {
     return (
         <div>
+            <ThemeProvider theme={theme}> 
             <Navigation />
             <Container className="main-container" sx={{ overflow: "auto", display: "flex" }}>
                 <Grid container spacing={4} direction="column" alignItems="center" justify="center" sx={{ textAlign: "center" }}>
@@ -120,6 +121,7 @@ const HomePage = () => {
                     </Grid>
                 </Grid>
             </Container>
+            </ThemeProvider>
         </div>
     );
 };
@@ -128,31 +130,15 @@ export default HomePage;
 
 const buttonsContent = [
     {
-        title: "Antipsychotics Guide",
+        title: "Deprescribing Sedatives/hypnotics",
         href: "AntipsychoticsGuide",
     },
     {
-        title: "Cognitive Enhancers Guide",
+        title: "ECT + Psychoactive Medications",
         href: "CognitiveEnhancersGuide",
     },
     {
-        title: "Insomnia Management",
+        title: "Psychotropic Monitoring",
         href: "InsomniaManagement",
-    },
-    {
-        title: "Antidepressant Clinical Guide",
-        href: "AntidepressantClinicalGuide",
-    },
-    {
-        title: "Mood Stabilizers Guide",
-        href: "MoodStabilizersGuide",
-    },
-    {
-        title: "Delirium Management",
-        href: "DeliriumManagement",
-    },
-    {
-        title: "NPS Management & ECT & Psychoactive Meds",
-        href: "NeuropsychiatricSymptomsECT",
     },
 ];

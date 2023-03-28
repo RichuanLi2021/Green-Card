@@ -23,9 +23,13 @@
     "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.19",
     "react": "^18.2.0",
+<<<<<<< HEAD
     "react-router-dom": "^6.9.0",
     "react-scripts": "^5.0.1",
     "web-vitals": "^3.3.0"
+=======
+    "react-accessible-accordion": "^5.0.0"
+>>>>>>> faabd23d9a1e507d4a26c41e57184b544a1401db
   },
   "devDependencies": {
     "concurrently": "^7.3.0"
