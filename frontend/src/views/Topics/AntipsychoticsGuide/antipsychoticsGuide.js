@@ -11,6 +11,8 @@ import { styled } from '@mui/material/styles';
 import Navigation from '../../Navigation/navigation';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
+import Footer from '../../Footer/Footer';
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -106,6 +108,7 @@ export default function AntipsychoticsGuide() {
               increased up to 170%.
             </footer>
           </div>
+          <Footer />
         </>
     );
   }
