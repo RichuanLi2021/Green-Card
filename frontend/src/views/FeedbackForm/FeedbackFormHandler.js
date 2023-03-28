@@ -24,7 +24,7 @@ const FeedbackFormHandler = () => {
           borderRadius: '50%',
           font: 'inherit',
           opacity: 0.7,
-          background: '#c7d296',
+          background: '#96D2B0',
           color: '#000',
           ':hover': { opacity: 1, background: '#96d2b0' },
         }}>
