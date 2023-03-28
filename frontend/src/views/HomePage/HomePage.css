@@ -5,6 +5,14 @@
     top: 64px;
 }
 
+<<<<<<< HEAD
+=======
+.accordian {
+    display:flex; 
+    justify-content: center;
+    align-items: center;
+}
+>>>>>>> faabd23d9 (Finsihed recatagorizing the main page)
 @media (max-width:600px) {
     .main-container {
         width: 100%;
