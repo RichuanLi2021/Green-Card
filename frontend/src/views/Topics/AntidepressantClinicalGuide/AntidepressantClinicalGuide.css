@@ -3,18 +3,11 @@
     color:black;
     width:25%;
     text-align:center;
-    font-style:italic;
     font-style:bold;
     text-decoration:underline;
     font-size:30pt;
     margin-left:35%;
 
-}
-#footer {
-    background-color:black;
-    color:white;
-    margin-top:20px;
-    font-style:italic;
 }
 @media  screen and (max-width:700px) {
     #heading{

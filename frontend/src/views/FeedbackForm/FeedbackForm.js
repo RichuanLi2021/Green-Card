@@ -104,7 +104,7 @@ const FeedbackForm = ({ onClose }) => {
             />
           </Box>
           <Box sx={{ m: 1.5 }}>
-            <FormLabel component="legend" required>Overall Rating</FormLabel>
+            <FormLabel component="legend" required>How would you rate your overall experience using the website, from 1-5?</FormLabel>
             <Box sx={{ mt: 1 }}>
               <Rating
                 name="rating"
