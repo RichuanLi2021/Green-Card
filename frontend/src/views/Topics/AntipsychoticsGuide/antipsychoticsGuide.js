@@ -65,7 +65,6 @@ export default function AntipsychoticsGuide() {
       if(event.target.value !== value)
       {
         event.preventDefault();
-        console.log("approx_equiv_dose_change: " + "\nName:" + event.target.name + "\nColumn:" + event.target.id + "\nValue:" + event.target.value)
         antipsychoticsGuideUpdate(event.target.name,event.target.id, event.target.value).then((data) => {
           //alert('Updated Successfully Called! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nValue:"+ event.target.value);
         }).catch((error) => {

@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const antipsychoticsGuideUpdate = async (name, column, value) => {
   try {
-      console.log("antipsychoticsGuideUpdate: " + "\nName:" + name + "\nColumn:" + column + "\nValue:" + value)
     const response = await axios.post('http://localhost:8887/api/antipsychoticsGuide/update', {
      name,
      column,
