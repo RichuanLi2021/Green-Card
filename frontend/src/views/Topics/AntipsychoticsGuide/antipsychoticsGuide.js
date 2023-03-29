@@ -11,7 +11,7 @@ import { styled } from '@mui/material/styles';
 import Navigation from '../../Navigation/navigation';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
-import {TextField} from "@mui/material";
+import {TextField, Tooltip} from "@mui/material";
 import antipsychoticsGuideUpdate from "./antipsychoticsGuidebackend";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -50,50 +50,39 @@ export default function AntipsychoticsGuide() {
           console.log(error);
         });
   }, []);
-
-  const [name, setName] = useState('');
-  const [approx_equiv_dose, setApprox] = useState('');
-  const [half_life , setHalfLife] = useState('');
-  const [frequency, setFrequency] = useState('');
-  const [tab_strength_form_supplied, setTabStrength] = useState('');
-  const [nps, setNps] = useState('');
-  const [pp, setPP] = useState('');
-  const [mde_w_psychosis, setMDE] = useState('');
-  const [delirium, setDelirium] = useState('');
-  const [eo_scz, setEoScz] = useState('');
-  const [lo_scz, setLoScz] = useState('');
+  const [value, setValue] = useState('');
   const admin = localStorage.getItem('admin');
 
-  const approx_equiv_dose_change = (event) => {
+  //used to store value when an input is selected by user
+  const store_value = (event) => {
+    setValue(event.target.value);
+  }
+  //calls update query when an input was selected and is not anymore (if the value actually changed)
+  const update_value = (event) => {
     if(admin)
     {
-      event.preventDefault();
-      console.log("approx_equiv_dose_change: " + "\nName:" + event.target.name + "\nColumn:" + event.target.id + "\nValue:" + event.target.value)
-      antipsychoticsGuideUpdate(event.target.name,event.target.id, event.target.value).then((data) => {
-        alert('Updated Successfully Called! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nValue:"+ event.target.value);
-      }).catch((error) => {
+      console.log(value);
+      if(event.target.value !== value)
+      {
+        event.preventDefault();
+        console.log("approx_equiv_dose_change: " + "\nName:" + event.target.name + "\nColumn:" + event.target.id + "\nValue:" + event.target.value)
+        antipsychoticsGuideUpdate(event.target.name,event.target.id, event.target.value).then((data) => {
+          //alert('Updated Successfully Called! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nValue:"+ event.target.value);
+        }).catch((error) => {
           console.error(error);
-          alert('Failed to update !');
+          alert('Failed to update!');
         });
+      }
+      else
+      {
+        console.log("value was not changed, not updating");
+      }
     }
     else
     {
       alert("You must be an administrator to edit");
     }
   };
-  const half_life_change = (event) => {
-    if(admin)
-    {
-      console.log(event.target.value);
-      setHalfLife(event.target.value);
-    }
-    else
-    {
-      alert("You must be an administrator to edit");
-    }
-  };
-  //passing data to the backend (calling the query to insert)
-
   if(data.length > 0)
   {
     //Editable Fields
@@ -108,37 +97,37 @@ export default function AntipsychoticsGuide() {
               <Table sx={{minWidth: 700}} aria-label="customized table" id="table">
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell style={{width:15}}>Name</StyledTableCell>
-                    <StyledTableCell align="left" style={{width:15}}>Approx equiv.dose</StyledTableCell>
-                    <StyledTableCell align="right">Half-life&nbsp;</StyledTableCell>
-                    <StyledTableCell align="right">Frequency&nbsp;</StyledTableCell>
-                    <StyledTableCell align="right">Tab Strength/ Form Supplied&nbsp;</StyledTableCell>
-                    <StyledTableCell align="right">NPS&nbsp;</StyledTableCell>
-                    <StyledTableCell align="right">PP&nbsp;</StyledTableCell>
-                    <StyledTableCell align="right">MDE(AD augment)&nbsp;</StyledTableCell>
-                    <StyledTableCell align="right">MDE(w.psychosis)&nbsp;</StyledTableCell>
-                    <StyledTableCell align="right">Delirium&nbsp;</StyledTableCell>
-                    <StyledTableCell align="right">EO-SCZ&nbsp;</StyledTableCell>
-                    <StyledTableCell align="right">LO-SCZ&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left">Name</StyledTableCell>
+                    <StyledTableCell align="left">Approx equiv.dose</StyledTableCell>
+                    <StyledTableCell align="left">Half-life&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left">Frequency&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left">Tab Strength/ Form Supplied&nbsp;</StyledTableCell>
+                    <Tooltip title={"NPS: Neuropsychiatric Symptoms of Dementia"}><StyledTableCell align="left">NPS&nbsp;</StyledTableCell></Tooltip>
+                    <Tooltip title={"PP: Parkinson's Psychosis"}><StyledTableCell align="left">PP&nbsp;</StyledTableCell></Tooltip>
+                    <StyledTableCell align="left">MDE(AD augment)&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left">MDE(w.psychosis)&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left">Delirium&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left">EO-SCZ&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left">LO-SCZ&nbsp;</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {data.map((dataObj, index) => (
                       <StyledTableRow key={index}>
-                        <StyledTableCell component="th" scope="row">
+                        <StyledTableCell component="th" scope="row" style={{position:"sticky"}}>
                           {dataObj.Name}
                         </StyledTableCell>
-                        <StyledTableCell align="left"><input id='`Approx. equiv. dose`' name={dataObj.Name} type='number' onBlur={approx_equiv_dose_change} defaultValue={dataObj[`Approx. equiv. dose`]}/></StyledTableCell>
-                        <StyledTableCell align="right"><input type='text' onChange={half_life_change} defaultValue={dataObj[`Half-life`]}/></StyledTableCell>
-                        <StyledTableCell align="right">{dataObj[`Frequency`]}</StyledTableCell>
-                        <StyledTableCell align="right">{dataObj[`Tab Strength/Form Supplied`]}</StyledTableCell>
-                        <StyledTableCell align="right">{dataObj[`NPS`]}</StyledTableCell>
-                        <StyledTableCell align="right">{dataObj[`PP`]}</StyledTableCell>
-                        <StyledTableCell align="right">{dataObj[`MDE (ADaugment)`]}</StyledTableCell>
-                        <StyledTableCell align="right">{dataObj[`MDE (w.psychosis)`]}</StyledTableCell>
-                        <StyledTableCell align="right">{dataObj[`Delirium`]}</StyledTableCell>
-                        <StyledTableCell align="right">{dataObj[`EO-SCZ`]}</StyledTableCell>
-                        <StyledTableCell align="right">{dataObj[`LO-SCZ`]}</StyledTableCell>
+                        <StyledTableCell align="left"><input id='`Approx. equiv. dose`' name={dataObj.Name} type='number' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Approx. equiv. dose`]}/></StyledTableCell>
+                        <StyledTableCell align="left"><input id='`Half-life`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Half-life`]}/></StyledTableCell>
+                        <StyledTableCell align="left"><input id='`Frequency`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Frequency`]}/></StyledTableCell>
+                        <StyledTableCell align="left"><input style={{width:275}} id='`Tab Strength/Form Supplied`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Tab Strength/Form Supplied`]}/></StyledTableCell>
+                        <StyledTableCell align="left"><input id='`NPS`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`NPS`]}/></StyledTableCell>
+                        <StyledTableCell align="left"><input id='`PP`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`PP`]}/></StyledTableCell>
+                        <StyledTableCell align="left"><input id='`MDE (ADaugment)`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`MDE (ADaugment)`]}/></StyledTableCell>
+                        <StyledTableCell align="left"><input id='`MDE (w.psychosis)`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`MDE (w.psychosis)`]}/></StyledTableCell>
+                        <StyledTableCell align="left"><input id='`Delirium`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Delirium`]}/></StyledTableCell>
+                        <StyledTableCell align="left"><input id='`EO-SCZ`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`EO-SCZ`]}/></StyledTableCell>
+                        <StyledTableCell align="left"><input id='`LO-SCZ`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`LO-SCZ`]}/></StyledTableCell>
                       </StyledTableRow>
                   ))}
                 </TableBody>
@@ -171,16 +160,16 @@ export default function AntipsychoticsGuide() {
                   <TableRow>
                     <StyledTableCell style={{width:15}}>Name</StyledTableCell>
                     <StyledTableCell align="left" style={{width:15}}>Approx equiv.dose</StyledTableCell>
-                    <StyledTableCell align="right">Half-life&nbsp;</StyledTableCell>
-                    <StyledTableCell align="right">Frequency&nbsp;</StyledTableCell>
-                    <StyledTableCell align="right">Tab Strength/ Form Supplied&nbsp;</StyledTableCell>
-                    <StyledTableCell align="right">NPS&nbsp;</StyledTableCell>
-                    <StyledTableCell align="right">PP&nbsp;</StyledTableCell>
-                    <StyledTableCell align="right">MDE(AD augment)&nbsp;</StyledTableCell>
-                    <StyledTableCell align="right">MDE(w.psychosis)&nbsp;</StyledTableCell>
-                    <StyledTableCell align="right">Delirium&nbsp;</StyledTableCell>
-                    <StyledTableCell align="right">EO-SCZ&nbsp;</StyledTableCell>
-                    <StyledTableCell align="right">LO-SCZ&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left">Half-life&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left">Frequency&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left">Tab Strength/ Form Supplied&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left">NPS&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left">PP&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left">MDE(AD augment)&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left">MDE(w.psychosis)&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left">Delirium&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left">EO-SCZ&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left">LO-SCZ&nbsp;</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -190,16 +179,16 @@ export default function AntipsychoticsGuide() {
                           {dataObj.Name}
                         </StyledTableCell>
                         <StyledTableCell align="left">{dataObj[`Approx. equiv. dose`]}</StyledTableCell>
-                        <StyledTableCell align="right">{dataObj[`Half-life`]}</StyledTableCell>
-                        <StyledTableCell align="right">{dataObj[`Frequency`]}</StyledTableCell>
-                        <StyledTableCell align="right">{dataObj[`Tab Strength/Form Supplied`]}</StyledTableCell>
-                        <StyledTableCell align="right">{dataObj[`NPS`]}</StyledTableCell>
-                        <StyledTableCell align="right">{dataObj[`PP`]}</StyledTableCell>
-                        <StyledTableCell align="right">{dataObj[`MDE (ADaugment)`]}</StyledTableCell>
-                        <StyledTableCell align="right">{dataObj[`MDE (w.psychosis)`]}</StyledTableCell>
-                        <StyledTableCell align="right">{dataObj[`Delirium`]}</StyledTableCell>
-                        <StyledTableCell align="right">{dataObj[`EO-SCZ`]}</StyledTableCell>
-                        <StyledTableCell align="right">{dataObj[`LO-SCZ`]}</StyledTableCell>
+                        <StyledTableCell align="left">{dataObj[`Half-life`]}</StyledTableCell>
+                        <StyledTableCell align="left">{dataObj[`Frequency`]}</StyledTableCell>
+                        <StyledTableCell align="left">{dataObj[`Tab Strength/Form Supplied`]}</StyledTableCell>
+                        <StyledTableCell align="left">{dataObj[`NPS`]}</StyledTableCell>
+                        <StyledTableCell align="left">{dataObj[`PP`]}</StyledTableCell>
+                        <StyledTableCell align="left">{dataObj[`MDE (ADaugment)`]}</StyledTableCell>
+                        <StyledTableCell align="left">{dataObj[`MDE (w.psychosis)`]}</StyledTableCell>
+                        <StyledTableCell align="left">{dataObj[`Delirium`]}</StyledTableCell>
+                        <StyledTableCell align="left">{dataObj[`EO-SCZ`]}</StyledTableCell>
+                        <StyledTableCell align="left">{dataObj[`LO-SCZ`]}</StyledTableCell>
                       </StyledTableRow>
                   ))}
                 </TableBody>
