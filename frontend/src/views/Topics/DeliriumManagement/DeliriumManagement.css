@@ -1,0 +1,74 @@
+#heading {
+    background-color: aliceblue;
+    color: black;
+    width: 25%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30pt;
+    margin-left: 35%;
+  }
+
+#firstAccordion, #secondAccordion, #thirdAccordion{
+    background-color:#96d2b0;
+    color:black;
+    
+}
+#bottom{
+    font-size: 14px;
+    color: whitesmoke;
+    padding: 20px;
+    text-align: center;
+    background-color: darkgray;
+}
+
+
+  /* Add a media query to apply the styles only when the screen is smaller than 768px (typical tablet size) */
+  @media only screen and (max-width: 768px) {
+
+    /* Center the table horizontally */
+    .MuiTable-root {
+      margin: 0 auto;
+      max-width: 100%;
+    }
+
+    /* Reduce font size and padding for table cells */
+    .MuiTableCell-root {
+      font-size: 0.9rem;
+      padding: 0.8rem 0.5rem;
+    }
+
+    /* Increase font size and padding for table headers */
+    .MuiTableCell-head {
+      font-size: 1rem;
+      padding: 0.8rem 0.5rem;
+    }
+
+
+    /* Show table cell as a block element to make it take the full width of the screen */
+    .MuiTableCell-root {
+      display: block;
+    }
+
+    /* Add a border at the bottom of each table cell to separate them */
+    .MuiTableCell-root:not(:last-child) {
+      border-bottom: 1px solid #ccc;
+    }
+
+    /* Add padding to the first and last table cells of each row to improve readability */
+    .MuiTableRow-root .MuiTableCell-root:first-child,
+    .MuiTableRow-root .MuiTableCell-root:last-child {
+      padding: 0.8rem 0.5rem;
+    }
+
+
+    /* Add margin to the top of the table to separate it from other content */
+    .MuiTableContainer-root {
+      margin-top: 1rem;
+    }
+
+    /* Center the app bar text */
+    .MuiTypography-root {
+      text-align: center;
+    }
+}
+
