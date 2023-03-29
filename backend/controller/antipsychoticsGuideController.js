@@ -8,29 +8,25 @@ const getAPData = async () => {
   return rows;
 };
 
-const apController = {
-  getData: async (req, res, next) => {
-    const apData = await getAPData();
-    res.send(apData);
+const getData = async (req, res, next) => {
+  const apData = await getAPData();
+  res.send(apData);
+}
+
+const updateData = async (req, res, next) => {
+  try{
+    const { name, column, value} = req.body;
+    await pool.query('UPDATE `green_card`.`ANTIPSYCHOTICS GUIDE` SET ' + column + ' = ' + value + ' WHERE name = ' + '"' + name + '"');
+    res.send("Updated Successfully!");
+  }catch(error){
+    console.log(error);
+    next(error);
+    throw error;
   }
+}
+
+
+module.exports = {
+  getData,
+  updateData
 };
-
-
-// const submitChange = {
-//     submitChange: async (req, res, next) => {
-//         const { name, value } = req.body;
-//         // const updateColumn = //identify the value id to determine the column below
-//         try {
-//             await pool.query('INSERT INTO `green_card`.`ANTIPSYCHOTICS GUIDE` (name, updateColumn) VALUES (?, ?)',
-//                 [name, value]);
-//             res.send(name + "updated successfully");
-//         } catch (err) {
-//             next(err);
-//             throw err;
-//         }
-//     }
-// };
-
-
-
-module.exports = apController;

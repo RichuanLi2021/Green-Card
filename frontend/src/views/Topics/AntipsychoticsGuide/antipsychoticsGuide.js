@@ -12,6 +12,7 @@ import Navigation from '../../Navigation/navigation';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 import {TextField} from "@mui/material";
+import antipsychoticsGuideUpdate from "./antipsychoticsGuidebackend";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -43,7 +44,7 @@ export default function AntipsychoticsGuide() {
     axios.get('http://localhost:8887/api/antipsychoticsGuide')
         .then(response => {
           setData(response.data)
-          console.log(response.data[0]);
+          //console.log(response.data[0]);
         })
         .catch(error => {
           console.log(error);
@@ -66,9 +67,14 @@ export default function AntipsychoticsGuide() {
   const approx_equiv_dose_change = (event) => {
     if(admin)
     {
-      console.log(event.target.value);
-      console.log(event.target.id);
-      setApprox(event.target.value);
+      event.preventDefault();
+      console.log("approx_equiv_dose_change: " + "\nName:" + event.target.name + "\nColumn:" + event.target.id + "\nValue:" + event.target.value)
+      antipsychoticsGuideUpdate(event.target.name,event.target.id, event.target.value).then((data) => {
+        alert('Updated Successfully Called! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nValue:"+ event.target.value);
+      }).catch((error) => {
+          console.error(error);
+          alert('Failed to update !');
+        });
     }
     else
     {
@@ -122,7 +128,7 @@ export default function AntipsychoticsGuide() {
                         <StyledTableCell component="th" scope="row">
                           {dataObj.Name}
                         </StyledTableCell>
-                        <StyledTableCell align="left"><input id='approxDose' type='number' onChange={approx_equiv_dose_change} defaultValue={dataObj[`Approx. equiv. dose`]}/></StyledTableCell>
+                        <StyledTableCell align="left"><input id='`Approx. equiv. dose`' name={dataObj.Name} type='number' onBlur={approx_equiv_dose_change} defaultValue={dataObj[`Approx. equiv. dose`]}/></StyledTableCell>
                         <StyledTableCell align="right"><input type='text' onChange={half_life_change} defaultValue={dataObj[`Half-life`]}/></StyledTableCell>
                         <StyledTableCell align="right">{dataObj[`Frequency`]}</StyledTableCell>
                         <StyledTableCell align="right">{dataObj[`Tab Strength/Form Supplied`]}</StyledTableCell>
