@@ -32,8 +32,8 @@ const HomePage = () => {
                                     <Typography variant="h1"> Antidepressants </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography> <a href='AntipsychoticsGuide'> Antidepressant Guide </a> </Typography>
-                                        <Typography> <a href='AntipsychoticsGuide'> Antidepressant Clinical Guide </a> </Typography>
+                                        <Typography> <a href='antidepressantsGuide'> Antidepressant Guide </a> </Typography>
+                                        <Typography> <a href='AntidepressantClinicalGuide'> Antidepressant Clinical Guide </a> </Typography>
                                         <Typography> <a href='AntipsychoticsGuide'> Antidepressant Safety Concerns </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
@@ -55,7 +55,7 @@ const HomePage = () => {
                                     <Typography variant="h1"> Insomnia </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography> <a href='AntipsychoticsGuide'> Insomnia management </a> </Typography>
+                                        <Typography> <a href='InsomniaManagement'> Insomnia management </a> </Typography>
                                         <Typography> <a href='AntipsychoticsGuide'> Sedatives/hypnotics Guide </a> </Typography>
                                         <Typography> <a href='AntipsychoticsGuide'> Sedatives/hypnotics Safety Guide </a> </Typography>
                                         <Typography> <a href='AntipsychoticsGuide'> Sedatives/hypnotics Safety Concerns </a> </Typography>
@@ -68,8 +68,8 @@ const HomePage = () => {
                                     <Typography variant="h1"> Dementia </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography> <a href='AntipsychoticsGuide'> Cognitive Enhancers Guide </a> </Typography>
-                                        <Typography> <a href='AntipsychoticsGuide'> Cognitive Enhancers Guide continued </a> </Typography>
+                                        <Typography> <a href='CognitiveEnhancersGuide'> Cognitive Enhancers Guide </a> </Typography>
+                                        <Typography> <a href='CognitiveEnhancersGuide'> Cognitive Enhancers Guide continued </a> </Typography>
                                         <Typography> <a href='AntipsychoticsGuide'> Cognitive Enhancers Clinical Guide </a> </Typography>
                                         <Typography> <a href='AntipsychoticsGuide'> NPS Management </a> </Typography>
                                     </AccordionDetails>
@@ -81,7 +81,7 @@ const HomePage = () => {
                                     <Typography variant="h1"> Delirium </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography> <a href='AntipsychoticsGuide'> Delirium Management </a> </Typography>
+                                        <Typography> <a href='DeliriumManagement'> Delirium Management </a> </Typography>
                                         <Typography> <a href='AntipsychoticsGuide'> Anticholinergic activity </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
@@ -104,7 +104,7 @@ const HomePage = () => {
                                     <Typography variant="h5" component="h1"> Mood Stabilizers </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography> <a href='AntipsychoticsGuide'> Mood Stabilizers </a> </Typography>
+                                        <Typography> <a href='MoodStabilizersGuide'> Mood Stabilizers </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
                             </CardContent>
