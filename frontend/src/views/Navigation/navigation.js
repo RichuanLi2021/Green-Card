@@ -46,17 +46,25 @@ const Navbar = () => {
           <MenuItem onClick={handleMenuClose}>
             <Button component={Link} to="/" sx={{ color: '#000' }}>Home</Button>
           </MenuItem>
-          {window.location.pathname !== '/login' && (
+          {window.location.pathname !== '/login' && window.location.pathname !== '/panel' && (
             <MenuItem onClick={handleMenuClose}>
               <Button component={Link} to="/login" sx={{ color: '#000' }}>Admin Login</Button>
+            </MenuItem>
+          )}
+          {window.location.pathname === '/panel' && (
+            <MenuItem onClick={handleMenuClose}>
+              <Button component={Link} to="/" sx={{ color: '#000' }}>Log-Out</Button>
             </MenuItem>
           )}
         </Menu>
 
         <div className="navbar__menu">
           <Button component={Link} to="/" sx={{ color: '#000', fontSize: '1.2rem' }}>Home</Button>
-          {window.location.pathname !== '/login' && (
+          {window.location.pathname !== '/login' && window.location.pathname !== '/panel' && (
             <Button component={Link} to="/login" sx={{ color: '#000', fontSize: '1.2rem' }}>Admin Login</Button>
+          )}
+          {window.location.pathname === '/panel' && (
+            <Button component={Link} to="/" sx={{ color: '#000', fontSize: '1.2rem' }}>Log-Out</Button>
           )}
         </div>
       </Toolbar>
