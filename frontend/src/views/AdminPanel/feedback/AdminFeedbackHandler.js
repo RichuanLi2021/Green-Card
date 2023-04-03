@@ -1,6 +1,6 @@
-import { Button, ThemeProvider } from '@mui/material'
+import { Button } from '@mui/material'
 import React, { useState } from 'react'
-import ShowFeedback from './ShowFeedback'
+import FeedbackBackEnd from './FeedbackBackEnd'
 
 const FeedbackHandler = () => {
   const [showForm, setShowForm] = useState(false);
@@ -32,7 +32,7 @@ const FeedbackHandler = () => {
       {showForm && (
         <>
           <div className="feedback-form-backdrop" onClick={handleCloseForm} />
-          <ShowFeedback onClose={handleCloseForm} />
+          <FeedbackBackEnd onClose={handleCloseForm} />
         </>
       )}
     </>

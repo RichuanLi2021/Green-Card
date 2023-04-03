@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import createTheme from '@mui/material/styles/createTheme';
 import './Panel.css';
 import Navigation from '../Navigation/navigation';
