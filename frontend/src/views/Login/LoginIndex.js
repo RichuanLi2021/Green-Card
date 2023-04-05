@@ -46,7 +46,7 @@ export default function SignIn() {
     if (user && user.password === dataCredential.get('password')) {
       alert("Login Success");
       localStorage.setItem('admin', 'true');
-      navigate("/");
+      navigate("/panel");
     } else {
       alert("Incorrect Username or Password");
     }
