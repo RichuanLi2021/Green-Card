@@ -15,7 +15,7 @@ import { BrowserRouter, Routes ,Route }from "react-router-dom";
 import SearchBar from './views/searchBar/searchBar';
 import AntipsychoticsGuide from './views/Topics/AntipsychoticsGuide/antipsychoticsGuide';
 import AntidepressantsGuide from './views/Topics/antidepressantsGuide/antidepressantsGuide';
-import CognitiveEnhancersGuide from './views/Topics/cognitiveEnhancersGuide/CognitiveEnhancersGuide';
+import CognitiveEnhancersGuide from './views/Topics/CognitiveEnhancersGuide/cognitiveEnhancersGuide';
 
 
 
