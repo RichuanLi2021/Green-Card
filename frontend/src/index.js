@@ -15,8 +15,7 @@ import { BrowserRouter, Routes ,Route }from "react-router-dom";
 import SearchBar from './views/searchBar/searchBar';
 import AntipsychoticsGuide from './views/Topics/AntipsychoticsGuide/antipsychoticsGuide';
 import AntidepressantsGuide from './views/Topics/antidepressantsGuide/antidepressantsGuide';
-import CognitiveEnhancersGuide from './views/Topics/CognitiveEnhancersGuide/cognitiveEnhancersGuide';
-
+import CognitiveEnhancersGuide from "./views/Topics/CognitiveEnhancersGuide/CognitiveEnhancersGuide";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
