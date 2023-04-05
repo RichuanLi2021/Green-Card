@@ -8,11 +8,15 @@ const getCogEData = async () => {
   return rows;
 };
 
+
+
 const cogEController = {
   getData: async (req, res, next) => {
-    const cognitiveEnhancersData = await getAPData();
+    const cognitiveEnhancersData = await getCogEData();
     res.send(cognitiveEnhancersData);
   }
 };
+
+
 
 module.exports = cogEController;

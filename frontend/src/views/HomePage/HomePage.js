@@ -68,9 +68,9 @@ const HomePage = () => {
                                     <Typography variant="h1"> Dementia </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography> <a href='AntipsychoticsGuide'> Cognitive Enhancers Guide </a> </Typography>
-                                        <Typography> <a href='AntipsychoticsGuide'> Cognitive Enhancers Guide continued </a> </Typography>
-                                        <Typography> <a href='AntipsychoticsGuide'> Cognitive Enhancers Clinical Guide </a> </Typography>
+                                        <Typography> <a href='cognitiveEnhancersGuide'> Cognitive Enhancers Guide </a> </Typography>
+                                        <Typography> <a href='cognitiveEnhancersGuide'> Cognitive Enhancers Guide continued </a> </Typography>
+                                        <Typography> <a href='cognitiveEnhancersGuide'> Cognitive Enhancers Clinical Guide </a> </Typography>
                                         <Typography> <a href='AntipsychoticsGuide'> NPS Management </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>

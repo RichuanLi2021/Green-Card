@@ -5,6 +5,8 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import axios from 'axios';
+import {useState, useEffect} from 'react';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -43,40 +45,13 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createDataFirstTable(name, action, halfLife, dose, frequency, formSupplied, food) 
-{
-  return { name, action, halfLife, dose, frequency, formSupplied, food};
-}
-
-function createDataSecondTable(name, mci, mildModAlz, severeAlz,mixedAlz,vascular,lbd,ftd,pd,dsd) 
-{
-  return { name, mci, mildModAlz, severeAlz,mixedAlz,vascular,lbd,ftd,pd,dsd};
-}
 
 function createDataThirdTable(contraindications,adverseEffectsAChEI,adverseEffectsMemantine ){
    return{contraindications,adverseEffectsAChEI,adverseEffectsMemantine};
 }
 
 
-const rowsFirstTable = [
-  
-    createDataFirstTable('Donepezil (Aricept)', "AChEI", "70h", "5mg/5mg/10mg","qAM","5,10/tab, diss tab","Y"),
-    createDataFirstTable('Galantamine ER', "AChEI","7-8h","8mg/8mg/24mg","qAM","8,16,24/capsule","Y"),
-    createDataFirstTable('Rivastigmine (oral)', "AChEI & BuChEI","1-2h","1.5mg BID/1.5mg BID/6mg BID","BID","1.5,3,4.5,6/capsule,liq","Y"),
-    createDataFirstTable('Rivastigmine (oral)', "AChEI & BuChEI","1-2h",'4.8mg/to 9.5mg/9.5mg', "q24hrs","4.6,9.5,13.3/patch","N"),
-    createDataFirstTable("Memantine","NMDA blocker","60-100h", "5mg qAM/ ↑ by 5mg weekly/10mg BID","qAM week 1 then BID","5,10/tab","N"),
-    
-];
 
-const rowsSecondTable = [
-  
-    createDataSecondTable("Donepezil (Aricept)","N","Y","Y","Y","N","Y","N","Y","N"),
-    createDataSecondTable('Galantamine ER', "N","Y","N","Y","N","Y","N","Y","N"),
-    createDataSecondTable('Rivastigmine (oral)', "N","Y","N","Y","N","Y","N","Y","N"),
-    createDataSecondTable('Rivastigmine (oral)', "N","Y","N","Y","N","Y","N","Y","N"),
-    createDataSecondTable("Memantine","N","mod. only","Y","No studies","N","N","N","N","N"),
-    
-];
 
 const rowsThirdTable = [
   createDataThirdTable("No absolute contraindication","Intolerance 10-20%","Intolerance ~11%"),
@@ -96,7 +71,22 @@ const rowsThirdTable = [
   
 ];
 
-export default function cognitiveEnhancersGuide() {
+export default function CognitiveEnhancersGuide() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:8887/api/CognitiveEnhancersGuide')
+        .then(response => {
+          setData(response.data)
+          console.log(response.data[0]);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+  }, []);
+
+  if(data.length > 0)
+  {
+
   return (
     <>
       <Navigation />
@@ -129,17 +119,17 @@ export default function cognitiveEnhancersGuide() {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {rowsFirstTable.map((rowFirstTable) => (
-                        <StyledTableRow key={rowFirstTable.name} >
+                      {data.map((dataObj, index) => (
+                        <StyledTableRow key={index} >
                           <StyledTableCell component="th" scope="row">
-                            {rowFirstTable.name}
+                            {dataObj.Name}
                           </StyledTableCell>
-                          <StyledTableCell >{rowFirstTable.action}</StyledTableCell>
-                          <StyledTableCell >{rowFirstTable.halfLife}</StyledTableCell>
-                          <StyledTableCell >{rowFirstTable.dose}</StyledTableCell>
-                          <StyledTableCell >{rowFirstTable.frequency}</StyledTableCell>
-                          <StyledTableCell >{rowFirstTable.formSupplied}</StyledTableCell>
-                          <StyledTableCell >{rowFirstTable.food}</StyledTableCell>
+                          <StyledTableCell >{dataObj[`Action`]}</StyledTableCell>
+                          <StyledTableCell >{dataObj[`Half-life`]}</StyledTableCell>
+                          <StyledTableCell >{dataObj[`Dose (initial/monthly increment/maint)`]}</StyledTableCell>
+                          <StyledTableCell >{dataObj[`Frequency`]}</StyledTableCell>
+                          <StyledTableCell >{dataObj[`mg/form supplied`]}</StyledTableCell>
+                          <StyledTableCell >{dataObj[`With food?`]}</StyledTableCell>
                           
                         </StyledTableRow>
                       ))}
@@ -180,20 +170,20 @@ export default function cognitiveEnhancersGuide() {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {rowsSecondTable.map((rowSecondTable) => (
-                        <StyledTableRow key={rowSecondTable.name} >
+                      {data.map((dataObjSecondTable, indexSecondTable) => (
+                        <StyledTableRow key={indexSecondTable} >
                           <StyledTableCell component="th" scope="row">
-                            {rowSecondTable.name}
+                            {dataObjSecondTable.Name}
                           </StyledTableCell>
-                          <StyledTableCell >{rowSecondTable.mci}</StyledTableCell>
-                          <StyledTableCell >{rowSecondTable.mildModAlz}</StyledTableCell>
-                          <StyledTableCell >{rowSecondTable.severeAlz}</StyledTableCell>
-                          <StyledTableCell >{rowSecondTable.mixedAlz}</StyledTableCell>
-                          <StyledTableCell >{rowSecondTable.vascular}</StyledTableCell>
-                          <StyledTableCell >{rowSecondTable.lbd}</StyledTableCell>
-                          <StyledTableCell >{rowSecondTable.ftd}</StyledTableCell>
-                          <StyledTableCell >{rowSecondTable.pd}</StyledTableCell>
-                          <StyledTableCell >{rowSecondTable.dsd}</StyledTableCell>
+                          <StyledTableCell >{dataObjSecondTable[`MCI`]}</StyledTableCell>
+                          <StyledTableCell >{dataObjSecondTable[`mild-mod Alz`]}</StyledTableCell>
+                          <StyledTableCell >{dataObjSecondTable[`Severe Alz`]}</StyledTableCell>
+                          <StyledTableCell >{dataObjSecondTable[`Mixed (Alz+vas)`]}</StyledTableCell>
+                          <StyledTableCell >{dataObjSecondTable[`Vascular`]}</StyledTableCell>
+                          <StyledTableCell >{dataObjSecondTable[`LBD`]}</StyledTableCell>
+                          <StyledTableCell >{dataObjSecondTable[`FTD`]}</StyledTableCell>
+                          <StyledTableCell >{dataObjSecondTable[`PD`]}</StyledTableCell>
+                          <StyledTableCell >{dataObjSecondTable[`DSD`]}</StyledTableCell>
                           
                         </StyledTableRow>
                       ))}
@@ -205,7 +195,7 @@ export default function cognitiveEnhancersGuide() {
 
             </Typography>
           </AccordionDetails>
-        </Accordion>
+       </Accordion>
 
         <Accordion  id="thirdAccordionCognitive">
           <AccordionSummary
@@ -227,13 +217,13 @@ export default function cognitiveEnhancersGuide() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {rowsThirdTable.map((rowThirdTable) => (
-                      <StyledTableRow key={rowThirdTable.contraindications} >
+                    {rowsThirdTable.map((row) => (
+                      <StyledTableRow key={row.contraindications} >
                         <StyledTableCell component="th" scope="row">
-                          {rowThirdTable.contraindications}
+                          {row.contraindications}
                         </StyledTableCell>
-                        < StyledTableCell >{rowThirdTable.adverseEffectsAChEI}</StyledTableCell>
-                        < StyledTableCell >{rowThirdTable.adverseEffectsMemantine}</StyledTableCell>
+                        < StyledTableCell >{row.adverseEffectsAChEI}</StyledTableCell>
+                        < StyledTableCell >{row.adverseEffectsMemantine}</StyledTableCell>
                         
                       </StyledTableRow>
                     ))}
@@ -243,11 +233,12 @@ export default function cognitiveEnhancersGuide() {
               </TableContainer>
             </Typography>
           </AccordionDetails>
-        </Accordion>
+                    </Accordion>
         <footer id="footer" > </footer>        
       </div>
       <Footer />
     </>
   );
 }
+};
 
