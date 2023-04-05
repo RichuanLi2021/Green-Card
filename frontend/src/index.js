@@ -16,6 +16,7 @@ import SearchBar from './views/searchBar/searchBar';
 import AntipsychoticsGuide from './views/Topics/AntipsychoticsGuide/antipsychoticsGuide';
 import AntidepressantsGuide from './views/Topics/antidepressantsGuide/antidepressantsGuide';
 import CognitiveEnhancersGuide from './views/Topics/CognitiveEnhancersGuide/CognitiveEnhancersGuide';
+import PsychotropicMonitoring from './views/Topics/PsychotropicMonitoring/PsychotropicMonitoring';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -34,6 +35,7 @@ root.render(
       <Route path="/DeliriumManagement" element={<DeliriumManagement/>}/>
       <Route path="/NeuropsychiatricSymptomsECT" element={<NeuropsychiatricSymptomsECT/>}/>
       <Route path = "/cognitiveEnhancersGuide" element={<CognitiveEnhancersGuide/>}/>
+      <Route path = "/PsychotropicMonitoring" element={<PsychotropicMonitoring/>}/>
     </Routes>
   </BrowserRouter>
 );

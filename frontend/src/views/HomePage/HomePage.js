@@ -139,6 +139,6 @@ const buttonsContent = [
     },
     {
         title: "Psychotropic Monitoring",
-        href: "InsomniaManagement",
+        href: "PsychotropicMonitoring",
     },
 ];
