@@ -8,11 +8,25 @@ const getAPData = async () => {
   return rows;
 };
 
-const apController = {
-  getData: async (req, res, next) => {
-    const apData = await getAPData();
-    res.send(apData);
-  }
-};
+const getData = async (req, res, next) => {
+  const apData = await getAPData();
+  res.send(apData);
+}
 
-module.exports = apController;
+const updateData = async (req, res, next) => {
+  try{
+    const { name, column, value} = req.body;
+    await pool.query('UPDATE `green_card`.`ANTIPSYCHOTICS GUIDE` SET ' + column + ' = ' + '"' + value + '"' + ' WHERE name = ' + '"' + name + '"');
+    res.send("Updated Successfully!");
+  }catch(error){
+    console.log(error);
+    next(error);
+    throw error;
+  }
+}
+
+
+module.exports = {
+  getData,
+  updateData
+};
