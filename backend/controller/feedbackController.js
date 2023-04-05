@@ -24,5 +24,5 @@ const getFeedback = async (req, res, next) => {
 
 module.exports = {
     postFeedback,
-    getFeedback
+    getFeedback,
 };
