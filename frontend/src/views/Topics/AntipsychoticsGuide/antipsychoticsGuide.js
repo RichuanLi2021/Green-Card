@@ -177,8 +177,8 @@ export default function AntipsychoticsGuide() {
                     <StyledTableCell align="left">Half-life&nbsp;</StyledTableCell>
                     <StyledTableCell align="left">Frequency&nbsp;</StyledTableCell>
                     <StyledTableCell align="left">Tab Strength/ Form Supplied&nbsp;</StyledTableCell>
-                    <StyledTableCell align="left">NPS&nbsp;</StyledTableCell>
-                    <StyledTableCell align="left">PP&nbsp;</StyledTableCell>
+                    <Tooltip title={"NPS: Neuropsychiatric Symptoms of Dementia"}><StyledTableCell align="left">NPS&nbsp;</StyledTableCell></Tooltip>
+                    <Tooltip title={"PP: Parkinson's Psychosis"}><StyledTableCell align="left">PP&nbsp;</StyledTableCell></Tooltip>
                     <StyledTableCell align="left">MDE(AD augment)&nbsp;</StyledTableCell>
                     <StyledTableCell align="left">MDE(w.psychosis)&nbsp;</StyledTableCell>
                     <StyledTableCell align="left">Delirium&nbsp;</StyledTableCell>
