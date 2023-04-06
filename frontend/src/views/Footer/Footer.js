@@ -17,7 +17,7 @@ const Footer = () => {
     <ThemeProvider theme={theme}>
       <Box component="footer" className="footer">
         <Typography variant="body2" align="center">
-          © {new Date().getFullYear()} Geriatric Psychiatry Green Card 
+          © {new Date().getFullYear()} The Green Card: Geriatric Psychotropic Drug Reference Card
         </Typography>
         <Typography variant="body2" align="center">
           <Link href="#">Privacy Policy</Link>

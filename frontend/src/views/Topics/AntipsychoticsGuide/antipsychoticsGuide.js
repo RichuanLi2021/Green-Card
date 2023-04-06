@@ -10,10 +10,12 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Navigation from '../../Navigation/navigation';
 import axios from 'axios';
-import {useState, useEffect} from 'react';
-import {Tooltip} from "@mui/material";
+import { useState, useEffect } from 'react';
+import { Tooltip } from "@mui/material";
 import antipsychoticsGuideUpdate from "./antipsychoticsGuidebackend";
 import Footer from '../../Footer/Footer';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -42,13 +44,13 @@ export default function AntipsychoticsGuide() {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios.get('http://localhost:8887/api/antipsychoticsGuide')
-        .then(response => {
-          setData(response.data)
-          //console.log(response.data[0]);
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      .then(response => {
+        setData(response.data)
+        //console.log(response.data[0]);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }, []);
   const [value, setValue] = useState('');
   const admin = localStorage.getItem('admin');
@@ -59,41 +61,45 @@ export default function AntipsychoticsGuide() {
   }
   //calls update query when an input was selected and is not anymore (if the value actually changed)
   const update_value = (event) => {
-    if(admin)
-    {
+    if (admin) {
       console.log(value);
-      if(event.target.value !== value)
-      {
+      if (event.target.value !== value) {
         event.preventDefault();
-        antipsychoticsGuideUpdate(event.target.name,event.target.id, event.target.value).then((data) => {
+        antipsychoticsGuideUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
           //alert('Updated Successfully Called! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nValue:"+ event.target.value);
         }).catch((error) => {
           console.error(error);
           alert('Failed to update!');
         });
       }
-      else
-      {
+      else {
         console.log("value was not changed, not updating");
       }
     }
-    else
-    {
+    else {
       alert("You must be an administrator to edit");
     }
   };
-  if(data.length > 0)
-  {
+  if (data.length > 0) {
     //Editable Fields
-    if(admin)
-    {
+    if (admin) {
       return (
         <>
-          <Navigation/>
+          <Navigation />
           <div id="antipsychoticsGuide">
-            <h1 id="heading">Antipsychotics Guide</h1>
+
             <TableContainer component={Paper}>
-              <Table sx={{minWidth: 700}} aria-label="customized table" id="table">
+              <Box
+                sx={{
+                  marginTop: 8,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                <Typography variant="h3"> Antipsychotics Guide</Typography>
+              </Box>
+              <Table sx={{ minWidth: 700 }} aria-label="customized table" id="table">
                 <TableHead>
                   <TableRow>
                     <StyledTableCell align="left">Name</StyledTableCell>
@@ -112,22 +118,22 @@ export default function AntipsychoticsGuide() {
                 </TableHead>
                 <TableBody>
                   {data.map((dataObj, index) => (
-                      <StyledTableRow key={index}>
-                        <StyledTableCell component="th" scope="row" style={{position:"sticky"}}>
-                          {dataObj.Name}
-                        </StyledTableCell>
-                        <StyledTableCell align="left"><input id='`Approx. equiv. dose`' name={dataObj.Name} type='number' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Approx. equiv. dose`]}/></StyledTableCell>
-                        <StyledTableCell align="left"><input id='`Half-life`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Half-life`]}/></StyledTableCell>
-                        <StyledTableCell align="left"><input id='`Frequency`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Frequency`]}/></StyledTableCell>
-                        <StyledTableCell align="left"><input style={{width:275}} id='`Tab Strength/Form Supplied`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Tab Strength/Form Supplied`]}/></StyledTableCell>
-                        <StyledTableCell align="left"><input id='`NPS`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`NPS`]}/></StyledTableCell>
-                        <StyledTableCell align="left"><input id='`PP`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`PP`]}/></StyledTableCell>
-                        <StyledTableCell align="left"><input id='`MDE (ADaugment)`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`MDE (ADaugment)`]}/></StyledTableCell>
-                        <StyledTableCell align="left"><input id='`MDE (w.psychosis)`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`MDE (w.psychosis)`]}/></StyledTableCell>
-                        <StyledTableCell align="left"><input id='`Delirium`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Delirium`]}/></StyledTableCell>
-                        <StyledTableCell align="left"><input id='`EO-SCZ`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`EO-SCZ`]}/></StyledTableCell>
-                        <StyledTableCell align="left"><input id='`LO-SCZ`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`LO-SCZ`]}/></StyledTableCell>
-                      </StyledTableRow>
+                    <StyledTableRow key={index}>
+                      <StyledTableCell component="th" scope="row" style={{ position: "sticky" }}>
+                        {dataObj.Name}
+                      </StyledTableCell>
+                      <StyledTableCell align="left"><input id='`Approx. equiv. dose`' name={dataObj.Name} type='number' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Approx. equiv. dose`]} /></StyledTableCell>
+                      <StyledTableCell align="left"><input id='`Half-life`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Half-life`]} /></StyledTableCell>
+                      <StyledTableCell align="left"><input id='`Frequency`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Frequency`]} /></StyledTableCell>
+                      <StyledTableCell align="left"><input style={{ width: 275 }} id='`Tab Strength/Form Supplied`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Tab Strength/Form Supplied`]} /></StyledTableCell>
+                      <StyledTableCell align="left"><input id='`NPS`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`NPS`]} /></StyledTableCell>
+                      <StyledTableCell align="left"><input id='`PP`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`PP`]} /></StyledTableCell>
+                      <StyledTableCell align="left"><input id='`MDE (ADaugment)`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`MDE (ADaugment)`]} /></StyledTableCell>
+                      <StyledTableCell align="left"><input id='`MDE (w.psychosis)`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`MDE (w.psychosis)`]} /></StyledTableCell>
+                      <StyledTableCell align="left"><input id='`Delirium`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Delirium`]} /></StyledTableCell>
+                      <StyledTableCell align="left"><input id='`EO-SCZ`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`EO-SCZ`]} /></StyledTableCell>
+                      <StyledTableCell align="left"><input id='`LO-SCZ`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`LO-SCZ`]} /></StyledTableCell>
+                    </StyledTableRow>
                   ))}
                 </TableBody>
               </Table>
@@ -144,22 +150,30 @@ export default function AntipsychoticsGuide() {
           </div>
           <Footer />
         </>
-    );
+      );
     }
     //Non Editable Fields
-    else
-    {
+    else {
       return (
         <>
-          <Navigation/>
+          <Navigation />
           <div id="antipsychoticsGuide">
-            <h1 id="heading">Antipsychotics Guide</h1>
+            <Box
+              sx={{
+                marginTop: 8,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <Typography variant="h3"> Antipsychotics Guide</Typography>
+            </Box>
             <TableContainer component={Paper}>
-              <Table sx={{minWidth: 700}} aria-label="customized table" id="table">
+              <Table sx={{ minWidth: 700 }} aria-label="customized table" id="table">
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell style={{width:15}}>Name</StyledTableCell>
-                    <StyledTableCell align="left" style={{width:15}}>Approx equiv.dose</StyledTableCell>
+                    <StyledTableCell style={{ width: 15 }}>Name</StyledTableCell>
+                    <StyledTableCell align="left" style={{ width: 15 }}>Approx equiv.dose</StyledTableCell>
                     <StyledTableCell align="left">Half-life&nbsp;</StyledTableCell>
                     <StyledTableCell align="left">Frequency&nbsp;</StyledTableCell>
                     <StyledTableCell align="left">Tab Strength/ Form Supplied&nbsp;</StyledTableCell>
@@ -174,22 +188,22 @@ export default function AntipsychoticsGuide() {
                 </TableHead>
                 <TableBody>
                   {data.map((dataObj, index) => (
-                      <StyledTableRow key={index}>
-                        <StyledTableCell component="th" scope="row">
-                          {dataObj.Name}
-                        </StyledTableCell>
-                        <StyledTableCell align="left">{dataObj[`Approx. equiv. dose`]}</StyledTableCell>
-                        <StyledTableCell align="left">{dataObj[`Half-life`]}</StyledTableCell>
-                        <StyledTableCell align="left">{dataObj[`Frequency`]}</StyledTableCell>
-                        <StyledTableCell align="left">{dataObj[`Tab Strength/Form Supplied`]}</StyledTableCell>
-                        <StyledTableCell align="left">{dataObj[`NPS`]}</StyledTableCell>
-                        <StyledTableCell align="left">{dataObj[`PP`]}</StyledTableCell>
-                        <StyledTableCell align="left">{dataObj[`MDE (ADaugment)`]}</StyledTableCell>
-                        <StyledTableCell align="left">{dataObj[`MDE (w.psychosis)`]}</StyledTableCell>
-                        <StyledTableCell align="left">{dataObj[`Delirium`]}</StyledTableCell>
-                        <StyledTableCell align="left">{dataObj[`EO-SCZ`]}</StyledTableCell>
-                        <StyledTableCell align="left">{dataObj[`LO-SCZ`]}</StyledTableCell>
-                      </StyledTableRow>
+                    <StyledTableRow key={index}>
+                      <StyledTableCell component="th" scope="row">
+                        {dataObj.Name}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">{dataObj[`Approx. equiv. dose`]}</StyledTableCell>
+                      <StyledTableCell align="left">{dataObj[`Half-life`]}</StyledTableCell>
+                      <StyledTableCell align="left">{dataObj[`Frequency`]}</StyledTableCell>
+                      <StyledTableCell align="left">{dataObj[`Tab Strength/Form Supplied`]}</StyledTableCell>
+                      <StyledTableCell align="left">{dataObj[`NPS`]}</StyledTableCell>
+                      <StyledTableCell align="left">{dataObj[`PP`]}</StyledTableCell>
+                      <StyledTableCell align="left">{dataObj[`MDE (ADaugment)`]}</StyledTableCell>
+                      <StyledTableCell align="left">{dataObj[`MDE (w.psychosis)`]}</StyledTableCell>
+                      <StyledTableCell align="left">{dataObj[`Delirium`]}</StyledTableCell>
+                      <StyledTableCell align="left">{dataObj[`EO-SCZ`]}</StyledTableCell>
+                      <StyledTableCell align="left">{dataObj[`LO-SCZ`]}</StyledTableCell>
+                    </StyledTableRow>
                   ))}
                 </TableBody>
               </Table>
@@ -206,6 +220,7 @@ export default function AntipsychoticsGuide() {
           </div>
           <Footer />
         </>
-    );
+      );
+    }
   }
-}}
+}
