@@ -22,7 +22,7 @@ const Footer = () => {
         <Typography variant="body2" align="center">
           <Link href="#">Privacy Policy</Link>
           {' | '}
-          <Link href="#">Terms of Use</Link>
+          <Link href="#">Disclaimer</Link>
         </Typography>
       </Box>
     </ThemeProvider>
