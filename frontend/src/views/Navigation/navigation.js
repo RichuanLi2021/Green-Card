@@ -33,7 +33,7 @@ const Navbar = () => {
         <AppBar position="static">
           <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none', fontSize: '1.5rem' }}>
-              Geriatric Psychiatry Green Card
+              Geriatric Psychotropic Green Card
             </Typography>
 
             <IconButton
@@ -64,7 +64,7 @@ const Navbar = () => {
               </MenuItem>
               {window.location.pathname !== '/logout' && (
                   <MenuItem onClick={handleMenuClose}>
-                    <Button onClick={handleLogout} sx={{ color: '#000' }}>Admin Logout</Button>
+                    <Button onClick={handleLogout} sx={{ color: '#000' }}>Logout</Button>
                   </MenuItem>
               )}
             </Menu>
@@ -73,7 +73,7 @@ const Navbar = () => {
               <Button component={Link} to="/" sx={{ color: '#000', fontSize: '1.2rem' }}>Home</Button>
               <Button component={Link} to="/panel" sx={{ color: '#000', fontSize: '1.2rem' }}>Feedback</Button>
               {window.location.pathname !== '/logout' && (
-                  <Button onClick={handleLogout} sx={{ color: '#000', fontSize: '1.2rem' }}>Admin Logout</Button>
+                  <Button onClick={handleLogout} sx={{ color: '#000', fontSize: '1.2rem' }}>Logout</Button>
               )}
             </div>
           </Toolbar>
@@ -86,7 +86,7 @@ const Navbar = () => {
         <AppBar position="static">
           <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none', fontSize: '1.5rem' }}>
-              Geriatric Psychiatry Green Card
+              Geriatric Psychotropic Green Card
             </Typography>
 
             <IconButton

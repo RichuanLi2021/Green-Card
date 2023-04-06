@@ -29,7 +29,7 @@ const HomePage = () => {
                         <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}> 
                             <Accordion sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column"}}>
                                 <AccordionSummary sx={{alignSelf: "center"}} expandIcon={<ExpandMoreIcon />}>
-                                    <Typography variant="h1"> Antidepressants </Typography>
+                                    <Typography variant="h1"> ANTIDEPRESSANTS </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
                                         <Typography> <a href='antidepressantsGuide'> Antidepressant Guide </a> </Typography>
@@ -41,7 +41,7 @@ const HomePage = () => {
                             <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}> 
                             <Accordion sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column"}}>
                                 <AccordionSummary sx={{alignSelf: "center"}} expandIcon={<ExpandMoreIcon />}>
-                                    <Typography variant="h1"> Antipsychotics </Typography>
+                                    <Typography variant="h1"> ANTIPSYCHOTICS </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
                                         <Typography> <a href='AntipsychoticsGuide'> Antipsychotics Guide </a> </Typography>
@@ -52,7 +52,7 @@ const HomePage = () => {
                             <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}> 
                             <Accordion sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column"}}>
                                 <AccordionSummary sx={{alignSelf: "center"}} expandIcon={<ExpandMoreIcon />}>
-                                    <Typography variant="h1"> Insomnia </Typography>
+                                    <Typography variant="h1"> INSOMNIA </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
                                         <Typography> <a href='InsomniaManagement'> Insomnia management </a> </Typography>
@@ -72,20 +72,20 @@ const HomePage = () => {
                             <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}> 
                             <Accordion sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column"}}>
                                 <AccordionSummary sx={{alignSelf: "center"}} expandIcon={<ExpandMoreIcon />}>
-                                    <Typography variant="h1"> Dementia </Typography>
+                                    <Typography variant="h1"> DEMENTIA </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
                                         <Typography> <a href='CognitiveEnhancersGuide'> Cognitive Enhancers Guide </a> </Typography>
                                         <Typography> <a href='CognitiveEnhancersGuide'> Cognitive Enhancers Guide continued </a> </Typography>
                                         <Typography> <a href='AntipsychoticsGuide'> Cognitive Enhancers Clinical Guide </a> </Typography>
-                                        <Typography> <a href='AntipsychoticsGuide'> NPS Management </a> </Typography>
+                                        <Typography> <a href='NeuropsychiatricSymptomsgi'> NPS Management </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
                             </CardContent>
                             <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}> 
                             <Accordion sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column"}}>
                                 <AccordionSummary sx={{alignSelf: "center"}} expandIcon={<ExpandMoreIcon />}>
-                                    <Typography variant="h1"> Delirium </Typography>
+                                    <Typography variant="h1"> DELIRIUM </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
                                         <Typography> <a href='DeliriumManagement'> Delirium Management </a> </Typography>
@@ -96,7 +96,7 @@ const HomePage = () => {
                             <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}> 
                             <Accordion sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column"}}>
                                 <AccordionSummary sx={{alignSelf: "center"}} expandIcon={<ExpandMoreIcon />}>
-                                    <Typography variant="h5" component="h1"> Polypharmacy </Typography>
+                                    <Typography variant="h5" component="h1"> POLYPHARMACY </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
                                         <Typography> <a href='AntipsychoticsGuide'> Common DDI's </a> </Typography>
@@ -115,7 +115,7 @@ const HomePage = () => {
                             <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}> 
                                 <Accordion sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column"}}>
                                 <AccordionSummary sx={{alignSelf: "center"}} expandIcon={<ExpandMoreIcon />}>
-                                    <Typography variant="h5" component="h1"> Mood Stabilizers </Typography>
+                                    <Typography variant="h5" component="h1"> MOOD STABILIZERS </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
                                         <Typography> <a href='MoodStabilizersGuide'> Mood Stabilizers </a> </Typography>
@@ -139,4 +139,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-

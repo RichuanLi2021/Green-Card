@@ -87,7 +87,7 @@ export default function DeliriumManagement() {
               <AppBar position="relative" style={{background: '#96D2B0'}}>
             <Toolbar sx={{ justifyContent: "space-between" }}>
                 <Typography variant="h5" color="black" noWrap>
-                    Geriatric Psychiatry Green Card
+                    Geriatric Psychotropic Green Card
                 </Typography>
                 <ul className="nav-list">
                     <li className="nav-item">

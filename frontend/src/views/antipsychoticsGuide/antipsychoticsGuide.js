@@ -17,8 +17,6 @@ import { styled } from '@mui/material/styles';
 
         const StyledTableCell = styled(TableCell)(({ theme }) => ({
             [`&.${tableCellClasses.head}`]: {
-              backgroundColor: theme.palette.success.main,
-              color:theme.palette.common.white,
               fontWeight:'bold',
               fontStyle:'italic',
               textDecorationLine:'underline',
@@ -69,7 +67,7 @@ import { styled } from '@mui/material/styles';
               <><AppBar position="relative" style={{ background: '#96D2B0' }}>
                 <Toolbar sx={{ justifyContent: "space-between" }}>
                   <Typography variant="h5" color="black" noWrap>
-                    Geriatric Psychiatry Green Card
+                    Geriatric Psychotropic Green Card
                   </Typography>
                   <ul className="nav-list">
                     <li className="nav-item">
