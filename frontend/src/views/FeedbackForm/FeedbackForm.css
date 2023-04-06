@@ -30,7 +30,7 @@
 }
 
 /* Feedback Form Container */
-.form-container {
+.form-container-pg {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -61,7 +61,7 @@
 
 /* Media Query */
 @media only screen and (max-width: 600px) {
-  .form-container {
+  .form-container-pg {
     width: 90%;
     padding: 16px;
   }

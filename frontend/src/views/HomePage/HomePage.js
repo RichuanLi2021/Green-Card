@@ -61,7 +61,14 @@ const HomePage = () => {
                                         <Typography> <a href='AntipsychoticsGuide'> Sedatives/hypnotics Safety Concerns </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
-                        </CardContent>
+                            </CardContent>
+                            <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}>
+                                <Button variant="h1" sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column", textTransform: "none"}} href={''}>
+                                    <Typography variant="h5" component="h1">
+                                        Deprescribing Sedatives/hypnotics
+                                    </Typography>
+                                </Button>
+                            </CardContent>
                             <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}> 
                             <Accordion sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column"}}>
                                 <AccordionSummary sx={{alignSelf: "center"}} expandIcon={<ExpandMoreIcon />}>
@@ -98,6 +105,13 @@ const HomePage = () => {
                                     </AccordionDetails>
                                 </Accordion>
                             </CardContent>
+                            <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}>
+                                <Button variant="h1" sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column", textTransform: "none"}} href={'CognitiveEnhancersGuide'}>
+                                    <Typography variant="h5" component="h1">
+                                        ECT + Psychoactive Medications
+                                    </Typography>
+                                </Button>
+                            </CardContent>
                             <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}> 
                                 <Accordion sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column"}}>
                                 <AccordionSummary sx={{alignSelf: "center"}} expandIcon={<ExpandMoreIcon />}>
@@ -108,15 +122,13 @@ const HomePage = () => {
                                     </AccordionDetails>
                                 </Accordion>
                             </CardContent>
-                            {buttonsContent.map((content, index) => (
-                                <CardContent key={index} sx={{ flexGrow: 1 }}>
-                                    <Button variant="contained" sx={{ bgcolor: "#96d2b0", color: "#000", width: '80%', ":hover": { opacity: 1, background: "#96d2b0" } }} href={content.href}>
-                                        <Typography component="h1" variant="h5">
-                                            {content.title}
-                                        </Typography>
-                                    </Button>
-                                </CardContent>
-                            ))}
+                            <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}>
+                                <Button variant="h1" sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column", textTransform: "none"}} href={'InsomniaManagement'}>
+                                    <Typography variant="h5" component="h1">
+                                        Psychotropic Monitoring
+                                    </Typography>
+                                </Button>
+                            </CardContent>
                         </Card>
                     </Grid>
                 </Grid>
@@ -127,18 +139,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-const buttonsContent = [
-    {
-        title: "Deprescribing Sedatives/hypnotics",
-        href: "AntipsychoticsGuide",
-    },
-    {
-        title: "ECT + Psychoactive Medications",
-        href: "CognitiveEnhancersGuide",
-    },
-    {
-        title: "Psychotropic Monitoring",
-        href: "InsomniaManagement",
-    },
-];

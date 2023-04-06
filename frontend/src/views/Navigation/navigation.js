@@ -59,6 +59,9 @@ const Navbar = () => {
               <MenuItem onClick={handleMenuClose}>
                 <Button component={Link} to="/" sx={{ color: '#000' }}>Home</Button>
               </MenuItem>
+              <MenuItem onClick={handleMenuClose}>
+                <Button component={Link} to="/panel" sx={{ color: '#000' }}>Feedback</Button>
+              </MenuItem>
               {window.location.pathname !== '/logout' && (
                   <MenuItem onClick={handleMenuClose}>
                     <Button onClick={handleLogout} sx={{ color: '#000' }}>Logout</Button>
@@ -68,6 +71,7 @@ const Navbar = () => {
 
             <div className="navbar__menu">
               <Button component={Link} to="/" sx={{ color: '#000', fontSize: '1.2rem' }}>Home</Button>
+              <Button component={Link} to="/panel" sx={{ color: '#000', fontSize: '1.2rem' }}>Feedback</Button>
               {window.location.pathname !== '/logout' && (
                   <Button onClick={handleLogout} sx={{ color: '#000', fontSize: '1.2rem' }}>Logout</Button>
               )}
