@@ -32,8 +32,8 @@ const HomePage = () => {
                                     <Typography variant="h1"> Antidepressants </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography> <a href='AntipsychoticsGuide'> Antidepressant Guide </a> </Typography>
-                                        <Typography> <a href='AntipsychoticsGuide'> Antidepressant Clinical Guide </a> </Typography>
+                                        <Typography> <a href='antidepressantsGuide'> Antidepressant Guide </a> </Typography>
+                                        <Typography> <a href='AntidepressantClinicalGuide'> Antidepressant Clinical Guide </a> </Typography>
                                         <Typography> <a href='AntipsychoticsGuide'> Antidepressant Safety Concerns </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
@@ -55,12 +55,19 @@ const HomePage = () => {
                                     <Typography variant="h1"> Insomnia </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography> <a href='AntipsychoticsGuide'> Insomnia management </a> </Typography>
+                                        <Typography> <a href='InsomniaManagement'> Insomnia management </a> </Typography>
                                         <Typography> <a href='AntipsychoticsGuide'> Sedatives/hypnotics Guide </a> </Typography>
                                         <Typography> <a href='AntipsychoticsGuide'> Sedatives/hypnotics Safety Guide </a> </Typography>
                                         <Typography> <a href='AntipsychoticsGuide'> Sedatives/hypnotics Safety Concerns </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
+                            </CardContent>
+                            <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}>
+                                <Button variant="h1" sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column", textTransform: "none"}} href={''}>
+                                    <Typography variant="h5" component="h1">
+                                        Deprescribing Sedatives/Hypnotics
+                                    </Typography>
+                                </Button>
                             </CardContent>
                             <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}> 
                             <Accordion sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column"}}>
@@ -68,10 +75,10 @@ const HomePage = () => {
                                     <Typography variant="h1"> Dementia </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography> <a href='cognitiveEnhancersGuide'> Cognitive Enhancers Guide </a> </Typography>
-                                        <Typography> <a href='cognitiveEnhancersGuide'> Cognitive Enhancers Guide continued </a> </Typography>
-                                        <Typography> <a href='cognitiveEnhancersGuide'> Cognitive Enhancers Clinical Guide </a> </Typography>
-                                        <Typography> <a href='AntipsychoticsGuide'> NPS Management </a> </Typography>
+                                        <Typography> <a href='CognitiveEnhancersGuide'> Cognitive Enhancers Guide </a> </Typography>
+                                        <Typography> <a href='CognitiveEnhancersGuide'> Cognitive Enhancers Guide continued </a> </Typography>
+                                        <Typography> <a href='CognitiveEnhancersGuide'> Cognitive Enhancers Clinical Guide </a> </Typography>
+                                        <Typography> <a href='NeuropsychiatricSymptomsECT'> NPS Management </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
                             </CardContent>
@@ -81,8 +88,8 @@ const HomePage = () => {
                                     <Typography variant="h1"> Delirium </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography> <a href='AntipsychoticsGuide'> Delirium Management </a> </Typography>
-                                        <Typography> <a href='AntipsychoticsGuide'> Anticholinergic activity </a> </Typography>
+                                        <Typography> <a href='DeliriumManagement'> Delirium Management </a> </Typography>
+                                        <Typography> <a href='DeliriumManagement'> Anticholinergic activity </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
                             </CardContent>
@@ -98,25 +105,30 @@ const HomePage = () => {
                                     </AccordionDetails>
                                 </Accordion>
                             </CardContent>
+                            <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}>
+                                <Button variant="h1" sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column", textTransform: "none"}} href={'CognitiveEnhancersGuide'}>
+                                    <Typography variant="h5" component="h1">
+                                        ECT & Psychoactive Medications
+                                    </Typography>
+                                </Button>
+                            </CardContent>
                             <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}> 
                                 <Accordion sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column"}}>
                                 <AccordionSummary sx={{alignSelf: "center"}} expandIcon={<ExpandMoreIcon />}>
                                     <Typography variant="h5" component="h1"> Mood Stabilizers </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography> <a href='AntipsychoticsGuide'> Mood Stabilizers </a> </Typography>
+                                        <Typography> <a href='MoodStabilizersGuide'> Mood Stabilizers </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
                             </CardContent>
-                            {buttonsContent.map((content, index) => (
-                                <CardContent key={index} sx={{ flexGrow: 1 }}>
-                                    <Button variant="contained" sx={{ bgcolor: "#96d2b0", color: "#000", width: '80%', ":hover": { opacity: 1, background: "#96d2b0" } }} href={content.href}>
-                                        <Typography component="h1" variant="h5">
-                                            {content.title}
-                                        </Typography>
-                                    </Button>
-                                </CardContent>
-                            ))}
+                            <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}>
+                                <Button variant="h1" sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column", textTransform: "none"}} href={'InsomniaManagement'}>
+                                    <Typography variant="h5" component="h1">
+                                        Psychotropic Monitoring
+                                    </Typography>
+                                </Button>
+                            </CardContent>
                         </Card>
                     </Grid>
                 </Grid>
@@ -127,18 +139,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-const buttonsContent = [
-    {
-        title: "Deprescribing Sedatives/hypnotics",
-        href: "AntipsychoticsGuide",
-    },
-    {
-        title: "ECT + Psychoactive Medications",
-        href: "CognitiveEnhancersGuide",
-    },
-    {
-        title: "Psychotropic Monitoring",
-        href: "InsomniaManagement",
-    },
-];

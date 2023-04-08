@@ -6,18 +6,16 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
+import Navigation from '../../Navigation/navigation';
 
 
 import './antidepressantsGuide.css';
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
       [`&.${tableCellClasses.head}`]: {
-        backgroundColor: '#96D2B0',
-        color: 'whitesmoke',
+        backgroundColor: '#96d2b0',
         fontWeight: 'bold',
         textTransform: 'uppercase',
         letterSpacing: '0.1rem',
@@ -72,15 +70,9 @@ import './antidepressantsGuide.css';
     export default function AntidepressantsGuide() {
     return (
       <>
-        <AppBar position="sticky" sx={{ backgroundColor: '#96D2B0' }}>
-          <Toolbar>
-            <Typography variant="h6" color="inherit" noWrap>
-              Geriatric Psychiatry Green Card
-            </Typography>
-          </Toolbar>
-        </AppBar>
+        <Navigation />
         <div style={{ marginTop: '3rem', padding: '0 1rem' }}>
-          <Typography variant="h4" align="center" color="#6CA786" gutterBottom>
+          <Typography variant="h4" align="center" gutterBottom>
             Antidepressants Guide
           </Typography>
           <TableContainer component={Paper} sx={{ marginTop: '2rem' }}>

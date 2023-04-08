@@ -59,7 +59,7 @@ const FeedbackForm = ({ onClose }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="form-container">
+      <div className="form-container-pg">
         <div className="form-header">
           <Box display="flex" justifyContent="space-between" alignItems="center">
             <Typography variant="h5" className="title">
