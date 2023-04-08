@@ -34,7 +34,7 @@ root.render(
       <Route path="/MoodStabilizersGuide" element={<MoodStabilizersGuide/>}/>
       <Route path="/DeliriumManagement" element={<DeliriumManagement/>}/>
       <Route path="/NeuropsychiatricSymptomsECT" element={<NeuropsychiatricSymptomsECT/>}/>
-      <Route path = "/cognitiveEnhancersGuide" element={<CognitiveEnhancersGuide/>}/>
+      <Route path = "/CognitiveEnhancersGuide" element={<CognitiveEnhancersGuide/>}/>
       <Route path = "/panel" element={<Panel/>}/>
     </Routes>
   </BrowserRouter>
