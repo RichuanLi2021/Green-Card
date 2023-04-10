@@ -1,4 +1,4 @@
-import './neuropsychiatricSymptoms.css';
+import './NeuropsychiatricSymptoms.css';
 import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -69,7 +69,7 @@ export default function NeuropsychiatricSymptoms() {
     
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:8887/api/NeuropsychiatricSymptoms')
+    axios.get('http://localhost:8887/api/neuropsychiatricSymptoms')
         .then(response => {
           setData(response.data)
           console.log(response.data[0]);
