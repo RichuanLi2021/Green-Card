@@ -16,6 +16,7 @@ import SearchBar from './views/searchBar/searchBar';
 import AntipsychoticsGuide from './views/Topics/AntipsychoticsGuide/antipsychoticsGuide';
 import AntidepressantsGuide from './views/Topics/antidepressantsGuide/antidepressantsGuide';
 import CognitiveEnhancersGuide from './views/Topics/CognitiveEnhancersGuide/CognitiveEnhancersGuide';
+import PsychotropicMonitoring from './views/Topics/PsychotropicMonitoring/PsychotropicMonitoring';
 import Panel from './views/AdminPanel/Panel';
 
 
@@ -35,6 +36,7 @@ root.render(
       <Route path="/DeliriumManagement" element={<DeliriumManagement/>}/>
       <Route path="/NeuropsychiatricSymptomsECT" element={<NeuropsychiatricSymptomsECT/>}/>
       <Route path = "/CognitiveEnhancersGuide" element={<CognitiveEnhancersGuide/>}/>
+      <Route path = "/PsychotropicMonitoring" element={<PsychotropicMonitoring/>}/>
       <Route path = "/panel" element={<Panel/>}/>
     </Routes>
   </BrowserRouter>

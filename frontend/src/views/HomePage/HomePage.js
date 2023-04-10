@@ -123,7 +123,7 @@ const HomePage = () => {
                                 </Accordion>
                             </CardContent>
                             <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}>
-                                <Button variant="h1" sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column", textTransform: "none"}} href={'InsomniaManagement'}>
+                                <Button variant="h1" sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column", textTransform: "none"}} href={'PsychotropicMonitoring'}>
                                     <Typography variant="h5" component="h1">
                                         Psychotropic Monitoring
                                     </Typography>
@@ -139,3 +139,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
