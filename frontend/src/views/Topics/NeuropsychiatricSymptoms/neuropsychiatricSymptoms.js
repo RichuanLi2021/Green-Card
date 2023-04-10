@@ -5,6 +5,8 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import axios from 'axios';
+import {useState, useEffect} from 'react';
 import Navigation from '../../Navigation/navigation';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -41,7 +43,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(medication, recommendedAction) 
+{/*function createData(medication, recommendedAction) 
 {
   return { medication, recommendedAction};
 }
@@ -61,10 +63,26 @@ const rows = [
   createData('Other Antipsychotics', "OK to continue"),
   createData('Zopiclone', "OK if needed"),   
   
-];
+];*/}
 
-export default function neuropsychiatricSymptoms() {
-    return(
+export default function NeuropsychiatricSymptoms() {
+    
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:8887/api/NeuropsychiatricSymptoms')
+        .then(response => {
+          setData(response.data)
+          console.log(response.data[0]);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+  }, []);
+
+  if(data.length > 0)
+  {
+  
+  return(
       
       
     <><div id="neuropsychiatricSymptoms">
@@ -148,12 +166,12 @@ export default function neuropsychiatricSymptoms() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {rows.map((row) => (
-                      <StyledTableRow key={row.medication}>
+                    {data.map((dataObj, index) => (
+                      <StyledTableRow key={index}>
                         <StyledTableCell component="th" scope="row">
-                          {row.medication}
+                          {dataObj.Medication}
                         </StyledTableCell>
-                        <StyledTableCell>{row.recommendedAction}</StyledTableCell>
+                        <StyledTableCell>{dataObj[`Recommended Action`]}</StyledTableCell>
 
                       </StyledTableRow>
                     ))}
@@ -173,3 +191,4 @@ export default function neuropsychiatricSymptoms() {
 
 
 }
+};
