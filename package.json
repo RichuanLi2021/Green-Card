@@ -12,11 +12,22 @@
   "author": "CSCI2691/3691/4691 GPGC",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.14",
+    "axios": "^1.3.4",
     "express": "^4.18.1",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.19",
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "react-accessible-accordion": "^5.0.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.9.0",
+    "react-scripts": "^5.0.1",
+    "reactstrap": "^9.1.8",
+    "web-vitals": "^3.3.0"
   },
   "devDependencies": {
     "concurrently": "^7.3.0"

@@ -1,46 +1,192 @@
-// Citations:
-// Title: Sign-in template
-// Author: Michal Dudak and Samuel Sycamore
-// Date: Oct 27, 2022
-// Date accessed: Feb 01, 2023
-// Code version: 3f88e94
-// Availability: https://github.com/mui/material-ui/tree/v5.11.7/docs/data/material/getting-started/templates/sign-in
+
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import {Link} from "react-router-dom";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
+
+import './DeliriumManagement.css';
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: '#96D2B0',
+    color: 'whitesmoke',
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    letterSpacing: '0.1rem',
+    fontSize: '1.1rem',
+    padding: '1rem',
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: '1rem',
+    padding: '1rem',
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: '#f3f3f3',
+  },
+}));
+
+function createData(high, medium, low) 
+{
+  return { high, medium, low};
+}
 
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Navigation from '../../Navigation/navigation';
-import Footer from '../../Footer/Footer';
+const rows = [
+  
+  createData('Amitriptyline (Elavil)', "Amantadine (Symmetrel)", "Alprazolam (Xanax)"),
+  createData('Atropine (Sal-Tropine)', "Carbamazepine (Tegretol)", "Aripiprazole (Abilify)"),
+  createData('Benztropine (Cogentin)', "Cyclobenzaprine (Flexeril)", "Asenapine (Saphris)"),
+  createData('Chlorpromazine (Thorazine)', "Cyproheptadine (Periactin)", "Bupropion (Wellbutrin)"),
+  createData('Clomipramine (Anafranil)', "Loxapine (Loxitane)", "Cetirizine (Reactine)"),
+  createData('Clozapine (Clozaril)', "Meperidone (Demerol)", "Codeine"),
+  createData('Desipramine (Norpramin)', "Methotrimeprazine (Levoprome)", "Colchicine (Odan)"),  
+  createData('Dimenhydrinate (Gravol', "Oxcarbazepine (Trileptal)", "Diazepam (Valium)"),
+  createData('Doxepin (Sinequan)', "Pimozide (Orap)", "Digoxin"), 
+  createData('Fesoterodine (Toviaz)', "", "Fentanyl"),
+  createData('Hydroxyzine (Atarax)', "", "Furosemide (Lasix)"),   
+  createData('Imipramine (Tofranil)', "", "Fluvoxamine (Luvox)"),   
+  createData('Methocarbamol (Robaxin)', "", "Hydralazine"),   
+  createData('Nortriptyline (Pamelor)', "", "Haloperidol (Haldol)"),   
+  createData('Olanzapine (Zyprexa)', "", "Hydrocortisone"),  
+  createData('Oxybutynin (Ditropan)', "", "Loperamide (Imodium)"),   
+  createData('Paroxetine (Paxil)', "", "Loratadine (Claritin)"),   
+  createData('Perphenazine (Trilafon)', "", "Metoprolol"),   
+  createData('Quetiapine (Seroquel)', "", "Morphine"),   
+  createData('Solifenacin (Vesicare)', "", "Nifedipine (Adalat)"),   
+  createData('Thioridazine (Mellaril)', "", "Paliperidone (Invega)"),   
+  createData('Tolterodine (Detrol)', "", "Prednisone"),   
+  createData('Trifluoperazine (Stelazine)', "", "Ranitidine (Zantac)"),   
+  createData('Trihyxyphenidyl (Artane)', "", "Trazodone (Desyrel)"), 
+  createData('Trospium (Sanctura)', "", "Venlafaxine (Effexor)"),  
+  createData('', "", "Warfarin")
+];
 
-const theme = createTheme();
 
 
-// This code is a function called SignIn() that renders a form with an username and password field, and a submit button. When the submit button is clicked, the handleSubmit() function is called which prevents the default action from occuring, creates a FormData object from the currentTarget of the event, and logs an object containing the username and password values to the console.
-export default function SignIn() {
-  return (
-    <><ThemeProvider theme={theme}>
-      <Navigation />
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
+
+export default function DeliriumManagement() {
+    return(  
+    <div id = "DeliriumManagement">
+              <AppBar position="relative" style={{background: '#96D2B0'}}>
+            <Toolbar sx={{ justifyContent: "space-between" }}>
+                <Typography variant="h5" color="black" noWrap>
+                    Geriatric Psychotropic Green Card
+                </Typography>
+                <ul className="nav-list">
+                    <li className="nav-item">
+                        <Link to="/" className="nav-link">Home</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/login" className="nav-link">Login</Link>
+                    </li>
+                </ul>
+            </Toolbar>
+        </AppBar>
+      
+        <h1 id ="head">Delirium Management</h1>
+        <h2 id = "head" >Treating underlying cause is mainstay of treatment</h2>
+        <Accordion id="firstAccordion">
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
         >
-
-          <Typography component="h1" variant="h2">
-            Delirium Management
+          <Typography><b>Nonpharmacological Approach</b></Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            <ul>
+                <li>Reduce noise</li>
+                <li>Orient the patient using clocks, calendars, light/dark environment, verbal cues (esp. by family)</li>
+                <li>Correct sensory deficits (clean eyeglasses, working hearing aids)</li>
+                <li>Increase patient's sense of control</li>
+                <li>Minimize room/environment changes</li>
+                <li>Avoid restraints if possible</li>
+              </ul>
+          
           </Typography>
-        </Box>
-      </Container>
-    </ThemeProvider>
-    <Footer /></>
-  );
+        </AccordionDetails>
+      </Accordion>
+      <Accordion id="secondAccordion">
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography><b>Pharmacological Approach</b></Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            
+              <ul>
+                <li>Only use if clinically signficant distress/agitation/aggression, when benefits{">"}harm, and non pharmacological approach failed</li>
+                <li>Antipsychotics are treatment of choice (other than etoh withdrawal delirium)</li>
+                <li>Aim for monotherapy, lowest effective dose, and tapering ASAP</li>
+                <li>Haloperidol not recommended if pre-existing Parkinson's or LBD</li>
+                <li>Consider 4pm & 8pm dosing rather than morning dose to optimize sleep wake cycle</li>
+                <li>See antipsychotic table for dosing recommendations</li>
+              </ul>
+              
+          <p><b> Key:</b> LBD: Lewy body dementiaHighHigh</p>
+
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion id="thirdAccordion">
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography><b>Anticholinergic Activity</b></Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+          <TableContainer component={Paper} >
+                <Table sx={{ minWidth: 700 }} aria-label="customized table" id="table" >
+                  <TableHead>
+                    <TableRow >
+                      <StyledTableCell >High</StyledTableCell>
+                      <StyledTableCell >Medium</StyledTableCell>
+                      <StyledTableCell >Low</StyledTableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {rows.map((row) => (
+                      <StyledTableRow key={row.high} >
+                        <StyledTableCell component="th" scope="row">
+                          {row.high}
+                        </StyledTableCell>
+                        <StyledTableCell >{row.medium}</StyledTableCell>
+                        <StyledTableCell >{row.low}</StyledTableCell>
+                      </StyledTableRow>
+                    ))}
+                    
+                  </TableBody>
+                </Table>
+              </TableContainer><br></br><br></br>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+    </div>);
+
+
 }

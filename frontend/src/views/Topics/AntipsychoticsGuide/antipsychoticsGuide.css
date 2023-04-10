@@ -1,19 +1,17 @@
 #heading{
-    background-color:#96D2B0;
+    background-color:#96d2b0;
     color:black;
     width:25%;
     text-align:center;
-    font-style:bold;
     text-decoration:underline;
     font-size:30pt;
     margin-left:35%;
 
 }
 #footer {
-    background-color:#96D2B0;
+    background-color:#96d2b0;
     color:black;
     margin-top:20px;
-
 }
 
 @media  screen and (min-width:200px) and (max-width:2000px) {
@@ -30,6 +28,6 @@
     #heading{
         width:75%;
         margin-left:40px;
-    } 
+    }
 
 }

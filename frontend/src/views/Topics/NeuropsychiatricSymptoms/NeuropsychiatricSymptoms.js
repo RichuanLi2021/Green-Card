@@ -1,10 +1,12 @@
-import './neuropsychiatricSymptoms.css';
+import './NeuropsychiatricSymptoms.css';
 import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import axios from 'axios';
+import {useState, useEffect} from 'react';
 import Navigation from '../../Navigation/navigation';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -15,6 +17,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Footer from '../../Footer/Footer';
+import { Box } from '@mui/system';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.success.main,
@@ -40,36 +43,38 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(medication, recommendedAction) 
-{
-  return { medication, recommendedAction};
-}
+export default function NeuropsychiatricSymptoms() {
+    
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:8887/api/neuropsychiatricSymptoms')
+        .then(response => {
+          setData(response.data)
+          console.log(response.data[0]);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+  }, []);
 
-
-const rows = [
+  if(data.length > 0)
+  {
   
-  createData('Anticonvulsants', "Discontinue if possible or at least hold prior to ECT"),
-  createData('Benzodiazepines*', "If unable to stop, hold dose x 24 hrs before ECT (↑seizure threshold).Can use flumazenil if not possible to hold or stop"),
-  createData('Bupropion', "Use with caution (↓ seizure threshold)"),
-  createData('ChEIs', "OK to continue"),
-  createData('Clozapine', "Use with caution (↓ seizure threshold, ↑ risk of prolonged seizure)"),
-  createData('Levodopa', "Reduce dose and monitor closely (↑ risk of side effects)"),
-  createData('Lithium', "Hold x 24 hrs prior to ECT (↑ risk of cognitive deficits, delirium, spontaneous seizure). Reassess if emergent delirium post ECT."),  
-  createData('MAOIs', "OK to continue"),
-  createData('Other Antidepressents', "OK to continue"), 
-  createData('Other Antipsychotics', "OK to continue"),
-  createData('Zopiclone', "OK if needed"),   
-  
-];
-
-export default function neuropsychiatricSymptoms() {
-    return(
+  return(
       
       
     <><div id="neuropsychiatricSymptoms">
         <Navigation />
-
-        <h1 id="head">NEUROPSYCHIATRIC SYMPTOMS OF DEMENTIA (NPS) MANAGEMENT</h1>
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+            <Typography variant="h3"> NPS Management & ECT & Psychoactive Meds</Typography>
+        </Box>
         <Accordion id="firstAccordion">
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -80,13 +85,13 @@ export default function neuropsychiatricSymptoms() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              <ul>
+
                 <li>Individualize approach to patient </li>
                 <li>Examine ABCs of behavior and identify the issue</li>
                 <li>General: comforting presence/physical contact,distraction, backing away, reminiscence/sensory/relaxation therapy</li>
                 <li>Optimize engagement in environment, decrease under/overstimulation, establish routine, regular exercise & recreation</li>
                 <li> Resistance to care: personalize the experience (ie: offering choices), bed baths</li>
-              </ul>
+
 
             </Typography>
           </AccordionDetails>
@@ -102,7 +107,7 @@ export default function neuropsychiatricSymptoms() {
           <AccordionDetails>
             <Typography>
 
-              <ul>
+
                 <li>Only use if clinically signficant distress/agitation/aggression, when benefits{'>'}harm, and non pharmacological approach failed</li>
                 <li>Psychosis: atypical antipsychotic*</li>
                 <li>No psychosis: SSRI, trazadone, or atypical antipsychotic*</li>
@@ -110,7 +115,7 @@ export default function neuropsychiatricSymptoms() {
                 <li>Pharmacological approach generally not helpful for primary wandering or vocalizing</li>
                 <li>Treatment should be evaluated for tapering or discontinuation every 3-6 months</li>
                 <li>See antipsychotic table for additional information</li>
-              </ul>
+
 
               <p><b>Key:</b> ABC: antecedent, behavior, consequence. *Recommended atypical antipsychotics include <br></br>
                 risperidone, olanzapine, and aripiprazole according to the 4th Canadian Consensus Conference on <br></br>
@@ -139,12 +144,12 @@ export default function neuropsychiatricSymptoms() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {rows.map((row) => (
-                      <StyledTableRow key={row.medication}>
+                    {data.map((dataObj, index) => (
+                      <StyledTableRow key={index}>
                         <StyledTableCell component="th" scope="row">
-                          {row.medication}
+                          {dataObj.Medication}
                         </StyledTableCell>
-                        <StyledTableCell>{row.recommendedAction}</StyledTableCell>
+                        <StyledTableCell>{dataObj[`Recommended Action`]}</StyledTableCell>
 
                       </StyledTableRow>
                     ))}
@@ -164,3 +169,4 @@ export default function neuropsychiatricSymptoms() {
 
 
 }
+};
