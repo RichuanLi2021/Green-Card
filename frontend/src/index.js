@@ -38,6 +38,7 @@ root.render(
       <Route path = "/CognitiveEnhancersGuide" element={<CognitiveEnhancersGuide/>}/>
       <Route path = "/NeuropsychiatricSymptoms" element={<NeuropsychiatricSymptoms/>}/>
       <Route path = "/panel" element={<Panel/>}/>
+      <Route path = "/PsychotropicMonitoring" element={<PsychotropicMonitoring/>}/>
     </Routes>
   </BrowserRouter>
 );
