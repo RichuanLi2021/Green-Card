@@ -17,6 +17,7 @@ import AntipsychoticsGuide from './views/Topics/AntipsychoticsGuide/antipsychoti
 import AntidepressantsGuide from './views/Topics/antidepressantsGuide/antidepressantsGuide';
 import CognitiveEnhancersGuide from './views/Topics/CognitiveEnhancersGuide/CognitiveEnhancersGuide';
 import NeuropsychiatricSymptoms from './views/Topics/NeuropsychiatricSymptoms/NeuropsychiatricSymptoms';
+import PsychotropicMonitoring from './views/Topics/PsychotropicMonitoring/PsychotropicMonitoring';
 import Panel from './views/AdminPanel/Panel';
 
 
