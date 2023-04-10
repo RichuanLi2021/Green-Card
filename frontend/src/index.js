@@ -10,12 +10,13 @@ import InsomniaManagement from './views/Topics/InsomniaManagement/InsomniaManage
 import AntidepressantClinicalGuide from './views/Topics/AntidepressantClinicalGuide/AntidepressantClinicalGuide';
 import MoodStabilizersGuide from './views/Topics/MoodStabilizersGuide/MoodStabilizersGuide';
 import DeliriumManagement from './views/Topics/DeliriumManagement/DeliriumManagement';
-import NeuropsychiatricSymptomsECT from './views/Topics/NeuropsychiatricSymptoms/neuropsychiatricSymptoms';
+import NeuropsychiatricSymptomsECT from './views/Topics/NeuropsychiatricSymptoms/NeuropsychiatricSymptoms';
 import { BrowserRouter, Routes ,Route }from "react-router-dom";
 import SearchBar from './views/searchBar/searchBar';
 import AntipsychoticsGuide from './views/Topics/AntipsychoticsGuide/antipsychoticsGuide';
 import AntidepressantsGuide from './views/Topics/antidepressantsGuide/antidepressantsGuide';
 import CognitiveEnhancersGuide from './views/Topics/CognitiveEnhancersGuide/CognitiveEnhancersGuide';
+import NeuropsychiatricSymptoms from './views/Topics/NeuropsychiatricSymptoms/NeuropsychiatricSymptoms';
 import PsychotropicMonitoring from './views/Topics/PsychotropicMonitoring/PsychotropicMonitoring';
 import Panel from './views/AdminPanel/Panel';
 
@@ -36,7 +37,7 @@ root.render(
       <Route path="/DeliriumManagement" element={<DeliriumManagement/>}/>
       <Route path="/NeuropsychiatricSymptomsECT" element={<NeuropsychiatricSymptomsECT/>}/>
       <Route path = "/CognitiveEnhancersGuide" element={<CognitiveEnhancersGuide/>}/>
-      <Route path = "/PsychotropicMonitoring" element={<PsychotropicMonitoring/>}/>
+      <Route path = "/NeuropsychiatricSymptoms" element={<NeuropsychiatricSymptoms/>}/>
       <Route path = "/panel" element={<Panel/>}/>
       <Route path = "/PsychotropicMonitoring" element={<PsychotropicMonitoring/>}/>
     </Routes>

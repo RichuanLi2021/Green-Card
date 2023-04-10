@@ -1,10 +1,12 @@
-import './neuropsychiatricSymptoms.css';
+import './NeuropsychiatricSymptoms.css';
 import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import axios from 'axios';
+import {useState, useEffect} from 'react';
 import Navigation from '../../Navigation/navigation';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -41,30 +43,24 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(medication, recommendedAction) 
-{
-  return { medication, recommendedAction};
-}
+export default function NeuropsychiatricSymptoms() {
+    
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:8887/api/neuropsychiatricSymptoms')
+        .then(response => {
+          setData(response.data)
+          console.log(response.data[0]);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+  }, []);
 
-
-const rows = [
+  if(data.length > 0)
+  {
   
-  createData('Anticonvulsants', "Discontinue if possible or at least hold prior to ECT"),
-  createData('Benzodiazepines*', "If unable to stop, hold dose x 24 hrs before ECT (↑seizure threshold).Can use flumazenil if not possible to hold or stop"),
-  createData('Bupropion', "Use with caution (↓ seizure threshold)"),
-  createData('ChEIs', "OK to continue"),
-  createData('Clozapine', "Use with caution (↓ seizure threshold, ↑ risk of prolonged seizure)"),
-  createData('Levodopa', "Reduce dose and monitor closely (↑ risk of side effects)"),
-  createData('Lithium', "Hold x 24 hrs prior to ECT (↑ risk of cognitive deficits, delirium, spontaneous seizure). Reassess if emergent delirium post ECT."),  
-  createData('MAOIs', "OK to continue"),
-  createData('Other Antidepressents', "OK to continue"), 
-  createData('Other Antipsychotics', "OK to continue"),
-  createData('Zopiclone', "OK if needed"),   
-  
-];
-
-export default function neuropsychiatricSymptoms() {
-    return(
+  return(
       
       
     <><div id="neuropsychiatricSymptoms">
@@ -148,12 +144,12 @@ export default function neuropsychiatricSymptoms() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {rows.map((row) => (
-                      <StyledTableRow key={row.medication}>
+                    {data.map((dataObj, index) => (
+                      <StyledTableRow key={index}>
                         <StyledTableCell component="th" scope="row">
-                          {row.medication}
+                          {dataObj.Medication}
                         </StyledTableCell>
-                        <StyledTableCell>{row.recommendedAction}</StyledTableCell>
+                        <StyledTableCell>{dataObj[`Recommended Action`]}</StyledTableCell>
 
                       </StyledTableRow>
                     ))}
@@ -173,3 +169,4 @@ export default function neuropsychiatricSymptoms() {
 
 
 }
+};
