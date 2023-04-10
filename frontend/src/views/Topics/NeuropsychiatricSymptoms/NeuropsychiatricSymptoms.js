@@ -43,28 +43,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-{/*function createData(medication, recommendedAction) 
-{
-  return { medication, recommendedAction};
-}
-
-
-const rows = [
-  
-  createData('Anticonvulsants', "Discontinue if possible or at least hold prior to ECT"),
-  createData('Benzodiazepines*', "If unable to stop, hold dose x 24 hrs before ECT (↑seizure threshold).Can use flumazenil if not possible to hold or stop"),
-  createData('Bupropion', "Use with caution (↓ seizure threshold)"),
-  createData('ChEIs', "OK to continue"),
-  createData('Clozapine', "Use with caution (↓ seizure threshold, ↑ risk of prolonged seizure)"),
-  createData('Levodopa', "Reduce dose and monitor closely (↑ risk of side effects)"),
-  createData('Lithium', "Hold x 24 hrs prior to ECT (↑ risk of cognitive deficits, delirium, spontaneous seizure). Reassess if emergent delirium post ECT."),  
-  createData('MAOIs', "OK to continue"),
-  createData('Other Antidepressents', "OK to continue"), 
-  createData('Other Antipsychotics', "OK to continue"),
-  createData('Zopiclone', "OK if needed"),   
-  
-];*/}
-
 export default function NeuropsychiatricSymptoms() {
     
   const [data, setData] = useState([]);
