@@ -107,9 +107,9 @@ export default function SignIn() {
             </Button>
           </Box>
         </Box>
-        {/* Adding Footer component */}
-        <Footer />
       </Container>
+      {/* Adding Footer component */}
+      <Footer />
     </ThemeProvider>
   );
 }
