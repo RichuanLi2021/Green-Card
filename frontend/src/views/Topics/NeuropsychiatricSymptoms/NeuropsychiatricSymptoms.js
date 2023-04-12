@@ -47,7 +47,7 @@ export default function NeuropsychiatricSymptoms() {
     
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:8887/api/neuropsychiatricSymptoms')
+    axios.get('https://gpgc-service.onrender.com/api/neuropsychiatricSymptoms')
         .then(response => {
           setData(response.data)
           console.log(response.data[0]);
