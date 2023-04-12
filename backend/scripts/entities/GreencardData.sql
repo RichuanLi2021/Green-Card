@@ -76,9 +76,9 @@ INSERT INTO `green_card`.`LIST HEADERS` VALUES ('SHYPCLIN_SAF', 'Sedative/Hypnot
  ('COG_MONITOR', 'IADLs & ADLs'),
  ('COG_MONITOR', 'Individual (eg. Reptitive Questions, Baking, Etc)');
  
-INSERT INTO `green_card`.`insomnia management`(`LIST_HEADERS_Id`, `Description`)
-VALUES 
-('INSOMNIA_MAN', 'First Line Treatment: CBT-i (www.mysleepwell.ca)'), 
+INSERT INTO `green_card`.`INSOMNIA MANAGEMENT`(`LIST_HEADERS_Id`, `Description`)
+VALUES
+('INSOMNIA_MAN', 'First Line Treatment: CBT-i (www.mysleepwell.ca)'),
 ('INSOMNIA_MAN', 'Second Line Treatment: Sedatives (If CBTi Failure)'),
 ('INSOMNIA_MAN', 'NNT With a Sedative-Hypnotic For Improved Sleep = 13, NNH = 6');
 
@@ -94,8 +94,8 @@ VALUES
 ('zopiclone (Imovane)', '7.5', '1.5h', '4-7h', '3.75-12.5', '5,7.5/tab');
 
 
-INSERT INTO `green_card`.`sedatives/hypnotics clinical guide`(`LIST_HEADERS_Id`,`Description`)
-VALUES 
+INSERT INTO `green_card`.`SEDATIVES/HYPNOTICS CLINICAL GUIDE`(`LIST_HEADERS_Id`,`Description`)
+VALUES
 ('SHYPCLIN_BFR', 'Avoid Starting If Possible'),
 ('SHYPCLIN_BFR', 'Set End Date'),
 ('SHYPCLIN_BFR', 'Assess For Drug-Drug Interactions'),
@@ -106,7 +106,7 @@ VALUES
 ('SHYPCLIN_END', 'Gradual Taper'),
 ('SHYPCLIN_END', 'Add CBTi To Support');
 
-INSERT INTO `green_card`.`sedatives/hypnotic safety concerns`(`LIST_HEADERS_Id`,`Description`)
+INSERT INTO `green_card`.`SEDATIVES/HYPNOTIC SAFETY CONCERNS`(`LIST_HEADERS_Id`,`Description`)
 VALUES
 ('SHYPCLIN_SAF', 'CNS Depression'),
 ('SHYPCLIN_SAF', 'Cognitive Impairment'),
@@ -119,7 +119,7 @@ VALUES
 ('SHYPCLIN_SAF', 'Sleep Walking'),
 ('SHYPCLIN_SAF', 'Withdrawl');
 
-INSERT INTO `green_card`.`deprescribing benzodiazepine-like sedatives`(`Duration of BZRA use (months)`,`Dose Reduction Schedule Duration (weeks)`,`Interval Between Dose Reductions (weeks)`)
+INSERT INTO `green_card`.`DEPRESCRIBING BENZODIAZEPINE-LIKE SEDATIVES`(`Duration of BZRA use (months)`,`Dose Reduction Schedule Duration (weeks)`,`Interval Between Dose Reductions (weeks)`)
 VALUES
 ('4 to 12', '4 to 8', '1 to 2'),
 ('12 to 24', '8 to 16', '1 to 4'),
@@ -127,8 +127,8 @@ VALUES
 ('>48', '24 to 52', '4');
 
 
--- MOOD STABILIZERS GUIDE -- 
-INSERT INTO `green_card`.`mood stabilizers guide` (`Name`,`Half-life`,`Dose (mg/day) Initial | Maint. | Max.`,`Frequency`,`mg/Form Supplied`,`Monitoring Level`)
+-- MOOD STABILIZERS GUIDE --
+INSERT INTO `green_card`.`MOOD STABILIZERS GUIDE` (`Name`,`Half-life`,`Dose (mg/day) Initial | Maint. | Max.`,`Frequency`,`mg/Form Supplied`,`Monitoring Level`)
 VALUES ('Lamotrigine (Lamictal)', '25h', '12.5-25 hs | 50-250† | 200-300', 'bid', '25, 100, 150/tab, 2.5/chewtab', 'nil'),
 ('Lithium Carbonate (Carbolith, Lithane)', '20-26h', '150 od-bid | use drug levels', 'hs-tid', '150, 300, 600/cap', '0.4-0.8 µmol/L'),
 ('Lithium Citrate (Oral Liquid)', '20-26h', '5 ml bid | use drug levels', 'od-tid', '8mmol/5ml (=300mg Li carb)', '"'),
@@ -137,13 +137,13 @@ VALUES ('Lamotrigine (Lamictal)', '25h', '12.5-25 hs | 50-250† | 200-300', 'bi
 ('Antipsychotics', '"', 'Please See Antipsychotic Table', '"', '"', '"'),
 ('Carbamazepine (Tegretol)', '"', 'To be used with caution under expert supervision*', '"', '"', '"'),
 ('Oxcarbazepine (Trileptal)', '"', 'To be used with caution under expert supervision*', '"', '"', '"');
--- Key: 
+-- Key:
 -- †
--- dosage determined by concomitant drugs used (see Lamictal monograph for details). er tab: 
--- slow release. NOTES: doses may not reflect manufacturers' recommendations, they are based on 
--- clinical literature and experience; most drugs in this category do not have a formal mood stabilizer 
--- indication. Levels may be useful for investigating toxicity and adherence, in addition to achieving a 
--- therapeutic dose. ^half-life of active metabolite. *due to risks for drug-drug interactions and adverse 
+-- dosage determined by concomitant drugs used (see Lamictal monograph for details). er tab:
+-- slow release. NOTES: doses may not reflect manufacturers' recommendations, they are based on
+-- clinical literature and experience; most drugs in this category do not have a formal mood stabilizer
+-- indication. Levels may be useful for investigating toxicity and adherence, in addition to achieving a
+-- therapeutic dose. ^half-life of active metabolite. *due to risks for drug-drug interactions and adverse
 -- effects
 
 
@@ -168,12 +168,12 @@ VALUES
 
 
 
--- --NEUROPSYCHIATRIC SYMPTOMS OF DEMENTIA (NPS) MANAGEMENT--  
+-- --NEUROPSYCHIATRIC SYMPTOMS OF DEMENTIA (NPS) MANAGEMENT--
 INSERT INTO `green_card`.`LIST HEADERS` VALUES ('NPS_NONPHARM', 'Nonpharmacological Approach');
 INSERT INTO `green_card`.`LIST HEADERS` VALUES ('NPS_PHARMA', 'Pharmacological Approach');
 
 INSERT INTO `green_card`.`NEUROPSYCHIATRIC SYMPTOMS OF DEMENTIA (NPS) MANAGEMENT` (`LIST_HEADERS_Id`,`Description`)
- VALUES 
+ VALUES
  ('NPS_NONPHARM', 'Individualize approach to patient'),
  ('NPS_NONPHARM', 'Examine ABCs of behavior and identify the issue'),
  ('NPS_NONPHARM', 'General: comforting presence/physical contact, distraction, backing away, reminiscence/sensory/relaxation therapy'),
@@ -203,13 +203,13 @@ VALUES
 ('Zopiclone', 'OK if needed');
 
 
--- ANTIDEPRESSANT CLINICAL GUIDE-- 
+-- ANTIDEPRESSANT CLINICAL GUIDE--
 INSERT INTO `green_card`.`LIST HEADERS` VALUES ('ANTID_INAD', 'For Inadequate Response');
 INSERT INTO `green_card`.`LIST HEADERS` VALUES ('ANTID_MAIN', 'Maintenance');
 INSERT INTO `green_card`.`LIST HEADERS` VALUES ('ANTID_TAPE', 'Tapering');
 
--- ANTIDEPRESSANT CLINICAL GUIDE-- 
-INSERT INTO `green_card`.`antidepressant clinical guide`(`LIST_HEADERS_Id`,`Description`)
+-- ANTIDEPRESSANT CLINICAL GUIDE--
+INSERT INTO `green_card`.`ANTIDEPRESSANT CLINICAL GUIDE`(`LIST_HEADERS_Id`,`Description`)
 VALUES
 ('ANTID_INAD', 'Switching is preferred over augmentation (↓ risk of falls)'),
 
@@ -219,10 +219,10 @@ VALUES
 ('ANTID_TAPE', '≥ 2-3 months if switching or ineffective'),
 ('ANTID_TAPE', 'Longer tapering period if remitted (≥1-2 years)');
 
--- --ANTIDEPRESSANT SAFTEY CONCERNS-- 
+-- --ANTIDEPRESSANT SAFTEY CONCERNS--
 INSERT INTO `green_card`.`LIST HEADERS` VALUES ('ANTID_SC', 'Antidepressants Safety Concerns');
 
-INSERT INTO `green_card`.`antidepressant safety concerns` (`LIST_HEADERS_Id`,`Description`)
+INSERT INTO `green_card`.`ANTIDEPRESSANT SAFETY CONCERNS` (`LIST_HEADERS_Id`,`Description`)
 VALUES ('ANTID_SC', 'Cognitive Impairment'),
  ('ANTID_SC', 'Drug-drug Interactions'),
  ('ANTID_SC', 'Falls'),
@@ -232,10 +232,10 @@ VALUES ('ANTID_SC', 'Cognitive Impairment'),
  ('ANTID_SC', 'QTc prolongation (escitalopram, citalopram, TCAs)'),
  ('ANTID_SC', 'Seizures (bupropion, TCAs)');
 
--- --Common DDI''s With Psychotropics-- 
+-- --Common DDI''s With Psychotropics--
 INSERT INTO `green_card`.`LIST HEADERS` VALUES ('COM_DDI_PYS', 'Common DDI''s With Psychotropics');
--- --Common DDI''s With Psychotropics-- 
-INSERT INTO `green_card`.`common ddis with psychotropics`(`LIST_HEADERS_Id`,`Description`)
+-- --Common DDI''s With Psychotropics--
+INSERT INTO `green_card`.`COMMON DDIs WITH PSYCHOTROPICS`(`LIST_HEADERS_Id`,`Description`)
 VALUES ('COM_DDI_PYS', 'Antipsychotic + L-dopa = worsening of Parkinsons, worsening of psychosis'),
 ('COM_DDI_PYS', 'ChEI + anticholinergics = less therapeutic benefit'),
 ('COM_DDI_PYS', 'ChEI + beta blocker = bradycardia'),
@@ -248,10 +248,10 @@ VALUES ('COM_DDI_PYS', 'Antipsychotic + L-dopa = worsening of Parkinsons, worsen
 ('COM_DDI_PYS', 'SSRI + MAOI = serotonin syndrome');
 
 
--- --Antipsychotic Safety Concerns-- 
+-- --Antipsychotic Safety Concerns--
 INSERT INTO `green_card`.`LIST HEADERS` VALUES ('ANTIP_SAFE', 'Antipsychotic Safety Concerns');
--- --Antipsychotic Safety Concerns-- 
-INSERT INTO `green_card`.`antipsychotic safety concerns`(`LIST_HEADERS_Id`,`Description`)
+-- --Antipsychotic Safety Concerns--
+INSERT INTO `green_card`.`ANTIPSYCHOTIC SAFETY CONCERNS`(`LIST_HEADERS_Id`,`Description`)
 VALUES ('ANTIP_SAFE', '↑ risk of EPS & TD '),
 ('ANTIP_SAFE', 'Akathisia'),
 ('ANTIP_SAFE', 'Cognitive impairment'),
@@ -263,10 +263,10 @@ VALUES ('ANTIP_SAFE', '↑ risk of EPS & TD '),
 ('ANTIP_SAFE', 'Stroke (NNH=53)'),
 ('ANTIP_SAFE', 'Weight gain');
 
--- --Prescribing and Deprescribing Principles-- 
+-- --Prescribing and Deprescribing Principles--
 INSERT INTO `green_card`.`LIST HEADERS` VALUES ('PRESCR_DEPRE', 'Prescribing and Deprescribing Principles');
--- --Prescribing and Deprescribing Principles-- 
-INSERT INTO `green_card`.`prescribing and deprescribing principles`(`LIST_HEADERS_Id`,`Description`)
+-- --Prescribing and Deprescribing Principles--
+INSERT INTO `green_card`.`PRESCRIBING AND DEPRESCRIBING PRINCIPLES`(`LIST_HEADERS_Id`,`Description`)
 VALUES ('PRESCR_DEPRE', 'Always use minimum effective dose'),
 ('PRESCR_DEPRE', 'Reassess regularly for efficiacy and tolerability'),
 ('PRESCR_DEPRE', 'Assess medication list regularly for anticholinergic activity and drug drug interactions'),
@@ -278,7 +278,7 @@ VALUES ('PRESCR_DEPRE', 'Always use minimum effective dose'),
 -- --Notable Changes In Older Adults That Affect Prescribing--
 INSERT INTO `green_card`.`LIST HEADERS` VALUES ('NOTABLE_CHA', 'Notable Changes In Older Adults That Affect Prescribing');
 -- --Notable Changes In Older Adults That Affect Prescribing--
-INSERT INTO `green_card`.`notable changes in older adults that affect prescribing`(`LIST_HEADERS_Id`,`Description`)
+INSERT INTO `green_card`.`NOTABLE CHANGES IN OLDER ADULTS THAT AFFECT PRESCRIBING`(`LIST_HEADERS_Id`,`Description`)
 VALUES('NOTABLE_CHA', 'Changes in volume of distribution'),
 ('NOTABLE_CHA', 'CYP450 interactions'),
 ('NOTABLE_CHA', 'Decline in P450 activity with some isoenzymes'),
