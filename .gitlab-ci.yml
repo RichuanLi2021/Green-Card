@@ -1,3 +1,4 @@
+image: node:latest
 # Define the stages of the pipeline
 stages:
   - build
