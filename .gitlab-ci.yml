@@ -1,0 +1,8 @@
+# .gitlab-ci.yml
+
+# Define the stages of the pipeline
+stages:
+  - build
+  - test
+  - deploy
+`
