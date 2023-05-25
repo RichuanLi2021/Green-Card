@@ -4,15 +4,20 @@ stages:
   - test
   - deploy
 
+cache:
+  paths:
+    - node_modules/
+
 # Define the jobs and their steps
 build:
   stage: build
   script:
-    - npm ci
+    - cd frontend
+    - npm install
     - npm run build
-  artifacts:
-    paths:
-      - build/
+    - cd ../backend
+    - npm install
+    - npm run build
 
 test:
   stage: test
