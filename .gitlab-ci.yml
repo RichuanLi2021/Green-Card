@@ -1,11 +1,9 @@
-# .gitlab-ci.yml
-
 # Define the stages of the pipeline
 stages:
   - build
   - test
   - deploy
-`
+
 # Define the jobs and their steps
 build:
   stage: build
@@ -26,10 +24,10 @@ production_deploy:
   stage: deploy
   script:
     - echo "Deploying to production..."
-    # Add your deployment commands here for production environment
+    # Add your deployment commands here for the production environment
 
 staging_deploy:
   stage: deploy
   script:
     - echo "Deploying to staging..."
-    # Add your deployment commands here for staging environment
+    # Add your deployment commands here for the staging environment
