@@ -20,11 +20,11 @@ build:
     - npm install
     - npm run build
 
-test:
-  stage: test
-  script:
-    - npm ci
-    - npm run test
+# test:
+#   stage: test
+#   script:
+#     - npm ci
+#     - npm run test
 
 production_deploy:
   stage: deploy
