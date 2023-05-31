@@ -1,0 +1,13 @@
+#firstAccordionSedatives{
+    background-color:#96d2b0;
+    color:black;
+}
+
+#sedativesSubject{
+    text-decoration:none;
+    font-size:20pt;  
+}
+
+#sedativesTable td, #sedativesTable th{
+    font-size:15pt;
+}

@@ -56,14 +56,14 @@ const HomePage = () => {
                                 </AccordionSummary>
                                     <AccordionDetails>
                                         <Typography> <a href='InsomniaManagement'> Insomnia management </a> </Typography>
-                                        <Typography> <a href='AntipsychoticsGuide'> Sedatives/hypnotics Guide </a> </Typography>
-                                        <Typography> <a href='AntipsychoticsGuide'> Sedatives/hypnotics Safety Guide </a> </Typography>
-                                        <Typography> <a href='AntipsychoticsGuide'> Sedatives/hypnotics Safety Concerns </a> </Typography>
+                                        <Typography> <a href='InsomniaSedatives'> Sedatives/hypnotics Guide </a> </Typography>
+                                        <Typography> <a href='InsomniaClinical'> Sedatives/hypnotics Clinical Guide </a> </Typography>
+                                        <Typography> <a href='InsomniaSafety'> Sedatives/hypnotics Safety Concerns </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
                             </CardContent>
                             <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}>
-                                <Button variant="h1" sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column", textTransform: "none"}} href={''}>
+                                <Button variant="h1" sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column", textTransform: "none"}} href={'InsomniaDeprescribing'}>
                                     <Typography variant="h5" component="h1">
                                         Deprescribing Sedatives/Hypnotics
                                     </Typography>

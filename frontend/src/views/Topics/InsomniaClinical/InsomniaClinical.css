@@ -1,0 +1,13 @@
+#firstAccordionClinical{
+    background-color:#96d2b0;
+    color:black;
+}
+
+#clinicalSubject{
+    text-decoration:none;
+    font-size:20pt;  
+}
+
+#clinicalTable td, #clinicalTable th{
+    font-size:15pt;
+}
