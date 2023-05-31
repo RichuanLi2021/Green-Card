@@ -43,7 +43,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function AntipsychoticsGuide() {
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get('https://gpgc-service.onrender.com/api/antipsychoticsGuide')
+    axios.get('http://localhost:8887/api/antipsychoticsGuide')
       .then(response => {
         setData(response.data)
         //console.log(response.data[0]);
