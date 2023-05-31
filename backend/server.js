@@ -4,7 +4,7 @@ var app = express();
 var cors = require('cors')
 
 app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'https://w2023-gpgc.netlify.app'); // Replace with your React app's URL
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // Replace with your React app's URL
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'DELETE, POST, GET, OPTIONS');
   next();

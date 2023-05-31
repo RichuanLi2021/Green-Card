@@ -8,7 +8,7 @@ function FeedbackBackEnd({ onClose }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('https://gpgc-service.onrender.com/api/get-feedback')
+        axios.get('http://localhost:8887/api/get-feedback')
             .then(response => {
                 setFeedbackData(response.data);
                 setLoading(false);

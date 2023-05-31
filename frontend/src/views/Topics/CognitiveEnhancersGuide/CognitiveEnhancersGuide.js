@@ -74,7 +74,7 @@ const rowsThirdTable = [
 export default function CognitiveEnhancersGuide() {
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get('https://gpgc-service.onrender.com/api/CognitiveEnhancersGuide')
+    axios.get('http://localhost:8887/api/CognitiveEnhancersGuide')
         .then(response => {
           setData(response.data)
           console.log(response.data[0]);
