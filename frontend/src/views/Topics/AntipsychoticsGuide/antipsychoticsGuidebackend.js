@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const antipsychoticsGuideUpdate = async (name, column, value) => {
   try {
-    const response = await axios.post('http://localhost:8887/api/antipsychoticsGuide/update', {
+    const response = await axios.post('https://gpgc-service.onrender.com/api/antipsychoticsGuide/update', {
      name,
      column,
      value

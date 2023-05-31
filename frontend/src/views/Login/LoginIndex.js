@@ -32,7 +32,7 @@ export default function SignIn() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8887/api/login')
+    axios.get('https://gpgc-service.onrender.com/api/login')
       .then(response => setData(response.data))
       .catch(error => console.log(error));
   }, []);
