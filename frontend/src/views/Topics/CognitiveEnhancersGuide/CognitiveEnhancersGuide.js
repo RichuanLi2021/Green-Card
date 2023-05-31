@@ -90,7 +90,7 @@ export default function CognitiveEnhancersGuide() {
   return (
     <>
       <Navigation />
-        <div id = "cognitiveEnhancersGuide">
+        <div id = "cognitiveEnhancersGuide" style={{ marginTop: '5rem', padding: '0 0.5rem' }}>
         
           <Accordion id="firstAccordionCognitive">
           <AccordionSummary

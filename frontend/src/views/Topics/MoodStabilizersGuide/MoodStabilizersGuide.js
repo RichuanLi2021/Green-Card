@@ -10,7 +10,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-
+import Navigation from '../../Navigation/navigation';
 
 import './MoodStabilizersGuide.css';
 
@@ -54,14 +54,8 @@ import './MoodStabilizersGuide.css';
     export default function MoodStabilizersGuide() {
     return (
       <>
-        <AppBar position="sticky" sx={{ backgroundColor: '#96D2B0' }}>
-          <Toolbar>
-            <Typography variant="h6" color="inherit" noWrap>
-              Geriatric Psychiatry Green Card
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <div style={{ marginTop: '3rem', padding: '0 1rem' }}>
+        <Navigation></Navigation>
+        <div style={{ marginTop: '5rem', padding: '0 1rem' }}>
           <Typography variant="h4" align="center" color="#6CA786" gutterBottom>
           Mood Stabilizers Guide
           </Typography>

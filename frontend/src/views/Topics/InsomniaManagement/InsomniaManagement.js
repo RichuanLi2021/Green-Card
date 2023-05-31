@@ -17,8 +17,7 @@ export default function InsomniaManagement() {
     <>
       <Navigation />
 
-      <br></br>
-        <div id = "insomniaManagement">
+        <div id = "insomniaManagement" style={{ marginTop: '5rem', padding: '0 0.5rem' }}>
         
           <Accordion id="firstAccordionManagement">
           <AccordionSummary

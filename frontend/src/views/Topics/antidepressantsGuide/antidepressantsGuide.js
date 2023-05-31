@@ -71,7 +71,7 @@ import './antidepressantsGuide.css';
     return (
       <>
         <Navigation />
-        <div style={{ marginTop: '3rem', padding: '0 1rem' }}>
+        <div style={{ marginTop: '5rem', padding: '0 1rem' }}>
           <Typography variant="h4" align="center" gutterBottom>
             Antidepressants Guide
           </Typography>
