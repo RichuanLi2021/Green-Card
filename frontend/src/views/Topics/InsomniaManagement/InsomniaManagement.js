@@ -1,4 +1,61 @@
+import './InsomniaManagement.css';
 import * as React from 'react';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Navigation from '../../Navigation/navigation';
+import Footer from '../../Footer/Footer';
+
+
+
+export default function InsomniaManagement() {
+  
+
+  return (
+    <>
+      <Navigation />
+
+      <br></br>
+        <div id = "insomniaManagement">
+        
+          <Accordion id="firstAccordionManagement">
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography id="mainTopic"><b>INSOMNIA MANAGEMENT</b></Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography id="mainText">
+
+            <li>First line treatment: CBT-i (www.mysleepwell.ca) </li>
+            <li>2nd line treatment: sedatives (if CBTi failure)</li>
+            <li><b>NNT with a sedative-hypnotic for improved sleep = 13, NNH = 6</b></li>
+            
+            
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+                
+      </div>
+      <Footer />
+    </>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+/*import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -34,4 +91,4 @@ export default function SignIn() {
 
   );
 
-}
+}*/
