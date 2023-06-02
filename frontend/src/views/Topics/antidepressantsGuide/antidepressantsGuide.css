@@ -64,6 +64,6 @@
 
     /* Center the app bar text */
     .MuiTypography-root {
-      text-align: left;
+      text-align: center;
     }
   }

@@ -84,7 +84,7 @@ export default function NeuropsychiatricSymptoms() {
             <Typography><b>Nonpharmacological Approach</b></Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
+            <Typography sx={{ textAlign: 'left' }}>
 
                 <li>Individualize approach to patient </li>
                 <li>Examine ABCs of behavior and identify the issue</li>
@@ -102,10 +102,10 @@ export default function NeuropsychiatricSymptoms() {
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography><b>Pharmacological Approach</b></Typography>
+            <Typography ><b>Pharmacological Approach</b></Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
+            <Typography sx={{ textAlign: 'left' }}>
 
 
                 <li>Only use if clinically signficant distress/agitation/aggression, when benefits{'>'}harm, and non pharmacological approach failed</li>
