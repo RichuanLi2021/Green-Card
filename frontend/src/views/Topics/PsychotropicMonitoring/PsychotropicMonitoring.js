@@ -61,7 +61,7 @@ import './PsychotropicMonitoring.css';
     return (
       <>
         <Navigation></Navigation>
-          <div style={{ marginTop: '3rem', padding: '0 1rem' }}>
+          <div style={{ marginTop: '5rem', padding: '0 1rem' }}>
             <Typography variant="h4" align="center" color="#6CA786" gutterBottom>
               Psychotropic Monitoring
             </Typography>

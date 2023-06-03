@@ -66,8 +66,8 @@ export default function InsomniaDeprescribing() {
   return (
     <>
       <Navigation />
-      <br></br>
-    <div id="deprescrbing">
+      
+    <div id="deprescrbing" style={{ marginTop: '5rem', padding: '0 0.5rem' }}>
       <Accordion id="firstAccordionDeprescribing">
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}

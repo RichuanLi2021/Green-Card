@@ -66,8 +66,7 @@ export default function InsomniaSafety() {
   return (
     <>
       <Navigation />
-      <br></br>
-    <div id="insomniaSafety">
+    <div id="insomniaSafety" style={{ marginTop: '5rem', padding: '0 0.5rem' }}>
       <Accordion id="firstAccordionSafety">
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
