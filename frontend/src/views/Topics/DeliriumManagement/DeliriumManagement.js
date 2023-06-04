@@ -4,9 +4,6 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Link } from "react-router-dom";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -107,21 +104,6 @@ const rows = [
 export default function DeliriumManagement() {
   return (
     <div id="DeliriumManagement">
-      {/* <AppBar position="relative" style={{background: '#96D2B0'}}>
-            <Toolbar sx={{ justifyContent: "space-between" }}>
-                <Typography variant="h5" color="black" noWrap>
-                    Geriatric Psychotropic Green Card
-                </Typography>
-                <ul className="nav-list">
-                    <li className="nav-item">
-                        <Link to="/" className="nav-link">Home</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to="/login" className="nav-link">Login</Link>
-                    </li>
-                </ul>
-            </Toolbar>
-        </AppBar> */}
       <Navigation />
 
       <h1 id="head">Delirium Management</h1>
