@@ -15,6 +15,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Navigation from "../../Navigation/navigation";
 import { styled } from "@mui/material/styles";
 
 import "./DeliriumManagement.css";
@@ -105,6 +106,7 @@ const rows = [
 export default function DeliriumManagement() {
   return (
     <div id="DeliriumManagement">
+      <Navigation />
       {/* <AppBar position="relative" style={{background: '#96D2B0'}}>
             <Toolbar sx={{ justifyContent: "space-between" }}>
                 <Typography variant="h5" color="black" noWrap>
