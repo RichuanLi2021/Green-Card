@@ -106,7 +106,6 @@ const rows = [
 export default function DeliriumManagement() {
   return (
     <div id="DeliriumManagement">
-      <Navigation />
       {/* <AppBar position="relative" style={{background: '#96D2B0'}}>
             <Toolbar sx={{ justifyContent: "space-between" }}>
                 <Typography variant="h5" color="black" noWrap>
@@ -122,6 +121,7 @@ export default function DeliriumManagement() {
                 </ul>
             </Toolbar>
         </AppBar> */}
+      <Navigation />
 
       <h1 id="head">Delirium Management</h1>
       <h2 id="head">Treating underlying cause is mainstay of treatment</h2>
