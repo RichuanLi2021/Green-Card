@@ -1,0 +1,13 @@
+#firstAccordionMoodStabilizers{
+    background-color:#96d2b0;
+    color:black;
+}
+
+#moodStabilizersSubject{
+    text-decoration:none;
+    font-size:20pt;  
+}
+
+#moodStabilizersTable td, #moodStabilizersTable th{
+    font-size:15pt;
+}

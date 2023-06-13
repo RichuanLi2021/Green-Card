@@ -20,6 +20,7 @@ var InsomniaSedativesGuideRoute = require('./routes/InsomniaSedativesGuideRoute'
 var insomniaDeprescribingRoute = require('./routes/insomniaDeprescribingRoute');
 var InsomniaClinicalRoute = require('./routes/InsomniaClinicalRoute');
 var InsomniaSafetyRoute = require('./routes/InsomniaSafetyRoute');
+var MoodStabilizersRoute = require('./routes/MoodStabilizersRoute');
 
 
 
@@ -35,6 +36,7 @@ app.use('/api', InsomniaSedativesGuideRoute);
 app.use('/api', insomniaDeprescribingRoute);
 app.use('/api', InsomniaClinicalRoute);
 app.use('/api', InsomniaSafetyRoute);
+app.use('/api', MoodStabilizersRoute);
 var port = 8887;
 app.listen(port, function () {
   console.log("Server started on port ".concat(port));

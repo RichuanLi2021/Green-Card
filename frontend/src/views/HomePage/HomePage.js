@@ -118,7 +118,7 @@ const HomePage = () => {
                                     <Typography variant="h5" component="h1"> Mood Stabilizers </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography> <a href='MoodStabilizersGuide'> Mood Stabilizers </a> </Typography>
+                                        <Typography> <a href='MoodStabilizers'> Mood Stabilizers </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
                             </CardContent>
