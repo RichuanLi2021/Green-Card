@@ -107,7 +107,7 @@ export default function DeliriumManagement() {
       <Navigation />
 
       <h1 id="head">Delirium Management</h1>
-      <h2 id="head">Treating underlying cause is mainstay of treatment</h2>
+      {/* <h2>Treating underlying cause is mainstay of treatment</h2> */}
       <Accordion id="firstAccordion">
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
