@@ -18,12 +18,13 @@ import AntipsychoticsGuide from './views/Topics/AntipsychoticsGuide/antipsychoti
 import AntidepressantsGuide from './views/Topics/antidepressantsGuide/antidepressantsGuide';
 import CognitiveEnhancersGuide from './views/Topics/CognitiveEnhancersGuide/CognitiveEnhancersGuide';
 import NeuropsychiatricSymptoms from './views/Topics/NeuropsychiatricSymptoms/NeuropsychiatricSymptoms';
-import PsychotropicMonitoring from './views/Topics/PsychotropicMonitoring/PsychotropicMonitoring';
+
 import Panel from './views/AdminPanel/Panel';
 import InsomniaDeprescribing from './views/Topics/InsomniaDeprescribing/InsomniaDeprescribing';
 import InsomniaClinical from './views/Topics/InsomniaClinical/InsomniaClinical';
 import InsomniaSafety from './views/Topics/InsomniaSafety/InsomniaSafety';
 import MoodStabilizers from './views/Topics/MoodStabilizers/MoodStabilizers';
+import PsychotropicMonitoringSection from './views/Topics/PsychotropicMonitoringSection/PsychotropicMonitoringSection';
 
 
 
@@ -45,11 +46,11 @@ root.render(
       <Route path = "/CognitiveEnhancersGuide" element={<CognitiveEnhancersGuide/>}/>
       <Route path = "/NeuropsychiatricSymptoms" element={<NeuropsychiatricSymptoms/>}/>
       <Route path = "/panel" element={<Panel/>}/>
-      <Route path = "/PsychotropicMonitoring" element={<PsychotropicMonitoring/>}/>
       <Route path ="/InsomniaSedatives" element={<InsomniaSedatives/>}/>
       <Route path ="/InsomniaDeprescribing" element={<InsomniaDeprescribing/>}/>
       <Route path ="/InsomniaClinical" element={<InsomniaClinical/>}/>
       <Route path ="/InsomniaSafety" element={<InsomniaSafety/>}/>
+      <Route path = "/PsychotropicMonitoringSection" element={<PsychotropicMonitoringSection/>}/>
       
     </Routes>
   </BrowserRouter>
