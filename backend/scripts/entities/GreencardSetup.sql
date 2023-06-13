@@ -4,6 +4,9 @@ DROP SCHEMA IF EXISTS `green_card` ;
 CREATE SCHEMA IF NOT EXISTS `green_card`;
 USE `green_card` ;
 
+ALTER DATABASE green_card
+CHARACTER SET utf8
+COLLATE utf8_general_ci;
 -- -----------------------------------------------------
 -- Table `green_card`.`user_model`
 -- -----------------------------------------------------
@@ -15,20 +18,6 @@ CREATE TABLE IF NOT EXISTS `green_card`.`user_model` (
   `password` VARCHAR(256) NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
   );
-
-  -- -----------------------------------------------------
--- Table `green_card`.`feedback`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `feedback`;
-
-CREATE TABLE feedback (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL,
-  comment TEXT NOT NULL,
-  overall_rating TINYINT DEFAULT NULL,
-  subscribe BOOLEAN NOT NULL
-);
 
 
 -- -----------------------------------------------------
@@ -172,7 +161,7 @@ DROP TABLE IF EXISTS `green_card`.`DEPRESCRIBING BENZODIAZEPINE-LIKE SEDATIVES` 
 
 CREATE TABLE IF NOT EXISTS `green_card`.`DEPRESCRIBING BENZODIAZEPINE-LIKE SEDATIVES` (
   `Id` INT NOT NULL AUTO_INCREMENT,
-  `Duration of BZRA use (months)` VARCHAR(256) NULL,
+  `Duration` VARCHAR(256) NULL,
   `Dose Reduction Schedule Duration (weeks)` VARCHAR(256) NULL,
   `Interval Between Dose Reductions (weeks)` VARCHAR(256) NULL,
   PRIMARY KEY (`Id`)
