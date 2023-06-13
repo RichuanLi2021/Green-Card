@@ -1,0 +1,13 @@
+#firstAccordionPsychotropic{
+    background-color:#96d2b0;
+    color:black;
+}
+
+#psychotropicSubject{
+    text-decoration:none;
+    font-size:20pt;  
+}
+
+#psychotropicMonitoringTableTable td, #psychotropicMonitoringTable th{
+    font-size:15pt;
+}
