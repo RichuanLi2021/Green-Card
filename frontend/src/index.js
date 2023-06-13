@@ -7,8 +7,9 @@ import Navigation from './views/Navigation/navigation';
 
 import App from './App';
 import InsomniaManagement from './views/Topics/InsomniaManagement/InsomniaManagement';
+import InsomniaSedatives from './views/Topics/InsomniaSedatives/InsomniaSedatives';
 import AntidepressantClinicalGuide from './views/Topics/AntidepressantClinicalGuide/AntidepressantClinicalGuide';
-import MoodStabilizersGuide from './views/Topics/MoodStabilizersGuide/MoodStabilizersGuide';
+
 import DeliriumManagement from './views/Topics/DeliriumManagement/DeliriumManagement';
 import NeuropsychiatricSymptomsECT from './views/Topics/NeuropsychiatricSymptoms/NeuropsychiatricSymptoms';
 import { BrowserRouter, Routes ,Route }from "react-router-dom";
@@ -19,6 +20,11 @@ import CognitiveEnhancersGuide from './views/Topics/CognitiveEnhancersGuide/Cogn
 import NeuropsychiatricSymptoms from './views/Topics/NeuropsychiatricSymptoms/NeuropsychiatricSymptoms';
 import PsychotropicMonitoring from './views/Topics/PsychotropicMonitoring/PsychotropicMonitoring';
 import Panel from './views/AdminPanel/Panel';
+import InsomniaDeprescribing from './views/Topics/InsomniaDeprescribing/InsomniaDeprescribing';
+import InsomniaClinical from './views/Topics/InsomniaClinical/InsomniaClinical';
+import InsomniaSafety from './views/Topics/InsomniaSafety/InsomniaSafety';
+import MoodStabilizers from './views/Topics/MoodStabilizers/MoodStabilizers';
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -33,13 +39,18 @@ root.render(
       <Route path="/AntidepressantsGuide" element={<AntidepressantsGuide/>}/>
       <Route path="/InsomniaManagement" element={<InsomniaManagement/>}/>
       <Route path="/AntidepressantClinicalGuide" element={<AntidepressantClinicalGuide/>}/>
-      <Route path="/MoodStabilizersGuide" element={<MoodStabilizersGuide/>}/>
+      <Route path="/MoodStabilizers" element={<MoodStabilizers/>}/>
       <Route path="/DeliriumManagement" element={<DeliriumManagement/>}/>
       <Route path="/NeuropsychiatricSymptomsECT" element={<NeuropsychiatricSymptomsECT/>}/>
       <Route path = "/CognitiveEnhancersGuide" element={<CognitiveEnhancersGuide/>}/>
       <Route path = "/NeuropsychiatricSymptoms" element={<NeuropsychiatricSymptoms/>}/>
       <Route path = "/panel" element={<Panel/>}/>
       <Route path = "/PsychotropicMonitoring" element={<PsychotropicMonitoring/>}/>
+      <Route path ="/InsomniaSedatives" element={<InsomniaSedatives/>}/>
+      <Route path ="/InsomniaDeprescribing" element={<InsomniaDeprescribing/>}/>
+      <Route path ="/InsomniaClinical" element={<InsomniaClinical/>}/>
+      <Route path ="/InsomniaSafety" element={<InsomniaSafety/>}/>
+      
     </Routes>
   </BrowserRouter>
 );

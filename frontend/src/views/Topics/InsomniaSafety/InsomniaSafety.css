@@ -1,0 +1,13 @@
+#firstAccordionSafety{
+    background-color:#96d2b0;
+    color:black;
+}
+
+#safetySubject{
+    text-decoration:none;
+    font-size:20pt;  
+}
+
+#safetyTable td, #safetyTable th{
+    font-size:15pt;
+}

@@ -1,0 +1,13 @@
+#firstAccordionDeprescribing{
+    background-color:#96d2b0;
+    color:black;
+}
+
+#deprescribingSubject{
+    text-decoration:none;
+    font-size:20pt;  
+}
+
+#deprescribingTable td, #deprescribingTable th{
+    font-size:15pt;
+}
