@@ -1,5 +1,5 @@
 import './searchBar.css';
-import {FaSearch} from "react-icons/fa";
+
 import React,{useState} from "react";
 
 
@@ -24,7 +24,7 @@ export default function SearchBar({placeholder,data}) {
             
                 <form id="form">
                     <input type = "text" class = "inputField" placeholder ={placeholder} onChange={handleFilter} />
-                    <FaSearch id= "search-icon" />
+                    
                 
                 </form>
             </div>
