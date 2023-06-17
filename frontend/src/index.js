@@ -13,7 +13,7 @@ import AntidepressantClinicalGuide from './views/Topics/AntidepressantClinicalGu
 import DeliriumManagement from './views/Topics/DeliriumManagement/DeliriumManagement';
 import NeuropsychiatricSymptomsECT from './views/Topics/NeuropsychiatricSymptoms/NeuropsychiatricSymptoms';
 import { BrowserRouter, Routes ,Route }from "react-router-dom";
-import SearchBar from './views/SearchBar/SearchBar';
+import SearchBar from './views/searchBar/searchBar';
 import AntipsychoticsGuide from './views/Topics/AntipsychoticsGuide/antipsychoticsGuide';
 import AntidepressantsGuide from './views/Topics/antidepressantsGuide/antidepressantsGuide';
 import CognitiveEnhancersGuide from './views/Topics/CognitiveEnhancersGuide/CognitiveEnhancersGuide';
