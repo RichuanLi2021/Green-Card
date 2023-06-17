@@ -6,6 +6,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import SearchBar from "../searchBar/searchBar";
 
 const theme = createTheme({
     typography: {
@@ -22,6 +23,7 @@ const HomePage = () => {
         <div>
             <ThemeProvider theme={theme}> 
             <Navigation />
+            <SearchBar />
             <Container className="main-container" sx={{ overflow: "auto", display: "flex" }}>
                 <Grid container spacing={4} direction="column" alignItems="center" justify="center" sx={{ textAlign: "center" }}>
                     <Grid item xs={12} >
