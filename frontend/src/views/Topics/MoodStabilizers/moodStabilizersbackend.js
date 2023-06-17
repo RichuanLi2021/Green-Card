@@ -3,7 +3,7 @@ import axios from "axios";
 const moodStabilizersUpdate = async (name, column, value) => {
   try {
     const response = await axios.post(
-      "http://localhost:8887/api/moodStabilizers/update",
+      "http://localhost:8887/api/moodstabilizers/update",
       {
         name,
         column,
