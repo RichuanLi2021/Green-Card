@@ -28,10 +28,10 @@ export default function SearchBar({placeholder,data}) {
                 
                 </form>
             </div>
-            {filteredData.length !=0 && (
+            {filteredData.length !== 0 && (
                 <div class="dataResult">
                 {filteredData.map((value,key)=>{
-                    return <a class="dataItem" href={value.link} target="_blank">
+                    return <a class="dataItem" href={value.link} >
                          <p>{value.title}</p> </a>
                 })}
             </div>
