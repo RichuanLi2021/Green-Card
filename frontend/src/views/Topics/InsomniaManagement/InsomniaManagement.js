@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 
-
+import Data from "../searchBar/Data.json";
 
 export default function InsomniaManagement() {
   
@@ -16,7 +16,7 @@ export default function InsomniaManagement() {
   return (
     <>
       <Navigation />
-
+      <SearchBar placeholder="Search" data={Data} />
       <br></br>
         <div id = "insomniaManagement">
         

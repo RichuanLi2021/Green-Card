@@ -16,7 +16,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-
+import Data from "../searchBar/Data.json";
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 
@@ -66,6 +66,7 @@ export default function InsomniaSafety() {
   return (
     <>
       <Navigation />
+      <SearchBar placeholder="Search" data={Data} />
       <br></br>
     <div id="insomniaSafety">
       <Accordion id="firstAccordionSafety">

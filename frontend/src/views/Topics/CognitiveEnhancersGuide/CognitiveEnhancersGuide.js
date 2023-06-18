@@ -18,7 +18,7 @@ import Paper from '@mui/material/Paper';
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 import { styled } from '@mui/material/styles';
-
+import Data from "../searchBar/Data.json";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.success.main,
@@ -90,6 +90,7 @@ export default function CognitiveEnhancersGuide() {
   return (
     <>
       <Navigation />
+      <SearchBar placeholder="Search" data={Data} />
         <div id = "cognitiveEnhancersGuide">
         
           <Accordion id="firstAccordionCognitive">

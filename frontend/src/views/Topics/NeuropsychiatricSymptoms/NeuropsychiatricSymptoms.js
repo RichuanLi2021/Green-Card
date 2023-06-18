@@ -18,6 +18,7 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Footer from '../../Footer/Footer';
 import { Box } from '@mui/system';
+import Data from "../searchBar/Data.json";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.success.main,
@@ -65,6 +66,7 @@ export default function NeuropsychiatricSymptoms() {
       
     <><div id="neuropsychiatricSymptoms">
         <Navigation />
+        <SearchBar placeholder="Search" data={Data} />
         <Box
           sx={{
             marginTop: 8,

@@ -16,7 +16,7 @@ import antipsychoticsGuideUpdate from "./antipsychoticsGuidebackend";
 import Footer from '../../Footer/Footer';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-
+import Data from "../searchBar/Data.json";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.success.main,
@@ -86,6 +86,7 @@ export default function AntipsychoticsGuide() {
       return (
         <>
           <Navigation />
+          <SearchBar placeholder="Search" data={Data} />
           <div id="antipsychoticsGuide">
 
             <TableContainer component={Paper}>

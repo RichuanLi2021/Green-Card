@@ -19,7 +19,7 @@ import { styled } from '@mui/material/styles';
 
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
-
+import Data from "../searchBar/Data.json";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -66,6 +66,7 @@ export default function MoodStabilizers() {
   return (
     <>
       <Navigation />
+      <SearchBar placeholder="Search" data={Data} />
       <br></br>
     <div id="MoodStabilizers">
       <Accordion id="firstAccordionMoodStabilizers">

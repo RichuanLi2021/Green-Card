@@ -20,7 +20,7 @@ import { styled } from '@mui/material/styles';
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 
-
+import Data from "../searchBar/Data.json";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.success.main,
@@ -66,6 +66,7 @@ export default function InsomniaSedatives() {
   return (
     <>
       <Navigation />
+      <SearchBar placeholder="Search" data={Data} />
       <br></br>
     <div id="sedativesGuide">
       <Accordion id="firstAccordionSedatives">

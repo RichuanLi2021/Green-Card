@@ -7,6 +7,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import './AntidepressantClinicalGuide.css'
 import Navigation from '../../Navigation/navigation';
+import Data from "../searchBar/Data.json";
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Footer from '../../Footer/Footer';
@@ -40,6 +41,7 @@ export default function AntidepressantClinical() {
   return (
     <ThemeProvider theme={theme}>
       <Navigation />
+      <SearchBar placeholder="Search" data={Data} />
       <Box
           sx={{
             marginTop: 8,

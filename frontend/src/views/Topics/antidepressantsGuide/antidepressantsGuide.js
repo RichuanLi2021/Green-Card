@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import Navigation from '../../Navigation/navigation';
-
+import Data from "../searchBar/Data.json";
 
 import './antidepressantsGuide.css';
 
@@ -71,6 +71,7 @@ import './antidepressantsGuide.css';
     return (
       <>
         <Navigation />
+        <SearchBar placeholder="Search" data={Data} />
         <div style={{ marginTop: '3rem', padding: '0 1rem' }}>
           <Typography variant="h4" align="center" gutterBottom>
             Antidepressants Guide
