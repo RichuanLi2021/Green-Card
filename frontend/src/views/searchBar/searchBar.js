@@ -1,6 +1,6 @@
 import './searchBar.css';
 import React,{useState} from "react";
-
+import SearchIcon from '@mui/icons-material/Search';
 
 export default function SearchBar({placeholder,data}) {
     const[filteredData,setFilteredData] = useState([]);
@@ -20,12 +20,12 @@ export default function SearchBar({placeholder,data}) {
     return (
         <div class="Search-Bar-Container">
             <div class="searchBar">
-            
+
                 <form id="form">
                     <input type = "text" class = "inputField" placeholder ={placeholder} onChange={handleFilter} />
-                    
-                
+                   
                 </form>
+                <SearchIcon /> 
             </div>
             {filteredData.length !== 0 && (
                 <div class="dataResult">

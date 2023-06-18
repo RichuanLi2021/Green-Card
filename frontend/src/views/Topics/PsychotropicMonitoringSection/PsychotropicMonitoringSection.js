@@ -16,7 +16,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 import Data from "../../searchBar/Data.json";
