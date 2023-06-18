@@ -9,6 +9,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SearchBar from "../searchBar/searchBar";
 import Data from "../searchBar/Data.json";
 
+
 const theme = createTheme({
     typography: {
         h1: {
@@ -103,8 +104,8 @@ const HomePage = () => {
                                 </AccordionSummary>
                                     <AccordionDetails>
                                         <Typography> <a href='AntipsychoticsGuide'> Common DDI's </a> </Typography>
-                                        <Typography> <a href='AntipsychoticsGuide'> Notable changes in older adults </a> </Typography>
-                                        <Typography> <a href='AntipsychoticsGuide'> Prescribing and deprescribing principles </a> </Typography>
+                                        <Typography> <a href='NotableChangesInAdults'> Notable changes in older adults </a> </Typography>
+                                        <Typography> <a href='PrescribingAndDeprescribing'> Prescribing and deprescribing principles </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
                             </CardContent>
