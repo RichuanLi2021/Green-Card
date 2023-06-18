@@ -16,8 +16,9 @@ import antipsychoticsGuideUpdate from "./antipsychoticsGuidebackend";
 import Footer from '../../Footer/Footer';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Data from "../searchBar/Data.json";
-import SearchBar from "../searchBar/searchBar";
+import Data from "../../searchBar/Data.json";
+import SearchBar from "../../searchBar/searchBar";
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.success.main,

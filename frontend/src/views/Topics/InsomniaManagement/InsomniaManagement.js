@@ -7,8 +7,8 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
-import SearchBar from "../searchBar/searchBar";
-import Data from "../searchBar/Data.json";
+import SearchBar from "../../searchBar/searchBar";
+import Data from "../../searchBar/Data.json";
 
 export default function InsomniaManagement() {
   

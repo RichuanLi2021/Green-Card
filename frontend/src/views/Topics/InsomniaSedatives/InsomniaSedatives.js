@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
-import SearchBar from "../searchBar/searchBar";
+import SearchBar from "../../searchBar/searchBar";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -20,7 +20,7 @@ import { styled } from '@mui/material/styles';
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 
-import Data from "../searchBar/Data.json";
+import Data from "../../searchBar/Data.json";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.success.main,
