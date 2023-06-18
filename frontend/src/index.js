@@ -25,6 +25,8 @@ import InsomniaClinical from './views/Topics/InsomniaClinical/InsomniaClinical';
 import InsomniaSafety from './views/Topics/InsomniaSafety/InsomniaSafety';
 import MoodStabilizers from './views/Topics/MoodStabilizers/MoodStabilizers';
 import PsychotropicMonitoringSection from './views/Topics/PsychotropicMonitoringSection/PsychotropicMonitoringSection';
+import PrescribingAndDeprescribing from './views/Topics/PrescribingAndDeprescribing/PrescribingAndDeprescribing';
+
 
 
 
@@ -51,7 +53,9 @@ root.render(
       <Route path ="/InsomniaClinical" element={<InsomniaClinical/>}/>
       <Route path ="/InsomniaSafety" element={<InsomniaSafety/>}/>
       <Route path = "/PsychotropicMonitoringSection" element={<PsychotropicMonitoringSection/>}/>
+      <Route path='/PrescribingAndDeprescribing' element={<PrescribingAndDeprescribing/>}/>
       
+
     </Routes>
   </BrowserRouter>
 );
