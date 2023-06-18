@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import Navigation from '../../Navigation/navigation';
 import Data from "../searchBar/Data.json";
-
+import SearchBar from "../searchBar/searchBar";
 import './antidepressantsGuide.css';
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({

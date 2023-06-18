@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import './AntidepressantClinicalGuide.css'
 import Navigation from '../../Navigation/navigation';
 import Data from "../searchBar/Data.json";
-
+import SearchBar from "../searchBar/searchBar";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Footer from '../../Footer/Footer';
 

@@ -19,6 +19,7 @@ import { styled } from '@mui/material/styles';
 import Footer from '../../Footer/Footer';
 import { Box } from '@mui/system';
 import Data from "../searchBar/Data.json";
+import SearchBar from "../searchBar/searchBar";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.success.main,
