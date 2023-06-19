@@ -236,7 +236,7 @@ const Navbar = () => {
           </MenuItem>
 
           <MenuItem>
-            <Button component={Link} to="/" sx={{ color: '#000', fontSize: isMobile ? '0.8rem' : '1rem' }}>Hypnotics</Button>
+            <Button component={Link} to="/InsomniaDeprescribing" sx={{ color: '#000', fontSize: isMobile ? '0.8rem' : '1rem' }}>Hypnotics</Button>
           </MenuItem>
 
           <MenuItem>
@@ -350,13 +350,13 @@ const Navbar = () => {
 
 
         <div className="navbar__menu">
-          <Button component={Link} to="/HomePage" sx={{ color: '#000', fontSize: isMobile ? '0.7rem' : '0.8rem' }}>Home</Button>
+          <Button component={Link} to="/" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>Home</Button>
 
           <Button
             aria-controls="antidepressant-menu"
             aria-haspopup="true"
             onClick={handleAntidepressantMenuOpen}
-            sx={{ color: '#000', fontSize: isMobile ? '0.7rem' : '0.8rem' }}
+            sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}
           >
             Antidepressants
           </Button>
@@ -385,7 +385,7 @@ const Navbar = () => {
             aria-controls="antipsychotics-menu"
             aria-haspopup="true"
             onClick={handleAntipsychoticsMenuOpen}
-            sx={{ color: '#000', fontSize: isMobile ? '0.7rem' : '0.8rem' }}
+            sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}
           >
             Antipsychotics
           </Button>
@@ -411,7 +411,7 @@ const Navbar = () => {
             aria-controls="insomnia-menu"
             aria-haspopup="true"
             onClick={handleInsomniaMenuOpen}
-            sx={{ color: '#000', fontSize: isMobile ? '0.7rem' : '0.8rem' }}
+            sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}
           >
             Insomnia
           </Button>
@@ -439,13 +439,13 @@ const Navbar = () => {
             </MenuItem>
           </Menu>
 
-          <Button component={Link} to="/" sx={{ color: '#000', fontSize: isMobile ? '0.7rem' : '0.8rem' }}>Hypnotics</Button>
+          <Button component={Link} to="/InsomniaDeprescribing" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>Hypnotics</Button>
 
           <Button
             aria-controls="dementia-menu"
             aria-haspopup="true"
             onClick={handleDementiaMenuOpen}
-            sx={{ color: '#000', fontSize: isMobile ? '0.7rem' : '0.8rem' }}
+            sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}
           >
             Dementia
           </Button>
@@ -477,7 +477,7 @@ const Navbar = () => {
             aria-controls="delirium-menu"
             aria-haspopup="true"
             onClick={handleDeliriumMenuOpen}
-            sx={{ color: '#000', fontSize: isMobile ? '0.7rem' : '0.8rem' }}
+            sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}
           >
             Delirium
           </Button>
@@ -503,7 +503,7 @@ const Navbar = () => {
             aria-controls="polypharmacy-menu"
             aria-haspopup="true"
             onClick={handlePolypharmacyMenuOpen}
-            sx={{ color: '#000', fontSize: isMobile ? '0.7rem' : '0.8rem' }}
+            sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}
           >
             Polypharmacy
           </Button>
@@ -528,12 +528,12 @@ const Navbar = () => {
             </MenuItem>
           </Menu>
 
-          <Button component={Link} to="/" sx={{ color: '#000', fontSize: isMobile ? '0.7rem' : '0.8rem' }}>ECT & Psychoactive medications </Button>
-          <Button component={Link} to="/MoodStabilizers" sx={{ color: '#000', fontSize: isMobile ? '0.7rem' : '0.8rem' }}>Mood Stabilizers</Button>
-          <Button component={Link} to="/PsychotropicMonitoringSection" sx={{ color: '#000', fontSize: isMobile ? '0.7rem' : '0.8rem' }}>Psychotropic Monitoring</Button>
+          <Button component={Link} to="/" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>ECT & Psychoactive medications </Button>
+          <Button component={Link} to="/MoodStabilizers" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>Mood Stabilizers</Button>
+          <Button component={Link} to="/PsychotropicMonitoringSection" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>Psychotropic Monitoring</Button>
 
           {window.location.pathname !== '/login' && (
-            <Button component={Link} to="/login" sx={{ color: '#000', fontSize: isMobile ? '0.7rem' : '0.8rem' }}>Admin Login</Button>
+            <Button component={Link} to="/login" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>Admin Login</Button>
           )}
         </div>
       </Toolbar>
