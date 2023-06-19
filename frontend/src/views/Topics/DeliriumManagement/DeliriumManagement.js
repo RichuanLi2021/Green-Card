@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {Link} from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-
+import SearchBar from "../../searchBar/searchBar";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -17,7 +17,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-
+import Data from "../../searchBar/Data.json";
 import './DeliriumManagement.css';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -102,6 +102,7 @@ export default function DeliriumManagement() {
       
         <h1 id ="head">Delirium Management</h1>
         <h2 id = "head" >Treating underlying cause is mainstay of treatment</h2>
+        <SearchBar placeholder="Search" data={Data} />
         <Accordion id="firstAccordion">
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}

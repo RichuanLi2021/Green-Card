@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import axios from "axios";
 import { useState, useEffect } from "react";
-
+import SearchBar from "../../searchBar/searchBar";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -17,6 +17,9 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 
+import Navigation from "../../Navigation/navigation";
+import Footer from "../../Footer/Footer";
+import Data from "../../searchBar/Data.json";
 import MoodStabilizersUpdate from "./moodStabilizersbackend";
 import Navigation from "../../Navigation/navigation";
 import Footer from "../../Footer/Footer";
@@ -197,6 +200,7 @@ export default function MoodStabilizers() {
       return (
         <>
           <Navigation />
+          <SearchBar placeholder="Search" data={Data} />
           <br></br>
           <div id="MoodStabilizers">
             <Accordion id="firstAccordionMoodStabilizers">

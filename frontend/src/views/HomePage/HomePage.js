@@ -6,6 +6,9 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import SearchBar from "../searchBar/searchBar";
+import Data from "../searchBar/Data.json";
+
 
 const theme = createTheme({
     typography: {
@@ -22,6 +25,7 @@ const HomePage = () => {
         <div>
             <ThemeProvider theme={theme}> 
             <Navigation />
+            <SearchBar placeholder="Search" data={Data} />
             <Container className="main-container" sx={{ overflow: "auto", display: "flex" }}>
                 <Grid container spacing={4} direction="column" alignItems="center" justify="center" sx={{ textAlign: "center" }}>
                     <Grid item xs={12} >
@@ -100,8 +104,8 @@ const HomePage = () => {
                                 </AccordionSummary>
                                     <AccordionDetails>
                                         <Typography> <a href='AntipsychoticsGuide'> Common DDI's </a> </Typography>
-                                        <Typography> <a href='AntipsychoticsGuide'> Notable changes in older adults </a> </Typography>
-                                        <Typography> <a href='AntipsychoticsGuide'> Prescribing and deprescribing principles </a> </Typography>
+                                        <Typography> <a href='NotableChangesInAdults'> Notable changes in older adults </a> </Typography>
+                                        <Typography> <a href='PrescribingAndDeprescribing'> Prescribing and deprescribing principles </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
                             </CardContent>
