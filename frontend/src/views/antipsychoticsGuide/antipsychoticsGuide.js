@@ -64,7 +64,7 @@ import { styled } from '@mui/material/styles';
           
           export default function AntipsychoticsGuide() {
             return (
-              <><AppBar position="relative" style={{ background: '#96D2B0' }}>
+              <><AppBar style={{ background: '#96D2B0' }}>
                 <Toolbar sx={{ justifyContent: "space-between" }}>
                   <Typography variant="h5" color="black" noWrap>
                     Geriatric Psychotropic Green Card
@@ -80,11 +80,11 @@ import { styled } from '@mui/material/styles';
                 </Toolbar>
               </AppBar><div id="antipsychoticsGuide">
                   <h1 id="heading">Antipsychotics Guide</h1>
-                  <TableContainer component={Paper}>
+                  <TableContainer component={Paper} className="myTableContainer">
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                      <TableHead>
-                        <TableRow>
-                          <StyledTableCell>Name</StyledTableCell>
+                      <TableHead className= "tableHead">
+                        <TableRow id="tableRow">
+                          <StyledTableCell  className="nameCell">Name</StyledTableCell>
                           <StyledTableCell align="right">Approx equiv.dose</StyledTableCell>
                           <StyledTableCell align="right">Half-life&nbsp;</StyledTableCell>
                           <StyledTableCell align="right">Frequency&nbsp;</StyledTableCell>
@@ -98,7 +98,7 @@ import { styled } from '@mui/material/styles';
                           <StyledTableCell align="right">LO-SCZ&nbsp;</StyledTableCell>
                         </TableRow>
                       </TableHead>
-                      <TableBody>
+                      <TableBody id="tableBody">
                         {rows.map((row) => (
                           <StyledTableRow key={row.name}>
                             <StyledTableCell component="th" scope="row">

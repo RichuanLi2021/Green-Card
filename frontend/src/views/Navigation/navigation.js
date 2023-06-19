@@ -30,7 +30,7 @@ const Navbar = () => {
   if (admin)
   {
     return (
-        <AppBar position="static">
+        <AppBar sx={{ boxShadow: 'none', marginBottom: '20px' }}>
           <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none', fontSize: '1.5rem' }}>
               Geriatric Psychotropic Green Card
@@ -83,7 +83,7 @@ const Navbar = () => {
   else
   {
     return (
-        <AppBar position="static">
+        <AppBar sx={{ boxShadow: 'none'}}>
           <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none', fontSize: '1.5rem' }}>
               Geriatric Psychotropic Green Card
