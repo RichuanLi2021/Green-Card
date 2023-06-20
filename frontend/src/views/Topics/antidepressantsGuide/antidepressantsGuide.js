@@ -29,6 +29,13 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: '#f3f3f3',
+  },
+}));
+
+
 function createData(name, halfLife, primary, dose, frequency, supplied) {
   return { name, halfLife, primary, dose, frequency, supplied };
 }
@@ -65,7 +72,7 @@ return (
 <>
   <Navigation />
   <SearchBar placeholder="Search" data={Data} />
-  <div style={{ marginTop: '3rem', padding: '0 1rem' }}>
+  <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
     <Typography variant="h4" align="center" gutterBottom>
       Antidepressants Guide
     </Typography>
