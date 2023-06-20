@@ -18,19 +18,19 @@ export default function SearchBar({placeholder,data}) {
          
     };
     return (
-        <div class="Search-Bar-Container">
-            <div class="searchBar">
+        <div className='Search-Bar-Container'>
+            <div className='searchBar'>
 
                 <form id="form">
-                    <input type = "text" class = "inputField" placeholder ={placeholder} onChange={handleFilter} />
+                    <input type = "text" className='inputField' placeholder ={placeholder} onChange={handleFilter} />
                    
                 </form>
                 <SearchIcon /> 
             </div>
             {filteredData.length !== 0 && (
-                <div class="dataResult">
+                <div className='dataResult'>
                 {filteredData.map((value,key)=>{
-                    return <a class="dataItem" href={value.link} >
+                    return <a className='dataItem' href={value.link} >
                          <p>{value.title}</p> </a>
                 })}
             </div>

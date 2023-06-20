@@ -44,7 +44,6 @@ import './antidepressantsGuide.css';
       createData('citalopram (Celexa)**', "23-45h", "5HT", "5-10 | 20 | 20", "od", "10,20,30,40/tab"),
       createData('escitalopram (Cipralex)**', "27-32h", "5HT", " ", "od", "10,20/tab"),
       createData('fluoxetine (Prozac) ∅', "10-14d^", "5HT", "10 | 20-40 | 40", "od", "10,20/cap,liq"),
-      createData('paroxetine (Paxil) ♯', "3-65h", "5HT", "10 | 20-40 | 40", "od", "10,20,30,40/tab"),
       createData('sertraline (Zoloft)**', "<104h^", "5HT", "25 | 50-150 | 200", "od", "25,50,100/cap"),
       createData('paroxetine (Paxil) ♯', "3-65h", "5HT", "10 | 20-40 | 40", "od", "10,20,30,40/tab"),
       createData(<strong><u>Serotonin Modulator</u></strong>),
@@ -105,7 +104,7 @@ import './antidepressantsGuide.css';
                  </TableBody>
              </Table>
           </TableContainer>
-          <footer class="footer">
+          <footer className='footer'>
             <p>Key: AD: antidepressant; er: extended release; ir: immediate release; EO-SCZ: early-onset schizophrenia; LO-SCZ: late-onset schizophrenia; MDE: major depressive disorder; NPS: neuropsychiatric symptoms of dementia; NR: not recommended; PP: Parkinson's psychosis; †0.25 of adult equivalent dose shown (see Yellow Card); ‡take with meal (≥350 kcal); ^accounts for half-life of active metabolites; **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data.</p>
             <p>NOTES: doses may not reflect manufacturers' recommendations but are based on clinical literature and opinion. Half lives are estimates based on adult data and in older adults they can often be increased up to 170%.</p>
           </footer>
