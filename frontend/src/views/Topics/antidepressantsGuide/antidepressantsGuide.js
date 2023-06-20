@@ -67,47 +67,81 @@ import './antidepressantsGuide.css';
       createData('tranylcypromine (Parnate)', "2-4h", "NA, 5HT", "10bid | 20-40 | 40", "am/bid", "10/tab")
     ];
 
-    export default function AntidepressantsGuide() {
-    return (
-      <>
-        <Navigation />
-        <SearchBar placeholder="Search" data={Data} />
-        <div style={{ marginTop: '3rem', padding: '0 1rem' }}>
-          <Typography variant="h4" align="center" gutterBottom>
-            Antidepressants Guide
-          </Typography>
-          <TableContainer component={Paper} sx={{ marginTop: '2rem' }}>
-            <Table aria-label="customized table">
-                <TableHead>
-                  <TableRow>
-                      <StyledTableCell>Name</StyledTableCell>
-                      <StyledTableCell align="right">Half-life</StyledTableCell>
-                      <StyledTableCell align="right">Primary NT</StyledTableCell>
-                      <StyledTableCell align="right">Dose(mg/day) Initial | Main. | Max.</StyledTableCell>
-                      <StyledTableCell align="right">Frequency&nbsp;</StyledTableCell>
-                      <StyledTableCell align="right">mg/Form Supplied&nbsp;</StyledTableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map((row) => (
-                    <StyledTableRow key={row.name}>
-                      <StyledTableCell component="th" scope="row">
-                        {row.name}
-                      </StyledTableCell>
-                      <StyledTableCell align="right">{row.halfLife}</StyledTableCell>
-                      <StyledTableCell align="right">{row.primary}</StyledTableCell>
-                      <StyledTableCell align="right">{row.dose}</StyledTableCell>
-                      <StyledTableCell align="right">{row.frequency}</StyledTableCell>
-                      <StyledTableCell align="right">{row.supplied}</StyledTableCell>
-                    </StyledTableRow>
-                  ))}
-                 </TableBody>
-             </Table>
-          </TableContainer>
-          <footer class="footer">
-            <p>Key: AD: antidepressant; er: extended release; ir: immediate release; EO-SCZ: early-onset schizophrenia; LO-SCZ: late-onset schizophrenia; MDE: major depressive disorder; NPS: neuropsychiatric symptoms of dementia; NR: not recommended; PP: Parkinson's psychosis; †0.25 of adult equivalent dose shown (see Yellow Card); ‡take with meal (≥350 kcal); ^accounts for half-life of active metabolites; **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data.</p>
-            <p>NOTES: doses may not reflect manufacturers' recommendations but are based on clinical literature and opinion. Half lives are estimates based on adult data and in older adults they can often be increased up to 170%.</p>
-          </footer>
-        </div></>
-      );
-     }
+export default function AntidepressantsGuide() {
+  return (
+    <>
+      <Navigation />
+      <SearchBar placeholder="Search" data={Data} />
+      <div >
+        <Typography variant="h4" align="center" gutterBottom>
+          Antidepressants Guide
+        </Typography>
+        <TableContainer component={Paper} className="myTableContainer" >
+        
+        <Table className="contentTable" aria-label="customized table">
+    <TableHead className= "tableHead">
+      <TableRow >
+        <StyledTableCell className="nameCell">Name</StyledTableCell>
+        <StyledTableCell align="right">Half-life</StyledTableCell>
+        <StyledTableCell align="right">Primary NT</StyledTableCell>
+        <StyledTableCell align="right">
+          Dose(mg/day) Initial | Main. | Max.
+        </StyledTableCell>
+        <StyledTableCell align="right">Frequency&nbsp;</StyledTableCell>
+        <StyledTableCell align="right">
+          mg/Form Supplied&nbsp;
+        </StyledTableCell>
+      </TableRow>
+    </TableHead>
+    <TableBody id="tableBody">
+      {rows.map((row, index) => (
+  <StyledTableRow
+    key={row.name}
+    id="tableRow"
+    className={index % 2 === 0 ? 'evenRow' : 'oddRow'}
+  >
+    <StyledTableCell
+      component="th"
+      scope="row"
+      className="nameCell"
+      style={{ backgroundColor: "rgba(243, 243, 243,1)" 
+    } }
+    >
+      {row.name}
+    </StyledTableCell>
+    <StyledTableCell align="right">{row.halfLife}</StyledTableCell>
+    <StyledTableCell align="right">{row.primary}</StyledTableCell>
+    <StyledTableCell align="right">{row.dose}</StyledTableCell>
+    <StyledTableCell align="right">{row.frequency}</StyledTableCell>
+    <StyledTableCell align="right">{row.supplied}</StyledTableCell>
+  </StyledTableRow>
+))}
+
+    </TableBody>
+  </Table>
+
+  
+</TableContainer>
+
+        <footer class="footer">
+          <p>
+            Key: AD: antidepressant; er: extended release; ir: immediate
+            release; EO-SCZ: early-onset schizophrenia; LO-SCZ: late-onset
+            schizophrenia; MDE: major depressive disorder; NPS: neuropsychiatric
+            symptoms of dementia; NR: not recommended; PP: Parkinson's
+            psychosis; †0.25 of adult equivalent dose shown (see Yellow Card);
+            ‡take with meal (≥350 kcal); ^accounts for half-life of active
+            metabolites; **preferred medication based on research and/or expert
+            opinion; ?inconsistent or insufficient data.
+          </p>
+          <p>
+            NOTES: doses may not reflect manufacturers' recommendations but are
+            based on clinical literature and opinion. Half lives are estimates
+            based on adult data and in older adults they can often be increased
+            up to 170%.
+          </p>
+        </footer>
+      </div>
+    </>
+  );
+}
