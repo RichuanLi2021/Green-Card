@@ -4,19 +4,20 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import Navigation from "../../Navigation/navigation";
-import Footer from "../../Footer/Footer";
-import { styled } from "@mui/material/styles";
-
-import "./DeliriumManagement.css";
+import SearchBar from "../../searchBar/searchBar";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
+import Data from "../../searchBar/Data.json";
+import './DeliriumManagement.css';
+import Navigation from '../../Navigation/navigation';
+import Box from '@mui/material/Box';
+import Footer from '../../Footer/Footer';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -102,13 +103,22 @@ const rows = [
 ];
 
 export default function DeliriumManagement() {
-  return (
-    <div id="DeliriumManagement">
+    return(  
+    <div id = "DeliriumManagement">
       <Navigation />
-
-      <h1 id="head">Delirium Management</h1>
-      <h2 id="head">Treating underlying cause is mainstay of treatment</h2>
-      <Accordion id="firstAccordion">
+      <SearchBar placeholder="Search" data={Data} />
+      <Box
+        sx={{
+          marginTop: 3,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography variant="h3" id="topicHeader">Delirium Management</Typography>
+        <Typography variant="h2" id="topicHeader">Treating underlying cause is mainstay of treatment</Typography>
+      </Box>
+        <Accordion id="firstAccordion">
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -222,6 +232,7 @@ export default function DeliriumManagement() {
         </AccordionDetails>
       </Accordion>
       <Footer />
-    </div>
-  );
+    </div>);
+
+
 }

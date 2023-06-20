@@ -1,8 +1,14 @@
 .main-container {
     overflow: auto;
-    margin-top: 70px;
+    margin-top: 1rem;
     margin-bottom: 150px;
     top: 64px;
+    padding-left: 0px!important;
+    padding-right: 0px!important;
+}
+
+a {
+    color: #000;
 }
 
 @media (max-width:600px) {

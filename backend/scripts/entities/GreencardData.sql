@@ -119,7 +119,7 @@ VALUES
 ('SHYPCLIN_SAF', 'Sleep Walking'),
 ('SHYPCLIN_SAF', 'Withdrawl');
 
-INSERT INTO `green_card`.`DEPRESCRIBING BENZODIAZEPINE-LIKE SEDATIVES`(`Duration of BZRA use (months)`,`Dose Reduction Schedule Duration (weeks)`,`Interval Between Dose Reductions (weeks)`)
+INSERT INTO `green_card`.`deprescribing benzodiazepine-like sedatives`(`Duration`,`Dose Reduction Schedule Duration (weeks)`,`Interval Between Dose Reductions (weeks)`)
 VALUES
 ('4 to 12', '4 to 8', '1 to 2'),
 ('12 to 24', '8 to 16', '1 to 4'),
@@ -148,7 +148,7 @@ VALUES ('Lamotrigine (Lamictal)', '25h', '12.5-25 hs | 50-250† | 200-300', 'bi
 
 
 
-INSERT INTO `green_card`.`PSYCHOTROPIC MONITORING` (Name, Antipsychotics, Lithium, Valproate)
+INSERT INTO `green_card`.`PSYCHOTROPIC MONITORING` (`Name`, `Antipsychotics`, `Lithium`, `Valproate`)
 VALUES
 ('Blood pressure', 'BL, ACI', 'BL, ACI', 'ACI'),
 ('BMI/weight/waist circ.', 'BL, 1m, 3m, annually', 'BL, ACI', 'ACI'),
@@ -273,6 +273,10 @@ VALUES ('PRESCR_DEPRE', 'Always use minimum effective dose'),
 ('PRESCR_DEPRE', 'Most psychotropics have rebound or withdrawal effects so taper gradually and assess frequently'),
 ('PRESCR_DEPRE', 'Avoid medication with long half lives if possible'),
 ('PRESCR_DEPRE', 'For additional information: deprescribing.org, Beers Criteria, STOPP/START Criteria');
+
+INSERT INTO `green_card`.`user_model`(`id`,`username`,`password`)
+VALUES ('1','Kathleen','Singh');
+
 
 
 -- --Notable Changes In Older Adults That Affect Prescribing--

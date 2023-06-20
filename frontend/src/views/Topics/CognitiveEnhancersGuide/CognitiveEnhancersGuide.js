@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
-
+import SearchBar from "../../searchBar/searchBar";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -18,7 +18,7 @@ import Paper from '@mui/material/Paper';
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 import { styled } from '@mui/material/styles';
-
+import Data from "../../searchBar/Data.json";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.success.main,
@@ -90,15 +90,16 @@ export default function CognitiveEnhancersGuide() {
   return (
     <>
       <Navigation />
-        <div id = "cognitiveEnhancersGuide" style={{ marginTop: '5rem', padding: '0 0.5rem' }}>
-        
+      <SearchBar placeholder="Search" data={Data} />
+        <div id = "cognitiveEnhancersGuide">
+          <Typography variant="h3" id="topicHeader">Cognitive Enhancers Guide</Typography>
           <Accordion id="firstAccordionCognitive">
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography id="firstTopic"><b>COGNITIVE ENHANCERS GUIDE</b></Typography>
+            <Typography id="secondTopic"><b>COGNITIVE ENHANCERS GUIDE</b></Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
@@ -107,13 +108,13 @@ export default function CognitiveEnhancersGuide() {
                   <Table sx={{ minWidth: 700 }} aria-label="customized table" id="tableOne" >
                     <TableHead >
                       <TableRow >
-                        <StyledTableCell  >Name</StyledTableCell>
-                        <StyledTableCell >Action</StyledTableCell>
-                        <StyledTableCell >Half-life</StyledTableCell>
-                        <StyledTableCell >Dose (initial/monthly increment/maint)</StyledTableCell>
-                        <StyledTableCell >Frequency</StyledTableCell>
-                        <StyledTableCell >mg/form supplied</StyledTableCell>
-                        <StyledTableCell >With food?</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Name</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Action</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Half-life</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Dose (initial/monthly increment/maint)</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Frequency</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>mg/form supplied</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>With food?</StyledTableCell>
                         
 
                       </TableRow>
@@ -157,16 +158,16 @@ export default function CognitiveEnhancersGuide() {
                   <Table sx={{ minWidth: 700 }} aria-label="customized table" id="tableTwo" >
                     <TableHead >
                       <TableRow >
-                        <StyledTableCell >Name</StyledTableCell>
-                        <StyledTableCell >MCI</StyledTableCell>
-                        <StyledTableCell >mild-mod Alz</StyledTableCell>
-                        <StyledTableCell >Severe Alz</StyledTableCell>
-                        <StyledTableCell >Mixed (Alz+vas)</StyledTableCell>
-                        <StyledTableCell >Vascular</StyledTableCell>
-                        <StyledTableCell >LBD</StyledTableCell>
-                        <StyledTableCell >FTD</StyledTableCell>
-                        <StyledTableCell >PD</StyledTableCell>
-                        <StyledTableCell >DSD</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Name</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>MCI</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>mild-mod Alz</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Severe Alz</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Mixed (Alz+vas)</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Vascular</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>LBD</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>FTD</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>PD</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>DSD</StyledTableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -211,9 +212,9 @@ export default function CognitiveEnhancersGuide() {
                 <Table sx={{ minWidth: 700 }} aria-label="customized table" id="tableThree" >
                   <TableHead >
                     <TableRow >
-                      <StyledTableCell style={{width:15}} >Contraindications</StyledTableCell>
-                      <StyledTableCell style={{width:15}}>Adverse Effects (AChEI)</StyledTableCell>
-                      <StyledTableCell >Adverse Effects (Memantine)</StyledTableCell>
+                      <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Contraindications</StyledTableCell>
+                      <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Adverse Effects (AChEI)</StyledTableCell>
+                      <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Adverse Effects (Memantine)</StyledTableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>

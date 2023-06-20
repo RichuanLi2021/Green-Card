@@ -6,6 +6,9 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import SearchBar from "../searchBar/searchBar";
+import Data from "../searchBar/Data.json";
+
 
 const theme = createTheme({
     typography: {
@@ -22,6 +25,7 @@ const HomePage = () => {
         <div>
             <ThemeProvider theme={theme}> 
             <Navigation />
+            <SearchBar placeholder="Search" data={Data} />
             <Container className="main-container" sx={{ overflow: "auto", display: "flex" }}>
                 <Grid container spacing={4} direction="column" alignItems="center" justify="center" sx={{ textAlign: "center" }}>
                     <Grid item xs={12} >
@@ -29,102 +33,91 @@ const HomePage = () => {
                         <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}> 
                             <Accordion sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column"}}>
                                 <AccordionSummary sx={{alignSelf: "center"}} expandIcon={<ExpandMoreIcon />}>
-                                    <Typography variant="h1"> Antidepressants </Typography>
+                                    <Typography variant="h1" sx={{ fontFamily: 'monospace', fontWeight: 400, fontSize: '1.25rem' }}> Antidepressants </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography> <a href='antidepressantsGuide'> Antidepressant Guide </a> </Typography>
-                                        <Typography> <a href='AntidepressantClinicalGuide'> Antidepressant Clinical Guide </a> </Typography>
-                                        <Typography> <a href='AntipsychoticsGuide'> Antidepressant Safety Concerns </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='antidepressantsGuide'> Antidepressant Guide </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='AntidepressantClinicalGuide'> Antidepressant Clinical Guide </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='AntipsychoticsGuide'> Antidepressant Safety Concerns </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
                             </CardContent>
                             <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}> 
                             <Accordion sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column"}}>
                                 <AccordionSummary sx={{alignSelf: "center"}} expandIcon={<ExpandMoreIcon />}>
-                                    <Typography variant="h1"> Antipsychotics </Typography>
+                                    <Typography variant="h1" sx={{ fontFamily: 'monospace', fontWeight: 400, fontSize: '1.25rem' }}> Antipsychotics </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography> <a href='AntipsychoticsGuide'> Antipsychotics Guide </a> </Typography>
-                                        <Typography> <a href='AntipsychoticsGuide'> Antidepressant Safety Concerns </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='AntipsychoticsGuide'> Antipsychotics Guide </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='AntipsychoticsGuide'> Antidepressant Safety Concerns </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
                             </CardContent>
                             <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}> 
                             <Accordion sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column"}}>
                                 <AccordionSummary sx={{alignSelf: "center"}} expandIcon={<ExpandMoreIcon />}>
-                                    <Typography variant="h1"> Insomnia </Typography>
+                                    <Typography variant="h1" sx={{ fontFamily: 'monospace', fontWeight: 400, fontSize: '1.25rem' }}> Insomnia </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography> <a href='InsomniaManagement'> Insomnia management </a> </Typography>
-                                        <Typography> <a href='InsomniaSedatives'> Sedatives/hypnotics Guide </a> </Typography>
-                                        <Typography> <a href='InsomniaClinical'> Sedatives/hypnotics Clinical Guide </a> </Typography>
-                                        <Typography> <a href='InsomniaSafety'> Sedatives/hypnotics Safety Concerns </a> </Typography>
-                                    </AccordionDetails>
-                                </Accordion>
-                            </CardContent>
-                            <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}>
-                                <Button variant="h1" sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column", textTransform: "none"}} href={'InsomniaDeprescribing'}>
-                                    <Typography variant="h5" component="h1">
-                                        Deprescribing Sedatives/Hypnotics
-                                    </Typography>
-                                </Button>
-                            </CardContent>
-                            <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}> 
-                            <Accordion sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column"}}>
-                                <AccordionSummary sx={{alignSelf: "center"}} expandIcon={<ExpandMoreIcon />}>
-                                    <Typography variant="h1"> Dementia </Typography>
-                                </AccordionSummary>
-                                    <AccordionDetails>
-                                        <Typography> <a href='CognitiveEnhancersGuide'> Cognitive Enhancers Guide </a> </Typography>
-                                        <Typography> <a href='CognitiveEnhancersGuide'> Cognitive Enhancers Guide continued </a> </Typography>
-                                        <Typography> <a href='CognitiveEnhancersGuide'> Cognitive Enhancers Clinical Guide </a> </Typography>
-                                        <Typography> <a href='NeuropsychiatricSymptomsECT'> NPS Management </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='InsomniaManagement'> Insomnia management </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='InsomniaSedatives'> Sedatives/hypnotics Guide </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='InsomniaClinical'> Sedatives/hypnotics Clinical Guide </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='InsomniaSafety'> Sedatives/hypnotics Safety Concerns </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='InsomniaDeprescribing'> Deprescribing Sedatives/Hypnotics </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
                             </CardContent>
                             <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}> 
                             <Accordion sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column"}}>
                                 <AccordionSummary sx={{alignSelf: "center"}} expandIcon={<ExpandMoreIcon />}>
-                                    <Typography variant="h1"> Delirium </Typography>
+                                    <Typography variant="h1" sx={{ fontFamily: 'monospace', fontWeight: 400, fontSize: '1.25rem' }}> Dementia </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography> <a href='DeliriumManagement'> Delirium Management </a> </Typography>
-                                        <Typography> <a href='DeliriumManagement'> Anticholinergic activity </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='CognitiveEnhancersGuide'> Cognitive Enhancers Guide </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='CognitiveEnhancersGuide'> Cognitive Enhancers Guide continued </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='CognitiveEnhancersGuide'> Cognitive Enhancers Clinical Guide </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='NeuropsychiatricSymptomsECT'> NPS Management </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
                             </CardContent>
                             <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}> 
                             <Accordion sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column"}}>
                                 <AccordionSummary sx={{alignSelf: "center"}} expandIcon={<ExpandMoreIcon />}>
-                                    <Typography variant="h5" component="h1"> Polypharmacy </Typography>
+                                    <Typography variant="h1" sx={{ fontFamily: 'monospace', fontWeight: 400, fontSize: '1.25rem' }}> Delirium </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography> <a href='AntipsychoticsGuide'> Common DDI's </a> </Typography>
-                                        <Typography> <a href='AntipsychoticsGuide'> Notable changes in older adults </a> </Typography>
-                                        <Typography> <a href='AntipsychoticsGuide'> Prescribing and deprescribing principles </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='DeliriumManagement'> Delirium Management </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='DeliriumManagement'> Anticholinergic activity </a> </Typography>
+                                    </AccordionDetails>
+                                </Accordion>
+                            </CardContent>
+                            <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}> 
+                            <Accordion sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column"}}>
+                                <AccordionSummary sx={{alignSelf: "center"}} expandIcon={<ExpandMoreIcon />}>
+                                    <Typography variant="h5" component="h1" sx={{ fontFamily: 'monospace', fontWeight: 400, fontSize: '1.25rem' }}> Polypharmacy </Typography>
+                                </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='AntipsychoticsGuide'> Common DDI's </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='NotableChangesInAdults'> Notable changes in older adults </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='PrescribingAndDeprescribing'> Prescribing and deprescribing principles </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
                             </CardContent>
                             <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}>
                                 <Button variant="h1" sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column", textTransform: "none"}} href={'NeuropsychiatricSymptoms'}>
-                                    <Typography variant="h5" component="h1">
+                                    <Typography variant="h5" component="h1" sx={{ fontFamily: 'monospace', fontWeight: 400, fontSize: '1.25rem' }}>
                                         ECT & Psychoactive Medications
                                     </Typography>
                                 </Button>
                             </CardContent>
-                            <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}> 
-                                <Accordion sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column"}}>
-                                <AccordionSummary sx={{alignSelf: "center"}} expandIcon={<ExpandMoreIcon />}>
-                                    <Typography variant="h5" component="h1"> Mood Stabilizers </Typography>
-                                </AccordionSummary>
-                                    <AccordionDetails>
-                                        <Typography> <a href='MoodStabilizersGuide'> Mood Stabilizers </a> </Typography>
-                                    </AccordionDetails>
-                                </Accordion>
+                            <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}>
+                                <Button variant="h1" sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column", textTransform: "none"}} href={'MoodStabilizers'}>
+                                    <Typography variant="h5" component="h1" sx={{ fontFamily: 'monospace', fontWeight: 400, fontSize: '1.25rem' }}> Mood Stabilizers </Typography>
+                                </Button>
                             </CardContent>
                             <CardContent sx= {{justifyContent: "center", display: "flex", alignItems: "center"}}>
-                                <Button variant="h1" sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column", textTransform: "none"}} href={'PsychotropicMonitoring'}>
-                                    <Typography variant="h5" component="h1">
+                                <Button variant="h1" sx={{background: '#96D2B0', width: "80%", display: "flex", flexDirection: "column", textTransform: "none"}} href={'PsychotropicMonitoringSection'}>
+                                    <Typography variant="h5" component="h1" sx={{ fontFamily: 'monospace', fontWeight: 400, fontSize: '1.25rem' }}>
                                         Psychotropic Monitoring
                                     </Typography>
                                 </Button>

@@ -1,15 +1,16 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Accordion from "@mui/material/Accordion";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import "./AntidepressantClinicalGuide.css";
-import Navigation from "../../Navigation/navigation";
-
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Footer from "../../Footer/Footer";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import './AntidepressantClinicalGuide.css'
+import Navigation from '../../Navigation/navigation';
+import Data from "../../searchBar/Data.json";
+import SearchBar from "../../searchBar/searchBar";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Footer from '../../Footer/Footer';
 
 const theme = createTheme({
   typography: {
@@ -39,6 +40,7 @@ export default function AntidepressantClinical() {
   return (
     <ThemeProvider theme={theme}>
       <Navigation />
+      <SearchBar placeholder="Search" data={Data} />
       <Box
         sx={{
           marginTop: 8,

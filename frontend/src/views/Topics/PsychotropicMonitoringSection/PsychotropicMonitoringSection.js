@@ -1,4 +1,4 @@
-import './InsomniaDeprescribing.css';
+import './PsychotropicMonitoringSection.css';
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
@@ -12,11 +12,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 import Data from "../../searchBar/Data.json";
+import Box from '@mui/material/Box';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -44,11 +43,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function InsomniaDeprescribing() {
+export default function PsychotropicMonitoringSection() {
 
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:8887/api/insomniadeprescribing')
+    axios.get('http://localhost:8887/api/psychotropicmonitoringsection')
         .then(response => {
           setData(response.data)
           console.log(response.data[0]);
@@ -64,9 +63,8 @@ export default function InsomniaDeprescribing() {
     <>
       <Navigation />
       <SearchBar placeholder="Search" data={Data} />
-      <br></br>
-    <div id="deprescrbing">
-      <Box
+    <div id="Psychotropic">
+    <Box
         sx={{
           marginTop: 3,
           display: 'flex',
@@ -74,32 +72,33 @@ export default function InsomniaDeprescribing() {
           alignItems: 'center',
         }}
       >
-        <Typography variant="h3" id="topicHeader">Deprescribing Benzodiazepine-like Sedatives</Typography>
+        <Typography variant="h3" id="topicHeader">Psychotropic Monitoring</Typography>
       </Box>
         <TableContainer component={Paper} >
-          <Table sx={{ minWidth: 700 }} aria-label="customized table" id="deprescribingTable" >
+          <Table sx={{ minWidth: 700 }} aria-label="customized table" id="psychotropicMonitoringTable" >
             <TableHead >
               <TableRow >
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Duration of BZRA use (months)</StyledTableCell>
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Dose Reduction Schedule Duration (weeks)</StyledTableCell>
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Interval Between Dose Reductions (weeks)</StyledTableCell>
+                <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Name</StyledTableCell>
+                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Antipsychotics</StyledTableCell>
+                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Lithium</StyledTableCell>
+                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Valproate</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {data.map((dataObj, index) => (
                 <StyledTableRow key={index} >
                   <StyledTableCell component="th" scope="row">
-                    {dataObj.Duration}
+                    {dataObj.Name}
                   </StyledTableCell>
-                  <StyledTableCell >{dataObj[`Dose Reduction Schedule Duration (weeks)`]}</StyledTableCell>
-                  <StyledTableCell >{dataObj[`Interval Between Dose Reductions (weeks)`]}</StyledTableCell>
-                  
+                  <StyledTableCell >{dataObj[`Antipsychotics`]}</StyledTableCell>
+                  <StyledTableCell >{dataObj[`Lithium`]}</StyledTableCell>
+                  <StyledTableCell >{dataObj[`Valproate`]}</StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer><br></br>
-      <p><b>Key:</b> BZRA: benzodiazepine and z-drugs (benzodiazepine agonists) </p>
+      <p><b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark).  <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be necessary based on clinical judgment  </p>
     </div>
     <Footer />
     </>

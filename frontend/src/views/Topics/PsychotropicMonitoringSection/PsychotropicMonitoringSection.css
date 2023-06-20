@@ -1,15 +1,15 @@
-#firstAccordionClinical{
+#firstAccordionPsychotropic{
     background-color:#96d2b0;
     color:black;
 }
 
-#clinicalSubject{
+#psychotropicSubject{
     text-decoration:none;
     font-size:20pt;  
 }
 
-#clinicalTable td, #clinicalTable th{
-    font-size:0.85rem;
+#psychotropicMonitoringTableTable td, #psychotropicMonitoringTable th{
+    font-size:1rem;
 }
 
 #topicHeader {

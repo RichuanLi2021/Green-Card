@@ -1,13 +1,9 @@
 import './InsomniaSafety.css';
 import * as React from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
-
+import SearchBar from "../../searchBar/searchBar";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -16,10 +12,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-
+import Data from "../../searchBar/Data.json";
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
-
+import Box from '@mui/material/Box';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -66,43 +62,39 @@ export default function InsomniaSafety() {
   return (
     <>
       <Navigation />
-    <div id="insomniaSafety" style={{ marginTop: '5rem', padding: '0 0.5rem' }}>
-      <Accordion id="firstAccordionSafety">
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography id ="safetySubject"><b>SEDATIVE/HYPNOTIC SAFETY CONCERNS</b></Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-          <TableContainer component={Paper} >
-                  <Table sx={{ minWidth: 700 }} aria-label="customized table" id="safetyTable" >
-                    <TableHead >
-                      <TableRow >
-                        <StyledTableCell  >Safety concerns</StyledTableCell>
-                        <StyledTableCell >Safety concern names</StyledTableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {data.map((dataObj, index) => (
-                        <StyledTableRow key={index} >
-                          <StyledTableCell component="th" scope="row">
-                            {dataObj.LIST_HEADERS_Id}
-                          </StyledTableCell>
-                          <StyledTableCell >{dataObj[`Description`]}</StyledTableCell>
-                        </StyledTableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer><br></br>
-                <p><b>Key notes: SHYPCLIN_SAF means safety concerns</b> </p>
-              
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      
+      <SearchBar placeholder="Search" data={Data} />
+    <div id="insomniaSafety">
+    <Box
+        sx={{
+          marginTop: 3,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography variant="h3" id="topicHeader">Sedatives/Hypnotics Safety Concerns</Typography>
+      </Box>
+        <TableContainer component={Paper} >
+        <Table sx={{ minWidth: 700 }} aria-label="customized table" id="safetyTable" >
+          <TableHead >
+            <TableRow >
+              <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Safety concerns</StyledTableCell>
+              <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Safety concern names</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.map((dataObj, index) => (
+              <StyledTableRow key={index} >
+                <StyledTableCell component="th" scope="row">
+                  {dataObj.LIST_HEADERS_Id}
+                </StyledTableCell>
+                <StyledTableCell >{dataObj[`Description`]}</StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer><br></br>
+      <p><b>Key notes: SHYPCLIN_SAF means safety concerns</b> </p>
     </div>
     <Footer />
     </>
