@@ -21,8 +21,6 @@ import Navigation from "../../Navigation/navigation";
 import Footer from "../../Footer/Footer";
 import Data from "../../searchBar/Data.json";
 import MoodStabilizersUpdate from "./moodStabilizersbackend";
-import Navigation from "../../Navigation/navigation";
-import Footer from "../../Footer/Footer";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
