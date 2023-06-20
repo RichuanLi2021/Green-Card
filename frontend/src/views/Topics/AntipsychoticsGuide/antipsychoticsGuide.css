@@ -1,3 +1,43 @@
+.myTableContainer{
+    overflow-x: scroll;
+    overflow-y: scroll;
+    height: fit-content;
+    max-height: 70vh;
+    max-width: 190vh;
+    margin-left: auto;
+    margin-right: auto;
+  
+  }
+  
+  .contentTable{
+    min-width: max-content;
+    border-collapse: separate;
+  }
+  
+  .tableHead {
+    position:sticky;
+    top:0px;
+    text-align: left;
+    z-index: 3;
+  }
+  
+  
+  
+  .nameCell:nth-child(1){
+    position: sticky;
+    left:0;
+    z-index: 2;
+    
+    
+  }
+  
+  .nameCell:nth-child(n){
+    z-index: 1;
+  } 
+  
+  
+
+
 #heading{
     background-color:#96d2b0;
     color:black;
@@ -29,6 +69,7 @@
     #footer{
         /* font-size:24px; */
     }
+
 }
 
 

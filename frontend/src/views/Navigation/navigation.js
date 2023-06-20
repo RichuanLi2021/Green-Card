@@ -106,7 +106,7 @@ const Navbar = () => {
 
 
   return (
-    <AppBar position="static">
+    <AppBar  style={{ boxShadow: "none", marginBottom: "50px" }}>
       <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
         <Typography variant="h6" component="div" sx={{ fontFamily: 'monospace',
               fontWeight: 700, flexGrow: 1, color: '#000', textDecoration: 'none', fontSize: isMobile ? '0.90rem' : '1.5rem' }}>
