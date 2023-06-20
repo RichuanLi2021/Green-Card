@@ -20,29 +20,16 @@ export default function PrescribingAndDeprescribing() {
       <SearchBar placeholder="Search" data={Data} />
       <br></br>
         <div id = "PrescribingAndDeprescribing">
-        
-          <Accordion id="firstAccordionManagement">
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
             <Typography id="mainTopic"><b> Prescribing and Deprescribing Principles</b></Typography>
-          </AccordionSummary>
-          <AccordionDetails>
             <Typography id="mainText">
-
+            <ul>
             <li> Reassess regularly for efficiacy and tolerability </li>
             <li> Assess medication list regularly for anticholinergic activity and drug drug interactions</li>
             <li> Most psychotropics have rebound or withdrawal effects so taper gradually and assess frequently </li>
             <li> Avoid medication with long half lives if possible</li>
             <li> For additional information: deprescribing.org, Beers Criteria, STOPP/START Criteria </li>
-            
-            
+            </ul>
             </Typography>
-          </AccordionDetails>
-        </Accordion>
-                
       </div>
       <Footer />
     </>

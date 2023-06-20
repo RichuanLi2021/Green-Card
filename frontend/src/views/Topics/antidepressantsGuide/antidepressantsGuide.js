@@ -16,6 +16,7 @@ import './antidepressantsGuide.css';
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
       [`&.${tableCellClasses.head}`]: {
         backgroundColor: '#96d2b0',
+        color: 'whitesmoke',
         fontWeight: 'bold',
         textTransform: 'uppercase',
         letterSpacing: '0.1rem',

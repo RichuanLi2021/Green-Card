@@ -1,7 +1,7 @@
 
 
 .Search-Bar-Container{
-    padding-top: 5vh;
+    padding-top: 1rem;
     width: 40%;
     margin: auto;
     display: flex;
@@ -13,7 +13,6 @@
 .searchBar {
     
     background-color: white;
-    margin: 50px 50px;
     border-radius: 10px;
     height: 2.5rem;
     padding: 0 15px;

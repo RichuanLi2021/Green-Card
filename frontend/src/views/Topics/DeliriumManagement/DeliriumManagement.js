@@ -19,6 +19,9 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Data from "../../searchBar/Data.json";
 import './DeliriumManagement.css';
+import Navigation from '../../Navigation/navigation';
+import Box from '@mui/material/Box';
+import Footer from '../../Footer/Footer';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -84,25 +87,19 @@ const rows = [
 export default function DeliriumManagement() {
     return(  
     <div id = "DeliriumManagement">
-              <AppBar position="relative" style={{background: '#96D2B0'}}>
-            <Toolbar sx={{ justifyContent: "space-between" }}>
-                <Typography variant="h5" color="black" noWrap>
-                    Geriatric Psychotropic Green Card
-                </Typography>
-                <ul className="nav-list">
-                    <li className="nav-item">
-                        <Link to="/" className="nav-link">Home</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to="/login" className="nav-link">Login</Link>
-                    </li>
-                </ul>
-            </Toolbar>
-        </AppBar>
-      
-        <h1 id ="head">Delirium Management</h1>
-        <h2 id = "head" >Treating underlying cause is mainstay of treatment</h2>
-        <SearchBar placeholder="Search" data={Data} />
+      <Navigation />
+      <SearchBar placeholder="Search" data={Data} />
+      <Box
+        sx={{
+          marginTop: 3,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography variant="h3" id="topicHeader">Delirium Management</Typography>
+        <Typography variant="h2" id="topicHeader">Treating underlying cause is mainstay of treatment</Typography>
+      </Box>
         <Accordion id="firstAccordion">
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -187,6 +184,7 @@ export default function DeliriumManagement() {
           </Typography>
         </AccordionDetails>
       </Accordion>
+      <Footer />
     </div>);
 
 

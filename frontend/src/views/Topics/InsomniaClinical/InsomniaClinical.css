@@ -9,5 +9,9 @@
 }
 
 #clinicalTable td, #clinicalTable th{
-    font-size:15pt;
+    font-size:0.85rem;
+}
+
+#topicHeader {
+    font-size: 1.5rem;
 }

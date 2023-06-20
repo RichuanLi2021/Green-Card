@@ -1,10 +1,6 @@
 import './MoodStabilizers.css';
 import * as React from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 import SearchBar from "../../searchBar/searchBar";
@@ -16,6 +12,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
@@ -69,49 +66,45 @@ export default function MoodStabilizers() {
       <SearchBar placeholder="Search" data={Data} />
       <br></br>
     <div id="MoodStabilizers">
-      <Accordion id="firstAccordionMoodStabilizers">
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography id ="moodStabilizersSubject"><b>MOOD STABILIZERS GUIDE</b></Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-          <TableContainer component={Paper} >
-                  <Table sx={{ minWidth: 700 }} aria-label="customized table" id="moodStabilizersTable" >
-                    <TableHead >
-                      <TableRow >
-                        <StyledTableCell  >Name</StyledTableCell>
-                        <StyledTableCell >Half-life</StyledTableCell>
-                        <StyledTableCell >Dose (mg/day)Initial | Maint. | Max.</StyledTableCell>
-                        <StyledTableCell >Freq-uency</StyledTableCell>
-                        <StyledTableCell >mg/Form Supplied</StyledTableCell>
-                        <StyledTableCell >Monitoring Level</StyledTableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {data.map((dataObj, index) => (
-                        <StyledTableRow key={index} >
-                          <StyledTableCell component="th" scope="row">
-                            {dataObj.Name}
-                          </StyledTableCell>
-                          <StyledTableCell >{dataObj[`Half-life`]}</StyledTableCell>
-                          <StyledTableCell >{dataObj[`Dose (mg/day) Initial | Maint. | Max.`]}</StyledTableCell>
-                          <StyledTableCell >{dataObj[`Frequency`]}</StyledTableCell>
-                          <StyledTableCell >{dataObj[`mg/Form Supplied`]}</StyledTableCell>
-                          <StyledTableCell >{dataObj[`Monitoring Level`]}</StyledTableCell>
-                        </StyledTableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer><br></br>
-              <p><b>Key:</b> †dosage determined by concomitant drugs used (see Lamictal monograph for details). er tab: slow release.<b>NOTES</b>: doses may not reflect manufacturers' recommendations, they are based on clinical literature and experience; most drugs in this category do not have a formal mood stabilizer indication. Levels may be useful for investigating toxicity and adherence, in addition to achieving a therapeutic dose. ^half-life of active metabolite. *due to risks for drug-drug interactions and adverse effects  </p>
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      
+      <Box
+        sx={{
+          marginTop: 3,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography variant="h3" id="topicHeader">Mood Stabilizers Guide</Typography>
+      </Box>
+        <TableContainer component={Paper} >
+          <Table sx={{ minWidth: 700 }} aria-label="customized table" id="moodStabilizersTable" >
+            <TableHead >
+              <TableRow >
+                <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Name</StyledTableCell>
+                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Half-life</StyledTableCell>
+                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Dose (mg/day)Initial | Maint. | Max.</StyledTableCell>
+                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Freq-uency</StyledTableCell>
+                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>mg/Form Supplied</StyledTableCell>
+                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Monitoring Level</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data.map((dataObj, index) => (
+                <StyledTableRow key={index} >
+                  <StyledTableCell component="th" scope="row">
+                    {dataObj.Name}
+                  </StyledTableCell>
+                  <StyledTableCell >{dataObj[`Half-life`]}</StyledTableCell>
+                  <StyledTableCell >{dataObj[`Dose (mg/day) Initial | Maint. | Max.`]}</StyledTableCell>
+                  <StyledTableCell >{dataObj[`Frequency`]}</StyledTableCell>
+                  <StyledTableCell >{dataObj[`mg/Form Supplied`]}</StyledTableCell>
+                  <StyledTableCell >{dataObj[`Monitoring Level`]}</StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer><br></br>
+      <p><b>Key:</b> †dosage determined by concomitant drugs used (see Lamictal monograph for details). er tab: slow release.<b>NOTES</b>: doses may not reflect manufacturers' recommendations, they are based on clinical literature and experience; most drugs in this category do not have a formal mood stabilizer indication. Levels may be useful for investigating toxicity and adherence, in addition to achieving a therapeutic dose. ^half-life of active metabolite. *due to risks for drug-drug interactions and adverse effects  </p>
     </div>
     <Footer />
     </>

@@ -20,9 +20,8 @@ export default function InsomniaManagement() {
       <br></br>
         <div id = "insomniaManagement">
         
-          <Accordion id="firstAccordionManagement">
+          
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
@@ -38,7 +37,6 @@ export default function InsomniaManagement() {
             
             </Typography>
           </AccordionDetails>
-        </Accordion>
                 
       </div>
       <Footer />

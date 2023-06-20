@@ -1,10 +1,6 @@
 import './InsomniaDeprescribing.css';
 import * as React from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 import SearchBar from "../../searchBar/searchBar";
@@ -16,6 +12,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
@@ -69,44 +66,40 @@ export default function InsomniaDeprescribing() {
       <SearchBar placeholder="Search" data={Data} />
       <br></br>
     <div id="deprescrbing">
-      <Accordion id="firstAccordionDeprescribing">
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography id ="deprescribingSubject"><b>DEPRESCRIBING BENZODIAZEPINE-LIKE SEDATIVES</b></Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-          <TableContainer component={Paper} >
-                  <Table sx={{ minWidth: 700 }} aria-label="customized table" id="deprescribingTable" >
-                    <TableHead >
-                      <TableRow >
-                        <StyledTableCell  >Duration of BZRA use (months)</StyledTableCell>
-                        <StyledTableCell >Dose Reduction Schedule Duration (weeks)</StyledTableCell>
-                        <StyledTableCell >Interval Between Dose Reductions (weeks)</StyledTableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {data.map((dataObj, index) => (
-                        <StyledTableRow key={index} >
-                          <StyledTableCell component="th" scope="row">
-                            {dataObj.Duration}
-                          </StyledTableCell>
-                          <StyledTableCell >{dataObj[`Dose Reduction Schedule Duration (weeks)`]}</StyledTableCell>
-                          <StyledTableCell >{dataObj[`Interval Between Dose Reductions (weeks)`]}</StyledTableCell>
-                          
-                        </StyledTableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer><br></br>
-              <p><b>Key:</b> BZRA: benzodiazepine and z-drugs (benzodiazepine agonists) </p>
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      
+      <Box
+        sx={{
+          marginTop: 3,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography variant="h3" id="topicHeader">Deprescribing Benzodiazepine-like Sedatives</Typography>
+      </Box>
+        <TableContainer component={Paper} >
+          <Table sx={{ minWidth: 700 }} aria-label="customized table" id="deprescribingTable" >
+            <TableHead >
+              <TableRow >
+                <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Duration of BZRA use (months)</StyledTableCell>
+                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Dose Reduction Schedule Duration (weeks)</StyledTableCell>
+                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Interval Between Dose Reductions (weeks)</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data.map((dataObj, index) => (
+                <StyledTableRow key={index} >
+                  <StyledTableCell component="th" scope="row">
+                    {dataObj.Duration}
+                  </StyledTableCell>
+                  <StyledTableCell >{dataObj[`Dose Reduction Schedule Duration (weeks)`]}</StyledTableCell>
+                  <StyledTableCell >{dataObj[`Interval Between Dose Reductions (weeks)`]}</StyledTableCell>
+                  
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer><br></br>
+      <p><b>Key:</b> BZRA: benzodiazepine and z-drugs (benzodiazepine agonists) </p>
     </div>
     <Footer />
     </>

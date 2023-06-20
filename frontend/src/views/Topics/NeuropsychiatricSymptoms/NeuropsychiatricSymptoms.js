@@ -70,13 +70,14 @@ export default function NeuropsychiatricSymptoms() {
         <SearchBar placeholder="Search" data={Data} />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 3,
+            marginBottom: 2,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
-            <Typography variant="h3"> NPS Management & ECT & Psychoactive Meds</Typography>
+            <Typography variant="h3" id="topicHeader"> NPS Management & ECT & Psychoactive Meds</Typography>
         </Box>
         <Accordion id="firstAccordion">
           <AccordionSummary
@@ -142,8 +143,8 @@ export default function NeuropsychiatricSymptoms() {
                 <Table sx={{ minWidth: 700 }} aria-label="customized table" id="table">
                   <TableHead>
                     <TableRow>
-                      <StyledTableCell>Medication</StyledTableCell>
-                      <StyledTableCell>Recommended Action</StyledTableCell>
+                      <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Medication</StyledTableCell>
+                      <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Recommended Action</StyledTableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
