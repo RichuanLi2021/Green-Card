@@ -1,10 +1,8 @@
 import './InsomniaManagement.css';
 import * as React from 'react';
-import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 import SearchBar from "../../searchBar/searchBar";
@@ -20,9 +18,8 @@ export default function InsomniaManagement() {
       <br></br>
         <div id = "insomniaManagement">
         
-          <Accordion id="firstAccordionManagement">
+          
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
@@ -38,7 +35,6 @@ export default function InsomniaManagement() {
             
             </Typography>
           </AccordionDetails>
-        </Accordion>
                 
       </div>
       <Footer />

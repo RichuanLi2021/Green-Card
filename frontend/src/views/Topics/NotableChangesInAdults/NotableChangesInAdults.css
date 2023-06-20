@@ -4,10 +4,14 @@
 }
 #mainTopic{
     text-decoration:none;
-    font-size:20pt;  
+    font-size:1.5rem;  
 }
 
 #mainText{
-    font-size:15pt;
+    font-size:0.85rem;
+}
+
+ul {
+    text-align: left;
 }
 

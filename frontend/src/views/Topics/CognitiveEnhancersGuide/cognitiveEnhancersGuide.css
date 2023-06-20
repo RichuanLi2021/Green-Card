@@ -1,7 +1,10 @@
 #firstAccordionCognitive, #secondAccordionCognitive,#thirdAccordionCognitive{
     background-color:#96d2b0;
     color:black;
-    
+}
+
+#topicHeader {
+    margin: 1rem;
 }
 @media  screen and (min-width:200px) and (max-width:2000px) {
     #tableOne td, #tableOne th {

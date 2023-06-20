@@ -160,33 +160,34 @@ export default function AntipsychoticsGuide() {
       return (
         <>
           <Navigation />
+          <SearchBar placeholder="Search" data={Data} />
           <div id="antipsychoticsGuide">
             <Box
               sx={{
-                marginTop: 8,
+                marginTop: 3,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
               }}
             >
-              <Typography variant="h3"> Antipsychotics Guide</Typography>
+              <Typography variant="h3" id="topicHeader"> Antipsychotics Guide</Typography>
             </Box>
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 700 }} aria-label="customized table" id="table">
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell style={{ width: 15 }}>Name</StyledTableCell>
-                    <StyledTableCell align="left" style={{ width: 15 }}>Approx equiv.dose</StyledTableCell>
-                    <StyledTableCell align="left">Half-life&nbsp;</StyledTableCell>
-                    <StyledTableCell align="left">Frequency&nbsp;</StyledTableCell>
-                    <StyledTableCell align="left">Tab Strength/ Form Supplied&nbsp;</StyledTableCell>
-                    <Tooltip title={"NPS: Neuropsychiatric Symptoms of Dementia"}><StyledTableCell align="left">NPS&nbsp;</StyledTableCell></Tooltip>
-                    <Tooltip title={"PP: Parkinson's Psychosis"}><StyledTableCell align="left">PP&nbsp;</StyledTableCell></Tooltip>
-                    <StyledTableCell align="left">MDE(AD augment)&nbsp;</StyledTableCell>
-                    <StyledTableCell align="left">MDE(w.psychosis)&nbsp;</StyledTableCell>
-                    <StyledTableCell align="left">Delirium&nbsp;</StyledTableCell>
-                    <StyledTableCell align="left">EO-SCZ&nbsp;</StyledTableCell>
-                    <StyledTableCell align="left">LO-SCZ&nbsp;</StyledTableCell>
+                    <StyledTableCell style={{ width: 15, backgroundColor: '#96d2b0' }}>Name</StyledTableCell>
+                    <StyledTableCell align="left" style={{ width: 15, backgroundColor: '#96d2b0' }}>Approx equiv.dose</StyledTableCell>
+                    <StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>Half-life&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>Frequency&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>Tab Strength/ Form Supplied&nbsp;</StyledTableCell>
+                    <Tooltip title={"NPS: Neuropsychiatric Symptoms of Dementia"}><StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>NPS&nbsp;</StyledTableCell></Tooltip>
+                    <Tooltip title={"PP: Parkinson's Psychosis"}><StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>PP&nbsp;</StyledTableCell></Tooltip>
+                    <StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>MDE(AD augment)&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>MDE(w.psychosis)&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>Delirium&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>EO-SCZ&nbsp;</StyledTableCell>
+                    <StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>LO-SCZ&nbsp;</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
