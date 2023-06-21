@@ -10,9 +10,17 @@
 
 #firstAccordion, #secondAccordion, #thirdAccordion{
     background-color:#96d2b0;
-    color:black;
-    
+    color:black; 
 }
+
+#topicHeader {
+  padding-bottom: 5px;
+}
+
+#table th, #table td {
+  font-size: 1rem;
+}
+
 #bottom{
     font-size: 14px;
     color: whitesmoke;

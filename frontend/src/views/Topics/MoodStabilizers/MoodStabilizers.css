@@ -9,5 +9,9 @@
 }
 
 #moodStabilizersTable td, #moodStabilizersTable th{
-    font-size:15pt;
+    font-size:1rem;
+}
+
+#topicHeader {
+    font-size: 1.5rem;
 }

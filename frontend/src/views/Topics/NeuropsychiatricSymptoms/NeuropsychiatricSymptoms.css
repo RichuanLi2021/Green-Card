@@ -1,10 +1,10 @@
 #head{
+    margin-top: 20px;
+    padding-top: 60px;
     color:black;
     background-color:#96d2b0;
     text-align:center;
     font-style:bold;
-    text-decoration:underline;
-    font-size:20pt;
 }
 
 #firstAccordion, #secondAccordion, #thirdAccordion{
@@ -19,5 +19,14 @@
     font-size: 14pt;
     font-style:bold;
     margin-top:50px;
-
 }
+
+#topicHeader {
+    font-size: 1.5rem;
+}
+
+#table td, #table th {
+    font-size: 1rem;
+}
+
+

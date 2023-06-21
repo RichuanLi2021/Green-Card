@@ -2,7 +2,11 @@
   "database": {
     "host": "127.0.0.1",
     "user": "root",
+<<<<<<< HEAD
     "password": "0326",
+=======
+    "password": "Pn230922",
+>>>>>>> 0698072b3dac8a64de66e4b50b2933f9ad2635ae
     "database": "green_card"
   }
 }
