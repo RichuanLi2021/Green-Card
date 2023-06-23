@@ -167,6 +167,18 @@ CREATE TABLE IF NOT EXISTS `green_card`.`DEPRESCRIBING BENZODIAZEPINE-LIKE SEDAT
   PRIMARY KEY (`Id`)
   );
 
+-- -----------------------------------------------------
+-- Table `green_card`.`DELIRIUM MANAGEMENT`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `green_card`.`DELIRIUM MANAGEMENT` ;
+
+CREATE TABLE IF NOT EXISTS `green_card`.`DELIRIUM MANAGEMENT` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `High` VARCHAR(256) NULL,
+  `Medium` VARCHAR(256) NULL,
+  `Low` VARCHAR(256) NULL,
+  PRIMARY KEY (`Id`)
+);
 
 -- -----------------------------------------------------
 -- Table `green_card`.`MOOD STABILIZERS GUIDE`
@@ -175,7 +187,7 @@ DROP TABLE IF EXISTS `green_card`.`MOOD STABILIZERS GUIDE` ;
 
 CREATE TABLE IF NOT EXISTS `green_card`.`MOOD STABILIZERS GUIDE` (
   `Id` INT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(256) NULL,
+  `Name` c
   `Half-life` VARCHAR(256) NULL,
   `Dose (mg/day) Initial | Maint. | Max.` VARCHAR(256) NULL,
   `Frequency` VARCHAR(256) NULL,
