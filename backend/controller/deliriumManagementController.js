@@ -1,7 +1,7 @@
 const pool = require("../config/database");
 
 const getDeliriumManagementControllerData = async () => {
-  const [rows, fields] = await pool.query("SELECT * FROM `green_card`.`DELIRIUM_MANAGMENT`");
+  const [rows, fields] = await pool.query("SELECT * FROM `green_card`.`DELIRIUM_MANAGEMENT`");
   return rows;
 };
 
