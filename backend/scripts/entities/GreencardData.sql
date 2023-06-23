@@ -127,6 +127,37 @@ VALUES
 ('>48', '24 to 52', '4');
 
 
+-- DELIRIUM MANAGEMENT --
+INSERT INTO `DELIRIUM_MANAGEMENT` (`High`, `Medium`, `Low`) VALUES
+("Amitriptyline (Elavil)", "Amantadine (Symmetrel)", "Alprazolam (Xanax)"),
+("Atropine (Sal-Tropine)", "Carbamazepine (Tegretol)", "Aripiprazole (Abilify)"),
+("Benztropine (Cogentin)", "Cyclobenzaprine (Flexeril)", "Asenapine (Saphris)"),
+("Chlorpromazine (Thorazine)", "Cyproheptadine (Periactin)", "Bupropion (Wellbutrin)"),
+("Clomipramine (Anafranil)", "Loxapine (Loxitane)", "Cetirizine (Reactine)"),
+("Clozapine (Clozaril)", "Meperidone (Demerol)", "Codeine"),
+("Desipramine (Norpramin)", "Methotrimeprazine (Levoprome)", "Colchicine (Odan)"),
+("Dimenhydrinate (Gravol)", "Oxcarbazepine (Trileptal)", "Diazepam (Valium)"),
+("Doxepin (Sinequan)", "Pimozide (Orap)", "Digoxin"),
+("Fesoterodine (Toviaz)", "", "Fentanyl"),
+("Hydroxyzine (Atarax)", "", "Furosemide (Lasix)"),
+("Imipramine (Tofranil)", "", "Fluvoxamine (Luvox)"),
+("Methocarbamol (Robaxin)", "", "Hydralazine"),
+("Nortriptyline (Pamelor)", "", "Haloperidol (Haldol)"),
+("Olanzapine (Zyprexa)", "", "Hydrocortisone"),
+("Oxybutynin (Ditropan)", "", "Loperamide (Imodium)"),
+("Paroxetine (Paxil)", "", "Loratadine (Claritin)"),
+("Perphenazine (Trilafon)", "", "Metoprolol"),
+("Quetiapine (Seroquel)", "", "Morphine"),
+("Solifenacin (Vesicare)", "", "Nifedipine (Adalat)"),
+("Thioridazine (Mellaril)", "", "Paliperidone (Invega)"),
+("Tolterodine (Detrol)", "", "Prednisone"),
+("Trifluoperazine (Stelazine)", "", "Ranitidine (Zantac)"),
+("Trihyxyphenidyl (Artane)", "", "Trazodone (Desyrel)"),
+("Trospium (Sanctura)", "", "Venlafaxine (Effexor)"),
+("", "", "Warfarin");
+
+
+
 -- MOOD STABILIZERS GUIDE --
 INSERT INTO `green_card`.`MOOD STABILIZERS GUIDE` (`Name`,`Half-life`,`Dose (mg/day) Initial | Maint. | Max.`,`Frequency`,`mg/Form Supplied`,`Monitoring Level`)
 VALUES ('Lamotrigine (Lamictal)', '25h', '12.5-25 hs | 50-250† | 200-300', 'bid', '25, 100, 150/tab, 2.5/chewtab', 'nil'),
