@@ -8,14 +8,14 @@ import Navigation from './views/Navigation/navigation';
 import App from './App';
 import InsomniaManagement from './views/Topics/InsomniaManagement/InsomniaManagement';
 import InsomniaSedatives from './views/Topics/InsomniaSedatives/InsomniaSedatives';
-import AntidepressantClinicalGuide from './views/Topics/AntidepressantClinicalGuide/AntidepressantClinicalGuide';
+
 
 import DeliriumManagement from './views/Topics/DeliriumManagement/DeliriumManagement';
 import NeuropsychiatricSymptomsECT from './views/Topics/NeuropsychiatricSymptoms/NeuropsychiatricSymptoms';
 import { BrowserRouter, Routes ,Route }from "react-router-dom";
 import SearchBar from './views/searchBar/searchBar';
 import AntipsychoticsGuide from './views/Topics/AntipsychoticsGuide/antipsychoticsGuide';
-import AntidepressantsGuide from './views/Topics/antidepressantsGuide/antidepressantsGuide';
+
 import CognitiveEnhancersGuide from './views/Topics/CognitiveEnhancersGuide/CognitiveEnhancersGuide';
 import NeuropsychiatricSymptoms from './views/Topics/NeuropsychiatricSymptoms/NeuropsychiatricSymptoms';
 
@@ -27,6 +27,9 @@ import MoodStabilizers from './views/Topics/MoodStabilizers/MoodStabilizers';
 import PsychotropicMonitoringSection from './views/Topics/PsychotropicMonitoringSection/PsychotropicMonitoringSection';
 import PrescribingAndDeprescribing from './views/Topics/PrescribingAndDeprescribing/PrescribingAndDeprescribing';
 import NotableChangesInAdults from './views/Topics/NotableChangesInAdults/NotableChangesInAdults';
+import AntidepressantGuide from './views/Topics/AntidepressantGuide/AntidepressantGuide';
+import AntidepressantSafety from './views/Topics/AntidepressantSafety/AntidepressantSafety';
+import AntidepressantsClinical from './views/Topics/AntidepressantsClinical/AntidepressantsClinical';
 
 
 
@@ -39,9 +42,9 @@ root.render(
       <Route path = "/searchBar" element={<SearchBar/>}/>
       <Route path="/navigation" element={<Navigation/>}/>
       <Route path="/AntipsychoticsGuide" element={<AntipsychoticsGuide/>}/>
-      <Route path="/AntidepressantsGuide" element={<AntidepressantsGuide/>}/>
+      
       <Route path="/InsomniaManagement" element={<InsomniaManagement/>}/>
-      <Route path="/AntidepressantClinicalGuide" element={<AntidepressantClinicalGuide/>}/>
+      
       <Route path="/MoodStabilizers" element={<MoodStabilizers/>}/>
       <Route path="/DeliriumManagement" element={<DeliriumManagement/>}/>
       <Route path="/NeuropsychiatricSymptomsECT" element={<NeuropsychiatricSymptomsECT/>}/>
@@ -55,6 +58,9 @@ root.render(
       <Route path = "/PsychotropicMonitoringSection" element={<PsychotropicMonitoringSection/>}/>
       <Route path='/PrescribingAndDeprescribing' element={<PrescribingAndDeprescribing/>}/>
       <Route path='/NotableChangesInAdults' element={<NotableChangesInAdults/>}/>
+      <Route path="/AntidepressantGuide" element={<AntidepressantGuide/>}/>
+      <Route path="/AntidepressantSafety" element={<AntidepressantSafety/>}/>
+      <Route path="/AntidepressantsClinical" element={<AntidepressantsClinical/>}/>
 
     </Routes>
   </BrowserRouter>
