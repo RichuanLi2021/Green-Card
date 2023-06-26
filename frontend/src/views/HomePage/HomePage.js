@@ -36,9 +36,9 @@ const HomePage = () => {
                                     <Typography variant="h1" sx={{ fontFamily: 'monospace', fontWeight: 400, fontSize: '1.25rem' }}> Antidepressants </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='antidepressantsGuide'> Antidepressant Guide </a> </Typography>
-                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='AntidepressantClinicalGuide'> Antidepressant Clinical Guide </a> </Typography>
-                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='AntipsychoticsGuide'> Antidepressant Safety Concerns </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='AntidepressantGuide'> Antidepressant Guide </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='AntidepressantsClinical'> Antidepressant Clinical Guide </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='AntidepressantSafety'> Antidepressant Safety Concerns </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
                             </CardContent>
