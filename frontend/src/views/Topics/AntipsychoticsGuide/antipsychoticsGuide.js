@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import Data from "../../searchBar/Data.json";
 import SearchBar from "../../searchBar/searchBar";
-import antipsychoticsGuideUpdate from "./antipsychoticsGuidebackend";
+// import antipsychoticsGuideUpdate from "./antipsychoticsGuidebackend";
 
 export default function AntipsychoticsGuide() {
   const [data, setData] = useState({});
@@ -106,7 +106,7 @@ export default function AntipsychoticsGuide() {
                       className={`drug-button ${isDrugSelected ? 'active' : ''}`}
                     >
                       {dataObj.Name}
-                    </button>z
+                    </button>
 
                     {isDrugSelected && (
                       <div className="box">
