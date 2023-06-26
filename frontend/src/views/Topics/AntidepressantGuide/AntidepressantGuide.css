@@ -1,0 +1,13 @@
+#firstAccordionAntidepressantGuide{
+    background-color:#96d2b0;
+    color:black;
+}
+
+#antidepressantGuideSubject{
+    text-decoration:none;
+    font-size:20pt;  
+}
+
+#antidepressantGuideTable td, #antidepressantGuideTable th{
+    font-size:15pt;
+}
