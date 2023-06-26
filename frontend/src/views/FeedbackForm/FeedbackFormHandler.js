@@ -28,7 +28,7 @@ const FeedbackFormHandler = () => {
           color: '#000',
           ':hover': { opacity: 1, background: '#96d2b0' },
         }}>
-        Open Feedback Form
+        Feedback
       </Button>
       {showForm && (
         <>
