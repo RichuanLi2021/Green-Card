@@ -22,6 +22,9 @@ var InsomniaClinicalRoute = require('./routes/InsomniaClinicalRoute');
 var InsomniaSafetyRoute = require('./routes/InsomniaSafetyRoute');
 var MoodStabilizersRoute = require('./routes/MoodStabilizersRoute');
 var PsychotropicMonitoringSectionRoute = require('./routes/PsychotropicMonitoringSectionRoute');
+var AntidepressantGuideRoute = require('./routes/AntidepressantGuideRoute');
+var AntidepressantSafetyRoute = require('./routes/AntidepressantSafetyRoute');
+var AntidepressantsClinicalRoute = require('./routes/AntidepressantsClinicalRoute');
 
 
 
@@ -39,6 +42,10 @@ app.use('/api', InsomniaClinicalRoute);
 app.use('/api', InsomniaSafetyRoute);
 app.use('/api', MoodStabilizersRoute);
 app.use('/api', PsychotropicMonitoringSectionRoute);
+app.use('/api', AntidepressantGuideRoute);
+app.use('/api', AntidepressantSafetyRoute);
+app.use('/api', AntidepressantsClinicalRoute);
+
 
 var port = 8887;
 app.listen(port, function () {
