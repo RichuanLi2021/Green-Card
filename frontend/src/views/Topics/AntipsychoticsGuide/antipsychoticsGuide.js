@@ -58,7 +58,7 @@ export default function AntipsychoticsGuide() {
       const { name, id, value } = event.target;
       try {
         await antipsychoticsGuideUpdate(name, id, value);
-        fetchData(); // Refresh the data after successful update
+        fetchData();
       } catch (error) {
         console.error(error);
         alert('Failed to update!');

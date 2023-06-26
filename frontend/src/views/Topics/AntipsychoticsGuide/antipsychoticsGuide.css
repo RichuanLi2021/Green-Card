@@ -12,6 +12,7 @@
 
 .drug-button {
   margin-top: 20px;
+  text-align: center;
 }
 
 .box {
@@ -28,6 +29,7 @@
   border-radius: 4px;
   margin-bottom: 1rem;
   cursor: pointer;
+  align-items: center;
 }
 
 .drug-button.active {
@@ -64,7 +66,7 @@
   margin-top:20px;
 }
 
-@media  screen and (min-width:200px) and (max-width:2000px) {
+@media  screen and (min-width:200px) and (max-width:1000px) {
   #table td, #table th {
       font-size: 20px;
   }
@@ -72,7 +74,16 @@
       font-size:24px;
   }
 
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(150px, 1fr));
+    gap: 10px;
+  }
 
+  .box {
+    margin-top: 10px;
+    width: 215px;
+  }
   
 }
 
@@ -83,7 +94,8 @@
   }
 
   .drug-button {
-    height:42px;
+    height:45px;
+    line-height: 10px;
   }
 
   .grid-container {
