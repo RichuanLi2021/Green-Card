@@ -1,230 +1,343 @@
 import './antipsychoticsGuide.css';
 import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
 import Navigation from '../../Navigation/navigation';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Tooltip } from "@mui/material";
-import antipsychoticsGuideUpdate from "./antipsychoticsGuidebackend";
-import Footer from '../../Footer/Footer';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import Data from "../../searchBar/Data.json";
 import SearchBar from "../../searchBar/searchBar";
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.success.main,
-    color: theme.palette.common.white,
-    fontWeight: 'bold',
-    textDecorationLine: 'underline',
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
+import antipsychoticsGuideUpdate from "./antipsychoticsGuidebackend";
 
 export default function AntipsychoticsGuide() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
   useEffect(() => {
-    axios.get('http://localhost:8887/api/antipsychoticsGuide')
-      .then(response => {
-        setData(response.data)
-        //console.log(response.data[0]);
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
+    axios
+      .get('http://localhost:8887/api/antipsychoticsGuide')
+      .then((response) => {
+        setData(response.data);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
-  }, []);
+  };
+
+  const [selectedDrugs, setSelectedDrugs] = useState([]);
   const [value, setValue] = useState('');
   const admin = localStorage.getItem('admin');
 
-  //used to store value when an input is selected by user
-  const store_value = (event) => {
-    setValue(event.target.value);
-  }
-  //calls update query when an input was selected and is not anymore (if the value actually changed)
-  const update_value = (event) => {
+  const handleDrugClick = (dataObj) => {
+    setSelectedDrugs((prevSelectedDrugs) => {
+      const isSelected = prevSelectedDrugs.includes(dataObj);
+      if (isSelected) {
+        return prevSelectedDrugs.filter((drug) => drug !== dataObj);
+      } else {
+        return [...prevSelectedDrugs, dataObj];
+      }
+    });
+  };
+
+  const storeValue = (event) => {
+    const { name, id, value } = event.target;
+    setValue((prevValue) => ({
+      ...prevValue,
+      [name]: {
+        ...prevValue[name],
+        [id]: value,
+      },
+    }));
+  };
+  
+
+  const updateValue = async (event) => {
     if (admin) {
-      console.log(value);
-      if (event.target.value !== value) {
-        event.preventDefault();
-        antipsychoticsGuideUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
-          //alert('Updated Successfully Called! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nValue:"+ event.target.value);
-        }).catch((error) => {
-          console.error(error);
-          alert('Failed to update!');
-        });
+      event.preventDefault();
+      const { name, id, value } = event.target;
+      try {
+        await antipsychoticsGuideUpdate(name, id, value);
+        fetchData(); // Refresh the data after successful update
+      } catch (error) {
+        console.error(error);
+        alert('Failed to update!');
       }
-      else {
-        console.log("value was not changed, not updating");
-      }
-    }
-    else {
-      alert("You must be an administrator to edit");
+    } else {
+      alert('You must be an administrator to edit');
     }
   };
-  if (data.length > 0) {
-    //Editable Fields
+  
+  const antipsychoticsGuideUpdate = async (name, column, value) => {
+    try {
+      const response = await axios.post('http://localhost:8887/api/antipsychoticsGuide/update', {
+        name,
+        column,
+        value
+      });
+      console.log(response.data); 
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error; 
+    }
+  };
+
+  if (Object.keys(data).length > 0) {
+    // Editable Fields
     if (admin) {
       return (
         <>
           <Navigation />
           <SearchBar placeholder="Search" data={Data} />
-          <div id="antipsychoticsGuide">
+          <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
+            <Typography variant="h4" align="center" gutterBottom>
+              Antipsychotics Guide
+            </Typography>
 
-            <TableContainer component={Paper} className="myTableContainer">
-              <Box
-                sx={{
-                  marginTop: 8,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <Typography variant="h3"> Antipsychotics Guide</Typography>
-              </Box>
-              <Table  className="contentTable" aria-label="customized table" id="table">
-                <TableHead className= "tableHead">
-                  <TableRow>
-                    <StyledTableCell className="nameCell" align="left">Name</StyledTableCell>
-                    <StyledTableCell align="left">Approx equiv.dose</StyledTableCell>
-                    <StyledTableCell align="left">Half-life&nbsp;</StyledTableCell>
-                    <StyledTableCell align="left">Frequency&nbsp;</StyledTableCell>
-                    <StyledTableCell align="left">Tab Strength/ Form Supplied&nbsp;</StyledTableCell>
-                    <Tooltip title={"NPS: Neuropsychiatric Symptoms of Dementia"}><StyledTableCell align="left">NPS&nbsp;</StyledTableCell></Tooltip>
-                    <Tooltip title={"PP: Parkinson's Psychosis"}><StyledTableCell align="left">PP&nbsp;</StyledTableCell></Tooltip>
-                    <StyledTableCell align="left">MDE(AD augment)&nbsp;</StyledTableCell>
-                    <StyledTableCell align="left">MDE(w.psychosis)&nbsp;</StyledTableCell>
-                    <StyledTableCell align="left">Delirium&nbsp;</StyledTableCell>
-                    <StyledTableCell align="left">EO-SCZ&nbsp;</StyledTableCell>
-                    <StyledTableCell align="left">LO-SCZ&nbsp;</StyledTableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody id="tableBody">
-                  {data.map((dataObj, index) => (
-                    <StyledTableRow key={index}>
-                      <StyledTableCell component="th" scope="row" className="nameCell">
-                        {dataObj.Name}
-                      </StyledTableCell>
-                      <StyledTableCell align="left"><input id='`Approx. equiv. dose`' name={dataObj.Name} type='number' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Approx. equiv. dose`]} /></StyledTableCell>
-                      <StyledTableCell align="left"><input id='`Half-life`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Half-life`]} /></StyledTableCell>
-                      <StyledTableCell align="left"><input id='`Frequency`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Frequency`]} /></StyledTableCell>
-                      <StyledTableCell align="left"><input style={{ width: 275 }} id='`Tab Strength/Form Supplied`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Tab Strength/Form Supplied`]} /></StyledTableCell>
-                      <StyledTableCell align="left"><input id='`NPS`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`NPS`]} /></StyledTableCell>
-                      <StyledTableCell align="left"><input id='`PP`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`PP`]} /></StyledTableCell>
-                      <StyledTableCell align="left"><input id='`MDE (ADaugment)`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`MDE (ADaugment)`]} /></StyledTableCell>
-                      <StyledTableCell align="left"><input id='`MDE (w.psychosis)`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`MDE (w.psychosis)`]} /></StyledTableCell>
-                      <StyledTableCell align="left"><input id='`Delirium`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Delirium`]} /></StyledTableCell>
-                      <StyledTableCell align="left"><input id='`EO-SCZ`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`EO-SCZ`]} /></StyledTableCell>
-                      <StyledTableCell align="left"><input id='`LO-SCZ`' name={dataObj.Name} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`LO-SCZ`]} /></StyledTableCell>
-                    </StyledTableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <footer id="footer"><b>Key:</b> AD: antidepressant; er: extended release; ir: immediate release; EO-SCZ:
-              early-onset schizophrenia; LO-SCZ: late-onset schizophrenia; MDE: major depressive disorder; NPS:
-              neuropsychiatric symptoms of dementia; NR: not recommended; PP: Parkinson's psychosis; †0.25 of adult
-              equivalent dose shown (see Yellow Card); ‡take with meal (≥350 kcal); ^accounts for half-life of active
-              metabolites; **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient
-              data. <b>NOTES:</b> doses may not reflect manufacturers' recommendations but are based on clinical
-              literature and opinion. Half lives are estimates based on adult data and in older adults they can often be
-              increased up to 170%.
+            <div className="grid-container">
+              {Object.keys(data).map((id) => {
+                const dataObj = data[id];
+                const isDrugSelected = selectedDrugs.includes(dataObj);
+                return (
+                  <div className="grid-item" key={id}>
+                    <button
+                      onClick={() => handleDrugClick(dataObj)}
+                      className={`drug-button ${isDrugSelected ? 'active' : ''}`}
+                    >
+                      {dataObj.Name}
+                    </button>z
+
+                    {isDrugSelected && (
+                      <div className="box">
+                      <div className="box-content">
+                        <strong>Approx equiv dose:</strong>
+                        <input
+                         type="text"
+                         name={dataObj.Name}
+                         id="Approx. equiv. dose"
+                         value={value[dataObj.Name]?.['Approx. equiv. dose'] || ''}
+                         onChange={storeValue}
+                         onBlur={updateValue}
+                        />
+                      </div>
+                      <div className="box-content">
+                        <strong>Half-Life:</strong>
+                        <input
+                          type="text"
+                          name={dataObj.Name}
+                          id="Half-life"
+                          value={value[dataObj.Name]?.['Half-life'] || ''}
+                          onChange={storeValue}
+                          onBlur={updateValue}
+                        />
+                      </div>
+                      <div className="box-content">
+                        <strong>Frequency:</strong>
+                        <input
+                          type="text"
+                          name={dataObj.Name}
+                          value={value[dataObj.Name]?.['Frequency'] || ''}
+                          onChange={storeValue}
+                          onBlur={updateValue}
+                        />
+                      </div>
+                      <div className="box-content">
+                        <strong>Tab Strength/Form supplied:</strong>
+                        <input
+                          type="text"
+                          name={dataObj.Name}
+                          id="Tab Strength/Form Supplied"
+                          value={value[dataObj.Name]?.['Tab Strength/Form Supplied'] || ''}
+                          onChange={storeValue}
+                          onBlur={updateValue}
+                        />
+                      </div>
+                      <div className="box-content">
+                        <strong>NPS:</strong>
+                        <input
+                          type="text"
+                          name={dataObj.Name}
+                          id="NPS"
+                          value={value[dataObj.Name]?.['NPS'] || ''}
+                          onChange={storeValue}
+                          onBlur={updateValue}
+                        />
+                      </div>
+                      <div className="box-content">
+                        <strong>PP:</strong>
+                        <input
+                          type="text"
+                          name={dataObj.Name}
+                          id="PP"
+                          value={value[dataObj.Name]?.['PP'] || ''}
+                          onChange={storeValue}
+                          onBlur={updateValue}
+                        />
+                      </div>
+                      <div className="box-content">
+                        <strong>MDE (AD augment):</strong>
+                        <input
+                          type="text"
+                          name={dataObj.Name}
+                          value={value[dataObj.Name]?.['MDE (ADaugment)'] || ''}
+                          onChange={storeValue}
+                          onBlur={updateValue}
+                        />
+                      </div>
+                      <div className="box-content">
+                        <strong>MDE (w.psychosis):</strong>
+                        <input
+                          type="text"
+                          name={dataObj.Name}
+                          id="MDE (w.psychosis)"
+                          value={value[dataObj.Name]?.['MDE (w.psychosis)'] || ''}
+                          onChange={storeValue}
+                          onBlur={updateValue}
+                        />
+                      </div>
+                      <div className="box-content">
+                        <strong>Delirium:</strong>
+                        <input
+                          type="text"
+                          name={dataObj.Name}
+                          id="Delirium"
+                          value={value[dataObj.Name]?.['Delirium'] || ''}
+                          onChange={storeValue}
+                          onBlur={updateValue}
+                        />
+                      </div>
+                      <div className="box-content">
+                        <strong>EO-SCZ:</strong>
+                        <input
+                          type="text"
+                          name={dataObj.Name}
+                          id="EO-SCZ"
+                          value={value[dataObj.Name]?.['EO-SCZ'] || ''}
+                          onChange={storeValue}
+                          onBlur={updateValue}
+                        />
+                      </div>
+                      <div className="box-content">
+                        <strong>LO-SCZ:</strong>
+                        <input
+                          type="text"
+                          name={dataObj.Name}
+                          id="LO-SCZ"
+                          value={value[dataObj.Name]?.['LO-SCZ'] || ''}
+                          onChange={storeValue}
+                          onBlur={updateValue}
+                        />
+                      </div>
+                    </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+            <footer id="footer">
+              <b>Key:</b> AD: antidepressant; er: extended release; ir: immediate release; EO-SCZ: early-onset schizophrenia; LO-SCZ: late-onset
+              schizophrenia; MDE: major depressive disorder; NPS: neuropsychiatric symptoms of dementia; NR: not recommended; PP: Parkinson's psychosis;
+              †0.25 of adult equivalent dose shown (see Yellow Card); ‡take with meal (≥350 kcal); ^accounts for half-life of active metabolites;
+              **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data. <b>NOTES:</b> doses may not
+              reflect manufacturers' recommendations but are based on clinical literature and opinion. Half lives are estimates based on adult data
+              and in older adults they can often be increased up to 170%.
             </footer>
           </div>
-          <Footer />
         </>
       );
     }
-    //Non Editable Fields
+    // Non-Editable Fields
     else {
       return (
         <>
           <Navigation />
           <SearchBar placeholder="Search" data={Data} />
-          <div id="antipsychoticsGuide">
-            <Box
-              sx={{
-                marginTop: 3,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-            >
-              <Typography variant="h3" id="topicHeader"> Antipsychotics Guide</Typography>
-            </Box>
-            <TableContainer component={Paper}  className="myTableContainer">
-              <Table className="contentTable" aria-label="customized table" id="table">
-                <TableHead className= "tableHead">
-                  <TableRow>
-                    <StyledTableCell className="nameCell" style={{ width: 15, backgroundColor: '#96d2b0' }}>Name</StyledTableCell>
-                    <StyledTableCell align="left" style={{ width: 15, backgroundColor: '#96d2b0' }}>Approx equiv.dose</StyledTableCell>
-                    <StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>Half-life&nbsp;</StyledTableCell>
-                    <StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>Frequency&nbsp;</StyledTableCell>
-                    <StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>Tab Strength/ Form Supplied&nbsp;</StyledTableCell>
-                    <Tooltip title={"NPS: Neuropsychiatric Symptoms of Dementia"}><StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>NPS&nbsp;</StyledTableCell></Tooltip>
-                    <Tooltip title={"PP: Parkinson's Psychosis"}><StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>PP&nbsp;</StyledTableCell></Tooltip>
-                    <StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>MDE(AD augment)&nbsp;</StyledTableCell>
-                    <StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>MDE(w.psychosis)&nbsp;</StyledTableCell>
-                    <StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>Delirium&nbsp;</StyledTableCell>
-                    <StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>EO-SCZ&nbsp;</StyledTableCell>
-                    <StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>LO-SCZ&nbsp;</StyledTableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {data.map((dataObj, index) => (
-                    <StyledTableRow key={index}>
-                      <StyledTableCell component="th" scope="row" className="nameCell" sx={{ backgroundColor: "rgba(243, 243, 243,1)"}}>
-                        {dataObj.Name}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">{dataObj[`Approx. equiv. dose`]}</StyledTableCell>
-                      <StyledTableCell align="left">{dataObj[`Half-life`]}</StyledTableCell>
-                      <StyledTableCell align="left">{dataObj[`Frequency`]}</StyledTableCell>
-                      <StyledTableCell align="left">{dataObj[`Tab Strength/Form Supplied`]}</StyledTableCell>
-                      <StyledTableCell align="left">{dataObj[`NPS`]}</StyledTableCell>
-                      <StyledTableCell align="left">{dataObj[`PP`]}</StyledTableCell>
-                      <StyledTableCell align="left">{dataObj[`MDE (ADaugment)`]}</StyledTableCell>
-                      <StyledTableCell align="left">{dataObj[`MDE (w.psychosis)`]}</StyledTableCell>
-                      <StyledTableCell align="left">{dataObj[`Delirium`]}</StyledTableCell>
-                      <StyledTableCell align="left">{dataObj[`EO-SCZ`]}</StyledTableCell>
-                      <StyledTableCell align="left">{dataObj[`LO-SCZ`]}</StyledTableCell>
-                    </StyledTableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <footer id="footer"><b>Key:</b> AD: antidepressant; er: extended release; ir: immediate release; EO-SCZ:
-              early-onset schizophrenia; LO-SCZ: late-onset schizophrenia; MDE: major depressive disorder; NPS:
-              neuropsychiatric symptoms of dementia; NR: not recommended; PP: Parkinson's psychosis; †0.25 of adult
-              equivalent dose shown (see Yellow Card); ‡take with meal (≥350 kcal); ^accounts for half-life of active
-              metabolites; **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient
-              data. <b>NOTES:</b> doses may not reflect manufacturers' recommendations but are based on clinical
-              literature and opinion. Half lives are estimates based on adult data and in older adults they can often be
-              increased up to 170%.
+          <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
+            <Typography variant="h4" align="center" gutterBottom>
+              Antipsychotics Guide
+            </Typography>
+
+            <div className="grid-container">
+              {Object.keys(data).map((id) => {
+                const dataObj = data[id];
+                const isDrugSelected = selectedDrugs.includes(dataObj);
+                return (
+                  <div className="grid-item" key={id}>
+                    <button
+                      onClick={() => handleDrugClick(dataObj)}
+                      className={`drug-button ${isDrugSelected ? 'active' : ''}`}
+                    >
+                      {dataObj.Name}
+                    </button>
+
+                    {isDrugSelected && (
+                    <div className="box">
+                      <div className="box-content">
+                        <strong>Approx equiv dose:</strong>
+                        <span>{dataObj['Approx. equiv. dose']}</span>
+                      </div>
+                      <div className="box-content">
+                        <strong>Half-Life:</strong>
+                        <span>{dataObj['Half-life']}</span>
+                      </div>
+                      
+                      <div className="box-content">
+                        <strong>Frequency:</strong>
+                        <span>{dataObj['Frequency']}</span>
+                      </div>
+                      <div className="box-content" style={{ width: 230 }}>
+                        <strong>Tab Strength/Form Supplied:</strong>
+                        <span>{dataObj['Tab Strength/Form Supplied']}</span>
+                      </div>
+                      <div className="box-content">
+                        <strong>NPS:</strong>
+                        <span>{dataObj['NPS']}</span>
+                      </div>
+                      <div className="box-content">
+                        <strong>PP:</strong>
+                        <span>{dataObj['PP']}</span>
+                      </div>
+                      <div className="box-content">
+                        <strong>MDE (AD augment):</strong>
+                        <span>{dataObj['MDE (ADaugment)']}</span>
+                      </div>
+                      <div className="box-content">
+                        <strong>MDE (w.psychosis):</strong>
+                        <span>{dataObj['MDE (w.psychosis)']}</span>
+                      </div>
+                      <div className="box-content">
+                        <strong>Delirium:</strong>
+                        <span>{dataObj['Delirium']}</span>
+                      </div>
+                      <div className="box-content">
+                        <strong>EO-SCZ:</strong>
+                        <span>{dataObj['EO-SCZ']}</span>
+                      </div>
+                      <div className="box-content">
+                        <strong>LO-SCZ:</strong>
+                        <span>{dataObj['LO-SCZ']}</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                  
+                );
+              })}
+            </div>
+            <footer id="footer">
+              <b>Key:</b> AD: antidepressant; er: extended release; ir: immediate release; EO-SCZ: early-onset schizophrenia; LO-SCZ: late-onset
+              schizophrenia; MDE: major depressive disorder; NPS: neuropsychiatric symptoms of dementia; NR: not recommended; PP: Parkinson's psychosis;
+              †0.25 of adult equivalent dose shown (see Yellow Card); ‡take with meal (≥350 kcal); ^accounts for half-life of active metabolites;
+              **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data. <b>NOTES:</b> doses may not
+              reflect manufacturers' recommendations but are based on clinical literature and opinion. Half lives are estimates based on adult data
+              and in older adults they can often be increased up to 170%.
             </footer>
           </div>
-          <Footer />
         </>
       );
     }
+  } else {
+    return null;
   }
 }
