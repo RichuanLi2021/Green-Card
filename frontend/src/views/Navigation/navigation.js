@@ -31,7 +31,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       localStorage.removeItem('admin');
-      window.location.reload();
+
     } catch (error) {
       console.log(error);
     }
