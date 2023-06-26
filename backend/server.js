@@ -1,15 +1,14 @@
 "use strict";
-var express = require('express');
+var express = require("express");
 var app = express();
-var cors = require('cors')
+var cors = require("cors");
 
 app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // Replace with your React app's URL
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'DELETE, POST, GET, OPTIONS');
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // Replace with your React app's URL
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS");
   next();
 });
-
 
 var routeLogin = require('./routes/loginRoute');
 var routeFeedback = require('./routes/feedbackRoute');
@@ -25,8 +24,7 @@ var PsychotropicMonitoringSectionRoute = require('./routes/PsychotropicMonitorin
 var AntidepressantGuideRoute = require('./routes/AntidepressantGuideRoute');
 var AntidepressantSafetyRoute = require('./routes/AntidepressantSafetyRoute');
 var AntidepressantsClinicalRoute = require('./routes/AntidepressantsClinicalRoute');
-
-
+var deliriumManagementRoute = require("./routes/deliriumManagementRoute");
 
 //for parsing application/json
 app.use(express.json());
@@ -45,6 +43,7 @@ app.use('/api', PsychotropicMonitoringSectionRoute);
 app.use('/api', AntidepressantGuideRoute);
 app.use('/api', AntidepressantSafetyRoute);
 app.use('/api', AntidepressantsClinicalRoute);
+app.use("/api", deliriumManagementRoute);
 
 
 var port = 8887;
