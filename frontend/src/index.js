@@ -25,11 +25,14 @@ import InsomniaClinical from './views/Topics/InsomniaClinical/InsomniaClinical';
 import InsomniaSafety from './views/Topics/InsomniaSafety/InsomniaSafety';
 import MoodStabilizers from './views/Topics/MoodStabilizers/MoodStabilizers';
 import PsychotropicMonitoringSection from './views/Topics/PsychotropicMonitoringSection/PsychotropicMonitoringSection';
-import PrescribingAndDeprescribing from './views/Topics/PrescribingAndDeprescribing/PrescribingAndDeprescribing';
-import NotableChangesInAdults from './views/Topics/NotableChangesInAdults/NotableChangesInAdults';
+
+
 import AntidepressantGuide from './views/Topics/AntidepressantGuide/AntidepressantGuide';
 import AntidepressantSafety from './views/Topics/AntidepressantSafety/AntidepressantSafety';
 import AntidepressantsClinical from './views/Topics/AntidepressantsClinical/AntidepressantsClinical';
+import PolypharmacyCommonDDIs from './views/Topics/PolypharmacyCommonDDIs/PolypharmacyCommonDDIs';
+import PolypharmacyNotableChanges from './views/Topics/PolypharmacyNotableChanges/PolypharmacyNotableChanges';
+import PolypharmacyPrinciples from './views/Topics/PolypharmacyPrinciples/PolypharmacyPrinciples';
 
 
 
@@ -56,11 +59,12 @@ root.render(
       <Route path ="/InsomniaClinical" element={<InsomniaClinical/>}/>
       <Route path ="/InsomniaSafety" element={<InsomniaSafety/>}/>
       <Route path = "/PsychotropicMonitoringSection" element={<PsychotropicMonitoringSection/>}/>
-      <Route path='/PrescribingAndDeprescribing' element={<PrescribingAndDeprescribing/>}/>
-      <Route path='/NotableChangesInAdults' element={<NotableChangesInAdults/>}/>
       <Route path="/AntidepressantGuide" element={<AntidepressantGuide/>}/>
       <Route path="/AntidepressantSafety" element={<AntidepressantSafety/>}/>
       <Route path="/AntidepressantsClinical" element={<AntidepressantsClinical/>}/>
+      <Route path="/PolypharmacyCommonDDIs" element={<PolypharmacyCommonDDIs/>}/>
+      <Route path="/PolypharmacyNotableChanges" element={<PolypharmacyNotableChanges/>}/>
+      <Route path="/PolypharmacyPrinciples" element={<PolypharmacyPrinciples/>}/>
 
     </Routes>
   </BrowserRouter>
