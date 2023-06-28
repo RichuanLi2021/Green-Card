@@ -6,11 +6,13 @@ const getClinicalData = async () => {
 };
 
 const InsomniaClinicalController = {
-   getData: async (req,res, next) => {
+  getData: async (req, res, next) => {
     const clinicalData = await getClinicalData();
     res.send(clinicalData);
-   }
+  }
 
 };
 
 module.exports = InsomniaClinicalController;
+// non admin
+// create it for the admin so it can update the statements
