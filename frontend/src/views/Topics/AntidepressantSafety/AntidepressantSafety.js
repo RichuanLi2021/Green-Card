@@ -73,7 +73,7 @@ export default function AntidepressantSafety() {
     <>
       <Navigation />
       <br></br>
-    <div id="antidepressantSafety">
+    <div id="antidepressantSafety" style={{ marginTop: '70px' }}>
       <Accordion id="firstAccordionAntidepressantSafety">
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}

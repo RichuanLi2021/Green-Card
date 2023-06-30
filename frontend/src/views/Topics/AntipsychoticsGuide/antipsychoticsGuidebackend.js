@@ -16,3 +16,5 @@ const antipsychoticsGuideUpdate = async (name, column, value) => {
 };
 
 export default antipsychoticsGuideUpdate;
+
+//make a request here for insert

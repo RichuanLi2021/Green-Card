@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import Data from "../../searchBar/Data.json";
 import SearchBar from "../../searchBar/searchBar";
-// import antipsychoticsGuideUpdate from "./antipsychoticsGuidebackend";
+import antipsychoticsGuideUpdate from "./antipsychoticsGuidebackend";
 
 export default function AntipsychoticsGuide() {
   const [data, setData] = useState({});
@@ -29,6 +29,33 @@ export default function AntipsychoticsGuide() {
   const [value, setValue] = useState('');
   const admin = localStorage.getItem('admin');
 
+  
+  //used to store value when an input is selected by user
+  const store_value = (event) => {
+    setValue(event.target.value);
+  }
+  //calls update query when an input was selected and is not anymore (if the value actually changed)
+  const update_value = (event) => {
+    if (admin) {
+      console.log(value);
+      if (event.target.value !== value) {
+        event.preventDefault();
+        antipsychoticsGuideUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
+          alert('Data successfully updated! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nNew Value:"+ event.target.value);
+        }).catch((error) => {
+          console.error(error);
+          alert('Failed to update!');
+        });
+      }
+      else {
+        console.log("value was not changed, not updating");
+      }
+    }
+    else {
+      alert("You must be an administrator to edit");
+    }
+  };
+
   const handleDrugClick = (dataObj) => {
     setSelectedDrugs((prevSelectedDrugs) => {
       const isSelected = prevSelectedDrugs.includes(dataObj);
@@ -40,48 +67,6 @@ export default function AntipsychoticsGuide() {
     });
   };
 
-  const storeValue = (event) => {
-    const { name, id, value } = event.target;
-    setValue((prevValue) => ({
-      ...prevValue,
-      [name]: {
-        ...prevValue[name],
-        [id]: value,
-      },
-    }));
-  };
-  
-
-  const updateValue = async (event) => {
-    if (admin) {
-      event.preventDefault();
-      const { name, id, value } = event.target;
-      try {
-        await antipsychoticsGuideUpdate(name, id, value);
-        fetchData();
-      } catch (error) {
-        console.error(error);
-        alert('Failed to update!');
-      }
-    } else {
-      alert('You must be an administrator to edit');
-    }
-  };
-  
-  const antipsychoticsGuideUpdate = async (name, column, value) => {
-    try {
-      const response = await axios.post('http://localhost:8887/api/antipsychoticsGuide/update', {
-        name,
-        column,
-        value
-      });
-      console.log(response.data); 
-      return response.data;
-    } catch (error) {
-      console.error(error);
-      throw error; 
-    }
-  };
 
   if (Object.keys(data).length > 0) {
     // Editable Fields
@@ -94,7 +79,7 @@ export default function AntipsychoticsGuide() {
             <Typography variant="h4" align="center" gutterBottom>
               Antipsychotics Guide
             </Typography>
-
+    
             <div className="grid-container">
               {Object.keys(data).map((id) => {
                 const dataObj = data[id];
@@ -107,128 +92,120 @@ export default function AntipsychoticsGuide() {
                     >
                       {dataObj.Name}
                     </button>
-
+    
                     {isDrugSelected && (
                       <div className="box">
-                      <div className="box-content">
+
+                        <div className="box-content">
                         <strong>Approx equiv dose:</strong>
-                        <input
-                         type="text"
-                         name={dataObj.Name}
-                         id="Approx. equiv. dose"
-                         value={value[dataObj.Name]?.['Approx. equiv. dose'] || ''}
-                         onChange={storeValue}
-                         onBlur={updateValue}
-                        />
-                      </div>
-                      <div className="box-content">
-                        <strong>Half-Life:</strong>
-                        <input
-                          type="text"
-                          name={dataObj.Name}
-                          id="Half-life"
-                          value={value[dataObj.Name]?.['Half-life'] || ''}
-                          onChange={storeValue}
-                          onBlur={updateValue}
-                        />
-                      </div>
-                      <div className="box-content">
-                        <strong>Frequency:</strong>
-                        <input
-                          type="text"
-                          name={dataObj.Name}
-                          value={value[dataObj.Name]?.['Frequency'] || ''}
-                          onChange={storeValue}
-                          onBlur={updateValue}
-                        />
-                      </div>
-                      <div className="box-content">
-                        <strong>Tab Strength/Form supplied:</strong>
-                        <input
-                          type="text"
-                          name={dataObj.Name}
-                          id="Tab Strength/Form Supplied"
-                          value={value[dataObj.Name]?.['Tab Strength/Form Supplied'] || ''}
-                          onChange={storeValue}
-                          onBlur={updateValue}
-                        />
-                      </div>
-                      <div className="box-content">
-                        <strong>NPS:</strong>
-                        <input
-                          type="text"
-                          name={dataObj.Name}
-                          id="NPS"
-                          value={value[dataObj.Name]?.['NPS'] || ''}
-                          onChange={storeValue}
-                          onBlur={updateValue}
-                        />
-                      </div>
-                      <div className="box-content">
-                        <strong>PP:</strong>
-                        <input
-                          type="text"
-                          name={dataObj.Name}
-                          id="PP"
-                          value={value[dataObj.Name]?.['PP'] || ''}
-                          onChange={storeValue}
-                          onBlur={updateValue}
-                        />
-                      </div>
-                      <div className="box-content">
-                        <strong>MDE (AD augment):</strong>
-                        <input
-                          type="text"
-                          name={dataObj.Name}
-                          value={value[dataObj.Name]?.['MDE (ADaugment)'] || ''}
-                          onChange={storeValue}
-                          onBlur={updateValue}
-                        />
-                      </div>
-                      <div className="box-content">
-                        <strong>MDE (w.psychosis):</strong>
-                        <input
-                          type="text"
-                          name={dataObj.Name}
-                          id="MDE (w.psychosis)"
-                          value={value[dataObj.Name]?.['MDE (w.psychosis)'] || ''}
-                          onChange={storeValue}
-                          onBlur={updateValue}
-                        />
-                      </div>
-                      <div className="box-content">
+                          <input id='`Approx. equiv. dose`'
+                            name={dataObj.Name}
+                            type='text'
+                            onFocus={store_value}
+                            onBlur={update_value}
+                            defaultValue={dataObj[`Approx. equiv. dose`]} />
+                        </div>
+
+                        <div className="box-content">
+                          <strong>Half-Life:</strong>
+                          <input id='`Half-life`' 
+                          name={dataObj.Name} 
+                          type='text' 
+                          onFocus={store_value} 
+                          onBlur={update_value} 
+                          defaultValue={dataObj[`Half-life`]}  />
+                        </div>
+    
+                        <div className="box-content">
+                          <strong>Frequency:</strong>
+                          <input id='`Frequency`' 
+                          name={dataObj.Name} 
+                          type='text' 
+                          onFocus={store_value} 
+                          onBlur={update_value} 
+                          defaultValue={dataObj[`Frequency`]} />
+                        </div>
+
+                        <div className="box-content" style={{ width: 230 }}>
+                          <strong>Tab Strength/Form Supplied:</strong>
+                          <input  id='`Tab Strength/Form Supplied`' 
+                          name={dataObj.Name} 
+                          type='text' 
+                          onFocus={store_value} 
+                          onBlur={update_value} 
+                          defaultValue={dataObj[`Tab Strength/Form Supplied`]} />
+                        </div>
+
+                        <div className="box-content">
+                          <strong>NPS:</strong>
+                          <input id='`NPS`' 
+                          name={dataObj.Name} 
+                          type='text' 
+                          onFocus={store_value} 
+                          onBlur={update_value} 
+                          defaultValue={dataObj[`NPS`]} />
+                        </div>
+
+                        <div className="box-content">
+                          <strong>PP:</strong>
+                          <input id='`PP`' 
+                          name={dataObj.Name} 
+                          type='text' 
+                          onFocus={store_value} 
+                          onBlur={update_value} 
+                          defaultValue={dataObj[`PP`]} />
+                        </div>
+
+                        <div className="box-content">
+                          <strong>MDE (AD augment):</strong>
+                          <input id='`MDE (ADaugment)`' 
+                          name={dataObj.Name} 
+                          type='text' 
+                          onFocus={store_value} 
+                          onBlur={update_value} 
+                          defaultValue={dataObj[`MDE (ADaugment)`]} />
+                        </div>
+
+                        <div className="box-content">
+                          <strong>MDE (w.psychosis):</strong>
+                          <input id='`MDE (w.psychosis)`' 
+                          name={dataObj.Name} 
+                          type='text' 
+                          onFocus={store_value} 
+                          onBlur={update_value} 
+                          defaultValue={dataObj[`MDE (w.psychosis)`]} />
+                        </div>
+
+                        <div className="box-content">
                         <strong>Delirium:</strong>
-                        <input
-                          type="text"
-                          name={dataObj.Name}
-                          id="Delirium"
-                          value={value[dataObj.Name]?.['Delirium'] || ''}
-                          onChange={storeValue}
-                          onBlur={updateValue}
-                        />
+                        <input id='`Delirium`' 
+                        name={dataObj.Name} 
+                        type='text' 
+                        onFocus={store_value} 
+                        onBlur={update_value} 
+                        defaultValue={dataObj[`Delirium`]} />
                       </div>
+
                       <div className="box-content">
                         <strong>EO-SCZ:</strong>
-                        <input
-                          type="text"
-                          name={dataObj.Name}
-                          id="EO-SCZ"
-                          value={value[dataObj.Name]?.['EO-SCZ'] || ''}
-                          onChange={storeValue}
-                          onBlur={updateValue}
-                        />
+                        <input id='`EO-SCZ`' 
+                        name={dataObj.Name} 
+                        type='text' 
+                        onFocus={store_value} 
+                        onBlur={update_value} 
+                        defaultValue={dataObj[`EO-SCZ`]} />
                       </div>
+
                       <div className="box-content">
                         <strong>LO-SCZ:</strong>
-                        <input
-                          type="text"
-                          name={dataObj.Name}
-                          id="LO-SCZ"
-                          value={value[dataObj.Name]?.['LO-SCZ'] || ''}
-                          onChange={storeValue}
-                          onBlur={updateValue}
-                        />
+                        <input id='`LO-SCZ`' 
+                        name={dataObj.Name} 
+                        type='text' 
+                        onFocus={store_value} 
+                        onBlur={update_value} 
+                        defaultValue={dataObj[`LO-SCZ`]} />
                       </div>
+
                     </div>
                     )}
                   </div>
@@ -247,6 +224,7 @@ export default function AntipsychoticsGuide() {
         </>
       );
     }
+    
     // Non-Editable Fields
     else {
       return (
@@ -337,7 +315,8 @@ export default function AntipsychoticsGuide() {
         </>
       );
     }
-  } else {
-    return null;
-  }
+  } 
 }
+
+
+
