@@ -109,7 +109,7 @@ const Navbar = () => {
 
   if (admin) {
     return (
-      <AppBar position="static">
+      <AppBar style={{ boxShadow: "none", marginBottom: "50px" }}>
         <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none', fontSize: isMobile ? '0.8rem' : '1rem' }}>
             Geriatric Psychotropic Green Card
@@ -559,7 +559,7 @@ const Navbar = () => {
     );
   } else {
     return (
-      <AppBar position="static">
+      <AppBar style={{ boxShadow: "none", marginBottom: "50px" }}>
         <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none', fontSize: isMobile ? '0.8rem' : '1rem' }}>
             Geriatric Psychotropic Green Card
