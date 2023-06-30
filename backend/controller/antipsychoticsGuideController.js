@@ -14,11 +14,11 @@ const getData = async (req, res, next) => {
 }
 
 const updateData = async (req, res, next) => {
-  try{
-    const { name, column, value} = req.body;
+  try {
+    const { name, column, value } = req.body;
     await pool.query('UPDATE `green_card`.`ANTIPSYCHOTICS GUIDE` SET ' + column + ' = ' + '"' + value + '"' + ' WHERE name = ' + '"' + name + '"');
     res.send("Updated Successfully!");
-  }catch(error){
+  } catch (error) {
     console.log(error);
     next(error);
     throw error;
@@ -30,3 +30,5 @@ module.exports = {
   getData,
   updateData
 };
+
+//admin view

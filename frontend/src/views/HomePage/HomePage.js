@@ -97,9 +97,9 @@ const HomePage = () => {
                                     <Typography variant="h5" component="h1" sx={{ fontFamily: 'monospace', fontWeight: 400, fontSize: '1.25rem' }}> Polypharmacy </Typography>
                                 </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='AntipsychoticsGuide'> Common DDI's </a> </Typography>
-                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='NotableChangesInAdults'> Notable changes in older adults </a> </Typography>
-                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='PrescribingAndDeprescribing'> Prescribing and deprescribing principles </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='PolypharmacyCommonDDIs'> Common DDI's </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='PolypharmacyNotableChanges'> Notable changes in older adults </a> </Typography>
+                                        <Typography sx={{ fontFamily: 'monospace', fontWeight: 300, fontSize: '1rem' }}> <a href='PolypharmacyPrinciples'> Prescribing and deprescribing principles </a> </Typography>
                                     </AccordionDetails>
                                 </Accordion>
                             </CardContent>

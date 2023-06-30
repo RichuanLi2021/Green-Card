@@ -25,6 +25,9 @@ var AntidepressantGuideRoute = require('./routes/AntidepressantGuideRoute');
 var AntidepressantSafetyRoute = require('./routes/AntidepressantSafetyRoute');
 var AntidepressantsClinicalRoute = require('./routes/AntidepressantsClinicalRoute');
 var deliriumManagementRoute = require("./routes/deliriumManagementRoute");
+var PolypharmacyCommonDDIsRoute = require("./routes/PolypharmacyCommonDDIsRoute");
+var PolypharmacyNotableRoute = require("./routes/PolypharmacyNotableRoute");
+var PolypharmacyPrinciplesRoute = require("./routes/PolypharmacyPrinciplesRoute");
 
 //for parsing application/json
 app.use(express.json());
@@ -44,7 +47,9 @@ app.use('/api', AntidepressantGuideRoute);
 app.use('/api', AntidepressantSafetyRoute);
 app.use('/api', AntidepressantsClinicalRoute);
 app.use("/api", deliriumManagementRoute);
-
+app.use("/api", PolypharmacyCommonDDIsRoute);
+app.use("/api", PolypharmacyNotableRoute);
+app.use("/api", PolypharmacyPrinciplesRoute);
 
 var port = 8887;
 app.listen(port, function () {
