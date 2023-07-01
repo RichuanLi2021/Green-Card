@@ -91,7 +91,7 @@ export default function AntipsychoticsGuide() {
           <SearchBar placeholder="Search" data={Data} />
           <div id="antipsychoticsGuide">
 
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} className="myTableContainer">
               <Box
                 sx={{
                   marginTop: 8,
@@ -102,10 +102,10 @@ export default function AntipsychoticsGuide() {
               >
                 <Typography variant="h3"> Antipsychotics Guide</Typography>
               </Box>
-              <Table sx={{ minWidth: 700 }} aria-label="customized table" id="table">
-                <TableHead>
+              <Table  className="contentTable" aria-label="customized table" id="table">
+                <TableHead className= "tableHead">
                   <TableRow>
-                    <StyledTableCell align="left">Name</StyledTableCell>
+                    <StyledTableCell className="nameCell" align="left">Name</StyledTableCell>
                     <StyledTableCell align="left">Approx equiv.dose</StyledTableCell>
                     <StyledTableCell align="left">Half-life&nbsp;</StyledTableCell>
                     <StyledTableCell align="left">Frequency&nbsp;</StyledTableCell>
@@ -119,10 +119,10 @@ export default function AntipsychoticsGuide() {
                     <StyledTableCell align="left">LO-SCZ&nbsp;</StyledTableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody>
+                <TableBody id="tableBody">
                   {data.map((dataObj, index) => (
                     <StyledTableRow key={index}>
-                      <StyledTableCell component="th" scope="row" style={{ position: "sticky" }}>
+                      <StyledTableCell component="th" scope="row" className="nameCell">
                         {dataObj.Name}
                       </StyledTableCell>
                       <StyledTableCell align="left"><input id='`Approx. equiv. dose`' name={dataObj.Name} type='number' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Approx. equiv. dose`]} /></StyledTableCell>
@@ -172,11 +172,11 @@ export default function AntipsychoticsGuide() {
             >
               <Typography variant="h3" id="topicHeader"> Antipsychotics Guide</Typography>
             </Box>
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 700 }} aria-label="customized table" id="table">
-                <TableHead>
+            <TableContainer component={Paper}  className="myTableContainer">
+              <Table className="contentTable" aria-label="customized table" id="table">
+                <TableHead className= "tableHead">
                   <TableRow>
-                    <StyledTableCell style={{ width: 15, backgroundColor: '#96d2b0' }}>Name</StyledTableCell>
+                    <StyledTableCell className="nameCell" style={{ width: 15, backgroundColor: '#96d2b0' }}>Name</StyledTableCell>
                     <StyledTableCell align="left" style={{ width: 15, backgroundColor: '#96d2b0' }}>Approx equiv.dose</StyledTableCell>
                     <StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>Half-life&nbsp;</StyledTableCell>
                     <StyledTableCell align="left" style={{ backgroundColor: '#96d2b0' }}>Frequency&nbsp;</StyledTableCell>
@@ -193,7 +193,7 @@ export default function AntipsychoticsGuide() {
                 <TableBody>
                   {data.map((dataObj, index) => (
                     <StyledTableRow key={index}>
-                      <StyledTableCell component="th" scope="row">
+                      <StyledTableCell component="th" scope="row" className="nameCell" sx={{ backgroundColor: "rgba(243, 243, 243,1)"}}>
                         {dataObj.Name}
                       </StyledTableCell>
                       <StyledTableCell align="left">{dataObj[`Approx. equiv. dose`]}</StyledTableCell>

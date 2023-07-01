@@ -1,0 +1,14 @@
+#firstAccordionAntidepressantSafety{
+    background-color:#96d2b0;
+    color:black;
+    margin-top:40px;
+}
+
+#antidepressantSafetySubject{
+    text-decoration:none;
+    font-size:20pt;  
+}
+
+#antidepressantSafetyTable td, #antidepressantSafetyTable th{
+    font-size:15pt;
+}

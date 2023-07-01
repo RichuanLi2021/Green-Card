@@ -1,0 +1,14 @@
+#firstAccordionAntidepressantClinical{
+    background-color:#96d2b0;
+    color:black;
+    margin-top:40px;
+}
+
+#antidepressantClinicalSubject{
+    text-decoration:none;
+    font-size:20pt;  
+}
+
+#antidepressantClinicalTable td, #antidepressantClinicalTable th{
+    font-size:15pt;
+}
