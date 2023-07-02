@@ -64,7 +64,7 @@ export default function PolypharmacyNotableChanges() {
     <>
       <Navigation />
       <SearchBar placeholder="Search" data={Data} />
-    <div id="polypharmacyCommonDDIs">
+    <div id="polypharmacyNotableChanges">
       <Box
         sx={{
           marginTop: 3,
@@ -73,7 +73,7 @@ export default function PolypharmacyNotableChanges() {
           alignItems: 'center',
         }}
       >
-        <Typography variant="h3" id="polypharmacyNotableChanges">Notable Changes in older adults that affect prescribing</Typography>
+        <Typography variant="h3" id="polypharmacyNotable">Notable Changes in older adults that affect prescribing</Typography>
       </Box>
 
         <TableContainer component={Paper} >

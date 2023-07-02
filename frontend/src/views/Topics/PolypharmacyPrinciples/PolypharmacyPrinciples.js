@@ -73,7 +73,7 @@ export default function PolypharmacyPrinciples() {
           alignItems: 'center',
         }}
       >
-        <Typography variant="h3" id="polypharmacyPrinciples">Prescribing and Deprescribing Principles</Typography>
+        <Typography variant="h3" id="polypharmacy">Prescribing and Deprescribing Principles</Typography>
       </Box>
 
         <TableContainer component={Paper} >
