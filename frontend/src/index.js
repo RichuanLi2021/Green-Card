@@ -25,8 +25,8 @@ import InsomniaClinical from './views/Topics/InsomniaClinical/InsomniaClinical';
 import InsomniaSafety from './views/Topics/InsomniaSafety/InsomniaSafety';
 import MoodStabilizers from './views/Topics/MoodStabilizers/MoodStabilizers';
 import PsychotropicMonitoringSection from './views/Topics/PsychotropicMonitoringSection/PsychotropicMonitoringSection';
-import PrescribingAndDeprescribing from './views/Topics/PrescribingAndDeprescribing/PrescribingAndDeprescribing';
-import NotableChangesInAdults from './views/Topics/NotableChangesInAdults/NotableChangesInAdults';
+// import PrescribingAndDeprescribing from './views/Topics/PrescribingAndDeprescribing/PrescribingAndDeprescribing';
+// import NotableChangesInAdults from './views/Topics/NotableChangesInAdults/NotableChangesInAdults';
 import SearchResults from './views/Topics/SearchResults/SearchResults';
 
 
@@ -62,8 +62,8 @@ root.render(
       <Route path ="/InsomniaClinical" element={<InsomniaClinical/>}/>
       <Route path ="/InsomniaSafety" element={<InsomniaSafety/>}/>
       <Route path = "/PsychotropicMonitoringSection" element={<PsychotropicMonitoringSection/>}/>
-      <Route path='/PrescribingAndDeprescribing' element={<PrescribingAndDeprescribing/>}/>
-      <Route path='/NotableChangesInAdults' element={<NotableChangesInAdults/>}/>
+      {/* <Route path='/PrescribingAndDeprescribing' element={<PrescribingAndDeprescribing/>}/> */}
+      {/* <Route path='/NotableChangesInAdults' element={<NotableChangesInAdults/>}/> */}
       <Route path='/SearchResults' element={<SearchResults/>}/>
       <Route path="/AntidepressantGuide" element={<AntidepressantGuide/>}/>
       <Route path="/AntidepressantSafety" element={<AntidepressantSafety/>}/>

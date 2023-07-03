@@ -19,131 +19,91 @@ import {useEffect} from "react";
 import Navigation from '../../Navigation/navigation';
 import Box from '@mui/material/Box';
 import Footer from '../../Footer/Footer';
+import axios from "axios";
+import SearchIcon from '@mui/icons-material/Search';
+import '../../searchBar/searchBar.css';
 
 export default function SearchResults(){
+  
 
 
-const drugs = [
-    {
-       title: 'citalopram (Celexa)**',
-       Content: 'HalfLife: 23 PrimaryNT:5HT DOSE: 5-10 | 20 | 20	Frequency: od FormSupplied: 10,20,30,40/tab'
-    },
-    {
-        title: 'escitalopram (Cipralex)**',
-        Content: 'HalfLife: 23 PrimaryNT:5HT DOSE: 5-10 | 20 | 20	Frequency: od FormSupplied: 10,20,30,40/tab'
-     },
-     {
-        title: 'fluoxetine (Prozac) ∅',
-        Content: 'HalfLife: 23 PrimaryNT:5HT DOSE: 5-10 | 20 | 20	Frequency: od FormSupplied: 10,20,30,40/tab'
-     },
-     {
-        title: 'sertraline (Zoloft)**',
-        Content: 'HalfLife: 23 PrimaryNT:5HT DOSE: 5-10 | 20 | 20	Frequency: od FormSupplied: 10,20,30,40/tab'
-     },
-     {
-        title: 'paroxetine (Paxil) ♯',
-        Content: 'HalfLife: 23 PrimaryNT:5HT DOSE: 5-10 | 20 | 20	Frequency: od FormSupplied: 10,20,30,40/tab'
-     },
-     {
-        title: 'Vortioxetine (Trintellix)',
-        Content: 'HalfLife: 23 PrimaryNT:5HT DOSE: 5-10 | 20 | 20	Frequency: od FormSupplied: 10,20,30,40/tab'
-     },
-     {
-        title: 'duloxetine (Cymbalta)**',
-        Content: 'HalfLife: 23 PrimaryNT:5HT DOSE: 5-10 | 20 | 20	Frequency: od FormSupplied: 10,20,30,40/tab'
-     },
-     {
-        title: 'venlafaxine XR (Effexor XR)**	',
-        Content: 'HalfLife: 23 PrimaryNT:5HT DOSE: 5-10 | 20 | 20	Frequency: od FormSupplied: 10,20,30,40/tab'
-     },
-     {
-        title: 'desvenlafaxine (Pristiq)',
-        Content: 'HalfLife: 23 PrimaryNT:5HT DOSE: 5-10 | 20 | 20	Frequency: od FormSupplied: 10,20,30,40/tab'
-     },
-     {
-        title: 'mirtazapine (Remeron)**',
-        Content: 'HalfLife: 23 PrimaryNT:5HT DOSE: 5-10 | 20 | 20	Frequency: od FormSupplied: 10,20,30,40/tab'
-     },
-     {
-        title: 'bupropion (Wellbutrin SR)**	',
-        Content: 'HalfLife: 23 PrimaryNT:5HT DOSE: 5-10 | 20 | 20	Frequency: od FormSupplied: 10,20,30,40/tab'
-     },
-     {
-        title: 'bupropion (Wellbutrin XL)**		',
-        Content: 'HalfLife: 23 PrimaryNT:5HT DOSE: 5-10 | 20 | 20	Frequency: od FormSupplied: 10,20,30,40/tab'
-     },
-     {
-        title: 'desipramine (Norpramin)†	',
-        Content: 'HalfLife: 23 PrimaryNT:5HT DOSE: 5-10 | 20 | 20	Frequency: od FormSupplied: 10,20,30,40/tab'
-     },
-     {
-        title: 'nortriptyline(Aventyl)†',
-        Content: 'HalfLife: 23 PrimaryNT:5HT DOSE: 5-10 | 20 | 20	Frequency: od FormSupplied: 10,20,30,40/tab'
-     },
-     {
-        title: 'amitriptyline (Elavil)',
-        Content: 'HalfLife: 23 PrimaryNT:5HT DOSE: 5-10 | 20 | 20	Frequency: od FormSupplied: 10,20,30,40/tab'
-     },
-     {
-        title: 'phenelzine (Nardil)	',
-        Content: 'HalfLife: 23 PrimaryNT:5HT DOSE: 5-10 | 20 | 20	Frequency: od FormSupplied: 10,20,30,40/tab',
-        anotherField:'dummy'
-     },
-     
-]
 
-const [search,setSearch] = useState('');
-// useEffect(() =>{
-//     const getSearch= async ()=>{
-//         const res = await fetch('http://localhost:8887/api/antipsychoticsGuide');
-//         const getdata = await res.json();
-//         const results = getdata.filter((data) => {
-//             return data.Name.toLowerCase().includes(value);
-       
-            
-//         });
+const [data,setData] = useState([]);
+const [searchApiData,setSearchApiData] = useState([]);
+const [filterVal,setFilterVal] = useState('');
 
-//         console.log(results);
-       
-//         // setSearch(getdata);
-//         // console.log(getdata);
-//     }
-// // },[]);
+useEffect(()=>{
+   const fetchData=()=>{
+      fetch('http://localhost:8887/api/SearchResults')
+      .then(response=>response.json())
+      .then(json =>{
+         // setData(json)
+         setSearchApiData(json)
+      })
+   }
+   fetchData();
+
+},[])
+
+const handleFilter = (e) =>{
+   const searchWord = e.target.value;
+   if (searchWord === "") {
+      setData([]);
+   } else{
+      const filterResult = searchApiData.filter(item => item.Name.toLowerCase().includes(e.target.value.toLowerCase()))
+      setData(filterResult);
+   }
+   setFilterVal(searchWord);
+
+}
+
+
 return(
     <>
    
 <Navigation />
- 
-  <input type="text" placeholder="Drug Name"  onChange={(e)=> setSearch(e.target.value)} />
-  
-           {drugs.filter((data) => {
-                return search.toLowerCase() === '' 
-                 ? data.value
-                 : data.title.toLowerCase().includes(search);
-           }).map((data) =>(
+<div className='Search-Bar-Container'>
+            <div className='searchBar'>
 
-                <div>
+                <form id="form">
+                  <input type="text" class="inputField" placeholder="Drug Name"  value = {filterVal} onInput={(e) => handleFilter(e)} />
+                  </form>
+                <SearchIcon /> 
+            </div>
+            </div>
+           {data.map((item,index) =>{
+            return (
+               <div key={index}>
                 <Accordion id="firstAccordion">
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>
-            <b>{data.title}</b>
+          <Typography >
+            
+            <b > {item.Name}</b>
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-                <p>{data.Content}</p>
-                <p>{data.anotherField}</p>
+              {Object.keys(item).map((key)=>{
+               return(
+                  <b>{key}:{item[key]}<br/></b>
+               )
+               
+              })}
                 </Typography>
         </AccordionDetails>
       </Accordion>
                 </div>
+            )
+           }
+
+                
                 
             )
-           )}
+           }
          
   
   
