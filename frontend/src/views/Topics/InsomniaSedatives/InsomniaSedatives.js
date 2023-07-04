@@ -18,96 +18,119 @@ import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 
 import Data from "../../searchBar/Data.json";
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.success.main,
-    color:theme.palette.common.white,
-    fontWeight:'bold',
-    fontStyle:'italic',
-    textDecorationLine:'underline',
-    
-  
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-    
-  },
-}));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
+
+
 
 export default function InsomniaSedatives() {
 
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
+  // useEffect(() => {
+  //   axios.get('http://localhost:8887/api/insomniasedatives')
+  //       .then(response => {
+  //         setData(response.data)
+  //         console.log(response.data[0]);
+  //       })
+  //       .catch(error => {
+  //         console.log(error);
+  //       });
+  // }, []);
+  const [data, setData] = useState({});
   useEffect(() => {
-    axios.get('http://localhost:8887/api/insomniasedatives')
-        .then(response => {
-          setData(response.data)
-          console.log(response.data[0]);
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    fetchData();
   }, []);
 
-  if(data.length > 0)
+  const fetchData = () => {
+    axios
+      .get('http://localhost:8887/api/insomniasedatives')
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const [selectedDrugs, setSelectedDrugs] = useState([]);
+  const [value, setValue] = useState('');
+
+  const store_value = (event) => {
+    setValue(event.target.value);
+  }
+
+  const handleDrugClick = (dataObj) => {
+    setSelectedDrugs((prevSelectedDrugs) => {
+      const isSelected = prevSelectedDrugs.includes(dataObj);
+      if (isSelected) {
+        return prevSelectedDrugs.filter((drug) => drug !== dataObj);
+      } else {
+        return [...prevSelectedDrugs, dataObj];
+      }
+    });
+  };
+
+
+  if (Object.keys(data).length > 0)
   {
-  return (
-    <>
-      <Navigation />
-      <SearchBar placeholder="Search" data={Data} />
-    <div id="sedativesGuide">
-      <Box
-        sx={{
-          marginTop: 3,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Typography variant="h3" id="topicHeader">Sedatives/ Hypnotics Guide</Typography>
-      </Box>
-        <TableContainer component={Paper} >
-          <Table sx={{ minWidth: 700 }} aria-label="customized table" id="sedativesTable" >
-            <TableHead >
-              <TableRow >
-                <StyledTableCell  style={{ backgroundColor: '#96d2b0' }}>Name</StyledTableCell>
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Dose equiv.</StyledTableCell>
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Time to peak in plasma</StyledTableCell>
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Half-life</StyledTableCell>
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Avg dose range (mg/day)†</StyledTableCell>
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >mg/form supplied</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.map((dataObj, index) => (
-                <StyledTableRow key={index} >
-                  <StyledTableCell component="th" scope="row">
+    return (
+      <>
+        <Navigation />
+        <SearchBar placeholder="Search" data={Data} />
+        <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
+          <Typography variant="h3" align="center" gutterBottom>
+            Sedatives/Hypnotics Guide
+          </Typography>
+
+          <div className="grid-container">
+            {Object.keys(data).map((id) => {
+              const dataObj = data[id];
+              const isDrugSelected = selectedDrugs.includes(dataObj);
+              return (
+                <div className="grid-item" key={id}>
+                  <button
+                    onClick={() => handleDrugClick(dataObj)}
+                    className={`drug-button ${isDrugSelected ? 'active' : ''}`}
+                  >
                     {dataObj.Name}
-                  </StyledTableCell>
-                  <StyledTableCell >{dataObj[`Dose equiv.`]}</StyledTableCell>
-                  <StyledTableCell >{dataObj[`Time to peak in plasma`]}</StyledTableCell>
-                  <StyledTableCell >{dataObj[`Half-life`]}</StyledTableCell>
-                  <StyledTableCell >{dataObj[`Avg dose range (mg/day)`]}</StyledTableCell>
-                  <StyledTableCell >{dataObj[`mg/Form supplied`]}</StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <br></br>
+                  </button>
+
+                  {isDrugSelected && (
+                  <div className="box">
+                    <div className="box-content">
+                      <strong>Dose equiv.</strong>
+                      <span>{dataObj['Dose equiv.']}</span>
+                    </div>
+                    <div className="box-content">
+                      <strong>Time to peak in plasma</strong>
+                      <span>{dataObj['Time to peak in plasma']}</span>
+                    </div>
+                    
+                    <div className="box-content">
+                      <strong>Half-life</strong>
+                      <span>{dataObj['Half-life']}</span>
+                    </div>
+                    <div className="box-content" style={{ width: 230 }}>
+                      <strong>Avg dose range (mg/day)</strong>
+                      <span>{dataObj['Avg dose range (mg/day)']}</span>
+                    </div>
+                    <div className="box-content">
+                      <strong>mg/Form supplied</strong>
+                      <span>{dataObj['mg/Form supplied']}</span>
+                    </div>
+                    
+                  </div>
+                )}
+              </div>
+                
+              );
+            })}
+          </div>
+          <footer id="footer">
           <p><b>Key:</b> †does not reflect maximum doses; *should be given 30-90 mins before bedtime. <b>NOTES</b>: doses may not reflect manufacturer's recommendations but are based on research and/or expert opinion.  All sedatives should be used sparingly in the older adults and in people with liver disease; use lowest possible dose. In older adults, there is a poor risk/benefit ratio. </p>
-      </div>
-    <Footer />
-    </>
-  );
-}
-};
+          </footer>
+        </div>
+      </>
+    );
+  }
+} 
+
