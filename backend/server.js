@@ -3,6 +3,8 @@ var express = require("express");
 var app = express();
 var cors = require("cors");
 
+
+
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // Replace with your React app's URL
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -28,6 +30,7 @@ var deliriumManagementRoute = require("./routes/deliriumManagementRoute");
 var PolypharmacyCommonDDIsRoute = require("./routes/PolypharmacyCommonDDIsRoute");
 var PolypharmacyNotableRoute = require("./routes/PolypharmacyNotableRoute");
 var PolypharmacyPrinciplesRoute = require("./routes/PolypharmacyPrinciplesRoute");
+var SearchResultsRoute = require('./routes/SearchResultsRoute');
 
 //for parsing application/json
 app.use(express.json());
@@ -50,8 +53,11 @@ app.use("/api", deliriumManagementRoute);
 app.use("/api", PolypharmacyCommonDDIsRoute);
 app.use("/api", PolypharmacyNotableRoute);
 app.use("/api", PolypharmacyPrinciplesRoute);
+app.use("/api", SearchResultsRoute);
 
 var port = 8887;
+
+
 app.listen(port, function () {
   console.log("Server started on port ".concat(port));
 });

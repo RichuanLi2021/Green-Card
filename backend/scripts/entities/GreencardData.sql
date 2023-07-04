@@ -7,6 +7,7 @@ VALUES
 ('olanzapine (Zyprexa)', '5', '21-54h', 'hs', '2.5, 5, 7.5, 10, 15, 20/inj, tab, diss tab', '2.5-15mg', 'NR', '? (2.5-10mg)', '2.5-20mg', '1.25-15mg', '2.5-20mg', '2.5-15mg'),
 ('paliperidone (Invega)', '2', '23h', 'hs', '3, 6, 9/er tabs', 'NR', 'NR', 'NR', '?', 'NR', '3-8mg', '3-4mg'),
 ('quetiapine (Seroquel)', '150', '6-12h^', 'hs-bid', '25, 50, 100, 150, 200, 300, 400/ir&er tabs', '? (12.5-200mg)', '? (12.5-400mg)**', '25-300mg', '25-400mg', '12.5-200mg', '25-500mg', '25-300mg'),
+
 ('risperidone (Risperdal)', '1.5', '20-24h^', 'hs-bid', '0.25, 0.5, 1, 2, 3, 4/tab, diss tab, liq', '0.25-2mg**', 'NR', '? (0.5-2mg)', '? (0.5-2mg)', '0.25-3mg', '0.5-4mg', '0.5-2mg'),
 -- --Conventional-- 
 ('haloperidol (Haldol)', '2.5', '20h', 'hs-bid', '0.5, 1, 2, 5, 10, 20/inj, tab, liq', 'NR', 'NR', 'NR', 'NR', '0.25-2mg**', '0.5-5mg', '? (0.5-2mg)'),
@@ -20,6 +21,7 @@ VALUES
 ('Galantamine ER', 'AChEI', '7-8h', '8mg/8mg/24mg', 'qAM', '8,16,24/capsule', 'Y', 'N', 'Y', 'N', 'Y', 'N', 'Y', 'N', 'Y', 'N'),
 ('Rivastigmine (oral)', 'AChEI & BuChEI', '1-2h', '1.5mg BID/1.5mg BID/6mg BID', 'BID', '1.5, 3, 4.5, 6/capsule, liq', 'Y', 'N', 'Y', 'N', 'Y', 'N', 'Y', 'N', 'Y', 'N'),
 ('Rivastigmine (patch)', 'AChEI & BuChE', '1-2h', '4.8mg/to 9.5mg/9.5mg', 'q24hrs', '4.6, 9.5, 13.3/patch', 'N', 'N', 'Y', 'N', 'Y', 'N', 'Y', 'N', 'Y', 'N'),
+
 ('Memantine', 'NMDA blocker', '60-100h', '5mg qAM/ ↑ by 5mg weekly/10mg BID', 'qAM week 1 then BID', '5,10/tab', 'N', 'N', 'mod. only', 'Y', 'No studies', 'N', 'N', 'N', 'N', 'N');
 -- --Key: AChEI: acetylcholinesterase inhibitor; BuChEI: butyrylcholinesterase inhibitor
 -- DSD: down syndrome dementia; FTD: frontotemporal dementia; LBD: lewy body dementia; MCI: mild cognitive impairment; N: not indicated; PD: parkinson's disease; Y: indicated.
@@ -86,6 +88,7 @@ INSERT INTO `green_card`.`SEDATIVES/HYPNOTICS GUIDE` (`Name`,`Dose equiv.`,`Time
 VALUES
 ('clonazepam (Rivotril)', '0.25-0.5', '1-2h', '20-50h', '0.125-1', '0.5,1,2/tab'),
 ('lorazepam (Ativan)', '1', '2-4h (po)1h (IM, SL)', '10-25h', '0.25-2', '0.5,1,2/tab  0.5,1,2/SLtab4mg/mL/inj'),
+
 ('melatonin*', 'null', '2.6h', '3.5-4h', '2.0-10', '3,5,10/multiple'),
 ('oxazepam (Serax)', '15', '2-4h', '5-20h', '5-30.0', '10,15,30/tab'),
 ('temazepam (Restoril)', '10', '2-3h', '5-25h', '5-15.0', '15,30/cap'),
@@ -161,6 +164,7 @@ INSERT INTO `DELIRIUM_MANAGEMENT` (`High`, `Medium`, `Low`) VALUES
 -- MOOD STABILIZERS GUIDE --
 INSERT INTO `green_card`.`MOOD STABILIZERS GUIDE` (`Name`,`Half-life`,`Dose (mg/day) Initial | Maint. | Max.`,`Frequency`,`mg/Form Supplied`,`Monitoring Level`)
 VALUES ('Lamotrigine (Lamictal)', '25h', '12.5-25 hs | 50-250† | 200-300', 'bid', '25, 100, 150/tab, 2.5/chewtab', 'nil'),
+
 ('Lithium Carbonate (Carbolith, Lithane)', '20-26h', '150 od-bid | use drug levels', 'hs-tid', '150, 300, 600/cap', '0.4-0.8 µmol/L'),
 ('Lithium Citrate (Oral Liquid)', '20-26h', '5 ml bid | use drug levels', 'od-tid', '8mmol/5ml (=300mg Li carb)', '"'),
 ('Valproic Acid (Depakene)', '6-16h', '125 od-bid | 1000-2000 | 60mg/kg', 'b-tid', '250, 500/cap; 250/5ml liq', '350-700 µmol/L'),
@@ -426,6 +430,7 @@ VALUES
  ('fluoxetine (Prozac)' , '10-14d^' , '5HT' , '10 | 20-40 | 40' , 'od' , '10,20/cap,liq'),
  ('fluvoxamine (Luvox)' , '9-28h' , '5HT' , '25-50 | 50-200 | 200' , 'od' , '50,100/tab'),
  ('paroxetine (Paxil) ♯' , '3-65h' , '5HT' , '10 | 20-40 | 40' , 'od' , '10,20,30,40/tab'),
+ 
  ('sertraline (Zoloft)**' , '<104h^' , '5HT' , '25 | 50-150 | 200' , 'od' , '25,50,100/cap'),
  -- --Serotonin Modulator--
  ('vortioxetine (Trintellix)' , '66h' , '5HT' , '5-10 | 10-20 | 20' , 'od' , '5-10 | 10-20 | 20'),
@@ -446,3 +451,84 @@ VALUES
  -- --MAOI--
  ('phenelzine (Nardil)' , '1.5-4h' , 'NA, 5HT' , '15 | 45-90 | 90' , 'b-tid' , '15/tab'),
  ('tranylcypromine (Parnate)' , '2-4h' , 'NA, 5HT' , '10bid | 20-40 | 40' , 'am/bid' , '10/tab');
+
+
+INSERT INTO `green_card`.`SEARCH RESULTS` (
+  `Name`,
+  `Monitoring Level`,
+  `Action`,
+  `Primary NT`,
+  `Half-life`,
+  `Time to peak in plasma` ,
+  `Avg dose range (mg/day)`,
+  `Dose (initial/monthly increment/maint)`,
+  `Dose equiv.` ,
+  `Frequency` ,
+  `mg/Form Supplied`,
+  `With food?` ,
+  `MCI`,
+  `mild-mod Alz` ,
+  `Severe Alz` ,
+  `Tab Strength/Form Supplied` ,
+  `NPS` ,
+  `PP` ,
+  `MDE (ADaugment)` ,
+  `MDE (w.psychosis)` ,
+  `Delirium` ,
+  `EO-SCZ` ,
+  `LO-SCZ` ,
+  `Mixed (Alz+vas)` ,
+  `Vascular` ,
+  `LBD` ,
+  `FTD` ,
+  `PD`,
+  `DSD`)
+VALUES 
+('Donepezil (Aricept)','null','AChEI','null','70h','null','null','5mg/5mg/10mg','null','qAM','5,10/tab, diss tab','Y', 'N', 'Y', 'Y','null','null','null','null','null','null','null','null','Y', 'N', 'Y', 'N', 'Y', 'N'),
+('Galantamine ER','null','AChEI','null','7-8h','null','null','8mg/8mg/24mg','null','qAM','8,16,24/capsule','Y', 'N', 'Y', 'N','null','null','null','null','null','null','null','null','Y', 'N', 'Y', 'N', 'Y', 'N'),
+('Rivastigmine (oral)','null','AChEI & BuChEI','null','1-2h','null','null','1.5mg BID/1.5mg BID/6mg BID','null','BID','1.5, 3, 4.5, 6/capsule, liq','Y', 'N', 'Y', 'N','null','null','null','null','null','null','null','null','Y', 'N', 'Y', 'N', 'Y', 'N'),
+('Rivastigmine (patch)','null','AChEI & BuChE','null','1-2h','null','null','4.8mg/to 9.5mg/9.5mg','null','q24hrs','4.6, 9.5, 13.3/patch','N', 'N', 'Y', 'N','null','null','null','null','null','null','null','null','Y', 'N', 'Y', 'N', 'Y', 'N'),
+('Memantine','null','NMDA blocker','null','60-100h','null','null','5mg qAM/ ↑ by 5mg weekly/10mg BID','null','qAM week 1 then BID','5,10/tab','N', 'N', 'mod. only', 'Y','null','null','null','null','null','null','null','null','No studies', 'N', 'N', 'N', 'N', 'N'),
+('Lamotrigine (Lamictal)','nil','null','null','25h','null','null', 'Initial 12.5-25 hs |Maint.  50-250† |Max. 200-300','null', 'bid','25, 100, 150/tab, 2.5/chewtab', 'null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('Lithium Carbonate (Carbolith, Lithane)','0.4-0.8 µmol/L','null','null','20-26h','null','null', 'Initial 150 od-bid | use drug levels','null', 'hs-tid', '150, 300, 600/cap','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('Lithium Citrate (Oral Liquid)','"','null','null','20-26h','null','null', 'Initial 5 ml bid | use drug levels','null', 'od-tid', '8mmol/5ml (=300mg Li carb)','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('Valproic Acid (Depakene)','350-700 µmol/L','null','null','6-16h','null','null', 'Initial 125 od-bid |Maint. 1000-2000 |Max. 60mg/kg','null', 'b-tid', '250, 500/cap; 250/5ml liq','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('Divalproex (Epival)','"','null','null','6-16h','null','null', 'Initial 125 od-bid |Maint. 1000-2000 |Max. 60mg/kg','null', '"', '125, 250, 500/tab','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('Antipsychotics','"','null','null','"','null','null', 'Please See Antipsychotic Table','null', '"', '"','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('Carbamazepine (Tegretol)','"','null','null','"','null','null', 'To be used with caution under expert supervision*','null', '"', '"','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('Oxcarbazepine (Trileptal)','"','null','null','"','null','null', 'To be used with caution under expert supervision*','null', '"', '"','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('clonazepam (Rivotril)','null','null','null','20-50h', '1-2h','0.125-1','null','0.25-0.5','null','0.5,1,2/tab', 'null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('lorazepam (Ativan)','null','null','null','10-25h','2-4h (po)1h (IM, SL)','0.25-2','null','1','null', '0.5,1,2/tab  0.5,1,2/SLtab4mg/mL/inj', 'null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('melatonin*','null','null','null','3.5-4h','2.6h','2.0-10','null','null','null', '3,5,10/multiple', 'null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('oxazepam (Serax)','null','null','null','5-20h','2-4h','5-30.0','null','15','null', '10,15,30/tab', 'null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('temazepam (Restoril)','null','null','null','5-25h','2-3h','5-15.0','null','10','null', '15,30/cap', 'null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('trazodone (Desyrel)','null','null','null','4-9h','2-3h','12.5-100','null','null','null', '50,75,100,150/tab', 'null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('zolpidem (Sublinox)','null','null','null','2.5-4h','1-2h','5-10.0','null','null','null', '5,10/diss tab', 'null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('zopiclone (Imovane)','null','null','null','4-7h','1.5h','3.75-12.5','null','7.5','null', '5,7.5/tab', 'null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('aripiprazole (Abilify)','null','null','null','75-94h^','null','null','null', '7.5','od','null','null','null','null','null', '2, 5, 10, 15, 20, 30/tab', '5-10mg', 'null', '2-15mg', '2-15mg', 'null', '2-20mg', '2-10mg','null','null','null','null','null','null'),
+('clozapine (Clozaril)','null','null','null','14h','null','null','null', '100','hs-tid','null','null','null','null','null', '25, 50, 100, 200/tab', 'NR', '6.25-50mg', 'NR', 'NR', 'NR', '25-400mg', '25-200mg','null','null','null','null','null','null'),
+('lurasidone (Latuda)‡','null','null','null','18h','null','null','null', 'null','od','null','null','null','null','null', '40, 80, 120/tab', 'NR', 'NR', 'NR', 'NR', 'NR', '? (20-80mg)', '? (20-40 mg)','null','null','null','null','null','null'),
+('olanzapine (Zyprexa)','null','null','null','21-54h','null','null','null', '5','hs','null','null','null','null','null', '2.5, 5, 7.5, 10, 15, 20/inj, tab, diss tab', '2.5-15mg', 'NR', '? (2.5-10mg)', '2.5-20mg', '1.25-15mg', '2.5-20mg', '2.5-15mg','null','null','null','null','null','null'),
+('paliperidone (Invega)','null','null','null','23h','null','null','null', '2','hs','null','null','null','null','null', '3, 6, 9/er tabs', 'NR', 'NR', 'NR', '?', 'NR', '3-8mg', '3-4mg','null','null','null','null','null','null'),
+('quetiapine (Seroquel)','null','null','null','6-12h^','null','null','null', '150','hs-bid','null','null','null','null','null','25, 50, 100, 150, 200, 300, 400/ir&er tabs', '? (12.5-200mg)', '? (12.5-400mg)**', '25-300mg', '25-400mg', '12.5-200mg', '25-500mg', '25-300mg','null','null','null','null','null','null' ),
+('risperidone (Risperdal)','null','null','null','20-24h^','null','null','null', '1.5','hs-bid','null','null','null','null','null', '0.25, 0.5, 1, 2, 3, 4/tab, diss tab, liq', '0.25-2mg**', 'NR', '? (0.5-2mg)', '? (0.5-2mg)', '0.25-3mg', '0.5-4mg', '0.5-2mg','null','null','null','null','null','null'),
+('haloperidol (Haldol)','null','null','null','20h','null','null','null', '2.5','hs-bid','null','null','null','null','null','0.5, 1, 2, 5, 10, 20/inj, tab, liq', 'NR', 'NR', 'NR', 'NR', '0.25-2mg**', '0.5-5mg', '? (0.5-2mg)','null','null','null','null','null','null' ),
+('Ioxapine (Loxapac)','null','null','null','5-19h^','null','null','null', '15','hs-tid','null','null','null','null','null','2.5, 5, 10, 25, 50/inj, tab, liq', '? (2.5-20mg)', 'NR', 'NR', 'NR', '5-100mg', '2-100mg', '? (2-50mg)','null','null','null','null','null','null'),
+('citalopram (Celexa)**','null','null','5HT','23-45h','null','null','Initial 5-10 |Maint. 20 |Max. 20','null', 'od' , '10,20,30,40/tab','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('escitalopram (Cipralex)**','null','null','5HT','27-32h','null','null',' ','null', 'od' , '10,20/tab','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('fluoxetine (Prozac)','null','null','5HT','10-14d^','null','null','Initial 10 |Maint. 20-40 |Max. 40','null', 'od' , '10,20/cap,liq','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('fluvoxamine (Luvox)','null','null','5HT','9-28h','null','null','Initial 25-50 |Maint. 50-200 |Max. 200','null', 'od' , '50,100/tab','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('paroxetine (Paxil) ♯','null','null','5HT','3-65h','null','null','Initial 10 |Maint. 20-40 |Max. 40','null', 'od' , '10,20,30,40/tab','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('sertraline (Zoloft)**','null','null','5HT','<104h^','null','null','Initial 25 |Maint. 50-150 |Max. 200','null', 'od' , '25,50,100/cap','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('vortioxetine (Trintellix)','null','null','5HT','66h','null','null','Initial 5-10 |Maint. 10-20 |Max. 20','null', 'od' , '5-10 | 10-20 | 20','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('duloxetine (Cymbalta)**','null','null','5HT,NA','8-17h','null','null','Initial 30-60 |Maint. 60 |Max. 120','null', 'od' , '30,60/cap','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('venlafaxine XR (Effexor XR)**','null','null','5HT,NA','9-13h^','null','null','Initial 37.5 |Maint. 75-150 |Max. 300','null', 'od' , '37.5,75,150/cap','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('desvenlafaxine (Pristiq)','null','null','5-HT,NA',' ','null','null','Initial 50 |Maint. 50 |Max. 50','null', 'od' , '50,100/er tab','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('mirtazapine (Remeron)**','null','null','5HT,NA','20-40h','null','null','Initial 3.75-15 |Maint. 15-45 |Max. 45','null',  'hs' , '15,30,45/tab,diss tab','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('bupropion (Wellbutrin SR)**','null','null','NA,DA','<27h^','null','null','Initial 100 |Maint. 150-300 |Max. 300','null', 'bid' , '100,150/sr tab','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('bupropion (Wellbutrin XL)**','null','null','NA, DA','<27h^','null','null','Initial 150 |Maint. 150-300 |Max. 300','null', 'od' , '150,300/xl tab','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('desipramine (Norpramin)†','null','null',' ','12-72h','null','null','Initial 25am |Maint. 75-150 |Max. 200','null', 'bid' , '10,25,50,75,100/tab','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('nortriptyline(Aventyl)†','null','null',' ','13-88h','null','null','Initial 10-25hs |Maint. 50-100 |Max. 100','null','hs/bid' , '10,25/cap','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('amitriptyline (Elavil)','null','null',' ','Not recommended','null','null',' ','null', ' ' , ' ','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('phenelzine (Nardil)','null','null','NA,5HT','1.5-4h','null','null','Initial 15 |Maint. 45-90 |Max. 90','null', 'b-tid' , '15/tab','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null'),
+('tranylcypromine (Parnate)','null','null','NA,5HT','2-4h','null','null','Initial 10bid |Maint. 20-40 |Max. 40','null', 'am/bid' , '10/tab','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null','null');
