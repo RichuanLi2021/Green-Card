@@ -1,13 +1,8 @@
-import './AntidepressantSafety.css';
 import * as React from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
-
+import SearchBar from "../../searchBar/searchBar";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -16,9 +11,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
+import Data from "../../searchBar/Data.json";
 
 
 
@@ -72,24 +69,24 @@ export default function AntidepressantSafety() {
   return (
     <>
       <Navigation />
-      <br></br>
-    <div id="antidepressantSafety" style={{ marginTop: '70px' }}>
-      <Accordion id="firstAccordionAntidepressantSafety">
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography id ="antidepressantSafetySubject"><b>Antidepressant Safety Concerns</b></Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
+      <SearchBar placeholder="Search" data={Data} />
+    <div id="antidepressantSafety">
+    <Box
+        sx={{
+          marginTop: 3,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography variant="h3" id="antidepressantSafetyHeader">Antidepressants Safety Concerns</Typography>
+      </Box>
           <TableContainer component={Paper} >
                   <Table sx={{ minWidth: 700 }} aria-label="customized table" id="antidepressantSafetyTable" >
                     <TableHead >
                       <TableRow >
-                        <StyledTableCell>ID</StyledTableCell>  
-                        <StyledTableCell>Description</StyledTableCell>   
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>ID</StyledTableCell>  
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Description</StyledTableCell>   
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -105,9 +102,7 @@ export default function AntidepressantSafety() {
                   </Table>
                 </TableContainer><br></br>
                 <p><b>Key notes: ANTID_SC means Antidepressants safety concerns</b> </p>
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+          
                       </div>
     <Footer />
     </>

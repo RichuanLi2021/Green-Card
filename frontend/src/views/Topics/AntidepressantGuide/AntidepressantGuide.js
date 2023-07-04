@@ -1,13 +1,9 @@
-import './AntidepressantGuide.css';
+
 import * as React from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
-
+import SearchBar from "../../searchBar/searchBar";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -16,9 +12,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
+import Data from "../../searchBar/Data.json";
 
 
 
@@ -72,28 +70,29 @@ export default function AntidepressantGuide() {
   return (
     <>
       <Navigation />
-      <br></br>
+      <SearchBar placeholder="Search" data={Data} />
     <div id="antidepressantGuide">
-      <Accordion id="firstAccordionAntidepressantGuide">
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography id ="antidepressantGuideSubject"><b>Antidepressant Guide</b></Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
+    <Box
+        sx={{
+          marginTop: 3,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography variant="h3" id="antidepressantGuideHeader">Antidepressants Guide</Typography>
+      </Box>
+      
           <TableContainer component={Paper} >
                   <Table sx={{ minWidth: 700 }} aria-label="customized table" id="antidepressantGuideTable" >
                     <TableHead >
                       <TableRow >
-                        <StyledTableCell  >Name</StyledTableCell>
-                        <StyledTableCell >Half-life</StyledTableCell>
-                        <StyledTableCell >Primary NT</StyledTableCell>
-                        <StyledTableCell >Dose (mg/day) Initial | Maint. | Max</StyledTableCell>
-                        <StyledTableCell >Frequency</StyledTableCell>
-                        <StyledTableCell >mg/Form supplied</StyledTableCell>     
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Name</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Half-life</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Primary NT</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Dose (mg/day) Initial | Maint. | Max</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Frequency</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>mg/Form supplied</StyledTableCell>     
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -123,10 +122,7 @@ evidence; ∅ less appropriate due to long half life; ♯ less appropriate due t
 and expert opinion. Half lives are estimates based on adult data and in older adults they can often be
 increased up to 170%. </p>
               
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      
+         
     </div>
 
     
