@@ -86,7 +86,8 @@ export default function InsomniaDeprescribing() {
             })}
           </div>
           <footer id="footer">
-          <p><b>Key:</b> †does not reflect maximum doses; *should be given 30-90 mins before bedtime. <b>NOTES</b>: doses may not reflect manufacturer's recommendations but are based on research and/or expert opinion.  All sedatives should be used sparingly in the older adults and in people with liver disease; use lowest possible dose. In older adults, there is a poor risk/benefit ratio. </p>
+          
+<p><b>Key:</b> BZRA: benzodiazepine and z-drugs (benzodiazepine agonists) </p>
           </footer>
         </div>
       </>
@@ -95,5 +96,3 @@ export default function InsomniaDeprescribing() {
 } 
 
 
-
-<p><b>Key:</b> BZRA: benzodiazepine and z-drugs (benzodiazepine agonists) </p>
