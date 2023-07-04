@@ -44,11 +44,7 @@ export default function InsomniaSedatives() {
   };
 
   const [selectedDrugs, setSelectedDrugs] = useState([]);
-  const [value, setValue] = useState('');
-
-  const store_value = (event) => {
-    setValue(event.target.value);
-  }
+ 
 
   const handleDrugClick = (dataObj) => {
     setSelectedDrugs((prevSelectedDrugs) => {
