@@ -97,7 +97,7 @@ export default function PsychotropicMonitoringSection() {
         <>
           <Navigation />
           <br></br>
-          <div id="Psychotropic">
+          <div id="Psychotropic"  style={{ marginTop: '40px' }}>
             <Accordion id="firstAccordionPsychotropic">
               <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                 <Typography id="PsychotropicSubject">

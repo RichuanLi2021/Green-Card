@@ -96,7 +96,7 @@ export default function MoodStabilizers() {
         <>
           <Navigation />
           <br></br>
-          <div id="MoodStabilizers">
+          <div id="MoodStabilizers" style={{ marginTop: '40px' }}>
             <Accordion id="firstAccordionMoodStabilizers">
               <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                 <Typography id="moodStabilizersSubject">

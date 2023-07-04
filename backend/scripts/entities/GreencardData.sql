@@ -1,17 +1,16 @@
 INSERT INTO `green_card`.`ANTIPSYCHOTICS GUIDE` (`Name`, `Approx. equiv. dose`, `Half-life`, `Frequency`, `Tab Strength/Form Supplied`, `NPS`, `PP`, `MDE (ADaugment)`, `MDE (w.psychosis)`, `Delirium`, `EO-SCZ`, `LO-SCZ`)
 VALUES
 -- -Novel
-('aripiprazole (Abilify)', '7.5', '75-94h^', 'od', '2, 5, 10, 15, 20, 30/tab', '5-10mg', 'null', '2-15mg', '2-15mg', 'null', '2-20mg', '2-10mg'),
-('clozapine (Clozaril)', '100', '14h', 'hs-tid', '25, 50, 100, 200/tab', 'NR', '6.25-50mg', 'NR', 'NR', 'NR', '25-400mg', '25-200mg'),
-('lurasidone (Latuda)‡', 'null', '18h', 'od', '40, 80, 120/tab', 'NR', 'NR', 'NR', 'NR', 'NR', '? (20-80mg)', '? (20-40 mg)'),
-('olanzapine (Zyprexa)', '5', '21-54h', 'hs', '2.5, 5, 7.5, 10, 15, 20/inj, tab, diss tab', '2.5-15mg', 'NR', '? (2.5-10mg)', '2.5-20mg', '1.25-15mg', '2.5-20mg', '2.5-15mg'),
-('paliperidone (Invega)', '2', '23h', 'hs', '3, 6, 9/er tabs', 'NR', 'NR', 'NR', '?', 'NR', '3-8mg', '3-4mg'),
-('quetiapine (Seroquel)', '150', '6-12h^', 'hs-bid', '25, 50, 100, 150, 200, 300, 400/ir&er tabs', '? (12.5-200mg)', '? (12.5-400mg)**', '25-300mg', '25-400mg', '12.5-200mg', '25-500mg', '25-300mg'),
-
-('risperidone (Risperdal)', '1.5', '20-24h^', 'hs-bid', '0.25, 0.5, 1, 2, 3, 4/tab, diss tab, liq', '0.25-2mg**', 'NR', '? (0.5-2mg)', '? (0.5-2mg)', '0.25-3mg', '0.5-4mg', '0.5-2mg'),
+('aripiprazole (Abilify)', '7.5', '75-94h-accounts for half-life of active metabolites', 'od', '2, 5, 10, 15, 20, 30/tablet', '5-10mg', 'null', '2-15mg', '2-15mg', 'null', '2-20mg', '2-10mg'),
+('clozapine (Clozaril)', '100', '14h', 'hs-tid', '25, 50, 100, 200/tablet', 'NR', '6.25-50mg', 'NR', 'NR', 'NR', '25-400mg', '25-200mg'),
+('lurasidone (Latuda) ‡', 'null', '18h', 'od', '40, 80, 120/tablet', 'NR', 'NR', 'NR', 'NR', 'NR', 'inconsistent or insufficient data (20-80mg)', 'inconsistent or insufficient data (20-40 mg)'),
+('olanzapine (Zyprexa)', '5', '21-54h', 'hs', '2.5, 5, 7.5, 10, 15, 20/inj, tablet, diss tablet', '2.5-15mg', 'NR', 'inconsistent or insufficient data (2.5-10mg)', '2.5-20mg', '1.25-15mg', '2.5-20mg', '2.5-15mg'),
+('paliperidone (Invega)', '2', '23h', 'hs', '3, 6, 9/er tabs', 'NR', 'NR', 'NR', 'inconsistent or insufficient data', 'NR', '3-8mg', '3-4mg'),
+('quetiapine (Seroquel)', '150', '6-12h-accounts for half-life of active metabolites', 'hs-bid', '25, 50, 100, 150, 200, 300, 400/ir&er tabs', 'inconsistent or insufficient data (12.5-200mg)', 'inconsistent or insufficient data (12.5-400mg)-preferred medication based on research and/or expert opinion', '25-300mg', '25-400mg', '12.5-200mg', '25-500mg', '25-300mg'),
+('risperidone (Risperdal)', '1.5', '20-24h-accounts for half-life of active metabolites', 'hs-bid', '0.25, 0.5, 1, 2, 3, 4/tablet, diss tab, liq', '0.25-2mg preferred medication based on research and/or expert opinion', 'NR', 'inconsistent or insufficient data (0.5-2mg)', 'inconsistent or insufficient data (0.5-2mg)', '0.25-3mg', '0.5-4mg', '0.5-2mg'),
 -- --Conventional-- 
-('haloperidol (Haldol)', '2.5', '20h', 'hs-bid', '0.5, 1, 2, 5, 10, 20/inj, tab, liq', 'NR', 'NR', 'NR', 'NR', '0.25-2mg**', '0.5-5mg', '? (0.5-2mg)'),
-('Ioxapine (Loxapac)', '15', '5-19h^', 'hs-tid', '2.5, 5, 10, 25, 50/inj, tab, liq', '? (2.5-20mg)', 'NR', 'NR', 'NR', '5-100mg', '2-100mg', '? (2-50mg)');
+('haloperidol (Haldol)', '2.5', '20h', 'hs-bid', '0.5, 1, 2, 5, 10, 20/inj, tablet, liq', 'NR', 'NR', 'NR', 'NR', '0.25-2mg preferred medication based on research and/or expert opinion', '0.5-5mg', '? (0.5-2mg)'),
+('Ioxapine (Loxapac)', '15', '5-19h-accounts for half-life of active metabolites', 'hs-tid', '2.5, 5, 10, 25, 50/inj, tablet, liq', 'inconsistent or insufficient data (2.5-20mg)', 'NR', 'NR', 'NR', '5-100mg', '2-100mg', 'inconsistent or insufficient data (2-50mg)');
 -- --Key: AD: antidepressant; er: extended release; ir: immediate release; EO-SCZ: early-onset schizophrenia; LO-SCZ: late-onset schizophrenia; MDE: major depressive disorder; NPS: neuropsychiatric symptoms of dementia; NR: not recommended; PP: Parkinson's psychosis; †0.25 of adult equivalent dose shown (see Yellow Card); ‡take with meal (≥350 kcal); ^accounts for half-life of active metabolites; **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data. NOTES: doses may not reflect manufacturers' recommendations but are based on clinical literature and opinion. Half lives are estimates based on adult data and in older adults they can often be increased up to 170%.
 
 -- --on front end this data needs to be split into two tables for viewing purposes (requested by client)
@@ -21,7 +20,6 @@ VALUES
 ('Galantamine ER', 'AChEI', '7-8h', '8mg/8mg/24mg', 'qAM', '8,16,24/capsule', 'Y', 'N', 'Y', 'N', 'Y', 'N', 'Y', 'N', 'Y', 'N'),
 ('Rivastigmine (oral)', 'AChEI & BuChEI', '1-2h', '1.5mg BID/1.5mg BID/6mg BID', 'BID', '1.5, 3, 4.5, 6/capsule, liq', 'Y', 'N', 'Y', 'N', 'Y', 'N', 'Y', 'N', 'Y', 'N'),
 ('Rivastigmine (patch)', 'AChEI & BuChE', '1-2h', '4.8mg/to 9.5mg/9.5mg', 'q24hrs', '4.6, 9.5, 13.3/patch', 'N', 'N', 'Y', 'N', 'Y', 'N', 'Y', 'N', 'Y', 'N'),
-
 ('Memantine', 'NMDA blocker', '60-100h', '5mg qAM/ ↑ by 5mg weekly/10mg BID', 'qAM week 1 then BID', '5,10/tab', 'N', 'N', 'mod. only', 'Y', 'No studies', 'N', 'N', 'N', 'N', 'N');
 -- --Key: AChEI: acetylcholinesterase inhibitor; BuChEI: butyrylcholinesterase inhibitor
 -- DSD: down syndrome dementia; FTD: frontotemporal dementia; LBD: lewy body dementia; MCI: mild cognitive impairment; N: not indicated; PD: parkinson's disease; Y: indicated.
@@ -88,7 +86,6 @@ INSERT INTO `green_card`.`SEDATIVES/HYPNOTICS GUIDE` (`Name`,`Dose equiv.`,`Time
 VALUES
 ('clonazepam (Rivotril)', '0.25-0.5', '1-2h', '20-50h', '0.125-1', '0.5,1,2/tab'),
 ('lorazepam (Ativan)', '1', '2-4h (po)1h (IM, SL)', '10-25h', '0.25-2', '0.5,1,2/tab  0.5,1,2/SLtab4mg/mL/inj'),
-
 ('melatonin*', 'null', '2.6h', '3.5-4h', '2.0-10', '3,5,10/multiple'),
 ('oxazepam (Serax)', '15', '2-4h', '5-20h', '5-30.0', '10,15,30/tab'),
 ('temazepam (Restoril)', '10', '2-3h', '5-25h', '5-15.0', '15,30/cap'),
@@ -164,7 +161,6 @@ INSERT INTO `DELIRIUM_MANAGEMENT` (`High`, `Medium`, `Low`) VALUES
 -- MOOD STABILIZERS GUIDE --
 INSERT INTO `green_card`.`MOOD STABILIZERS GUIDE` (`Name`,`Half-life`,`Dose (mg/day) Initial | Maint. | Max.`,`Frequency`,`mg/Form Supplied`,`Monitoring Level`)
 VALUES ('Lamotrigine (Lamictal)', '25h', '12.5-25 hs | 50-250† | 200-300', 'bid', '25, 100, 150/tab, 2.5/chewtab', 'nil'),
-
 ('Lithium Carbonate (Carbolith, Lithane)', '20-26h', '150 od-bid | use drug levels', 'hs-tid', '150, 300, 600/cap', '0.4-0.8 µmol/L'),
 ('Lithium Citrate (Oral Liquid)', '20-26h', '5 ml bid | use drug levels', 'od-tid', '8mmol/5ml (=300mg Li carb)', '"'),
 ('Valproic Acid (Depakene)', '6-16h', '125 od-bid | 1000-2000 | 60mg/kg', 'b-tid', '250, 500/cap; 250/5ml liq', '350-700 µmol/L'),
@@ -430,7 +426,6 @@ VALUES
  ('fluoxetine (Prozac)' , '10-14d^' , '5HT' , '10 | 20-40 | 40' , 'od' , '10,20/cap,liq'),
  ('fluvoxamine (Luvox)' , '9-28h' , '5HT' , '25-50 | 50-200 | 200' , 'od' , '50,100/tab'),
  ('paroxetine (Paxil) ♯' , '3-65h' , '5HT' , '10 | 20-40 | 40' , 'od' , '10,20,30,40/tab'),
- 
  ('sertraline (Zoloft)**' , '<104h^' , '5HT' , '25 | 50-150 | 200' , 'od' , '25,50,100/cap'),
  -- --Serotonin Modulator--
  ('vortioxetine (Trintellix)' , '66h' , '5HT' , '5-10 | 10-20 | 20' , 'od' , '5-10 | 10-20 | 20'),
@@ -451,6 +446,7 @@ VALUES
  -- --MAOI--
  ('phenelzine (Nardil)' , '1.5-4h' , 'NA, 5HT' , '15 | 45-90 | 90' , 'b-tid' , '15/tab'),
  ('tranylcypromine (Parnate)' , '2-4h' , 'NA, 5HT' , '10bid | 20-40 | 40' , 'am/bid' , '10/tab');
+
 
 
 INSERT INTO `green_card`.`SEARCH RESULTS` (
