@@ -1,17 +1,33 @@
 const pool = require('../config/database');
 
-const getSedativesGuideData = async () => {
+
+const getAPData = async () => {
   const [rows, fields] = await pool.query('SELECT * FROM `green_card`.`SEDATIVES/HYPNOTICS GUIDE`');
   return rows;
 };
 
-const InsomniaSedativesGuideController = {
-   getData: async (req,res, next) => {
-    const sedativesData = await getSedativesGuideData();
-    res.send(sedativesData);
-   }
+const getData = async (req, res, next) => {
+  const apData = await getAPData();
+  res.send(apData);
+}
 
+
+const updateData = async (req, res, next) => {
+  try {
+    const { name, column, value } = req.body;
+    await pool.query('UPDATE `green_card`.`SEDATIVES/HYPNOTICS GUIDE` SET ' + column + ' = ' + '"' + value + '"' + ' WHERE name = ' + '"' + name + '"');
+    res.send("Updated Successfully!");
+  } catch (error) {
+    console.log(error);
+    next(error);
+    throw error;
+  }
+}
+
+module.exports = {
+  getData,
+  updateData
 };
 
-module.exports = InsomniaSedativesGuideController;
+
 
