@@ -1,3 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;400;600&display=swap");
+
+html,
 body {
-  font-family: Sans-Serif !important;
+  font-family: "Work Sans", sans-serif;
+}
+
+.css-20dncw-MuiTypography-root {
+  font-family: "Work Sans", sans-serif !important;
+}
+.css-1widoki-MuiTypography-root {
+  font-family: "Work Sans", sans-serif !important;
+}
+.css-1n7g4ly-MuiTypography-root {
+  font-family: "Work Sans", sans-serif !important;
+}
+
+.css-jrtqi5-MuiButtonBase-root-MuiButton-root {
+  font-family: "Work Sans", sans-serif !important;
+}
+
+.css-1bbuggm-MuiButtonBase-root-MuiButton-root {
+  font-family: "Work Sans", sans-serif !important;
 }
