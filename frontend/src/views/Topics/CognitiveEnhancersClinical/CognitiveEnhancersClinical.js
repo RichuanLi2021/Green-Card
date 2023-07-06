@@ -1,4 +1,4 @@
-import './cognitiveEnhancersGuide.css';
+import './CognitiveEnhancersClinical.css';
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
@@ -6,12 +6,12 @@ import {useState, useEffect} from 'react';
 import SearchBar from "../../searchBar/searchBar";
 import Navigation from '../../Navigation/navigation';
 import Data from "../../searchBar/Data.json";
-import CognitiveEnhancersGuideUpdate from './CognitiveEnhancersGuideBackend';
+import CognitiveEnhancersClinicalUpdate from './CognitiveEnhancersClinicalBackend';
 
 
 
 
-export default function CognitiveEnhancersGuide() {
+export default function CognitiveEnhancersClinical() {
 
   
   const [data, setData] = useState({});
@@ -21,7 +21,7 @@ export default function CognitiveEnhancersGuide() {
 
   const fetchData = () => {
     axios
-      .get('http://localhost:8887/api/cognitiveenhancersguide')
+      .get('http://localhost:8887/api/cognitiveenhancersclinical')
       .then((response) => {
         setData(response.data);
       })
@@ -44,7 +44,7 @@ export default function CognitiveEnhancersGuide() {
       console.log(value);
       if (event.target.value !== value) {
         event.preventDefault();
-        CognitiveEnhancersGuideUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
+        CognitiveEnhancersClinicalUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
           alert('Data successfully updated! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nNew Value:"+ event.target.value);
         }).catch((error) => {
           console.error(error);
@@ -83,7 +83,7 @@ export default function CognitiveEnhancersGuide() {
         <SearchBar placeholder="Search" data={Data} />
         <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
           <Typography variant="h3" align="center" gutterBottom>
-            Cognitive Enhancers Guide
+            Cognitive Enhancers Clinical Guide
           </Typography>
 
           <div className="grid-container">
@@ -96,7 +96,7 @@ export default function CognitiveEnhancersGuide() {
                     onClick={() => handleDrugClick(dataObj)}
                     className={`drug-button ${isDrugSelected ? 'active' : ''}`}
                   >
-                    {dataObj.Name}
+                    {dataObj.Description}
                   </button>
 
                   {isDrugSelected && (
@@ -104,73 +104,29 @@ export default function CognitiveEnhancersGuide() {
 
                     <div className="box">
                     <div className="box-content">
-                      <strong>Action</strong>
+                      <strong>LIST_HEADERS_Id</strong>
                       <input
-                                  id="`Action`"
-                                  name={dataObj.Name}
+                                  id="`LIST_HEADERS_ID`"
+                                  name={dataObj.Description}
                                   type="text"
                                   onFocus={store_value}
                                   onBlur={update_value}
-                                  defaultValue={dataObj[`Action`]}
-                                />
-                    </div>
-                    <div className="box-content">
-                      <strong>Half-life</strong>
-                      <input
-                                  id="`Half-life`"
-                                  name={dataObj.Name}
-                                  type="text"
-                                  onFocus={store_value}
-                                  onBlur={update_value}
-                                  defaultValue={dataObj[`Half-life`]}
+                                  defaultValue={dataObj[`LIST_HEADERS_Id`]}
                                 />
                     </div>
                     
                     <div className="box-content">
-                      <strong>Dose "initial/monthly increment/maint"</strong>
+                      <strong>Description</strong>
                       <input
-                                  id="`Dose`"
-                                  name={dataObj.Name}
+                                  id="`Description`"
+                                  name={dataObj.Description}
                                   type="text"
                                   onFocus={store_value}
                                   onBlur={update_value}
-                                  defaultValue={dataObj[`Dose (initial/monthly increment/maint)`]}
+                                  defaultValue={dataObj[`Description`]}
                                 />
                     </div>
-                    <div className="box-content" style={{ width: 230 }}>
-                      <strong>Frequency</strong>
-                      <input
-                                  id="`Frequency`"
-                                  name={dataObj.Name}
-                                  type="text"
-                                  onFocus={store_value}
-                                  onBlur={update_value}
-                                  defaultValue={dataObj[`Frequency`]}
-                                />
-                    </div>
-                    <div className="box-content">
-                      <strong>mg/Form supplied</strong>
-                      <input
-                                  id="`mg/form supplied`"
-                                  name={dataObj.Name}
-                                  type="text"
-                                  onFocus={store_value}
-                                  onBlur={update_value}
-                                  defaultValue={dataObj[`mg/form supplied`]}
-                                />
-                    </div>
-
-                    <div className="box-content">
-                      <strong>With food?</strong>
-                      <input
-                                  id="`With food?`"
-                                  name={dataObj.Name}
-                                  type="text"
-                                  onFocus={store_value}
-                                  onBlur={update_value}
-                                  defaultValue={dataObj[`With food?`]}
-                                />
-                    </div>
+                    
                     
 
                     
@@ -186,7 +142,8 @@ export default function CognitiveEnhancersGuide() {
           </div>
           <button className="drug-button" >Add new Drug</button>
           <footer id="footer">
-          <p><b>Key:</b> AChEI: acetylcholinesterase inhibitor; BuChEI: butyrylcholinesterase inhibitor </p>
+          <p><b>Key:</b>COG_CONTRA means "Contraindications", COG_ACHEI means "Adverse Effects (AChEI)", COG_ACHEI_ME means "Adverse Effects (Memantine)", COG_BASELINE means "Baseline",
+          COG_MONITOR means "monitoring" </p>
           
           </footer>
         </div>
@@ -202,7 +159,7 @@ export default function CognitiveEnhancersGuide() {
         <SearchBar placeholder="Search" data={Data} />
         <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
           <Typography variant="h3" align="center" gutterBottom>
-            Cognitive Enhancers Guide
+            Cognitive Enhancers Clinical Guide
           </Typography>
 
           <div className="grid-container">
@@ -215,32 +172,21 @@ export default function CognitiveEnhancersGuide() {
                     onClick={() => handleDrugClick(dataObj)}
                     className={`drug-button ${isDrugSelected ? 'active' : ''}`}
                   >
-                    {dataObj.Name}
+                    {dataObj.Description}
                   </button>
 
                   {isDrugSelected && (
                   <div className="box">
-                    <div className="box-content">
-                      <strong>Action</strong>
-                      <span>{dataObj['Action']}</span>
+                     <div className="box-content">
+                     <strong>LIST_HEADERS_Id</strong>
+                      <span>{dataObj['LIST_HEADERS_Id']}</span>
                     </div>
                     <div className="box-content">
-                      <strong>Half-life</strong>
-                      <span>{dataObj['Half-life']}</span>
+                      <strong>Description</strong>
+                      <span>{dataObj['Description']}</span>
                     </div>
                     
-                    <div className="box-content">
-                      <strong>Dose "initial/monthly increment/maint"</strong>
-                      <span>{dataObj['Dose (initial/monthly increment/maint)']}</span>
-                    </div>
-                    <div className="box-content" style={{ width: 230 }}>
-                      <strong>Frequency</strong>
-                      <span>{dataObj['Frequency']}</span>
-                    </div>
-                    <div className="box-content">
-                      <strong>mg/Form supplied</strong>
-                      <span>{dataObj['mg/form supplied']}</span>
-                    </div>
+                   
                     
                   </div>
                 )}
@@ -250,8 +196,8 @@ export default function CognitiveEnhancersGuide() {
             })}
           </div>
           <footer id="footer">
-          <p><b>Key:</b> AChEI: acetylcholinesterase inhibitor; BuChEI: butyrylcholinesterase inhibitor </p>
-          
+          <p><b>Key:</b>COG_CONTRA means "Contraindications", COG_ACHEI means "Adverse Effects (AChEI)", COG_ACHEI_ME means "Adverse Effects (Memantine)", COG_BASELINE means "Baseline",
+          COG_MONITOR means "monitoring" </p>
           </footer>
         </div>
       </>
