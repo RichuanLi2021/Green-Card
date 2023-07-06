@@ -1,4 +1,4 @@
-import './CognitiveEnhancersGuide.css';
+import './CognitiveEnhancersGuideCont.css';
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
@@ -6,12 +6,12 @@ import {useState, useEffect} from 'react';
 import SearchBar from "../../searchBar/searchBar";
 import Navigation from '../../Navigation/navigation';
 import Data from "../../searchBar/Data.json";
-import CognitiveEnhancersGuideUpdate from './CognitiveEnhancersGuideBackend';
+import CognitiveEnhancersGuideContUpdate from './CognitiveEnhancersGuideContBackend';
 
 
 
 
-export default function CognitiveEnhancersGuide() {
+export default function CognitiveEnhancersGuideCont() {
 
   
   const [data, setData] = useState({});
@@ -21,7 +21,7 @@ export default function CognitiveEnhancersGuide() {
 
   const fetchData = () => {
     axios
-      .get('http://localhost:8887/api/cognitiveenhancersguide')
+      .get('http://localhost:8887/api/cognitiveenhancersguidecont')
       .then((response) => {
         setData(response.data);
       })
@@ -44,7 +44,7 @@ export default function CognitiveEnhancersGuide() {
       console.log(value);
       if (event.target.value !== value) {
         event.preventDefault();
-        CognitiveEnhancersGuideUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
+        CognitiveEnhancersGuideContUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
           alert('Data successfully updated! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nNew Value:"+ event.target.value);
         }).catch((error) => {
           console.error(error);
@@ -83,7 +83,7 @@ export default function CognitiveEnhancersGuide() {
         <SearchBar placeholder="Search" data={Data} />
         <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
           <Typography variant="h3" align="center" gutterBottom>
-            Cognitive Enhancers Guide
+            Cognitive Enhancers Guide continued.
           </Typography>
 
           <div className="grid-container">
@@ -104,74 +104,106 @@ export default function CognitiveEnhancersGuide() {
 
                     <div className="box">
                     <div className="box-content">
-                      <strong>Action</strong>
+                      <strong>MCI</strong>
                       <input
-                                  id="`Action`"
+                                  id="`MCI`"
                                   name={dataObj.Name}
                                   type="text"
                                   onFocus={store_value}
                                   onBlur={update_value}
-                                  defaultValue={dataObj[`Action`]}
+                                  defaultValue={dataObj[`MCI`]}
                                 />
                     </div>
                     <div className="box-content">
-                      <strong>Half-life</strong>
+                      <strong>Mild-mod Alz</strong>
                       <input
-                                  id="`Half-life`"
+                                  id="`Mild-mod Alz`"
                                   name={dataObj.Name}
                                   type="text"
                                   onFocus={store_value}
                                   onBlur={update_value}
-                                  defaultValue={dataObj[`Half-life`]}
+                                  defaultValue={dataObj[`mild-mod Alz`]}
                                 />
                     </div>
                     
                     <div className="box-content">
-                      <strong>Dose "initial/monthly increment/maint"</strong>
+                      <strong>Severe Alz</strong>
                       <input
-                                  id="`Dose`"
+                                  id="`Severe Alz`"
                                   name={dataObj.Name}
                                   type="text"
                                   onFocus={store_value}
                                   onBlur={update_value}
-                                  defaultValue={dataObj[`Dose (initial/monthly increment/maint)`]}
+                                  defaultValue={dataObj[`Severe Alz`]}
                                 />
                     </div>
                     <div className="box-content" style={{ width: 230 }}>
-                      <strong>Frequency</strong>
+                      <strong>Mixed (Alz+vas)</strong>
                       <input
-                                  id="`Frequency`"
+                                  id="`Mixed (Alz+vas)`"
                                   name={dataObj.Name}
                                   type="text"
                                   onFocus={store_value}
                                   onBlur={update_value}
-                                  defaultValue={dataObj[`Frequency`]}
+                                  defaultValue={dataObj[`Mixed (Alz+vas)`]}
                                 />
                     </div>
                     <div className="box-content">
-                      <strong>mg/Form supplied</strong>
+                      <strong>Vascular</strong>
                       <input
-                                  id="`mg/form supplied`"
+                                  id="`Vascular`"
                                   name={dataObj.Name}
                                   type="text"
                                   onFocus={store_value}
                                   onBlur={update_value}
-                                  defaultValue={dataObj[`mg/form supplied`]}
+                                  defaultValue={dataObj[`Vascular`]}
                                 />
                     </div>
 
                     <div className="box-content">
-                      <strong>With food?</strong>
+                      <strong>LBD</strong>
                       <input
-                                  id="`With food?`"
+                                  id="`LBD`"
                                   name={dataObj.Name}
                                   type="text"
                                   onFocus={store_value}
                                   onBlur={update_value}
-                                  defaultValue={dataObj[`With food?`]}
+                                  defaultValue={dataObj[`LBD`]}
                                 />
                     </div>
-                    
+                    <div className="box-content">
+                      <strong>FTD</strong>
+                      <input
+                                  id="`FTD`"
+                                  name={dataObj.Name}
+                                  type="text"
+                                  onFocus={store_value}
+                                  onBlur={update_value}
+                                  defaultValue={dataObj[`FTD`]}
+                                />
+                    </div>
+                    <div className="box-content">
+                      <strong>PD</strong>
+                      <input
+                                  id="`PD`"
+                                  name={dataObj.Name}
+                                  type="text"
+                                  onFocus={store_value}
+                                  onBlur={update_value}
+                                  defaultValue={dataObj[`PD`]}
+                                />
+                    </div>
+                    <div className="box-content">
+                      <strong>DSD</strong>
+                      <input
+                                  id="`DSD`"
+                                  name={dataObj.Name}
+                                  type="text"
+                                  onFocus={store_value}
+                                  onBlur={update_value}
+                                  defaultValue={dataObj[`DSD`]}
+                                />
+                    </div>
 
                     
                     
@@ -186,7 +218,7 @@ export default function CognitiveEnhancersGuide() {
           </div>
           <button className="drug-button" >Add new Drug</button>
           <footer id="footer">
-          <p><b>Key:</b> AChEI: acetylcholinesterase inhibitor; BuChEI: butyrylcholinesterase inhibitor </p>
+          <p><b>Key:</b> DSD: down syndrome dementia; FTD: frontotemporal dementia; LBD: lewy body dementia; MCI: mild cognitive impairment; N: not indicated; PD: parkinson's disease; Y: indicated. </p>
           
           </footer>
         </div>
@@ -202,7 +234,7 @@ export default function CognitiveEnhancersGuide() {
         <SearchBar placeholder="Search" data={Data} />
         <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
           <Typography variant="h3" align="center" gutterBottom>
-            Cognitive Enhancers Guide
+            Cognitive Enhancers Guide continued.
           </Typography>
 
           <div className="grid-container">
@@ -221,25 +253,41 @@ export default function CognitiveEnhancersGuide() {
                   {isDrugSelected && (
                   <div className="box">
                     <div className="box-content">
-                      <strong>Action</strong>
-                      <span>{dataObj['Action']}</span>
+                      <strong>MCI</strong>
+                      <span>{dataObj['MCI']}</span>
                     </div>
                     <div className="box-content">
-                      <strong>Half-life</strong>
-                      <span>{dataObj['Half-life']}</span>
+                      <strong>Mild-mod Alz</strong>
+                      <span>{dataObj['mild-mod Alz']}</span>
                     </div>
                     
                     <div className="box-content">
-                      <strong>Dose "initial/monthly increment/maint"</strong>
-                      <span>{dataObj['Dose (initial/monthly increment/maint)']}</span>
+                      <strong>Severe Alz</strong>
+                      <span>{dataObj['Severe Alz']}</span>
                     </div>
                     <div className="box-content" style={{ width: 230 }}>
-                      <strong>Frequency</strong>
-                      <span>{dataObj['Frequency']}</span>
+                      <strong>Mixed (Alz+vas)</strong>
+                      <span>{dataObj['Mixed (Alz+vas)']}</span>
                     </div>
                     <div className="box-content">
-                      <strong>mg/Form supplied</strong>
-                      <span>{dataObj['mg/form supplied']}</span>
+                      <strong>Vascular</strong>
+                      <span>{dataObj['Vascular']}</span>
+                    </div>
+                    <div className="box-content">
+                      <strong>LBD</strong>
+                      <span>{dataObj['LBD']}</span>
+                    </div>
+                    <div className="box-content">
+                      <strong>FTD</strong>
+                      <span>{dataObj['FTD']}</span>
+                    </div>
+                    <div className="box-content">
+                      <strong>PD</strong>
+                      <span>{dataObj['PD']}</span>
+                    </div>
+                    <div className="box-content">
+                      <strong>DSD</strong>
+                      <span>{dataObj['DSD']}</span>
                     </div>
                     
                   </div>
@@ -250,7 +298,7 @@ export default function CognitiveEnhancersGuide() {
             })}
           </div>
           <footer id="footer">
-          <p><b>Key:</b> AChEI: acetylcholinesterase inhibitor; BuChEI: butyrylcholinesterase inhibitor </p>
+          <p><b>Key:</b> DSD: down syndrome dementia; FTD: frontotemporal dementia; LBD: lewy body dementia; MCI: mild cognitive impairment; N: not indicated; PD: parkinson's disease; Y: indicated. </p>
           
           </footer>
         </div>

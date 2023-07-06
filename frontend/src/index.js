@@ -16,6 +16,8 @@ import SearchBar from "./views/searchBar/searchBar";
 import AntipsychoticsGuide from "./views/Topics/AntipsychoticsGuide/antipsychoticsGuide";
 
 import CognitiveEnhancersGuide from "./views/Topics/CognitiveEnhancersGuide/CognitiveEnhancersGuide";
+import CognitiveEnhancersGuideCont from "./views/Topics/CognitiveEnhancersGuideCont/CognitiveEnhancersGuideCont";
+import CognitiveEnhancersClinical from "./views/Topics/CognitiveEnhancersClinical/CognitiveEnhancersClinical";
 import NeuropsychiatricSymptoms from "./views/Topics/NeuropsychiatricSymptoms/NeuropsychiatricSymptoms";
 
 import Panel from "./views/AdminPanel/Panel";
@@ -51,6 +53,8 @@ root.render(
       <Route path="/DeliriumManagement" element={<DeliriumManagement />} />
       <Route path="/NeuropsychiatricSymptomsECT" element={<NeuropsychiatricSymptomsECT />} />
       <Route path="/CognitiveEnhancersGuide" element={<CognitiveEnhancersGuide />} />
+      <Route path="/CognitiveEnhancersGuideCont" element={<CognitiveEnhancersGuideCont />} />
+      <Route path="/CognitiveEnhancersClinical" element={<CognitiveEnhancersClinical />} />
       <Route path="/NeuropsychiatricSymptoms" element={<NeuropsychiatricSymptoms />} />
       <Route path="/panel" element={<Panel />} />
       <Route path="/InsomniaSedatives" element={<InsomniaSedatives />} />

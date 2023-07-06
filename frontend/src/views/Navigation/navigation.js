@@ -266,10 +266,10 @@ const Navbar = () => {
                   <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Guide</Button>
                 </MenuItem>
                 <MenuItem onClick={handleDementiaMenuClose}>
-                  <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Guide continued</Button>
+                  <Button component={Link} to="/CognitiveEnhancersGuideCont" sx={{ color: '#000' }}>Cognitive Enhancers Guide continued</Button>
                 </MenuItem>
                 <MenuItem onClick={handleDementiaMenuClose}>
-                  <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Clinical Guide</Button>
+                  <Button component={Link} to="/CognitiveEnhancersClinical" sx={{ color: '#000' }}>Cognitive Enhancers Clinical Guide</Button>
                 </MenuItem>
                 <MenuItem onClick={handleDementiaMenuClose}>
                   <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>NPS Management</Button>
@@ -469,10 +469,10 @@ const Navbar = () => {
                 <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Guide</Button>
               </MenuItem>
               <MenuItem onClick={handleDementiaMenuClose}>
-                <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Guide continued</Button>
+                <Button component={Link} to="/CognitiveEnhancersGuideCont" sx={{ color: '#000' }}>Cognitive Enhancers Guide continued</Button>
               </MenuItem>
               <MenuItem onClick={handleDementiaMenuClose}>
-                <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Clinical Guide</Button>
+                <Button component={Link} to="/CognitiveEnhancersClinical" sx={{ color: '#000' }}>Cognitive Enhancers Clinical Guide</Button>
               </MenuItem>
               <MenuItem onClick={handleDementiaMenuClose}>
                 <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>NPS Management</Button>
@@ -716,10 +716,10 @@ const Navbar = () => {
                   <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Guide</Button>
                 </MenuItem>
                 <MenuItem onClick={handleDementiaMenuClose}>
-                  <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Guide continued</Button>
+                  <Button component={Link} to="/CognitiveEnhancersGuideCont" sx={{ color: '#000' }}>Cognitive Enhancers Guide continued</Button>
                 </MenuItem>
                 <MenuItem onClick={handleDementiaMenuClose}>
-                  <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Clinical Guide</Button>
+                  <Button component={Link} to="/CognitiveEnhancersClinical" sx={{ color: '#000' }}>Cognitive Enhancers Clinical Guide</Button>
                 </MenuItem>
                 <MenuItem onClick={handleDementiaMenuClose}>
                   <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>NPS Management</Button>
@@ -919,10 +919,10 @@ const Navbar = () => {
                 <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Guide</Button>
               </MenuItem>
               <MenuItem onClick={handleDementiaMenuClose}>
-                <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Guide continued</Button>
+                <Button component={Link} to="/CognitiveEnhancersGuideCont" sx={{ color: '#000' }}>Cognitive Enhancers Guide continued</Button>
               </MenuItem>
               <MenuItem onClick={handleDementiaMenuClose}>
-                <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Clinical Guide</Button>
+                <Button component={Link} to="/CognitiveEnhancersClinical" sx={{ color: '#000' }}>Cognitive Enhancers Clinical Guide</Button>
               </MenuItem>
               <MenuItem onClick={handleDementiaMenuClose}>
                 <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>NPS Management</Button>

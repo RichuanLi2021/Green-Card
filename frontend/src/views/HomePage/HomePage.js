@@ -126,11 +126,11 @@ const HomePage = () => {
                       </Typography>
                       <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
                         {" "}
-                        <a href="CognitiveEnhancersGuide"> Cognitive Enhancers Guide continued </a>{" "}
+                        <a href="CognitiveEnhancersGuideCont"> Cognitive Enhancers Guide continued </a>{" "}
                       </Typography>
                       <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
                         {" "}
-                        <a href="CognitiveEnhancersGuide"> Cognitive Enhancers Clinical Guide </a>{" "}
+                        <a href="CognitiveEnhancersClinical"> Cognitive Enhancers Clinical Guide </a>{" "}
                       </Typography>
                       <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
                         {" "}
