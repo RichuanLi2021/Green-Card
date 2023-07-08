@@ -7,6 +7,7 @@ const Search = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("Search Term:", searchTerm); // Added console log
     props.onSearch(searchTerm);
   };
 

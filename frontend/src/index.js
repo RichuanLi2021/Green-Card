@@ -73,7 +73,7 @@ root.render(
       <Route path="/PolypharmacyCommonDDIs" element={<PolypharmacyCommonDDIs />} />
       <Route path="/PolypharmacyNotableChanges" element={<PolypharmacyNotableChanges />} />
       <Route path="/PolypharmacyPrinciples" element={<PolypharmacyPrinciples />} />
-      <Route path="/search" element={<Search />} />
+      <Route path="/search/:searchTerm" element={<SearchResultPage />} />
     </Routes>
   </BrowserRouter>
 );
