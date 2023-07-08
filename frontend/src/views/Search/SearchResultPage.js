@@ -10,6 +10,7 @@ const SearchResultPage = () => {
     const fetchData = async () => {
       console.log("Fetching data with search term:", searchTerm); // Added console log
       const response = await axios.get(`http://localhost:8887/api/search?term=${searchTerm}`);
+      console.log(response.data);
       setResults(response.data);
     };
 
