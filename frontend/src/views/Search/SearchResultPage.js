@@ -17,6 +17,22 @@ const SearchResultPage = () => {
     fetchData();
   }, [searchTerm]);
 
-  return <div>// Render your results here.</div>;
+  return (
+    <div className="grid-container">
+      {results.map((row, index) => (
+        <div className="grid-item" key={index}>
+          {Object.entries(row).map(([column, columnValue]) => (
+            <div className="box" key={column}>
+              <div className="box-content">
+                <strong>{column}:</strong>
+                <span>{columnValue}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
 };
+
 export default SearchResultPage;
