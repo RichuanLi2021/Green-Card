@@ -8,6 +8,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SearchBar from "../searchBar/searchBar";
 import Data from "../searchBar/Data.json";
+import Search from "../Search/Search";
 
 const theme = createTheme({
   typography: {
@@ -23,7 +24,8 @@ const HomePage = () => {
     <div>
       <ThemeProvider theme={theme}>
         <Navigation />
-        <SearchBar placeholder="Search" data={Data} />
+        <Search></Search>
+        {/* <SearchBar placeholder="Search" data={Data} /> */}
         <Container className="main-container" sx={{ overflow: "auto", display: "flex" }}>
           <Grid
             container
