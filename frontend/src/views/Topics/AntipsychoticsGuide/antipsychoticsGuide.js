@@ -102,8 +102,8 @@ export default function AntipsychoticsGuide() {
               >
                 <Typography variant="h3"> Antipsychotics Guide</Typography>
               </Box>
-              <Table  className="contentTable" aria-label="customized table" id="table">
-                <TableHead className= "tableHead">
+              <Table className="contentTable" aria-label="customized table" id="table">
+                <TableHead className="tableHead">
                   <TableRow>
                     <StyledTableCell className="nameCell" align="left">Name</StyledTableCell>
                     <StyledTableCell align="left">Approx equiv.dose</StyledTableCell>
@@ -172,9 +172,9 @@ export default function AntipsychoticsGuide() {
             >
               <Typography variant="h3" id="topicHeader"> Antipsychotics Guide</Typography>
             </Box>
-            <TableContainer component={Paper}  className="myTableContainer">
+            <TableContainer component={Paper} className="myTableContainer">
               <Table className="contentTable" aria-label="customized table" id="table">
-                <TableHead className= "tableHead">
+                <TableHead className="tableHead">
                   <TableRow>
                     <StyledTableCell className="nameCell" style={{ width: 15, backgroundColor: '#96d2b0' }}>Name</StyledTableCell>
                     <StyledTableCell align="left" style={{ width: 15, backgroundColor: '#96d2b0' }}>Approx equiv.dose</StyledTableCell>
@@ -193,7 +193,7 @@ export default function AntipsychoticsGuide() {
                 <TableBody>
                   {data.map((dataObj, index) => (
                     <StyledTableRow key={index}>
-                      <StyledTableCell component="th" scope="row" className="nameCell" sx={{ backgroundColor: "rgba(243, 243, 243,1)"}}>
+                      <StyledTableCell component="th" scope="row" className="nameCell" sx={{ backgroundColor: "rgba(243, 243, 243,1)" }}>
                         {dataObj.Name}
                       </StyledTableCell>
                       <StyledTableCell align="left">{dataObj[`Approx. equiv. dose`]}</StyledTableCell>
