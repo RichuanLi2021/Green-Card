@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import "./SearchResultPage.css";
 
 const SearchResultPage = () => {
   const { searchTerm } = useParams();
@@ -24,7 +25,7 @@ const SearchResultPage = () => {
           {Object.entries(row).map(([column, columnValue]) => (
             <div className="box" key={column}>
               <div className="box-content">
-                <strong>{column}:</strong>
+                <strong>{column}: </strong>
                 <span>{columnValue}</span>
               </div>
             </div>

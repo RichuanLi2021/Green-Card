@@ -1,33 +1,20 @@
-.row-container {
+.grid-container {
   display: flex;
   flex-direction: column;
+  width: 100%; /* Add this line */
 }
 
-.row {
+.grid-item {
   display: flex;
-  align-items: center;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
+  flex-direction: column; /* To ensure contents of grid item are arranged in a column */
+  margin-bottom: 15px;
   padding: 10px;
-}
-
-.cell {
-  margin-right: 10px;
-}
-
-.column-header {
-  font-weight: bold;
-}
-
-.column-value {
-  margin-left: 5px;
-  font-weight: bold;
 }
 
 .box {
-  margin-top: 10px;
+  margin-top: 0px;
   background-color: #f0f0f0;
-  padding: 10px;
+  padding: 20px;
 }
 
 .box-content {
