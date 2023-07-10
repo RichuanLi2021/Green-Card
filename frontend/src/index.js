@@ -28,7 +28,7 @@ import PsychotropicMonitoringSection from './views/Topics/PsychotropicMonitoring
 // import PrescribingAndDeprescribing from './views/Topics/PrescribingAndDeprescribing/PrescribingAndDeprescribing';
 // import NotableChangesInAdults from './views/Topics/NotableChangesInAdults/NotableChangesInAdults';
 import SearchResults from './views/Topics/SearchResults/SearchResults';
-
+import AddDrug from './views/Topics/AddField/AddDrug';
 
 import AntidepressantGuide from './views/Topics/AntidepressantGuide/AntidepressantGuide';
 import AntidepressantSafety from './views/Topics/AntidepressantSafety/AntidepressantSafety';
@@ -71,7 +71,7 @@ root.render(
       <Route path="/PolypharmacyCommonDDIs" element={<PolypharmacyCommonDDIs/>}/>
       <Route path="/PolypharmacyNotableChanges" element={<PolypharmacyNotableChanges/>}/>
       <Route path="/PolypharmacyPrinciples" element={<PolypharmacyPrinciples/>}/>
-
+      <Route path="/AddDrug" element={<AddDrug/>}/>
     </Routes>
   </BrowserRouter>
 );

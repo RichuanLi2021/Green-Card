@@ -24,9 +24,25 @@ const updateData = async (req, res, next) => {
   }
 }
 
+
+const drugData = async (req, res, next) => {
+  const { drugName, doseEquiv, timeToPeakInPlasma, halfLife, avgDoseRange,mgFormsupplied } = req.body;
+  try {
+      await pool.query('INSERT INTO `green_card`.`SEDATIVES/HYPNOTICS GUIDE` (`Name`,`Dose equiv.`,`Time to peak in plasma`,`Half-life`,`Avg dose range (mg/day)`,`mg/Form supplied`) VALUES (?, ?, ?, ?, ?,?)',
+          [drugName, doseEquiv, timeToPeakInPlasma, halfLife, avgDoseRange,mgFormsupplied]);
+      res.send('Drug was submitted successfully');
+  } catch (err) {
+      next(err);
+      throw err;
+  }
+};
+
+
+
 module.exports = {
   getData,
-  updateData
+  updateData,
+  drugData
 };
 
 
