@@ -74,6 +74,14 @@ export default function InsomniaSedatives() {
     });
   };
 
+  // const handleDelete = async (Name) =>{
+  //   try{
+  //     await axios.delete('http://localhost:8887/api/delete/'+Name)
+  //     window.alert('Drug Deleted Successfully !')
+  //   }catch(err) {
+  //     console.log(err);
+  //   }
+  // }
 
   if (Object.keys(data).length > 0)
   {if (admin) {
@@ -94,9 +102,10 @@ export default function InsomniaSedatives() {
                 <div className="grid-item" key={id}>
                   <button
                     onClick={() => handleDrugClick(dataObj)}
-                    className={`drug-button ${isDrugSelected ? 'active' : ''}`}
+                    className={`drug-button ${isDrugSelected ? 'active' : ''}`} 
                   >
-                    {dataObj.Name}
+                    {dataObj.Name} 
+                    {/* <button onClick={e => handleDelete(dataObj.Name)}> Delete</button> */}
                   </button>
 
                   {isDrugSelected && (
@@ -107,6 +116,7 @@ export default function InsomniaSedatives() {
                       <strong>Dose equiv.</strong>
                       <input
                                   id="`Dose equiv.`"
+
                                   name={dataObj.Name}
                                   type="text"
                                   onFocus={store_value}

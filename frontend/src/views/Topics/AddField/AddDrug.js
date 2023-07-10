@@ -1,20 +1,17 @@
 import * as React from 'react';
-import SearchBar from "../../searchBar/searchBar";
+
 import Navigation from '../../Navigation/navigation';
-import Data from "../../searchBar/Data.json";
+
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
-import axios from 'axios';
+
 import submitDrug from './AddDrugBackend';
 import '../../FeedbackForm/FeedbackForm.css';
 import TextField from '@mui/material/TextField';
-import FormLabel from '@mui/material/FormLabel';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import CloseIcon from '@mui/icons-material/Close';
-import Rating from '@mui/material/Rating';
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme({
     palette: {
