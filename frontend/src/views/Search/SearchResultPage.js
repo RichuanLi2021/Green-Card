@@ -9,7 +9,7 @@ const SearchResultPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log("Fetching data with search term:", searchTerm); // Added console log
+      console.log("Fetching data with search term:", searchTerm);
       const response = await axios.get(`http://localhost:8887/api/search?term=${searchTerm}`);
       console.log(response.data);
       setResults(response.data);
@@ -19,19 +19,31 @@ const SearchResultPage = () => {
   }, [searchTerm]);
 
   return (
-    <div className="grid-container">
-      {results.map((row, index) => (
-        <div className="grid-item" key={index}>
-          {Object.entries(row).map(([column, columnValue]) => (
-            <div className="box" key={column}>
-              <div className="box-content">
-                <strong>{column}: </strong>
-                <span>{columnValue}</span>
-              </div>
+    <div>
+      {results.length > 0 ? (
+        <div className="grid-container">
+          {results.map((row, index) => (
+            <div className="grid-item" key={index}>
+              <div className="table-name">{row.tableName}</div>
+              {Object.entries(row).map(([column, columnValue]) => {
+                if (column !== "tableName") {
+                  return (
+                    <div className="box" key={column}>
+                      <div className="box-content">
+                        <strong>{column}: </strong>
+                        <span>{columnValue}</span>
+                      </div>
+                    </div>
+                  );
+                }
+                return null;
+              })}
             </div>
           ))}
         </div>
-      ))}
+      ) : (
+        <div className="no-results">No results found</div>
+      )}
     </div>
   );
 };

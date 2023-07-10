@@ -6,8 +6,6 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import SearchBar from "../searchBar/searchBar";
-import Data from "../searchBar/Data.json";
 import Search from "../Search/Search";
 import { useNavigate } from "react-router-dom";
 

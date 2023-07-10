@@ -67,7 +67,7 @@ exports.search = async (req, res) => {
       `;
 
       const [rows] = await connection.execute(query);
-      return { columns, rows };
+      return { tableName, columns, rows };
     } catch (error) {
       console.error("Error fetching rows for table", tableName);
       throw error;
@@ -76,7 +76,7 @@ exports.search = async (req, res) => {
 
   try {
     for (const table of tables) {
-      const { columns, rows } = await getColumnsAndRows(table);
+      const { tableName, columns, rows } = await getColumnsAndRows(table);
       const tableResults = rows.map((row) => {
         const matchedColumns = {};
         for (const column of columns) {
@@ -85,7 +85,7 @@ exports.search = async (req, res) => {
         return matchedColumns;
       });
 
-      results = [...results, ...tableResults];
+      results = [...results, ...tableResults.map((row) => ({ tableName, ...row }))];
     }
 
     res.json(results);
