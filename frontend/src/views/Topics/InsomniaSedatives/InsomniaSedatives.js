@@ -184,7 +184,7 @@ export default function InsomniaSedatives() {
               );
             })}
           </div>
-          <button className="drug-button" >Add new Drug</button>
+          <button className="drug-button" > <a href='http://localhost:3000/AddDrug'>Add new Drug</a> </button>
           <footer id="footer">
           <p><b>Key:</b> †does not reflect maximum doses; *should be given 30-90 mins before bedtime. <b>NOTES</b>: doses may not reflect manufacturer's recommendations but are based on research and/or expert opinion.  All sedatives should be used sparingly in the older adults and in people with liver disease; use lowest possible dose. In older adults, there is a poor risk/benefit ratio. </p>
           
