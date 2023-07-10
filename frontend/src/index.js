@@ -36,6 +36,7 @@ import AntidepressantsClinical from "./views/Topics/AntidepressantsClinical/Anti
 import PolypharmacyCommonDDIs from "./views/Topics/PolypharmacyCommonDDIs/PolypharmacyCommonDDIs";
 import PolypharmacyNotableChanges from "./views/Topics/PolypharmacyNotableChanges/PolypharmacyNotableChanges";
 import PolypharmacyPrinciples from "./views/Topics/PolypharmacyPrinciples/PolypharmacyPrinciples";
+import SearchResultPage from "./views/Search/SearchResultPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -71,6 +72,7 @@ root.render(
       <Route path="/PolypharmacyCommonDDIs" element={<PolypharmacyCommonDDIs />} />
       <Route path="/PolypharmacyNotableChanges" element={<PolypharmacyNotableChanges />} />
       <Route path="/PolypharmacyPrinciples" element={<PolypharmacyPrinciples />} />
+      <Route path="/search/:searchTerm" element={<SearchResultPage />} />
     </Routes>
   </BrowserRouter>
 );
