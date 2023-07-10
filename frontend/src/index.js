@@ -37,7 +37,6 @@ import PolypharmacyCommonDDIs from "./views/Topics/PolypharmacyCommonDDIs/Polyph
 import PolypharmacyNotableChanges from "./views/Topics/PolypharmacyNotableChanges/PolypharmacyNotableChanges";
 import PolypharmacyPrinciples from "./views/Topics/PolypharmacyPrinciples/PolypharmacyPrinciples";
 import SearchResultPage from "./views/Search/SearchResultPage";
-import Search from "./views/Search/Search";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
