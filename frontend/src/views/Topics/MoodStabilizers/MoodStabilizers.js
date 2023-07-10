@@ -8,6 +8,8 @@ import SearchBar from "../../searchBar/searchBar";
 import MoodStabilizersUpdate from "./moodStabilizersbackend";
 import './MoodStabilizers.css';
 
+import Footer from '../../Footer/Footer';
+
 export default function MoodStabilizers() {
   const [data, setData] = useState({});
   useEffect(() => {
@@ -76,7 +78,9 @@ export default function MoodStabilizers() {
           <SearchBar placeholder="Search" data={Data} />
           <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
             <Typography variant="h4" align="center" gutterBottom>
-            MOOD STABILIZERS GUIDE
+              <div className='subtitle-mood'>
+                MOOD STABILIZERS GUIDE
+              </div>
             </Typography>
     
             <div className="grid-container">
@@ -160,9 +164,12 @@ export default function MoodStabilizers() {
                 );
               })}
             </div>
-            <footer id="footer">
-            <p><b>Key:</b> †dosage determined by concomitant drugs used (see Lamictal monograph for details). er tab: slow release.<b>NOTES</b>: doses may not reflect manufacturers' recommendations, they are based on clinical literature and experience; most drugs in this category do not have a formal mood stabilizer indication. Levels may be useful for investigating toxicity and adherence, in addition to achieving a therapeutic dose. ^half-life of active metabolite. *due to risks for drug-drug interactions and adverse effects  </p>
-            </footer>
+            <div className="mood-footer">
+            <p className='mood-notes'>
+            <b>Key: </b> †dosage determined by concomitant drugs used (see Lamictal monograph for details). er tab: slow release. <br /> <br />
+            <b>NOTES: </b> doses may not reflect manufacturers' recommendations, they are based on clinical literature and experience; most drugs in this category do not have a formal mood stabilizer indication. Levels may be useful for investigating toxicity and adherence, in addition to achieving a therapeutic dose. ^half-life of active metabolite. *due to risks for drug-drug interactions and adverse effects 
+            </p>
+            </div>
           </div>
         </>
       );
@@ -176,7 +183,9 @@ export default function MoodStabilizers() {
           <SearchBar placeholder="Search" data={Data} />
           <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
             <Typography variant="h4" align="center" gutterBottom>
-            MOOD STABILIZERS GUIDE
+            <div className='subtitle-mood'>
+                MOOD STABILIZERS GUIDE
+              </div>
             </Typography>
 
             <div className="grid-container">
@@ -223,10 +232,14 @@ export default function MoodStabilizers() {
                 );
               })}
             </div>
-            <footer id="footer">
-            <p><b>Key:</b> †dosage determined by concomitant drugs used (see Lamictal monograph for details). er tab: slow release.<b>NOTES</b>: doses may not reflect manufacturers' recommendations, they are based on clinical literature and experience; most drugs in this category do not have a formal mood stabilizer indication. Levels may be useful for investigating toxicity and adherence, in addition to achieving a therapeutic dose. ^half-life of active metabolite. *due to risks for drug-drug interactions and adverse effects  </p>
-            </footer>
+            <div className="mood-footer">
+            <p className='mood-notes'>
+            <b>Key: </b> †dosage determined by concomitant drugs used (see Lamictal monograph for details). er tab: slow release. <br /> <br />
+            <b>NOTES: </b> doses may not reflect manufacturers' recommendations, they are based on clinical literature and experience; most drugs in this category do not have a formal mood stabilizer indication. Levels may be useful for investigating toxicity and adherence, in addition to achieving a therapeutic dose. ^half-life of active metabolite. *due to risks for drug-drug interactions and adverse effects 
+            </p>
+            </div>
           </div>
+          <Footer />
         </>
       );
     }

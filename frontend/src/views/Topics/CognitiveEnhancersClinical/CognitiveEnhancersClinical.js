@@ -8,7 +8,7 @@ import Navigation from '../../Navigation/navigation';
 import Data from "../../searchBar/Data.json";
 import CognitiveEnhancersClinicalUpdate from './CognitiveEnhancersClinicalBackend';
 
-
+import Footer from '../../Footer/Footer';
 
 
 export default function CognitiveEnhancersClinical() {
@@ -83,7 +83,9 @@ export default function CognitiveEnhancersClinical() {
         <SearchBar placeholder="Search" data={Data} />
         <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
           <Typography variant="h3" align="center" gutterBottom>
+          <div className="subtitle">
             Cognitive Enhancers Clinical Guide
+          </div>
           </Typography>
 
           <div className="grid-container">
@@ -141,12 +143,14 @@ export default function CognitiveEnhancersClinical() {
             })}
           </div>
           <button className="drug-button" >Add new Drug</button>
-          <footer id="footer">
-          <p><b>Key:</b>COG_CONTRA means "Contraindications", COG_ACHEI means "Adverse Effects (AChEI)", COG_ACHEI_ME means "Adverse Effects (Memantine)", COG_BASELINE means "Baseline",
-          COG_MONITOR means "monitoring" </p>
-          
-          </footer>
+          <div className="cognitive-footer">
+            <p className='cognitive-notes'>
+              <b>Key: </b>COG_CONTRA means "Contraindications", COG_ACHEI means "Adverse Effects (AChEI)", COG_ACHEI_ME means "Adverse Effects (Memantine)", COG_BASELINE means "Baseline",
+              COG_MONITOR means "monitoring" 
+          </p>
+          </div>
         </div>
+        <Footer />
       </>
     );
   }
@@ -159,7 +163,9 @@ export default function CognitiveEnhancersClinical() {
         <SearchBar placeholder="Search" data={Data} />
         <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
           <Typography variant="h3" align="center" gutterBottom>
+          <div className="subtitle">
             Cognitive Enhancers Clinical Guide
+          </div>
           </Typography>
 
           <div className="grid-container">
@@ -195,11 +201,14 @@ export default function CognitiveEnhancersClinical() {
               );
             })}
           </div>
-          <footer id="footer">
-          <p><b>Key:</b>COG_CONTRA means "Contraindications", COG_ACHEI means "Adverse Effects (AChEI)", COG_ACHEI_ME means "Adverse Effects (Memantine)", COG_BASELINE means "Baseline",
-          COG_MONITOR means "monitoring" </p>
-          </footer>
+          <div className="cognitive-footer">
+            <p className='cognitive-notes'>
+              <b>Key: </b>COG_CONTRA means "Contraindications", COG_ACHEI means "Adverse Effects (AChEI)", COG_ACHEI_ME means "Adverse Effects (Memantine)", COG_BASELINE means "Baseline",
+              COG_MONITOR means "monitoring" 
+          </p>
+          </div>
         </div>
+        <Footer />
       </>
     );
   }

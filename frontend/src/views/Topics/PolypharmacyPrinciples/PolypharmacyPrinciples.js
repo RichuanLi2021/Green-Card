@@ -73,7 +73,11 @@ export default function PolypharmacyPrinciples() {
           alignItems: 'center',
         }}
       >
-        <Typography variant="h3" id="polypharmacy">Prescribing and Deprescribing Principles</Typography>
+        <Typography variant="h3" id="polypharmacy">
+          <div className='subtitle'>
+            Prescribing and Deprescribing Principles
+          </div>
+        </Typography>
       </Box>
 
         <TableContainer component={Paper} >
@@ -96,10 +100,12 @@ export default function PolypharmacyPrinciples() {
             </TableBody>
           </Table>
         </TableContainer><br></br>
-        <p><b>Key notes: </b> PRESCR_DEPRE means Prescribing and Deprescribing Principles.  
-        <b> For additional information:</b> deprescribing.org, Beers criteria, STOPP/START criteria. 
- </p>
-          
+        <div className="polypharmacy-footer">
+          <p className='polypharmacy-notes'>
+            <b>Key notes: </b> PRESCR_DEPRE means Prescribing and Deprescribing Principles.<br /> <br />  
+            <b>For additional information:</b> deprescribing.org, Beers criteria, STOPP/START criteria. 
+          </p>
+        </div>
     </div>
     <Footer />
     </>

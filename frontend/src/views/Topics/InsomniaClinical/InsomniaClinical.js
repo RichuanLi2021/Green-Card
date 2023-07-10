@@ -8,6 +8,9 @@ import Navigation from '../../Navigation/navigation';
 import Data from "../../searchBar/Data.json";
 
 
+import Footer from '../../Footer/Footer';
+
+
 export default function InsomniaClinical() {
 
   const [data, setData] = useState({});
@@ -49,7 +52,9 @@ export default function InsomniaClinical() {
         <SearchBar placeholder="Search" data={Data} />
         <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
           <Typography variant="h3" align="center" gutterBottom>
-            Sedatives/Hypnotics Clinical Guide
+            <div className='subtitle'>
+              Sedatives/Hypnotics Clinical Guide
+            </div>
           </Typography>
 
           <div className="grid-container">
@@ -82,11 +87,13 @@ export default function InsomniaClinical() {
               );
             })}
           </div>
-          <footer id="footer">
-          <p><b>Key notes: SHYPCLIN_BFR means before prescribing, SHYPCLIN_STR means starting, SHYPCLIN_END means ending</b> </p>
-   
-          </footer>
+          <div className="insomnia-footer">
+            <p className='insomnia-notes'>
+              <b>Key notes: </b>SHYPCLIN_BFR means before prescribing, SHYPCLIN_STR means starting, SHYPCLIN_END means ending 
+            </p>
+          </div>
         </div>
+        <Footer />
       </>
     );
   }

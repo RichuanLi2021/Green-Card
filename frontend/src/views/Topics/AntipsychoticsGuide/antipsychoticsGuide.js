@@ -12,6 +12,8 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
+import Footer from '../../Footer/Footer';
+
 export default function AntipsychoticsGuide() {
   const [data, setData] = useState({});
   useEffect(() => {
@@ -78,7 +80,7 @@ export default function AntipsychoticsGuide() {
         <>
           <Navigation />
           <SearchBar placeholder="Search" data={Data} />
-          <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
+          <div className="subHeader" style={{ marginTop: '2rem', padding: '0 1rem' }}>
             <Typography variant="h4" align="center" gutterBottom>
               Antipsychotics Guide
             </Typography>
@@ -248,15 +250,20 @@ export default function AntipsychoticsGuide() {
                 );
               })}
             </div>
-            <footer id="footer">
-              <b>Key:</b> AD: antidepressant; er: extended release; ir: immediate release; EO-SCZ: early-onset schizophrenia; LO-SCZ: late-onset
+            <div className="antipsychoticsGuide-footer">
+            <p className="footer-notes">
+              <b>Key: </b> AD: antidepressant; er: extended release; ir: immediate release; EO-SCZ: early-onset schizophrenia; LO-SCZ: late-onset
               schizophrenia; MDE: major depressive disorder; NPS: neuropsychiatric symptoms of dementia; NR: not recommended; PP: Parkinson's psychosis;
               †0.25 of adult equivalent dose shown (see Yellow Card); ‡take with meal (≥350 kcal); ^accounts for half-life of active metabolites;
-              **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data. <b>NOTES:</b> doses may not
-              reflect manufacturers' recommendations but are based on clinical literature and opinion. Half lives are estimates based on adult data
+              **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data.
+              <br /> <br /> 
+              <b>NOTES: </b> doses may not
+              reflect manufacturers' recommendations but are based on clinical literature and opinion. Half-lives are estimates based on adult data
               and in older adults they can often be increased up to 170%.
-            </footer>
+            </p>
           </div>
+        </div>
+        <Footer />
         </>
       );
     }
@@ -356,16 +363,20 @@ export default function AntipsychoticsGuide() {
               );
             })}
           </div>
-
-          <footer id="footer">
-            <b>Key:</b> AD: antidepressant; er: extended release; ir: immediate release; EO-SCZ: early-onset schizophrenia; LO-SCZ: late-onset
-            schizophrenia; MDE: major depressive disorder; NPS: neuropsychiatric symptoms of dementia; NR: not recommended; PP: Parkinson's psychosis;
-            †0.25 of adult equivalent dose shown (see Yellow Card); ‡take with meal (≥350 kcal); ^accounts for half-life of active metabolites;
-            **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data. <b>NOTES:</b> doses may not
-            reflect manufacturers' recommendations but are based on clinical literature and opinion. Half-lives are estimates based on adult data
-            and in older adults they can often be increased up to 170%.
-          </footer>
+          <div className="antipsychoticsGuide-footer">
+            <p className="footer-notes">
+              <b>Key: </b> AD: antidepressant; er: extended release; ir: immediate release; EO-SCZ: early-onset schizophrenia; LO-SCZ: late-onset
+              schizophrenia; MDE: major depressive disorder; NPS: neuropsychiatric symptoms of dementia; NR: not recommended; PP: Parkinson's psychosis;
+              †0.25 of adult equivalent dose shown (see Yellow Card); ‡take with meal (≥350 kcal); ^accounts for half-life of active metabolites;
+              **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data.
+              <br /> <br /> 
+              <b>NOTES: </b> doses may not
+              reflect manufacturers' recommendations but are based on clinical literature and opinion. Half-lives are estimates based on adult data
+              and in older adults they can often be increased up to 170%.
+            </p>
+          </div>
         </div>
+        <Footer />
       </>
     );
     }

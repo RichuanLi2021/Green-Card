@@ -8,7 +8,7 @@ import Data from "../../searchBar/Data.json";
 import SearchBar from "../../searchBar/searchBar";
 import PsychotropicMonitoringUpdate from "./PsychotropicMonitoringbackend";
 
-
+import Footer from '../../Footer/Footer';
 
 export default function PsychotropicMonitoringSection() {
   const [data, setData] = useState({});
@@ -80,7 +80,9 @@ export default function PsychotropicMonitoringSection() {
           <SearchBar placeholder="Search" data={Data} />
           <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
             <Typography variant="h4" align="center" gutterBottom>
-            Psychotropic Monitoring
+            <div className='subtitle'>
+              Psychotropic Monitoring
+            </div>
             </Typography>
     
             <div className="grid-container">
@@ -137,10 +139,14 @@ export default function PsychotropicMonitoringSection() {
                 );
               })}
             </div>
-            <footer id="footer">
-            <p><b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark).  <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be necessary based on clinical judgment  </p>
-            </footer>
+            <div className="psychotropic-footer">
+              <p className='psychotropic-notes'>
+              <b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark).  <br /> <br />
+              <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be necessary based on clinical judgment  
+              </p>
+            </div>
           </div>
+          <Footer />
         </>
       );
     }
@@ -153,7 +159,9 @@ export default function PsychotropicMonitoringSection() {
           <SearchBar placeholder="Search" data={Data} />
           <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
             <Typography variant="h4" align="center" gutterBottom>
-            Psychotropic Monitoring
+            <div className='subtitle'>
+              Psychotropic Monitoring
+            </div>
             </Typography>
 
             <div className="grid-container">
@@ -192,10 +200,14 @@ export default function PsychotropicMonitoringSection() {
                 );
               })}
             </div>
-            <footer id="footer">
-              <p><b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark).  <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be necessary based on clinical judgment  </p>
-            </footer>
+            <div className="psychotropic-footer">
+              <p className='psychotropic-notes'>
+              <b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark).  <br /> <br />
+              <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be necessary based on clinical judgment  
+              </p>
+            </div>
           </div>
+          <Footer />
         </>
       );
     }

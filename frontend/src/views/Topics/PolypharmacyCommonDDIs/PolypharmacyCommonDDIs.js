@@ -18,6 +18,8 @@ import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 import Data from "../../searchBar/Data.json";
 
+import './PolypharmacyCommonDDIs.css';
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.success.main,
@@ -73,7 +75,11 @@ export default function PolypharmacyCommonDDIs() {
           alignItems: 'center',
         }}
       >
-        <Typography variant="h3" id="polypharmacyCommonHeader">Common DDIs with Psychotropics</Typography>
+        <Typography variant="h3" id="polypharmacyCommonHeader">
+        <div className="subtitle">
+          Common DDIs with Psychotropics
+        </div>
+        </Typography>
       </Box>
 
         <TableContainer component={Paper} >
@@ -96,8 +102,11 @@ export default function PolypharmacyCommonDDIs() {
             </TableBody>
           </Table>
         </TableContainer><br></br>
-        <p><b>Key notes: COM_DDI_PYS means Common DDIs with Psychotropics</b> </p>
-          
+        <div className="polypharmacy-footer">
+          <p className='polypharmacy-notes'>
+          <b>Key notes: </b>COM_DDI_PYS means Common DDIs with Psychotropics 
+          </p>
+        </div>          
     </div>
     <Footer />
     </>

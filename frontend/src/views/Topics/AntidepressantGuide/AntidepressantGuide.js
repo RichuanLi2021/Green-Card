@@ -18,6 +18,8 @@ import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 import Data from "../../searchBar/Data.json";
 
+import './AntidepressantGuide.css';
+
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -111,18 +113,22 @@ export default function AntidepressantGuide() {
                     </TableBody>
                   </Table>
                 </TableContainer><br></br>
-                <p><b>Key:</b> 5HT: serotonin; DA: dopamine; NaSSA: noradrenaline serotonin specific antidepressant; NDRI:
-noradrenaline dopamine reuptake inhibitor; NT: neurotransmitter; NA: noradrenaline; SARI: serotonin
-antagonist & reuptake inhibitor; SSRI: selective serotonin reuptake inhibitor; TCA: tricyclic
-antidepressant (2°&3°: secondary and tertiary amines); xl, sr & er: slow release; †
- therapeutic levels
-available and useful; ^ accounts for half life of active metabolite; **preferred choice based on existing
-evidence; ∅ less appropriate due to long half life; ♯ less appropriate due to anticholinergic activity.
-<b>NOTES:</b> doses may not reflect manufacturers' recommendations but are based on clinical literature
-and expert opinion. Half lives are estimates based on adult data and in older adults they can often be
-increased up to 170%. </p>
-              
-         
+                <div className="antidepressantGuide-notes">
+                  <p className="antidepressantGuide-notes-key">
+                    <b>Key: </b> 
+                    5HT: serotonin; DA: dopamine; NaSSA: noradrenaline serotonin specific antidepressant; NDRI:
+                    noradrenaline dopamine reuptake inhibitor; NT: neurotransmitter; NA: noradrenaline; SARI: serotonin
+                    antagonist & reuptake inhibitor; SSRI: selective serotonin reuptake inhibitor; TCA: tricyclic
+                    antidepressant (2°&3°: secondary and tertiary amines); xl, sr & er: slow release; †
+                    therapeutic levels available and useful; ^ accounts for half life of active metabolite; **preferred choice based on existing
+                    evidence; ∅ less appropriate due to long half life; ♯ less appropriate due to anticholinergic activity.
+                  </p>
+                  <p className="antidepressantGuide-notes-notes">
+                    <b>NOTES: </b> doses may not reflect manufacturers' recommendations but are based on clinical literature
+                    and expert opinion. Half lives are estimates based on adult data and in older adults they can often be
+                    increased up to 170%.
+                  </p>
+                </div> 
     </div>
 
     

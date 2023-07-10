@@ -10,3 +10,21 @@
 #mainText{
     font-size:15pt;
 }
+
+@media (max-width: 800px) {
+    #mainTopic {
+        font-size: 120%;
+    }
+
+    .content-insomnia{
+        text-align: left;
+        background-color: #d7ece0;
+        font-size: 13px;
+        padding: 10px;
+      }
+      .li-insomnia {
+        padding-bottom: 10px;
+      }
+  }
+  
+  
