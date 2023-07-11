@@ -30,6 +30,12 @@ import PsychotropicMonitoringSection from "./views/Topics/PsychotropicMonitoring
 // import NotableChangesInAdults from './views/Topics/NotableChangesInAdults/NotableChangesInAdults';
 import SearchResults from './views/Topics/SearchResults/SearchResults';
 import AddDrug from './views/Topics/AddField/AddDrug';
+import AntidepressantGuide from './views/Topics/AntidepressantGuide/AntidepressantGuide'
+import AntidepressantSafety from "./views/Topics/AntidepressantSafety/AntidepressantSafety";
+import AntidepressantsClinical from "./views/Topics/AntidepressantsClinical/AntidepressantsClinical";
+import PolypharmacyCommonDDIs from "./views/Topics/PolypharmacyCommonDDIs/PolypharmacyCommonDDIs";
+import PolypharmacyNotableChanges from "./views/Topics/PolypharmacyNotableChanges/PolypharmacyNotableChanges";
+import PolypharmacyPrinciples from "./views/Topics/PolypharmacyPrinciples/PolypharmacyPrinciples";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
