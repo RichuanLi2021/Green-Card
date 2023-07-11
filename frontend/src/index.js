@@ -28,15 +28,14 @@ import MoodStabilizers from "./views/Topics/MoodStabilizers/MoodStabilizers";
 import PsychotropicMonitoringSection from "./views/Topics/PsychotropicMonitoringSection/PsychotropicMonitoringSection";
 // import PrescribingAndDeprescribing from './views/Topics/PrescribingAndDeprescribing/PrescribingAndDeprescribing';
 // import NotableChangesInAdults from './views/Topics/NotableChangesInAdults/NotableChangesInAdults';
-import SearchResults from "./views/Topics/SearchResults/SearchResults";
-
-import AntidepressantGuide from "./views/Topics/AntidepressantGuide/AntidepressantGuide";
+import SearchResults from './views/Topics/SearchResults/SearchResults';
+import AddDrug from './views/Topics/AddField/AddDrug';
+import AntidepressantGuide from './views/Topics/AntidepressantGuide/AntidepressantGuide'
 import AntidepressantSafety from "./views/Topics/AntidepressantSafety/AntidepressantSafety";
 import AntidepressantsClinical from "./views/Topics/AntidepressantsClinical/AntidepressantsClinical";
 import PolypharmacyCommonDDIs from "./views/Topics/PolypharmacyCommonDDIs/PolypharmacyCommonDDIs";
 import PolypharmacyNotableChanges from "./views/Topics/PolypharmacyNotableChanges/PolypharmacyNotableChanges";
 import PolypharmacyPrinciples from "./views/Topics/PolypharmacyPrinciples/PolypharmacyPrinciples";
-import SearchResultPage from "./views/Search/SearchResultPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -64,14 +63,14 @@ root.render(
       <Route path="/PsychotropicMonitoringSection" element={<PsychotropicMonitoringSection />} />
       {/* <Route path='/PrescribingAndDeprescribing' element={<PrescribingAndDeprescribing/>}/> */}
       {/* <Route path='/NotableChangesInAdults' element={<NotableChangesInAdults/>}/> */}
-      <Route path="/SearchResults" element={<SearchResults />} />
-      <Route path="/AntidepressantGuide" element={<AntidepressantGuide />} />
-      <Route path="/AntidepressantSafety" element={<AntidepressantSafety />} />
-      <Route path="/AntidepressantsClinical" element={<AntidepressantsClinical />} />
-      <Route path="/PolypharmacyCommonDDIs" element={<PolypharmacyCommonDDIs />} />
-      <Route path="/PolypharmacyNotableChanges" element={<PolypharmacyNotableChanges />} />
-      <Route path="/PolypharmacyPrinciples" element={<PolypharmacyPrinciples />} />
-      <Route path="/search/:searchTerm" element={<SearchResultPage />} />
+      <Route path='/SearchResults' element={<SearchResults/>}/>
+      <Route path="/AntidepressantGuide" element={<AntidepressantGuide/>}/>
+      <Route path="/AntidepressantSafety" element={<AntidepressantSafety/>}/>
+      <Route path="/AntidepressantsClinical" element={<AntidepressantsClinical/>}/>
+      <Route path="/PolypharmacyCommonDDIs" element={<PolypharmacyCommonDDIs/>}/>
+      <Route path="/PolypharmacyNotableChanges" element={<PolypharmacyNotableChanges/>}/>
+      <Route path="/PolypharmacyPrinciples" element={<PolypharmacyPrinciples/>}/>
+      <Route path="/AddDrug" element={<AddDrug/>}/>
     </Routes>
   </BrowserRouter>
 );

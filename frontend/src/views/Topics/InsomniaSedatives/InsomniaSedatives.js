@@ -74,6 +74,14 @@ export default function InsomniaSedatives() {
     });
   };
 
+  // const handleDelete = async (Name) =>{
+  //   try{
+  //     await axios.delete('http://localhost:8887/api/delete/'+Name)
+  //     window.alert('Drug Deleted Successfully !')
+  //   }catch(err) {
+  //     console.log(err);
+  //   }
+  // }
 
   if (Object.keys(data).length > 0)
   {if (admin) {
@@ -94,9 +102,10 @@ export default function InsomniaSedatives() {
                 <div className="grid-item" key={id}>
                   <button
                     onClick={() => handleDrugClick(dataObj)}
-                    className={`drug-button ${isDrugSelected ? 'active' : ''}`}
+                    className={`drug-button ${isDrugSelected ? 'active' : ''}`} 
                   >
-                    {dataObj.Name}
+                    {dataObj.Name} 
+                    {/* <button onClick={e => handleDelete(dataObj.Name)}> Delete</button> */}
                   </button>
 
                   {isDrugSelected && (
@@ -107,6 +116,7 @@ export default function InsomniaSedatives() {
                       <strong>Dose equiv.</strong>
                       <input
                                   id="`Dose equiv.`"
+
                                   name={dataObj.Name}
                                   type="text"
                                   onFocus={store_value}
@@ -174,7 +184,7 @@ export default function InsomniaSedatives() {
               );
             })}
           </div>
-          <button className="drug-button" >Add new Drug</button>
+          <button className="drug-button" > <a href='http://localhost:3000/AddDrug'>Add new Drug</a> </button>
           <footer id="footer">
           <p><b>Key:</b> †does not reflect maximum doses; *should be given 30-90 mins before bedtime. <b>NOTES</b>: doses may not reflect manufacturer's recommendations but are based on research and/or expert opinion.  All sedatives should be used sparingly in the older adults and in people with liver disease; use lowest possible dose. In older adults, there is a poor risk/benefit ratio. </p>
           
