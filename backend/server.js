@@ -13,7 +13,6 @@ app.use(function (req, res, next) {
 var routeLogin = require("./routes/loginRoute");
 var routeFeedback = require("./routes/feedbackRoute");
 var apRoute = require("./routes/antipsychoticsGuideRoute");
-var neuropsychiatricSymptomsRoute = require("./routes/neuropsychiatricSymptomsRoute");
 var InsomniaSedativesGuideRoute = require("./routes/InsomniaSedativesGuideRoute");
 var insomniaDeprescribingRoute = require("./routes/insomniaDeprescribingRoute");
 var InsomniaClinicalRoute = require("./routes/InsomniaClinicalRoute");
@@ -32,6 +31,7 @@ var CognitiveEnhancersGuideRoute = require("./routes/CognitiveEnhancersGuideRout
 var CognitiveEnhancersGuideContRoute = require("./routes/CognitiveEnhancersGuideContRoute");
 var CognitiveEnhancersClinicalRoute = require("./routes/CognitiveEnhancersClinicalRoute");
 var searchRouter = require("./routes/searchRoute");
+var neuropsychiatricRoute = require("./routes/neuropsychiatricRoute");
 
 //for parsing application/json
 app.use(express.json());
@@ -39,7 +39,6 @@ app.use(cors({ origin: true }));
 app.use("/api", routeLogin);
 app.use("/api", routeFeedback);
 app.use("/api", apRoute);
-app.use("/api", neuropsychiatricSymptomsRoute);
 app.use("/api", InsomniaSedativesGuideRoute);
 app.use("/api", insomniaDeprescribingRoute);
 app.use("/api", InsomniaClinicalRoute);
@@ -58,6 +57,7 @@ app.use("/api", CognitiveEnhancersGuideRoute);
 app.use("/api", CognitiveEnhancersGuideContRoute);
 app.use("/api", CognitiveEnhancersClinicalRoute);
 app.use("/api/search", searchRouter);
+app.use("/api", neuropsychiatricRoute);
 
 var port = 8887;
 
