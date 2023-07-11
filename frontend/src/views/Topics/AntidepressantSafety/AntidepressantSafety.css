@@ -1,6 +1,11 @@
+#antidepressantSafetyHeader {
+  font-family: "Work Sans", sans-serif;
+}
+
 @media (max-width: 800px) {
     #antidepressantSafetyHeader {
         font-size: 120%;
+        font-family: "Work Sans", sans-serif;
     }
     .antidepressantSafety-notes {
         background: #d7ece0;

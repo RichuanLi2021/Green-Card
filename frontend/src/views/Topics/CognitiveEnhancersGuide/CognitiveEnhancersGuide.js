@@ -186,12 +186,13 @@ export default function CognitiveEnhancersGuide() {
               );
             })}
           </div>
-          <button className="drug-button" >Add new Drug</button>
-          <footer id="footer">
-          <p><b>Key:</b> AChEI: acetylcholinesterase inhibitor; BuChEI: butyrylcholinesterase inhibitor </p>
-          
-          </footer>
+          <div className="cognitive-footer">
+            <p className='cognitive-notes'>
+              <b>Key:</b> AChEI: acetylcholinesterase inhibitor; BuChEI: butyrylcholinesterase inhibitor 
+            </p>     
+          </div>
         </div>
+        <Footer />
       </>
     );
   }

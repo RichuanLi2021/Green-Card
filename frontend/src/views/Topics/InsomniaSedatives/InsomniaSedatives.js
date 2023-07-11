@@ -83,7 +83,9 @@ export default function InsomniaSedatives() {
         <SearchBar placeholder="Search" data={Data} />
         <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
           <Typography variant="h3" align="center" gutterBottom>
-            Sedatives/Hypnotics Guide
+            <div className='subtitle'>
+              Sedatives/Hypnotics Guide
+            </div>
           </Typography>
 
           <div className="grid-container">

@@ -81,7 +81,7 @@ export default function AntipsychoticsGuide() {
           <Navigation />
           <SearchBar placeholder="Search" data={Data} />
           <div className="subHeader" style={{ marginTop: '2rem', padding: '0 1rem' }}>
-            <Typography variant="h4" align="center" gutterBottom>
+            <Typography variant="h4" align="center" id ="heading-antipsychotics"gutterBottom >
               Antipsychotics Guide
             </Typography>
   

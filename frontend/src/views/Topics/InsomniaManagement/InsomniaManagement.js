@@ -21,7 +21,7 @@ export default function InsomniaManagement() {
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography id="mainTopic"><b>INSOMNIA MANAGEMENT</b></Typography>
+            <Typography id="mainTopic">INSOMNIA MANAGEMENT</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography id="mainText">

@@ -1,6 +1,11 @@
+#antidepressantGuideHeader {
+  font-family: "Work Sans", sans-serif;
+}
+
 @media (max-width: 800px) {
     #antidepressantGuideHeader {
         font-size: 120%;
+        font-family: "Work Sans", sans-serif;
     }
     .antidepressantGuide-notes {
         background: #d7ece0;

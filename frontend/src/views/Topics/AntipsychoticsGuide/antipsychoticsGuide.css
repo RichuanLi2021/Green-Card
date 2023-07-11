@@ -40,6 +40,10 @@ html {
   background-color: #96d2b0;
 }
 
+#heading-antipsychotics {
+  font-family: "Work Sans", sans-serif;
+}
+
 .box {
   padding: 1rem;
   background-color: #f0f0f0;
@@ -48,6 +52,7 @@ html {
 
 .box-content {
   margin-bottom: 0.5rem;
+  font-family: "Work Sans", sans-serif;
 }
 
 #navigation {
@@ -62,6 +67,7 @@ html {
   text-decoration:underline;
   font-size:30pt;
   margin-left:35%;
+  font-family: "Work Sans", sans-serif;
 
 }
 #footer {
@@ -100,6 +106,7 @@ html {
   .drug-button {
     height:45px;
     line-height: 10px;
+    font-family: "Work Sans", sans-serif;
   }
 
   .grid-container {
