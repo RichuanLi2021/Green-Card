@@ -29,8 +29,9 @@ export default function SearchBar({placeholder,data}) {
             </div>
             {filteredData.length !== 0 && (
                 <div className='dataResult'>
+                    <a className='dataItem' href="http://localhost:3000/SearchResults"><p>Searching By Drug Name?</p></a>
                 {filteredData.map((value,key)=>{
-                    return <a className='dataItem' href={value.link} >
+                    return  <a className='dataItem' href={value.link} >
                          <p>{value.title}</p> </a>
                 })}
             </div>
