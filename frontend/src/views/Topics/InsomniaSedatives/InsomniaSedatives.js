@@ -2,18 +2,13 @@ import './InsomniaSedatives.css';
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import SearchBar from "../../searchBar/searchBar";
 import Navigation from '../../Navigation/navigation';
 import Data from "../../searchBar/Data.json";
 import InsomniaSedativesUpdate from './InsomniaSedativesBackend';
 
-
-
-
 export default function InsomniaSedatives() {
-
-  
   const [data, setData] = useState({});
   useEffect(() => {
     fetchData();
@@ -50,18 +45,13 @@ export default function InsomniaSedatives() {
           console.error(error);
           alert('Failed to update!');
         });
-      }
-      else {
+      } else {
         console.log("value was not changed, not updating");
       }
-    }
-    else {
+    } else {
       alert("You must be an administrator to edit");
     }
   };
-
-
-
 
   const handleDrugClick = (dataObj) => {
     setSelectedDrugs((prevSelectedDrugs) => {
@@ -168,18 +158,10 @@ export default function InsomniaSedatives() {
                                   onBlur={update_value}
                                   defaultValue={dataObj[`mg/Form supplied`]}
                                 />
-                    </div>
-
-
-                    
-
-                    
-                    
+                    </div>  
                   </div>
-                  
                   </div> 
-                    )}
-                     
+                    )}  
                 </div>
               );
             })}
@@ -187,15 +169,12 @@ export default function InsomniaSedatives() {
           <button className="drug-button" > <a href='http://localhost:3000/AddDrug'>Add new Drug</a> </button>
           <footer id="footer">
           <p><b>Key:</b> †does not reflect maximum doses; *should be given 30-90 mins before bedtime. <b>NOTES</b>: doses may not reflect manufacturer's recommendations but are based on research and/or expert opinion.  All sedatives should be used sparingly in the older adults and in people with liver disease; use lowest possible dose. In older adults, there is a poor risk/benefit ratio. </p>
-          
           </footer>
         </div>
       </>
     );
   }
   else{
-
- 
     return (
       <>
         <Navigation />
