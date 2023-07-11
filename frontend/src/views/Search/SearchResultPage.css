@@ -1,0 +1,31 @@
+.grid-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Add this line */
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column; /* To ensure contents of grid item are arranged in a column */
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+.box {
+  margin-top: 0px;
+  background-color: #f0f0f0;
+  padding: 3px 20px;
+  width: 75%;
+}
+
+.box-content {
+  margin-bottom: 5px;
+}
+
+.box-content strong {
+  color: #333;
+}
+
+.box-content span {
+  color: #666;
+}

@@ -266,13 +266,13 @@ const Navbar = () => {
                   <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Guide</Button>
                 </MenuItem>
                 <MenuItem onClick={handleDementiaMenuClose}>
-                  <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Guide continued</Button>
+                  <Button component={Link} to="/CognitiveEnhancersGuideCont" sx={{ color: '#000' }}>Cognitive Enhancers Guide continued</Button>
                 </MenuItem>
                 <MenuItem onClick={handleDementiaMenuClose}>
-                  <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Clinical Guide</Button>
+                  <Button component={Link} to="/CognitiveEnhancersClinical" sx={{ color: '#000' }}>Cognitive Enhancers Clinical Guide</Button>
                 </MenuItem>
                 <MenuItem onClick={handleDementiaMenuClose}>
-                  <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>NPS Management</Button>
+                  <Button component={Link} to="/Neuropsychiatric" sx={{ color: '#000' }}>NPS Management</Button>
                 </MenuItem>
               </Menu>
             </MenuItem>
@@ -335,7 +335,7 @@ const Navbar = () => {
             </MenuItem>
 
             <MenuItem>
-              <Button component={Link} to="/NeuropsychiatricSymptoms" sx={{ color: '#000', fontSize: isMobile ? '0.8rem' : '1rem' }}>ECT & Psychoactive medications</Button>
+              <Button component={Link} to="/Neuropsychiatric" sx={{ color: '#000', fontSize: isMobile ? '0.8rem' : '1rem' }}>ECT & Psychoactive medications</Button>
             </MenuItem>
 
             <MenuItem>
@@ -469,13 +469,13 @@ const Navbar = () => {
                 <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Guide</Button>
               </MenuItem>
               <MenuItem onClick={handleDementiaMenuClose}>
-                <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Guide continued</Button>
+                <Button component={Link} to="/CognitiveEnhancersGuideCont" sx={{ color: '#000' }}>Cognitive Enhancers Guide continued</Button>
               </MenuItem>
               <MenuItem onClick={handleDementiaMenuClose}>
-                <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Clinical Guide</Button>
+                <Button component={Link} to="/CognitiveEnhancersClinical" sx={{ color: '#000' }}>Cognitive Enhancers Clinical Guide</Button>
               </MenuItem>
               <MenuItem onClick={handleDementiaMenuClose}>
-                <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>NPS Management</Button>
+                <Button component={Link} to="/Neuropsychiatric" sx={{ color: '#000' }}>NPS Management</Button>
               </MenuItem>
             </Menu>
 
@@ -534,7 +534,7 @@ const Navbar = () => {
               </MenuItem>
             </Menu>
 
-            <Button component={Link} to="/NeuropsychiatricSymptoms" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
+            <Button component={Link} to="/Neuropsychiatric" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
               ECT & Psychoactive medications
             </Button>
             <Button component={Link} to="/MoodStabilizers" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
@@ -716,13 +716,13 @@ const Navbar = () => {
                   <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Guide</Button>
                 </MenuItem>
                 <MenuItem onClick={handleDementiaMenuClose}>
-                  <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Guide continued</Button>
+                  <Button component={Link} to="/CognitiveEnhancersGuideCont" sx={{ color: '#000' }}>Cognitive Enhancers Guide continued</Button>
                 </MenuItem>
                 <MenuItem onClick={handleDementiaMenuClose}>
-                  <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Clinical Guide</Button>
+                  <Button component={Link} to="/CognitiveEnhancersClinical" sx={{ color: '#000' }}>Cognitive Enhancers Clinical Guide</Button>
                 </MenuItem>
                 <MenuItem onClick={handleDementiaMenuClose}>
-                  <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>NPS Management</Button>
+                  <Button component={Link} to="/Neuropsychiatric" sx={{ color: '#000' }}>NPS Management</Button>
                 </MenuItem>
               </Menu>
             </MenuItem>
@@ -785,7 +785,7 @@ const Navbar = () => {
             </MenuItem>
 
             <MenuItem>
-              <Button component={Link} to="/NeuropsychiatricSymptoms" sx={{ color: '#000', fontSize: isMobile ? '0.8rem' : '1rem' }}>ECT & Psychoactive medications</Button>
+              <Button component={Link} to="/Neuropsychiatric" sx={{ color: '#000', fontSize: isMobile ? '0.8rem' : '1rem' }}>ECT & Psychoactive medications</Button>
             </MenuItem>
 
             <MenuItem>
@@ -919,13 +919,13 @@ const Navbar = () => {
                 <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Guide</Button>
               </MenuItem>
               <MenuItem onClick={handleDementiaMenuClose}>
-                <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Guide continued</Button>
+                <Button component={Link} to="/CognitiveEnhancersGuideCont" sx={{ color: '#000' }}>Cognitive Enhancers Guide continued</Button>
               </MenuItem>
               <MenuItem onClick={handleDementiaMenuClose}>
-                <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>Cognitive Enhancers Clinical Guide</Button>
+                <Button component={Link} to="/CognitiveEnhancersClinical" sx={{ color: '#000' }}>Cognitive Enhancers Clinical Guide</Button>
               </MenuItem>
               <MenuItem onClick={handleDementiaMenuClose}>
-                <Button component={Link} to="/CognitiveEnhancersGuide" sx={{ color: '#000' }}>NPS Management</Button>
+                <Button component={Link} to="/Neuropsychiatric" sx={{ color: '#000' }}>NPS Management</Button>
               </MenuItem>
             </Menu>
 
@@ -984,7 +984,7 @@ const Navbar = () => {
               </MenuItem>
             </Menu>
 
-            <Button component={Link} to="/NeuropsychiatricSymptoms" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
+            <Button component={Link} to="/Neuropsychiatric" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
               ECT & Psychoactive medications
             </Button>
             <Button component={Link} to="/MoodStabilizers" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
