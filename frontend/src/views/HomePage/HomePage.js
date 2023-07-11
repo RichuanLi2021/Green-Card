@@ -141,7 +141,7 @@ const HomePage = () => {
                       </Typography>
                       <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
                         {" "}
-                        <a href="NeuropsychiatricSymptomsECT"> NPS Management </a>{" "}
+                        <a href="Neuropsychiatric"> NPS Management </a>{" "}
                       </Typography>
                     </AccordionDetails>
                   </Accordion>
@@ -200,7 +200,7 @@ const HomePage = () => {
                       flexDirection: "column",
                       textTransform: "none",
                     }}
-                    href={"NeuropsychiatricSymptoms"}
+                    href={"Neuropsychiatric"}
                   >
                     <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
                       ECT & Psychoactive Medications

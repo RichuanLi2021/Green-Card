@@ -10,7 +10,7 @@ import InsomniaManagement from "./views/Topics/InsomniaManagement/InsomniaManage
 import InsomniaSedatives from "./views/Topics/InsomniaSedatives/InsomniaSedatives";
 
 import DeliriumManagement from "./views/Topics/DeliriumManagement/DeliriumManagement";
-import NeuropsychiatricSymptomsECT from "./views/Topics/NeuropsychiatricSymptoms/NeuropsychiatricSymptoms";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SearchBar from "./views/searchBar/searchBar";
 import AntipsychoticsGuide from "./views/Topics/AntipsychoticsGuide/antipsychoticsGuide";
@@ -18,7 +18,7 @@ import AntipsychoticsGuide from "./views/Topics/AntipsychoticsGuide/antipsychoti
 import CognitiveEnhancersGuide from "./views/Topics/CognitiveEnhancersGuide/CognitiveEnhancersGuide";
 import CognitiveEnhancersGuideCont from "./views/Topics/CognitiveEnhancersGuideCont/CognitiveEnhancersGuideCont";
 import CognitiveEnhancersClinical from "./views/Topics/CognitiveEnhancersClinical/CognitiveEnhancersClinical";
-import NeuropsychiatricSymptoms from "./views/Topics/NeuropsychiatricSymptoms/NeuropsychiatricSymptoms";
+import Neuropsychiatric from "./views/Topics/Neuropsychiatric/Neuropsychiatric";
 
 import Panel from "./views/AdminPanel/Panel";
 import InsomniaDeprescribing from "./views/Topics/InsomniaDeprescribing/InsomniaDeprescribing";
@@ -52,11 +52,10 @@ root.render(
 
       <Route path="/MoodStabilizers" element={<MoodStabilizers />} />
       <Route path="/DeliriumManagement" element={<DeliriumManagement />} />
-      <Route path="/NeuropsychiatricSymptomsECT" element={<NeuropsychiatricSymptomsECT />} />
       <Route path="/CognitiveEnhancersGuide" element={<CognitiveEnhancersGuide />} />
       <Route path="/CognitiveEnhancersGuideCont" element={<CognitiveEnhancersGuideCont />} />
       <Route path="/CognitiveEnhancersClinical" element={<CognitiveEnhancersClinical />} />
-      <Route path="/NeuropsychiatricSymptoms" element={<NeuropsychiatricSymptoms />} />
+      <Route path="/Neuropsychiatric" element={<Neuropsychiatric />} />
       <Route path="/panel" element={<Panel />} />
       <Route path="/InsomniaSedatives" element={<InsomniaSedatives />} />
       <Route path="/InsomniaDeprescribing" element={<InsomniaDeprescribing />} />
