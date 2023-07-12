@@ -32,6 +32,7 @@ var CognitiveEnhancersGuideContRoute = require("./routes/CognitiveEnhancersGuide
 var CognitiveEnhancersClinicalRoute = require("./routes/CognitiveEnhancersClinicalRoute");
 var searchRouter = require("./routes/searchRoute");
 var neuropsychiatricRoute = require("./routes/neuropsychiatricRoute");
+var AntipsychoticSafetyRoute = require('./routes/AntipsychoticSafetyRoute');
 
 //for parsing application/json
 app.use(express.json());
@@ -58,6 +59,7 @@ app.use("/api", CognitiveEnhancersGuideContRoute);
 app.use("/api", CognitiveEnhancersClinicalRoute);
 app.use("/api/search", searchRouter);
 app.use("/api", neuropsychiatricRoute);
+app.use('/api', AntipsychoticSafetyRoute);
 
 var port = 8887;
 
