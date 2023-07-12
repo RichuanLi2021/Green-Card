@@ -214,10 +214,8 @@ export default function InsomniaSedatives() {
                 
               );
             })}
-            
-          </div>
-          <div className="box-content">
-           <div className="form-header">
+          <div className="box-content"  >
+           <div className="form-header" >
            <Box display="flex" justifyContent="space-between" alignItems="center">
             <Typography variant="h5" className="title">
               Add New Drug
@@ -226,7 +224,7 @@ export default function InsomniaSedatives() {
            </Box>
            </div>
         
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} >
           <Box >
             <TextField
               label="Drug Name"
@@ -323,6 +321,11 @@ export default function InsomniaSedatives() {
             </Box>
           </form>
          </div>
+
+         
+            
+        </div>  {/*  div container ends here*/ }
+          
       
          <div className="insomnia-footer">
             <p className='insomnia-notes'>
