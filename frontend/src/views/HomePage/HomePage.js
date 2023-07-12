@@ -81,7 +81,7 @@ const HomePage = () => {
                       </Typography>
                       <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
                         {" "}
-                        <a href="AntipsychoticsGuide"> Antidepressant Safety Concerns </a>{" "}
+                        <a href="AntipsychoticSafety"> Antipsychotics Safety Concerns </a>{" "}
                       </Typography>
                     </AccordionDetails>
                   </Accordion>
