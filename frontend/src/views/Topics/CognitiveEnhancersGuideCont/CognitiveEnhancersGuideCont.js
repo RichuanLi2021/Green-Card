@@ -8,7 +8,7 @@ import Navigation from '../../Navigation/navigation';
 import Data from "../../searchBar/Data.json";
 import CognitiveEnhancersGuideContUpdate from './CognitiveEnhancersGuideContBackend';
 
-
+import Footer from '../../Footer/Footer';
 
 
 export default function CognitiveEnhancersGuideCont() {
@@ -83,7 +83,9 @@ export default function CognitiveEnhancersGuideCont() {
         <SearchBar placeholder="Search" data={Data} />
         <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
           <Typography variant="h3" align="center" gutterBottom>
+          <div className="subtitle">
             Cognitive Enhancers Guide continued.
+          </div>
           </Typography>
 
           <div className="grid-container">
@@ -216,12 +218,13 @@ export default function CognitiveEnhancersGuideCont() {
               );
             })}
           </div>
-          <button className="drug-button" >Add new Drug</button>
-          <footer id="footer">
-          <p><b>Key:</b> DSD: down syndrome dementia; FTD: frontotemporal dementia; LBD: lewy body dementia; MCI: mild cognitive impairment; N: not indicated; PD: parkinson's disease; Y: indicated. </p>
-          
-          </footer>
+          <div className="cognitive-footer">
+            <p className='cognitive-notes'>
+              <b>Key :</b> DSD: down syndrome dementia; FTD: frontotemporal dementia; LBD: lewy body dementia; MCI: mild cognitive impairment; N: not indicated; PD: parkinson's disease; Y: indicated. 
+            </p>          
+          </div>
         </div>
+        <Footer />
       </>
     );
   }
@@ -234,7 +237,9 @@ export default function CognitiveEnhancersGuideCont() {
         <SearchBar placeholder="Search" data={Data} />
         <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
           <Typography variant="h3" align="center" gutterBottom>
+          <div className="subtitle">
             Cognitive Enhancers Guide continued.
+          </div>
           </Typography>
 
           <div className="grid-container">
@@ -297,11 +302,13 @@ export default function CognitiveEnhancersGuideCont() {
               );
             })}
           </div>
-          <footer id="footer">
-          <p><b>Key:</b> DSD: down syndrome dementia; FTD: frontotemporal dementia; LBD: lewy body dementia; MCI: mild cognitive impairment; N: not indicated; PD: parkinson's disease; Y: indicated. </p>
-          
-          </footer>
+          <div className="cognitive-footer">
+            <p className='cognitive-notes'>
+              <b>Key :</b> DSD: down syndrome dementia; FTD: frontotemporal dementia; LBD: lewy body dementia; MCI: mild cognitive impairment; N: not indicated; PD: parkinson's disease; Y: indicated. 
+            </p>          
+          </div>
         </div>
+        <Footer />
       </>
     );
   }

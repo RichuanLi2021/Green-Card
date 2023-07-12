@@ -18,6 +18,8 @@ import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 import Data from "../../searchBar/Data.json";
 
+import './PolypharmacyNotableChanges.css';
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.success.main,
@@ -73,7 +75,11 @@ export default function PolypharmacyNotableChanges() {
           alignItems: 'center',
         }}
       >
-        <Typography variant="h3" id="polypharmacyNotable">Notable Changes in older adults that affect prescribing</Typography>
+        <Typography variant="h3" id="polypharmacyNotable">
+        <div className="subtitle-polychange">
+          Notable Changes in older adults that affect prescribing  
+        </div>
+        </Typography>
       </Box>
 
         <TableContainer component={Paper} >
@@ -96,8 +102,11 @@ export default function PolypharmacyNotableChanges() {
             </TableBody>
           </Table>
         </TableContainer><br></br>
-        <p><b>Key notes: NOTABLE_CHA means Notable Changes in older adults that affect prescribing</b> </p>
-          
+        <div className="polypharmacy-footer">
+          <p className='polypharmacy-notes'>
+          <b>Key notes: </b>NOTABLE_CHA means Notable Changes in older adults that affect prescribing
+          </p>
+        </div>
     </div>
     <Footer />
     </>

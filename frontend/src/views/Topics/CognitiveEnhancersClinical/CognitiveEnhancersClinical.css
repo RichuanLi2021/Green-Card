@@ -1,3 +1,7 @@
+.subtitle {
+  font-family: "Work Sans", sans-serif;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(5, minmax(200px, 1fr));
@@ -13,6 +17,7 @@
   .drug-button {
     margin-top: 20px;
     text-align: center;
+    font-family: "Work Sans", sans-serif;
   }
   
   .box {
@@ -44,6 +49,7 @@
   
   .box-content {
     margin-bottom: 0.5rem;
+    font-family: "Work Sans", sans-serif;
   }
   
   #navigation {
@@ -103,5 +109,28 @@
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 10px;
     }
+  }
+  
+    
+  @media (max-width: 800px) {
+    .subtitle {
+      font-size: 30px;
+    }
+  
+    .cognitive-footer {
+        background: #d7ece0;
+        border-radius: 2px;
+        display: inline-block;
+        height: 100%;
+        margin: 1rem;
+        width: 90%;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        font-family: "Work Sans", sans-serif;
+        font-size: 13px;
+      }
+      .cognitive-notes {
+        font-family: "Work Sans", sans-serif;
+        padding: 10px;
+      }
   }
   
