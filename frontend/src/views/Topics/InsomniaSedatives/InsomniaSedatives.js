@@ -10,6 +10,7 @@ import {InsomniaSedativesUpdate, submitDrug }from './InsomniaSedativesBackend';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Footer from '../../Footer/Footer';
 
 export default function InsomniaSedatives() {
   const [data, setData] = useState({});
@@ -323,10 +324,17 @@ export default function InsomniaSedatives() {
           </form>
          </div>
       
-          <footer id="footer">
-          <p><b>Key:</b> †does not reflect maximum doses; *should be given 30-90 mins before bedtime. <b>NOTES</b>: doses may not reflect manufacturer's recommendations but are based on research and/or expert opinion.  All sedatives should be used sparingly in the older adults and in people with liver disease; use lowest possible dose. In older adults, there is a poor risk/benefit ratio. </p>
-          </footer>
-    </div>
+         <div className="insomnia-footer">
+            <p className='insomnia-notes'>
+              <b>Key: </b> †does not reflect maximum doses; *should be given 30-90 mins before bedtime. 
+              <br/> <br />
+              <b>NOTES: </b> doses may not reflect manufacturer's recommendations but are based on research and/or expert opinion.  All sedatives should be used sparingly in the older adults and in people with liver disease; use lowest possible dose. In older adults, there is a poor risk/benefit ratio. 
+            </p>
+          </div>
+        </div>
+        <Footer />
+
+    
       </>
     );
   }
@@ -382,7 +390,7 @@ export default function InsomniaSedatives() {
                   </div>
                 )}
               </div>
-                
+
               );
             })}
           </div>
@@ -395,6 +403,8 @@ export default function InsomniaSedatives() {
           </div>
         </div>
         <Footer />
+
+       
       </>
     );
   }
