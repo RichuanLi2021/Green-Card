@@ -7,7 +7,6 @@ import SearchBar from "../../searchBar/searchBar";
 import Navigation from '../../Navigation/navigation';
 import Data from "../../searchBar/Data.json";
 import {InsomniaSedativesUpdate, submitDrug }from './InsomniaSedativesBackend';
-import '../../FeedbackForm/FeedbackForm.css';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -222,9 +221,9 @@ export default function InsomniaSedatives() {
             </Typography>
             
            </Box>
-        </div>
+           </div>
         
-        <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
           <Box >
             <TextField
               label="Drug Name"
@@ -237,8 +236,8 @@ export default function InsomniaSedatives() {
               required
             />
             
-          </Box>
-          <Box >
+            </Box>
+            <Box >
             <TextField
               label="Dose Equiv."
               variant="filled"
@@ -251,8 +250,8 @@ export default function InsomniaSedatives() {
               
               required
             />
-          </Box>
-          <Box >
+            </Box>
+            <Box >
             <TextField
               label="Time to peak in plasma"
               variant="filled"
@@ -263,9 +262,9 @@ export default function InsomniaSedatives() {
               
               required
             />
-          </Box>
+            </Box>
 
-          <Box >
+            <Box >
             <TextField
               label="Half-life"
               variant="filled"
@@ -278,9 +277,9 @@ export default function InsomniaSedatives() {
               
               required
             />
-          </Box>
+             </Box>
 
-          <Box >
+            <Box >
             <TextField
               label="Avg Dose range (mg/day)"
               variant="filled"
@@ -293,9 +292,9 @@ export default function InsomniaSedatives() {
               
               required
             />
-          </Box>
+            </Box>
 
-          <Box >
+             <Box >
             <TextField
               label="mg Form supplied"
               variant="filled"
@@ -308,9 +307,9 @@ export default function InsomniaSedatives() {
               
               required
             />
-          </Box>
+            </Box>
           
-          <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex' }}>
             <Button
               type="submit"
               variant="contained"
@@ -318,14 +317,14 @@ export default function InsomniaSedatives() {
               color="primary">
               Submit
             </Button>
-          </Box>
-        </form>
-      </div>
+            </Box>
+          </form>
+         </div>
       
           <footer id="footer">
           <p><b>Key:</b> †does not reflect maximum doses; *should be given 30-90 mins before bedtime. <b>NOTES</b>: doses may not reflect manufacturer's recommendations but are based on research and/or expert opinion.  All sedatives should be used sparingly in the older adults and in people with liver disease; use lowest possible dose. In older adults, there is a poor risk/benefit ratio. </p>
           </footer>
-        </div>
+    </div>
       </>
     );
   }
