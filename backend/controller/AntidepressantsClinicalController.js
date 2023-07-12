@@ -1,17 +1,25 @@
 const pool = require('../config/database');
 
-const getAntidepressantsClinicalData = async () => {
-    const [rows, fields] = await pool.query('SELECT * FROM `green_card`.`antidepressant clinical guide`');
-    return rows;
-  };
-  
-  const antidepressantsClinicalController = {
-     getData: async (req,res, next) => {
-      const antidepressantsClinicalData = await getAntidepressantsClinicalData ();
-      res.send(antidepressantsClinicalData);
-     }
-  
-  };
-  
-  module.exports = antidepressantsClinicalController;
- 
+const getAPData = async () => {
+   const [rows, fields] = await pool.query('SELECT * FROM `green_card`.`ANTIDEPRESSANT CLINICAL GUIDE`');
+   return rows;
+};
+const getData = async (req, res, next) => {
+   const apData = await getAPData();
+   res.send(apData);
+}
+const updateData = async (req, res, next) => {
+   try {
+      const { name, column, value } = req.body;
+      await pool.query('UPDATE `green_card`.`ANTIDEPRESSANT CLINICAL GUIDE` SET ' + column + ' = ' + '"' + value + '"' + ' WHERE Description = ' + '"' + name + '"');
+      res.send("Updated Successfully!");
+   } catch (error) {
+      console.log(error);
+      next(error);
+      throw error;
+   }
+}
+module.exports = {
+   getData,
+   updateData
+};
