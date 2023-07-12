@@ -17,6 +17,7 @@ import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 import Data from "../../searchBar/Data.json";
 
+import './AntidepressantsClinical.css';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -102,9 +103,13 @@ export default function AntidepressantsClinical() {
                     </TableBody>
                   </Table>
                 </TableContainer><br></br>
-                <p><b>Key notes: ANTID_INAD means "For inadequate response", ANTID_MAIN means "Maintenance", ANTID_TAPE means "Tapering" </b> </p>
+                <div className='antidepressantClinical-notes'>
+                  <p className='antidepressantClinical-notes-key'>
+                    <b>Key notes: </b> ANTID_INAD means "For inadequate response", ANTID_MAIN means "Maintenance", ANTID_TAPE means "Tapering"
+                  </p>
+                </div>
           
-                      </div>
+            </div>
     <Footer />
     </>
   );

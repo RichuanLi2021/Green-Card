@@ -124,7 +124,9 @@ export default function InsomniaSedatives() {
         <SearchBar placeholder="Search" data={Data} />
         <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
           <Typography variant="h3" align="center" gutterBottom>
-            Sedatives/Hypnotics Guide
+            <div className='subtitle'>
+              Sedatives/Hypnotics Guide
+            </div>
           </Typography>
 
           <div className="grid-container">
@@ -335,7 +337,9 @@ export default function InsomniaSedatives() {
         <SearchBar placeholder="Search" data={Data} />
         <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
           <Typography variant="h3" align="center" gutterBottom>
-            Sedatives/Hypnotics Guide
+            <div className='subtitle'>
+              Sedatives/Hypnotics Guide
+            </div>
           </Typography>
 
           <div className="grid-container">
@@ -382,11 +386,15 @@ export default function InsomniaSedatives() {
               );
             })}
           </div>
-          <footer id="footer">
-          <p><b>Key:</b> †does not reflect maximum doses; *should be given 30-90 mins before bedtime. <b>NOTES</b>: doses may not reflect manufacturer's recommendations but are based on research and/or expert opinion.  All sedatives should be used sparingly in the older adults and in people with liver disease; use lowest possible dose. In older adults, there is a poor risk/benefit ratio. </p>
-          
-          </footer>
+          <div className="insomnia-footer">
+            <p className='insomnia-notes'>
+              <b>Key: </b> †does not reflect maximum doses; *should be given 30-90 mins before bedtime. 
+              <br/> <br />
+              <b>NOTES: </b> doses may not reflect manufacturer's recommendations but are based on research and/or expert opinion.  All sedatives should be used sparingly in the older adults and in people with liver disease; use lowest possible dose. In older adults, there is a poor risk/benefit ratio. 
+            </p>
+          </div>
         </div>
+        <Footer />
       </>
     );
   }

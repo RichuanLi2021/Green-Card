@@ -104,4 +104,27 @@
       gap: 10px;
     }
   }
+
+
+  @media (max-width: 800px) {
+    .subtitle {
+      font-size: 30px;
+    }
+  
+    .insomnia-footer {
+        background: #d7ece0;
+        border-radius: 2px;
+        display: inline-block;
+        height: 100%;
+        margin: 1rem;
+        width: 90%;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  
+        font-size: 13px;
+      }
+      .insomnia-notes {
+        padding: 10px;
+      }
+  }
+  
   

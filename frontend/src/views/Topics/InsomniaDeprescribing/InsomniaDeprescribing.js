@@ -7,6 +7,8 @@ import SearchBar from "../../searchBar/searchBar";
 import Navigation from '../../Navigation/navigation';
 import Data from "../../searchBar/Data.json";
 
+import Footer from '../../Footer/Footer';
+
 
 export default function InsomniaDeprescribing() {
 
@@ -49,7 +51,9 @@ export default function InsomniaDeprescribing() {
         <SearchBar placeholder="Search" data={Data} />
         <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
           <Typography variant="h3" align="center" gutterBottom>
+          <div className='subtitle'>
             Sedatives/Hypnotics Guide
+          </div>
           </Typography>
 
           <div className="grid-container">
@@ -85,11 +89,13 @@ export default function InsomniaDeprescribing() {
               );
             })}
           </div>
-          <footer id="footer">
-          
-<p><b>Key:</b> BZRA: benzodiazepine and z-drugs (benzodiazepine agonists) </p>
-          </footer>
+          <div className="insomnia-footer">
+            <p className='insomnia-notes'>
+              <b>Key: </b> BZRA: benzodiazepine and z-drugs (benzodiazepine agonists) 
+            </p>
+          </div>
         </div>
+        <Footer />
       </>
     );
   }

@@ -17,6 +17,7 @@ import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 import Data from "../../searchBar/Data.json";
 
+import "./AntidepressantSafety.css";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -101,9 +102,12 @@ export default function AntidepressantSafety() {
                     </TableBody>
                   </Table>
                 </TableContainer><br></br>
-                <p><b>Key notes: ANTID_SC means Antidepressants safety concerns</b> </p>
-          
-                      </div>
+                <div className='antidepressantSafety-notes'>
+                  <p className='antidepressantSafety-notes-key'>
+                    <b>Key notes: </b> ANTID_SC means Antidepressants safety concerns
+                  </p>
+                </div>
+            </div>
     <Footer />
     </>
   );
