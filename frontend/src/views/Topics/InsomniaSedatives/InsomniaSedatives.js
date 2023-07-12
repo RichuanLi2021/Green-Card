@@ -2,18 +2,14 @@ import './InsomniaSedatives.css';
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import SearchBar from "../../searchBar/searchBar";
 import Navigation from '../../Navigation/navigation';
 import Data from "../../searchBar/Data.json";
 import InsomniaSedativesUpdate from './InsomniaSedativesBackend';
-
 import Footer from '../../Footer/Footer';
 
-
 export default function InsomniaSedatives() {
-
-  
   const [data, setData] = useState({});
   useEffect(() => {
     fetchData();
@@ -50,18 +46,13 @@ export default function InsomniaSedatives() {
           console.error(error);
           alert('Failed to update!');
         });
-      }
-      else {
+      } else {
         console.log("value was not changed, not updating");
       }
-    }
-    else {
+    } else {
       alert("You must be an administrator to edit");
     }
   };
-
-
-
 
   const handleDrugClick = (dataObj) => {
     setSelectedDrugs((prevSelectedDrugs) => {
@@ -74,6 +65,14 @@ export default function InsomniaSedatives() {
     });
   };
 
+  // const handleDelete = async (Name) =>{
+  //   try{
+  //     await axios.delete('http://localhost:8887/api/delete/'+Name)
+  //     window.alert('Drug Deleted Successfully !')
+  //   }catch(err) {
+  //     console.log(err);
+  //   }
+  // }
 
   if (Object.keys(data).length > 0)
   {if (admin) {
@@ -96,9 +95,10 @@ export default function InsomniaSedatives() {
                 <div className="grid-item" key={id}>
                   <button
                     onClick={() => handleDrugClick(dataObj)}
-                    className={`drug-button ${isDrugSelected ? 'active' : ''}`}
+                    className={`drug-button ${isDrugSelected ? 'active' : ''}`} 
                   >
-                    {dataObj.Name}
+                    {dataObj.Name} 
+                    {/* <button onClick={e => handleDelete(dataObj.Name)}> Delete</button> */}
                   </button>
 
                   {isDrugSelected && (
@@ -109,6 +109,7 @@ export default function InsomniaSedatives() {
                       <strong>Dose equiv.</strong>
                       <input
                                   id="`Dose equiv.`"
+
                                   name={dataObj.Name}
                                   type="text"
                                   onFocus={store_value}
@@ -160,23 +161,15 @@ export default function InsomniaSedatives() {
                                   onBlur={update_value}
                                   defaultValue={dataObj[`mg/Form supplied`]}
                                 />
-                    </div>
-
-
-                    
-
-                    
-                    
+                    </div>  
                   </div>
-                  
                   </div> 
-                    )}
-                     
+                    )}  
                 </div>
               );
             })}
           </div>
-          <button className="drug-button" >Add new Drug</button>
+          <button className="drug-button" > <a href='http://localhost:3000/AddDrug'>Add new Drug</a> </button>
           <div className="insomnia-footer">
             <p className='insomnia-notes'>
               <b>Key: </b> †does not reflect maximum doses; *should be given 30-90 mins before bedtime. 
@@ -190,8 +183,6 @@ export default function InsomniaSedatives() {
     );
   }
   else{
-
- 
     return (
       <>
         <Navigation />

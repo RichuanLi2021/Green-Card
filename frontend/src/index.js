@@ -10,7 +10,7 @@ import InsomniaManagement from "./views/Topics/InsomniaManagement/InsomniaManage
 import InsomniaSedatives from "./views/Topics/InsomniaSedatives/InsomniaSedatives";
 
 import DeliriumManagement from "./views/Topics/DeliriumManagement/DeliriumManagement";
-import NeuropsychiatricSymptomsECT from "./views/Topics/NeuropsychiatricSymptoms/NeuropsychiatricSymptoms";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SearchBar from "./views/searchBar/searchBar";
 import AntipsychoticsGuide from "./views/Topics/AntipsychoticsGuide/antipsychoticsGuide";
@@ -18,7 +18,7 @@ import AntipsychoticsGuide from "./views/Topics/AntipsychoticsGuide/antipsychoti
 import CognitiveEnhancersGuide from "./views/Topics/CognitiveEnhancersGuide/CognitiveEnhancersGuide";
 import CognitiveEnhancersGuideCont from "./views/Topics/CognitiveEnhancersGuideCont/CognitiveEnhancersGuideCont";
 import CognitiveEnhancersClinical from "./views/Topics/CognitiveEnhancersClinical/CognitiveEnhancersClinical";
-import NeuropsychiatricSymptoms from "./views/Topics/NeuropsychiatricSymptoms/NeuropsychiatricSymptoms";
+import Neuropsychiatric from "./views/Topics/Neuropsychiatric/Neuropsychiatric";
 
 import Panel from "./views/AdminPanel/Panel";
 import InsomniaDeprescribing from "./views/Topics/InsomniaDeprescribing/InsomniaDeprescribing";
@@ -28,9 +28,9 @@ import MoodStabilizers from "./views/Topics/MoodStabilizers/MoodStabilizers";
 import PsychotropicMonitoringSection from "./views/Topics/PsychotropicMonitoringSection/PsychotropicMonitoringSection";
 // import PrescribingAndDeprescribing from './views/Topics/PrescribingAndDeprescribing/PrescribingAndDeprescribing';
 // import NotableChangesInAdults from './views/Topics/NotableChangesInAdults/NotableChangesInAdults';
-import SearchResults from "./views/Topics/SearchResults/SearchResults";
-
-import AntidepressantGuide from "./views/Topics/AntidepressantGuide/AntidepressantGuide";
+import SearchResults from './views/Topics/SearchResults/SearchResults';
+import AddDrug from './views/Topics/AddField/AddDrug';
+import AntidepressantGuide from './views/Topics/AntidepressantGuide/AntidepressantGuide'
 import AntidepressantSafety from "./views/Topics/AntidepressantSafety/AntidepressantSafety";
 import AntidepressantsClinical from "./views/Topics/AntidepressantsClinical/AntidepressantsClinical";
 import PolypharmacyCommonDDIs from "./views/Topics/PolypharmacyCommonDDIs/PolypharmacyCommonDDIs";
@@ -51,11 +51,10 @@ root.render(
 
       <Route path="/MoodStabilizers" element={<MoodStabilizers />} />
       <Route path="/DeliriumManagement" element={<DeliriumManagement />} />
-      <Route path="/NeuropsychiatricSymptomsECT" element={<NeuropsychiatricSymptomsECT />} />
       <Route path="/CognitiveEnhancersGuide" element={<CognitiveEnhancersGuide />} />
       <Route path="/CognitiveEnhancersGuideCont" element={<CognitiveEnhancersGuideCont />} />
       <Route path="/CognitiveEnhancersClinical" element={<CognitiveEnhancersClinical />} />
-      <Route path="/NeuropsychiatricSymptoms" element={<NeuropsychiatricSymptoms />} />
+      <Route path="/Neuropsychiatric" element={<Neuropsychiatric />} />
       <Route path="/panel" element={<Panel />} />
       <Route path="/InsomniaSedatives" element={<InsomniaSedatives />} />
       <Route path="/InsomniaDeprescribing" element={<InsomniaDeprescribing />} />
@@ -64,13 +63,14 @@ root.render(
       <Route path="/PsychotropicMonitoringSection" element={<PsychotropicMonitoringSection />} />
       {/* <Route path='/PrescribingAndDeprescribing' element={<PrescribingAndDeprescribing/>}/> */}
       {/* <Route path='/NotableChangesInAdults' element={<NotableChangesInAdults/>}/> */}
-      <Route path="/SearchResults" element={<SearchResults />} />
-      <Route path="/AntidepressantGuide" element={<AntidepressantGuide />} />
-      <Route path="/AntidepressantSafety" element={<AntidepressantSafety />} />
-      <Route path="/AntidepressantsClinical" element={<AntidepressantsClinical />} />
-      <Route path="/PolypharmacyCommonDDIs" element={<PolypharmacyCommonDDIs />} />
-      <Route path="/PolypharmacyNotableChanges" element={<PolypharmacyNotableChanges />} />
-      <Route path="/PolypharmacyPrinciples" element={<PolypharmacyPrinciples />} />
+      <Route path='/SearchResults' element={<SearchResults/>}/>
+      <Route path="/AntidepressantGuide" element={<AntidepressantGuide/>}/>
+      <Route path="/AntidepressantSafety" element={<AntidepressantSafety/>}/>
+      <Route path="/AntidepressantsClinical" element={<AntidepressantsClinical/>}/>
+      <Route path="/PolypharmacyCommonDDIs" element={<PolypharmacyCommonDDIs/>}/>
+      <Route path="/PolypharmacyNotableChanges" element={<PolypharmacyNotableChanges/>}/>
+      <Route path="/PolypharmacyPrinciples" element={<PolypharmacyPrinciples/>}/>
+      <Route path="/AddDrug" element={<AddDrug/>}/>
     </Routes>
   </BrowserRouter>
 );

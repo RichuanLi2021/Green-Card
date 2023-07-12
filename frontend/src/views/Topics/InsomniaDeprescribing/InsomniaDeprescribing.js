@@ -66,7 +66,7 @@ export default function InsomniaDeprescribing() {
                     onClick={() => handleDrugClick(dataObj)}
                     className={`drug-button ${isDrugSelected ? 'active' : ''}`}
                   >
-                 BZRA {dataObj['Duration of BZRA use (months)']}
+                 BZRA {dataObj['Duration of BZRA use (months)']} weeks
                   </button>
 
                   {isDrugSelected && (
