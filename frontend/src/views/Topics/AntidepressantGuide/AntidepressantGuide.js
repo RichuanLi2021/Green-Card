@@ -6,7 +6,8 @@ import Typography from '@mui/material/Typography';
 import Data from "../../searchBar/Data.json";
 import SearchBar from "../../searchBar/searchBar";
 import AntidepressantGuideUpdate from "./AntidepressantGuidebackend.js";
-import './antidepressantGuide.css';
+import './AntidepressantGuide.css';
+import Footer from '../../Footer/Footer';
 
 export default function MoodStabilizers() {
   const [data, setData] = useState({});
@@ -75,7 +76,7 @@ export default function MoodStabilizers() {
           <Navigation />
           <SearchBar placeholder="Search" data={Data} />
           <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
-            <Typography variant="h4" align="center" gutterBottom>
+            <Typography className='page-heading' gutterBottom>
             Antidepressant Guide
             </Typography>
     
@@ -94,32 +95,31 @@ export default function MoodStabilizers() {
     
                     {isDrugSelected && (
                       <div className="box">
-
                         <div className="box-content">
-                        <strong>Half-life:</strong>
+                        <strong>Half-life: </strong>
                         <input
-                                id="`Half-life`"
-                                name={dataObj.Name}
-                                type="text"
-                                onFocus={store_value}
-                                onBlur={update_value}
-                                defaultValue={dataObj[`Half-life`]}
-                              />
+                          id="`Half-life`"
+                          name={dataObj.Name}
+                          type="text"
+                          onFocus={store_value}
+                          onBlur={update_value}
+                          defaultValue={dataObj[`Half-life`]}
+                        />
                         </div>
                         <div className="box-content">
-                        <strong>Primary NT:</strong>
+                        <strong>Primary NT: </strong>
                         <input
-                                id="`Primary NT`"
-                                name={dataObj.Name}
-                                type="text"
-                                onFocus={store_value}
-                                onBlur={update_value}
-                                defaultValue={dataObj[`Primary NT`]}
-                              />
+                          id="`Primary NT`"
+                          name={dataObj.Name}
+                          type="text"
+                          onFocus={store_value}
+                          onBlur={update_value}
+                          defaultValue={dataObj[`Primary NT`]}
+                        />
                         </div>
 
                         <div className="box-content">
-                          <strong>Dose (mg/day) Initial | Maint. | Max :</strong>
+                          <strong>Dose (mg/day) Initial | Maint. | Max: </strong>
                            <input
                                 id="`Dose (mg/day) Initial | Maint. | Max.`"
                                 name={dataObj.Name}
@@ -131,7 +131,7 @@ export default function MoodStabilizers() {
                         </div>
     
                         <div className="box-content">
-                          <strong>Frequency:</strong>
+                          <strong>Frequency: </strong>
                            <input
                                 id="`Frequency`"
                                 name={dataObj.Name}
@@ -143,7 +143,7 @@ export default function MoodStabilizers() {
                         </div>
                         
                         <div className="box-content">
-                          <strong>mg/Form Supplied:</strong>
+                          <strong>mg/Form Supplied: </strong>
                               <input
                                 id="`mg/Form Supplied`"
                                 name={dataObj.Name}
@@ -161,19 +161,20 @@ export default function MoodStabilizers() {
                 );
               })}
             </div>
-            <footer id="footer">
-    <p><b>Key:</b> 5HT: serotonin; DA: dopamine; NaSSA: noradrenaline serotonin specific antidepressant; NDRI:
- noradrenaline dopamine reuptake inhibitor; NT: neurotransmitter; NA: noradrenaline; SARI: serotonin
- antagonist & reuptake inhibitor; SSRI: selective serotonin reuptake inhibitor; TCA: tricyclic
- antidepressant (2°&3°: secondary and tertiary amines); xl, sr & er: slow release; †
-therapeutic levels
-available and useful; ^ accounts for half life of active metabolite; **preferred choice based on existing
- evidence; ∅ less appropriate due to long half life; ♯ less appropriate due to anticholinergic activity.
- <b>NOTES:</b> doses may not reflect manufacturers' recommendations but are based on clinical literature
- and expert opinion. Half lives are estimates based on adult data and in older adults they can often be
-increased up to 170%. </p>
-            </footer>
+            <div className='keynote-div'>
+              <p className='keynote'><b>Key:</b> 5HT: serotonin; DA: dopamine; NaSSA: noradrenaline serotonin specific antidepressant; NDRI:
+              noradrenaline dopamine reuptake inhibitor; NT: neurotransmitter; NA: noradrenaline; SARI: serotonin
+              antagonist & reuptake inhibitor; SSRI: selective serotonin reuptake inhibitor; TCA: tricyclic
+              antidepressant (2°&3°: secondary and tertiary amines); xl, sr & er: slow release; †
+              therapeutic levels
+              available and useful; ^ accounts for half life of active metabolite; **preferred choice based on existing
+              evidence; ∅ less appropriate due to long half life; ♯ less appropriate due to anticholinergic activity.
+              <b>NOTES:</b> doses may not reflect manufacturers' recommendations but are based on clinical literature
+              and expert opinion. Half lives are estimates based on adult data and in older adults they can often be
+              increased up to 170%. </p>
+            </div>
           </div>
+          <Footer />
         </>
       );
     }
@@ -185,7 +186,7 @@ increased up to 170%. </p>
           <Navigation />
           <SearchBar placeholder="Search" data={Data} />
           <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
-            <Typography variant="h4" align="center" gutterBottom>
+            <Typography className='page-heading' gutterBottom>
             Antidepressant Guide
             </Typography>
 
@@ -205,25 +206,25 @@ increased up to 170%. </p>
                     {isDrugSelected && (
                     <div className="box">
                       <div className="box-content">
-                        <strong>Half-life:</strong>
+                        <strong>Half-life: </strong>
                         <span>{dataObj[`Half-life`]}</span>
                       </div>
                       <div className="box-content">
-                        <strong>Primary NT:</strong>
+                        <strong>Primary NT: </strong>
                         <span>{dataObj[`Primary NT`]}</span>
                       </div>
                       <div className="box-content">
-                        <strong>Dose (mg/day) Initial | Maint. | Max. :</strong>
+                        <strong>Dose (mg/day) Initial | Maint. | Max.: </strong>
                         <span>{dataObj[`Dose (mg/day) Initial | Maint. | Max.`]}</span>
                       </div>
    
                       <div className="box-content">
-                        <strong>Frequency:</strong>
+                        <strong>Frequency: </strong>
                         <span>{dataObj[`Frequency`]}</span>
                       </div>
 
                       <div className="box-content">
-                        <strong>mg/Form Supplied :</strong>
+                        <strong>mg/Form Supplied: </strong>
                         <span>{dataObj[`mg/Form Supplied`]}</span>
                       </div>
                       
@@ -234,19 +235,20 @@ increased up to 170%. </p>
                 );
               })}
             </div>
-            <footer id="footer">
-            <p><b>Key:</b> 5HT: serotonin; DA: dopamine; NaSSA: noradrenaline serotonin specific antidepressant; NDRI:
- noradrenaline dopamine reuptake inhibitor; NT: neurotransmitter; NA: noradrenaline; SARI: serotonin
- antagonist & reuptake inhibitor; SSRI: selective serotonin reuptake inhibitor; TCA: tricyclic
- antidepressant (2°&3°: secondary and tertiary amines); xl, sr & er: slow release; †
-therapeutic levels
-available and useful; ^ accounts for half life of active metabolite; **preferred choice based on existing
- evidence; ∅ less appropriate due to long half life; ♯ less appropriate due to anticholinergic activity.
- <b>NOTES:</b> doses may not reflect manufacturers' recommendations but are based on clinical literature
- and expert opinion. Half lives are estimates based on adult data and in older adults they can often be
-increased up to 170%. </p>
-            </footer>
+            <div className="keynote-div">
+              <p className='keynote'><b>Key:</b> 5HT: serotonin; DA: dopamine; NaSSA: noradrenaline serotonin specific antidepressant; NDRI:
+              noradrenaline dopamine reuptake inhibitor; NT: neurotransmitter; NA: noradrenaline; SARI: serotonin
+              antagonist & reuptake inhibitor; SSRI: selective serotonin reuptake inhibitor; TCA: tricyclic
+              antidepressant (2°&3°: secondary and tertiary amines); xl, sr & er: slow release; †
+              therapeutic levels
+              available and useful; ^ accounts for half life of active metabolite; **preferred choice based on existing
+              evidence; ∅ less appropriate due to long half life; ♯ less appropriate due to anticholinergic activity.
+              <b> NOTES:</b> doses may not reflect manufacturers' recommendations but are based on clinical literature
+              and expert opinion. Half lives are estimates based on adult data and in older adults they can often be
+              increased up to 170%. </p>
+            </div>
           </div>
+          <Footer />
         </>
       );
     }

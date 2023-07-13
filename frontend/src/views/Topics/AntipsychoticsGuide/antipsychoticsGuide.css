@@ -40,8 +40,13 @@ html {
   background-color: #96d2b0;
 }
 
-#heading-antipsychotics {
-  font-family: "Work Sans", sans-serif;
+.heading-antipsychotics {
+  font-family: "Work Sans", sans-serif !important;
+  font-size: 1.5rem !important;
+}
+
+.css-ahj2mt-MuiTypography-root {
+  font-family: "Work Sans", sans-serif !important;
 }
 
 .box {
@@ -74,6 +79,21 @@ html {
   background-color:#96d2b0;
   color:black;
   margin-top:20px;
+}
+
+.antipsychoticsGuide-footer {
+  background: #d7ece0;
+  border-radius: 2px;
+  display: inline-block;
+  height: 100%;
+  margin: 1rem;
+  width: 90%;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  margin-bottom: 6.5rem;
+  font-size: 13px;
+}
+.footer-notes {
+  padding: 10px;
 }
 
 @media  screen and (min-width:200px) and (max-width:1000px) {
@@ -125,7 +145,7 @@ html {
       margin: 1rem;
       width: 90%;
       box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-
+      margin-bottom: 6.5rem;
       font-size: 13px;
     }
     .footer-notes {

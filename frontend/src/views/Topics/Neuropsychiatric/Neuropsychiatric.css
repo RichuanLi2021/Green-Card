@@ -7,11 +7,45 @@
     font-style:bold;
 }
 
-#firstAccordion, #secondAccordion{
-    background-color:#96d2b0;
-    color:black;
-    
+#firstAccordion, #secondAccordion, #thirdAccordion{
+    background-color:#d7ece0;
+    color:black; 
 }
+
+#thirdAccordion {
+  margin-bottom: 6rem;
+}
+
+#page-heading {
+  font-family: "Work Sans", sans-serif !important;
+  font-size: 1.5rem !important;
+  margin-bottom: 0.7rem;
+}
+
+#ect-button {
+  background-color: #96d2b0;
+}
+
+.css-zpphrz-MuiTypography-root {
+  font-family: "Work Sans", sans-serif !important;
+}
+
+.keynote-meddiv {
+  background: #d7ece0;
+  border-radius: 2px;
+  display: inline-block;
+  height: 100%;
+  margin: 1rem;
+  width: 90%;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  font-family: "Work Sans", sans-serif;
+  font-size: 13px;
+}
+
+.keynote {
+  padding: 10px;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(5, minmax(200px, 1fr));

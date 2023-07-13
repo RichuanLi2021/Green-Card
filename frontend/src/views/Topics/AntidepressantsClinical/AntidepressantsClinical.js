@@ -47,20 +47,17 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function AntidepressantsClinical() {
-
   const [data, setData] = useState([]);
-
 
   useEffect(() => {
     axios.get('http://localhost:8887/api/antidepressantsclinical')
       .then(response => {
         setData(response.data)
-        console.log(response.data[0]);
+        console.log(response.data);
       })
       .catch(error => {
         console.log(error);
       });
-
   }, []);
 
   const [value, setValue] = useState('');

@@ -8,7 +8,6 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
@@ -27,8 +26,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontWeight:'bold',
     fontStyle:'italic',
     textDecorationLine:'underline',
-    
-  
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
@@ -77,36 +74,22 @@ export default function PolypharmacyNotableChanges() {
       >
         <Typography variant="h3" id="polypharmacyNotable">
         <div className="subtitle-polychange">
-          Notable Changes in older adults that affect prescribing  
+          Notable changes in older adults that affect prescribing  
         </div>
         </Typography>
       </Box>
 
         <TableContainer component={Paper} >
-          <Table sx={{ minWidth: 700 }} aria-label="customized table" id="polypharmacyNotableTable" >
-            <TableHead >
-              <TableRow >
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >ID</StyledTableCell>
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Description</StyledTableCell>
-              </TableRow>
-            </TableHead>
+          <Table aria-label="customized table" id="polypharmacyNotableTable" >
             <TableBody>
               {data.map((dataObj, index) => (
                 <StyledTableRow key={index} >
-                  <StyledTableCell component="th" scope="row">
-                    {dataObj.LIST_HEADERS_Id}
-                  </StyledTableCell>
                   <StyledTableCell >{dataObj[`Description`]}</StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer><br></br>
-        <div className="polypharmacy-footer">
-          <p className='polypharmacy-notes'>
-          <b>Key notes: </b>NOTABLE_CHA means Notable Changes in older adults that affect prescribing
-          </p>
-        </div>
     </div>
     <Footer />
     </>
