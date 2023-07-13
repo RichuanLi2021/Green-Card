@@ -7,8 +7,7 @@ import SearchBar from "../../searchBar/searchBar";
 import Navigation from '../../Navigation/navigation';
 import Data from "../../searchBar/Data.json";
 import InsomniaSedativesUpdate from './InsomniaSedativesBackend';
-
-
+// import DeleteIcon from '@material-ui/icons/Delete';
 
 
 export default function InsomniaSedatives() {
@@ -46,6 +45,7 @@ export default function InsomniaSedatives() {
         event.preventDefault();
         InsomniaSedativesUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
           alert('Data successfully updated! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nNew Value:"+ event.target.value);
+          window.location.reload();
         }).catch((error) => {
           console.error(error);
           alert('Failed to update!');
@@ -74,19 +74,25 @@ export default function InsomniaSedatives() {
     });
   };
 
-  // const handleDelete = async (Name) =>{
-  //   try{
-  //     await axios.delete('http://localhost:8887/api/delete/'+Name)
-  //     window.alert('Drug Deleted Successfully !')
-  //   }catch(err) {
-  //     console.log(err);
-  //   }
-  // }
+  const handleDelete = async (Name) =>{
+    if(window.confirm('Are you sure you want to delete this record?')){
+    try{
+      
+      await axios.delete('http://localhost:8887/api/delete/'+Name)
+      window.alert('Drug Deleted Successfully !')
+      window.location.reload();
+    }catch(err) {
+      console.log(err);
+    }
+  }
+  }
 
   if (Object.keys(data).length > 0)
   {if (admin) {
     return (
       <>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
         <Navigation />
         <SearchBar placeholder="Search" data={Data} />
         <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
@@ -99,15 +105,19 @@ export default function InsomniaSedatives() {
               const dataObj = data[id];
               const isDrugSelected = selectedDrugs.includes(dataObj);
               return (
-                <div className="grid-item" key={id}>
+                <div  className="grid-item" key={id}>
                   <button
                     onClick={() => handleDrugClick(dataObj)}
                     className={`drug-button ${isDrugSelected ? 'active' : ''}`} 
                   >
                     {dataObj.Name} 
-                    {/* <button onClick={e => handleDelete(dataObj.Name)}> Delete</button> */}
-                  </button>
 
+                    <button style={{background:'none',border:'none',cursor:'pointer'}} onClick={e => handleDelete(dataObj.Name)} > <span class="material-symbols-outlined">
+delete
+</span></button>
+                  </button>
+                  
+                  
                   {isDrugSelected && (
                     <div>
 

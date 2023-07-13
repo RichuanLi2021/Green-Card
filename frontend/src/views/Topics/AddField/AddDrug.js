@@ -22,42 +22,6 @@ const theme = createTheme({
   });
 
 export default function AddDrug() {
-// const [formValue,setFormValue]=useState({drugName:'',doseEquiv:'',timeToPeakInPlasma:'',halfLife:'',avgDoseRange:'',mgFormsupplied:''});
-// const handleInput=(e)=>{
-//   const {name,value} = e.target;
-//   setFormValue({...formValue,[name]:value});
-// }
-
-// const handleSubmit = async(e)=>{
-//   e.preventDefault();
-//   const allInputValue = {drugName: formValue.drugName, doseEquiv: formValue.doseEquiv, timeToPeakInPlasma: formValue.timeToPeakInPlasma, halfLife: formValue.halfLife, avgDoseRange: formValue.avgDoseRange, mgFormsupplied: formValue.mgFormsupplied};
-
-//   console.log(allInputValue);
-// }
-
-// const handleSubmit = (event)=>{
-//   event.preventDefault();
-//   const drugName = event.target.drugName.value;
-//   const doseEquiv = event.target.doseEquiv.value;
-//   const timeToPeakInPlasma = event.target.timeToPeakInPlasma.value;
-//   const halfLife = event.target.halfLife.value;
-//   const avgDoseRange = event.target.avgDoseRange.value;
-//   const mgFormsupplied = event.target.mgFormsupplied.value;
-//   axios.post("http://localhost:8887/api/insomniasedatives",{
-//     drugName,
-//     doseEquiv,
-//     timeToPeakInPlasma,
-//     halfLife,
-//     avgDoseRange,
-//     mgFormsupplied,
-  
-//   }).then((response)=>{
-//     console.log(response);
-//   }).catch(error=>{
-//     console.log(error);
-//   });
-// }
-
 
   const [drugName, setdrugName] = useState('');
   const [doseEquiv, setdoseEuiv] = useState('');
@@ -78,8 +42,8 @@ export default function AddDrug() {
     settimeToPeakInPlasma(event.target.value);
   };
 
-  const handleHalfLife = (event, value) => {
-    sethalfLife(value);
+  const handleHalfLife = (event) => {
+    sethalfLife(event.target.value);
   };
 
   const handleAvgDoseRange = (event) => {
@@ -96,7 +60,7 @@ export default function AddDrug() {
     submitDrug(drugName, doseEquiv, timeToPeakInPlasma, avgDoseRange, mgFormsupplied)
       .then((data) => {
         window.alert('Drug was added Successfully!');
-      
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);
