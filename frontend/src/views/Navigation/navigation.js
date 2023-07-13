@@ -347,7 +347,7 @@ const Navbar = () => {
 
 
             <MenuItem onClick={handleMenuClose}>
-              <Button component={Link} to="/FeedbackForm" sx={{ color: '#000', fontSize: isMobile ? '0.8rem' : '1rem' }}>Feedback</Button>
+              <Button component={Link} to="/panel" sx={{ color: '#000', fontSize: isMobile ? '0.8rem' : '1rem' }}>Feedback</Button>
             </MenuItem>
           </Menu>
 
@@ -791,11 +791,6 @@ const Navbar = () => {
 
             <MenuItem>
               <Button component={Link} to="/PsychotropicMonitoringSection" sx={{ color: '#000', fontSize: isMobile ? '0.8rem' : '1rem' }}>Psychotropic Monitoring</Button>
-            </MenuItem>
-
-
-            <MenuItem onClick={handleMenuClose}>
-              <Button component={Link} to="/FeedbackForm" sx={{ color: '#000', fontSize: isMobile ? '0.8rem' : '1rem' }}>Feedback</Button>
             </MenuItem>
           </Menu>
 
