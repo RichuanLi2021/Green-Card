@@ -25,14 +25,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#96D2B0",
     color: "whitesmoke",
-    fontWeight: "bold",
-    textTransform: "uppercase",
     letterSpacing: "0.1rem",
-    fontSize: "1.1rem",
     padding: "1rem",
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: "1rem",
     padding: "1rem",
   },
 }));
@@ -50,7 +46,7 @@ export default function DeliriumManagement() {
       .get("http://localhost:8887/api/DeliriumManagement")
       .then((response) => {
         setData(response.data);
-        console.log(response.data[0]);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -72,10 +68,10 @@ export default function DeliriumManagement() {
             alignItems: "center",
           }}
         >
-          <Typography variant="h3" id="topicHeader">
+          <Typography id="topicHeader">
             Delirium Management
           </Typography>
-          <Typography variant="h2" id="topicHeader">
+          <Typography id="heading-note">
             Treating underlying cause is mainstay of treatment
           </Typography>
         </Box>
@@ -86,8 +82,7 @@ export default function DeliriumManagement() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
-              <ul>
+            <Typography  sx={{ textAlign: 'left' }}>
                 <li>Reduce noise</li>
                 <li>
                   Orient the patient using clocks, calendars, light/dark environment, verbal cues (esp. by family)
@@ -96,7 +91,6 @@ export default function DeliriumManagement() {
                 <li>Increase patient's sense of control</li>
                 <li>Minimize room/environment changes</li>
                 <li>Avoid restraints if possible</li>
-              </ul>
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -107,8 +101,7 @@ export default function DeliriumManagement() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
-              <ul>
+            <Typography  sx={{ textAlign: 'left' }}>
                 <li>
                   Only use if clinically signficant distress/agitation/aggression, when benefits{">"}harm, and non
                   pharmacological approach failed
@@ -118,10 +111,9 @@ export default function DeliriumManagement() {
                 <li>Haloperidol not recommended if pre-existing Parkinson's or LBD</li>
                 <li>Consider 4pm & 8pm dosing rather than morning dose to optimize sleep wake cycle</li>
                 <li>See antipsychotic table for dosing recommendations</li>
-              </ul>
 
               <p>
-                <b> Key:</b> LBD: Lewy body dementiaHighHigh
+                <b> Key:</b> LBD: Lewy body dementia
               </p>
             </Typography>
           </AccordionDetails>
@@ -136,7 +128,7 @@ export default function DeliriumManagement() {
           <AccordionDetails>
             <Typography>
               <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 700 }} aria-label="customized table" id="table">
+                <Table aria-label="customized table" id="table">
                   <TableHead>
                     <TableRow>
                       <StyledTableCell>High</StyledTableCell>

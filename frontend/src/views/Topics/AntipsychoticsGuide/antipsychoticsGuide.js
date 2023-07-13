@@ -80,8 +80,8 @@ export default function AntipsychoticsGuide() {
         <>
           <Navigation />
           <SearchBar placeholder="Search" data={Data} />
-          <div className="subHeader" style={{ marginTop: '2rem', padding: '0 1rem' }}>
-            <Typography variant="h4" align="center" id ="heading-antipsychotics"gutterBottom >
+          <div className="subHeader" style={{ marginTop: '1rem', padding: '0 1rem' }}>
+            <Typography className="heading-antipsychotics" gutterBottom >
               Antipsychotics Guide
             </Typography>
   
@@ -108,7 +108,7 @@ export default function AntipsychoticsGuide() {
                             <AccordionDetails>
                               <div className="accordion-content">
                                 <div className="box-content">
-                                  <strong>Approx equiv dose:</strong>
+                                  <strong>Approx equiv dose: </strong>
                                   <input
                                     id="`Approx. equiv. dose`"
                                     name={dataObj.Name}
@@ -119,7 +119,7 @@ export default function AntipsychoticsGuide() {
                                   />
                                 </div>
                                 <div className="box-content">
-                                  <strong>Half-Life:</strong>
+                                  <strong>Half-Life: </strong>
                                   <input
                                     id="`Half-life`"
                                     name={dataObj.Name}
@@ -130,7 +130,7 @@ export default function AntipsychoticsGuide() {
                                   />
                                 </div>
                                 <div className="box-content">
-                                  <strong>Frequency:</strong>
+                                  <strong>Frequency: </strong>
                                   <input
                                     id="`Frequency`"
                                     name={dataObj.Name}
@@ -141,7 +141,7 @@ export default function AntipsychoticsGuide() {
                                   />
                                 </div>
                                 <div className="box-content" style={{ width: 230 }}>
-                                  <strong>Tab Strength/Form Supplied:</strong>
+                                  <strong>Tab Strength/Form Supplied: </strong>
                                   <input
                                     id="`Tab Strength/Form Supplied`"
                                     name={dataObj.Name}
@@ -164,7 +164,7 @@ export default function AntipsychoticsGuide() {
                             <AccordionDetails>
                               <div className="accordion-content">
                                 <div className="box-content">
-                                  <strong>Neuropsychiatric symptoms of dementia:</strong>
+                                  <strong>Neuropsychiatric symptoms of dementia: </strong>
                                   <input
                                     id="`NPS`"
                                     name={dataObj.Name}
@@ -175,7 +175,7 @@ export default function AntipsychoticsGuide() {
                                   />
                                 </div>
                                 <div className="box-content">
-                                  <strong>Parkinson's psychosis:</strong>
+                                  <strong>Parkinson's psychosis: </strong>
                                   <input
                                     id="`PP`"
                                     name={dataObj.Name}
@@ -186,7 +186,7 @@ export default function AntipsychoticsGuide() {
                                   />
                                 </div>
                                 <div className="box-content">
-                                  <strong>Major depressive disorder (antidepressant augment):</strong>
+                                  <strong>Major depressive disorder (antidepressant augment): </strong>
                                   <input
                                     id="`MDE (ADaugment)`"
                                     name={dataObj.Name}
@@ -197,7 +197,7 @@ export default function AntipsychoticsGuide() {
                                   />
                                 </div>
                                 <div className="box-content">
-                                  <strong>Major depressive disorder (w.psychosis):</strong>
+                                  <strong>Major depressive disorder (w.psychosis): </strong>
                                   <input
                                     id="`MDE (w.psychosis)`"
                                     name={dataObj.Name}
@@ -208,7 +208,7 @@ export default function AntipsychoticsGuide() {
                                   />
                                 </div>
                                 <div className="box-content">
-                                  <strong>Delirium:</strong>
+                                  <strong>Delirium: </strong>
                                   <input
                                     id="`Delirium`"
                                     name={dataObj.Name}
@@ -219,7 +219,7 @@ export default function AntipsychoticsGuide() {
                                   />
                                 </div>
                                 <div className="box-content">
-                                  <strong>Early-onset schizophrenia:</strong>
+                                  <strong>Early-onset schizophrenia: </strong>
                                   <input
                                     id="`EO-SCZ`"
                                     name={dataObj.Name}
@@ -230,7 +230,7 @@ export default function AntipsychoticsGuide() {
                                   />
                                 </div>
                                 <div className="box-content">
-                                  <strong>Late-onset schizophrenia:</strong>
+                                  <strong>Late-onset schizophrenia: </strong>
                                   <input
                                     id="`LO-SCZ`"
                                     name={dataObj.Name}
@@ -272,8 +272,8 @@ export default function AntipsychoticsGuide() {
       <>
         <Navigation />
         <SearchBar placeholder="Search" data={Data} />
-        <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
-          <Typography variant="h4" align="center" gutterBottom>
+        <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
+          <Typography className="heading-antipsychotics" gutterBottom>
             Antipsychotics Guide
           </Typography>
 
@@ -299,19 +299,19 @@ export default function AntipsychoticsGuide() {
                         <AccordionDetails>
                           
                             <div className="box-content">
-                              <strong>Approx equiv dose:</strong>
+                              <strong>Approx equiv dose: </strong>
                               <span>{dataObj['Approx. equiv. dose']}</span>
                             </div>
                             <div className="box-content">
-                              <strong>Half-Life:</strong>
+                              <strong>Half-Life: </strong>
                               <span>{dataObj['Half-life']}</span>
                             </div>
                             <div className="box-content">
-                              <strong>Frequency:</strong>
+                              <strong>Frequency: </strong>
                               <span>{dataObj['Frequency']}</span>
                             </div>
                             <div className="box-content" style={{ width: 230 }}>
-                              <strong>Tablet Strength/Form Supplied:</strong>
+                              <strong>Tablet Strength/Form Supplied: </strong>
                               <span>{dataObj['Tab Strength/Form Supplied']}</span>
                             </div>
                           
@@ -325,11 +325,11 @@ export default function AntipsychoticsGuide() {
                         <AccordionDetails>
                           
                             <div className="box-content">
-                              <strong>Neuropsychiatric symptoms of dementia:</strong>
+                              <strong>Neuropsychiatric symptoms of dementia: </strong>
                               <span>{dataObj['NPS']}</span>
                             </div>
                             <div className="box-content">
-                              <strong>Parkinson's psychosis:</strong>
+                              <strong>Parkinson's psychosis: </strong>
                               <span>{dataObj['PP']}</span>
                             </div>
                             <div className="box-content">
@@ -339,19 +339,19 @@ export default function AntipsychoticsGuide() {
                               <span>{dataObj['MDE (ADaugment)']}</span>
                             </div>
                             <div className="box-content">
-                              <strong>Major depressive disorder (w.psychosis):</strong>
+                              <strong>Major depressive disorder (w.psychosis): </strong>
                               <span>{dataObj['MDE (w.psychosis)']}</span>
                             </div>
                             <div className="box-content">
-                              <strong>Delirium:</strong>
+                              <strong>Delirium: </strong>
                               <span>{dataObj['Delirium']}</span>
                             </div>
                             <div className="box-content">
-                              <strong>Early-onset schizophrenia:</strong>
+                              <strong>Early-onset schizophrenia: </strong>
                               <span>{dataObj['EO-SCZ']}</span>
                             </div>
                             <div className="box-content">
-                              <strong>Late-onset schizophrenia:</strong>
+                              <strong>Late-onset schizophrenia: </strong>
                               <span>{dataObj['LO-SCZ']}</span>
                             </div>
                           

@@ -23,7 +23,6 @@ export default function SearchBar({placeholder,data}) {
 
                 <form id="form">
                     <input type = "text" className='inputField' placeholder ={placeholder} onChange={handleFilter} />
-                   
                 </form>
                 <SearchIcon /> 
             </div>

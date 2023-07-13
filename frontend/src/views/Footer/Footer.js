@@ -6,7 +6,7 @@ import './Footer.css';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#24a35c',
+      main: '#000000',
       contrastText: '#ffffff',
     },
   },

@@ -106,7 +106,7 @@ export default function CognitiveEnhancersGuideCont() {
 
                     <div className="box">
                     <div className="box-content">
-                      <strong>MCI</strong>
+                      <strong>MCI: </strong>
                       <input
                                   id="`MCI`"
                                   name={dataObj.Name}
@@ -117,7 +117,7 @@ export default function CognitiveEnhancersGuideCont() {
                                 />
                     </div>
                     <div className="box-content">
-                      <strong>Mild-mod Alz</strong>
+                      <strong>Mild-mod Alz: </strong>
                       <input
                                   id="`Mild-mod Alz`"
                                   name={dataObj.Name}
@@ -129,7 +129,7 @@ export default function CognitiveEnhancersGuideCont() {
                     </div>
                     
                     <div className="box-content">
-                      <strong>Severe Alz</strong>
+                      <strong>Severe Alz: </strong>
                       <input
                                   id="`Severe Alz`"
                                   name={dataObj.Name}
@@ -140,7 +140,7 @@ export default function CognitiveEnhancersGuideCont() {
                                 />
                     </div>
                     <div className="box-content" style={{ width: 230 }}>
-                      <strong>Mixed (Alz+vas)</strong>
+                      <strong>Mixed (Alz+vas: )</strong>
                       <input
                                   id="`Mixed (Alz+vas)`"
                                   name={dataObj.Name}
@@ -151,7 +151,7 @@ export default function CognitiveEnhancersGuideCont() {
                                 />
                     </div>
                     <div className="box-content">
-                      <strong>Vascular</strong>
+                      <strong>Vascular: </strong>
                       <input
                                   id="`Vascular`"
                                   name={dataObj.Name}
@@ -163,7 +163,7 @@ export default function CognitiveEnhancersGuideCont() {
                     </div>
 
                     <div className="box-content">
-                      <strong>LBD</strong>
+                      <strong>LBD: </strong>
                       <input
                                   id="`LBD`"
                                   name={dataObj.Name}
@@ -174,7 +174,7 @@ export default function CognitiveEnhancersGuideCont() {
                                 />
                     </div>
                     <div className="box-content">
-                      <strong>FTD</strong>
+                      <strong>FTD: </strong>
                       <input
                                   id="`FTD`"
                                   name={dataObj.Name}
@@ -185,7 +185,7 @@ export default function CognitiveEnhancersGuideCont() {
                                 />
                     </div>
                     <div className="box-content">
-                      <strong>PD</strong>
+                      <strong>PD: </strong>
                       <input
                                   id="`PD`"
                                   name={dataObj.Name}
@@ -196,7 +196,7 @@ export default function CognitiveEnhancersGuideCont() {
                                 />
                     </div>
                     <div className="box-content">
-                      <strong>DSD</strong>
+                      <strong>DSD: </strong>
                       <input
                                   id="`DSD`"
                                   name={dataObj.Name}
@@ -218,9 +218,9 @@ export default function CognitiveEnhancersGuideCont() {
               );
             })}
           </div>
-          <div className="cognitive-footer">
+          <div className="keynote-div">
             <p className='cognitive-notes'>
-              <b>Key :</b> DSD: down syndrome dementia; FTD: frontotemporal dementia; LBD: lewy body dementia; MCI: mild cognitive impairment; N: not indicated; PD: parkinson's disease; Y: indicated. 
+              <b>Key:</b> DSD: down syndrome dementia; FTD: frontotemporal dementia; LBD: lewy body dementia; MCI: mild cognitive impairment; N: not indicated; PD: parkinson's disease; Y: indicated. 
             </p>          
           </div>
         </div>
@@ -258,40 +258,40 @@ export default function CognitiveEnhancersGuideCont() {
                   {isDrugSelected && (
                   <div className="box">
                     <div className="box-content">
-                      <strong>MCI</strong>
+                      <strong>MCI: </strong>
                       <span>{dataObj['MCI']}</span>
                     </div>
                     <div className="box-content">
-                      <strong>Mild-mod Alz</strong>
+                      <strong>Mild-mod Alz: </strong>
                       <span>{dataObj['mild-mod Alz']}</span>
                     </div>
                     
                     <div className="box-content">
-                      <strong>Severe Alz</strong>
+                      <strong>Severe Alz: </strong>
                       <span>{dataObj['Severe Alz']}</span>
                     </div>
                     <div className="box-content" style={{ width: 230 }}>
-                      <strong>Mixed (Alz+vas)</strong>
+                      <strong>Mixed (Alz+vas): </strong>
                       <span>{dataObj['Mixed (Alz+vas)']}</span>
                     </div>
                     <div className="box-content">
-                      <strong>Vascular</strong>
+                      <strong>Vascular: </strong>
                       <span>{dataObj['Vascular']}</span>
                     </div>
                     <div className="box-content">
-                      <strong>LBD</strong>
+                      <strong>LBD: </strong>
                       <span>{dataObj['LBD']}</span>
                     </div>
                     <div className="box-content">
-                      <strong>FTD</strong>
+                      <strong>FTD: </strong>
                       <span>{dataObj['FTD']}</span>
                     </div>
                     <div className="box-content">
-                      <strong>PD</strong>
+                      <strong>PD: </strong>
                       <span>{dataObj['PD']}</span>
                     </div>
                     <div className="box-content">
-                      <strong>DSD</strong>
+                      <strong>DSD: </strong>
                       <span>{dataObj['DSD']}</span>
                     </div>
                     
@@ -302,7 +302,7 @@ export default function CognitiveEnhancersGuideCont() {
               );
             })}
           </div>
-          <div className="cognitive-footer">
+          <div className="keynote-div">
             <p className='cognitive-notes'>
               <b>Key :</b> DSD: down syndrome dementia; FTD: frontotemporal dementia; LBD: lewy body dementia; MCI: mild cognitive impairment; N: not indicated; PD: parkinson's disease; Y: indicated. 
             </p>          

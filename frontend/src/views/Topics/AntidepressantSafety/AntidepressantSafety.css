@@ -2,6 +2,12 @@
   font-family: "Work Sans", sans-serif;
 }
 
+.css-11xur9t-MuiPaper-root-MuiTableContainer-root {
+  width: 95% !important;
+  margin: auto !important;
+  margin-top: 8px !important;
+}
+
 @media (max-width: 800px) {
     #antidepressantSafetyHeader {
         font-size: 120%;
@@ -15,7 +21,7 @@
         margin: 1rem;
         width: 90%;
         box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-
+        margin-bottom: 6.5rem;
         font-size: 13px;
       }
       .antidepressantSafety-notes-key {

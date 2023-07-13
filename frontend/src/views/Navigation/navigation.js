@@ -111,7 +111,7 @@ const Navbar = () => {
     return (
       <AppBar style={{ boxShadow: "none", marginBottom: "50px" }}>
         <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none', fontSize: isMobile ? '0.8rem' : '1rem' }}>
+          <Typography className="web-title" sx={{ flexGrow: 1, color: '#000' }}>
             Geriatric Psychotropic Green Card
           </Typography>
 
@@ -202,7 +202,7 @@ const Navbar = () => {
                   <Button component={Link} to="/AntipsychoticsGuide" sx={{ color: '#000' }}>Antipsychotics Guide</Button>
                 </MenuItem>
                 <MenuItem onClick={handleAntipsychoticsMenuClose}>
-                  <Button component={Link} to="/" sx={{ color: '#000' }}>Antidepressants Safety Concerns</Button>
+                  <Button component={Link} to="/" sx={{ color: '#000' }}>Antipsychotics Safety Concerns</Button>
                 </MenuItem>
               </Menu>
             </MenuItem>
@@ -561,7 +561,7 @@ const Navbar = () => {
     return (
       <AppBar style={{ boxShadow: "none", marginBottom: "50px" }}>
         <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none', fontSize: isMobile ? '0.8rem' : '1rem' }}>
+          <Typography className="web-title" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none' }}>
             Geriatric Psychotropic Green Card
           </Typography>
 

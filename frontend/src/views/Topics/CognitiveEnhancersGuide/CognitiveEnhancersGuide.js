@@ -106,7 +106,7 @@ export default function CognitiveEnhancersGuide() {
 
                     <div className="box">
                     <div className="box-content">
-                      <strong>Action</strong>
+                      <strong>Action: </strong>
                       <input
                                   id="`Action`"
                                   name={dataObj.Name}
@@ -117,7 +117,7 @@ export default function CognitiveEnhancersGuide() {
                                 />
                     </div>
                     <div className="box-content">
-                      <strong>Half-life</strong>
+                      <strong>Half-life: </strong>
                       <input
                                   id="`Half-life`"
                                   name={dataObj.Name}
@@ -129,7 +129,7 @@ export default function CognitiveEnhancersGuide() {
                     </div>
                     
                     <div className="box-content">
-                      <strong>Dose "initial/monthly increment/maint"</strong>
+                      <strong>Dose "initial/monthly increment/maint": </strong>
                       <input
                                   id="`Dose`"
                                   name={dataObj.Name}
@@ -140,7 +140,7 @@ export default function CognitiveEnhancersGuide() {
                                 />
                     </div>
                     <div className="box-content" style={{ width: 230 }}>
-                      <strong>Frequency</strong>
+                      <strong>Frequency: </strong>
                       <input
                                   id="`Frequency`"
                                   name={dataObj.Name}
@@ -151,7 +151,7 @@ export default function CognitiveEnhancersGuide() {
                                 />
                     </div>
                     <div className="box-content">
-                      <strong>mg/Form supplied</strong>
+                      <strong>mg/Form supplied: </strong>
                       <input
                                   id="`mg/form supplied`"
                                   name={dataObj.Name}
@@ -163,7 +163,7 @@ export default function CognitiveEnhancersGuide() {
                     </div>
 
                     <div className="box-content">
-                      <strong>With food?</strong>
+                      <strong>With food?: </strong>
                       <input
                                   id="`With food?`"
                                   name={dataObj.Name}
@@ -186,7 +186,7 @@ export default function CognitiveEnhancersGuide() {
               );
             })}
           </div>
-          <div className="cognitive-footer">
+          <div className="keynote-div">
             <p className='cognitive-notes'>
               <b>Key:</b> AChEI: acetylcholinesterase inhibitor; BuChEI: butyrylcholinesterase inhibitor 
             </p>     
@@ -226,24 +226,24 @@ export default function CognitiveEnhancersGuide() {
                   {isDrugSelected && (
                   <div className="box">
                     <div className="box-content">
-                      <strong>Action</strong>
+                      <strong>Action: </strong>
                       <span>{dataObj['Action']}</span>
                     </div>
                     <div className="box-content">
-                      <strong>Half-life</strong>
+                      <strong>Half-life: </strong>
                       <span>{dataObj['Half-life']}</span>
                     </div>
                     
                     <div className="box-content">
-                      <strong>Dose "initial/monthly increment/maint"</strong>
+                      <strong>Dose "initial/monthly increment/maint": </strong>
                       <span>{dataObj['Dose (initial/monthly increment/maint)']}</span>
                     </div>
                     <div className="box-content" style={{ width: 230 }}>
-                      <strong>Frequency</strong>
+                      <strong>Frequency: </strong>
                       <span>{dataObj['Frequency']}</span>
                     </div>
                     <div className="box-content">
-                      <strong>mg/Form supplied</strong>
+                      <strong>mg/Form supplied: </strong>
                       <span>{dataObj['mg/form supplied']}</span>
                     </div>
                     
@@ -254,7 +254,7 @@ export default function CognitiveEnhancersGuide() {
               );
             })}
           </div>
-          <div className="cognitive-footer">
+          <div className="keynote-div">
             <p className='cognitive-notes'>
               <b>Key:</b> AChEI: acetylcholinesterase inhibitor; BuChEI: butyrylcholinesterase inhibitor 
             </p>     

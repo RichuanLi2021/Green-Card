@@ -78,7 +78,7 @@ export default function PsychotropicMonitoringSection() {
         <>
           <Navigation />
           <SearchBar placeholder="Search" data={Data} />
-          <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
+          <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
             <Typography variant="h4" align="center" gutterBottom>
             <div className='subtitle'>
               Psychotropic Monitoring
@@ -102,7 +102,7 @@ export default function PsychotropicMonitoringSection() {
                       <div className="box">
 
                         <div className="box-content">
-                        <strong>Antipsychotics:</strong>
+                        <strong>Antipsychotics: </strong>
                           <input id="`Antipsychotics`"
                             name={dataObj.Name}
                             type='text'
@@ -112,7 +112,7 @@ export default function PsychotropicMonitoringSection() {
                         </div>
 
                         <div className="box-content">
-                          <strong>Lithium:</strong>
+                          <strong>Lithium: </strong>
                           <input id="`Lithium`"
                           name={dataObj.Name} 
                           type='text' 
@@ -122,7 +122,7 @@ export default function PsychotropicMonitoringSection() {
                         </div>
     
                         <div className="box-content">
-                          <strong>Valproate:</strong>
+                          <strong>Valproate: </strong>
                           <input id="`Valproate`" 
                           name={dataObj.Name} 
                           type='text' 
@@ -157,7 +157,7 @@ export default function PsychotropicMonitoringSection() {
         <>
           <Navigation />
           <SearchBar placeholder="Search" data={Data} />
-          <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
+          <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
             <Typography variant="h4" align="center" gutterBottom>
             <div className='subtitle'>
               Psychotropic Monitoring
@@ -180,16 +180,16 @@ export default function PsychotropicMonitoringSection() {
                     {isDrugSelected && (
                     <div className="box">
                       <div className="box-content">
-                        <strong>Antipsychotics:</strong>
+                        <strong>Antipsychotics: </strong>
                         <span>{dataObj[`Antipsychotics`]}</span>
                       </div>
                       <div className="box-content">
-                        <strong>Lithium:</strong>
+                        <strong>Lithium: </strong>
                         <span>{dataObj[`Lithium`]}</span>
                       </div>
                       
                       <div className="box-content">
-                        <strong>Valproate:</strong>
+                        <strong>Valproate: </strong>
                         <span>{dataObj[`Valproate`]}</span>
                       </div>
                       
