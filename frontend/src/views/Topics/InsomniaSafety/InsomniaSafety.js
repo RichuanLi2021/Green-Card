@@ -1,5 +1,3 @@
-import './InsomniaSafety.css';
-import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
@@ -8,7 +6,6 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
@@ -24,12 +21,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontWeight:'bold',
     fontStyle:'italic',
     textDecorationLine:'underline',
-    
-  
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
-    
   },
 }));
 
@@ -72,32 +66,24 @@ export default function InsomniaSafety() {
           alignItems: 'center',
         }}
       >
-        <Typography variant="h3" id="topicHeader">Sedatives/Hypnotics Safety Concerns</Typography>
+        <Typography id="topicHeader">Sedatives/Hypnotics Safety Concerns</Typography>
       </Box>
         <TableContainer component={Paper} >
-        <Table sx={{ minWidth: 700 }} aria-label="customized table" id="safetyTable" >
-          <TableHead >
-            <TableRow >
-              <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Safety concerns</StyledTableCell>
-              <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Safety concern names</StyledTableCell>
-            </TableRow>
-          </TableHead>
+        <Table aria-label="customized table" id="safetyTable" >
           <TableBody>
             {data.map((dataObj, index) => (
               <StyledTableRow key={index} >
-                <StyledTableCell component="th" scope="row">
-                  {dataObj.LIST_HEADERS_Id}
-                </StyledTableCell>
                 <StyledTableCell >{dataObj[`Description`]}</StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
         </Table>
-      </TableContainer><br></br>
-      <p><b>Key notes: SHYPCLIN_SAF means safety concerns</b> </p>
+      </TableContainer>
+      <div className='keynote-div'>
+        <p className='keynote'><b>Key notes:</b> SHYPCLIN_SAF means safety concerns </p>
+      </div>
     </div>
     <Footer />
     </>
   );
-}
-};
+}};

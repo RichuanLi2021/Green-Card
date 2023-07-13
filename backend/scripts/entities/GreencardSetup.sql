@@ -167,6 +167,18 @@ CREATE TABLE IF NOT EXISTS `green_card`.`DEPRESCRIBING BENZODIAZEPINE-LIKE SEDAT
   PRIMARY KEY (`Id`)
   );
 
+-- -----------------------------------------------------
+-- Table `green_card`.`DELIRIUM MANAGEMENT`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `green_card`.`DELIRIUM_MANAGEMENT` ;
+
+CREATE TABLE IF NOT EXISTS `green_card`.`DELIRIUM_MANAGEMENT` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `High` VARCHAR(256) NULL,
+  `Medium` VARCHAR(256) NULL,
+  `Low` VARCHAR(256) NULL,
+  PRIMARY KEY (`Id`)
+);
 
 -- -----------------------------------------------------
 -- Table `green_card`.`MOOD STABILIZERS GUIDE`
@@ -352,5 +364,45 @@ CREATE TABLE IF NOT EXISTS `green_card`.`ANTIDEPRESSANTS GUIDE` (
   `Dose (mg/day) Initial | Maint. | Max.` VARCHAR(256) NULL,
   `Frequency` VARCHAR(256) NULL,
   `mg/Form Supplied` VARCHAR(256) NULL,
+  PRIMARY KEY (`Id`)
+  );
+
+
+-- -----------------------------------------------------
+-- Table `green_card`.`COGNITIVE ENHANCERS GUIDE`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `green_card`.`SEARCH RESULTS` ;
+-- table split into two on frontend 1. Name -> With Food | 2. MCI -> DSD
+CREATE TABLE IF NOT EXISTS `green_card`.`SEARCH RESULTS` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(256) NOT NULL,
+  `Monitoring Level` VARCHAR(256) NULL,
+  `Action` VARCHAR(256) NULL,
+  `Primary NT` VARCHAR(256) NULL,
+  `Half-life` VARCHAR(256) NULL,
+  `Time to peak in plasma` VARCHAR(256) NULL,
+  `Avg dose range (mg/day)` VARCHAR(256) NULL,
+  `Dose (initial/monthly increment/maint)` VARCHAR(256) NULL,
+  `Dose equiv.` VARCHAR(256) NULL,
+  `Frequency` VARCHAR(256) NULL,
+  `mg/form supplied` VARCHAR(256) NULL,
+  `With food?` VARCHAR(256) NULL,
+  `MCI` VARCHAR(256) NULL,
+  `mild-mod Alz` VARCHAR(256) NULL,
+  `Severe Alz` VARCHAR(256) NULL,
+  `Tab Strength/Form Supplied` VARCHAR(256) NULL,
+  `NPS` VARCHAR(256) NULL,
+  `PP` VARCHAR(256) NULL,
+  `MDE (ADaugment)` VARCHAR(256) NULL,
+  `MDE (w.psychosis)` VARCHAR(256) NULL,
+  `Delirium` VARCHAR(256) NULL,
+  `EO-SCZ` VARCHAR(256) NULL,
+  `LO-SCZ` VARCHAR(256) NULL,
+  `Mixed (Alz+vas)` VARCHAR(256) NULL,
+  `Vascular` VARCHAR(256) NULL,
+  `LBD` VARCHAR(256) NULL,
+  `FTD` VARCHAR(256) NULL,
+  `PD` VARCHAR(256) NULL,
+  `DSD` VARCHAR(256) NULL,
   PRIMARY KEY (`Id`)
   );

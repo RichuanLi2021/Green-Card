@@ -6,7 +6,7 @@ import './Footer.css';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#24a35c',
+      main: '#000000',
       contrastText: '#ffffff',
     },
   },
@@ -15,7 +15,7 @@ const theme = createTheme({
 const Footer = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Box component="footer" className="footer">
+      <Box component="footer" className="main-footer">
         <Typography variant="body2" align="center">
           © {new Date().getFullYear()} The Green Card: Geriatric Psychotropic Drug Reference Card
         </Typography>

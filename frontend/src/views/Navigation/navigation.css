@@ -37,6 +37,10 @@
   cursor: pointer;
 }
 
+.web-title {
+  font-family: "Work Sans", sans-serif !important;
+}
+
 @media screen and (max-width: 899px) {
   .navbar {
     flex-direction: column;

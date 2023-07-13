@@ -13,6 +13,12 @@
     color:black; 
 }
 
+#heading-note {
+  width: 70%;
+  margin: auto;
+  padding-bottom: 1rem;
+}
+
 #topicHeader {
   padding-bottom: 5px;
 }
