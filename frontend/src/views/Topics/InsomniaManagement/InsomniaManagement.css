@@ -4,9 +4,29 @@
 }
 #mainTopic{
     text-decoration:none;
-    font-size:20pt;  
+    font-size: 1.5rem;
 }
 
 #mainText{
     font-size:15pt;
+    font-family: "Work Sans", sans-serif;
 }
+
+@media (max-width: 800px) {
+    #mainTopic {
+        font-size: 120%;
+        font-family: "Work Sans", sans-serif;
+    }
+
+    .content-insomnia{
+        text-align: left;
+        background-color: #d7ece0;
+        font-size: 13px;
+        padding: 10px;
+      }
+      .li-insomnia {
+        padding-bottom: 10px;
+      }
+  }
+  
+  

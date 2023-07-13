@@ -1,5 +1,3 @@
-import './InsomniaClinical.css';
-import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
@@ -73,11 +71,11 @@ export default function InsomniaClinical() {
           alignItems: 'center',
         }}
       >
-        <Typography variant="h3" id="topicHeader">Sedatives/Hypnotics Clinical Guide</Typography>
+        <Typography id="topicHeader">Sedatives/Hypnotics Clinical Guide</Typography>
       </Box>
 
         <TableContainer component={Paper} >
-          <Table sx={{ minWidth: 700 }} aria-label="customized table" id="clinicalTable" >
+          <Table aria-label="customized table" id="clinicalTable" >
             <TableHead >
               <TableRow >
                 <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >When to do?</StyledTableCell>
@@ -95,11 +93,12 @@ export default function InsomniaClinical() {
               ))}
             </TableBody>
           </Table>
-        </TableContainer><br></br>
-          <p><b>Key notes: SHYPCLIN_BFR means before prescribing, SHYPCLIN_STR means starting, SHYPCLIN_END means ending</b> </p>
+        </TableContainer>
+        <div className='keynote-div'>
+          <p className='keynote'><b>Key notes:</b> SHYPCLIN_BFR means before prescribing, SHYPCLIN_STR means starting, SHYPCLIN_END means ending </p>
+          </div>
     </div>
     <Footer />
     </>
   );
-}
-};
+}};

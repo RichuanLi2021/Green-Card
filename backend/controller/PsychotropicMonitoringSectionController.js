@@ -12,5 +12,26 @@ const PsychotropicMonitoringSectionController = {
    }
 
 };
-
-module.exports = PsychotropicMonitoringSectionController;
+const updatePsychotropicMonitoringSectionData = async (req, res, next) => {
+  try {
+    const { name, column, value } = req.body;
+    await pool.query(
+      "UPDATE `green_card`.`Psychotropic Monitoring` SET " +
+        column +
+        " = " +
+        '"' +
+        value +
+        '"' +
+        " WHERE name = " +
+        '"' +
+        name +
+        '"'
+    );
+    res.send("Updated Successfully!");
+  } catch (error) {
+    console.log(error);
+    next(error);
+    throw error;
+  }
+};
+module.exports = { PsychotropicMonitoringSectionController, updatePsychotropicMonitoringSectionData};

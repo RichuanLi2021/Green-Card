@@ -87,8 +87,11 @@
         "title":"Log in",
         "link":"https://gpgc.vercel.app/login"  
     }
-
-
+    ,
+    {
+        "title":"Searching By Drug Name?",
+        "link":"http://localhost:3000/SearchResults"
+    }
 
 
 
