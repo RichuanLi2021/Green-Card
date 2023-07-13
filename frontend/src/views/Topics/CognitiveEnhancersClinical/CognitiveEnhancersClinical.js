@@ -106,7 +106,6 @@ export default function CognitiveEnhancersClinical() {
 
                     <div className="box">
                     <div className="box-content">
-                      <strong>LIST_HEADERS_Id</strong>
                       <input
                                   id="`LIST_HEADERS_ID`"
                                   name={dataObj.Description}
@@ -184,11 +183,10 @@ export default function CognitiveEnhancersClinical() {
                   {isDrugSelected && (
                   <div className="box">
                      <div className="box-content">
-                     <strong>LIST_HEADERS_Id</strong>
                       <span>{dataObj['LIST_HEADERS_Id']}</span>
                     </div>
                     <div className="box-content">
-                      <strong>Description</strong>
+                      <strong>Description: </strong>
                       <span>{dataObj['Description']}</span>
                     </div>
                     
