@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Data from "../../searchBar/Data.json";
 import SearchBar from "../../searchBar/searchBar";
 import AntidepressantGuideUpdate from "./AntidepressantGuidebackend.js";
-import './AntidepressantGuide.css';
+import './AntidepressantsGuide.css';
 import Footer from '../../Footer/Footer';
 
 export default function MoodStabilizers() {
