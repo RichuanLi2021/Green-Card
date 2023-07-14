@@ -116,6 +116,19 @@ export default function InsomniaSedatives() {
     });
   };
 
+  const handleDelete = async (Name) =>{
+    if(window.confirm('Are you sure you want to delete this record?')){
+    try{
+      
+      await axios.delete('http://localhost:8887/api/delete/'+Name)
+      window.alert('Drug Deleted Successfully !')
+      window.location.reload();
+    }catch(err) {
+      console.log(err);
+    }
+  }
+  }
+
 
   if (Object.keys(data).length > 0)
   {if (admin) {
