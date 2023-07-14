@@ -1,8 +1,8 @@
 
 
 .Search-Bar-Container{
-    padding-top: 7rem;
-    width: 40%;
+    padding-top: 5rem;
+    width: 50%;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -10,6 +10,12 @@
     min-width: 200px;
 
 }
+
+#form {
+    display: flex;
+    flex-direction: row;
+}
+
 .searchBar {
     
     background-color: white;

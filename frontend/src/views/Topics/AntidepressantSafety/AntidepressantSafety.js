@@ -7,7 +7,6 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
@@ -17,6 +16,7 @@ import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 import Data from "../../searchBar/Data.json";
 
+import "./AntidepressantSafety.css";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -82,13 +82,8 @@ export default function AntidepressantSafety() {
         <Typography variant="h3" id="antidepressantSafetyHeader">Antidepressants Safety Concerns</Typography>
       </Box>
           <TableContainer component={Paper} >
-                  <Table sx={{ minWidth: 700 }} aria-label="customized table" id="antidepressantSafetyTable" >
-                    <TableHead >
-                      <TableRow >
-                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>ID</StyledTableCell>  
-                        <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Description</StyledTableCell>   
-                      </TableRow>
-                    </TableHead>
+                  <Table aria-label="customized table" id="antidepressantSafetyTable" >
+                    
                     <TableBody>
                       {data.map((dataObj, index) => (
                         <StyledTableRow key={index} >
@@ -101,9 +96,12 @@ export default function AntidepressantSafety() {
                     </TableBody>
                   </Table>
                 </TableContainer><br></br>
-                <p><b>Key notes: ANTID_SC means Antidepressants safety concerns</b> </p>
-          
-                      </div>
+                <div className='antidepressantSafety-notes'>
+                  <p className='antidepressantSafety-notes-key'>
+                    <b>Key notes: </b> ANTID_SC means Antidepressants safety concerns
+                  </p>
+                </div>
+            </div>
     <Footer />
     </>
   );

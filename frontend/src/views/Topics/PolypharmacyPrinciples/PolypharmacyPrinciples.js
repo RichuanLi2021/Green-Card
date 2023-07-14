@@ -8,7 +8,6 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
@@ -25,8 +24,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontWeight:'bold',
     fontStyle:'italic',
     textDecorationLine:'underline',
-    
-  
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
@@ -73,33 +70,29 @@ export default function PolypharmacyPrinciples() {
           alignItems: 'center',
         }}
       >
-        <Typography variant="h3" id="polypharmacy">Prescribing and Deprescribing Principles</Typography>
+        <Typography variant="h3" id="polypharmacy">
+          <div className='subtitle'>
+            Prescribing and Deprescribing Principles
+          </div>
+        </Typography>
       </Box>
 
         <TableContainer component={Paper} >
-          <Table sx={{ minWidth: 700 }} aria-label="customized table" id="polypharmacyPrincipleTable" >
-            <TableHead >
-              <TableRow >
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >ID</StyledTableCell>
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Description</StyledTableCell>
-              </TableRow>
-            </TableHead>
+          <Table aria-label="customized table" id="polypharmacyPrincipleTable" >
             <TableBody>
               {data.map((dataObj, index) => (
                 <StyledTableRow key={index} >
-                  <StyledTableCell component="th" scope="row">
-                    {dataObj.LIST_HEADERS_Id}
-                  </StyledTableCell>
                   <StyledTableCell >{dataObj[`Description`]}</StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer><br></br>
-        <p><b>Key notes: </b> PRESCR_DEPRE means Prescribing and Deprescribing Principles.  
-        <b> For additional information:</b> deprescribing.org, Beers criteria, STOPP/START criteria. 
- </p>
-          
+        <div className="keynote-div">
+          <p className='keynote'> 
+            <b>For additional information:</b> deprescribing.org, Beers criteria, STOPP/START criteria. 
+          </p>
+        </div>
     </div>
     <Footer />
     </>

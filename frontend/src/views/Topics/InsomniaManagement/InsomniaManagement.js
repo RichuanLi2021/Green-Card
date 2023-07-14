@@ -1,6 +1,5 @@
 import './InsomniaManagement.css';
 import * as React from 'react';
-import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import Navigation from '../../Navigation/navigation';
@@ -17,26 +16,17 @@ export default function InsomniaManagement() {
       <SearchBar placeholder="Search" data={Data} />
       <br></br>
         <div id = "insomniaManagement">
-        
-          
-          <AccordionSummary
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography id="mainTopic"><b>INSOMNIA MANAGEMENT</b></Typography>
-          </AccordionSummary>
+          <Typography id="mainTopic">Insomnia Management</Typography>
           <AccordionDetails>
             <Typography id="mainText">
-
-            <li>First line treatment: CBT-i (www.mysleepwell.ca) </li>
-            <li>2nd line treatment: sedatives (if CBTi failure)</li>
-            <li><b>NNT with a sedative-hypnotic for improved sleep = 13, NNH = 6</b></li>
-            
-            
+            <div className='content-insomnia'>
+              <li className='li-insomnia'>First line treatment: CBT-i (www.mysleepwell.ca) </li>
+              <li className='li-insomnia'>2nd line treatment: sedatives (if CBTi failure)</li>
+              <li className='li-insomnia'><b>NNT with a sedative-hypnotic for improved sleep = 13, NNH = 6</b></li>
+            </div>
             </Typography>
-          </AccordionDetails>
-                
-      </div>
+          </AccordionDetails>    
+        </div>
       <Footer />
     </>
   );
