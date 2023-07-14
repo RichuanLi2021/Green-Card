@@ -157,11 +157,11 @@ const HomePage = () => {
                     <AccordionDetails>
                       <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
                         {" "}
-                        <a href="DeliriumManagement"> Delirium Management </a>{" "}
+                        <a href="Delirium"> Delirium Management </a>{" "}
                       </Typography>
                       <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
                         {" "}
-                        <a href="DeliriumManagement"> Anticholinergic activity </a>{" "}
+                        <a href="Delirium"> Anticholinergic activity </a>{" "}
                       </Typography>
                     </AccordionDetails>
                   </Accordion>
