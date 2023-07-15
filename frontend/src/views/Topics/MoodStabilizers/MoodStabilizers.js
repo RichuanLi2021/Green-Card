@@ -76,10 +76,10 @@ export default function MoodStabilizers() {
         <>
           <Navigation />
           <SearchBar placeholder="Search" data={Data} />
-          <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
+          <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
             <Typography variant="h4" align="center" gutterBottom>
               <div className='subtitle-mood'>
-                MOOD STABILIZERS GUIDE
+                Mood Stabilizers Guide
               </div>
             </Typography>
     
@@ -100,7 +100,7 @@ export default function MoodStabilizers() {
                       <div className="box">
 
                         <div className="box-content">
-                        <strong>Half-life:</strong>
+                        <strong>Half-life: </strong>
                         <input
                                 id="`Half-life`"
                                 name={dataObj.Name}
@@ -112,7 +112,7 @@ export default function MoodStabilizers() {
                         </div>
 
                         <div className="box-content">
-                          <strong>Dose (mg/day) Initial | Maint. | Max :</strong>
+                          <strong>Dose (mg/day) Initial | Maint. | Max: </strong>
                            <input
                                 id="`Dose (mg/day) Initial | Maint. | Max.`"
                                 name={dataObj.Name}
@@ -124,7 +124,7 @@ export default function MoodStabilizers() {
                         </div>
     
                         <div className="box-content">
-                          <strong>Frequency:</strong>
+                          <strong>Frequency: </strong>
                            <input
                                 id="`Frequency`"
                                 name={dataObj.Name}
@@ -136,7 +136,7 @@ export default function MoodStabilizers() {
                         </div>
                         
                         <div className="box-content">
-                          <strong>mg/Form Supplied:</strong>
+                          <strong>mg/Form Supplied: </strong>
                               <input
                                 id="`mg/Form Supplied`"
                                 name={dataObj.Name}
@@ -147,7 +147,7 @@ export default function MoodStabilizers() {
                               />
                         </div>
                         <div className="box-content">
-                          <strong>Monitoring Level :</strong>
+                          <strong>Monitoring Level: </strong>
                               <input
                                 id="`Monitoring Level`"
                                 name={dataObj.Name}
@@ -171,6 +171,7 @@ export default function MoodStabilizers() {
             </p>
             </div>
           </div>
+          <Footer />
         </>
       );
     }
@@ -181,10 +182,10 @@ export default function MoodStabilizers() {
         <>
           <Navigation />
           <SearchBar placeholder="Search" data={Data} />
-          <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
+          <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
             <Typography variant="h4" align="center" gutterBottom>
             <div className='subtitle-mood'>
-                MOOD STABILIZERS GUIDE
+              Mood Stabilizers Guide
               </div>
             </Typography>
 
@@ -204,25 +205,25 @@ export default function MoodStabilizers() {
                     {isDrugSelected && (
                     <div className="box">
                       <div className="box-content">
-                        <strong>Half-life:</strong>
+                        <strong>Half-life: </strong>
                         <span>{dataObj[`Half-life`]}</span>
                       </div>
                       <div className="box-content">
-                        <strong>Dose (mg/day) Initial | Maint. | Max. :</strong>
+                        <strong>Dose (mg/day) Initial | Maint. | Max.: </strong>
                         <span>{dataObj[`Dose (mg/day) Initial | Maint. | Max.`]}</span>
                       </div>
                       
                       <div className="box-content">
-                        <strong>Frequency:</strong>
+                        <strong>Frequency: </strong>
                         <span>{dataObj[`Frequency`]}</span>
                       </div>
 
                       <div className="box-content">
-                        <strong>mg/Form Supplied :</strong>
+                        <strong>mg/Form Supplied: </strong>
                         <span>{dataObj[`mg/Form Supplied`]}</span>
                       </div>
                       <div className="box-content">
-                        <strong>Monitoring Level :</strong>
+                        <strong>Monitoring Level: </strong>
                         <span>{dataObj[`Monitoring Level`]}</span>
                       </div>
                     </div>

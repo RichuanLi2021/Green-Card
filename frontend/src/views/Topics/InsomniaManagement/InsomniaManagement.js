@@ -1,6 +1,5 @@
 import './InsomniaManagement.css';
 import * as React from 'react';
-import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import Navigation from '../../Navigation/navigation';
@@ -17,12 +16,7 @@ export default function InsomniaManagement() {
       <SearchBar placeholder="Search" data={Data} />
       <br></br>
         <div id = "insomniaManagement">
-          <AccordionSummary
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography id="mainTopic">INSOMNIA MANAGEMENT</Typography>
-          </AccordionSummary>
+          <Typography id="mainTopic">Insomnia Management</Typography>
           <AccordionDetails>
             <Typography id="mainText">
             <div className='content-insomnia'>

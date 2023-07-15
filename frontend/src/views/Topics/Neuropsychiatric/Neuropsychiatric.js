@@ -11,7 +11,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import Footer from '../../Footer/Footer';
 
 
 
@@ -85,7 +85,8 @@ export default function Neuropsychiatric() {
       <>
         <Navigation />
         <SearchBar placeholder="Search" data={Data} />
-        <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
+        <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
+        <Typography id="page-heading">NPS Management</Typography>
         <Accordion id="firstAccordion">
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -135,11 +136,17 @@ export default function Neuropsychiatric() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-
-          <Typography variant="h3" align="center" gutterBottom>
-            ECT & PSYCHOACTIVE MEDICATIONS
+        <Accordion id="thirdAccordion">
+        <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+        <Typography><b>
+            ECT & Psychoactive Medications</b>
           </Typography>
-
+          </AccordionSummary>
+          <AccordionDetails>
           <div className="grid-container">
             {Object.keys(data).map((id) => {
               const dataObj = data[id];
@@ -147,6 +154,7 @@ export default function Neuropsychiatric() {
               return (
                 <div className="grid-item" key={id}>
                   <button
+                    id='ect-button'
                     onClick={() => handleDrugClick(dataObj)}
                     className={`drug-button ${isDrugSelected ? 'active' : ''}`}
                   >
@@ -180,11 +188,13 @@ export default function Neuropsychiatric() {
               );
             })}
           </div>
-          <button className="drug-button" >Add new Drug</button>
-          <footer id="footer">
-          <p><b>Key: </b>ChEIs:cholinesterase inhibitors; MAOIs: monoamine oxidase inhibitors; *If highly tolerant (and high doses), do not taper abruptly due to risk of prolonged seizure</p>
-          
-          </footer>
+          <button id='ect-button' className="drug-button" >Add new Drug</button>
+          <div className="keynote-meddiv">
+          <p className='keynote'><b>Key: </b>ChEIs:cholinesterase inhibitors; MAOIs: monoamine oxidase inhibitors; *If highly tolerant (and high doses), do not taper abruptly due to risk of prolonged seizure.</p>
+          </div>
+          </AccordionDetails>
+          </Accordion>
+          <Footer />
         </div>
       </>
     );
@@ -196,7 +206,8 @@ export default function Neuropsychiatric() {
       <>
         <Navigation />
         <SearchBar placeholder="Search" data={Data} />
-        <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
+        <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
+        <Typography id="page-heading">NPS Management</Typography>
         <Accordion id="firstAccordion">
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -247,10 +258,17 @@ export default function Neuropsychiatric() {
           </AccordionDetails>
         </Accordion>
 
-          <Typography variant="h3" align="center" gutterBottom>
-          ECT & PSYCHOACTIVE MEDICATIONS
+        <Accordion id="thirdAccordion">
+        <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+        <Typography><b>
+            ECT & Psychoactive Medications</b>
           </Typography>
-
+          </AccordionSummary>
+          <AccordionDetails>
           <div className="grid-container">
             {Object.keys(data).map((id) => {
               const dataObj = data[id];
@@ -258,8 +276,9 @@ export default function Neuropsychiatric() {
               return (
                 <div className="grid-item" key={id}>
                   <button
+                    id='ect-button'
                     onClick={() => handleDrugClick(dataObj)}
-                    className={`drug-button ${isDrugSelected ? 'active' : ''}`}
+                    className={`drug-button ${isDrugSelected ? 'active' : ''}`} 
                   >
                     {dataObj.Medication}
                   </button>
@@ -267,7 +286,7 @@ export default function Neuropsychiatric() {
                   {isDrugSelected && (
                   <div className="box">
                     <div className="box-content">
-                      <strong>Recommended Action</strong>
+                      <strong>Recommended Action: </strong>
                       <span>{dataObj[`Recommended Action`]}</span>
                     </div>
                     
@@ -279,31 +298,18 @@ export default function Neuropsychiatric() {
               );
             })}
           </div>
-          <footer id="footer">
-          <p><b>Key: </b>ChEIs:cholinesterase inhibitors; MAOIs: monoamine oxidase inhibitors; *If highly tolerant (and high doses), do not taper abruptly due to risk of prolonged seizure</p>
-          
-          
-          </footer>
+          <div className="keynote-meddiv">
+          <p className='keynote'><b>Key: </b>ChEIs:cholinesterase inhibitors; MAOIs: monoamine oxidase inhibitors; *If highly tolerant (and high doses), do not taper abruptly due to risk of prolonged seizure.</p>
+          </div>
+          </AccordionDetails>
+          </Accordion>
+          <Footer />
         </div>
       </>
     );
   }
 } 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*import './NeuropsychiatricSymptoms.css';

@@ -9,7 +9,7 @@ import App from "./App";
 import InsomniaManagement from "./views/Topics/InsomniaManagement/InsomniaManagement";
 import InsomniaSedatives from "./views/Topics/InsomniaSedatives/InsomniaSedatives";
 
-import DeliriumManagement from "./views/Topics/DeliriumManagement/DeliriumManagement";
+
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SearchBar from "./views/searchBar/searchBar";
@@ -19,6 +19,7 @@ import CognitiveEnhancersGuide from "./views/Topics/CognitiveEnhancersGuide/Cogn
 import CognitiveEnhancersGuideCont from "./views/Topics/CognitiveEnhancersGuideCont/CognitiveEnhancersGuideCont";
 import CognitiveEnhancersClinical from "./views/Topics/CognitiveEnhancersClinical/CognitiveEnhancersClinical";
 import Neuropsychiatric from "./views/Topics/Neuropsychiatric/Neuropsychiatric";
+import Delirium from "./views/Topics/Delirium/Delirium";
 
 import Panel from "./views/AdminPanel/Panel";
 import InsomniaDeprescribing from "./views/Topics/InsomniaDeprescribing/InsomniaDeprescribing";
@@ -51,7 +52,6 @@ root.render(
       <Route path="/InsomniaManagement" element={<InsomniaManagement />} />
 
       <Route path="/MoodStabilizers" element={<MoodStabilizers />} />
-      <Route path="/DeliriumManagement" element={<DeliriumManagement />} />
       <Route path="/CognitiveEnhancersGuide" element={<CognitiveEnhancersGuide />} />
       <Route path="/CognitiveEnhancersGuideCont" element={<CognitiveEnhancersGuideCont />} />
       <Route path="/CognitiveEnhancersClinical" element={<CognitiveEnhancersClinical />} />
@@ -72,6 +72,7 @@ root.render(
       <Route path="/PolypharmacyNotableChanges" element={<PolypharmacyNotableChanges/>}/>
       <Route path="/PolypharmacyPrinciples" element={<PolypharmacyPrinciples/>}/>
       <Route path="/AntipsychoticSafety" element={<AntipsychoticSafety />} />
+      <Route path="/Delirium" element={<Delirium />} />
       
     </Routes>
   </BrowserRouter>

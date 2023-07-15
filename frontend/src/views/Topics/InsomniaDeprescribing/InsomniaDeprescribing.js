@@ -52,7 +52,7 @@ export default function InsomniaDeprescribing() {
         <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
           <Typography variant="h3" align="center" gutterBottom>
           <div className='subtitle'>
-            Sedatives/Hypnotics Guide
+            Deprescribing Sedatives/Hypnotics
           </div>
           </Typography>
 

@@ -92,6 +92,7 @@ export default function InsomniaSedatives() {
         event.preventDefault();
         InsomniaSedativesUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
           alert('Data successfully updated! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nNew Value:"+ event.target.value);
+          window.location.reload();
         }).catch((error) => {
           console.error(error);
           alert('Failed to update!');
@@ -115,19 +116,31 @@ export default function InsomniaSedatives() {
     });
   };
 
+  const handleDelete = async (Name) =>{
+    if(window.confirm('Are you sure you want to delete this record?')){
+    try{
+      
+      await axios.delete('http://localhost:8887/api/delete/'+Name)
+      window.alert('Drug Deleted Successfully !')
+      window.location.reload();
+    }catch(err) {
+      console.log(err);
+    }
+  }
+  }
 
 
   if (Object.keys(data).length > 0)
   {if (admin) {
     return (
       <>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
         <Navigation />
         <SearchBar placeholder="Search" data={Data} />
-        <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
-          <Typography variant="h3" align="center" gutterBottom>
-            <div className='subtitle'>
+        <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
+          <Typography className='subtitle' gutterBottom>
               Sedatives/Hypnotics Guide
-            </div>
           </Typography>
 
           <div className="grid-container">
@@ -135,21 +148,25 @@ export default function InsomniaSedatives() {
               const dataObj = data[id];
               const isDrugSelected = selectedDrugs.includes(dataObj);
               return (
-                <div className="grid-item" key={id}>
+                <div  className="grid-item" key={id}>
                   <button
                     onClick={() => handleDrugClick(dataObj)}
                     className={`drug-button ${isDrugSelected ? 'active' : ''}`} 
                   >
                     {dataObj.Name} 
-                    {/* <button onClick={e => handleDelete(dataObj.Name)}> Delete</button> */}
-                  </button>
 
+                    <button style={{background:'none',border:'none',cursor:'pointer'}} onClick={e => handleDelete(dataObj.Name)} > <span class="material-symbols-outlined">
+delete
+</span></button>
+                  </button>
+                  
+                  
                   {isDrugSelected && (
                     <div>
 
                     <div className="box">
                     <div className="box-content">
-                      <strong>Dose equiv.</strong>
+                      <strong>Dose equiv.: </strong>
                       <input
                                   id="`Dose equiv.`"
 
@@ -161,7 +178,7 @@ export default function InsomniaSedatives() {
                                 />
                     </div>
                     <div className="box-content">
-                      <strong>Time to peak in plasma</strong>
+                      <strong>Time to peak in plasma: </strong>
                       <input
                                   id="`Time to peak in plasma`"
                                   name={dataObj.Name}
@@ -173,7 +190,7 @@ export default function InsomniaSedatives() {
                     </div>
                     
                     <div className="box-content">
-                      <strong>Half-life</strong>
+                      <strong>Half-life: </strong>
                       <input
                                   id="`Half-life`"
                                   name={dataObj.Name}
@@ -184,7 +201,7 @@ export default function InsomniaSedatives() {
                                 />
                     </div>
                     <div className="box-content" style={{ width: 230 }}>
-                      <strong>Avg dose range (mg/day)</strong>
+                      <strong>Avg dose range (mg/day): </strong>
                       <input
                                   id="`Avg dose range (mg/day)`"
                                   name={dataObj.Name}
@@ -195,7 +212,7 @@ export default function InsomniaSedatives() {
                                 />
                     </div>
                     <div className="box-content">
-                      <strong>mg/Form supplied</strong>
+                      <strong>mg/Form supplied: </strong>
                       <input
                                   id="`mg/Form supplied`"
                                   name={dataObj.Name}
@@ -327,8 +344,8 @@ export default function InsomniaSedatives() {
         </div>  {/*  div container ends here*/ }
           
       
-         <div className="insomnia-footer">
-            <p className='insomnia-notes'>
+         <div className="keynote-div">
+            <p className='keynote'>
               <b>Key: </b> †does not reflect maximum doses; *should be given 30-90 mins before bedtime. 
               <br/> <br />
               <b>NOTES: </b> doses may not reflect manufacturer's recommendations but are based on research and/or expert opinion.  All sedatives should be used sparingly in the older adults and in people with liver disease; use lowest possible dose. In older adults, there is a poor risk/benefit ratio. 
@@ -346,11 +363,9 @@ export default function InsomniaSedatives() {
       <>
         <Navigation />
         <SearchBar placeholder="Search" data={Data} />
-        <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
-          <Typography variant="h3" align="center" gutterBottom>
-            <div className='subtitle'>
+        <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
+          <Typography className='subtitle' gutterBottom>
               Sedatives/Hypnotics Guide
-            </div>
           </Typography>
 
           <div className="grid-container">
@@ -369,24 +384,24 @@ export default function InsomniaSedatives() {
                   {isDrugSelected && (
                   <div className="box">
                     <div className="box-content">
-                      <strong>Dose equiv.</strong>
+                      <strong>Dose equiv.: </strong>
                       <span>{dataObj['Dose equiv.']}</span>
                     </div>
                     <div className="box-content">
-                      <strong>Time to peak in plasma</strong>
+                      <strong>Time to peak in plasma: </strong>
                       <span>{dataObj['Time to peak in plasma']}</span>
                     </div>
                     
                     <div className="box-content">
-                      <strong>Half-life</strong>
+                      <strong>Half-life: </strong>
                       <span>{dataObj['Half-life']}</span>
                     </div>
                     <div className="box-content" style={{ width: 230 }}>
-                      <strong>Avg dose range (mg/day)</strong>
+                      <strong>Avg dose range (mg/day): </strong>
                       <span>{dataObj['Avg dose range (mg/day)']}</span>
                     </div>
                     <div className="box-content">
-                      <strong>mg/Form supplied</strong>
+                      <strong>mg/Form supplied: </strong>
                       <span>{dataObj['mg/Form supplied']}</span>
                     </div>
                     
@@ -397,8 +412,8 @@ export default function InsomniaSedatives() {
               );
             })}
           </div>
-          <div className="insomnia-footer">
-            <p className='insomnia-notes'>
+          <div className="keynote-div">
+            <p className='keynote'>
               <b>Key: </b> †does not reflect maximum doses; *should be given 30-90 mins before bedtime. 
               <br/> <br />
               <b>NOTES: </b> doses may not reflect manufacturer's recommendations but are based on research and/or expert opinion.  All sedatives should be used sparingly in the older adults and in people with liver disease; use lowest possible dose. In older adults, there is a poor risk/benefit ratio. 
