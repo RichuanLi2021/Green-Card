@@ -111,7 +111,7 @@ const Navbar = () => {
     return (
       <AppBar style={{ boxShadow: "none", marginBottom: "50px" }}>
         <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none', fontSize: isMobile ? '0.8rem' : '1rem' }}>
+          <Typography className="web-title" sx={{ flexGrow: 1, color: '#000' }}>
             Geriatric Psychotropic Green Card
           </Typography>
 
@@ -237,11 +237,10 @@ const Navbar = () => {
                 <MenuItem onClick={handleInsomniaMenuClose}>
                   <Button component={Link} to="/InsomniaSafety" sx={{ color: '#000' }}>Sedatives/hypnotics Safety Concerns</Button>
                 </MenuItem>
+                <MenuItem onClick={handleInsomniaMenuClose}>
+                  <Button component={Link} to="/InsomniaDeprescribing" sx={{ color: '#000' }}>Deprescribing Sedatives/Hypnotics</Button>
+                </MenuItem>
               </Menu>
-            </MenuItem>
-
-            <MenuItem>
-              <Button component={Link} to="/InsomniaDeprescribing" sx={{ color: '#000', fontSize: isMobile ? '0.8rem' : '1rem' }}>Hypnotics</Button>
             </MenuItem>
 
             <MenuItem>
@@ -296,10 +295,10 @@ const Navbar = () => {
                 sx={{ marginTop: '40px' }}
               >
                 <MenuItem onClick={handleDeliriumMenuClose}>
-                  <Button component={Link} to="/DeliriumManagement" sx={{ color: '#000' }}>Delirium Management</Button>
+                  <Button component={Link} to="/Delirium" sx={{ color: '#000' }}>Delirium Management</Button>
                 </MenuItem>
                 <MenuItem onClick={handleDeliriumMenuClose}>
-                  <Button component={Link} to="/DeliriumManagement" sx={{ color: '#000' }}>Anticholinergic activity</Button>
+                  <Button component={Link} to="/Delirium" sx={{ color: '#000' }}>Anticholinergic activity</Button>
                 </MenuItem>
               </Menu>
             </MenuItem>
@@ -329,7 +328,7 @@ const Navbar = () => {
                   <Button component={Link} to="/PolypharmacyNotableChanges" sx={{ color: '#000' }}>Notable changes in older adults</Button>
                 </MenuItem>
                 <MenuItem onClick={handlePolypharmacyMenuClose}>
-                  <Button component={Link} to="/PrescribingAndDeprescribing" sx={{ color: '#000' }}>Prescribing and deprescribing principles</Button>
+                  <Button component={Link} to="/PolypharmacyPrinciples" sx={{ color: '#000' }}>Prescribing and deprescribing principles</Button>
                 </MenuItem>
               </Menu>
             </MenuItem>
@@ -348,7 +347,7 @@ const Navbar = () => {
 
 
             <MenuItem onClick={handleMenuClose}>
-              <Button component={Link} to="/FeedbackForm" sx={{ color: '#000' }}>Feedback</Button>
+              <Button component={Link} to="/panel" sx={{ color: '#000', fontSize: isMobile ? '0.8rem' : '1rem' }}>Feedback</Button>
             </MenuItem>
           </Menu>
 
@@ -441,11 +440,10 @@ const Navbar = () => {
               <MenuItem onClick={handleInsomniaMenuClose}>
                 <Button component={Link} to="/InsomniaSafety" sx={{ color: '#000' }}>Sedatives/hypnotics Safety Concerns</Button>
               </MenuItem>
+              <MenuItem onClick={handleInsomniaMenuClose}>
+                <Button component={Link} to="/InsomniaDeprescribing" sx={{ color: '#000' }}>Deprescribing Sedatives/Hypnotics</Button>
+              </MenuItem>
             </Menu>
-
-            <Button component={Link} to="/InsomniaDeprescribing" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
-              Hypnotics
-            </Button>
 
             <Button
               aria-controls="dementia-menu"
@@ -498,10 +496,10 @@ const Navbar = () => {
               sx={{ marginTop: '40px' }}
             >
               <MenuItem onClick={handleDeliriumMenuClose}>
-                <Button component={Link} to="/DeliriumManagement" sx={{ color: '#000' }}>Delirium Management</Button>
+                <Button component={Link} to="/Delirium" sx={{ color: '#000' }}>Delirium Management</Button>
               </MenuItem>
               <MenuItem onClick={handleDeliriumMenuClose}>
-                <Button component={Link} to="/DeliriumManagement" sx={{ color: '#000' }}>Anticholinergic activity</Button>
+                <Button component={Link} to="/Delirium" sx={{ color: '#000' }}>Anticholinergic activity</Button>
               </MenuItem>
             </Menu>
 
@@ -530,7 +528,7 @@ const Navbar = () => {
                 <Button component={Link} to="/PolypharmacyNotableChanges" sx={{ color: '#000' }}>Notable changes in older adults</Button>
               </MenuItem>
               <MenuItem onClick={handlePolypharmacyMenuClose}>
-                <Button component={Link} to="/PrescribingAndDeprescribing" sx={{ color: '#000' }}>Prescribing and deprescribing principles</Button>
+                <Button component={Link} to="/PolypharmacyPrinciples" sx={{ color: '#000' }}>Prescribing and deprescribing principles</Button>
               </MenuItem>
             </Menu>
 
@@ -561,7 +559,7 @@ const Navbar = () => {
     return (
       <AppBar style={{ boxShadow: "none", marginBottom: "50px" }}>
         <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none', fontSize: isMobile ? '0.8rem' : '1rem' }}>
+          <Typography className="web-title" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none' }}>
             Geriatric Psychotropic Green Card
           </Typography>
 
@@ -687,11 +685,10 @@ const Navbar = () => {
                 <MenuItem onClick={handleInsomniaMenuClose}>
                   <Button component={Link} to="/InsomniaSafety" sx={{ color: '#000' }}>Sedatives/hypnotics Safety Concerns</Button>
                 </MenuItem>
+                <MenuItem onClick={handleInsomniaMenuClose}>
+                  <Button component={Link} to="/InsomniaDeprescribing" sx={{ color: '#000' }}>Deprescribing Sedatives/Hypnotics</Button>
+                </MenuItem>
               </Menu>
-            </MenuItem>
-
-            <MenuItem>
-              <Button component={Link} to="/InsomniaDeprescribing" sx={{ color: '#000', fontSize: isMobile ? '0.8rem' : '1rem' }}>Hypnotics</Button>
             </MenuItem>
 
             <MenuItem>
@@ -746,10 +743,10 @@ const Navbar = () => {
                 sx={{ marginTop: '40px' }}
               >
                 <MenuItem onClick={handleDeliriumMenuClose}>
-                  <Button component={Link} to="/DeliriumManagement" sx={{ color: '#000' }}>Delirium Management</Button>
+                  <Button component={Link} to="/Delirium" sx={{ color: '#000' }}>Delirium Management</Button>
                 </MenuItem>
                 <MenuItem onClick={handleDeliriumMenuClose}>
-                  <Button component={Link} to="/DeliriumManagement" sx={{ color: '#000' }}>Anticholinergic activity</Button>
+                  <Button component={Link} to="/Delirium" sx={{ color: '#000' }}>Anticholinergic activity</Button>
                 </MenuItem>
               </Menu>
             </MenuItem>
@@ -779,7 +776,7 @@ const Navbar = () => {
                   <Button component={Link} to="/PolypharmacyNotableChanges" sx={{ color: '#000' }}>Notable changes in older adults</Button>
                 </MenuItem>
                 <MenuItem onClick={handlePolypharmacyMenuClose}>
-                  <Button component={Link} to="/PrescribingAndDeprescribing" sx={{ color: '#000' }}>Prescribing and deprescribing principles</Button>
+                  <Button component={Link} to="/PolypharmacyPrinciples" sx={{ color: '#000' }}>Prescribing and deprescribing principles</Button>
                 </MenuItem>
               </Menu>
             </MenuItem>
@@ -794,11 +791,6 @@ const Navbar = () => {
 
             <MenuItem>
               <Button component={Link} to="/PsychotropicMonitoringSection" sx={{ color: '#000', fontSize: isMobile ? '0.8rem' : '1rem' }}>Psychotropic Monitoring</Button>
-            </MenuItem>
-
-
-            <MenuItem onClick={handleMenuClose}>
-              <Button component={Link} to="/FeedbackForm" sx={{ color: '#000' }}>Feedback</Button>
             </MenuItem>
           </Menu>
 
@@ -891,11 +883,10 @@ const Navbar = () => {
               <MenuItem onClick={handleInsomniaMenuClose}>
                 <Button component={Link} to="/InsomniaSafety" sx={{ color: '#000' }}>Sedatives/hypnotics Safety Concerns</Button>
               </MenuItem>
+              <MenuItem onClick={handleInsomniaMenuClose}>
+                <Button component={Link} to="/InsomniaDeprescribing" sx={{ color: '#000' }}>Deprescribing Sedatives/Hypnotics</Button>
+              </MenuItem>
             </Menu>
-
-            <Button component={Link} to="/InsomniaDeprescribing" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
-              Hypnotics
-            </Button>
 
             <Button
               aria-controls="dementia-menu"
@@ -948,10 +939,10 @@ const Navbar = () => {
               sx={{ marginTop: '40px' }}
             >
               <MenuItem onClick={handleDeliriumMenuClose}>
-                <Button component={Link} to="/DeliriumManagement" sx={{ color: '#000' }}>Delirium Management</Button>
+                <Button component={Link} to="/Delirium" sx={{ color: '#000' }}>Delirium Management</Button>
               </MenuItem>
               <MenuItem onClick={handleDeliriumMenuClose}>
-                <Button component={Link} to="/DeliriumManagement" sx={{ color: '#000' }}>Anticholinergic activity</Button>
+                <Button component={Link} to="/Delirium" sx={{ color: '#000' }}>Anticholinergic activity</Button>
               </MenuItem>
             </Menu>
 
@@ -980,7 +971,7 @@ const Navbar = () => {
                 <Button component={Link} to="/PolypharmacyNotableChanges" sx={{ color: '#000' }}>Notable changes in older adults</Button>
               </MenuItem>
               <MenuItem onClick={handlePolypharmacyMenuClose}>
-                <Button component={Link} to="/PrescribingAndDeprescribing" sx={{ color: '#000' }}>Prescribing and deprescribing principles</Button>
+                <Button component={Link} to="/PolypharmacyPrinciples" sx={{ color: '#000' }}>Prescribing and deprescribing principles</Button>
               </MenuItem>
             </Menu>
 

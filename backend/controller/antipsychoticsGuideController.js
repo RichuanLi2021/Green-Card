@@ -24,7 +24,7 @@ const updateData = async (req, res, next) => {
     throw error;
   }
 }
-
+// contoller here for adding/inserting data
 
 module.exports = {
   getData,

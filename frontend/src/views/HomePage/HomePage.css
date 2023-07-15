@@ -1,10 +1,14 @@
 .main-container {
     overflow: auto;
     margin-top: 1rem;
-    margin-bottom: 150px;
+    margin-bottom: 50px;
     top: 64px;
     padding-left: 0px!important;
     padding-right: 0px!important;
+}
+
+.css-16vq84g-MuiPaper-root-MuiCard-root {
+    box-shadow: none !important;
 }
 
 a {
@@ -14,6 +18,7 @@ a {
 @media (max-width:600px) {
     .main-container {
         width: 100%;
+        margin-bottom: 90px;
     }
 
     .MuiCardContent-root {
