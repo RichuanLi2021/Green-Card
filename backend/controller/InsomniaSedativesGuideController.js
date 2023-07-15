@@ -53,7 +53,8 @@ const drugDelete = async (req, res, next) => {
 module.exports = {
   getData,
   updateData,
-  drugData
+  drugData,
+  drugDelete
 };
 
 

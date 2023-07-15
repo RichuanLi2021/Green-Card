@@ -24,9 +24,30 @@ const updateData = async (req, res, next) => {
   }
 }
 
+const drugData = async (req, res, next) => {
+  const {
+    drugName, action, halfLife, dose, frequency, mgFormsupplied, withFood, mci, mildModeAlz, severeAlz, mixed, vascular, lbd, ftd, pd, dsd
+  } = req.body;
+  
+  try {
+    await pool.query(
+      "INSERT INTO `green_card`.`COGNITIVE ENHANCERS GUIDE` (`Name`, `Action`, `Half-life`, `Dose (initial/monthly increment/maint)`, `Frequency`, `mg/form supplied`, `With food`, `MCI`, `Mild-mod Alz`, `Severe Alz`, `Mixed (Alz+vas)`, `Vascular`, `LBD`, `FTD`, `PD`, `DSD`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      [
+        drugName, action, halfLife, dose, frequency, mgFormsupplied, withFood, mci, mildModeAlz, severeAlz, mixed, vascular, lbd, ftd, pd, dsd
+      ]
+    );
+    
+    res.send('Drug was submitted successfully');
+  } catch (err) {
+    next(err);
+    throw err;
+  }
+};
+
 module.exports = {
   getData,
-  updateData
+  updateData,
+  drugData
 };
 
 
