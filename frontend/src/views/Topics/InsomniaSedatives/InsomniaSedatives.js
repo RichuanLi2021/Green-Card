@@ -341,7 +341,7 @@ delete
 
          
             
-        </div>  {/*  div container ends here*/ }
+        </div>  {/*  grid container ends here*/ }
           
       
          <div className="keynote-div">
