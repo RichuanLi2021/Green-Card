@@ -37,8 +37,8 @@ const addData = async (req, res, next) => {
   try {
     const { Description } = req.body;
     await pool.query(
-      'INSERT INTO `green_card`.`ANTIPSYCHOTIC SAFETY CONCERNS`(`LIST_HEADERS_Id`,`Description`) VALUES ("ANTIP_SAFE", ?)',
-      [Description]
+      "INSERT INTO `green_card`.`ANTIPSYCHOTIC SAFETY CONCERNS`(`LIST_HEADERS_Id`,`Description`) VALUES (?, ?)",
+      ["ANTIP_SAFE", Description]
     );
     res.send("Added Successfully!");
   } catch (error) {
