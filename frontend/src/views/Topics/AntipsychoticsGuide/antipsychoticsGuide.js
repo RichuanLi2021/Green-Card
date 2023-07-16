@@ -33,6 +33,7 @@ export default function AntipsychoticsGuide() {
 
   const [selectedDrugs, setSelectedDrugs] = useState([]);
   const [value, setValue] = useState("");
+  const [formVisible, setFormVisible] = useState(false);
   const [newDrug, setNewDrug] = useState({
     Name: "",
     Approx_equiv_dose: "",
@@ -125,7 +126,6 @@ export default function AntipsychoticsGuide() {
             <Typography className="heading-antipsychotics" gutterBottom>
               Antipsychotics Guide
             </Typography>
-
             <div className="grid-container">
               {Object.keys(data).map((id) => {
                 const dataObj = data[id];
@@ -291,66 +291,110 @@ export default function AntipsychoticsGuide() {
                 );
               })}
             </div>
-            {admin && (
-              <div>
-                <h2>Add a new Drug</h2>
+            <div>
+              <button onClick={() => setFormVisible(!formVisible)} className="button-style">
+                {formVisible ? "Cancel" : "Add Drug"}
+              </button>
+              {formVisible && (
                 <form
                   onSubmit={(e) => {
                     e.preventDefault();
                     addDrug(newDrug);
+                    setFormVisible(false);
                   }}
+                  className="form-style"
                 >
-                  <input type="text" name="Name" placeholder="Name" onChange={handleInputChange} />
+                  <input
+                    type="text"
+                    name="Name"
+                    placeholder="Name"
+                    onChange={handleInputChange}
+                    className="input-style"
+                  />
                   <input
                     type="text"
                     name="Approx_equiv_dose"
                     placeholder="Approx. equiv. dose"
                     onChange={handleInputChange}
+                    className="input-style"
                   />
-                  <input type="text" name="Half_life" placeholder="Half-life" onChange={handleInputChange} />
-                  <input type="text" name="Frequency" placeholder="Frequency" onChange={handleInputChange} />
+                  <input
+                    type="text"
+                    name="Half_life"
+                    placeholder="Half-life"
+                    onChange={handleInputChange}
+                    className="input-style"
+                  />
+                  <input
+                    type="text"
+                    name="Frequency"
+                    placeholder="Frequency"
+                    onChange={handleInputChange}
+                    className="input-style"
+                  />
                   <input
                     type="text"
                     name="Tab_Strength_Form_Supplied"
                     placeholder="Tab Strength/Form Supplied"
                     onChange={handleInputChange}
+                    className="input-style"
                   />
                   <input
                     type="text"
                     name="NPS"
                     placeholder="Neuropsychiatric symptoms of dementia"
                     onChange={handleInputChange}
+                    className="input-style"
                   />
-                  <input type="text" name="PP" placeholder="Parkinson's psychosis" onChange={handleInputChange} />
+                  <input
+                    type="text"
+                    name="PP"
+                    placeholder="Parkinson's psychosis"
+                    onChange={handleInputChange}
+                    className="input-style"
+                  />
                   <input
                     type="text"
                     name="MDE_ADaugment"
                     placeholder="Major depressive disorder (antidepressant augment)"
                     onChange={handleInputChange}
+                    className="input-style"
                   />
                   <input
                     type="text"
                     name="MDE_w_psychosis"
                     placeholder="Major depressive disorder (w.psychosis)"
                     onChange={handleInputChange}
+                    className="input-style"
                   />
-                  <input type="text" name="Delirium" placeholder="Delirium" onChange={handleInputChange} />
+                  <input
+                    type="text"
+                    name="Delirium"
+                    placeholder="Delirium"
+                    onChange={handleInputChange}
+                    className="input-style"
+                  />
                   <input
                     type="text"
                     name="EO_SCZ"
                     placeholder="Early-onset schizophrenia"
                     onChange={handleInputChange}
+                    className="input-style"
                   />
                   <input
                     type="text"
                     name="LO_SCZ"
                     placeholder="Late-onset schizophrenia"
                     onChange={handleInputChange}
+                    className="input-style"
                   />
-                  <button type="submit">Add Drug</button>
+                  <button type="submit" className="submit-button">
+                    Submit
+                  </button>
                 </form>
-              </div>
-            )}
+              )}
+            </div>
+
             <div className="antipsychoticsGuide-footer">
               <p className="footer-notes">
                 <b>Key: </b> AD: antidepressant; er: extended release; ir: immediate release; EO-SCZ: early-onset
