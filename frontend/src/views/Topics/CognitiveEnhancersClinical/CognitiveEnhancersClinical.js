@@ -102,7 +102,7 @@ export default function AntidepressantsClinical() {
       if (event.target.value !== value) {
         event.preventDefault();
         CognitiveEnhancersClinicalUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
-          alert('Data successfully updated! \nDrug:' + "\nNew Value:"+ event.target.value);
+          alert('Data successfully updated! ' + '\nNew Value:'+ event.target.value);
         }).catch((error) => {
           console.error(error);
           alert('Failed to update!');
@@ -162,7 +162,7 @@ export default function AntidepressantsClinical() {
           <form onSubmit={handleSubmit} >
             <Box >
             <TextField
-              label="List Header: "
+              label="List Header (must be from one of above headers): "
               variant="filled"
               value={listHeader}
               onChange={handleHeader}
@@ -198,7 +198,7 @@ export default function AntidepressantsClinical() {
               Submit
             </Button>
             </Box>
-            
+
           </form>
          </div>
 
