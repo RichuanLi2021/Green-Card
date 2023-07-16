@@ -5,6 +5,6 @@ const antipsychoticSafetyController = require("../controller/AntipsychoticSafety
 
 router.get("/AntipsychoticSafety", antipsychoticSafetyController.getData);
 router.post("/AntipsychoticSafety/update", antipsychoticSafetyController.updateData);
-router.post("/api/AntipsychoticsSafety/add", antipsychoticSafetyController.addData);
+router.post("/AntipsychoticSafety/add", antipsychoticSafetyController.addData);
 
 module.exports = router;
