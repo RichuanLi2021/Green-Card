@@ -75,7 +75,7 @@ export default function AntidepressantsClinical() {
       if (event.target.value !== value) {
         event.preventDefault();
         antidepressantClinicalUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
-          alert('Data successfully updated! ' + '\nNew Value:'+ event.target.value);
+          alert(`Data successfully updated!\nNew Value: ${event.target.value}`);
         }).catch((error) => {
           console.error(error);
           alert('Failed to update!');
