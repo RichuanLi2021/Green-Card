@@ -6,6 +6,6 @@ const CognitiveEnhancersClinicalController = require('../controller/CognitiveEnh
 
 router.get('/CognitiveEnhancersClinical', CognitiveEnhancersClinicalController.getData);
 router.post('/CognitiveEnhancersClinical/update', CognitiveEnhancersClinicalController.updateData);
-
+router.post('/add/CognitiveEnhancersClinical', CognitiveEnhancersClinicalController.drugData);
 
 module.exports = router;

@@ -15,7 +15,7 @@ const getData = async (req, res, next) => {
 const updateData = async (req, res, next) => {
   try {
     const { name, column, value } = req.body;
-    await pool.query('UPDATE `green_card`.`COGNITIVE ENHANCERS CLINICAL GUIDE` SET ' + column + ' = ' + '"' + value + '"' + ' WHERE name = ' + '"' + name + '"');
+    await pool.query('UPDATE `green_card`.`COGNITIVE ENHANCERS CLINICAL GUIDE` SET ' + column + ' = ' + '"' + value + '"' + ' WHERE Description = ' + '"' + name + '"');
     res.send("Updated Successfully!");
   } catch (error) {
     console.log(error);
@@ -23,10 +23,30 @@ const updateData = async (req, res, next) => {
     throw error;
   }
 }
+const drugData = async (req, res, next) => {
+  const {
+    listHeader, description
+  } = req.body;
+  
+  try {
+    await pool.query(
+      "INSERT INTO `green_card`.`COGNITIVE ENHANCERS CLINICAL GUIDE` (`LIST_HEADERS_Id`,`Description`) VALUES (?, ?)",
+      [
+        listHeader, description
+      ]
+    );
+    
+    res.send('Drug was submitted successfully');
+  } catch (err) {
+    next(err);
+    throw err;
+  }
+};
 
 module.exports = {
   getData,
-  updateData
+  updateData,
+  drugData
 };
 
 
