@@ -23,7 +23,7 @@ export default function CognitiveEnhancersGuide() {
 
   const fetchData = () => {
     axios
-      .get('http://localhost:8887/api/cognitiveenhancersguide')
+      .get('http://localhost:8887/api/cognitiveEnhancersguide')
       .then((response) => {
         setData(response.data);
       })
@@ -119,7 +119,7 @@ export default function CognitiveEnhancersGuide() {
     submitDrug(drugName, action, halfLife, dose, frequency, mgFormsupplied, withFood, mci, mildModeAlz, severeAlz, mixed, vascular, lbd, ftd, pd, dsd)
       .then((data) => {
         window.alert('Drug was added Successfully!');
-      
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);
@@ -167,11 +167,24 @@ export default function CognitiveEnhancersGuide() {
     });
   };
 
+  const handleDelete = async (Name) =>{
+    if(window.confirm('Are you sure you want to delete this record?')){
+    try{
+      console.log(Name);
+      await axios.delete('http://localhost:8887/api/CognitiveEnhancersGuide/delete/'+Name)
+      window.alert('Drug Deleted Successfully!')
+      window.location.reload();
+    }catch(err) {
+      console.log(err);
+    }
+  }
+  }
 
   if (Object.keys(data).length > 0)
   {if (admin) {
     return (
       <>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
         <Navigation />
         <SearchBar placeholder="Search" data={Data} />
         <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
@@ -192,6 +205,13 @@ export default function CognitiveEnhancersGuide() {
                     className={`drug-button ${isDrugSelected ? 'active' : ''}`}
                   >
                     {dataObj.Name}
+
+                    <button 
+                    style={{background:'none',border:'none',cursor:'pointer'}} 
+                    onClick={e => handleDelete(dataObj.Name)} > 
+                    <span class="material-symbols-outlined">delete</span>
+                    </button>
+
                   </button>
 
                   {isDrugSelected && (
@@ -256,14 +276,14 @@ export default function CognitiveEnhancersGuide() {
                     </div>
 
                     <div className="box-content">
-                      <strong>With food?: </strong>
+                      <strong>With food: </strong>
                       <input
-                                  id="`With food?`"
+                                  id="`With food`"
                                   name={dataObj.Name}
                                   type="text"
                                   onFocus={store_value}
                                   onBlur={update_value}
-                                  defaultValue={dataObj[`With food?`]}
+                                  defaultValue={dataObj[`With food`]}
                                 />
                     </div>
                     

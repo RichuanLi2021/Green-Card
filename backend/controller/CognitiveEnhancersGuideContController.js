@@ -24,6 +24,9 @@ const updateData = async (req, res, next) => {
   }
 }
 
+//this page doesn't need add drug feature as it is a continuation of the cognitive enhancers guide page, drug added there automatically gets added here.
+//this page doesn't have any new drugs but just shows the remaining properties of the drugs in the cognitive enhancers guide page
+
 module.exports = {
   getData,
   updateData

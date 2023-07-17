@@ -7,5 +7,6 @@ const CognitiveEnhancersGuideController = require('../controller/CognitiveEnhanc
 router.get('/CognitiveEnhancersGuide', CognitiveEnhancersGuideController.getData);
 router.post('/CognitiveEnhancersGuide/update', CognitiveEnhancersGuideController.updateData);
 router.post('/add/CognitiveEnhancersGuide', CognitiveEnhancersGuideController.drugData);
+router.delete('/CognitiveEnhancersGuide/delete/:Name',CognitiveEnhancersGuideController.drugDelete);
 
 module.exports = router;
