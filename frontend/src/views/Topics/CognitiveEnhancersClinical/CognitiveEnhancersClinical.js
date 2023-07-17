@@ -88,7 +88,7 @@ export default function AntidepressantsClinical() {
     submitDrug(listHeader, description)
       .then((data) => {
         window.alert('Drug was added Successfully!');
-      
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);
@@ -115,10 +115,25 @@ export default function AntidepressantsClinical() {
     }
   };
 
+  
+  const handleDelete = async (Description) =>{
+    if(window.confirm('Are you sure you want to delete this record?')){
+    try{
+      console.log(Description);
+      await axios.delete('http://localhost:8887/api/CognitiveEnhancersClinical/delete/'+Description);
+      window.alert('Drug Deleted Successfully !');
+      window.location.reload();
+    }catch(err) {
+      console.log(err);
+    }
+  }
+  }
+
   if (data.length > 0) {
     if (admin) {
       return (
         <>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
          <Navigation />
         <SearchBar placeholder="Search" data={Data} />
         <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
@@ -143,7 +158,15 @@ export default function AntidepressantsClinical() {
                       <StyledTableCell component="th" scope="row">
                         {dataObj.LIST_HEADERS_Id}
                       </StyledTableCell>
-                      <StyledTableCell align="left"><input id='`Description`' name={dataObj.Description} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Description`]} /></StyledTableCell>
+                      <StyledTableCell align="left" ><input id='`Description`' name={dataObj.Description} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Description`]} 
+                      />
+                      <button 
+                    style={{background:'none',border:'none',cursor:'pointer'}} 
+                    onClick={e => handleDelete(dataObj.Description)} > 
+                    <span class="material-symbols-outlined">delete</span>
+                    </button>
+                      </StyledTableCell>
+                      
                     </StyledTableRow>
                   ))}
                 </TableBody>
