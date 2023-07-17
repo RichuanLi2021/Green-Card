@@ -7,5 +7,6 @@ const neuropsychiatricController = require('../controller/neuropsychiatricContro
 router.get('/Neuropsychiatric', neuropsychiatricController.getData);
 router.post('/Neuropsychiatric/update', neuropsychiatricController.updateData);
 router.post('/add/Neuropsychiatric', neuropsychiatricController.drugData);
+router.delete('/Neuropsychiatric/delete/:Medication',neuropsychiatricController.drugDelete);
 
 module.exports = router;

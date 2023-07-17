@@ -61,7 +61,7 @@ export default function Neuropsychiatric() {
      submitDrug(medication, recommendedAction)
        .then((data) => {
          window.alert('Drug was added Successfully!');
-       
+         window.location.reload();
        })
        .catch((error) => {
          console.error(error);
@@ -108,12 +108,25 @@ export default function Neuropsychiatric() {
       }
     });
   };
-
+  
+  const handleDelete = async (Medication) =>{
+    if(window.confirm('Are you sure you want to delete this record?')){
+    try{
+      console.log(Medication);
+      await axios.delete('http://localhost:8887/api/Neuropsychiatric/delete/'+Medication)
+      window.alert('Drug Deleted Successfully!')
+      window.location.reload();
+    }catch(err) {
+      console.log(err);
+    }
+  }
+  }
 
   if (Object.keys(data).length > 0)
   {if (admin) {
     return (
       <>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
         <Navigation />
         <SearchBar placeholder="Search" data={Data} />
         <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
@@ -190,6 +203,11 @@ export default function Neuropsychiatric() {
                     className={`drug-button ${isDrugSelected ? 'active' : ''}`}
                   >
                     {dataObj.Medication}
+                    <button 
+                    style={{background:'none',border:'none',cursor:'pointer'}} 
+                    onClick={e => handleDelete(dataObj.Medication)} > 
+                    <span class="material-symbols-outlined">delete</span>
+                    </button>
                   </button>
 
                   {isDrugSelected && (
@@ -263,7 +281,7 @@ export default function Neuropsychiatric() {
           </form>
          </div>
           </div>
-          <button id='ect-button' className="drug-button" >Add new Drug</button>
+          
           <div className="keynote-meddiv">
           <p className='keynote'><b>Key: </b>ChEIs:cholinesterase inhibitors; MAOIs: monoamine oxidase inhibitors; *If highly tolerant (and high doses), do not taper abruptly due to risk of prolonged seizure.</p>
           </div>
