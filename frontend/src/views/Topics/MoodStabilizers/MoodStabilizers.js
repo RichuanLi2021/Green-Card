@@ -312,20 +312,6 @@ delete
             />
             </Box>
 
-             <Box >
-            <TextField
-              label="mg Form supplied"
-              variant="filled"
-              value={mgFormSupplied}
-              onChange={handlemgFormSupplied}
-              name="mgFormsupplied"
-              
-              multiline
-              
-              
-              required
-            />
-            </Box>
           
             <Box sx={{ display: 'flex' }}>
             <Button
