@@ -1,0 +1,32 @@
+import axios from 'axios';
+
+export const InsomniaDeprescribingUpdate = async (duration, column, value) => {
+  try {
+    const response = await axios.post('http://localhost:8887/api//InsomniaDeprescribing/update', {
+     duration,
+     column,
+     value
+    });
+    console.log(response.data); // log response from server
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error; // throw error to be handled by calling function
+  }
+};
+
+ export const submitDrug = async (duration, doseReduction, interval) => {
+  try {
+    const response = await axios.post('http://localhost:8887/api/add/InsomniaDeprescribing', {
+        duration,
+        doseReduction, 
+        interval
+        
+    });
+    console.log(response.data); // log response from server
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error; // throw error to be handled by calling function
+  }
+};
