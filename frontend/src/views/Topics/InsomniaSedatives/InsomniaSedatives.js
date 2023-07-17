@@ -231,10 +231,8 @@ delete
                 
               );
             })}
-            
-          </div>
-          <div className="box-content">
-           <div className="form-header">
+          <div className="box-content"  >
+           <div className="form-header" >
            <Box display="flex" justifyContent="space-between" alignItems="center">
             <Typography variant="h5" className="title">
               Add New Drug
@@ -243,7 +241,7 @@ delete
            </Box>
            </div>
         
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} >
           <Box >
             <TextField
               label="Drug Name"
@@ -340,6 +338,11 @@ delete
             </Box>
           </form>
          </div>
+
+         
+            
+        </div>  {/*  grid container ends here*/ }
+          
       
          <div className="keynote-div">
             <p className='keynote'>

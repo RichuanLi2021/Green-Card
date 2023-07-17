@@ -14,7 +14,7 @@ VALUES
 -- --Key: AD: antidepressant; er: extended release; ir: immediate release; EO-SCZ: early-onset schizophrenia; LO-SCZ: late-onset schizophrenia; MDE: major depressive disorder; NPS: neuropsychiatric symptoms of dementia; NR: not recommended; PP: Parkinson's psychosis; †0.25 of adult equivalent dose shown (see Yellow Card); ‡take with meal (≥350 kcal); ^accounts for half-life of active metabolites; **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data. NOTES: doses may not reflect manufacturers' recommendations but are based on clinical literature and opinion. Half lives are estimates based on adult data and in older adults they can often be increased up to 170%.
 
 -- --on front end this data needs to be split into two tables for viewing purposes (requested by client)
-INSERT INTO `green_card`.`COGNITIVE ENHANCERS GUIDE` (`Name`, `Action`, `Half-life`, `Dose (initial/monthly increment/maint)`, `Frequency`, `mg/form supplied`, `With food?`, `MCI`, `Mild-mod Alz`, `Severe Alz`, `Mixed (Alz+vas)`, `Vascular`, `LBD`, `FTD`, `PD`, `DSD`)
+INSERT INTO `green_card`.`COGNITIVE ENHANCERS GUIDE` (`Name`, `Action`, `Half-life`, `Dose (initial/monthly increment/maint)`, `Frequency`, `mg/form supplied`, `With food`, `MCI`, `Mild-mod Alz`, `Severe Alz`, `Mixed (Alz+vas)`, `Vascular`, `LBD`, `FTD`, `PD`, `DSD`)
 VALUES
 ('Donepezil (Aricept)', 'AChEI', '70h', '5mg/5mg/10mg', 'qAM', '5,10/tab, diss tab', 'Y', 'N', 'Y', 'Y', 'Y', 'N', 'Y', 'N', 'Y', 'N'),
 ('Galantamine ER', 'AChEI', '7-8h', '8mg/8mg/24mg', 'qAM', '8,16,24/capsule', 'Y', 'N', 'Y', 'N', 'Y', 'N', 'Y', 'N', 'Y', 'N'),
@@ -23,6 +23,7 @@ VALUES
 ('Memantine', 'NMDA blocker', '60-100h', '5mg qAM/ ↑ by 5mg weekly/10mg BID', 'qAM week 1 then BID', '5,10/tab', 'N', 'N', 'mod. only', 'Y', 'No studies', 'N', 'N', 'N', 'N', 'N');
 -- --Key: AChEI: acetylcholinesterase inhibitor; BuChEI: butyrylcholinesterase inhibitor
 -- DSD: down syndrome dementia; FTD: frontotemporal dementia; LBD: lewy body dementia; MCI: mild cognitive impairment; N: not indicated; PD: parkinson's disease; Y: indicated.
+
 
 -- --COGNITIVE ENHANCERS CLINICAL GUIDE--  
 INSERT INTO `green_card`.`LIST HEADERS` VALUES ('COG_CONTRA', 'Contraindications');

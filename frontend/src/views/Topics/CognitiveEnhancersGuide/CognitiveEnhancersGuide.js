@@ -6,8 +6,10 @@ import {useState, useEffect} from 'react';
 import SearchBar from "../../searchBar/searchBar";
 import Navigation from '../../Navigation/navigation';
 import Data from "../../searchBar/Data.json";
-import CognitiveEnhancersGuideUpdate from './CognitiveEnhancersGuideBackend';
-
+import {CognitiveEnhancersGuideUpdate, submitDrug} from './CognitiveEnhancersGuideBackend';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Footer from '../../Footer/Footer';
 
 
@@ -33,6 +35,97 @@ export default function CognitiveEnhancersGuide() {
   const [selectedDrugs, setSelectedDrugs] = useState([]);
   const [value, setValue] = useState('');
   const admin = localStorage.getItem('admin');
+  
+  //add drug components shifted to this page itself
+  const [drugName, setdrugName] = useState('');
+  const [action, setAction] = useState('');
+  const [halfLife, sethalfLife] = useState('');
+  const [dose, setDose] = useState('');
+  const [frequency, setFrequency] = useState('');
+  const [mgFormsupplied, setmgFormsupplied] = useState('');
+  const [withFood, setwithFood] = useState('');
+  const [mci, setmci] = useState('');
+  const [mildModeAlz, setmildModeAlz] = useState('');
+  const [severeAlz, setsevereAlz] = useState('');
+  const [mixed, setmixed] = useState('');
+  const [vascular, setvascular] = useState('');
+  const [lbd, setlbd] = useState('');
+  const [ftd, setftd] = useState('');
+  const [pd, setpd] = useState('');
+  const [dsd, setdsd] = useState('');
+
+  const handleDrugName = (event) => {
+    setdrugName(event.target.value);
+  };
+
+  const handleAction= (event) => {
+    setAction(event.target.value);
+  };
+
+  const handleHalfLife = (event) => {
+    sethalfLife(event.target.value);
+  };
+
+  const handleDose = (event) => {
+    setDose(event.target.value);
+  };
+
+  const handleFrequency = (event) => {
+    setFrequency(event.target.value);
+  };
+
+  const handleMgFormSupplied = (event) => {
+    setmgFormsupplied(event.target.value);
+  }
+  const handlewithFood = (event) => {
+    setwithFood(event.target.value);
+  }
+
+  const handlemci = (event) => {
+    setmci(event.target.value);
+  }
+  
+  const handlemildModeAlz = (event) => {
+    setmildModeAlz(event.target.value);
+  }
+  const handlesevereAlz = (event) => {
+    setsevereAlz(event.target.value);
+  }
+
+  const handlemixed = (event) => {
+    setmixed(event.target.value);
+  }
+  const handlevascular = (event) => {
+    setvascular(event.target.value);
+  }
+  
+  const handlelbd = (event) => {
+    setlbd(event.target.value);
+  }
+  const handlelftd = (event) => {
+    setftd(event.target.value);
+  }
+  
+  const handlepd = (event) => {
+    setpd(event.target.value);
+  }
+  const handledsd = (event) => {
+    setdsd(event.target.value);
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log({ drugName, action, halfLife, dose, frequency, mgFormsupplied, withFood, mci, mildModeAlz, severeAlz, mixed, vascular, lbd, ftd, pd, dsd });
+    submitDrug(drugName, action, halfLife, dose, frequency, mgFormsupplied, withFood, mci, mildModeAlz, severeAlz, mixed, vascular, lbd, ftd, pd, dsd)
+      .then((data) => {
+        window.alert('Drug was added Successfully!');
+      
+      })
+      .catch((error) => {
+        console.error(error);
+        window.alert('Failed to submit the Drug!');
+      });
+  };
 
    //used to store value when an input is selected by user
    const store_value = (event) => {
@@ -185,7 +278,222 @@ export default function CognitiveEnhancersGuide() {
                 </div>
               );
             })}
-          </div>
+            <div className="box-content"  >
+           <div className="form-header" >
+           <Box display="flex" justifyContent="space-between" alignItems="center">
+            <Typography variant="h5" className="title">
+              Add New Drug
+            </Typography>
+            
+           </Box>
+           </div>
+        
+          <form onSubmit={handleSubmit} >
+          <Box >
+            <TextField
+              label="Drug Name: "
+              variant="filled"
+              value={drugName}
+              onChange={handleDrugName}
+              
+              
+              
+              required
+            />
+            
+            </Box>
+            <Box >
+            <TextField
+              label="Action:"
+              variant="filled"
+              value={action}
+              onChange={handleAction}
+              
+             
+              type="text"
+              
+              
+              required
+            />
+            </Box>
+
+            <Box >
+            <TextField
+              label="Half-life"
+              variant="filled"
+              value={halfLife}
+              onChange={handleHalfLife}
+              
+            
+              multiline
+              
+              
+              required
+            />
+             </Box>
+
+            <Box >
+            <TextField
+              label="Frequency :"
+              variant="filled"
+              value={frequency}
+              onChange={handleFrequency}
+              
+             
+              multiline
+              
+              
+              required
+            />
+            </Box>
+
+            <Box >
+            <TextField
+              label="Dose (initial/monthly increment/maint) :"
+              variant="filled"
+              value={dose}
+              onChange={handleDose}
+              
+             
+              multiline
+              
+              
+              required
+            />
+            </Box>
+
+             <Box >
+            <TextField
+              label="mg Form supplied"
+              variant="filled"
+              value={mgFormsupplied}
+              onChange={handleMgFormSupplied}
+              
+              
+              multiline
+              
+              
+              required
+            />
+            </Box>
+            <Box >
+            <TextField
+              label="With Food:"
+              variant="filled"
+              value={withFood}
+              onChange={handlewithFood}
+              multiline
+              required
+            />
+            </Box>
+            <Box >
+            <TextField
+              label="MCI:"
+              variant="filled"
+              value={mci}
+              onChange={handlemci}
+              multiline
+              required
+            />
+            </Box>
+            <Box >
+            <TextField
+              label="Mild-mod Alz:"
+              variant="filled"
+              value={mildModeAlz}
+              onChange={handlemildModeAlz}
+              multiline
+              required
+            />
+            </Box>
+            <Box >
+            <TextField
+              label="Severe Alz:"
+              variant="filled"
+              value={severeAlz}
+              onChange={handlesevereAlz}
+              multiline
+              required
+            />
+            </Box>
+            <Box >
+            <TextField
+              label="Mixed (Alz+vas): "
+              variant="filled"
+              value={mixed}
+              onChange={handlemixed}
+              multiline
+              required
+            />
+            </Box>
+            <Box >
+            <TextField
+              label="Vascular: "
+              variant="filled"
+              value={vascular}
+              onChange={handlevascular}
+              multiline
+              required
+            />
+            </Box>
+            <Box >
+            <TextField
+              label="LBD: "
+              variant="filled"
+              value={lbd}
+              onChange={handlelbd}
+              multiline
+              required
+            />
+            </Box>
+            <Box >
+            <TextField
+              label="FTD: "
+              variant="filled"
+              value={ftd}
+              onChange={handlelftd}
+              multiline
+              required
+            />
+            </Box>
+            <Box >
+            <TextField
+              label="PD: "
+              variant="filled"
+              value={pd}
+              onChange={handlepd}
+              multiline
+              required
+            />
+            </Box>
+            <Box >
+            <TextField
+              label="DSD: "
+              variant="filled"
+              value={dsd}
+              onChange={handledsd}
+              multiline
+              required
+            />
+            </Box>
+          
+
+
+
+            <Box sx={{ display: 'flex' }}>
+            <Button
+              type="submit"
+              variant="contained"
+              className="submit-button"
+              color="primary">
+              Submit
+            </Button>
+            </Box>
+          </form>
+         </div>
+         
+
+        </div>
           <div className="keynote-div">
             <p className='cognitive-notes'>
               <b>Key:</b> AChEI: acetylcholinesterase inhibitor; BuChEI: butyrylcholinesterase inhibitor 
