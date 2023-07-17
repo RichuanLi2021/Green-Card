@@ -6,6 +6,6 @@ const neuropsychiatricController = require('../controller/neuropsychiatricContro
 
 router.get('/Neuropsychiatric', neuropsychiatricController.getData);
 router.post('/Neuropsychiatric/update', neuropsychiatricController.updateData);
-
+router.post('/add/Neuropsychiatric', neuropsychiatricController.drugData);
 
 module.exports = router;

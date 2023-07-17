@@ -6,11 +6,14 @@ import {useState, useEffect} from 'react';
 import SearchBar from "../../searchBar/searchBar";
 import Navigation from '../../Navigation/navigation';
 import Data from "../../searchBar/Data.json";
-import NeuropsychiatricUpdate from './NeuropsychiatricBackend';
+import {NeuropsychiatricUpdate, submitDrug} from './NeuropsychiatricBackend';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import Footer from '../../Footer/Footer';
 
 
@@ -37,6 +40,34 @@ export default function Neuropsychiatric() {
   const [selectedDrugs, setSelectedDrugs] = useState([]);
   const [value, setValue] = useState('');
   const admin = localStorage.getItem('admin');
+
+   //add drug components shifted to this page itself
+   const [medication, setMedication] = useState('');
+   const [recommendedAction, setRecommendedAction] = useState('');
+    
+   const handleMedication = (event) => {
+     setMedication(event.target.value);
+   };
+ 
+   const handleRecommendedAction= (event) => {
+     setRecommendedAction(event.target.value);
+   };
+ 
+   
+ 
+   const handleSubmit = (event) => {
+     event.preventDefault();
+     console.log({ medication, recommendedAction });
+     submitDrug(medication, recommendedAction)
+       .then((data) => {
+         window.alert('Drug was added Successfully!');
+       
+       })
+       .catch((error) => {
+         console.error(error);
+         window.alert('Failed to submit the Drug!');
+       });
+   };
 
    //used to store value when an input is selected by user
    const store_value = (event) => {
@@ -187,6 +218,50 @@ export default function Neuropsychiatric() {
                 </div>
               );
             })}
+            <div className="box-content"  >
+           <div className="form-header" >
+           <Box display="flex" justifyContent="space-between" alignItems="center">
+            <Typography variant="h5" className="title">
+              Add New Medication to the page
+            </Typography>
+            
+           </Box>
+           </div>
+        
+          <form onSubmit={handleSubmit} >
+            <Box >
+            <TextField
+              label="Medication Name: "
+              variant="filled"
+              value={medication}
+              onChange={handleMedication}
+              multiline 
+              required
+            />
+            </Box>
+
+            <Box >
+            <TextField
+              label="Recommended Action: "
+              variant="filled"
+              value={recommendedAction}
+              onChange={handleRecommendedAction}  
+              multiline     
+              required
+            />
+            </Box>
+            <Box sx={{ display: 'flex' }}>
+            <Button
+              type="submit"
+              variant="contained"
+              className="submit-button"
+              color="primary">
+              Submit
+            </Button>
+            </Box>
+
+          </form>
+         </div>
           </div>
           <button id='ect-button' className="drug-button" >Add new Drug</button>
           <div className="keynote-meddiv">
