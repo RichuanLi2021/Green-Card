@@ -23,5 +23,24 @@ const updateData = async (req, res, next) => {
   }
 };
 
+const drugData = async (req, res, next) => {
+  const {
+    listHeader, description
+  } = req.body;
+  
+  try {
+    await pool.query(
+      "INSERT INTO `green_card`.`ANTICHOLINERGIC ACTIVITY` (`LIST_HEADERS_Id`,`Description`) VALUES (?, ?)",
+      [
+        listHeader, description
+      ]
+    );
+    
+    res.send('Drug was submitted successfully');
+  } catch (err) {
+    next(err);
+    throw err;
+  }
+};
 
-module.exports = { getData, updateData };
+module.exports = { getData, updateData, drugData };
