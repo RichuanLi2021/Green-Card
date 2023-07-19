@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const moodStabilizersUpdate = async (name, column, value) => {
+export const MoodStabilizersUpdate = async (name, column, value) => {
   try {
     const response = await axios.post(
       "http://localhost:8887/api/MoodStabilizers/update",
@@ -36,4 +36,3 @@ export const submitDrug = async (drugName, doseInitial, frequency, mgFormSupplie
   }
 };
 
-export default moodStabilizersUpdate;

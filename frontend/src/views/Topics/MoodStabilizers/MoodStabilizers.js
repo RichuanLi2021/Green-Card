@@ -94,7 +94,7 @@ export default function MoodStabilizers() {
       console.log(value);
       if (event.target.value !== value) {
         event.preventDefault();
-        moodStabilizersUpdate(event.target.name, event.target.id, event.target.value)
+        MoodStabilizersUpdate(event.target.name, event.target.id, event.target.value)
           .then((data) => {
             alert('Updated Successfully Called! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nValue:"+ event.target.value);
           })
