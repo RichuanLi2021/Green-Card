@@ -16,12 +16,13 @@ import Box from '@mui/material/Box';
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 import Data from "../../searchBar/Data.json";
-import DeliriumBackendUpdate from "./DeliriumBackend";
+import {DeliriumBackendUpdate, submitDrug} from "./DeliriumBackend";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -98,7 +99,17 @@ export default function Delirium() {
 
   const admin = localStorage.getItem('admin');
 
+  //add drug components shifted to this page itself
+  const [listHeader, setlistHeader] = useState('');
+  const [description, setDescription] = useState('');
+   
+  const handleHeader = (event) => {
+    setlistHeader(event.target.value);
+  };
 
+  const handleDescription= (event) => {
+    setDescription(event.target.value);
+  };
 
 
   //used to store value when an input is selected by user
@@ -108,6 +119,21 @@ export default function Delirium() {
     setValue(event.target.value);
 
   }
+  
+  
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log({ listHeader, description });
+    submitDrug(listHeader, description)
+      .then((data) => {
+        window.alert('Drug was added Successfully!');
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error(error);
+        window.alert('Failed to submit the Drug!');
+      });
+  };
 
   //calls update query when an input was selected and is not anymore (if the value actually changed)
 
@@ -161,8 +187,8 @@ export default function Delirium() {
 
             <SearchBar placeholder="Search" data={Data} /><br></br>
 
-          <div id="delirium">
-            
+     
+          <div id="delirium"> 
             <Accordion id="firstAccordion">
           <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
             <Typography>
@@ -209,8 +235,8 @@ export default function Delirium() {
               </p>
             </Typography>
           </AccordionDetails>
-        </Accordion>
-        <Box
+         </Accordion>
+         <Box
               sx={{
                 marginTop: 3,
                 display: 'flex',
@@ -258,12 +284,67 @@ export default function Delirium() {
                         </StyledTableCell>
                       </StyledTableRow>
                     ))}
+
                   </TableBody>
                 </Table>
-              </TableContainer>
+                <div className="box-content"  >
+           <div className="form-header" >
+           <Box display="flex" justifyContent="space-between" alignItems="center">
+            <Typography variant="h5" className="title">
+              Add New Information to the page
+            </Typography>
             
-              </div>
-          <Footer />
+           </Box>
+           </div>
+        
+          <form onSubmit={handleSubmit} >
+          
+            <Box >
+            <TextField
+              label="List Header (must be from one of above headers): "
+              variant="filled"
+              value={listHeader}
+              onChange={handleHeader}
+   
+              multiline
+              
+
+              required
+            />
+            </Box>
+
+            <Box >
+            <TextField
+              label="Description:"
+              variant="filled"
+              value={description}
+              onChange={handleDescription}
+              
+             
+              multiline
+              
+              
+              required
+            />
+            </Box>
+            <Box sx={{ display: 'flex', marginBottom: 10}}>
+            <Button
+              type="submit"
+              variant="contained"
+              className="submit-button"
+              color="primary">
+              Submit
+            </Button>
+            </Box>
+
+          </form>
+         </div>
+              </TableContainer>
+              
+         </div>   
+      
+          
+        <Footer />
                     </>
                   
         );
@@ -359,9 +440,13 @@ export default function Delirium() {
                   ))}
                 </TableBody>
               </Table>
+
+              
             </TableContainer>
             
         </div>
+
+        
         <Footer />
         
         </>
