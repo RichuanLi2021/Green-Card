@@ -13,7 +13,7 @@ import Data from "../../searchBar/Data.json";
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 import Box from '@mui/material/Box';
-import { InsomniaSafetyUpdate } from './InsomniaSafetyBackend';
+// import { InsomniaSafetyUpdate } from './InsomniaSafetyBackend';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -42,40 +42,40 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function InsomniaSafety() {
 
-  const [selectedDrugs, setSelectedDrugs] = useState([]);
-  const [value, setValue] = useState('');
-  const admin = localStorage.getItem('admin');
+//   const [selectedDrugs, setSelectedDrugs] = useState([]);
+//   const [value, setValue] = useState('');
+//   const admin = localStorage.getItem('admin');
 
-  const handleDrugClick = (dataObj) => {
-    setSelectedDrugs((prevSelectedDrugs) => {
-      const isSelected = prevSelectedDrugs.includes(dataObj);
-      if (isSelected) {
-        return prevSelectedDrugs.filter((drug) => drug !== dataObj);
-      } else {
-        return [...prevSelectedDrugs, dataObj];
-      }
-    });
-  };
+//   const handleDrugClick = (dataObj) => {
+//     setSelectedDrugs((prevSelectedDrugs) => {
+//       const isSelected = prevSelectedDrugs.includes(dataObj);
+//       if (isSelected) {
+//         return prevSelectedDrugs.filter((drug) => drug !== dataObj);
+//       } else {
+//         return [...prevSelectedDrugs, dataObj];
+//       }
+//     });
+//   };
 
-const update_value = (event) => {
-  if (admin) {
-    console.log(event.target.name,event.target.value,event.target.column);
-    if (event.target.value !== value) {
-      event.preventDefault();
-      InsomniaSafetyUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
-        alert('Data successfully updated! \nDrug:'+event.target.name + "\nColumn:" + event.target.id + "\nNew Value:"+ event.target.value);
-        window.location.reload();
-      }).catch((error) => {
-        console.error(error);
-        alert('Failed to update!');
-      });
-    } else {
-      console.log("value was not changed, not updating");
-    }
-  } else {
-    alert("You must be an administrator to edit");
-  }
-};
+// const update_value = (event) => {
+//   if (admin) {
+//     console.log(event.target.name,event.target.value,event.target.column);
+//     if (event.target.value !== value) {
+//       event.preventDefault();
+//       InsomniaSafetyUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
+//         alert('Data successfully updated! \nDrug:'+event.target.name + "\nColumn:" + event.target.id + "\nNew Value:"+ event.target.value);
+//         window.location.reload();
+//       }).catch((error) => {
+//         console.error(error);
+//         alert('Failed to update!');
+//       });
+//     } else {
+//       console.log("value was not changed, not updating");
+//     }
+//   } else {
+//     alert("You must be an administrator to edit");
+//   }
+// };
 
 
   const [data, setData] = useState([]);
@@ -90,68 +90,69 @@ const update_value = (event) => {
         });
   }, []);
 
-  if(data.length > 0)
-  { if (admin){return (
-    <>
-      <Navigation />
-      <SearchBar placeholder="Search" data={Data} />
-    <div id="insomniaSafety">
-    <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
-        <Typography id="topicHeader">Sedatives/Hypnotics Safety Concerns</Typography>
+//   if(data.length > 0)
+//   { if (admin){return (
+//     <>
+//       <Navigation />
+//       <SearchBar placeholder="Search" data={Data} />
+//     <div id="insomniaSafety">
+//     <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
+//         <Typography id="topicHeader">Sedatives/Hypnotics Safety Concerns</Typography>
       
-        <TableContainer component={Paper} >
-        <Table aria-label="customized table" id="safetyTable" >
-          <TableBody>
-            {data.map((dataObj, index) => (
-              <StyledTableRow key={index} >
-                <StyledTableCell >{dataObj[`Description`]}</StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <div className='keynote-div'>
-        <p className='keynote'><b>Key notes:</b> SHYPCLIN_SAF means safety concerns </p>
-      </div>
-    </div>
-    </div>
+//         <TableContainer component={Paper} >
+//         <Table aria-label="customized table" id="safetyTable" >
+//           <TableBody>
+//             {data.map((dataObj, index) => (
+//               <StyledTableRow key={index} >
+//                 <StyledTableCell >{dataObj[`Description`]}</StyledTableCell>
+//               </StyledTableRow>
+//             ))}
+//           </TableBody>
+//         </Table>
+//       </TableContainer>
+//       <div className='keynote-div'>
+//         <p className='keynote'><b>Key notes:</b> SHYPCLIN_SAF means safety concerns </p>
+//       </div>
+//     </div>
+//     </div>
   
-    <Footer />
-    </>
-  );}else{
+//     <Footer />
+//     </>
+//   );}else{
 
   
-  return (
-    <>
-      <Navigation />
-      <SearchBar placeholder="Search" data={Data} />
-    <div id="insomniaSafety">
-    <Box
-        sx={{
-          marginTop: 3,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Typography id="topicHeader">Sedatives/Hypnotics Safety Concerns</Typography>
-      </Box>
-        <TableContainer component={Paper} >
-        <Table aria-label="customized table" id="safetyTable" >
-          <TableBody>
-            {data.map((dataObj, index) => (
-              <StyledTableRow key={index} >
-                <StyledTableCell >{dataObj[`Description`]}</StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <div className='keynote-div'>
-        <p className='keynote'><b>Key notes:</b> SHYPCLIN_SAF means safety concerns </p>
-      </div>
-    </div>
-    <Footer />
-    </>
-  );}
-}};
+//   return (
+//     <>
+//       <Navigation />
+//       <SearchBar placeholder="Search" data={Data} />
+//     <div id="insomniaSafety">
+//     <Box
+//         sx={{
+//           marginTop: 3,
+//           display: 'flex',
+//           flexDirection: 'column',
+//           alignItems: 'center',
+//         }}
+//       >
+//         <Typography id="topicHeader">Sedatives/Hypnotics Safety Concerns</Typography>
+//       </Box>
+//         <TableContainer component={Paper} >
+//         <Table aria-label="customized table" id="safetyTable" >
+//           <TableBody>
+//             {data.map((dataObj, index) => (
+//               <StyledTableRow key={index} >
+//                 <StyledTableCell >{dataObj[`Description`]}</StyledTableCell>
+//               </StyledTableRow>
+//             ))}
+//           </TableBody>
+//         </Table>
+//       </TableContainer>
+//       <div className='keynote-div'>
+//         <p className='keynote'><b>Key notes:</b> SHYPCLIN_SAF means safety concerns </p>
+//       </div>
+//     </div>
+//     <Footer />
+//     </>
+  //  );
+  }
+;
