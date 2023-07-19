@@ -43,4 +43,17 @@ const drugData = async (req, res, next) => {
   }
 };
 
-module.exports = { getData, updateData, drugData };
+const drugDelete = async (req, res, next) => {
+  const Description = req.params.Description;
+  try {
+    await pool.query(
+      "DELETE FROM `green_card`.`ANTICHOLINERGIC ACTIVITY` WHERE `Description` = ?",
+      [Description] 
+    );
+    res.send('Drug was deleted successfully');
+  } catch (err) {
+    next(err);
+    throw err;
+  }
+};
+module.exports = { getData, updateData, drugData, drugDelete };

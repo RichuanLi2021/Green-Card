@@ -171,8 +171,7 @@ export default function AntidepressantsClinical() {
                   ))}
                 </TableBody>
               </Table>
-            </TableContainer><br></br>
-            <div className="box-content"  >
+              <div className="box-content"  >
            <div className="form-header" >
            <Box display="flex" justifyContent="space-between" alignItems="center">
             <Typography variant="h5" className="title">
@@ -185,6 +184,7 @@ export default function AntidepressantsClinical() {
           <form onSubmit={handleSubmit} >
             <Box >
             <TextField
+             style={{ width: "400px" }}
               label="List Header (must be from one of above headers): "
               variant="filled"
               value={listHeader}
@@ -200,6 +200,7 @@ export default function AntidepressantsClinical() {
 
             <Box >
             <TextField
+             style={{ width: "400px" }}
               label="Description:"
               variant="filled"
               value={description}
@@ -214,6 +215,7 @@ export default function AntidepressantsClinical() {
             </Box>
             <Box sx={{ display: 'flex' }}>
             <Button
+              style={{ width: "400px" }}
               type="submit"
               variant="contained"
               className="submit-button"
@@ -224,6 +226,8 @@ export default function AntidepressantsClinical() {
 
           </form>
          </div>
+            </TableContainer><br></br>
+            
 
           </div>
           <div className="cognitive-footer">
