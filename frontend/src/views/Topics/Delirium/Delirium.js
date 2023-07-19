@@ -225,7 +225,7 @@ export default function Delirium() {
             
               <TableContainer component={Paper} >
               
-                <Table sx={{ minWidth: 700 }} aria-label="customized table" id="deliriumTable" >
+                <Table  aria-label="customized table" id="deliriumTable" >
                   <TableHead >
                     <TableRow >
                       <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Description-Drug</StyledTableCell>
@@ -341,7 +341,7 @@ export default function Delirium() {
             </Box>
             
             <TableContainer component={Paper} >
-              <Table sx={{ minWidth: 700 }} aria-label="customized table" id="clinicalTable" >
+              <Table aria-label="customized table" id="deliriumTable" >
                 <TableHead >
                   <TableRow >
                     <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Description-Drug</StyledTableCell>
