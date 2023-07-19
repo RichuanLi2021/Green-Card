@@ -13,8 +13,8 @@ const getData = async (req, res, next) => {
 
 const updateData = async (req, res, next) => {
   try {
-    const { duration, column, value } = req.body;
-    await pool.query('UPDATE `green_card`.`DEPRESCRIBING BENZODIAZEPINE-LIKE SEDATIVES` SET ' + column + ' = ' + '"' + value + '"' + ' WHERE Duration = ' + '"' + duration + '"');
+    const { name, column, value } = req.body;
+    await pool.query('UPDATE `green_card`.`DEPRESCRIBING BENZODIAZEPINE-LIKE SEDATIVES` SET ' + column + ' = ' + '"' + value + '"' + ' WHERE Duration = ' + '"' + name + '"');
     res.send("Updated Successfully!");
   } catch (error) {
     console.log(error);
@@ -27,7 +27,7 @@ const updateData = async (req, res, next) => {
 const drugData = async (req, res, next) => {
   const { duration, doseReduction, interval} = req.body;
   try {
-      await pool.query('INSERT INTO `green_card`.`DEPRESCRIBING BENZODIAZEPINE-LIKE SEDATIVES` (`Duration of BZRA use (months)`,`Dose Reduction Schedule Duration (weeks)`,`Interval Between Dose Reductions (weeks)`) VALUES (?, ?, ?)',
+      await pool.query('INSERT INTO `green_card`.`DEPRESCRIBING BENZODIAZEPINE-LIKE SEDATIVES` (`Duration`,`Dose Reduction Schedule Duration (weeks)`,`Interval Between Dose Reductions (weeks)`) VALUES (?, ?, ?)',
           [duration, doseReduction, interval]);
       res.send('Drug was submitted successfully');
   } catch (err) {

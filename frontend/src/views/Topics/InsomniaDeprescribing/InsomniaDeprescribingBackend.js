@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export const InsomniaDeprescribingUpdate = async (duration, column, value) => {
+export const InsomniaDeprescribingUpdate = async (name, column, value) => {
   try {
-    const response = await axios.post('http://localhost:8887/api//InsomniaDeprescribing/update', {
-     duration,
+    const response = await axios.post('http://localhost:8887/api/InsomniaDeprescribing/update', {
+     name,
      column,
      value
     });

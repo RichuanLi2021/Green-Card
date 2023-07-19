@@ -7,7 +7,7 @@ const insomniaDeprescribingController = require('../controller/InsomniaDeprescri
 router.get('/InsomniaDeprescribing', insomniaDeprescribingController.getData);
 router.post('/InsomniaDeprescribing/update', insomniaDeprescribingController.updateData);
 router.post('/add/InsomniaDeprescribing', insomniaDeprescribingController.drugData);
-router.delete('/delete/:Duration',insomniaDeprescribingController.drugDelete);
+router.delete('/deprescribing/delete/:Duration',insomniaDeprescribingController.drugDelete);
 
 
 module.exports = router;

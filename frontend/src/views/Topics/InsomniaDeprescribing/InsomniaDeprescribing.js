@@ -56,11 +56,11 @@ export default function InsomniaDeprescribing() {
   //calls update query when an input was selected and is not anymore (if the value actually changed)
   const update_value = (event) => {
     if (admin) {
-      console.log(value);
+      console.log(event.target.name,event.target.value,event.target.column);
       if (event.target.value !== value) {
         event.preventDefault();
-        InsomniaDeprescribingUpdate(event.target.duration, event.target.id, event.target.value).then((data) => {
-          alert('Data successfully updated! \nDrug:'+event.target.duration + "\nColumn:" + event.target.id + "\nNew Value:"+ event.target.value);
+        InsomniaDeprescribingUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
+          alert('Data successfully updated! \nDrug:'+event.target.name + "\nColumn:" + event.target.id + "\nNew Value:"+ event.target.value);
           window.location.reload();
         }).catch((error) => {
           console.error(error);
@@ -78,7 +78,7 @@ export default function InsomniaDeprescribing() {
     if(window.confirm('Are you sure you want to delete this record?')){
     try{
       
-      await axios.delete('http://localhost:8887/api/delete/'+Duration)
+      await axios.delete('http://localhost:8887/api/deprescribing/delete/'+Duration)
       window.alert('Drug Deleted Successfully !')
       window.location.reload();
     }catch(err) {
@@ -104,7 +104,7 @@ export default function InsomniaDeprescribing() {
     submitDrug(duration, doseReduction, interval)
       .then((data) => {
         window.alert('Drug was added Successfully!');
-      
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);
@@ -155,7 +155,7 @@ delete
                       <input
                                   id="`Duration`"
 
-                                  name={dataObj.Name}
+                                  name={dataObj.Duration}
                                   type="text"
                                   onFocus={store_value}
                                   onBlur={update_value}
@@ -166,7 +166,7 @@ delete
                       <strong> Dose Reduction Schedule Duration (weeks) </strong>
                       <input
                                   id="`Dose Reduction Schedule Duration (weeks)`"
-                                  name={dataObj.Name}
+                                  name={dataObj[`Dose Reduction Schedule Duration (weeks)`]}
                                   type="text"
                                   onFocus={store_value}
                                   onBlur={update_value}
@@ -178,7 +178,7 @@ delete
                       <strong>Interval Between Dose Reductions (weeks): </strong>
                       <input
                                   id="`Interval Between Dose Reductions (weeks)`"
-                                  name={dataObj.Name}
+                                  name={dataObj[`Interval Between Dose Reductions (weeks)`]}
                                   type="text"
                                   onFocus={store_value}
                                   onBlur={update_value}

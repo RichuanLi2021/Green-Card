@@ -37,6 +37,41 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
+const [selectedDrugs, setSelectedDrugs] = useState([]);
+  const [value, setValue] = useState('');
+  const admin = localStorage.getItem('admin');
+
+  const handleDrugClick = (dataObj) => {
+    setSelectedDrugs((prevSelectedDrugs) => {
+      const isSelected = prevSelectedDrugs.includes(dataObj);
+      if (isSelected) {
+        return prevSelectedDrugs.filter((drug) => drug !== dataObj);
+      } else {
+        return [...prevSelectedDrugs, dataObj];
+      }
+    });
+  };
+
+const update_value = (event) => {
+  if (admin) {
+    console.log(event.target.name,event.target.value,event.target.column);
+    if (event.target.value !== value) {
+      event.preventDefault();
+      InsomniaDeprescribingUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
+        alert('Data successfully updated! \nDrug:'+event.target.name + "\nColumn:" + event.target.id + "\nNew Value:"+ event.target.value);
+        window.location.reload();
+      }).catch((error) => {
+        console.error(error);
+        alert('Failed to update!');
+      });
+    } else {
+      console.log("value was not changed, not updating");
+    }
+  } else {
+    alert("You must be an administrator to edit");
+  }
+};
+
 export default function InsomniaSafety() {
 
   const [data, setData] = useState([]);
@@ -52,7 +87,36 @@ export default function InsomniaSafety() {
   }, []);
 
   if(data.length > 0)
-  {
+  { if (admin){return (
+    <>
+      <Navigation />
+      <SearchBar placeholder="Search" data={Data} />
+    <div id="insomniaSafety">
+    <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
+        <Typography id="topicHeader">Sedatives/Hypnotics Safety Concerns</Typography>
+      
+        <TableContainer component={Paper} >
+        <Table aria-label="customized table" id="safetyTable" >
+          <TableBody>
+            {data.map((dataObj, index) => (
+              <StyledTableRow key={index} >
+                <StyledTableCell >{dataObj[`Description`]}</StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <div className='keynote-div'>
+        <p className='keynote'><b>Key notes:</b> SHYPCLIN_SAF means safety concerns </p>
+      </div>
+    </div>
+    </div>
+  
+    <Footer />
+    </>
+  );}else{
+
+  
   return (
     <>
       <Navigation />
@@ -85,5 +149,5 @@ export default function InsomniaSafety() {
     </div>
     <Footer />
     </>
-  );
+  );}
 }};
