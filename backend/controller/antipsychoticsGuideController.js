@@ -85,9 +85,9 @@ const addData = async (req, res, next) => {
   }
 };
 
-const deleteDataByName = async (req, res, next) => {
+const deleteData = async (req, res, next) => {
   try {
-    const { name } = req.params;
+    const { name } = req.params; // Assuming you'll pass the drug name as a route parameter
     await pool.query(`DELETE FROM \`green_card\`.\`ANTIPSYCHOTICS GUIDE\` WHERE Name = ?`, [name]);
     res.send("Deleted Successfully!");
   } catch (error) {
@@ -101,5 +101,5 @@ module.exports = {
   getData,
   updateData,
   addData,
-  deleteDataByName,
+  deleteData,
 };
