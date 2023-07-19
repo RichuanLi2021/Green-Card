@@ -101,6 +101,19 @@ export default function AntipsychoticsGuide() {
     }
   };
 
+  const handleDelete = async (Name) => {
+    if (window.confirm("Are you sure you want to delete this record?")) {
+      try {
+        console.log(Name);
+        await axios.delete("http://localhost:8887/api/antipsychoticsGuide/delete/" + Name);
+        alert("Data deleted succesfully! \nDrug:" + Name);
+        window.location.reload();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
   const handleInputChange = (e) => {
     setNewDrug({ ...newDrug, [e.target.name]: e.target.value });
   };
@@ -120,6 +133,10 @@ export default function AntipsychoticsGuide() {
     if (admin) {
       return (
         <>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+          />
           <Navigation />
           <SearchBar placeholder="Search" data={Data} />
           <div className="subHeader" style={{ marginTop: "1rem", padding: "0 1rem" }}>
@@ -137,6 +154,12 @@ export default function AntipsychoticsGuide() {
                       className={`drug-button ${isDrugSelected ? "active" : ""}`}
                     >
                       {dataObj.Name}
+                      <button
+                        style={{ background: "none", border: "none", cursor: "pointer" }}
+                        onClick={(e) => handleDelete(dataObj.Name)}
+                      >
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
                     </button>
 
                     {isDrugSelected && (
