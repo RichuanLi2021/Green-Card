@@ -87,8 +87,8 @@ const addData = async (req, res, next) => {
 
 const deleteData = async (req, res, next) => {
   try {
-    const { name } = req.params; // Assuming you'll pass the drug name as a route parameter
-    await pool.query(`DELETE FROM \`green_card\`.\`ANTIPSYCHOTICS GUIDE\` WHERE Name = ?`, [name]);
+    const { Name } = req.params; // Assuming you'll pass the drug name as a route parameter
+    await pool.query(`DELETE FROM \`green_card\`.\`ANTIPSYCHOTICS GUIDE\` WHERE Name = ?`, [Name]);
     res.send("Deleted Successfully!");
   } catch (error) {
     console.log(error);
