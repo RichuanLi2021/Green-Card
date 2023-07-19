@@ -295,10 +295,10 @@ const Navbar = () => {
                 sx={{ marginTop: '40px' }}
               >
                 <MenuItem onClick={handleDeliriumMenuClose}>
-                  <Button component={Link} to="/Delirium" sx={{ color: '#000' }}>Delirium Management</Button>
+                  <Button component={Link} to="/DeliriumManagement" sx={{ color: '#000' }}>Delirium Management</Button>
                 </MenuItem>
                 <MenuItem onClick={handleDeliriumMenuClose}>
-                  <Button component={Link} to="/Delirium" sx={{ color: '#000' }}>Anticholinergic activity</Button>
+                  <Button component={Link} to="/DeliriumManagement" sx={{ color: '#000' }}>Anticholinergic activity</Button>
                 </MenuItem>
               </Menu>
             </MenuItem>
@@ -496,10 +496,10 @@ const Navbar = () => {
               sx={{ marginTop: '40px' }}
             >
               <MenuItem onClick={handleDeliriumMenuClose}>
-                <Button component={Link} to="/Delirium" sx={{ color: '#000' }}>Delirium Management</Button>
+                <Button component={Link} to="/DeliriumManagement" sx={{ color: '#000' }}>Delirium Management</Button>
               </MenuItem>
               <MenuItem onClick={handleDeliriumMenuClose}>
-                <Button component={Link} to="/Delirium" sx={{ color: '#000' }}>Anticholinergic activity</Button>
+                <Button component={Link} to="/DeliriumManagement" sx={{ color: '#000' }}>Anticholinergic activity</Button>
               </MenuItem>
             </Menu>
 
@@ -743,10 +743,10 @@ const Navbar = () => {
                 sx={{ marginTop: '40px' }}
               >
                 <MenuItem onClick={handleDeliriumMenuClose}>
-                  <Button component={Link} to="/Delirium" sx={{ color: '#000' }}>Delirium Management</Button>
+                  <Button component={Link} to="/DeliriumManagement" sx={{ color: '#000' }}>Delirium Management</Button>
                 </MenuItem>
                 <MenuItem onClick={handleDeliriumMenuClose}>
-                  <Button component={Link} to="/Delirium" sx={{ color: '#000' }}>Anticholinergic activity</Button>
+                  <Button component={Link} to="/DeliriumManagement" sx={{ color: '#000' }}>Anticholinergic activity</Button>
                 </MenuItem>
               </Menu>
             </MenuItem>
@@ -939,10 +939,10 @@ const Navbar = () => {
               sx={{ marginTop: '40px' }}
             >
               <MenuItem onClick={handleDeliriumMenuClose}>
-                <Button component={Link} to="/Delirium" sx={{ color: '#000' }}>Delirium Management</Button>
+                <Button component={Link} to="/DeliriumManagement" sx={{ color: '#000' }}>Delirium Management</Button>
               </MenuItem>
               <MenuItem onClick={handleDeliriumMenuClose}>
-                <Button component={Link} to="/Delirium" sx={{ color: '#000' }}>Anticholinergic activity</Button>
+                <Button component={Link} to="/DeliriumManagement" sx={{ color: '#000' }}>Anticholinergic activity</Button>
               </MenuItem>
             </Menu>
 
