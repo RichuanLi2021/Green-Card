@@ -13,6 +13,7 @@ import Data from "../../searchBar/Data.json";
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 import Box from '@mui/material/Box';
+import { InsomniaSafetyUpdate } from './InsomniaSafetyBackend';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
