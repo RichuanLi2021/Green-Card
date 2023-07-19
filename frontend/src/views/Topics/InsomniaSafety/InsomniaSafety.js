@@ -37,7 +37,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const [selectedDrugs, setSelectedDrugs] = useState([]);
+
+
+export default function InsomniaSafety() {
+
+  const [selectedDrugs, setSelectedDrugs] = useState([]);
   const [value, setValue] = useState('');
   const admin = localStorage.getItem('admin');
 
@@ -57,7 +61,7 @@ const update_value = (event) => {
     console.log(event.target.name,event.target.value,event.target.column);
     if (event.target.value !== value) {
       event.preventDefault();
-      InsomniaDeprescribingUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
+      InsomniaSafetyUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
         alert('Data successfully updated! \nDrug:'+event.target.name + "\nColumn:" + event.target.id + "\nNew Value:"+ event.target.value);
         window.location.reload();
       }).catch((error) => {
@@ -72,7 +76,6 @@ const update_value = (event) => {
   }
 };
 
-export default function InsomniaSafety() {
 
   const [data, setData] = useState([]);
   useEffect(() => {
