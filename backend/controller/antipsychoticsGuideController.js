@@ -85,8 +85,21 @@ const addData = async (req, res, next) => {
   }
 };
 
+const deleteDataByName = async (req, res, next) => {
+  try {
+    const { name } = req.params;
+    await pool.query(`DELETE FROM \`green_card\`.\`ANTIPSYCHOTICS GUIDE\` WHERE Name = ?`, [name]);
+    res.send("Deleted Successfully!");
+  } catch (error) {
+    console.log(error);
+    next(error);
+    throw error;
+  }
+};
+
 module.exports = {
   getData,
   updateData,
   addData,
+  deleteDataByName,
 };
