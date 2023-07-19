@@ -110,7 +110,7 @@ export default function Delirium() {
   const handleDescription= (event) => {
     setDescription(event.target.value);
   };
-
+  
 
   //used to store value when an input is selected by user
 
@@ -134,7 +134,7 @@ export default function Delirium() {
         window.alert('Failed to submit the Drug!');
       });
   };
-
+   
   //calls update query when an input was selected and is not anymore (if the value actually changed)
 
   const update_value = (event) => {
@@ -176,6 +176,19 @@ export default function Delirium() {
 
   };
 
+  const handleDelete = async (Description) =>{
+    if(window.confirm('Are you sure you want to delete this record?')){
+    try{
+      console.log(Description);
+      await axios.delete('http://localhost:8887/api/Delirium/delete/'+Description);
+      window.alert('Drug Deleted Successfully !');
+      window.location.reload();
+    }catch(err) {
+      console.log(err);
+    }
+  }
+  }
+
   if (data.length > 0) {
 
     //Editable Fields
@@ -183,6 +196,7 @@ export default function Delirium() {
     if (admin) {
         return (
           <>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
             <Navigation />
 
             <SearchBar placeholder="Search" data={Data} /><br></br>
@@ -281,13 +295,18 @@ export default function Delirium() {
                             onBlur={update_value}
                             defaultValue={dataObj[`LIST_HEADERS_Id`]}
                           />
+                          <button 
+                    style={{background:'none',border:'none',cursor:'pointer'}} 
+                    onClick={e => handleDelete(dataObj[`Description`])} > 
+                    <span class="material-symbols-outlined">delete</span>
+                    </button>
                         </StyledTableCell>
                       </StyledTableRow>
                     ))}
 
                   </TableBody>
                 </Table>
-                <div className="box-content"  >
+                <div className="box-content"  style={{ width: "600px" }} >
            <div className="form-header" >
            <Box display="flex" justifyContent="space-between" alignItems="center">
             <Typography variant="h5" className="title">
@@ -300,7 +319,8 @@ export default function Delirium() {
           <form onSubmit={handleSubmit} >
           
             <Box >
-            <TextField
+            <TextField 
+              style={{ minWidth: "400px" }} 
               label="List Header (must be from one of above headers): "
               variant="filled"
               value={listHeader}
@@ -313,8 +333,9 @@ export default function Delirium() {
             />
             </Box>
 
-            <Box >
+            <Box  >
             <TextField
+            style={{ minWidth: "400px" }}
               label="Description:"
               variant="filled"
               value={description}
@@ -329,6 +350,7 @@ export default function Delirium() {
             </Box>
             <Box sx={{ display: 'flex', marginBottom: 10}}>
             <Button
+            style={{ minWidth: "400px" }}
               type="submit"
               variant="contained"
               className="submit-button"
