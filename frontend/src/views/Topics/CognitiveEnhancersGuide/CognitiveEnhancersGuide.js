@@ -309,8 +309,10 @@ export default function CognitiveEnhancersGuide() {
            </div>
         
           <form onSubmit={handleSubmit} >
+            <div className="form-first-part">
           <Box >
             <TextField
+            style={{ width: "320px" }}
               label="Drug Name: "
               variant="filled"
               value={drugName}
@@ -324,6 +326,7 @@ export default function CognitiveEnhancersGuide() {
             </Box>
             <Box >
             <TextField
+            style={{ width: "320px" }}
               label="Action:"
               variant="filled"
               value={action}
@@ -339,6 +342,7 @@ export default function CognitiveEnhancersGuide() {
 
             <Box >
             <TextField
+            style={{ width: "320px" }}
               label="Half-life"
               variant="filled"
               value={halfLife}
@@ -354,6 +358,7 @@ export default function CognitiveEnhancersGuide() {
 
             <Box >
             <TextField
+            style={{ width: "320px" }}
               label="Frequency :"
               variant="filled"
               value={frequency}
@@ -366,9 +371,10 @@ export default function CognitiveEnhancersGuide() {
               required
             />
             </Box>
-
+ 
             <Box >
             <TextField
+            style={{ width: "320px" }}
               label="Dose (initial/monthly increment/maint) :"
               variant="filled"
               value={dose}
@@ -384,6 +390,7 @@ export default function CognitiveEnhancersGuide() {
 
              <Box >
             <TextField
+            style={{ width: "320px" }}
               label="mg Form supplied"
               variant="filled"
               value={mgFormsupplied}
@@ -398,6 +405,7 @@ export default function CognitiveEnhancersGuide() {
             </Box>
             <Box >
             <TextField
+            style={{ width: "320px" }}
               label="With Food:"
               variant="filled"
               value={withFood}
@@ -405,9 +413,14 @@ export default function CognitiveEnhancersGuide() {
               multiline
               required
             />
+            
             </Box>
+            </div>
+            <div className="form-continued">
+            <p style={{ width: "320px" }}>Remaining info will be displayed on Cognitive Enhancers Guide continued page:</p> 
             <Box >
             <TextField
+            style={{ width: "320px" }}
               label="MCI:"
               variant="filled"
               value={mci}
@@ -418,6 +431,7 @@ export default function CognitiveEnhancersGuide() {
             </Box>
             <Box >
             <TextField
+            style={{ width: "320px" }}
               label="Mild-mod Alz:"
               variant="filled"
               value={mildModeAlz}
@@ -428,6 +442,7 @@ export default function CognitiveEnhancersGuide() {
             </Box>
             <Box >
             <TextField
+            style={{ width: "320px" }}
               label="Severe Alz:"
               variant="filled"
               value={severeAlz}
@@ -438,6 +453,7 @@ export default function CognitiveEnhancersGuide() {
             </Box>
             <Box >
             <TextField
+            style={{ width: "320px" }}
               label="Mixed (Alz+vas): "
               variant="filled"
               value={mixed}
@@ -448,6 +464,7 @@ export default function CognitiveEnhancersGuide() {
             </Box>
             <Box >
             <TextField
+            style={{ width: "320px" }}
               label="Vascular: "
               variant="filled"
               value={vascular}
@@ -458,6 +475,7 @@ export default function CognitiveEnhancersGuide() {
             </Box>
             <Box >
             <TextField
+            style={{ width: "320px" }}
               label="LBD: "
               variant="filled"
               value={lbd}
@@ -468,6 +486,7 @@ export default function CognitiveEnhancersGuide() {
             </Box>
             <Box >
             <TextField
+            style={{ width: "320px" }}
               label="FTD: "
               variant="filled"
               value={ftd}
@@ -478,6 +497,7 @@ export default function CognitiveEnhancersGuide() {
             </Box>
             <Box >
             <TextField
+            style={{ width: "320px" }}
               label="PD: "
               variant="filled"
               value={pd}
@@ -488,6 +508,7 @@ export default function CognitiveEnhancersGuide() {
             </Box>
             <Box >
             <TextField
+            style={{ width: "320px" }}
               label="DSD: "
               variant="filled"
               value={dsd}
@@ -496,12 +517,10 @@ export default function CognitiveEnhancersGuide() {
               required
             />
             </Box>
-          
-
-
 
             <Box sx={{ display: 'flex' }}>
             <Button
+            style={{ width: "320px" }}
               type="submit"
               variant="contained"
               className="submit-button"
@@ -509,6 +528,7 @@ export default function CognitiveEnhancersGuide() {
               Submit
             </Button>
             </Box>
+            </div>
           </form>
          </div>
          
