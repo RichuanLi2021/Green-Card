@@ -78,6 +78,19 @@ export default function AntipsychoticSafety() {
     }
   };
 
+  const handleDelete = async (Description) => {
+    if (window.confirm("Are you sure you want to delete this record?")) {
+      try {
+        console.log(Description);
+        await axios.delete("http://localhost:8887/api/AntipsychoticsSafety/delete/" + Description);
+        alert("Data deleted succesfully! \nSymptom:" + Description);
+        window.location.reload();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
   const handleInputChange = (e) => {
     setNewSafetyConcern(e.target.value);
   };
@@ -86,6 +99,10 @@ export default function AntipsychoticSafety() {
   if (data.length > 0) {
     return (
       <>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+        />
         <Navigation />
         <SearchBar placeholder="Search" data={Data} />
         <div id="antipsychoticSafety">
@@ -137,6 +154,12 @@ export default function AntipsychoticSafety() {
                 {data.map((dataObj, index) => (
                   <StyledTableRow key={index}>
                     <StyledTableCell>{dataObj[`Description`]}</StyledTableCell>
+                    <button
+                      style={{ background: "none", border: "none", cursor: "pointer", padding: "15px 2px" }}
+                      onClick={(e) => handleDelete(dataObj.Description)}
+                    >
+                      <span class="material-symbols-outlined">delete</span>
+                    </button>
                   </StyledTableRow>
                 ))}
               </TableBody>
