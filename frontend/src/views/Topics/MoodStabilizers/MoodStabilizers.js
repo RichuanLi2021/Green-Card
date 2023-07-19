@@ -5,9 +5,8 @@ import { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import Data from "../../searchBar/Data.json";
 import SearchBar from "../../searchBar/searchBar";
-import MoodStabilizersUpdate from "./moodStabilizersbackend";
 import './MoodStabilizers.css';
-import {MoodstabilizersUpdate, submitDrug }from './moodStabilizersbackend';
+import {MoodStabilizersUpdate, submitDrug }from './moodStabilizersbackend';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -36,11 +35,16 @@ export default function MoodStabilizers() {
   const admin = localStorage.getItem('admin');
 
   //add drug components shifted to this page itself
+  const [drugName, setdrugName] = useState('');
   const [halfLife, sethalfLife] = useState('');
   const [doseInitial, setdoseInitial] = useState('');
   const [frequency, setFrequency] = useState('');
   const [mgFormSupplied, setmgFormSupplied] = useState('');
   const [monitoringLevel, setmonitoringLevel] = useState('');
+
+  const handleDrugName = (event) => {
+    setdrugName(event.target.value);
+  };
 
   const handleHalfLife = (event) => {
     sethalfLife(event.target.value);
@@ -66,11 +70,11 @@ export default function MoodStabilizers() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log({ halfLife, doseInitial, frequency, mgFormSupplied, monitoringLevel });
-    submitDrug(halfLife, doseInitial, frequency, mgFormSupplied, monitoringLevel)
+    console.log({ drugName, halfLife, doseInitial, frequency, mgFormSupplied, monitoringLevel });
+    submitDrug(drugName, halfLife, doseInitial, frequency, mgFormSupplied, monitoringLevel)
       .then((data) => {
         window.alert('Drug was added Successfully!');
-      
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);
@@ -90,7 +94,7 @@ export default function MoodStabilizers() {
       console.log(value);
       if (event.target.value !== value) {
         event.preventDefault();
-        MoodStabilizersUpdate(event.target.name, event.target.id, event.target.value)
+        moodStabilizersUpdate(event.target.name, event.target.id, event.target.value)
           .then((data) => {
             alert('Updated Successfully Called! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nValue:"+ event.target.value);
           })
@@ -121,7 +125,7 @@ export default function MoodStabilizers() {
     if(window.confirm('Are you sure you want to delete this record?')){
     try{
       
-      await axios.delete('http://localhost:8887/api/delete/'+Name)
+      await axios.delete('http://localhost:8887/api/MoodStabilizers/delete/'+Name)
       window.alert('Drug Deleted Successfully !')
       window.location.reload();
     }catch(err) {
@@ -135,7 +139,7 @@ export default function MoodStabilizers() {
     if (admin) {
       return (
         <>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        <link rel="stylesheet" href= "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
           <Navigation />
           <SearchBar placeholder="Search" data={Data} />
@@ -242,6 +246,20 @@ delete
            </div>
         
           <form onSubmit={handleSubmit} >
+
+          <Box >
+            <TextField
+              label="Drug Name: "
+              variant="filled"
+              value={drugName}
+              onChange={handleDrugName}
+              
+              
+              
+              required
+            />
+          </Box>
+
           <Box >
             <TextField
               label="Half-life"

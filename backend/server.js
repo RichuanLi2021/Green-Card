@@ -30,6 +30,7 @@ var CognitiveEnhancersGuideRoute = require("./routes/CognitiveEnhancersGuideRout
 var CognitiveEnhancersGuideContRoute = require("./routes/CognitiveEnhancersGuideContRoute");
 var CognitiveEnhancersClinicalRoute = require("./routes/CognitiveEnhancersClinicalRoute");
 var searchRouter = require("./routes/searchRoute");
+var NPSManagementRoute = require("./routes/NPSManagementRoute");
 var neuropsychiatricRoute = require("./routes/neuropsychiatricRoute");
 var AntipsychoticSafetyRoute = require('./routes/AntipsychoticSafetyRoute');
 var deliriumRoute = require("./routes/deliriumRoute");
@@ -57,6 +58,7 @@ app.use("/api", CognitiveEnhancersGuideRoute);
 app.use("/api", CognitiveEnhancersGuideContRoute);
 app.use("/api", CognitiveEnhancersClinicalRoute);
 app.use("/api/search", searchRouter);
+app.use("/api", NPSManagementRoute);
 app.use("/api", neuropsychiatricRoute);
 app.use('/api', AntipsychoticSafetyRoute);
 app.use("/api", deliriumRoute);

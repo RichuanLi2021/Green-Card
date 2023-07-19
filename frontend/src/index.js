@@ -18,6 +18,7 @@ import AntipsychoticsGuide from "./views/Topics/AntipsychoticsGuide/antipsychoti
 import CognitiveEnhancersGuide from "./views/Topics/CognitiveEnhancersGuide/CognitiveEnhancersGuide";
 import CognitiveEnhancersGuideCont from "./views/Topics/CognitiveEnhancersGuideCont/CognitiveEnhancersGuideCont";
 import CognitiveEnhancersClinical from "./views/Topics/CognitiveEnhancersClinical/CognitiveEnhancersClinical";
+import NPSManagement from "./views/Topics/NPSManagement/NPSManagement";
 import Neuropsychiatric from "./views/Topics/Neuropsychiatric/Neuropsychiatric";
 import Delirium from "./views/Topics/Delirium/Delirium";
 
@@ -55,6 +56,7 @@ root.render(
       <Route path="/CognitiveEnhancersGuide" element={<CognitiveEnhancersGuide />} />
       <Route path="/CognitiveEnhancersGuideCont" element={<CognitiveEnhancersGuideCont />} />
       <Route path="/CognitiveEnhancersClinical" element={<CognitiveEnhancersClinical />} />
+      <Route path="/NPSManagement" element={<NPSManagement />} />
       <Route path="/Neuropsychiatric" element={<Neuropsychiatric />} />
       <Route path="/panel" element={<Panel />} />
       <Route path="/InsomniaSedatives" element={<InsomniaSedatives />} />

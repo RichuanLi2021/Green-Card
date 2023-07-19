@@ -3,7 +3,7 @@ import axios from "axios";
 const moodStabilizersUpdate = async (name, column, value) => {
   try {
     const response = await axios.post(
-      "http://localhost:8887/api/moodstabilizers/update",
+      "http://localhost:8887/api/MoodStabilizers/update",
       {
         name,
         column,
@@ -17,9 +17,10 @@ const moodStabilizersUpdate = async (name, column, value) => {
     throw error; // throw error to be handled by calling function
   }
 };
-export const submitDrug = async (doseInitial, frequency, mgFormSupplied, halfLife, monitoringLevel) => {
+export const submitDrug = async (drugName, doseInitial, frequency, mgFormSupplied, halfLife, monitoringLevel) => {
   try {
     const response = await axios.post('http://localhost:8887/api/add/MoodStabilizers', {
+      drugName, 
       doseInitial,
       frequency, 
       mgFormSupplied, 

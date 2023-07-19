@@ -141,7 +141,7 @@ const HomePage = () => {
                       </Typography>
                       <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
                         {" "}
-                        <a href="Neuropsychiatric"> NPS Management </a>{" "}
+                        <a href="NPSManagement"> NPS Management </a>{" "}
                       </Typography>
                     </AccordionDetails>
                   </Accordion>
