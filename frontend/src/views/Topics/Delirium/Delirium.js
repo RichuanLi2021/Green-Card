@@ -123,9 +123,7 @@ export default function Delirium() {
 
         DeliriumBackendUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
 
-         alert('Updated Successfully Called!');
-         
-        
+          alert(`Data successfully updated!\nNew Value: ${event.target.value}`);
 
         }).catch((error) => {
 
@@ -136,7 +134,6 @@ export default function Delirium() {
         });
 
       }
-
       else {
 
         console.log("value was not changed, not updating");
@@ -228,12 +225,11 @@ export default function Delirium() {
             
               <TableContainer component={Paper} >
               
-                <Table sx={{ minWidth: 700 }} aria-label="customized table" id="deliriumTable" >
+                <Table  aria-label="customized table" id="deliriumTable" >
                   <TableHead >
                     <TableRow >
-                      <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >High</StyledTableCell>
-                      <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Medium</StyledTableCell>
-                      <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Low</StyledTableCell>
+                      <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Description-Drug</StyledTableCell>
+                      <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Header</StyledTableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -242,32 +238,22 @@ export default function Delirium() {
                         <StyledTableCell component="th" scope="row">
                           
                           <input
-                            id="`High`"
-                            name={dataObj.High}
+                            input id='`Description`'
+                            name={dataObj[`Description`]}
                             type="text"
                             onFocus={store_value}
                             onBlur={update_value}
-                            defaultValue={dataObj.High}
+                            defaultValue={dataObj[`Description`]}
                     />
                         </StyledTableCell>
                         <StyledTableCell>
                           <input
-                            id="`Medium`"
-                            name={dataObj[`Medium`]}
+                            input id='`LIST_HEADERS_Id`'
+                            name={dataObj[`LIST_HEADERS_Id`]}
                             type="text"
                             onFocus={store_value}
                             onBlur={update_value}
-                            defaultValue={dataObj[`Medium`]}
-                          />
-                        </StyledTableCell>
-                        <StyledTableCell>
-                          <input
-                            id="`Low`"
-                            name={dataObj[`Low`]}
-                            type="text"
-                            onFocus={store_value}
-                            onBlur={update_value}
-                            defaultValue={dataObj[`Low`]}
+                            defaultValue={dataObj[`LIST_HEADERS_Id`]}
                           />
                         </StyledTableCell>
                       </StyledTableRow>
@@ -355,22 +341,20 @@ export default function Delirium() {
             </Box>
             
             <TableContainer component={Paper} >
-              <Table sx={{ minWidth: 700 }} aria-label="customized table" id="clinicalTable" >
+              <Table aria-label="customized table" id="deliriumTable" >
                 <TableHead >
                   <TableRow >
-                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >High</StyledTableCell>
-                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Medium</StyledTableCell>
-                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Low</StyledTableCell>
+                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Description-Drug</StyledTableCell>
+                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Header</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {data.map((dataObj, index) => (
                     <StyledTableRow key={index} >
                       <StyledTableCell component="th" scope="row">
-                        {dataObj.High}
+                        {dataObj[`Description`]}
                       </StyledTableCell>
-                      <StyledTableCell >{dataObj[`Medium`]}</StyledTableCell>
-                      <StyledTableCell >{dataObj[`Low`]}</StyledTableCell>
+                      <StyledTableCell >{dataObj[`LIST_HEADERS_Id`]}</StyledTableCell>
                     </StyledTableRow>
                   ))}
                 </TableBody>
