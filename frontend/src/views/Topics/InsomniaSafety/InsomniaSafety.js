@@ -1,18 +1,19 @@
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
-import SearchBar from "../../searchBar/searchBar";
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
+// import SearchBar from "../../searchBar/searchBar";
+// import Table from '@mui/material/Table';
+// import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
+// import TableContainer from '@mui/material/TableContainer';
+
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+// import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-import Data from "../../searchBar/Data.json";
-import Navigation from '../../Navigation/navigation';
-import Footer from '../../Footer/Footer';
-import Box from '@mui/material/Box';
+// import Data from "../../searchBar/Data.json";
+// import Navigation from '../../Navigation/navigation';
+// import Footer from '../../Footer/Footer';
+// import Box from '@mui/material/Box';
 // import { InsomniaSafetyUpdate } from './InsomniaSafetyBackend';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
