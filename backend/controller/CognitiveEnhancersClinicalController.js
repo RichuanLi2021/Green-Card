@@ -9,7 +9,6 @@ const getAPData = async () => {
 
 const getData = async (req, res, next) => {
   const apData = await getAPData();
-  console.log(apData);
 
   const groupedData = apData.reduce((accumulator, currentValue) => {
     let headerKey = currentValue.LIST_HEADERS_Id;
