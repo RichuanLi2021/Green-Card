@@ -339,34 +339,36 @@ export default function InsomniaSedatives() {
               Sedatives/Hypnotics Guide
             </Typography>
 
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Dose equiv.</TableCell>
-                  <TableCell>Time to peak in plasma</TableCell>
-                  <TableCell>Half-life</TableCell>
-                  <TableCell>Avg dose range (mg/day)</TableCell>
-                  <TableCell>mg/Form supplied</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {Array.isArray(data) &&
-                  data.map((dataObj, idx) => {
-                    const isDrugSelected = selectedDrugs.includes(dataObj);
-                    return (
-                      <TableRow key={idx} style={isDrugSelected ? { background: "lightgray" } : {}}>
-                        <TableCell>{dataObj.Name}</TableCell>
-                        <TableCell>{dataObj["Dose equiv."]}</TableCell>
-                        <TableCell>{dataObj["Time to peak in plasma"]}</TableCell>
-                        <TableCell>{dataObj["Half-life"]}</TableCell>
-                        <TableCell>{dataObj["Avg dose range (mg/day)"]}</TableCell>
-                        <TableCell>{dataObj["mg/Form supplied"]}</TableCell>
-                      </TableRow>
-                    );
-                  })}
-              </TableBody>
-            </Table>
+            <div className="table-container">
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell className="sticky-col">Name</TableCell>
+                    <TableCell>Dose equiv.</TableCell>
+                    <TableCell>Time to peak in plasma</TableCell>
+                    <TableCell>Half-life</TableCell>
+                    <TableCell>Avg dose range (mg/day)</TableCell>
+                    <TableCell>mg/Form supplied</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {Array.isArray(data) &&
+                    data.map((dataObj, idx) => {
+                      const isDrugSelected = selectedDrugs.includes(dataObj);
+                      return (
+                        <TableRow key={idx} style={isDrugSelected ? { background: "lightgray" } : {}}>
+                          <TableCell className="sticky-col">{dataObj.Name}</TableCell>
+                          <TableCell>{dataObj["Dose equiv."]}</TableCell>
+                          <TableCell>{dataObj["Time to peak in plasma"]}</TableCell>
+                          <TableCell>{dataObj["Half-life"]}</TableCell>
+                          <TableCell>{dataObj["Avg dose range (mg/day)"]}</TableCell>
+                          <TableCell>{dataObj["mg/Form supplied"]}</TableCell>
+                        </TableRow>
+                      );
+                    })}
+                </TableBody>
+              </Table>
+            </div>
 
             <div className="keynote-div">
               <p className="keynote">
