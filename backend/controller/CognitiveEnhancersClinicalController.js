@@ -9,12 +9,15 @@ const getAPData = async () => {
 
 const getData = async (req, res, next) => {
   const apData = await getAPData();
+  console.log(apData);
 
   const groupedData = apData.reduce((accumulator, currentValue) => {
-    if (!accumulator[currentValue.LIST_HEADERS_Id]) {
-      accumulator[currentValue.LIST_HEADERS_Id] = [];
+    let headerKey = currentValue.LIST_HEADERS_Id;
+
+    if (!accumulator[headerKey]) {
+      accumulator[headerKey] = [];
     }
-    accumulator[currentValue.LIST_HEADERS_Id].push(currentValue.Description);
+    accumulator[headerKey].push(currentValue.Description);
     return accumulator;
   }, {});
 
