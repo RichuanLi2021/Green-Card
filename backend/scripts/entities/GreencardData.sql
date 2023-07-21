@@ -31,7 +31,7 @@ INSERT INTO `green_card`.`LIST HEADERS` VALUES ('COG_ACHEI', 'Adverse Effects (A
 INSERT INTO `green_card`.`LIST HEADERS` VALUES ('COG_ACHEI_ME', 'Adverse Effects (Memantine)');
 INSERT INTO `green_card`.`LIST HEADERS` VALUES ('COG_BASELINE', 'Baseline');
 INSERT INTO `green_card`.`LIST HEADERS` VALUES ('COG_MONITOR', 'Monitoring');
-INSERT INTO `green_card`.`LIST HEADERS` VALUES ('COG_HOW_WHEN', 'How & When');
+INSERT INTO `green_card`.`LIST HEADERS` VALUES ('COG_HOW_WHEN', 'How and When');
 
 -- SEDATIVES/HYPNOTICS CLINICAL GUIDE-- 
 INSERT INTO `green_card`.`LIST HEADERS` VALUES ('INSOMNIA_MAN', 'Insomnia  Management');
