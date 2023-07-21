@@ -43,40 +43,41 @@ INSERT INTO `green_card`.`LIST HEADERS` VALUES ('SHYPCLIN_END', 'Ending');
 INSERT INTO `green_card`.`LIST HEADERS` VALUES ('SHYPCLIN_SAF', 'Sedative/Hypnotic Safety Concerns');
   
 -- --COGNITIVE ENHANCERS CLINICAL GUIDE--  
- INSERT INTO `green_card`.`COGNITIVE ENHANCERS CLINICAL GUIDE` (`LIST_HEADERS_Id`,`Description`)
- VALUES 
- ('COG_CONTRA', 'No absolute contraindication'),
- ('COG_CONTRA', 'Relative (for AChEI):'),
- ('COG_CONTRA', 'LBBB, Bradycardia'),
- ('COG_CONTRA', 'Peptic Ulcer Disease'),
- ('COG_CONTRA', 'COPD (severe)'),
- ('COG_CONTRA', 'Anticholinergic medication'),
- ('COG_CONTRA', 'CrCl <15ml/min(memantine)'),
- ('COG_ACHEI', 'Intolerance 10-20%'),
- ('COG_ACHEI', 'Nausea, Vomiting'),
- ('COG_ACHEI', 'Diarrhea'),
- ('COG_ACHEI', 'Muscle Cramps'),
- ('COG_ACHEI', 'Insomnia/Nightmares'),
- ('COG_ACHEI', 'Anorexia'),
- ('COG_ACHEI', 'Weight Loss'),
- ('COG_ACHEI', 'Dizziness'),
- ('COG_ACHEI', 'Drooling'),
- ('COG_ACHEI', 'Nasopharyngitis'),
- ('COG_ACHEI_ME', 'Intolerance ~11%'),
- ('COG_ACHEI_ME', 'Dizziness'),
- ('COG_ACHEI_ME', 'Constipation'),
- ('COG_ACHEI_ME', 'Headache'),
- ('COG_ACHEI_ME', 'Sedation'),
- ('COG_ACHEI_ME', 'Anxiety'),
- ('COG_ACHEI_ME', 'Hallucinations'),
- ('COG_BASELINE', 'Ensure Resting HR > 50'),
- ('COG_MONITOR', 'Cognition'),
- ('COG_MONITOR', 'Global Functioning'),
- ('COG_MONITOR', 'Target Symptoms and Goal Attainment'),
- ('COG_MONITOR', 'MMSE (or similar) q  ≥ 3-6 months'),
- ('COG_MONITOR', 'IADLs & ADLs'),
- ('COG_MONITOR', 'Individual (eg. Reptitive Questions, Baking, Etc)');
- 
+ -- Inserting descriptions/values for each header
+INSERT INTO `green_card`.`COGNITIVE ENHANCERS CLINICAL GUIDE` (`LIST_HEADERS_Id`,`Description`)
+VALUES 
+('COG_CONTRA', 'No absolute contraindication'),
+('COG_CONTRA', 'Relative (for AChEI):'),
+('COG_CONTRA', 'LBBB, Bradycardia'),
+('COG_CONTRA', 'Peptic Ulcer Disease'),
+('COG_CONTRA', 'COPD (severe)'),
+('COG_CONTRA', 'Anticholinergic medication'),
+('COG_CONTRA', 'CrCl <15ml/min(memantine)'),
+('COG_ACHEI', 'Intolerance 10-20%'),
+('COG_ACHEI', 'Nausea, Vomiting'),
+('COG_ACHEI', 'Diarrhea'),
+('COG_ACHEI', 'Muscle Cramps'),
+('COG_ACHEI', 'Insomnia/Nightmares'),
+('COG_ACHEI', 'Anorexia'),
+('COG_ACHEI', 'Weight Loss'),
+('COG_ACHEI', 'Dizziness'),
+('COG_ACHEI', 'Drooling'),
+('COG_ACHEI', 'Nasopharyngitis'),
+('COG_ACHEI_ME', 'Intolerance ~11%'),
+('COG_ACHEI_ME', 'Dizziness'),
+('COG_ACHEI_ME', 'Constipation'),
+('COG_ACHEI_ME', 'Headache'),
+('COG_ACHEI_ME', 'Sedation'),
+('COG_ACHEI_ME', 'Anxiety'),
+('COG_ACHEI_ME', 'Hallucinations'),
+('COG_BASELINE', 'Ensure Resting HR > 50'),
+('COG_MONITOR', 'Cognition'),
+('COG_MONITOR', 'Global Functioning'),
+('COG_MONITOR', 'Target Symptoms and Goal Attainment'),
+('COG_HOW_WHEN', 'MMSE (or similar) q  ≥ 3-6 months'),
+('COG_HOW_WHEN', 'IADLs & ADLs'),
+('COG_HOW_WHEN', 'Individual (eg. Repetitive Questions, Baking, Etc)');
+
 INSERT INTO `green_card`.`INSOMNIA MANAGEMENT`(`LIST_HEADERS_Id`, `Description`)
 VALUES
 ('INSOMNIA_MAN', 'First Line Treatment: CBT-i (www.mysleepwell.ca)'),
