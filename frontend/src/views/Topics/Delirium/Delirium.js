@@ -16,12 +16,13 @@ import Box from '@mui/material/Box';
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 import Data from "../../searchBar/Data.json";
-import DeliriumBackendUpdate from "./DeliriumBackend";
+import {DeliriumBackendUpdate, submitDrug} from "./DeliriumBackend";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -98,8 +99,18 @@ export default function Delirium() {
 
   const admin = localStorage.getItem('admin');
 
+  //add drug components shifted to this page itself
+  const [listHeader, setlistHeader] = useState('');
+  const [description, setDescription] = useState('');
+   
+  const handleHeader = (event) => {
+    setlistHeader(event.target.value);
+  };
 
-
+  const handleDescription= (event) => {
+    setDescription(event.target.value);
+  };
+  
 
   //used to store value when an input is selected by user
 
@@ -108,7 +119,22 @@ export default function Delirium() {
     setValue(event.target.value);
 
   }
-
+  
+  
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log({ listHeader, description });
+    submitDrug(listHeader, description)
+      .then((data) => {
+        window.alert('Drug was added Successfully!');
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error(error);
+        window.alert('Failed to submit the Drug!');
+      });
+  };
+   
   //calls update query when an input was selected and is not anymore (if the value actually changed)
 
   const update_value = (event) => {
@@ -123,9 +149,7 @@ export default function Delirium() {
 
         DeliriumBackendUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
 
-         alert('Updated Successfully Called!');
-         
-        
+          alert(`Data successfully updated!\nNew Value: ${event.target.value}`);
 
         }).catch((error) => {
 
@@ -136,7 +160,6 @@ export default function Delirium() {
         });
 
       }
-
       else {
 
         console.log("value was not changed, not updating");
@@ -153,6 +176,19 @@ export default function Delirium() {
 
   };
 
+  const handleDelete = async (Description) =>{
+    if(window.confirm('Are you sure you want to delete this record?')){
+    try{
+      console.log(Description);
+      await axios.delete('http://localhost:8887/api/Delirium/delete/'+Description);
+      window.alert('Drug Deleted Successfully !');
+      window.location.reload();
+    }catch(err) {
+      console.log(err);
+    }
+  }
+  }
+
   if (data.length > 0) {
 
     //Editable Fields
@@ -160,12 +196,13 @@ export default function Delirium() {
     if (admin) {
         return (
           <>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
             <Navigation />
 
             <SearchBar placeholder="Search" data={Data} /><br></br>
 
-          <div id="delirium">
-            
+     
+          <div id="delirium"> 
             <Accordion id="firstAccordion">
           <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
             <Typography>
@@ -212,8 +249,8 @@ export default function Delirium() {
               </p>
             </Typography>
           </AccordionDetails>
-        </Accordion>
-        <Box
+         </Accordion>
+         <Box
               sx={{
                 marginTop: 3,
                 display: 'flex',
@@ -228,12 +265,11 @@ export default function Delirium() {
             
               <TableContainer component={Paper} >
               
-                <Table sx={{ minWidth: 700 }} aria-label="customized table" id="deliriumTable" >
+                <Table  aria-label="customized table" id="deliriumTable" >
                   <TableHead >
                     <TableRow >
-                      <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >High</StyledTableCell>
-                      <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Medium</StyledTableCell>
-                      <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Low</StyledTableCell>
+                      <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Description-Drug</StyledTableCell>
+                      <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Header</StyledTableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -242,42 +278,95 @@ export default function Delirium() {
                         <StyledTableCell component="th" scope="row">
                           
                           <input
-                            id="`High`"
-                            name={dataObj.High}
+                            input id='`Description`'
+                            name={dataObj[`Description`]}
                             type="text"
                             onFocus={store_value}
                             onBlur={update_value}
-                            defaultValue={dataObj.High}
+                            defaultValue={dataObj[`Description`]}
                     />
                         </StyledTableCell>
                         <StyledTableCell>
                           <input
-                            id="`Medium`"
-                            name={dataObj[`Medium`]}
+                            input id='`LIST_HEADERS_Id`'
+                            name={dataObj[`LIST_HEADERS_Id`]}
                             type="text"
                             onFocus={store_value}
                             onBlur={update_value}
-                            defaultValue={dataObj[`Medium`]}
+                            defaultValue={dataObj[`LIST_HEADERS_Id`]}
                           />
-                        </StyledTableCell>
-                        <StyledTableCell>
-                          <input
-                            id="`Low`"
-                            name={dataObj[`Low`]}
-                            type="text"
-                            onFocus={store_value}
-                            onBlur={update_value}
-                            defaultValue={dataObj[`Low`]}
-                          />
+                          <button 
+                    style={{background:'none',border:'none',cursor:'pointer'}} 
+                    onClick={e => handleDelete(dataObj[`Description`])} > 
+                    <span class="material-symbols-outlined">delete</span>
+                    </button>
                         </StyledTableCell>
                       </StyledTableRow>
                     ))}
+
                   </TableBody>
                 </Table>
-              </TableContainer>
+                <div className="box-content"  style={{ width: "600px" }} >
+           <div className="form-header" >
+           <Box display="flex" justifyContent="space-between" alignItems="center">
+            <Typography variant="h5" className="title">
+              Add New Information to the page
+            </Typography>
             
-              </div>
-          <Footer />
+           </Box>
+           </div>
+        
+          <form onSubmit={handleSubmit} >
+          
+            <Box >
+            <TextField 
+              style={{ minWidth: "400px" }} 
+              label="List Header (must be from one of above headers): "
+              variant="filled"
+              value={listHeader}
+              onChange={handleHeader}
+   
+              multiline
+              
+
+              required
+            />
+            </Box>
+
+            <Box  >
+            <TextField
+            style={{ minWidth: "400px" }}
+              label="Description:"
+              variant="filled"
+              value={description}
+              onChange={handleDescription}
+              
+             
+              multiline
+              
+              
+              required
+            />
+            </Box>
+            <Box sx={{ display: 'flex', marginBottom: 10}}>
+            <Button
+            style={{ minWidth: "400px" }}
+              type="submit"
+              variant="contained"
+              className="submit-button"
+              color="primary">
+              Submit
+            </Button>
+            </Box>
+
+          </form>
+         </div>
+              </TableContainer>
+              
+         </div>   
+      
+          
+        <Footer />
                     </>
                   
         );
@@ -355,29 +444,31 @@ export default function Delirium() {
             </Box>
             
             <TableContainer component={Paper} >
-              <Table sx={{ minWidth: 700 }} aria-label="customized table" id="clinicalTable" >
+              <Table aria-label="customized table" id="deliriumTable" >
                 <TableHead >
                   <TableRow >
-                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >High</StyledTableCell>
-                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Medium</StyledTableCell>
-                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Low</StyledTableCell>
+                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Description-Drug</StyledTableCell>
+                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Header</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {data.map((dataObj, index) => (
                     <StyledTableRow key={index} >
                       <StyledTableCell component="th" scope="row">
-                        {dataObj.High}
+                        {dataObj[`Description`]}
                       </StyledTableCell>
-                      <StyledTableCell >{dataObj[`Medium`]}</StyledTableCell>
-                      <StyledTableCell >{dataObj[`Low`]}</StyledTableCell>
+                      <StyledTableCell >{dataObj[`LIST_HEADERS_Id`]}</StyledTableCell>
                     </StyledTableRow>
                   ))}
                 </TableBody>
               </Table>
+
+              
             </TableContainer>
             
         </div>
+
+        
         <Footer />
         
         </>

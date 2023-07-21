@@ -217,6 +217,9 @@ export default function CognitiveEnhancersGuideCont() {
                 </div>
               );
             })}
+            <div className="box-content">
+              <p>NOTE: THIS PAGE IS A CONTINUATION OF THE DRUG INFORMATION FOR THE SAME DRUGS FROM THE COGNITIVE ENHANCERS GUIDE PAGE. DRUGS MAY BE ADDED OR REMOVED FROM THE COGNITIVE ENHANCERS GUIDE FOR DISPLAY HERE.</p>
+            </div>
           </div>
           <div className="keynote-div">
             <p className='cognitive-notes'>

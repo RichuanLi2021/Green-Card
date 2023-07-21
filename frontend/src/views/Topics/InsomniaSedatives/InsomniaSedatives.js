@@ -120,7 +120,7 @@ export default function InsomniaSedatives() {
     if(window.confirm('Are you sure you want to delete this record?')){
     try{
       
-      await axios.delete('http://localhost:8887/api/delete/'+Name)
+      await axios.delete('http://localhost:8887/api/InsomniaSedatives/delete/'+Name)
       window.alert('Drug Deleted Successfully !')
       window.location.reload();
     }catch(err) {
@@ -155,9 +155,11 @@ export default function InsomniaSedatives() {
                   >
                     {dataObj.Name} 
 
-                    <button style={{background:'none',border:'none',cursor:'pointer'}} onClick={e => handleDelete(dataObj.Name)} > <span class="material-symbols-outlined">
-delete
-</span></button>
+                    <button 
+                    style={{background:'none',border:'none',cursor:'pointer'}} 
+                    onClick={e => handleDelete(dataObj.Name)} > 
+                    <span class="material-symbols-outlined">delete</span>
+                    </button>
                   </button>
                   
                   
