@@ -282,7 +282,7 @@ delete
   }
 } 
 
-{/* <>
+/* <>
 <Navigation />
 <SearchBar placeholder="Search" data={Data} />
 <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
@@ -332,6 +332,6 @@ delete
   </div>
 </div>
 <Footer />
-</> */}
+</> */
 
 
