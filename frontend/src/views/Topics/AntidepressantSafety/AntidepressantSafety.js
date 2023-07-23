@@ -87,9 +87,6 @@ export default function AntidepressantSafety() {
                     <TableBody>
                       {data.map((dataObj, index) => (
                         <StyledTableRow key={index} >
-                          <StyledTableCell component="th" scope="row">
-                            {dataObj.LIST_HEADERS_Id}
-                          </StyledTableCell>
                           <StyledTableCell >{dataObj[`Description`]}</StyledTableCell>
                         </StyledTableRow>
                       ))}
