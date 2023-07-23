@@ -8,6 +8,8 @@ import SearchBar from "../../searchBar/searchBar";
 import AntidepressantGuideUpdate from "./AntidepressantGuidebackend.js";
 import './AntidepressantsGuide.css';
 import Footer from '../../Footer/Footer';
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
 
 export default function MoodStabilizers() {
   const [data, setData] = useState({});
@@ -28,8 +30,23 @@ export default function MoodStabilizers() {
 
   const [selectedDrugs, setSelectedDrugs] = useState([]);
   const [value, setValue] = useState('');
+  const [formVisible, setFormVisible] = useState(false);
   const admin = localStorage.getItem('admin');
 
+  
+  const [newDrug, setNewDrug] = useState({
+    Name: "",
+    Half_life: "",
+    Primary_NT: "",
+    Dose: "",
+    Frequency: "",
+    supplied: "",
+  });
+  
+  const handleInputChange = (e) => {
+    setNewDrug({ ...newDrug, [e.target.name]: e.target.value });
+  };
+  
   //used to store value when an input is selected by user
   const store_value = (event) => {
     setValue(event.target.value);
@@ -57,6 +74,37 @@ export default function MoodStabilizers() {
     }
   };
   
+    // addDrug function
+    const addDrug = (drugData) => {
+      if (admin) {
+        axios
+          .post("http://localhost:8887/api/AntidepressantGuide/add", drugData)
+          .then((response) => {
+            alert("Data successfully added! \nDrug:" + drugData.Name);
+            fetchData(); // Refresh the data after the new drug is added.
+          })
+          .catch((error) => {
+            console.error(error);
+            alert("Failed to add drug!");
+          });
+      } else {
+        alert("You must be an administrator to add a drug");
+      }
+    };
+
+    const handleDelete = async (Name) => {
+      if (window.confirm("Are you sure you want to delete this record?")) {
+        try {
+          console.log(Name);
+          await axios.delete("http://localhost:8887/api/AntidepressantGuide/delete/" + Name);
+          alert("Data deleted succesfully! \nDrug:" + Name);
+          window.location.reload();
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    };
+
   const handleDrugClick = (dataObj) => {
     setSelectedDrugs((prevSelectedDrugs) => {
       const isSelected = prevSelectedDrugs.includes(dataObj);
@@ -69,10 +117,15 @@ export default function MoodStabilizers() {
   };
   
   if (Object.keys(data).length > 0) {
+
     // Editable Fields
     if (admin) {
-      return (
+      return (  
         <>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+          />
           <Navigation />
           <SearchBar placeholder="Search" data={Data} />
           <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
@@ -91,6 +144,12 @@ export default function MoodStabilizers() {
                       className={`drug-button ${isDrugSelected ? 'active' : ''}`}
                     >
                       {dataObj.Name}
+                      <button
+                        style={{ background: "none", border: "none", cursor: "pointer" }}
+                        onClick={(e) => handleDelete(dataObj.Name)}
+                      >
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
                     </button>
     
                     {isDrugSelected && (
@@ -153,14 +212,74 @@ export default function MoodStabilizers() {
                                 defaultValue={dataObj[`mg/Form Supplied`]}
                               />
                         </div>
-                        
-
                     </div>
                     )}
                   </div>
                 );
               })}
+              <div>
+                <button onClick={() => setFormVisible(!formVisible)} className="button-style">
+                  {formVisible ? "Cancel" : "Add Drug"}
+                </button>
+                {formVisible && (
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      addDrug(newDrug);
+                      setFormVisible(false);
+                    }}
+                    className="form-style"
+                  >
+                    <input
+                    type="text"
+                    name="Name"
+                    placeholder="Name"
+                    onChange={handleInputChange}
+                    className="input-style"
+                    />
+                    <input
+                    type="text"
+                    name="Half-life"
+                    placeholder="Half-life"
+                    onChange={handleInputChange}
+                    className="input-style"
+                    />
+                    <input
+                    type="text"
+                    name="Primary NT"
+                    placeholder="Primary NT"
+                    onChange={handleInputChange}
+                    className="input-style"
+                    />
+                    <input
+                    type="text"
+                    name="Dose (mg/day) Initial | Maint. | Max."
+                    placeholder="Dose (mg/day) Initial | Maint. | Max."
+                    onChange={handleInputChange}
+                    className="input-style"
+                    />
+                    <input
+                    type="text"
+                    name="Frequency"
+                    placeholder="Frequency"
+                    onChange={handleInputChange}
+                    className="input-style"
+                    />
+                    <input
+                    type="text"
+                    name="mg/Form Supplied"
+                    placeholder="mg/Form Supplied"
+                    onChange={handleInputChange}
+                    className="input-style"
+                    />
+                    <button type="submit" className="submit-button">
+                      Submit
+                    </button>
+                  </form>
+                  )}
+              </div>
             </div>
+            
             <div className='keynote-div'>
               <p className='keynote'><b>Key:</b> 5HT: serotonin; DA: dopamine; NaSSA: noradrenaline serotonin specific antidepressant; NDRI:
               noradrenaline dopamine reuptake inhibitor; NT: neurotransmitter; NA: noradrenaline; SARI: serotonin

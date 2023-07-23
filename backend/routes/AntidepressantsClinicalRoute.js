@@ -6,5 +6,7 @@ const antidepressantsClinicalController = require('../controller/Antidepressants
 
 router.get('/AntidepressantsClinical', antidepressantsClinicalController.getData);
 router.post('/AntidepressantsClinical/update', antidepressantsClinicalController.updateData);
+router.post("/AntidepressantsClinical/add", antidepressantsClinicalController.addData);
+router.delete("/AntidepressantsClinical/delete/:Description", antidepressantsClinicalController.deleteData);
 
 module.exports = router;

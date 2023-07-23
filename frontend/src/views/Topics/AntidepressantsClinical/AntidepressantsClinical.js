@@ -21,7 +21,6 @@ import "./AntidepressantsClinical.css";
 import antidepressantClinicalUpdate from './antidepressantsClinicalBackend';
 
 
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.success.main,
@@ -29,12 +28,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontWeight: 'bold',
     fontStyle: 'italic',
     textDecorationLine: 'underline',
-
-
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
-
   },
 }));
 
@@ -63,6 +59,8 @@ export default function AntidepressantsClinical() {
   }, []);
 
   const [value, setValue] = useState('');
+  const [formVisible, setFormVisible] = useState(false);
+  const [newClinical, setNewClinical] = useState("");
   const admin = localStorage.getItem('admin');
 
   const store_value = (event) => {
@@ -88,10 +86,64 @@ export default function AntidepressantsClinical() {
     }
   };
 
+  const fetchData = () => {
+    axios
+      .get("http://localhost:8887/api/antidepressantsclinical")
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+
+  const addClinical= (description) => {
+    if (admin) {
+      axios
+        .post("http://localhost:8887/api/antidepressantsclinical/add", { Description: description })
+        .then((response) => {
+          alert("Data successfully added! \nSafety Concern:" + description);
+          fetchData();
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("Failed to add safety concern!");
+        });
+    } else {
+      alert("You must be an administrator to add a safety concern");
+    }
+  };
+
+  const handleDelete = async (Description) => {
+    if (window.confirm("Are you sure you want to delete this record?")) {
+      try {
+        console.log(Description);
+        await axios.delete("http://localhost:8887/api/antidepressantsclinical/delete/" + Description);
+        alert("Data deleted succesfully! \nClinical: " + Description);
+        window.location.reload();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setNewClinical(e.target.value);
+  };
+
   if (data.length > 0) {
     if (admin) {
       return (
         <>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+          />
           <Navigation />
           <SearchBar placeholder="Search" data={Data} />
           <div id="antidepressantClinical">
@@ -105,6 +157,32 @@ export default function AntidepressantsClinical() {
             >
               <Typography variant="h3" id="antidepressantClinicalHeader">Antidepressants Clinical Guide</Typography>
             </Box>
+
+            <h2>Add a new Antidepressants Clinical</h2>
+              <button onClick={() => setFormVisible(!formVisible)} className="button-style">
+                {formVisible ? "Cancel" : "Add Antidepressants Clinical"}
+              </button>
+              {formVisible && (
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    addClinical(newClinical);
+                    setFormVisible(false);
+                  }}
+                  className="form-style"
+                >
+                  <input
+                    type="text"
+                    name="Description"
+                    placeholder="Description"
+                    onChange={handleInputChange}
+                    className="input-style"
+                  />
+                  <button type="submit" className="submit-button">
+                    Submit
+                  </button>
+                </form>
+              )}
 
             <TableContainer component={Paper} >
               <Table sx={{ minWidth: 700 }} aria-label="customized table" id="antidepressantClinicalTable" >
@@ -121,11 +199,18 @@ export default function AntidepressantsClinical() {
                         {dataObj.LIST_HEADERS_Id}
                       </StyledTableCell>
                       <StyledTableCell align="left"><input id='`Description`' name={dataObj.Description} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Description`]} /></StyledTableCell>
+                      <button
+                        style={{ background: "none", border: "none", cursor: "pointer", padding: "15px 2px" }}
+                        onClick={(e) => handleDelete(dataObj.Description)}
+                      >
+                        <span className="material-symbols-outlined">delete</span>
+                      </button>
                     </StyledTableRow>
                   ))}
                 </TableBody>
               </Table>
             </TableContainer><br></br>
+
             <p><b>Key notes: ANTID_INAD means "For inadequate response", ANTID_MAIN means "Maintenance", ANTID_TAPE means "Tapering" </b> </p>
 
           </div>
