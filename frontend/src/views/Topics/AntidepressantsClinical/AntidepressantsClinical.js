@@ -110,7 +110,7 @@ export default function AntidepressantsClinical() {
               <Table sx={{ minWidth: 700 }} aria-label="customized table" id="antidepressantClinicalTable" >
                 <TableHead >
                   <TableRow >
-                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>ID</StyledTableCell>
+                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Header</StyledTableCell>
                     <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Description</StyledTableCell>
                   </TableRow>
                 </TableHead>
@@ -118,7 +118,7 @@ export default function AntidepressantsClinical() {
                   {data.map((dataObj, index) => (
                     <StyledTableRow key={index} >
                       <StyledTableCell component="th" scope="row">
-                        {dataObj.LIST_HEADERS_Id}
+                        {dataObj[`LIST_HEADERS`]}
                       </StyledTableCell>
                       <StyledTableCell align="left"><input id='`Description`' name={dataObj.Description} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Description`]} /></StyledTableCell>
                     </StyledTableRow>
@@ -154,7 +154,7 @@ export default function AntidepressantsClinical() {
               <Table sx={{ minWidth: 700 }} aria-label="customized table" id="antidepressantClinicalTable" >
                 <TableHead >
                   <TableRow >
-                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>ID</StyledTableCell>
+                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Header</StyledTableCell>
                     <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Description</StyledTableCell>
                   </TableRow>
                 </TableHead>
@@ -162,7 +162,7 @@ export default function AntidepressantsClinical() {
                   {data.map((dataObj, index) => (
                     <StyledTableRow key={index} >
                       <StyledTableCell component="th" scope="row">
-                        {dataObj.LIST_HEADERS_Id}
+                        {dataObj.LIST_HEADERS}
                       </StyledTableCell>
                       <StyledTableCell align="left">
                         {dataObj[`Description`]} </StyledTableCell>
