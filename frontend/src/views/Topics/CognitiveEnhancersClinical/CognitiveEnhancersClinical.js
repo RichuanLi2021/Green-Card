@@ -3,10 +3,10 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import SearchBar from "../../searchBar/searchBar";
+// import SearchBar from "../../searchBar/searchBar";
 import Navigation from "../../Navigation/navigation";
-import Data from "../../searchBar/Data.json";
-import { CognitiveEnhancersClinicalUpdate, submitDrug } from "./CognitiveEnhancersClinicalBackend";
+// import Data from "../../searchBar/Data.json";
+// import { CognitiveEnhancersClinicalUpdate, submitDrug } from "./CognitiveEnhancersClinicalBackend";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -15,9 +15,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+// import Box from "@mui/material/Box";
+// import TextField from "@mui/material/TextField";
+// import Button from "@mui/material/Button";
 import Footer from "../../Footer/Footer";
 import Search from "../../Search/Search";
 import { useNavigate } from "react-router-dom";
@@ -72,72 +72,72 @@ export default function AntidepressantsClinical() {
       });
   }, []);
 
-  const [value, setValue] = useState("");
-  const admin = localStorage.getItem("admin");
+  // const [value, setValue] = useState("");
+  // const admin = localStorage.getItem("admin");
 
   //add drug components shifted to this page itself
-  const [listHeader, setlistHeader] = useState("");
-  const [description, setDescription] = useState("");
+  // const [listHeader, setlistHeader] = useState("");
+  // const [description, setDescription] = useState("");
 
-  const handleHeader = (event) => {
-    setlistHeader(event.target.value);
-  };
+  // const handleHeader = (event) => {
+  //   setlistHeader(event.target.value);
+  // };
 
-  const handleDescription = (event) => {
-    setDescription(event.target.value);
-  };
+  // const handleDescription = (event) => {
+  //   setDescription(event.target.value);
+  // };
 
-  const store_value = (event) => {
-    setValue(event.target.value);
-  };
+  // const store_value = (event) => {
+  //   setValue(event.target.value);
+  // };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log({ listHeader, description });
-    submitDrug(listHeader, description)
-      .then((data) => {
-        window.alert("Drug was added Successfully!");
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.error(error);
-        window.alert("Failed to submit the Drug!");
-      });
-  };
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   console.log({ listHeader, description });
+  //   submitDrug(listHeader, description)
+  //     .then((data) => {
+  //       window.alert("Drug was added Successfully!");
+  //       window.location.reload();
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //       window.alert("Failed to submit the Drug!");
+  //     });
+  // };
 
-  const update_value = (event) => {
-    if (admin) {
-      console.log(value);
-      if (event.target.value !== value) {
-        event.preventDefault();
-        CognitiveEnhancersClinicalUpdate(event.target.name, event.target.id, event.target.value)
-          .then((data) => {
-            alert(`Data successfully updated!\nNew Value: ${event.target.value}`);
-          })
-          .catch((error) => {
-            console.error(error);
-            alert("Failed to update!");
-          });
-      } else {
-        console.log("value was not changed, not updating");
-      }
-    } else {
-      alert("You must be an administrator to edit");
-    }
-  };
+  // const update_value = (event) => {
+  //   if (admin) {
+  //     console.log(value);
+  //     if (event.target.value !== value) {
+  //       event.preventDefault();
+  //       CognitiveEnhancersClinicalUpdate(event.target.name, event.target.id, event.target.value)
+  //         .then((data) => {
+  //           alert(`Data successfully updated!\nNew Value: ${event.target.value}`);
+  //         })
+  //         .catch((error) => {
+  //           console.error(error);
+  //           alert("Failed to update!");
+  //         });
+  //     } else {
+  //       console.log("value was not changed, not updating");
+  //     }
+  //   } else {
+  //     alert("You must be an administrator to edit");
+  //   }
+  // };
 
-  const handleDelete = async (Description) => {
-    if (window.confirm("Are you sure you want to delete this record?")) {
-      try {
-        console.log(Description);
-        await axios.delete("http://localhost:8887/api/CognitiveEnhancersClinical/delete/" + Description);
-        window.alert("Drug Deleted Successfully !");
-        window.location.reload();
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  };
+  // const handleDelete = async (Description) => {
+  //   if (window.confirm("Are you sure you want to delete this record?")) {
+  //     try {
+  //       console.log(Description);
+  //       await axios.delete("http://localhost:8887/api/CognitiveEnhancersClinical/delete/" + Description);
+  //       window.alert("Drug Deleted Successfully !");
+  //       window.location.reload();
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  // };
 
   const hasData = Object.values(data).some((arr) => arr.length > 0);
 
