@@ -8,7 +8,6 @@ import SearchBar from "../../searchBar/searchBar";
 import AntidepressantGuideUpdate from "./AntidepressantGuidebackend.js";
 import './AntidepressantsGuide.css';
 import Footer from '../../Footer/Footer';
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 
 export default function MoodStabilizers() {

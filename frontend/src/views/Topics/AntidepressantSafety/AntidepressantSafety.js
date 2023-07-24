@@ -62,7 +62,7 @@ export default function AntidepressantSafety() {
         
   }, []);
 
-  const [value, setValue] = useState('');
+  // const [value, setValue] = useState('');
   const [formVisible, setFormVisible] = useState(false);
   const [newSafety, setNewSafety] = useState("");
   const admin = localStorage.getItem('admin');
