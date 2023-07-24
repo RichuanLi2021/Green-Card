@@ -35,12 +35,8 @@ INSERT INTO `green_card`.`LIST HEADERS` VALUES ('COG_HOW_WHEN', 'How & When');
 
 -- SEDATIVES/HYPNOTICS CLINICAL GUIDE-- 
 INSERT INTO `green_card`.`LIST HEADERS` VALUES ('INSOMNIA_MAN', 'Insomnia  Management');
-INSERT INTO `green_card`.`LIST HEADERS` VALUES ('SHYPCLIN_BFR', 'Before Prescribing');
-INSERT INTO `green_card`.`LIST HEADERS` VALUES ('SHYPCLIN_STR', 'Starting');
-INSERT INTO `green_card`.`LIST HEADERS` VALUES ('SHYPCLIN_END', 'Ending');
 
--- SEDATIVES/HYPNOTICS SAFETY CONCERNS-- 
-INSERT INTO `green_card`.`LIST HEADERS` VALUES ('SHYPCLIN_SAF', 'Sedative/Hypnotic Safety Concerns');
+
   
 -- --COGNITIVE ENHANCERS CLINICAL GUIDE--  
  INSERT INTO `green_card`.`COGNITIVE ENHANCERS CLINICAL GUIDE` (`LIST_HEADERS_Id`,`Description`)
@@ -95,30 +91,30 @@ VALUES
 ('zopiclone (Imovane)', '7.5', '1.5h', '4-7h', '3.75-12.5', '5,7.5/tab');
 
 
-INSERT INTO `green_card`.`SEDATIVES/HYPNOTICS CLINICAL GUIDE`(`LIST_HEADERS_Id`,`Description`)
+INSERT INTO `green_card`.`SEDATIVES/HYPNOTICS CLINICAL GUIDE`(`LIST_HEADERS`,`Description`)
 VALUES
-('SHYPCLIN_BFR', 'Avoid Starting If Possible'),
-('SHYPCLIN_BFR', 'Set End Date'),
-('SHYPCLIN_BFR', 'Assess For Drug-Drug Interactions'),
-('SHYPCLIN_BFR', 'Inform Paitent of Risks'),
-('SHYPCLIN_STR', 'Low Dose, Intermittent Use'),
-('SHYPCLIN_STR', 'Time-Limited'),
-('SHYPCLIN_STR', 'Co-Start Safer Interventions (CBTi)'),
-('SHYPCLIN_END', 'Gradual Taper'),
-('SHYPCLIN_END', 'Add CBTi To Support');
+('Before prescribing', 'Avoid Starting If Possible'),
+('Before prescribing', 'Set End Date'),
+('Before prescribing', 'Assess For Drug-Drug Interactions'),
+('Before prescribing', 'Inform Paitent of Risks'),
+('Starting', 'Low Dose, Intermittent Use'),
+('Starting', 'Time-Limited'),
+('Starting', 'Co-Start Safer Interventions (CBTi)'),
+('Ending ', 'Gradual Taper'),
+('Ending ', 'Add CBTi To Support');
 
-INSERT INTO `green_card`.`SEDATIVES/HYPNOTIC SAFETY CONCERNS`(`LIST_HEADERS_Id`,`Description`)
+INSERT INTO `green_card`.`SEDATIVES/HYPNOTIC SAFETY CONCERNS`(`Description`)
 VALUES
-('SHYPCLIN_SAF', 'CNS Depression'),
-('SHYPCLIN_SAF', 'Cognitive Impairment'),
-('SHYPCLIN_SAF', 'Daytime Fatigue'),
-('SHYPCLIN_SAF', 'Dependence'),
-('SHYPCLIN_SAF', 'Falls'),
-('SHYPCLIN_SAF', 'Fractures'),
-('SHYPCLIN_SAF', 'Loss of Bladder Control'),
-('SHYPCLIN_SAF', 'Motor Vehicle Accidents'),
-('SHYPCLIN_SAF', 'Sleep Walking'),
-('SHYPCLIN_SAF', 'Withdrawl');
+( 'CNS Depression'),
+('Cognitive Impairment'),
+('Daytime Fatigue'),
+('Dependence'),
+('Falls'),
+('Fractures'),
+('Loss of Bladder Control'),
+('Motor Vehicle Accidents'),
+('Sleep Walking'),
+('Withdrawl');
 
 INSERT INTO `green_card`.`deprescribing benzodiazepine-like sedatives`(`Duration`,`Dose Reduction Schedule Duration (weeks)`,`Interval Between Dose Reductions (weeks)`)
 VALUES
@@ -235,34 +231,31 @@ VALUES
 ('Zopiclone', 'OK if needed');
 
 
--- ANTIDEPRESSANT CLINICAL GUIDE--
-INSERT INTO `green_card`.`LIST HEADERS` VALUES ('ANTID_INAD', 'For Inadequate Response');
-INSERT INTO `green_card`.`LIST HEADERS` VALUES ('ANTID_MAIN', 'Maintenance');
-INSERT INTO `green_card`.`LIST HEADERS` VALUES ('ANTID_TAPE', 'Tapering');
+
+
 
 -- ANTIDEPRESSANT CLINICAL GUIDE--
-INSERT INTO `green_card`.`ANTIDEPRESSANT CLINICAL GUIDE`(`LIST_HEADERS_Id`,`Description`)
+INSERT INTO `green_card`.`ANTIDEPRESSANT CLINICAL GUIDE`(`LIST_HEADERS`,`Description`)
 VALUES
-('ANTID_INAD', 'Switching is preferred over augmentation (↓ risk of falls)'),
+('For inadequate response', 'Switching is preferred over augmentation (↓ risk of falls)'),
 
-('ANTID_MAIN', 'Single episode: ≥ 2 years'),
-('ANTID_MAIN', 'Multiple episodes: ongoing (preventative)'),
+('Maintenance', 'Single episode: ≥ 2 years'),
+('Maintenance', 'Multiple episodes: ongoing (preventative)'),
 
-('ANTID_TAPE', '≥ 2-3 months if switching or ineffective'),
-('ANTID_TAPE', 'Longer tapering period if remitted (≥1-2 years)');
+('Tapering', '≥ 2-3 months if switching or ineffective'),
+('Tapering', 'Longer tapering period if remitted (≥1-2 years)');
+
 
 -- --ANTIDEPRESSANT SAFTEY CONCERNS--
-INSERT INTO `green_card`.`LIST HEADERS` VALUES ('ANTID_SC', 'Antidepressants Safety Concerns');
-
-INSERT INTO `green_card`.`ANTIDEPRESSANT SAFETY CONCERNS` (`LIST_HEADERS_Id`,`Description`)
-VALUES ('ANTID_SC', 'Cognitive Impairment'),
- ('ANTID_SC', 'Drug-drug Interactions'),
- ('ANTID_SC', 'Falls'),
- ('ANTID_SC', 'Fractures'),
- ('ANTID_SC', 'GI bleed'),
- ('ANTID_SC', 'Hyponatremia/SIADH'),
- ('ANTID_SC', 'QTc prolongation (escitalopram, citalopram, TCAs)'),
- ('ANTID_SC', 'Seizures (bupropion, TCAs)');
+INSERT INTO `green_card`.`ANTIDEPRESSANT SAFETY CONCERNS` (`Description`)
+VALUES ('Cognitive Impairment'),
+ ('Drug-drug Interactions'),
+ ('Falls'),
+ ('Fractures'),
+ ('GI bleed'),
+ ('Hyponatremia/SIADH'),
+ ('QTc prolongation (escitalopram, citalopram, TCAs)'),
+ ('Seizures (bupropion, TCAs)');
 
 -- --Common DDI''s With Psychotropics--
 INSERT INTO `green_card`.`LIST HEADERS` VALUES ('COM_DDI_PYS', 'Common DDI''s With Psychotropics');
@@ -281,19 +274,19 @@ VALUES ('COM_DDI_PYS', 'Antipsychotic + L-dopa = worsening of Parkinsons, worsen
 
 
 -- --Antipsychotic Safety Concerns--
-INSERT INTO `green_card`.`LIST HEADERS` VALUES ('ANTIP_SAFE', 'Antipsychotic Safety Concerns');
+
 -- --Antipsychotic Safety Concerns--
-INSERT INTO `green_card`.`ANTIPSYCHOTIC SAFETY CONCERNS`(`LIST_HEADERS_Id`,`Description`)
-VALUES ('ANTIP_SAFE', '↑ risk of EPS & TD '),
-('ANTIP_SAFE', 'Akathisia'),
-('ANTIP_SAFE', 'Cognitive impairment'),
-('ANTIP_SAFE', 'Dyslipidemia'),
-('ANTIP_SAFE', 'Falls & fractures'),
-('ANTIP_SAFE', 'Hyperglycemia'),
-('ANTIP_SAFE', 'Mortality (NNH=87)'),
-('ANTIP_SAFE', 'QTc prolongation'),
-('ANTIP_SAFE', 'Stroke (NNH=53)'),
-('ANTIP_SAFE', 'Weight gain');
+INSERT INTO `green_card`.`ANTIPSYCHOTIC SAFETY CONCERNS`(`Description`)
+VALUES ( '↑ risk of EPS & TD '),
+('Akathisia'),
+('Cognitive impairment'),
+('Dyslipidemia'),
+('Falls & fractures'),
+('Hyperglycemia'),
+('Mortality (NNH=87)'),
+('QTc prolongation'),
+('Stroke (NNH=53)'),
+('Weight gain');
 
 -- --Prescribing and Deprescribing Principles--
 INSERT INTO `green_card`.`LIST HEADERS` VALUES ('PRESCR_DEPRE', 'Prescribing and Deprescribing Principles');
@@ -308,7 +301,6 @@ VALUES ('PRESCR_DEPRE', 'Always use minimum effective dose'),
 
 INSERT INTO `green_card`.`user_model`(`id`,`username`,`password`)
 VALUES ('1','Kathleen','Singh');
-
 
 
 -- --Notable Changes In Older Adults That Affect Prescribing--
@@ -349,74 +341,71 @@ INSERT INTO `green_card`.`DELIRIUM MANAGEMENT` (`LIST_HEADERS_Id`,`Description`)
  ('DM_PHARMA', 'Consider 4pm & 8pm dosing rather than morning dose to optimize sleep wake cycle');
  
  -- -- ANTICHOLINERGIC ACTIVITY-- 
-INSERT INTO `green_card`.`LIST HEADERS` VALUES ('ANTI_HIGH' , 'High');
-INSERT INTO `green_card`.`LIST HEADERS` VALUES ('ANTI_MED' , 'Medium');
-INSERT INTO `green_card`.`LIST HEADERS` VALUES ('ANTI_LOW' , 'Low');
 
-INSERT INTO `green_card`.`ANTICHOLINERGIC ACTIVITY` (`LIST_HEADERS_Id` , `Description`)
+INSERT INTO `green_card`.`ANTICHOLINERGIC ACTIVITY` (`LIST_HEADERS` , `Description`)
 VALUES
-('ANTI_HIGH' , 'Amitriptyline (Elavil)'),
-('ANTI_HIGH', 'Atropine (Sal-Tropine)'),
-('ANTI_HIGH', 'Benztropine (Cogentin)'), 
-('ANTI_HIGH', 'Chlorpromazine (Thorazine)'),
-('ANTI_HIGH', 'Clomipramine (Anafranil))'),
-('ANTI_HIGH', 'Clozapine (Clozaril)'),
-('ANTI_HIGH', 'Desipramine (Norpramin)'),
-('ANTI_HIGH', 'Dimenhydrinate (Gravol)'),
-('ANTI_HIGH', 'Diphenhydramine (Benadryl)'),
-('ANTI_HIGH', 'Doxepin (Sinequan)'),
-('ANTI_HIGH', 'Fesoterodine (Toviaz)'),
-('ANTI_HIGH', 'Hydroxyzine (Atarax)'),
-('ANTI_HIGH', 'Imipramine (Tofranil)'),
-('ANTI_HIGH', 'Methocarbamol (Robaxin)'),
-('ANTI_HIGH', 'Nortriptyline (Pamelor)'),
-('ANTI_HIGH', 'Olanzapine (Zyprexa)'),
-('ANTI_HIGH', 'Oxybutynin (Ditropan)'),
-('ANTI_HIGH', 'Paroxetine (Paxil)'),
-('ANTI_HIGH', 'Perphenazine (Trilafon)'),
-('ANTI_HIGH', 'Quetiapine (Seroquel)'),
-('ANTI_HIGH', 'Solifenacin (Vesicare)'),
-('ANTI_HIGH', 'Thioridazine (Mellaril)'),
-('ANTI_HIGH', 'Tolterodine (Detrol)'),
-('ANTI_HIGH', 'Trifluoperazine (Stelazine)'),
-('ANTI_HIGH', 'Trihyxyphenidyl (Artane)'),
-('ANTI_HIGH', 'Trospium (Sanctura)'),
-('ANTI_MED', 'Amantadine (Symmetrel)'),
-('ANTI_MED', 'Carbamazepine (Tegretol)'),
-('ANTI_MED', 'Cyclobenzaprine (Flexeril)'),
-('ANTI_MED', 'Cyproheptadine (Periactin)'),
-('ANTI_MED', 'Loxapine (Loxitane)'),
-('ANTI_MED', 'Meperidone (Demerol)'),
-('ANTI_MED', 'Methotrimeprazine (Levoprome) '),
-('ANTI_MED', 'Oxcarbazepine (Trileptal)'),
-('ANTI_LOW', 'Alprazolam (Xanax)'),
-('ANTI_LOW', 'Aripiprazole (Abilify)'),
-('ANTI_LOW', 'Asenapine (Saphris)'),
-('ANTI_LOW', 'Bupropion (Wellbutrin)'),
-('ANTI_LOW', 'Cetirizine (Reactine)'),
-('ANTI_LOW', 'Codeine'),
-('ANTI_LOW', 'Colchicine (Odan)'),
-('ANTI_LOW', 'Pimozide (Orap)'),
-('ANTI_LOW', 'Diazepam (Valium)'),
-('ANTI_LOW', 'Digoxin'),
-('ANTI_LOW', 'Fentanyl'),
-('ANTI_LOW', 'Furosemide (Lasix)'),
-('ANTI_LOW', 'Fluvoxamine (Luvox)'),
-('ANTI_LOW', 'Hydralazine'),
-('ANTI_LOW', 'PHaloperidol (Haldol)'),
-('ANTI_LOW', 'Hydrocortisone'),
-('ANTI_LOW', 'Loperamide (Imodium)'),
-('ANTI_LOW', 'Loratadine (Claritin)'),
-('ANTI_LOW', 'Metoprolol'),
-('ANTI_LOW', 'Morphine'),
-('ANTI_LOW', 'Nifedipine (Adalat)'),
-('ANTI_LOW', 'Paliperidone (Invega)'),
-('ANTI_LOW', 'Prednisone'),
-('ANTI_LOW', 'Ranitidine (Zantac)'),
-('ANTI_LOW', 'Trazodone (Desyrel)'),
-('ANTI_LOW', 'Venlafaxine (Effexor)'),
-('ANTI_LOW', 'Warfarin'),
-('ANTI_LOW', 'Pimozide (Orap)');
+('HIGH' , 'Amitriptyline (Elavil)'),
+('HIGH', 'Atropine (Sal-Tropine)'),
+('HIGH', 'Benztropine (Cogentin)'), 
+('HIGH', 'Chlorpromazine (Thorazine)'),
+('HIGH', 'Clomipramine (Anafranil))'),
+('HIGH', 'Clozapine (Clozaril)'),
+('HIGH', 'Desipramine (Norpramin)'),
+('HIGH', 'Dimenhydrinate (Gravol)'),
+('HIGH', 'Diphenhydramine (Benadryl)'),
+('HIGH', 'Doxepin (Sinequan)'),
+('HIGH', 'Fesoterodine (Toviaz)'),
+('HIGH', 'Hydroxyzine (Atarax)'),
+('HIGH', 'Imipramine (Tofranil)'),
+('HIGH', 'Methocarbamol (Robaxin)'),
+('HIGH', 'Nortriptyline (Pamelor)'),
+('HIGH', 'Olanzapine (Zyprexa)'),
+('HIGH', 'Oxybutynin (Ditropan)'),
+('HIGH', 'Paroxetine (Paxil)'),
+('HIGH', 'Perphenazine (Trilafon)'),
+('HIGH', 'Quetiapine (Seroquel)'),
+('HIGH', 'Solifenacin (Vesicare)'),
+('HIGH', 'Thioridazine (Mellaril)'),
+('HIGH', 'Tolterodine (Detrol)'),
+('HIGH', 'Trifluoperazine (Stelazine)'),
+('HIGH', 'Trihyxyphenidyl (Artane)'),
+('HIGH', 'Trospium (Sanctura)'),
+('MEDIUM', 'Amantadine (Symmetrel)'),
+('MEDIUM', 'Carbamazepine (Tegretol)'),
+('MEDIUM', 'Cyclobenzaprine (Flexeril)'),
+('MEDIUM', 'Cyproheptadine (Periactin)'),
+('MEDIUM', 'Loxapine (Loxitane)'),
+('MEDIUM', 'Meperidone (Demerol)'),
+('MEDIUM', 'Methotrimeprazine (Levoprome) '),
+('MEDIUM', 'Oxcarbazepine (Trileptal)'),
+('LOW', 'Alprazolam (Xanax)'),
+('LOW', 'Aripiprazole (Abilify)'),
+('LOW', 'Asenapine (Saphris)'),
+('LOW', 'Bupropion (Wellbutrin)'),
+('LOW', 'Cetirizine (Reactine)'),
+('LOW', 'Codeine'),
+('LOW', 'Colchicine (Odan)'),
+('LOW', 'Pimozide (Orap)'),
+('LOW', 'Diazepam (Valium)'),
+('LOW', 'Digoxin'),
+('LOW', 'Fentanyl'),
+('LOW', 'Furosemide (Lasix)'),
+('LOW', 'Fluvoxamine (Luvox)'),
+('LOW', 'Hydralazine'),
+('LOW', 'PHaloperidol (Haldol)'),
+('LOW', 'Hydrocortisone'),
+('LOW', 'Loperamide (Imodium)'),
+('LOW', 'Loratadine (Claritin)'),
+('LOW', 'Metoprolol'),
+('LOW', 'Morphine'),
+('LOW', 'Nifedipine (Adalat)'),
+('LOW', 'Paliperidone (Invega)'),
+('LOW', 'Prednisone'),
+('LOW', 'Ranitidine (Zantac)'),
+('LOW', 'Trazodone (Desyrel)'),
+('LOW', 'Venlafaxine (Effexor)'),
+('LOW', 'Warfarin'),
+('LOW', 'Pimozide (Orap)');
 
 
 -- -- Antidepressants Guide-- 
