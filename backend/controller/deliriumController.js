@@ -30,7 +30,7 @@ const drugData = async (req, res, next) => {
   
   try {
     await pool.query(
-      "INSERT INTO `green_card`.`ANTICHOLINERGIC ACTIVITY` (`LIST_HEADERS_Id`,`Description`) VALUES (?, ?)",
+      "INSERT INTO `green_card`.`ANTICHOLINERGIC ACTIVITY` (`LIST_HEADERS`,`Description`) VALUES (?, ?)",
       [
         listHeader, description
       ]
