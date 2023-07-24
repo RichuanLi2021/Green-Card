@@ -34,10 +34,10 @@ import SearchResults from './views/Topics/SearchResults/SearchResults';
 import AntidepressantGuide from './views/Topics/AntidepressantGuide/AntidepressantGuide'
 import AntidepressantSafety from "./views/Topics/AntidepressantSafety/AntidepressantSafety";
 import AntidepressantsClinical from "./views/Topics/AntidepressantsClinical/AntidepressantsClinical";
-import PolypharmacyCommonDDIs from "./views/Topics/PolypharmacyCommonDDIs/PolypharmacyCommonDDIs";
-import PolypharmacyNotableChanges from "./views/Topics/PolypharmacyNotableChanges/PolypharmacyNotableChanges";
-import PolypharmacyPrinciples from "./views/Topics/PolypharmacyPrinciples/PolypharmacyPrinciples";
 import AntipsychoticSafety from "./views/Topics/AntipsychoticSafety/AntipsychoticSafety";
+import PolypharmacyCommon from "./views/Topics/PolypharmacyCommon/PolypharmacyCommon";
+import PolypharmacyNotable from "./views/Topics/PolypharmacyNotable/PolypharmacyNotable";
+import PrinciplesPolypharmacy from "./views/Topics/PrinciplesPolypharmacy/PrinciplesPolypharmacy";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -68,11 +68,11 @@ root.render(
       <Route path="/AntidepressantGuide" element={<AntidepressantGuide/>}/>
       <Route path="/AntidepressantSafety" element={<AntidepressantSafety/>}/>
       <Route path="/AntidepressantsClinical" element={<AntidepressantsClinical/>}/>
-      <Route path="/PolypharmacyCommonDDIs" element={<PolypharmacyCommonDDIs/>}/>
-      <Route path="/PolypharmacyNotableChanges" element={<PolypharmacyNotableChanges/>}/>
-      <Route path="/PolypharmacyPrinciples" element={<PolypharmacyPrinciples/>}/>
       <Route path="/AntipsychoticSafety" element={<AntipsychoticSafety />} />
       <Route path="/Delirium" element={<Delirium />} />
+      <Route path="/PolypharmacyCommon" element={<PolypharmacyCommon/>}/>
+      <Route path="/PolypharmacyNotable" element={<PolypharmacyNotable/>}/>
+      <Route path="/PrinciplesPolypharmacy" element={<PrinciplesPolypharmacy/>}/>
       
     </Routes>
   </BrowserRouter>

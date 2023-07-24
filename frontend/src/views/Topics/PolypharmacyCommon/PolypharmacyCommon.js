@@ -1,7 +1,8 @@
+
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 import SearchBar from "../../searchBar/searchBar";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -12,90 +13,154 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 import Data from "../../searchBar/Data.json";
+import PolypharmacyCommonBackendUpdate from "./PolypharmacyCommonBackend";
 
-import "./AntidepressantsClinical.css";
-import antidepressantClinicalUpdate from './antidepressantsClinicalBackend';
 
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
+
   [`&.${tableCellClasses.head}`]: {
+
     backgroundColor: theme.palette.success.main,
+
     color: theme.palette.common.white,
+
     fontWeight: 'bold',
-    fontStyle: 'italic',
+
     textDecorationLine: 'underline',
 
-
   },
+
   [`&.${tableCellClasses.body}`]: {
+
     fontSize: 14,
 
   },
+
 }));
+
+
+
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
+
   '&:nth-of-type(odd)': {
+
     backgroundColor: theme.palette.action.hover,
+
   },
+
   // hide last border
+
   '&:last-child td, &:last-child th': {
+
     border: 0,
+
   },
+
 }));
 
-export default function AntidepressantsClinical() {
+
+
+
+export default function PolypharmacyCommon() {
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8887/api/antidepressantsclinical')
+
+    axios.get('http://localhost:8887/api/polypharmacycommon')
+
       .then(response => {
+
         setData(response.data)
-        console.log(response.data);
+
+        //console.log(response.data[0]);
+
       })
+
       .catch(error => {
+
         console.log(error);
+
       });
+
   }, []);
 
   const [value, setValue] = useState('');
+
   const admin = localStorage.getItem('admin');
 
+
+
+
+  //used to store value when an input is selected by user
+
   const store_value = (event) => {
+
     setValue(event.target.value);
+
   }
 
+  //calls update query when an input was selected and is not anymore (if the value actually changed)
+
   const update_value = (event) => {
+
     if (admin) {
+
       console.log(value);
+
       if (event.target.value !== value) {
+
         event.preventDefault();
-        antidepressantClinicalUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
+
+        PolypharmacyCommonBackendUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
+
           alert(`Data successfully updated!\nNew Value: ${event.target.value}`);
+
         }).catch((error) => {
+
           console.error(error);
+
           alert('Failed to update!');
+
         });
-      } else {
-        console.log("value was not changed, not updating");
+
       }
-    } else {
-      alert("You must be an administrator to edit");
+      else {
+
+        console.log("value was not changed, not updating");
+
+      }
+
     }
+
+    else {
+
+      alert("You must be an administrator to edit");
+
+    }
+
   };
 
   if (data.length > 0) {
+
+    //Editable Fields
+
     if (admin) {
-      return (
-        <>
-          <Navigation />
-          <SearchBar placeholder="Search" data={Data} />
-          <div id="antidepressantClinical">
-            <Box
+        return (
+          <>
+            <Navigation />
+
+            <SearchBar placeholder="Search" data={Data} /><br></br>
+
+          <div id="polypharmacyCommon">
+            
+        <Box
               sx={{
                 marginTop: 3,
                 display: 'flex',
@@ -103,18 +168,22 @@ export default function AntidepressantsClinical() {
                 alignItems: 'center',
               }}
             >
-              <Typography variant="h3" id="antidepressantClinicalHeader">Antidepressants Clinical Guide</Typography>
+            
+            <Typography variant="h3" id="topicHeader">COMMON DDIs WITH PSYCHOTROPICS</Typography>
             </Box>
-
-            <TableContainer component={Paper} >
-              <Table sx={{ minWidth: 700 }} aria-label="customized table" id="antidepressantClinicalTable" >
-                <TableHead >
-                  <TableRow >
-                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>ID</StyledTableCell>
-                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Description</StyledTableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
+            
+            
+              <TableContainer component={Paper} >
+              
+                <Table  aria-label="customized table" id="polypharmacyCommonTable" >
+                  <TableHead >
+                    <TableRow >
+                      <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Id</StyledTableCell>
+                      <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Description</StyledTableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                  
                   {data.map((dataObj, index) => (
                     <StyledTableRow key={index} >
                       <StyledTableCell component="th" scope="row">
@@ -124,22 +193,31 @@ export default function AntidepressantsClinical() {
                     </StyledTableRow>
                   ))}
                 </TableBody>
-              </Table>
-            </TableContainer><br></br>
-            <p><b>Key notes: ANTID_INAD means "For inadequate response", ANTID_MAIN means "Maintenance", ANTID_TAPE means "Tapering" </b> </p>
-
-          </div>
+                  
+                </Table>
+              </TableContainer>
+            <p><b>Key notes: COM_DDI_PYS means "COMMON DDIs WITH PSYCHOTROPICS"</b> </p>
+            
+              </div>
           <Footer />
-        </>
-      );
-    }
+                    </>
+                  
+        );
+      }
+    //Non Editable Fields
+
     else {
+
       return (
+
         <>
+
           <Navigation />
-          <SearchBar placeholder="Search" data={Data} />
-          <div id="antidepressantClinical">
-            <Box
+          <SearchBar placeholder="Search" data={Data} /><br></br>
+
+          <div id="polypharmacyCommon">
+
+        <Box
               sx={{
                 marginTop: 3,
                 display: 'flex',
@@ -147,19 +225,20 @@ export default function AntidepressantsClinical() {
                 alignItems: 'center',
               }}
             >
-              <Typography variant="h3" id="antidepressantClinicalHeader">Antidepressants Clinical Guide</Typography>
+            
+            <Typography variant="h3" id="topicHeader">COMMON DDIs WITH PSYCHOTROPICS</Typography>
             </Box>
-
+            
             <TableContainer component={Paper} >
-              <Table sx={{ minWidth: 700 }} aria-label="customized table" id="antidepressantClinicalTable" >
+              <Table aria-label="customized table" id="deliriumTable" >
                 <TableHead >
                   <TableRow >
-                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>ID</StyledTableCell>
+                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Id</StyledTableCell>
                     <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Description</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {data.map((dataObj, index) => (
+                {data.map((dataObj, index) => (
                     <StyledTableRow key={index} >
                       <StyledTableCell component="th" scope="row">
                         {dataObj.LIST_HEADERS_Id}
@@ -170,13 +249,14 @@ export default function AntidepressantsClinical() {
                   ))}
                 </TableBody>
               </Table>
-            </TableContainer><br></br>
-            <p><b>Key notes: ANTID_INAD means "For inadequate response", ANTID_MAIN means "Maintenance", ANTID_TAPE means "Tapering" </b> </p>
-
-          </div>
-          <Footer />
+            </TableContainer>
+            <p><b>Key notes: COM_DDI_PYS means "COMMON DDIs WITH PSYCHOTROPICS"</b> </p>
+        </div>
+        <Footer />
+        
         </>
-      )
+       
+      );
     }
-  } 
-}
+  }
+};
