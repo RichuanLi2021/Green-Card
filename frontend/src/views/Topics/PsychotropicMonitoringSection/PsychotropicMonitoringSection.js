@@ -1,24 +1,31 @@
-import './PsychotropicMonitoringSection.css';
-import * as React from 'react';
-import Navigation from '../../Navigation/navigation';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import Typography from '@mui/material/Typography';
-import Data from "../../searchBar/Data.json";
-import SearchBar from "../../searchBar/searchBar";
+import "./PsychotropicMonitoringSection.css";
+import * as React from "react";
+import Navigation from "../../Navigation/navigation";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import Typography from "@mui/material/Typography";
+// import Data from "../../searchBar/Data.json";
+// import SearchBar from "../../searchBar/searchBar";
 import PsychotropicMonitoringUpdate from "./PsychotropicMonitoringbackend";
 
-import Footer from '../../Footer/Footer';
+import Footer from "../../Footer/Footer";
+import { useNavigate } from "react-router-dom";
+import Search from "../../Search/Search";
 
 export default function PsychotropicMonitoringSection() {
   const [data, setData] = useState({});
+  const navigate = useNavigate();
+
+  const handleSearch = (searchTerm) => {
+    navigate(`/search/${searchTerm}`);
+  };
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = () => {
     axios
-      .get('http://localhost:8887/api/psychotropicmonitoringsection')
+      .get("http://localhost:8887/api/psychotropicmonitoringsection")
       .then((response) => {
         setData(response.data);
       })
@@ -28,10 +35,10 @@ export default function PsychotropicMonitoringSection() {
   };
 
   const [selectedDrugs, setSelectedDrugs] = useState([]);
-  const [value, setValue] = useState('');
-  const admin = localStorage.getItem('admin');
+  const [value, setValue] = useState("");
+  const admin = localStorage.getItem("admin");
 
-   //used to store value when an input is selected by user
+  //used to store value when an input is selected by user
   const store_value = (event) => {
     setValue(event.target.value);
   };
@@ -44,7 +51,14 @@ export default function PsychotropicMonitoringSection() {
         event.preventDefault();
         PsychotropicMonitoringUpdate(event.target.name, event.target.id, event.target.value)
           .then((data) => {
-            alert('Updated Successfully Called! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nValue:"+ event.target.value);
+            alert(
+              "Updated Successfully Called! \nDrug:" +
+                event.target.name +
+                "\nColumn:" +
+                event.target.id +
+                "\nValue:" +
+                event.target.value
+            );
           })
           .catch((error) => {
             console.error(error);
@@ -57,8 +71,6 @@ export default function PsychotropicMonitoringSection() {
       alert("You must be an administrator to edit");
     }
   };
-
-
 
   const handleDrugClick = (dataObj) => {
     setSelectedDrugs((prevSelectedDrugs) => {
@@ -77,14 +89,12 @@ export default function PsychotropicMonitoringSection() {
       return (
         <>
           <Navigation />
-          <SearchBar placeholder="Search" data={Data} />
-          <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
+          <Search onSearch={handleSearch}></Search>
+          <div style={{ marginTop: "1rem", padding: "0 1rem" }}>
             <Typography variant="h4" align="center" gutterBottom>
-            <div className='subtitle'>
-              Psychotropic Monitoring
-            </div>
+              <div className="subtitle">Psychotropic Monitoring</div>
             </Typography>
-    
+
             <div className="grid-container">
               {Object.keys(data).map((id) => {
                 const dataObj = data[id];
@@ -93,56 +103,60 @@ export default function PsychotropicMonitoringSection() {
                   <div className="grid-item" key={id}>
                     <button
                       onClick={() => handleDrugClick(dataObj)}
-                      className={`drug-button ${isDrugSelected ? 'active' : ''}`}
+                      className={`drug-button ${isDrugSelected ? "active" : ""}`}
                     >
                       {dataObj.Name}
                     </button>
-    
+
                     {isDrugSelected && (
                       <div className="box">
-
                         <div className="box-content">
-                        <strong>Antipsychotics: </strong>
-                          <input id="`Antipsychotics`"
+                          <strong>Antipsychotics: </strong>
+                          <input
+                            id="`Antipsychotics`"
                             name={dataObj.Name}
-                            type='text'
+                            type="text"
                             onFocus={store_value}
                             onBlur={update_value}
-                            defaultValue={dataObj[`Antipsychotics`]} />
+                            defaultValue={dataObj[`Antipsychotics`]}
+                          />
                         </div>
 
                         <div className="box-content">
                           <strong>Lithium: </strong>
-                          <input id="`Lithium`"
-                          name={dataObj.Name} 
-                          type='text' 
-                          onFocus={store_value} 
-                          onBlur={update_value} 
-                          defaultValue={dataObj[`Lithium`]}  />
+                          <input
+                            id="`Lithium`"
+                            name={dataObj.Name}
+                            type="text"
+                            onFocus={store_value}
+                            onBlur={update_value}
+                            defaultValue={dataObj[`Lithium`]}
+                          />
                         </div>
-    
+
                         <div className="box-content">
                           <strong>Valproate: </strong>
-                          <input id="`Valproate`" 
-                          name={dataObj.Name} 
-                          type='text' 
-                          onFocus={store_value} 
-                          onBlur={update_value} 
-                          defaultValue={dataObj[`Valproate`]} />
+                          <input
+                            id="`Valproate`"
+                            name={dataObj.Name}
+                            type="text"
+                            onFocus={store_value}
+                            onBlur={update_value}
+                            defaultValue={dataObj[`Valproate`]}
+                          />
                         </div>
-
-                      
-
-                    </div>
+                      </div>
                     )}
                   </div>
                 );
               })}
             </div>
             <div className="psychotropic-footer">
-              <p className='psychotropic-notes'>
-              <b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark).  <br /> <br />
-              <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be necessary based on clinical judgment  
+              <p className="psychotropic-notes">
+                <b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark). <br />{" "}
+                <br />
+                <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be
+                necessary based on clinical judgment
               </p>
             </div>
           </div>
@@ -150,18 +164,16 @@ export default function PsychotropicMonitoringSection() {
         </>
       );
     }
-    
+
     // Non-Editable Fields
     else {
       return (
         <>
           <Navigation />
-          <SearchBar placeholder="Search" data={Data} />
-          <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
+          <Search onSearch={handleSearch}></Search>
+          <div style={{ marginTop: "1rem", padding: "0 1rem" }}>
             <Typography variant="h4" align="center" gutterBottom>
-            <div className='subtitle'>
-              Psychotropic Monitoring
-            </div>
+              <div className="subtitle">Psychotropic Monitoring</div>
             </Typography>
 
             <div className="grid-container">
@@ -172,38 +184,38 @@ export default function PsychotropicMonitoringSection() {
                   <div className="grid-item" key={id}>
                     <button
                       onClick={() => handleDrugClick(dataObj)}
-                      className={`drug-button ${isDrugSelected ? 'active' : ''}`}
+                      className={`drug-button ${isDrugSelected ? "active" : ""}`}
                     >
                       {dataObj.Name}
                     </button>
 
                     {isDrugSelected && (
-                    <div className="box">
-                      <div className="box-content">
-                        <strong>Antipsychotics: </strong>
-                        <span>{dataObj[`Antipsychotics`]}</span>
+                      <div className="box">
+                        <div className="box-content">
+                          <strong>Antipsychotics: </strong>
+                          <span>{dataObj[`Antipsychotics`]}</span>
+                        </div>
+                        <div className="box-content">
+                          <strong>Lithium: </strong>
+                          <span>{dataObj[`Lithium`]}</span>
+                        </div>
+
+                        <div className="box-content">
+                          <strong>Valproate: </strong>
+                          <span>{dataObj[`Valproate`]}</span>
+                        </div>
                       </div>
-                      <div className="box-content">
-                        <strong>Lithium: </strong>
-                        <span>{dataObj[`Lithium`]}</span>
-                      </div>
-                      
-                      <div className="box-content">
-                        <strong>Valproate: </strong>
-                        <span>{dataObj[`Valproate`]}</span>
-                      </div>
-                      
-                    </div>
-                  )}
-                </div>
-                  
+                    )}
+                  </div>
                 );
               })}
             </div>
             <div className="psychotropic-footer">
-              <p className='psychotropic-notes'>
-              <b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark).  <br /> <br />
-              <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be necessary based on clinical judgment  
+              <p className="psychotropic-notes">
+                <b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark). <br />{" "}
+                <br />
+                <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be
+                necessary based on clinical judgment
               </p>
             </div>
           </div>
@@ -211,6 +223,5 @@ export default function PsychotropicMonitoringSection() {
         </>
       );
     }
-  } 
+  }
 }
-
