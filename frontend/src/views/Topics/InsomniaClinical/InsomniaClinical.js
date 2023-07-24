@@ -11,6 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import InsomniaClinicalUpdate from './InsomniaClinicalBackend' ;
 
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
@@ -56,47 +57,123 @@ export default function InsomniaClinical() {
         });
   }, []);
 
+  const [admin] = useState(localStorage.getItem("admin") === "true");
+  const [value, setValue] = useState('');
+  
+  const store_value = (event) => {
+    setValue(event.target.value);
+  }
+  
+  const update_value = (event) => {
+    if (admin) {
+      console.log(value);
+      if (event.target.value !== value) {
+        event.preventDefault();
+        InsomniaClinicalUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
+          alert(`Data successfully updated!\nNew Value: ${event.target.value}`);
+        }).catch((error) => {
+          console.error(error);
+          alert('Failed to update!');
+        });
+      } else {
+        console.log("value was not changed, not updating");
+      }
+    } else {
+      alert("You must be an administrator to edit");
+    }
+  };
+
   if(data.length > 0)
   {
-  return (
-    <>
-      <Navigation />
-      <SearchBar placeholder="Search" data={Data} />
-    <div id="insomniaClinical">
-      <Box
-        sx={{
-          marginTop: 3,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Typography id="topicHeader">Sedatives/Hypnotics Clinical Guide</Typography>
-      </Box>
-
-        <TableContainer component={Paper} >
-          <Table aria-label="customized table" id="clinicalTable" >
-            <TableHead >
-              <TableRow >
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >When to do?</StyledTableCell>
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>What to do?</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.map((dataObj, index) => (
-                <StyledTableRow key={index} >
-                  <StyledTableCell component="th" scope="row">
-                    {dataObj[`LIST_HEADERS`]}
-                  </StyledTableCell>
-                  <StyledTableCell >{dataObj[`Description`]}</StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-    </div>
+    if(admin){
+      return (
+        <>
+          <Navigation />
+          <SearchBar placeholder="Search" data={Data} />
+        <div id="insomniaClinical">
+          <Box
+            sx={{
+              marginTop: 3,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <Typography id="topicHeader">Sedatives/Hypnotics Clinical Guide</Typography>
+          </Box>
     
-    <Footer />
-    </>
-  );
+            <TableContainer component={Paper} sx={{marginBottom:20}} >
+              <Table aria-label="customized table" id="clinicalTable" >
+                <TableHead >
+                  <TableRow >
+                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >When to do?</StyledTableCell>
+                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>What to do?</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {data.map((dataObj, index) => (
+                    <StyledTableRow key={index} >
+                      <StyledTableCell component="th" scope="row">
+                      <input id='`LIST_HEADERS`' name={dataObj[`Id`]} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`LIST_HEADERS`]} 
+                      />
+                      </StyledTableCell>
+                      <StyledTableCell >
+                      <input id='`Description`' name={dataObj[`Id`]} type='text' onFocus={store_value} onBlur={update_value} defaultValue={dataObj[`Description`]} 
+                      />
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+        </div>
+        
+        <Footer />
+        </>
+      );
+    }
+    else{
+      return (
+        <>
+          <Navigation />
+          <SearchBar placeholder="Search" data={Data} />
+        <div id="insomniaClinical">
+          <Box
+            sx={{
+              marginTop: 3,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <Typography id="topicHeader">Sedatives/Hypnotics Clinical Guide</Typography>
+          </Box>
+    
+            <TableContainer component={Paper}  sx={{marginBottom:20}} >
+              <Table aria-label="customized table" id="clinicalTable" >
+                <TableHead >
+                  <TableRow >
+                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >When to do?</StyledTableCell>
+                    <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>What to do?</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {data.map((dataObj, index) => (
+                    <StyledTableRow key={index} >
+                      <StyledTableCell component="th" scope="row">
+                        {dataObj[`LIST_HEADERS`]}
+                      </StyledTableCell>
+                      <StyledTableCell >{dataObj[`Description`]}</StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+        </div>
+        
+        <Footer />
+        </>
+      );
+    }
+  
 }};

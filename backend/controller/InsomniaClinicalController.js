@@ -1,18 +1,30 @@
-const pool = require('../config/database');
+const pool = require("../config/database");
 
-const getClinicalData = async () => {
-  const [rows, fields] = await pool.query('SELECT * FROM `green_card`.`sedatives/hypnotics clinical guide`');
+const getAPData = async () => {
+  const [rows, fields] = await pool.query("SELECT * FROM `green_card`.`sedatives/hypnotics clinical guide`");
   return rows;
 };
 
-const InsomniaClinicalController = {
-  getData: async (req, res, next) => {
-    const clinicalData = await getClinicalData();
-    res.send(clinicalData);
-  }
-
+const getData = async (req, res, next) => {
+  const apData = await getAPData();
+  res.send(apData);
 };
 
-module.exports = InsomniaClinicalController;
-// non admin
-// create it for the admin so it can update the statements
+const updateData = async (req, res, next) => {
+  try {
+    const { name, column, value } = req.body;
+    await pool.query( 'UPDATE `green_card`.`sedatives/hypnotics clinical guide` SET ' + column + ' = ' + '"' + value + '"' + ' WHERE `Id` = ' + '"' + name + '"'
+    );
+    res.send("Updated Successfully!");
+  } catch (error) {
+    console.log(error);
+    next(error);
+    throw error;
+  }
+};
+
+module.exports = {
+   getData,
+   updateData
+ };
+ 

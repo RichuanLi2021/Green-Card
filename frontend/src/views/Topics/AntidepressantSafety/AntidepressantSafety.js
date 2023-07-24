@@ -154,7 +154,7 @@ export default function AntidepressantSafety() {
                           ))}
                         </TableBody>
                       </Table>
-                    </TableContainer><br></br>
+                    </TableContainer>
                     
                 </div>
         <Footer />
