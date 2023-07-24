@@ -86,7 +86,7 @@ export default function InsomniaClinical() {
               {data.map((dataObj, index) => (
                 <StyledTableRow key={index} >
                   <StyledTableCell component="th" scope="row">
-                    {dataObj.LIST_HEADERS_Id}
+                    {dataObj[`LIST_HEADERS`]}
                   </StyledTableCell>
                   <StyledTableCell >{dataObj[`Description`]}</StyledTableCell>
                 </StyledTableRow>
@@ -94,10 +94,8 @@ export default function InsomniaClinical() {
             </TableBody>
           </Table>
         </TableContainer>
-        <div className='keynote-div'>
-          <p className='keynote'><b>Key notes:</b> SHYPCLIN_BFR means before prescribing, SHYPCLIN_STR means starting, SHYPCLIN_END means ending </p>
-          </div>
     </div>
+    
     <Footer />
     </>
   );
