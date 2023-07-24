@@ -2,7 +2,7 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import SearchBar from "../../searchBar/searchBar";
+// import SearchBar from "../../searchBar/searchBar";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -14,8 +14,9 @@ import Box from "@mui/material/Box";
 
 import Navigation from "../../Navigation/navigation";
 import Footer from "../../Footer/Footer";
-import Data from "../../searchBar/Data.json";
 import "./AntipsychoticSafety.css";
+import { useNavigate } from "react-router-dom";
+import Search from "../../Search/Search";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -45,6 +46,11 @@ export default function AntipsychoticSafety() {
   const [formVisible, setFormVisible] = useState(false);
   const [newSafetyConcern, setNewSafetyConcern] = useState("");
   const [admin] = useState(localStorage.getItem("admin") === "true");
+  const navigate = useNavigate();
+
+  const handleSearch = (searchTerm) => {
+    navigate(`/search/${searchTerm}`);
+  };
 
   const fetchData = () => {
     axios
@@ -104,7 +110,7 @@ export default function AntipsychoticSafety() {
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
         />
         <Navigation />
-        <SearchBar placeholder="Search" data={Data} />
+        <Search onSearch={handleSearch}></Search>
         <div id="antipsychoticSafety">
           <Box
             sx={{

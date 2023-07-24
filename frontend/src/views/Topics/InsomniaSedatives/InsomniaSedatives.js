@@ -3,18 +3,25 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import SearchBar from "../../searchBar/searchBar";
+// import SearchBar from "../../searchBar/searchBar";
 import Navigation from "../../Navigation/navigation";
-import Data from "../../searchBar/Data.json";
+// import Data from "../../searchBar/Data.json";
 import { InsomniaSedativesUpdate, submitDrug } from "./InsomniaSedativesBackend";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Footer from "../../Footer/Footer";
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@material-ui/core";
+import Search from "../../Search/Search";
+import { useNavigate } from "react-router-dom";
 
 export default function InsomniaSedatives() {
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
+
+  const handleSearch = (searchTerm) => {
+    navigate(`/search/${searchTerm}`);
+  };
 
   useEffect(() => {
     fetchData();
@@ -148,7 +155,7 @@ export default function InsomniaSedatives() {
           />
 
           <Navigation />
-          <SearchBar placeholder="Search" data={Data} />
+          <Search onSearch={handleSearch}></Search>
           <div style={{ marginTop: "1rem", padding: "0 1rem" }}>
             <Typography className="subtitle" gutterBottom>
               Sedatives/Hypnotics Guide
@@ -333,7 +340,7 @@ export default function InsomniaSedatives() {
       return (
         <>
           <Navigation />
-          <SearchBar placeholder="Search" data={data} />
+          <Search onSearch={handleSearch}></Search>
           <div style={{ marginTop: "1rem", padding: "0 1rem" }}>
             <Typography className="subtitle" gutterBottom>
               Sedatives/Hypnotics Guide
