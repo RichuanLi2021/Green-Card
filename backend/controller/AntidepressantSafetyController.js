@@ -1,45 +1,30 @@
-const pool = require('../config/database');
+const pool = require("../config/database");
 
-const getAntidepressantSafetyData = async () => {
-    const [rows, fields] = await pool.query('SELECT * FROM `green_card`.`antidepressant safety concerns`');
-    return rows;
-  };
-  
-  const antidepressantSafetyController = {
-     getData: async (req,res, next) => {
-      const antidepressantSafetyData = await getAntidepressantSafetyData ();
-      res.send(antidepressantSafetyData);
-     },
+const getAPData = async () => {
+  const [rows, fields] = await pool.query("SELECT * FROM `green_card`.`antidepressant safety concerns`");
+  return rows;
+};
 
-     addData: async (req, res, next) => {
-      try {
-         const { Description } = req.body;
-         await pool.query(
-            "INSERT INTO `green_card`.`ANTIDEPRESSANT SAFETY CONCERNS`(`LIST_HEADERS_Id`,`Description`) VALUES (?, ?)",
-            ["ANTID_SC", Description]
-         );
-         res.send("Added Successfully!");
-      } catch (error) {
-         console.log(error);
-         next(error);
-         throw error;
-      }
-     },
+const getData = async (req, res, next) => {
+  const apData = await getAPData();
+  res.send(apData);
+};
 
-     deleteData:  async (req, res, next) => {
-      try {
-         const { Description } = req.params;
-         await pool.query(`DELETE FROM \`green_card\`.\`ANTIDEPRESSANT SAFETY CONCERNS\` WHERE Description = ?`, [
-            Description,
-         ]);
-         res.send("Deleted Successfully!");
-      } catch (error) {
-         console.log(error);
-         next(error);
-         throw error;
-      }
-     }
-  };
-  
-  
-  module.exports = antidepressantSafetyController;
+const updateData = async (req, res, next) => {
+  try {
+    const { name, column, value } = req.body;
+    await pool.query( 'UPDATE `green_card`.`antidepressant safety concerns` SET ' + column + ' = ' + '"' + value + '"' + ' WHERE Description = ' + '"' + name + '"'
+    );
+    res.send("Updated Successfully!");
+  } catch (error) {
+    console.log(error);
+    next(error);
+    throw error;
+  }
+};
+
+module.exports = {
+   getData,
+   updateData
+ };
+ 

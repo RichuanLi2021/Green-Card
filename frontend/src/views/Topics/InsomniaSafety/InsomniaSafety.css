@@ -83,6 +83,26 @@
     padding: 10px;
 }
 
+select{
+  
+  padding: 20px 30px;
+  border-radius:3px;
+  background-color: rgba(0, 0, 0, 0.06);;
+  color:rgba(0, 0, 0, 0.6);
+  width: 25vw;
+  border-bottom-color:rgb(0, 0, 0);
+  border:none;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  
+  line-height: 1.4375em;
+}
+
+select:focus{
+  outline:none;
+}
+
 #topicHeader {
     font-family: "Work Sans", sans-serif !important;
     font-size: 1.5rem !important;;

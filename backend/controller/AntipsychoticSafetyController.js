@@ -13,17 +13,7 @@ const getData = async (req, res, next) => {
 const updateData = async (req, res, next) => {
   try {
     const { name, column, value } = req.body;
-    await pool.query(
-      "UPDATE `green_card`.`ANTIPSYCHOTIC SAFETY CONCERNS` SET " +
-        column +
-        " = " +
-        '"' +
-        value +
-        '"' +
-        " WHERE name = " +
-        '"' +
-        name +
-        '"'
+    await pool.query( 'UPDATE `green_card`.`ANTIPSYCHOTIC SAFETY CONCERNS` SET ' + column + ' = ' + '"' + value + '"' + ' WHERE Description = ' + '"' + name + '"'
     );
     res.send("Updated Successfully!");
   } catch (error) {
@@ -37,8 +27,8 @@ const addData = async (req, res, next) => {
   try {
     const { Description } = req.body;
     await pool.query(
-      "INSERT INTO `green_card`.`ANTIPSYCHOTIC SAFETY CONCERNS`(`LIST_HEADERS_Id`,`Description`) VALUES (?, ?)",
-      ["ANTIP_SAFE", Description]
+      "INSERT INTO `green_card`.`ANTIPSYCHOTIC SAFETY CONCERNS`(`Description`) VALUES (?)",
+      [Description]
     );
     res.send("Added Successfully!");
   } catch (error) {
@@ -66,5 +56,5 @@ module.exports = {
   getData,
   updateData,
   addData,
-  deleteData,
+  deleteData
 };
