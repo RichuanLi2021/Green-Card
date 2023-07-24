@@ -93,11 +93,7 @@ export default function AntidepressantSafety() {
                     </TableBody>
                   </Table>
                 </TableContainer><br></br>
-                <div className='antidepressantSafety-notes'>
-                  <p className='antidepressantSafety-notes-key'>
-                    <b>Key notes: </b> ANTID_SC means Antidepressants safety concerns
-                  </p>
-                </div>
+                
             </div>
     <Footer />
     </>

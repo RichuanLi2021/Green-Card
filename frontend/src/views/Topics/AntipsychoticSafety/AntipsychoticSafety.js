@@ -79,16 +79,22 @@ export default function AntipsychoticSafety() {
   };
 
   const handleDelete = async (Description) => {
-    if (window.confirm("Are you sure you want to delete this record?")) {
-      try {
-        console.log(Description);
-        await axios.delete("http://localhost:8887/api/AntipsychoticsSafety/delete/" + Description);
-        alert("Data deleted succesfully! \nSymptom:" + Description);
-        window.location.reload();
-      } catch (err) {
-        console.log(err);
+    if (admin){
+      if (window.confirm("Are you sure you want to delete this record?")) {
+        try {
+          console.log(Description);
+          await axios.delete("http://localhost:8887/api/AntipsychoticsSafety/delete/" + Description);
+          alert("Data deleted succesfully! \nSymptom:" + Description);
+          window.location.reload();
+        } catch (err) {
+          console.log(err);
+        }
       }
     }
+    else{
+      alert("Must be an administrator to edit" );
+    }
+    
   };
 
   const handleInputChange = (e) => {
@@ -166,11 +172,7 @@ export default function AntipsychoticSafety() {
             </Table>
           </TableContainer>
 
-          <div className="keynote-div">
-            <p className="keynote">
-              <b>Key notes:</b> ANTIP_SAFE means Antipsychotics safety concerns
-            </p>
-          </div>
+         
         </div>
         <Footer />
       </>
