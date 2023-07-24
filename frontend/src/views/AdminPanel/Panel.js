@@ -51,9 +51,11 @@ function Panel() {
                 console.log(response.data);
                 fetchData();
                 setIsRegisterVisible(false);
+                alert("Register Successful!");
             })
             .catch((error) => {
                 console.error(error); 
+                alert("Error Occurred.");
             });
     };
 
