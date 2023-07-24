@@ -29,6 +29,7 @@ function Panel() {
             .get("http://localhost:8887/api/login")
             .then((response) => {
                 setData(response.data);
+                // console.log(data);
             })
             .catch((error) => {
                 console.log(error);
@@ -37,6 +38,7 @@ function Panel() {
 
     const handleRegisterClick = () => {
         setIsRegisterVisible(!isRegisterVisible);
+        console.log(data);
     };
 
     const handleRegisterSubmit = () => {
