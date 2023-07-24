@@ -19,6 +19,8 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Footer from "../../Footer/Footer";
+import Search from "../../Search/Search";
+import { useNavigate } from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -52,6 +54,11 @@ export default function AntidepressantsClinical() {
     COG_MONITOR: [],
     COG_HOW_WHEN: [],
   });
+  const navigate = useNavigate();
+
+  const handleSearch = (searchTerm) => {
+    navigate(`/search/${searchTerm}`);
+  };
 
   useEffect(() => {
     axios
@@ -245,7 +252,7 @@ export default function AntidepressantsClinical() {
     return (
       <>
         <Navigation />
-        <SearchBar placeholder="Search" data={Data} />
+        <Search onSearch={handleSearch}></Search>
         <div style={{ marginTop: "2rem", padding: "0 1rem" }}>
           <Typography variant="h3" align="center" gutterBottom>
             <div className="subtitle">Cognitive Enhancers Clinical Guide</div>
