@@ -23,28 +23,29 @@ const getData = async (req, res, next) => {
   res.send(groupedData);
 };
 
-const updateData = async (req, res, next) => {
+const updateData = async (req, res) => {
   try {
-    const { name, column, value } = req.body;
-    await pool.query(
-      "UPDATE `green_card`.`COGNITIVE ENHANCERS CLINICAL GUIDE` SET " +
-        column +
-        " = " +
-        '"' +
-        value +
-        '"' +
-        " WHERE Description = " +
-        '"' +
-        name +
-        '"'
-    );
-    res.send("Updated Successfully!");
+    // Extract data from the request
+    const column = req.body.column; // The column identifier (e.g., COG_ACHEI_ME)
+    const oldValue = req.body.oldValue; // The current description (e.g., "Hallucinations")
+    const newValue = req.body.newValue; // The new description (e.g., "Visual Hallucinations")
+
+    // Construct the SQL query
+    const sql = `UPDATE \`green_card\`.\`COGNITIVE ENHANCERS CLINICAL GUIDE\` 
+                     SET Description = ? 
+                     WHERE LIST_HEADERS_Id = ? AND Description = ?`;
+
+    // Execute the query
+    const result = await pool.query(sql, [newValue, column, oldValue]);
+
+    // Return the result or some form of success message
+    res.status(200).json({ message: "Data successfully updated" });
   } catch (error) {
-    console.log(error);
-    next(error);
-    throw error;
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
 const drugData = async (req, res, next) => {
   const { listHeader, description } = req.body;
 

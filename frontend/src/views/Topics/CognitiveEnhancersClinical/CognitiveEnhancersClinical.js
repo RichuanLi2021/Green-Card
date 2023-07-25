@@ -106,13 +106,12 @@ export default function AntidepressantsClinical() {
   };
 
   const update_value = async (event) => {
-    const name = event.target.name;
-    const id = parseInt(event.target.getAttribute("data-id")); // get the data-id attribute
-    const value = event.target.value;
-    const column = "Description";
+    const column = event.target.getAttribute("name"); // The column identifier (e.g., COG_ACHEI_ME)
+    const oldValue = event.target.defaultValue; // Original value before editing
+    const newValue = event.target.value; // The new value entered by the user
 
     try {
-      await CognitiveEnhancersClinicalUpdate(name, column, value, id);
+      await CognitiveEnhancersClinicalUpdate(column, oldValue, newValue);
     } catch (error) {
       console.error("Error updating value:", error);
     }
@@ -121,7 +120,7 @@ export default function AntidepressantsClinical() {
   const handleDelete = async (Description) => {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
-        console.log(Description);
+        console.log("Deleting description:", Description);
         await axios.delete("http://localhost:8887/api/CognitiveEnhancersClinical/delete/" + Description);
         window.alert("Drug Deleted Successfully !");
         window.location.reload();
@@ -228,7 +227,7 @@ export default function AntidepressantsClinical() {
                           />
                         </StyledTableCell>
                         <StyledTableCell>
-                          <button onClick={(e) => handleDelete(index)}>Delete</button>{" "}
+                          <button onClick={() => handleDelete(data.COG_CONTRA[index] || "")}>Delete</button>
                           {/* Modified to delete by index */}
                         </StyledTableCell>
                       </StyledTableRow>

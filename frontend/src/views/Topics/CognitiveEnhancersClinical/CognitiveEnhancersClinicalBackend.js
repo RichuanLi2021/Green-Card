@@ -1,19 +1,18 @@
 import axios from "axios";
 
-export const CognitiveEnhancersClinicalUpdate = async (name, column, value, id) => {
+export const CognitiveEnhancersClinicalUpdate = async (column, oldValue, newValue) => {
   try {
-    console.log("About to execute the query with:", { column, value, name, id });
+    console.log("About to execute the query with:", { column, oldValue, newValue });
     const response = await axios.post("http://localhost:8887/api/CognitiveEnhancersClinical/update", {
-      name,
       column,
-      value,
-      id, // Add the id parameter
+      oldValue,
+      newValue,
     });
-    console.log(response.data); // log response from server
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);
-    throw error; // throw error to be handled by calling function
+    throw error;
   }
 };
 
