@@ -267,6 +267,68 @@ export default function InsomniaDeprescribing() {
           <Footer />
         </>
       );
+    } else {
+      return (
+        <>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+          />
+          <Navigation />
+          <Search onSearch={handleSearch}></Search>
+          <div style={{ marginTop: "1rem", padding: "0 1rem", overflowX: "auto" }}>
+            <Typography className="subtitle" gutterBottom>
+              Deprescribing Sedatives/Hypnotics
+            </Typography>
+
+            <table className="sticky-table">
+              <thead>
+                <tr>
+                  <th>Drug Name</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.keys(data).map((id) => {
+                  const dataObj = data[id];
+                  return (
+                    <tr key={id}>
+                      <td>BZRA {dataObj.Duration} weeks</td>
+                      <td>
+                        <div>
+                          <div className="box-content">
+                            <strong>Duration: </strong>
+                            {dataObj.Duration}
+                          </div>
+                          <div className="box-content">
+                            <strong>Dose Reduction Schedule Duration (weeks): </strong>
+                            {dataObj["Dose Reduction Schedule Duration (weeks)"]}
+                          </div>
+                          <div className="box-content">
+                            <strong>Interval Between Dose Reductions (weeks): </strong>
+                            {dataObj["Interval Between Dose Reductions (weeks)"]}
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+
+            <div className="keynote-div">
+              <p className="keynote">
+                <b>Key: </b> †does not reflect maximum doses; *should be given 30-90 mins before bedtime.
+                <br /> <br />
+                <b>NOTES: </b> doses may not reflect manufacturer's recommendations but are based on research and/or
+                expert opinion. All sedatives should be used sparingly in the older adults and in people with liver
+                disease; use lowest possible dose. In older adults, there is a poor risk/benefit ratio.
+              </p>
+            </div>
+          </div>
+          <Footer />
+        </>
+      );
     }
   }
 }
