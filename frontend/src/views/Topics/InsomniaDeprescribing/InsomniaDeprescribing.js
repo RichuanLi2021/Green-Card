@@ -50,47 +50,45 @@ export default function InsomniaDeprescribing() {
     return (
       <>
         <Navigation />
-        <Search onSearch={handleSearch}></Search>
+        <Search onSearch={handleSearch} />
+
         <div style={{ marginTop: "2rem", padding: "0 1rem" }}>
-          <Typography variant="h3" align="center" gutterBottom>
+          <Typography variant="h3" align="center">
             <div className="subtitle">Deprescribing Sedatives/Hypnotics</div>
           </Typography>
 
-          <div className="grid-container">
-            {Object.keys(data).map((id) => {
-              const dataObj = data[id];
-              const isDrugSelected = selectedDrugs.includes(dataObj);
-              return (
-                <div className="grid-item" key={id}>
-                  <button
-                    onClick={() => handleDrugClick(dataObj)}
-                    className={`drug-button ${isDrugSelected ? "active" : ""}`}
-                  >
-                    BZRA {dataObj["Duration of BZRA use (months)"]} weeks
-                  </button>
+          <table className="sticky-table">
+            <thead className="heading-bg">
+              <tr>
+                <th>Drug Details</th>
+                <th>Dose Reduction Schedule Duration (weeks)</th>
+                <th>Interval Between Dose Reductions (weeks)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.keys(data).map((id) => {
+                const dataObj = data[id];
+                const isDrugSelected = selectedDrugs.includes(dataObj);
+                return (
+                  <tr key={id} className={isDrugSelected ? "active" : ""}>
+                    <td onClick={() => handleDrugClick(dataObj)}>
+                      BZRA {dataObj["Duration of BZRA use (months)"]} weeks
+                    </td>
+                    <td>{dataObj["Dose Reduction Schedule Duration (weeks)"]}</td>
+                    <td>{dataObj["Interval Between Dose Reductions (weeks)"]}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
 
-                  {isDrugSelected && (
-                    <div className="box">
-                      <div className="box-content">
-                        <strong>Dose Reduction Schedule Duration (weeks)</strong>
-                        <span>{dataObj["Dose Reduction Schedule Duration (weeks)"]}</span>
-                      </div>
-                      <div className="box-content">
-                        <strong>Interval Between Dose Reductions (weeks)</strong>
-                        <span>{dataObj["Interval Between Dose Reductions (weeks)"]}</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
           <div className="insomnia-footer">
             <p className="insomnia-notes">
               <b>Key: </b> BZRA: benzodiazepine and z-drugs (benzodiazepine agonists)
             </p>
           </div>
         </div>
+
         <Footer />
       </>
     );
