@@ -133,78 +133,86 @@ export default function InsomniaDeprescribing() {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
           />
-
           <Navigation />
           <Search onSearch={handleSearch}></Search>
-          <div style={{ marginTop: "1rem", padding: "0 1rem" }}>
+          <div style={{ marginTop: "1rem", padding: "0 1rem", overflowX: "auto" }}>
             <Typography className="subtitle" gutterBottom>
               Deprescribing Sedatives/Hypnotics
             </Typography>
 
-            <div className="grid-container">
-              {Object.keys(data).map((id) => {
-                const dataObj = data[id];
-                const isDrugSelected = selectedDrugs.includes(dataObj);
-                return (
-                  <div className="grid-item" key={id}>
-                    <button
-                      onClick={() => handleDrugClick(dataObj)}
-                      className={`drug-button ${isDrugSelected ? "active" : ""}`}
-                    >
-                      BZRA {dataObj.Duration} weeks
-                      <button
-                        style={{ background: "none", border: "none", cursor: "pointer" }}
-                        onClick={(e) => handleDelete(dataObj.Duration)}
-                      >
-                        {" "}
-                        <span class="material-symbols-outlined">delete</span>
-                      </button>
-                    </button>
+            <table className="sticky-table">
+              <thead>
+                <tr>
+                  <th>Drug Name</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.keys(data).map((id) => {
+                  const dataObj = data[id];
+                  const isDrugSelected = selectedDrugs.includes(dataObj);
+                  return (
+                    <tr key={id}>
+                      <td>
+                        <button
+                          onClick={() => handleDrugClick(dataObj)}
+                          className={`drug-button ${isDrugSelected ? "active" : ""}`}
+                        >
+                          BZRA {dataObj.Duration} weeks
+                          <button
+                            style={{ background: "none", border: "none", cursor: "pointer" }}
+                            onClick={(e) => handleDelete(dataObj.Duration)}
+                          >
+                            {" "}
+                            <span className="material-symbols-outlined">delete</span>
+                          </button>
+                        </button>
+                      </td>
+                      <td>
+                        {isDrugSelected && (
+                          <div>
+                            <div className="box-content">
+                              <strong>Duration: </strong>
+                              <input
+                                id="Duration"
+                                name={dataObj.Duration}
+                                type="text"
+                                onFocus={store_value}
+                                onBlur={update_value}
+                                defaultValue={dataObj.Duration}
+                              />
+                            </div>
+                            <div className="box-content">
+                              <strong> Dose Reduction Schedule Duration (weeks) </strong>
+                              <input
+                                id="Dose Reduction Schedule Duration (weeks)"
+                                name={dataObj["Dose Reduction Schedule Duration (weeks)"]}
+                                type="text"
+                                onFocus={store_value}
+                                onBlur={update_value}
+                                defaultValue={dataObj["Dose Reduction Schedule Duration (weeks)"]}
+                              />
+                            </div>
+                            <div className="box-content">
+                              <strong>Interval Between Dose Reductions (weeks): </strong>
+                              <input
+                                id="Interval Between Dose Reductions (weeks)"
+                                name={dataObj["Interval Between Dose Reductions (weeks)"]}
+                                type="text"
+                                onFocus={store_value}
+                                onBlur={update_value}
+                                defaultValue={dataObj["Interval Between Dose Reductions (weeks)"]}
+                              />
+                            </div>
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
 
-                    {isDrugSelected && (
-                      <div>
-                        <div className="box">
-                          <div className="box-content">
-                            <strong>Duration: </strong>
-                            <input
-                              id="`Duration`"
-                              name={dataObj.Duration}
-                              type="text"
-                              onFocus={store_value}
-                              onBlur={update_value}
-                              defaultValue={dataObj[`Duration`]}
-                            />
-                          </div>
-                          <div className="box-content">
-                            <strong> Dose Reduction Schedule Duration (weeks) </strong>
-                            <input
-                              id="`Dose Reduction Schedule Duration (weeks)`"
-                              name={dataObj[`Dose Reduction Schedule Duration (weeks)`]}
-                              type="text"
-                              onFocus={store_value}
-                              onBlur={update_value}
-                              defaultValue={dataObj[`Dose Reduction Schedule Duration (weeks)`]}
-                            />
-                          </div>
-
-                          <div className="box-content">
-                            <strong>Interval Between Dose Reductions (weeks): </strong>
-                            <input
-                              id="`Interval Between Dose Reductions (weeks)`"
-                              name={dataObj[`Interval Between Dose Reductions (weeks)`]}
-                              type="text"
-                              onFocus={store_value}
-                              onBlur={update_value}
-                              defaultValue={dataObj[`Interval Between Dose Reductions (weeks)`]}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
             <div className="box-content">
               <div className="form-header">
                 <Box display="flex" justifyContent="space-between" alignItems="center">
