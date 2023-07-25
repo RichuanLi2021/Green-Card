@@ -72,7 +72,7 @@ export default function AntidepressantsClinical() {
       });
   }, []);
 
-  const [value, setValue] = useState("");
+  // const [value, setValue] = useState("");
   const admin = localStorage.getItem("admin");
 
   // add drug components shifted to this page itself
@@ -87,9 +87,9 @@ export default function AntidepressantsClinical() {
     setDescription(event.target.value);
   };
 
-  const store_value = (event) => {
-    setValue(event.target.value);
-  };
+  // const store_value = (event) => {
+  //   setValue(event.target.value);
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
