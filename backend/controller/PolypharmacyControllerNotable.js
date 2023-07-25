@@ -25,4 +25,37 @@ const updateData = async (req, res, next) => {
 };
 
 
-module.exports = { getData, updateData };
+const addData = async (req, res, next) => {
+  const {
+    listHeader, description
+  } = req.body;
+  
+  try {
+    await pool.query(
+      "INSERT INTO `green_card`.`NOTABLE CHANGES IN OLDER ADULTS THAT AFFECT PRESCRIBING` (`LIST_HEADERS_Id`,`Description`) VALUES (?, ?)",
+      [
+        listHeader, description
+      ]
+    );
+    
+    res.send('Drug was submitted successfully');
+  } catch (err) {
+    next(err);
+    throw err;
+  }
+};
+
+const deleteData = async (req, res, next) => {
+  const Description = req.params.Description;
+  try {
+    await pool.query(
+      "DELETE FROM `green_card`.`NOTABLE CHANGES IN OLDER ADULTS THAT AFFECT PRESCRIBING` WHERE `Description` = ?",
+      [Description] 
+    );
+    res.send('Drug was deleted successfully');
+  } catch (err) {
+    next(err);
+    throw err;
+  }
+};
+module.exports = { getData, updateData, addData, deleteData };
