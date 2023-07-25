@@ -1,4 +1,3 @@
-import "./delirium.css";
 import * as React from "react";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
@@ -253,12 +252,12 @@ export default function Delirium() {
                       <StyledTableCell>
                         <input
                           input
-                          id="`LIST_HEADERS_Id`"
-                          name={dataObj[`LIST_HEADERS_Id`]}
+                          id="`LIST_HEADERS`"
+                          name={dataObj[`LIST_HEADERS`]}
                           type="text"
                           onFocus={store_value}
                           onBlur={update_value}
-                          defaultValue={dataObj[`LIST_HEADERS_Id`]}
+                          defaultValue={dataObj[`LIST_HEADERS`]}
                         />
                         <button
                           style={{ background: "none", border: "none", cursor: "pointer" }}
@@ -284,7 +283,7 @@ export default function Delirium() {
                   <Box>
                     <TextField
                       style={{ minWidth: "400px" }}
-                      label="List Header (must be from one of above headers): "
+                      label="List Header (HIGH/MEDIUM/LOW) "
                       variant="filled"
                       value={listHeader}
                       onChange={handleHeader}
@@ -407,7 +406,7 @@ export default function Delirium() {
                       <StyledTableCell component="th" scope="row">
                         {dataObj[`Description`]}
                       </StyledTableCell>
-                      <StyledTableCell>{dataObj[`LIST_HEADERS_Id`]}</StyledTableCell>
+                      <StyledTableCell>{dataObj[`LIST_HEADERS`]}</StyledTableCell>
                     </StyledTableRow>
                   ))}
                 </TableBody>

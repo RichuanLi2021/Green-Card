@@ -117,7 +117,7 @@ export default function AntidepressantsClinical() {
               <Table sx={{ minWidth: 700 }} aria-label="customized table" id="antidepressantClinicalTable">
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>ID</StyledTableCell>
+                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Header</StyledTableCell>
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Description</StyledTableCell>
                   </TableRow>
                 </TableHead>
@@ -125,9 +125,9 @@ export default function AntidepressantsClinical() {
                   {data.map((dataObj, index) => (
                     <StyledTableRow key={index}>
                       <StyledTableCell component="th" scope="row">
-                        {dataObj.LIST_HEADERS_Id}
+                        {dataObj[`LIST_HEADERS`]}
                       </StyledTableCell>
-                      <StyledTableCell align="left">
+                      <StyledTableCell align="left" id="descriptionCell">
                         <input
                           id="`Description`"
                           name={dataObj.Description}
@@ -142,13 +142,6 @@ export default function AntidepressantsClinical() {
                 </TableBody>
               </Table>
             </TableContainer>
-            <br></br>
-            <p>
-              <b>
-                Key notes: ANTID_INAD means "For inadequate response", ANTID_MAIN means "Maintenance", ANTID_TAPE means
-                "Tapering"{" "}
-              </b>{" "}
-            </p>
           </div>
           <Footer />
         </>
@@ -172,33 +165,37 @@ export default function AntidepressantsClinical() {
               </Typography>
             </Box>
 
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 700 }} aria-label="customized table" id="antidepressantClinicalTable">
+            <TableContainer component={Paper} className="responsive-table">
+              <Table
+                sx={{ minWidth: 700 }}
+                aria-label="customized table"
+                id="antidepressantClinicalTable"
+                className="responsive-table"
+              >
                 <TableHead>
-                  <TableRow>
-                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>ID</StyledTableCell>
-                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Description</StyledTableCell>
+                  <TableRow className="tableRow">
+                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }} className="headerCell">
+                      Header
+                    </StyledTableCell>
+                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }} className="descriptionCell">
+                      Description
+                    </StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {data.map((dataObj, index) => (
-                    <StyledTableRow key={index}>
-                      <StyledTableCell component="th" scope="row">
-                        {dataObj.LIST_HEADERS_Id}
+                    <StyledTableRow key={index} className="tableRow">
+                      <StyledTableCell component="th" scope="row" className="headerCell">
+                        {dataObj.LIST_HEADERS}
                       </StyledTableCell>
-                      <StyledTableCell align="left">{dataObj[`Description`]} </StyledTableCell>
+                      <StyledTableCell align="left" className="descriptionCell">
+                        {dataObj[`Description`]}{" "}
+                      </StyledTableCell>
                     </StyledTableRow>
                   ))}
                 </TableBody>
               </Table>
             </TableContainer>
-            <br></br>
-            <p>
-              <b>
-                Key notes: ANTID_INAD means "For inadequate response", ANTID_MAIN means "Maintenance", ANTID_TAPE means
-                "Tapering"{" "}
-              </b>{" "}
-            </p>
           </div>
           <Footer />
         </>

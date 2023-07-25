@@ -11,6 +11,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
+import AntidepressantSafetyUpdate from "./AntidepressantSafetyBackend";
 
 import Navigation from "../../Navigation/navigation";
 import Footer from "../../Footer/Footer";
@@ -50,6 +51,8 @@ export default function AntidepressantSafety() {
     navigate(`/search/${searchTerm}`);
   };
   const [data, setData] = useState([]);
+  const [admin] = useState(localStorage.getItem("admin") === "true");
+  const [value, setValue] = useState("");
 
   useEffect(() => {
     axios
@@ -63,47 +66,108 @@ export default function AntidepressantSafety() {
       });
   }, []);
 
+  const store_value = (event) => {
+    setValue(event.target.value);
+  };
+
+  const update_value = (event) => {
+    if (admin) {
+      console.log(value);
+      if (event.target.value !== value) {
+        event.preventDefault();
+        AntidepressantSafetyUpdate(event.target.name, event.target.id, event.target.value)
+          .then((data) => {
+            alert(`Data successfully updated!\nNew Value: ${event.target.value}`);
+          })
+          .catch((error) => {
+            console.error(error);
+            alert("Failed to update!");
+          });
+      } else {
+        console.log("value was not changed, not updating");
+      }
+    } else {
+      alert("You must be an administrator to edit");
+    }
+  };
+
   if (data.length > 0) {
-    return (
-      <>
-        <Navigation />
-        <Search onSearch={handleSearch}></Search>
-        <div id="antidepressantSafety">
-          <Box
-            sx={{
-              marginTop: 3,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Typography variant="h3" id="antidepressantSafetyHeader">
-              Antidepressants Safety Concerns
-            </Typography>
-          </Box>
-          <TableContainer component={Paper}>
-            <Table aria-label="customized table" id="antidepressantSafetyTable">
-              <TableBody>
-                {data.map((dataObj, index) => (
-                  <StyledTableRow key={index}>
-                    <StyledTableCell component="th" scope="row">
-                      {dataObj.LIST_HEADERS_Id}
-                    </StyledTableCell>
-                    <StyledTableCell>{dataObj[`Description`]}</StyledTableCell>
-                  </StyledTableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <br></br>
-          <div className="antidepressantSafety-notes">
-            <p className="antidepressantSafety-notes-key">
-              <b>Key notes: </b> ANTID_SC means Antidepressants safety concerns
-            </p>
+    if (admin) {
+      return (
+        <>
+          <Navigation />
+          <Search onSearch={handleSearch}></Search>
+          <div id="antidepressantSafety">
+            <Box
+              sx={{
+                marginTop: 3,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Typography variant="h3" id="antidepressantSafetyHeader">
+                Antidepressants Safety Concerns
+              </Typography>
+            </Box>
+            <TableContainer component={Paper}>
+              <Table aria-label="customized table" id="antidepressantSafetyTable">
+                <TableBody>
+                  {data.map((dataObj, index) => (
+                    <StyledTableRow key={index}>
+                      <StyledTableCell>
+                        <input
+                          id="`Description`"
+                          name={dataObj[`Description`]}
+                          type="text"
+                          onFocus={store_value}
+                          onBlur={update_value}
+                          defaultValue={dataObj[`Description`]}
+                        />
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <br></br>
           </div>
-        </div>
-        <Footer />
-      </>
-    );
+          <Footer />
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Navigation />
+          <Search onSearch={handleSearch}></Search>
+          <div id="antidepressantSafety">
+            <Box
+              sx={{
+                marginTop: 3,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Typography variant="h3" id="antidepressantSafetyHeader">
+                Antidepressants Safety Concerns
+              </Typography>
+            </Box>
+            <TableContainer component={Paper}>
+              <Table aria-label="customized table" id="antidepressantSafetyTable">
+                <TableBody>
+                  {data.map((dataObj, index) => (
+                    <StyledTableRow key={index}>
+                      <StyledTableCell>{dataObj[`Description`]}</StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
+          <Footer />
+        </>
+      );
+    }
   }
 }

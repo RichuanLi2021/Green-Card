@@ -15,7 +15,9 @@ import Box from "@mui/material/Box";
 import Navigation from "../../Navigation/navigation";
 import Footer from "../../Footer/Footer";
 // import Data from "../../searchBar/Data.json";
-import PrinciplesPolypharmacyBackendUpdate from "./PrinciplesPolypharmacyBackend";
+import { PrinciplesPolypharmacyBackendUpdate, submitData } from "./PrinciplesPolypharmacyBackend";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import Search from "../../Search/Search";
 
@@ -74,10 +76,35 @@ export default function PrinciplesPolypharmacy() {
 
   const admin = localStorage.getItem("admin");
 
+  const [listHeader, setlistHeader] = useState("");
+  const [description, setDescription] = useState("");
+
+  const handleHeader = (event) => {
+    setlistHeader(event.target.value);
+  };
+
+  const handleDescription = (event) => {
+    setDescription(event.target.value);
+  };
+
   //used to store value when an input is selected by user
 
   const store_value = (event) => {
     setValue(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log({ listHeader, description });
+    submitData(listHeader, description)
+      .then((data) => {
+        window.alert("Data was added Successfully!");
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error(error);
+        window.alert("Failed to submit the Data!");
+      });
   };
 
   //calls update query when an input was selected and is not anymore (if the value actually changed)
@@ -106,12 +133,29 @@ export default function PrinciplesPolypharmacy() {
     }
   };
 
+  const handleDelete = async (Description) => {
+    if (window.confirm("Are you sure you want to delete this record?")) {
+      try {
+        console.log(Description);
+        await axios.delete("http://localhost:8887/api/PrinciplesPolypharmacy/delete/" + Description);
+        window.alert("Data Deleted Successfully !");
+        window.location.reload();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
   if (data.length > 0) {
     //Editable Fields
 
     if (admin) {
       return (
         <>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+          />
           <Navigation />
 
           <Search onSearch={handleSearch}></Search>
@@ -134,7 +178,7 @@ export default function PrinciplesPolypharmacy() {
               <Table aria-label="customized table" id="principlesPolypharmacyTable">
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Id</StyledTableCell>
+                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>List Header Id</StyledTableCell>
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Description</StyledTableCell>
                   </TableRow>
                 </TableHead>
@@ -152,20 +196,74 @@ export default function PrinciplesPolypharmacy() {
                           onFocus={store_value}
                           onBlur={update_value}
                           defaultValue={dataObj[`Description`]}
-                        />
+                        />{" "}
+                        <button
+                          style={{ background: "none", border: "none", cursor: "pointer" }}
+                          onClick={(e) => handleDelete(dataObj[`Description`])}
+                        >
+                          <span class="material-symbols-outlined">delete</span>
+                        </button>
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}
                 </TableBody>
               </Table>
+
+              <p>
+                <b>
+                  Key notes: PRESCR_DEPRE means "PRESCRIBING AND DEPRESCRIBING PRINCIPLES".
+                  <b>For additional information: </b>deprescribing.org, Beers criteria, STOPP/START criteria
+                </b>{" "}
+              </p>
+              <div className="box-content" style={{ width: "600px" }}>
+                <div className="form-header">
+                  <Box display="flex" justifyContent="space-between" alignItems="center">
+                    <Typography variant="h5" className="title">
+                      Add New Information to the page
+                    </Typography>
+                  </Box>
+                </div>
+
+                <form onSubmit={handleSubmit}>
+                  <Box>
+                    <TextField
+                      style={{ minWidth: "400px" }}
+                      label="List Header (must be from one of above headers): "
+                      variant="filled"
+                      value={listHeader}
+                      onChange={handleHeader}
+                      multiline
+                      required
+                    />
+                  </Box>
+
+                  <Box>
+                    <TextField
+                      style={{ minWidth: "400px" }}
+                      label="Description:"
+                      variant="filled"
+                      value={description}
+                      onChange={handleDescription}
+                      multiline
+                      required
+                    />
+                  </Box>
+                  <Box sx={{ display: "flex", marginBottom: 10 }}>
+                    <Button
+                      style={{ minWidth: "400px" }}
+                      type="submit"
+                      variant="contained"
+                      className="submit-button"
+                      color="primary"
+                    >
+                      Submit
+                    </Button>
+                  </Box>
+                </form>
+              </div>
             </TableContainer>
-            <p>
-              <b>
-                Key notes: PRESCR_DEPRE means "PRESCRIBING AND DEPRESCRIBING PRINCIPLES".
-                <b>For additional information: </b>deprescribing.org, Beers criteria, STOPP/START criteria
-              </b>{" "}
-            </p>
           </div>
+
           <Footer />
         </>
       );
@@ -195,7 +293,7 @@ export default function PrinciplesPolypharmacy() {
               <Table aria-label="customized table" id="principlesPolypharmacyTable">
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Id</StyledTableCell>
+                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>List Header Id</StyledTableCell>
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Description</StyledTableCell>
                   </TableRow>
                 </TableHead>
