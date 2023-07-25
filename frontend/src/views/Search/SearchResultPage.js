@@ -26,7 +26,8 @@ const SearchResultPage = () => {
             <div className="grid-item" key={index}>
               <div className="table-name">{row.tableName}</div>
               {Object.entries(row).map(([column, columnValue]) => {
-                if (column !== "tableName") {
+                // Exclude the "id" column (case-insensitive) from being displayed
+                if (column.toLowerCase() !== "id" && column !== "tableName") {
                   return (
                     <div className="box" key={column}>
                       <div className="box-content">

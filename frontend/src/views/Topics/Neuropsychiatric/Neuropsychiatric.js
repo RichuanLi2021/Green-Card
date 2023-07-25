@@ -1,26 +1,30 @@
-import './Neuropsychiatric.css';
-import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import axios from 'axios';
-import {useState, useEffect} from 'react';
-import SearchBar from "../../searchBar/searchBar";
-import Navigation from '../../Navigation/navigation';
-import Data from "../../searchBar/Data.json";
-import {NeuropsychiatricUpdate, submitDrug} from './NeuropsychiatricBackend';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Footer from '../../Footer/Footer';
-
-
+import "./Neuropsychiatric.css";
+import * as React from "react";
+import Typography from "@mui/material/Typography";
+import axios from "axios";
+import { useState, useEffect } from "react";
+// import SearchBar from "../../searchBar/searchBar";
+import Navigation from "../../Navigation/navigation";
+// import Data from "../../searchBar/Data.json";
+import { NeuropsychiatricUpdate, submitDrug } from "./NeuropsychiatricBackend";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Footer from "../../Footer/Footer";
+import { useNavigate } from "react-router-dom";
+import Search from "../../Search/Search";
 
 export default function Neuropsychiatric() {
+  const navigate = useNavigate();
 
-  
+  const handleSearch = (searchTerm) => {
+    navigate(`/search/${searchTerm}`);
+  };
+
   const [data, setData] = useState({});
   useEffect(() => {
     fetchData();
@@ -28,7 +32,7 @@ export default function Neuropsychiatric() {
 
   const fetchData = () => {
     axios
-      .get('http://localhost:8887/api/neuropsychiatric')
+      .get("http://localhost:8887/api/neuropsychiatric")
       .then((response) => {
         setData(response.data);
       })
@@ -38,65 +42,67 @@ export default function Neuropsychiatric() {
   };
 
   const [selectedDrugs, setSelectedDrugs] = useState([]);
-  const [value, setValue] = useState('');
-  const admin = localStorage.getItem('admin');
+  const [value, setValue] = useState("");
+  const admin = localStorage.getItem("admin");
 
-   //add drug components shifted to this page itself
-   const [medication, setMedication] = useState('');
-   const [recommendedAction, setRecommendedAction] = useState('');
-    
-   const handleMedication = (event) => {
-     setMedication(event.target.value);
-   };
- 
-   const handleRecommendedAction= (event) => {
-     setRecommendedAction(event.target.value);
-   };
- 
-   
- 
-   const handleSubmit = (event) => {
-     event.preventDefault();
-     console.log({ medication, recommendedAction });
-     submitDrug(medication, recommendedAction)
-       .then((data) => {
-         window.alert('Drug was added Successfully!');
-         window.location.reload();
-       })
-       .catch((error) => {
-         console.error(error);
-         window.alert('Failed to submit the Drug!');
-       });
-   };
+  //add drug components shifted to this page itself
+  const [medication, setMedication] = useState("");
+  const [recommendedAction, setRecommendedAction] = useState("");
 
-   //used to store value when an input is selected by user
-   const store_value = (event) => {
+  const handleMedication = (event) => {
+    setMedication(event.target.value);
+  };
+
+  const handleRecommendedAction = (event) => {
+    setRecommendedAction(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log({ medication, recommendedAction });
+    submitDrug(medication, recommendedAction)
+      .then((data) => {
+        window.alert("Drug was added Successfully!");
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error(error);
+        window.alert("Failed to submit the Drug!");
+      });
+  };
+
+  //used to store value when an input is selected by user
+  const store_value = (event) => {
     setValue(event.target.value);
-  }
+  };
   //calls update query when an input was selected and is not anymore (if the value actually changed)
   const update_value = (event) => {
     if (admin) {
       console.log(value);
       if (event.target.value !== value) {
         event.preventDefault();
-        NeuropsychiatricUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
-          alert('Data successfully updated! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nNew Value:"+ event.target.value);
-        }).catch((error) => {
-          console.error(error);
-          alert('Failed to update!');
-        });
-      }
-      else {
+        NeuropsychiatricUpdate(event.target.name, event.target.id, event.target.value)
+          .then((data) => {
+            alert(
+              "Data successfully updated! \nDrug:" +
+                event.target.name +
+                "\nColumn:" +
+                event.target.id +
+                "\nNew Value:" +
+                event.target.value
+            );
+          })
+          .catch((error) => {
+            console.error(error);
+            alert("Failed to update!");
+          });
+      } else {
         console.log("value was not changed, not updating");
       }
-    }
-    else {
+    } else {
       alert("You must be an administrator to edit");
     }
   };
-
-
-
 
   const handleDrugClick = (dataObj) => {
     setSelectedDrugs((prevSelectedDrugs) => {
@@ -108,115 +114,116 @@ export default function Neuropsychiatric() {
       }
     });
   };
-  
-  const handleDelete = async (Medication) =>{
-    if(window.confirm('Are you sure you want to delete this record?')){
-    try{
-      console.log(Medication);
-      await axios.delete('http://localhost:8887/api/Neuropsychiatric/delete/'+Medication)
-      window.alert('Drug Deleted Successfully!')
-      window.location.reload();
-    }catch(err) {
-      console.log(err);
+
+  const handleDelete = async (Medication) => {
+    if (window.confirm("Are you sure you want to delete this record?")) {
+      try {
+        console.log(Medication);
+        await axios.delete("http://localhost:8887/api/Neuropsychiatric/delete/" + Medication);
+        window.alert("Drug Deleted Successfully!");
+        window.location.reload();
+      } catch (err) {
+        console.log(err);
+      }
     }
-  }
-  }
+  };
 
-  if (Object.keys(data).length > 0)
-  {if (admin) {
-    return (
-      <>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-        <Navigation />
-        <SearchBar placeholder="Search" data={Data} />
-        <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
-        <Typography id="page-heading">NPS Management</Typography>
-        <Accordion id="firstAccordion">
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography><b>Nonpharmacological Approach</b></Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography sx={{ textAlign: 'left' }}>
+  if (Object.keys(data).length > 0) {
+    if (admin) {
+      return (
+        <>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+          />
+          <Navigation />
+          <Search onSearch={handleSearch}></Search>
+          <div style={{ marginTop: "1rem", padding: "0 1rem" }}>
+            <Typography id="page-heading">NPS Management</Typography>
+            <Accordion id="firstAccordion">
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                <Typography>
+                  <b>Nonpharmacological Approach</b>
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography sx={{ textAlign: "left" }}>
+                  <li>Individualize approach to patient </li>
+                  <li>Examine ABCs of behavior and identify the issue</li>
+                  <li>
+                    General: comforting presence/physical contact,distraction, backing away,
+                    reminiscence/sensory/relaxation therapy
+                  </li>
+                  <li>
+                    Optimize engagement in environment, decrease under/overstimulation, establish routine, regular
+                    exercise & recreation
+                  </li>
+                  <li> Resistance to care: personalize the experience (ie: offering choices), bed baths</li>
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion id="secondAccordion">
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                <Typography>
+                  <b>Pharmacological Approach</b>
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography sx={{ textAlign: "left" }}>
+                  <li>
+                    Only use if clinically signficant distress/agitation/aggression, when benefits{">"}harm, and non
+                    pharmacological approach failed
+                  </li>
+                  <li>Psychosis: atypical antipsychotic*</li>
+                  <li>No psychosis: SSRI, trazadone, or atypical antipsychotic*</li>
+                  <li>Inappropriate sexual behavior: SSRI, atypical antipsychotic*, or hormonal therapy</li>
+                  <li>Pharmacological approach generally not helpful for primary wandering or vocalizing</li>
+                  <li>Treatment should be evaluated for tapering or discontinuation every 3-6 months</li>
+                  <li>See antipsychotic table for additional information</li>
 
-                <li>Individualize approach to patient </li>
-                <li>Examine ABCs of behavior and identify the issue</li>
-                <li>General: comforting presence/physical contact,distraction, backing away, reminiscence/sensory/relaxation therapy</li>
-                <li>Optimize engagement in environment, decrease under/overstimulation, establish routine, regular exercise & recreation</li>
-                <li> Resistance to care: personalize the experience (ie: offering choices), bed baths</li>
+                  <p>
+                    <b>Key:</b> ABC: antecedent, behavior, consequence. *Recommended atypical antipsychotics include{" "}
+                    <br></br>
+                    risperidone, olanzapine, and aripiprazole according to the 4th Canadian Consensus Conference on{" "}
+                    <br></br>
+                    the Diagnosis and Treatment of Dementia
+                  </p>
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion id="thirdAccordion">
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                <Typography>
+                  <b>ECT & Psychoactive Medications</b>
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <div className="grid-container">
+                  {Object.keys(data).map((id) => {
+                    const dataObj = data[id];
+                    const isDrugSelected = selectedDrugs.includes(dataObj);
+                    return (
+                      <div className="grid-item" key={id}>
+                        <button
+                          id="ect-button"
+                          onClick={() => handleDrugClick(dataObj)}
+                          className={`drug-button ${isDrugSelected ? "active" : ""}`}
+                        >
+                          {dataObj.Medication}
+                          <button
+                            style={{ background: "none", border: "none", cursor: "pointer" }}
+                            onClick={(e) => handleDelete(dataObj.Medication)}
+                          >
+                            <span class="material-symbols-outlined">delete</span>
+                          </button>
+                        </button>
 
-
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion id="secondAccordion">
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography ><b>Pharmacological Approach</b></Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography sx={{ textAlign: 'left' }}>
-
-
-                <li>Only use if clinically signficant distress/agitation/aggression, when benefits{'>'}harm, and non pharmacological approach failed</li>
-                <li>Psychosis: atypical antipsychotic*</li>
-                <li>No psychosis: SSRI, trazadone, or atypical antipsychotic*</li>
-                <li>Inappropriate sexual behavior: SSRI, atypical antipsychotic*, or hormonal therapy</li>
-                <li>Pharmacological approach generally not helpful for primary wandering or vocalizing</li>
-                <li>Treatment should be evaluated for tapering or discontinuation every 3-6 months</li>
-                <li>See antipsychotic table for additional information</li>
-
-
-              <p><b>Key:</b> ABC: antecedent, behavior, consequence. *Recommended atypical antipsychotics include <br></br>
-                risperidone, olanzapine, and aripiprazole according to the 4th Canadian Consensus Conference on <br></br>
-                the Diagnosis and Treatment of Dementia</p>
-
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion id="thirdAccordion">
-        <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-        <Typography><b>
-            ECT & Psychoactive Medications</b>
-          </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-          <div className="grid-container">
-            {Object.keys(data).map((id) => {
-              const dataObj = data[id];
-              const isDrugSelected = selectedDrugs.includes(dataObj);
-              return (
-                <div className="grid-item" key={id}>
-                  <button
-                    id='ect-button'
-                    onClick={() => handleDrugClick(dataObj)}
-                    className={`drug-button ${isDrugSelected ? 'active' : ''}`}
-                  >
-                    {dataObj.Medication}
-                    <button 
-                    style={{background:'none',border:'none',cursor:'pointer'}} 
-                    onClick={e => handleDelete(dataObj.Medication)} > 
-                    <span class="material-symbols-outlined">delete</span>
-                    </button>
-                  </button>
-
-                  {isDrugSelected && (
-                    <div>
-
-                    <div className="box">
-                    <div className="box-content">
-                      <strong>Recommended Action</strong>
-                      <input
+                        {isDrugSelected && (
+                          <div>
+                            <div className="box">
+                              <div className="box-content">
+                                <strong>Recommended Action</strong>
+                                <input
                                   id="`Recommended Action`"
                                   name={dataObj.Medication}
                                   type="text"
@@ -224,186 +231,172 @@ export default function Neuropsychiatric() {
                                   onBlur={update_value}
                                   defaultValue={dataObj[`Recommended Action`]}
                                 />
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                  <div className="box-content">
+                    <div className="form-header">
+                      <Box display="flex" justifyContent="space-between" alignItems="center">
+                        <Typography variant="h5" className="title">
+                          Add New Medication to the page
+                        </Typography>
+                      </Box>
                     </div>
-                    
-                    
-                    
+
+                    <form onSubmit={handleSubmit}>
+                      <Box>
+                        <TextField
+                          label="Medication Name: "
+                          variant="filled"
+                          value={medication}
+                          onChange={handleMedication}
+                          multiline
+                          required
+                        />
+                      </Box>
+
+                      <Box>
+                        <TextField
+                          label="Recommended Action: "
+                          variant="filled"
+                          value={recommendedAction}
+                          onChange={handleRecommendedAction}
+                          multiline
+                          required
+                        />
+                      </Box>
+                      <Box sx={{ display: "flex" }}>
+                        <Button type="submit" variant="contained" className="submit-button" color="primary">
+                          Submit
+                        </Button>
+                      </Box>
+                    </form>
                   </div>
-                  
-                  </div> 
-                    )}
-                     
                 </div>
-              );
-            })}
-            <div className="box-content"  >
-           <div className="form-header" >
-           <Box display="flex" justifyContent="space-between" alignItems="center">
-            <Typography variant="h5" className="title">
-              Add New Medication to the page
-            </Typography>
-            
-           </Box>
-           </div>
-        
-          <form onSubmit={handleSubmit} >
-            <Box >
-            <TextField
-              label="Medication Name: "
-              variant="filled"
-              value={medication}
-              onChange={handleMedication}
-              multiline 
-              required
-            />
-            </Box>
 
-            <Box >
-            <TextField
-              label="Recommended Action: "
-              variant="filled"
-              value={recommendedAction}
-              onChange={handleRecommendedAction}  
-              multiline     
-              required
-            />
-            </Box>
-            <Box sx={{ display: 'flex' }}>
-            <Button
-              type="submit"
-              variant="contained"
-              className="submit-button"
-              color="primary">
-              Submit
-            </Button>
-            </Box>
+                <div className="keynote-meddiv">
+                  <p className="keynote">
+                    <b>Key: </b>ChEIs:cholinesterase inhibitors; MAOIs: monoamine oxidase inhibitors; *If highly
+                    tolerant (and high doses), do not taper abruptly due to risk of prolonged seizure.
+                  </p>
+                </div>
+              </AccordionDetails>
+            </Accordion>
+            <Footer />
+          </div>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Navigation />
+          <Search onSearch={handleSearch}></Search>
+          <div style={{ marginTop: "1rem", padding: "0 1rem" }}>
+            <Typography id="page-heading">NPS Management</Typography>
+            <Accordion id="firstAccordion">
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                <Typography>
+                  <b>Nonpharmacological Approach</b>
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography sx={{ textAlign: "left" }}>
+                  <li>Individualize approach to patient </li>
+                  <li>Examine ABCs of behavior and identify the issue</li>
+                  <li>
+                    General: comforting presence/physical contact,distraction, backing away,
+                    reminiscence/sensory/relaxation therapy
+                  </li>
+                  <li>
+                    Optimize engagement in environment, decrease under/overstimulation, establish routine, regular
+                    exercise & recreation
+                  </li>
+                  <li> Resistance to care: personalize the experience (ie: offering choices), bed baths</li>
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion id="secondAccordion">
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                <Typography>
+                  <b>Pharmacological Approach</b>
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography sx={{ textAlign: "left" }}>
+                  <li>
+                    Only use if clinically signficant distress/agitation/aggression, when benefits{">"}harm, and non
+                    pharmacological approach failed
+                  </li>
+                  <li>Psychosis: atypical antipsychotic*</li>
+                  <li>No psychosis: SSRI, trazadone, or atypical antipsychotic*</li>
+                  <li>Inappropriate sexual behavior: SSRI, atypical antipsychotic*, or hormonal therapy</li>
+                  <li>Pharmacological approach generally not helpful for primary wandering or vocalizing</li>
+                  <li>Treatment should be evaluated for tapering or discontinuation every 3-6 months</li>
+                  <li>See antipsychotic table for additional information</li>
 
-          </form>
-         </div>
+                  <p>
+                    <b>Key:</b> ABC: antecedent, behavior, consequence. *Recommended atypical antipsychotics include{" "}
+                    <br></br>
+                    risperidone, olanzapine, and aripiprazole according to the 4th Canadian Consensus Conference on{" "}
+                    <br></br>
+                    the Diagnosis and Treatment of Dementia
+                  </p>
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+
+            <Accordion id="thirdAccordion">
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                <Typography>
+                  <b>ECT & Psychoactive Medications</b>
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <div className="grid-container">
+                  {Object.keys(data).map((id) => {
+                    const dataObj = data[id];
+                    const isDrugSelected = selectedDrugs.includes(dataObj);
+                    return (
+                      <div className="grid-item" key={id}>
+                        <button
+                          id="ect-button"
+                          onClick={() => handleDrugClick(dataObj)}
+                          className={`drug-button ${isDrugSelected ? "active" : ""}`}
+                        >
+                          {dataObj.Medication}
+                        </button>
+
+                        {isDrugSelected && (
+                          <div className="box">
+                            <div className="box-content">
+                              <strong>Recommended Action: </strong>
+                              <span>{dataObj[`Recommended Action`]}</span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="keynote-meddiv">
+                  <p className="keynote">
+                    <b>Key: </b>ChEIs:cholinesterase inhibitors; MAOIs: monoamine oxidase inhibitors; *If highly
+                    tolerant (and high doses), do not taper abruptly due to risk of prolonged seizure.
+                  </p>
+                </div>
+              </AccordionDetails>
+            </Accordion>
+            <Footer />
           </div>
-          
-          <div className="keynote-meddiv">
-          <p className='keynote'><b>Key: </b>ChEIs:cholinesterase inhibitors; MAOIs: monoamine oxidase inhibitors; *If highly tolerant (and high doses), do not taper abruptly due to risk of prolonged seizure.</p>
-          </div>
-          </AccordionDetails>
-          </Accordion>
-          <Footer />
-        </div>
-      </>
-    );
+        </>
+      );
+    }
   }
-  else{
-
- 
-    return (
-      <>
-        <Navigation />
-        <SearchBar placeholder="Search" data={Data} />
-        <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
-        <Typography id="page-heading">NPS Management</Typography>
-        <Accordion id="firstAccordion">
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography><b>Nonpharmacological Approach</b></Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography sx={{ textAlign: 'left' }}>
-
-                <li>Individualize approach to patient </li>
-                <li>Examine ABCs of behavior and identify the issue</li>
-                <li>General: comforting presence/physical contact,distraction, backing away, reminiscence/sensory/relaxation therapy</li>
-                <li>Optimize engagement in environment, decrease under/overstimulation, establish routine, regular exercise & recreation</li>
-                <li> Resistance to care: personalize the experience (ie: offering choices), bed baths</li>
-
-
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion id="secondAccordion">
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography ><b>Pharmacological Approach</b></Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography sx={{ textAlign: 'left' }}>
-
-
-                <li>Only use if clinically signficant distress/agitation/aggression, when benefits{'>'}harm, and non pharmacological approach failed</li>
-                <li>Psychosis: atypical antipsychotic*</li>
-                <li>No psychosis: SSRI, trazadone, or atypical antipsychotic*</li>
-                <li>Inappropriate sexual behavior: SSRI, atypical antipsychotic*, or hormonal therapy</li>
-                <li>Pharmacological approach generally not helpful for primary wandering or vocalizing</li>
-                <li>Treatment should be evaluated for tapering or discontinuation every 3-6 months</li>
-                <li>See antipsychotic table for additional information</li>
-
-
-              <p><b>Key:</b> ABC: antecedent, behavior, consequence. *Recommended atypical antipsychotics include <br></br>
-                risperidone, olanzapine, and aripiprazole according to the 4th Canadian Consensus Conference on <br></br>
-                the Diagnosis and Treatment of Dementia</p>
-
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-
-        <Accordion id="thirdAccordion">
-        <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-        <Typography><b>
-            ECT & Psychoactive Medications</b>
-          </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-          <div className="grid-container">
-            {Object.keys(data).map((id) => {
-              const dataObj = data[id];
-              const isDrugSelected = selectedDrugs.includes(dataObj);
-              return (
-                <div className="grid-item" key={id}>
-                  <button
-                    id='ect-button'
-                    onClick={() => handleDrugClick(dataObj)}
-                    className={`drug-button ${isDrugSelected ? 'active' : ''}`} 
-                  >
-                    {dataObj.Medication}
-                  </button>
-
-                  {isDrugSelected && (
-                  <div className="box">
-                    <div className="box-content">
-                      <strong>Recommended Action: </strong>
-                      <span>{dataObj[`Recommended Action`]}</span>
-                    </div>
-                    
-                    
-                  </div>
-                )}
-              </div>
-                
-              );
-            })}
-          </div>
-          <div className="keynote-meddiv">
-          <p className='keynote'><b>Key: </b>ChEIs:cholinesterase inhibitors; MAOIs: monoamine oxidase inhibitors; *If highly tolerant (and high doses), do not taper abruptly due to risk of prolonged seizure.</p>
-          </div>
-          </AccordionDetails>
-          </Accordion>
-          <Footer />
-        </div>
-      </>
-    );
-  }
-} 
 }
-
 
 /*import './NeuropsychiatricSymptoms.css';
 import * as React from 'react';

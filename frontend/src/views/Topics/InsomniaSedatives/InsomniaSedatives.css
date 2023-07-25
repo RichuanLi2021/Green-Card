@@ -1,129 +1,139 @@
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(200px, 1fr));
-    gap: 10px;
-  }
-  
-  .grid-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .drug-button {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .box {
-    margin-top: 10px;
-  }
-  
-  .drug-button {
-    width: 100%;
-    height: 70px;
-    padding: 1rem;
-    font-size: 1.2rem;
-    background-color: #e0e0e0;
-    border: none;
-    border-radius: 4px;
-    margin-bottom: 1rem;
-    cursor: pointer;
-    align-items: center;
-  }
-  
-  .drug-button.active {
-    background-color: #96d2b0;
-  }
-  
-  .box {
-    padding: 1rem;
-    background-color: #f0f0f0;
-    margin-top: 1rem;
-  }
-  
-  .box-content {
-    margin-bottom: 0.5rem;
-  }
-  
-  #navigation {
-    margin-bottom: 10px;
-  }
-  
-  #heading{
-    background-color:#96d2b0;
-    color:black;
-    width:25%;
-    text-align:center;
-    text-decoration:underline;
-    font-size:30pt;
-    margin-left:35%;
-  
+  display: grid;
+  grid-template-columns: repeat(5, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.drug-button {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.box {
+  margin-top: 10px;
+}
+
+.drug-button {
+  width: 100%;
+  height: 70px;
+  padding: 1rem;
+  font-size: 1.2rem;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  align-items: center;
+}
+
+.drug-button.active {
+  background-color: #96d2b0;
+}
+
+.box {
+  padding: 1rem;
+  background-color: #f0f0f0;
+  margin-top: 1rem;
+}
+
+.box-content {
+  margin-bottom: 0.5rem;
+}
+
+#navigation {
+  margin-bottom: 10px;
+}
+
+#heading {
+  background-color: #96d2b0;
+  color: black;
+  width: 25%;
+  text-align: center;
+  text-decoration: underline;
+  font-size: 30pt;
+  margin-left: 35%;
+}
+#footer {
+  background-color: #96d2b0;
+  color: black;
+  margin-top: 20px;
+}
+
+.subtitle {
+  font-size: 1.5rem !important;
+  font-family: "Work Sans", sans-serif !important;
+}
+
+.keynote-div {
+  background: #d7ece0;
+  border-radius: 2px;
+  display: inline-block;
+  height: 100%;
+  margin: 1rem;
+  width: 90%;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  font-family: "Work Sans", sans-serif;
+  font-size: 13px;
+  margin-bottom: 6.5rem;
+}
+.keynote {
+  padding: 10px;
+}
+
+/* Style for the container to enable horizontal scrolling */
+.table-container {
+  overflow-x: auto;
+}
+
+/* Sticky column styles */
+.sticky-col {
+  position: sticky;
+  left: 0;
+  background-color: white; /* Optional but ensures the column is not semi-transparent */
+  z-index: 2; /* Ensure the sticky column is above the others */
+}
+
+@media screen and (min-width: 200px) and (max-width: 1000px) {
+  #table td,
+  #table th {
+    font-size: 20px;
   }
   #footer {
-    background-color:#96d2b0;
-    color:black;
-    margin-top:20px;
+    font-size: 24px;
   }
 
-  .subtitle {
-    font-size: 1.5rem !important;
-    font-family: "Work Sans", sans-serif !important;
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(150px, 1fr));
+    gap: 10px;
   }
 
-  .keynote-div {
-    background: #d7ece0;
-    border-radius: 2px;
-    display: inline-block;
-    height: 100%;
-    margin: 1rem;
-    width: 90%;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    font-family: "Work Sans", sans-serif;
-    font-size: 13px;
-    margin-bottom: 6.5rem;
+  .box {
+    margin-top: 10px;
+    width: 215px;
   }
-    .keynote {
-      padding: 10px;
-    }
-  
-  @media  screen and (min-width:200px) and (max-width:1000px) {
-    #table td, #table th {
-        font-size: 20px;
-    }
-    #footer{
-        font-size:24px;
-    }
-  
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(150px, 1fr));
-      gap: 10px;
-    }
-  
-    .box {
-      margin-top: 10px;
-      width: 215px;
-    }
-    
-  }
-  
-  @media  screen and (max-width:700px) {
-    #heading{
-        width:75%;
-        margin-left:40px;
-    }
-  
-    .drug-button {
-      height:45px;
-      line-height: 10px;
-    }
-  
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 10px;
-    }
+}
+
+@media screen and (max-width: 700px) {
+  #heading {
+    width: 75%;
+    margin-left: 40px;
   }
 
-  
+  .drug-button {
+    height: 45px;
+    line-height: 10px;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+  }
+}

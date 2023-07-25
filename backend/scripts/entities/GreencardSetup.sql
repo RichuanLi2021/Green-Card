@@ -72,26 +72,26 @@ CREATE TABLE IF NOT EXISTS `green_card`.`COGNITIVE ENHANCERS GUIDE` (
   -- -----------------------------------------------------
 -- Table `green_card`.`LIST HEADERS`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `green_card`.`LIST HEADERS` ;
+-- Drop tables if they exist
+DROP TABLE IF EXISTS `green_card`.`COGNITIVE ENHANCERS CLINICAL GUIDE`;
+DROP TABLE IF EXISTS `green_card`.`LIST HEADERS`;
 
+-- Create `LIST HEADERS` table
 CREATE TABLE IF NOT EXISTS `green_card`.`LIST HEADERS` (
   `Id` VARCHAR(12) NOT NULL,
   `Name` VARCHAR(256) NOT NULL,
   PRIMARY KEY (`Id`)
-  );
-  
--- -----------------------------------------------------
--- Table `green_card`.`COGNITIVE ENHANCERS CLINICAL GUIDE`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `green_card`.`COGNITIVE ENHANCERS CLINICAL GUIDE` ;
--- list
+);
+
+-- Create `COGNITIVE ENHANCERS CLINICAL GUIDE` table
 CREATE TABLE IF NOT EXISTS `green_card`.`COGNITIVE ENHANCERS CLINICAL GUIDE` (
-  `Id` INT NOT NULL auto_increment,
+  `Id` INT NOT NULL AUTO_INCREMENT,
   `LIST_HEADERS_Id` VARCHAR(12) NOT NULL,
   `Description` VARCHAR(256) NOT NULL,
   PRIMARY KEY (`Id`),
-  FOREIGN KEY (LIST_HEADERS_Id) REFERENCES `LIST HEADERS`(Id)
-  );
+  FOREIGN KEY (`LIST_HEADERS_Id`) REFERENCES `green_card`.`LIST HEADERS`(`Id`)
+);
+
 
 
 -- -----------------------------------------------------

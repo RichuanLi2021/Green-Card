@@ -58,8 +58,6 @@
 //     }
 //   };
 
-
-
 //   const handleDrugClick = (dataObj) => {
 //     setSelectedDrugs((prevSelectedDrugs) => {
 //       const isSelected = prevSelectedDrugs.includes(dataObj);
@@ -84,15 +82,12 @@
 //               Psychotropic Monitoring
 //             </div>
 //             </Typography>
-    
-//             <div className="grid-container">
-             
-                   
 
-                 
+//             <div className="grid-container">
+
 //               {Object.keys(data).map((id) => {
 //                 const dataObj = data[id];
-                
+
 //                 return (
 //                   <div className="grid-item" key={id}>
 //                     {/* <button
@@ -109,12 +104,12 @@
 //                       <th> Antipsychotics </th>
 //                       <th>Lithium</th>
 //                       <th>Valproate</th>
-//                     </tr> 
+//                     </tr>
 //                     </thead>
 //                     <tbody>
 
 //                     {/* <tr>
-//                         <td> 
+//                         <td>
 //                           <input id="`Antipsychotics`"
 //                             name={dataObj.Name}
 //                             type='text'
@@ -123,42 +118,39 @@
 //                             defaultValue={dataObj[`Antipsychotics`]} />
 //                             </td>
 //                        </tr> */}
-                       
+
 //                     </tbody>
 //                     </table>
 //                     </div>
-                    
-                    
+
 //                       {/* <div className="box">
 
 //                         <div className="box-content">
-                      
+
 //                         </div>
 
 //                         <div className="box-content">
 //                           <strong>Lithium: </strong>
 //                           <input id="`Lithium`"
-//                           name={dataObj.Name} 
-//                           type='text' 
-//                           onFocus={store_value} 
-//                           onBlur={update_value} 
+//                           name={dataObj.Name}
+//                           type='text'
+//                           onFocus={store_value}
+//                           onBlur={update_value}
 //                           defaultValue={dataObj[`Lithium`]}  />
 //                         </div>
-    
+
 //                         <div className="box-content">
 //                           <strong>Valproate: </strong>
-//                           <input id="`Valproate`" 
-//                           name={dataObj.Name} 
-//                           type='text' 
-//                           onFocus={store_value} 
-//                           onBlur={update_value} 
+//                           <input id="`Valproate`"
+//                           name={dataObj.Name}
+//                           type='text'
+//                           onFocus={store_value}
+//                           onBlur={update_value}
 //                           defaultValue={dataObj[`Valproate`]} />
 //                         </div>
 
-                      
-
 //                     </div> */}
-                    
+
 //                   </div>
 //                 );
 //               })}
@@ -208,7 +200,7 @@
 //         </tbody>
 //       </table>
 //     </div> */}
-  
+
 //     {/* </thead>
 //                 </table>
 //               </div> */}
@@ -216,7 +208,7 @@
 //             <div className="psychotropic-footer">
 //               <p className='psychotropic-notes'>
 //               <b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark).  <br /> <br />
-//               <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be necessary based on clinical judgment  
+//               <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be necessary based on clinical judgment
 //               </p>
 //             </div>
 //           </div>
@@ -224,7 +216,7 @@
 //         </>
 //       );
 //     }
-    
+
 //     // Non-Editable Fields
 //     else {
 //       return (
@@ -261,16 +253,16 @@
 //                         <strong>Lithium: </strong>
 //                         <span>{dataObj[`Lithium`]}</span>
 //                       </div>
-                      
+
 //                       <div className="box-content">
 //                         <strong>Valproate: </strong>
 //                         <span>{dataObj[`Valproate`]}</span>
 //                       </div>
-                      
+
 //                     </div>
 //                   )}
 //                 </div>
-                  
+
 //                 );
 //               })}
 //             </div>
@@ -322,7 +314,7 @@
 //             <div className="psychotropic-footer">
 //               <p className='psychotropic-notes'>
 //               <b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark).  <br /> <br />
-//               <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be necessary based on clinical judgment  
+//               <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be necessary based on clinical judgment
 //               </p>
 //             </div>
 //           </div>
@@ -330,219 +322,159 @@
 //         </>
 //       );
 //     }
-//   } 
+//   }
 // }
 
+import "./PsychotropicMonitoringSection.css";
 
+import * as React from "react";
 
-import './PsychotropicMonitoringSection.css';
+import Typography from "@mui/material/Typography";
 
-import * as React from 'react';
+import axios from "axios";
 
-import Typography from '@mui/material/Typography';
-
-import axios from 'axios';
-
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from "react";
 
 import SearchBar from "../../searchBar/searchBar";
 
-import Table from '@mui/material/Table';
+import Table from "@mui/material/Table";
 
-import TableBody from '@mui/material/TableBody';
+import TableBody from "@mui/material/TableBody";
 
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 
-import TableContainer from '@mui/material/TableContainer';
+import TableContainer from "@mui/material/TableContainer";
 
-import TableHead from '@mui/material/TableHead';
+import TableHead from "@mui/material/TableHead";
 
-import TableRow from '@mui/material/TableRow';
+import TableRow from "@mui/material/TableRow";
 
-import Paper from '@mui/material/Paper';
+import Paper from "@mui/material/Paper";
 
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 
-import Navigation from '../../Navigation/navigation';
+import Navigation from "../../Navigation/navigation";
 
-import Footer from '../../Footer/Footer';
+import Footer from "../../Footer/Footer";
 
 import Data from "../../searchBar/Data.json";
 
-import Box from '@mui/material/Box';
-
- 
+import Box from "@mui/material/Box";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
-
   [`&.${tableCellClasses.head}`]: {
-
     backgroundColor: theme.palette.success.main,
 
-    color:theme.palette.common.white,
+    color: theme.palette.common.white,
 
-    fontWeight:'bold',
+    fontWeight: "bold",
 
-    fontStyle:'italic',
+    fontStyle: "italic",
 
-    textDecorationLine:'underline',
-
-
-
+    textDecorationLine: "underline",
   },
 
   [`&.${tableCellClasses.body}`]: {
-
     fontSize: 14,
-
-
   },
-
 }));
 
- 
-
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-
-  '&:nth-of-type(odd)': {
-
+  "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
-
   },
 
   // hide last border
 
-  '&:last-child td, &:last-child th': {
-
+  "&:last-child td, &:last-child th": {
     border: 0,
-
   },
-
 }));
 
- 
-
 export default function PsychotropicMonitoringSection() {
-
- 
-
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    axios
+      .get("http://localhost:8887/api/psychotropicmonitoringsection")
 
-    axios.get('http://localhost:8887/api/psychotropicmonitoringsection')
+      .then((response) => {
+        setData(response.data);
 
-        .then(response => {
+        console.log(response.data[0]);
+      })
 
-          setData(response.data)
-
-          console.log(response.data[0]);
-
-        })
-
-        .catch(error => {
-
-          console.log(error);
-
-        });
-
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
- 
+  if (data.length > 0) {
+    return (
+      <>
+        <Navigation />
 
-  if(data.length > 0)
+        <SearchBar placeholder="Search" data={Data} />
 
-  {
+        <div id="Psychotropic">
+          <Box
+            sx={{
+              marginTop: 3,
 
-  return (
+              display: "flex",
 
-    <>
+              flexDirection: "column",
 
-      <Navigation />
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="h3" id="topicHeader">
+              Psychotropic Monitoring
+            </Typography>
+          </Box>
 
-      <SearchBar placeholder="Search" data={Data} />
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 700 }} aria-label="customized table" id="psychotropicMonitoringTable">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Name</StyledTableCell>
 
-    <div id="Psychotropic">
+                  <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Antipsychotics</StyledTableCell>
 
-    <Box
+                  <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Lithium</StyledTableCell>
 
-        sx={{
+                  <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Valproate</StyledTableCell>
+                </TableRow>
+              </TableHead>
 
-          marginTop: 3,
+              <TableBody>
+                {data.map((dataObj, index) => (
+                  <StyledTableRow key={index}>
+                    <StyledTableCell component="th" scope="row">
+                      {dataObj.Name}
+                    </StyledTableCell>
 
-          display: 'flex',
+                    <StyledTableCell>{dataObj[`Antipsychotics`]}</StyledTableCell>
 
-          flexDirection: 'column',
+                    <StyledTableCell>{dataObj[`Lithium`]}</StyledTableCell>
 
-          alignItems: 'center',
+                    <StyledTableCell>{dataObj[`Valproate`]}</StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <br></br>
 
-        }}
+          <p>
+            <b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark). <b>NOTES</b>:
+            these are meant to be minimum screening requirements, more frequent investigation may be necessary based on
+            clinical judgment{" "}
+          </p>
+        </div>
 
-      >
-
-        <Typography variant="h3" id="topicHeader">Psychotropic Monitoring</Typography>
-
-      </Box>
-
-        <TableContainer component={Paper} >
-
-          <Table sx={{ minWidth: 700 }} aria-label="customized table" id="psychotropicMonitoringTable" >
-
-            <TableHead >
-
-              <TableRow >
-
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Name</StyledTableCell>
-
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Antipsychotics</StyledTableCell>
-
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Lithium</StyledTableCell>
-
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Valproate</StyledTableCell>
-
-              </TableRow>
-
-            </TableHead>
-
-            <TableBody>
-
-              {data.map((dataObj, index) => (
-
-                <StyledTableRow key={index} >
-
-                  <StyledTableCell component="th" scope="row">
-
-                    {dataObj.Name}
-
-                  </StyledTableCell>
-
-                  <StyledTableCell >{dataObj[`Antipsychotics`]}</StyledTableCell>
-
-                  <StyledTableCell >{dataObj[`Lithium`]}</StyledTableCell>
-
-                  <StyledTableCell >{dataObj[`Valproate`]}</StyledTableCell>
-
-                </StyledTableRow>
-
-              ))}
-
-            </TableBody>
-
-          </Table>
-
-        </TableContainer><br></br>
-
-      <p><b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark).  <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be necessary based on clinical judgment  </p>
-
-    </div>
-
-    <Footer />
-
-    </>
-
-  );
-
+        <Footer />
+      </>
+    );
+  }
 }
-
-};
-
