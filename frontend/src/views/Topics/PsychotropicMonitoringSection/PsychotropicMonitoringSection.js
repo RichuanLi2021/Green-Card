@@ -671,26 +671,11 @@ delete
 
                   </StyledTableCell>
 
-                  <StyledTableCell ><input id="`Antipsychotics`"
-                             name={dataObj.Name}
-                             type='text'
-                             onFocus={store_value}
-                             onBlur={update_value}
-                             defaultValue={dataObj[`Antipsychotics`]} /></StyledTableCell>
+                  <StyledTableCell >{dataObj[`Antipsychotics`]} </StyledTableCell>
 
-                  <StyledTableCell ><input id="`Lithium`"
-                          name={dataObj.Name} 
-                          type='text' 
-                          onFocus={store_value} 
-                          onBlur={update_value} 
-                          defaultValue={dataObj[`Lithium`]}  /></StyledTableCell>
+                  <StyledTableCell >{dataObj[`Lithium`]}  </StyledTableCell>
 
-                  <StyledTableCell ><input id="`Valproate`" 
-                          name={dataObj.Name} 
-                          type='text' 
-                          onFocus={store_value} 
-                          onBlur={update_value} 
-                          defaultValue={dataObj[`Valproate`]} /></StyledTableCell>
+                  <StyledTableCell >{dataObj[`Valproate`]} </StyledTableCell>
 
                 </StyledTableRow>
 
