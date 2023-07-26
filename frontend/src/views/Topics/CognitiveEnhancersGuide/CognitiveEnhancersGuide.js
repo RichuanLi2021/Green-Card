@@ -193,26 +193,193 @@ export default function CognitiveEnhancersGuide() {
             Cognitive Enhancers Guide
           </div>
           </Typography>
-
+          
+          
+          <div style={{ overflowX: 'auto' }}>
+          <table className="drug-table">
+            <thead>
+              <tr>
+                <th>Drug Name</th>
+                <th>Action</th>
+                <th>Half-life</th>
+                <th>Dose (initial/monthly increment/maint)</th>
+                <th>Frequency</th>
+                <th>mg/Form supplied</th>
+                <th>With Food</th>
+                <th>MCI</th>
+                <th>Mild-mod Alz</th>
+                <th>Severe Alz</th>
+                <th>Mixed (Alz+vas)</th>
+                <th>Vascular</th>
+                <th>LBD</th>
+                <th>FTD</th>
+                <th>PD</th>
+                <th>DSD</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.keys(data).map((id) => {
+                const dataObj = data[id];
+                return (
+                  <tr key={id}>
+                    <td>{dataObj.Name}</td>
+                    <td>
+                      <input
+                        name={dataObj.Name}
+                        type="text"
+                        onFocus={store_value}
+                        onBlur={update_value}
+                        defaultValue={dataObj['Action']}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        name={dataObj.Name}
+                        type="text"
+                        onFocus={store_value}
+                        onBlur={update_value}
+                        defaultValue={dataObj['Half-life']}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        name={dataObj.Name}
+                        type="text"
+                        onFocus={store_value}
+                        onBlur={update_value}
+                        defaultValue={dataObj['Dose (initial/monthly increment/maint)']}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        name={dataObj.Name}
+                        type="text"
+                        onFocus={store_value}
+                        onBlur={update_value}
+                        defaultValue={dataObj['Frequency']}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        name={dataObj.Name}
+                        type="text"
+                        onFocus={store_value}
+                        onBlur={update_value}
+                        defaultValue={dataObj['mg/form supplied']}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        name={dataObj.Name}
+                        type="text"
+                        onFocus={store_value}
+                        onBlur={update_value}
+                        defaultValue={dataObj['With food?']}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        name={dataObj.Name}
+                        type="text"
+                        onFocus={store_value}
+                        onBlur={update_value}
+                        defaultValue={dataObj['MCI']}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        name={dataObj.Name}
+                        type="text"
+                        onFocus={store_value}
+                        onBlur={update_value}
+                        defaultValue={dataObj['mild-mod Alz']}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        name={dataObj.Name}
+                        type="text"
+                        onFocus={store_value}
+                        onBlur={update_value}
+                        defaultValue={dataObj['Severe Alz']}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        name={dataObj.Name}
+                        type="text"
+                        onFocus={store_value}
+                        onBlur={update_value}
+                        defaultValue={dataObj['Mixed (Alz+vas)']}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        name={dataObj.Name}
+                        type="text"
+                        onFocus={store_value}
+                        onBlur={update_value}
+                        defaultValue={dataObj['Vascular']}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        name={dataObj.Name}
+                        type="text"
+                        onFocus={store_value}
+                        onBlur={update_value}
+                        defaultValue={dataObj['LBD']}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        name={dataObj.Name}
+                        type="text"
+                        onFocus={store_value}
+                        onBlur={update_value}
+                        defaultValue={dataObj['FTD']}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        name={dataObj.Name}
+                        type="text"
+                        onFocus={store_value}
+                        onBlur={update_value}
+                        defaultValue={dataObj['PD']}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        name={dataObj.Name}
+                        type="text"
+                        onFocus={store_value}
+                        onBlur={update_value}
+                        defaultValue={dataObj['DSD']}
+                      />
+                    </td>
+                    <td>
+                      <button
+                        onClick={e => handleDelete(dataObj.Name)}
+                      >
+                        <span className="material-symbols-outlined">delete</span>
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+          
           <div className="grid-container">
             {Object.keys(data).map((id) => {
               const dataObj = data[id];
               const isDrugSelected = selectedDrugs.includes(dataObj);
               return (
                 <div className="grid-item" key={id}>
-                  <button
-                    onClick={() => handleDrugClick(dataObj)}
-                    className={`drug-button ${isDrugSelected ? 'active' : ''}`}
-                  >
-                    {dataObj.Name}
-
-                    <button 
-                    style={{background:'none',border:'none',cursor:'pointer'}} 
-                    onClick={e => handleDelete(dataObj.Name)} > 
-                    <span class="material-symbols-outlined">delete</span>
-                    </button>
-
-                  </button>
+                  
 
                   {isDrugSelected && (
                     <div>
@@ -229,29 +396,9 @@ export default function CognitiveEnhancersGuide() {
                                   defaultValue={dataObj[`Action`]}
                                 />
                     </div>
-                    <div className="box-content">
-                      <strong>Half-life: </strong>
-                      <input
-                                  id="`Half-life`"
-                                  name={dataObj.Name}
-                                  type="text"
-                                  onFocus={store_value}
-                                  onBlur={update_value}
-                                  defaultValue={dataObj[`Half-life`]}
-                                />
-                    </div>
                     
-                    <div className="box-content">
-                      <strong>Dose "initial/monthly increment/maint": </strong>
-                      <input
-                                  id="`Dose`"
-                                  name={dataObj.Name}
-                                  type="text"
-                                  onFocus={store_value}
-                                  onBlur={update_value}
-                                  defaultValue={dataObj[`Dose (initial/monthly increment/maint)`]}
-                                />
-                    </div>
+                    
+                    
                     <div className="box-content" style={{ width: 230 }}>
                       <strong>Frequency: </strong>
                       <input
@@ -276,17 +423,120 @@ export default function CognitiveEnhancersGuide() {
                     </div>
 
                     <div className="box-content">
-                      <strong>With food: </strong>
+  <strong>With food: </strong>
+  <input
+    id="With food"
+    name={dataObj.Name}
+    type="text"
+    onFocus={store_value}
+    onBlur={update_value}
+    defaultValue={dataObj['With food']}
+  />
+</div>
+
+
+                    
+                    <div className="box-content">
+                      <strong>MCI: </strong>
                       <input
-                                  id="`With food`"
+                                  id="`MCI`"
                                   name={dataObj.Name}
                                   type="text"
                                   onFocus={store_value}
                                   onBlur={update_value}
-                                  defaultValue={dataObj[`With food`]}
+                                  defaultValue={dataObj[`MCI`]}
+                                />
+                    </div>
+                    <div className="box-content">
+                      <strong>Mild-mod Alz: </strong>
+                      <input
+                                  id="`Mild-mod Alz`"
+                                  name={dataObj.Name}
+                                  type="text"
+                                  onFocus={store_value}
+                                  onBlur={update_value}
+                                  defaultValue={dataObj[`mild-mod Alz`]}
                                 />
                     </div>
                     
+                    <div className="box-content">
+                      <strong>Severe Alz: </strong>
+                      <input
+                                  id="`Severe Alz`"
+                                  name={dataObj.Name}
+                                  type="text"
+                                  onFocus={store_value}
+                                  onBlur={update_value}
+                                  defaultValue={dataObj[`Severe Alz`]}
+                                />
+                    </div>
+                    <div className="box-content" style={{ width: 230 }}>
+                      <strong>Mixed (Alz+vas: )</strong>
+                      <input
+                                  id="`Mixed (Alz+vas)`"
+                                  name={dataObj.Name}
+                                  type="text"
+                                  onFocus={store_value}
+                                  onBlur={update_value}
+                                  defaultValue={dataObj[`Mixed (Alz+vas)`]}
+                                />
+                    </div>
+                    <div className="box-content">
+                      <strong>Vascular: </strong>
+                      <input
+                                  id="`Vascular`"
+                                  name={dataObj.Name}
+                                  type="text"
+                                  onFocus={store_value}
+                                  onBlur={update_value}
+                                  defaultValue={dataObj[`Vascular`]}
+                                />
+                    </div>
+
+                    <div className="box-content">
+                      <strong>LBD: </strong>
+                      <input
+                                  id="`LBD`"
+                                  name={dataObj.Name}
+                                  type="text"
+                                  onFocus={store_value}
+                                  onBlur={update_value}
+                                  defaultValue={dataObj[`LBD`]}
+                                />
+                    </div>
+                    <div className="box-content">
+                      <strong>FTD: </strong>
+                      <input
+                                  id="`FTD`"
+                                  name={dataObj.Name}
+                                  type="text"
+                                  onFocus={store_value}
+                                  onBlur={update_value}
+                                  defaultValue={dataObj[`FTD`]}
+                                />
+                    </div>
+                    <div className="box-content">
+                      <strong>PD: </strong>
+                      <input
+                                  id="`PD`"
+                                  name={dataObj.Name}
+                                  type="text"
+                                  onFocus={store_value}
+                                  onBlur={update_value}
+                                  defaultValue={dataObj[`PD`]}
+                                />
+                    </div>
+                    <div className="box-content">
+                      <strong>DSD: </strong>
+                      <input
+                                  id="`DSD`"
+                                  name={dataObj.Name}
+                                  type="text"
+                                  onFocus={store_value}
+                                  onBlur={update_value}
+                                  defaultValue={dataObj[`DSD`]}
+                                />
+                    </div>
 
                     
                     
@@ -369,7 +619,7 @@ export default function CognitiveEnhancersGuide() {
 
             <Box >
             <TextField
-              label="Dose (initial/monthly increment/maint) :"
+              label="Dose (initial/monthly increment/maint):"
               variant="filled"
               value={dose}
               onChange={handleDose}
@@ -398,7 +648,7 @@ export default function CognitiveEnhancersGuide() {
             </Box>
             <Box >
             <TextField
-              label="With Food:"
+              label="With Food?:"
               variant="filled"
               value={withFood}
               onChange={handlewithFood}
@@ -571,10 +821,49 @@ export default function CognitiveEnhancersGuide() {
                       <span>{dataObj['Frequency']}</span>
                     </div>
                     <div className="box-content">
+                      <strong>Dose (initial/monthly increment/maint): </strong>
+                      <span>{dataObj['Dose (initial/monthly increment/maint):']}</span>
+                    </div>
+                    <div className="box-content">
                       <strong>mg/Form supplied: </strong>
                       <span>{dataObj['mg/form supplied']}</span>
                     </div>
-                    
+                    <div className="box-content">
+                      <strong>With Food?: </strong>
+                      <span>{dataObj['With Food?']}</span>
+                    </div>
+                    <div className="box-content">
+                      <strong>MCI: </strong>
+                      <span>{dataObj['MCI']}</span>
+                    </div>
+                    <div className="box-content">
+                      <strong>Mild-mod Alz: </strong>
+                      <span>{dataObj['Mild-mod Alz']}</span>
+                    </div>
+                    <div className="box-content">
+                      <strong>Severe Alz: </strong>
+                      <span>{dataObj['Severe Alz']}</span>
+                    </div>
+                    <div className="box-content">
+                      <strong>Mixed (Alz+vas): </strong>
+                      <span>{dataObj['Mixed (Alz+vas)']}</span>
+                    </div>
+                    <div className="box-content">
+                      <strong>Vascular: </strong>
+                      <span>{dataObj['Vascular']}</span>
+                    </div>
+                    <div className="box-content">
+                      <strong>LBD: </strong>
+                      <span>{dataObj['LBD']}</span>
+                    </div>
+                    <div className="box-content">
+                      <strong>FTD: </strong>
+                      <span>{dataObj['FTD']}</span>
+                    </div>
+                    <div className="box-content">
+                      <strong>PD: </strong>
+                      <span>{dataObj['PD']}</span>
+                    </div>
                   </div>
                 )}
               </div>

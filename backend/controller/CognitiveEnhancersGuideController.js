@@ -31,11 +31,16 @@ const drugData = async (req, res, next) => {
   
   try {
     await pool.query(
-      "INSERT INTO `green_card`.`COGNITIVE ENHANCERS GUIDE` (`Name`, `Action`, `Half-life`, `Dose (initial/monthly increment/maint)`, `Frequency`, `mg/form supplied`, `With food`, `MCI`, `Mild-mod Alz`, `Severe Alz`, `Mixed (Alz+vas)`, `Vascular`, `LBD`, `FTD`, `PD`, `DSD`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      `INSERT INTO \`green_card\`.\`COGNITIVE ENHANCERS GUIDE\` 
+      (\`Name\`, \`Action\`, \`Half-life\`, \`Dose (initial/monthly increment/maint)\`, \`Frequency\`, 
+      \`mg/form supplied\`, \`With food??n??\`, \`MCI\`, \`Mild-mod Alz\`, \`Severe Alz\`, 
+      \`Mixed (Alz+vas)\`, \`Vascular\`, \`LBD\`, \`FTD\`, \`PD\`, \`DSD\`) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         drugName, action, halfLife, dose, frequency, mgFormsupplied, withFood, mci, mildModeAlz, severeAlz, mixed, vascular, lbd, ftd, pd, dsd
       ]
     );
+    
     
     res.send('Drug was submitted successfully');
   } catch (err) {
@@ -43,6 +48,11 @@ const drugData = async (req, res, next) => {
     throw err;
   }
 };
+
+
+
+
+
 
 const drugDelete = async (req, res, next) => {
   const  Name  = req.params.Name;

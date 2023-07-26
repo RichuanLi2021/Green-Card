@@ -15,30 +15,7 @@ import Footer from '../../Footer/Footer';
 import { Box } from '@mui/system';
 import Data from "../../searchBar/Data.json";
 import SearchBar from "../../searchBar/searchBar";
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.success.main,
-    color:theme.palette.common.white,
-    fontWeight:'bold',
-    textDecorationLine:'underline',
-    
-  
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-    
-  },
-}));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
 
 export default function NPSManagement() {
     

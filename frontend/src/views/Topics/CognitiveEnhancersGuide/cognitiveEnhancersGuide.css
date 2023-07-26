@@ -1,3 +1,4 @@
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(5, minmax(200px, 1fr));
@@ -41,9 +42,10 @@
     background-color: #f0f0f0;
     margin-top: 1rem;
   }
-  
+
   .box-content {
     margin-bottom: 0.5rem;
+    
   }
   
   #navigation {
@@ -85,10 +87,14 @@
     .cognitive-notes {
       padding: 10px;
     }
+    .drug-table{
+      position: sticky;
+    }
   
   @media  screen and (min-width:200px) and (max-width:1000px) {
     #table td, #table th {
         font-size: 20px;
+        
     }
     #footer{
         font-size:24px;
@@ -107,6 +113,13 @@
     
   }
   
+  
+  .drug-table th {
+    position: sticky;
+    
+  }
+  
+  
   @media  screen and (max-width:700px) {
     #heading{
         width:75%;
@@ -123,6 +136,8 @@
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 10px;
     }
+
+    
   }
 
   
