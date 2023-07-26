@@ -136,6 +136,10 @@ export default function AntidepressantsClinical() {
     if (admin) {
       return (
         <>
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+          />
           <Navigation />
           <Search onSearch={handleSearch}></Search>
           <div style={{ marginTop: "2rem", padding: "0 1rem" }}>
@@ -144,7 +148,7 @@ export default function AntidepressantsClinical() {
             </Typography>
 
             <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 700 }} aria-label="customized table" id="antidepressantClinicalTable">
+              <Table  aria-label="customized table" id="cognitiveClinicalTable">
                 <TableHead>
                   <TableRow>
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Contraindications</StyledTableCell>
@@ -155,7 +159,7 @@ export default function AntidepressantsClinical() {
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Baseline</StyledTableCell>
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Monitoring</StyledTableCell>
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>How & When</StyledTableCell>
-                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Actions</StyledTableCell>{" "}
+                    {/* <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Actions</StyledTableCell>{" "} */}
                     {/* New column for admin actions */}
                   </TableRow>
                 </TableHead>
@@ -180,6 +184,12 @@ export default function AntidepressantsClinical() {
                             name="COG_CONTRA"
                             data-id={index}
                           />
+                          <button
+                        style={{ background: "none", border: "none", cursor: "pointer" }}
+                        onClick={(e) => handleDelete(data.COG_CONTRA[index])}
+                      >
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
                         </StyledTableCell>
                         <StyledTableCell>
                           <input
@@ -189,6 +199,12 @@ export default function AntidepressantsClinical() {
                             name="COG_ACHEI"
                             data-id={index}
                           />
+                          <button
+                        style={{ background: "none", border: "none", cursor: "pointer" }}
+                        onClick={(e) => handleDelete(data.COG_ACHEI[index])}
+                      >
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
                         </StyledTableCell>
                         <StyledTableCell>
                           <input
@@ -198,6 +214,12 @@ export default function AntidepressantsClinical() {
                             name="COG_ACHEI_ME"
                             data-id={index}
                           />
+                          <button
+                        style={{ background: "none", border: "none", cursor: "pointer" }}
+                        onClick={(e) => handleDelete(data.COG_ACHEI_ME[index])}
+                      >
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
                         </StyledTableCell>
                         <StyledTableCell>
                           <input
@@ -207,6 +229,12 @@ export default function AntidepressantsClinical() {
                             name="COG_BASELINE"
                             data-id={index}
                           />
+                          <button
+                        style={{ background: "none", border: "none", cursor: "pointer" }}
+                        onClick={(e) => handleDelete(data.COG_BASELINE[index])}
+                      >
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
                         </StyledTableCell>
                         <StyledTableCell>
                           <input
@@ -216,6 +244,12 @@ export default function AntidepressantsClinical() {
                             name="COG_MONITOR"
                             data-id={index}
                           />
+                          <button
+                        style={{ background: "none", border: "none", cursor: "pointer" }}
+                        onClick={(e) => handleDelete(data.COG_MONITOR[index])}
+                      >
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
                         </StyledTableCell>
                         <StyledTableCell>
                           <input
@@ -225,11 +259,17 @@ export default function AntidepressantsClinical() {
                             name="COG_HOW_WHEN"
                             data-id={index}
                           />
+                          <button
+                        style={{ background: "none", border: "none", cursor: "pointer" }}
+                        onClick={(e) => handleDelete(data.COG_HOW_WHEN[index])}
+                      >
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
                         </StyledTableCell>
-                        <StyledTableCell>
-                          <button onClick={() => handleDelete(data.COG_CONTRA[index] || "")}>Delete</button>
+                        {/* <StyledTableCell>
+                          <button onClick={() => handleDelete(data.COG_CONTRA[index] || "")}>Delete</button> */}
                           {/* Modified to delete by index */}
-                        </StyledTableCell>
+                        {/* </StyledTableCell> */}
                       </StyledTableRow>
                     ))}
                 </TableBody>
