@@ -79,7 +79,7 @@ export default function NeuropsychiatricSymptoms() {
             alignItems: 'center',
           }}
         >
-            <Typography variant="h3" id="topicHeader"> ECT & Psychoactive Meds</Typography>
+            <Typography variant="h3" id="topicHeader" > ECT & Psychoactive Meds</Typography>
         </Box>
         
         <Accordion id="FirstAccordion">
@@ -88,7 +88,7 @@ export default function NeuropsychiatricSymptoms() {
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography><b>ECT & PSYCHOACTIVE MEDICATIONS</b></Typography>
+            <Typography ><b>ECT & PSYCHOACTIVE MEDICATIONS</b></Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
