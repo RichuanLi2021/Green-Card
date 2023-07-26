@@ -11,7 +11,11 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Footer from "../../Footer/Footer";
-import { Table, TableBody, TableCell, TableHead, TableRow } from "@material-ui/core";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableHead from "@mui/material/TableHead";
+import TableCell from "@mui/material/TableCell";
+import TableRow from "@mui/material/TableRow";
 import Search from "../../Search/Search";
 import { useNavigate } from "react-router-dom";
 
