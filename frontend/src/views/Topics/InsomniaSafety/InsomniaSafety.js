@@ -104,10 +104,10 @@ export default function InsomniaSafety() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log({ header, concern });
-    submitDrug(header, concern)
+    submitDrug(concern)
       .then((data) => {
         window.alert("Drug was added Successfully!");
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);
@@ -182,8 +182,7 @@ export default function InsomniaSafety() {
                     );
                   })}
                 </Table>
-              </TableContainer>
-              <div className="box-content">
+                <div className="box-content">
                 <div className="form-header">
                   <Box display="flex" justifyContent="space-between" alignItems="center">
                     <Typography id="topicHeader">Add a new Safety Concern</Typography>
@@ -191,23 +190,6 @@ export default function InsomniaSafety() {
                 </div>
 
                 <form onSubmit={handleSubmit}>
-                  <Box>
-                    {/* <TextField
-              label="LIST_HEADER"
-              variant="filled"
-              value={header}
-              onChange={handleHeader}
-              placeholder="SHYPCLIN_SAF"
-              
-              disabled
-              required
-            />    */}
-
-                    <select value={header} onChange={handleHeader} name="languages" id="lang">
-                      <option value="SHYPCLIN_SAF">SHYPCLIN_SAF</option>
-                      <option value="SHYPCLIN_SAF">SHYPCLIN_SAF</option>
-                    </select>
-                  </Box>
                   <Box>
                     <TextField
                       label="Safety Concern"
@@ -224,6 +206,8 @@ export default function InsomniaSafety() {
                   </Box>
                 </form>
               </div>
+              </TableContainer>
+              
               <div className="keynote-div">
                 <p className="keynote">
                   <b>Key notes:</b> SHYPCLIN_SAF means safety concerns{" "}
