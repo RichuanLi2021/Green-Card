@@ -393,7 +393,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function PsychotropicMonitoringSection() {
   const [data, setData] = useState([]);
-
+  const admin = localStorage.getItem("admin");
+  
   useEffect(() => {
     axios
       .get("http://localhost:8887/api/psychotropicmonitoringsection")
@@ -410,71 +411,142 @@ export default function PsychotropicMonitoringSection() {
   }, []);
 
   if (data.length > 0) {
-    return (
-      <>
-        <Navigation />
-
-        <SearchBar placeholder="Search" data={Data} />
-
-        <div id="Psychotropic">
-          <Box
-            sx={{
-              marginTop: 3,
-
-              display: "flex",
-
-              flexDirection: "column",
-
-              alignItems: "center",
-            }}
-          >
-            <Typography variant="h3" id="topicHeader">
-              Psychotropic Monitoring
-            </Typography>
-          </Box>
-
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table" id="psychotropicMonitoringTable">
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Name</StyledTableCell>
-
-                  <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Antipsychotics</StyledTableCell>
-
-                  <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Lithium</StyledTableCell>
-
-                  <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Valproate</StyledTableCell>
-                </TableRow>
-              </TableHead>
-
-              <TableBody>
-                {data.map((dataObj, index) => (
-                  <StyledTableRow key={index}>
-                    <StyledTableCell component="th" scope="row">
-                      {dataObj.Name}
-                    </StyledTableCell>
-
-                    <StyledTableCell>{dataObj[`Antipsychotics`]}</StyledTableCell>
-
-                    <StyledTableCell>{dataObj[`Lithium`]}</StyledTableCell>
-
-                    <StyledTableCell>{dataObj[`Valproate`]}</StyledTableCell>
-                  </StyledTableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <br></br>
-
-          <p>
-            <b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark). <b>NOTES</b>:
-            these are meant to be minimum screening requirements, more frequent investigation may be necessary based on
-            clinical judgment{" "}
-          </p>
-        </div>
-
-        <Footer />
-      </>
-    );
+    if (admin) {
+      return (
+        <>
+          <Navigation />
+  
+          <SearchBar placeholder="Search" data={Data} />
+  
+          <div id="Psychotropic">
+            <Box
+              sx={{
+                marginTop: 3,
+  
+                display: "flex",
+  
+                flexDirection: "column",
+  
+                alignItems: "center",
+              }}
+            >
+              <Typography variant="h3" id="topicHeader">
+                Psychotropic Monitoring
+              </Typography>
+            </Box>
+  
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 700 }} aria-label="customized table" id="psychotropicMonitoringTable">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Name</StyledTableCell>
+  
+                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Antipsychotics</StyledTableCell>
+  
+                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Lithium</StyledTableCell>
+  
+                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Valproate</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+  
+                <TableBody>
+                  {data.map((dataObj, index) => (
+                    <StyledTableRow key={index}>
+                      <StyledTableCell component="th" scope="row">
+                        {dataObj.Name}
+                      </StyledTableCell>
+  
+                      <StyledTableCell>{dataObj[`Antipsychotics`]}</StyledTableCell>
+  
+                      <StyledTableCell>{dataObj[`Lithium`]}</StyledTableCell>
+  
+                      <StyledTableCell>{dataObj[`Valproate`]}</StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <br></br>
+  
+            <p>
+              <b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark). <b>NOTES</b>:
+              these are meant to be minimum screening requirements, more frequent investigation may be necessary based on
+              clinical judgment{" "}
+            </p>
+          </div>
+  
+          <Footer />
+        </>
+      );
+    }
+    else {
+      return (
+        <>
+          <Navigation />
+  
+          <SearchBar placeholder="Search" data={Data} />
+  
+          <div id="Psychotropic">
+            <Box
+              sx={{
+                marginTop: 3,
+  
+                display: "flex",
+  
+                flexDirection: "column",
+  
+                alignItems: "center",
+              }}
+            >
+              <Typography variant="h3" id="topicHeader">
+                Psychotropic Monitoring
+              </Typography>
+            </Box>
+  
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 700 }} aria-label="customized table" id="psychotropicMonitoringTable">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Name</StyledTableCell>
+  
+                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Antipsychotics</StyledTableCell>
+  
+                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Lithium</StyledTableCell>
+  
+                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Valproate</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+  
+                <TableBody>
+                  {data.map((dataObj, index) => (
+                    <StyledTableRow key={index}>
+                      <StyledTableCell component="th" scope="row">
+                        {dataObj.Name}
+                      </StyledTableCell>
+  
+                      <StyledTableCell>{dataObj[`Antipsychotics`]}</StyledTableCell>
+  
+                      <StyledTableCell>{dataObj[`Lithium`]}</StyledTableCell>
+  
+                      <StyledTableCell>{dataObj[`Valproate`]}</StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <br></br>
+  
+            <p>
+              <b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark). <b>NOTES</b>:
+              these are meant to be minimum screening requirements, more frequent investigation may be necessary based on
+              clinical judgment{" "}
+            </p>
+          </div>
+  
+          <Footer />
+        </>
+      );
+    }
+    
   }
 }
