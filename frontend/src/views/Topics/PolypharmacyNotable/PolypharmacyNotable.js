@@ -269,7 +269,7 @@ export default function PolypharmacyCommon() {
               </Typography>
             </Box>
 
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} sx={{marginBottom:10}}>
               <Table aria-label="customized table" id="polypharmacyNotableTable">
                 <TableHead>
                   <TableRow>
@@ -285,12 +285,7 @@ export default function PolypharmacyCommon() {
                 </TableBody>
               </Table>
             </TableContainer>
-            <p>
-              <b>Key notes: NOTABLE_CHA means "NOTABLE CHANGES IN OLDER ADULTS THAT AFFECT PRESCRIBING"</b>{" "}
-            </p>
-            <br></br>
-            <br></br>
-            <br></br>
+             
           </div>
           <Footer />
         </>
