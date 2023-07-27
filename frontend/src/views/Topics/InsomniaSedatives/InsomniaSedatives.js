@@ -165,7 +165,7 @@ export default function InsomniaSedatives() {
             <Typography className="subtitle" gutterBottom>
               Sedatives/Hypnotics Guide
             </Typography>
-            <div className="grid-container">
+            <div className="grid-container" id="insomnia-sedatives-grid">
               {Object.keys(data).map((id) => {
                 const dataObj = data[id];
                 const isDrugSelected = selectedDrugs.includes(dataObj);
