@@ -52,15 +52,12 @@ export default function InsomniaSafety() {
 
   const [value, setValue] = useState("");
   const admin = localStorage.getItem("admin");
-  const [header, setHeader] = useState("");
   const [concern, setConcern] = useState("");
 
   const handleConcern = (event) => {
     setConcern(event.target.value);
   };
-  const handleHeader = (event) => {
-    setHeader(event.target.value);
-  };
+
   const update_value = (event) => {
     if (admin) {
       console.log(event.target.name, event.target.value, event.target.column);
