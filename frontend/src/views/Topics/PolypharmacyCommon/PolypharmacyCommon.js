@@ -77,7 +77,7 @@ export default function PolypharmacyCommon() {
   const admin = localStorage.getItem("admin");
 
   //add drug components shifted to this page itself
-  const [listHeader, setlistHeader] = useState("COM_DDI_PYS");
+  const listHeader = "COM_DDI_PYS";
   const [description, setDescription] = useState("");
 
   
@@ -270,8 +270,8 @@ export default function PolypharmacyCommon() {
               </Typography>
             </Box>
 
-            <TableContainer component={Paper}>
-              <Table aria-label="customized table" id="deliriumTable">
+            <TableContainer component={Paper} sx={{ marginBottom:10 }}>
+              <Table aria-label="customized table" id="deliriumTable" >
                 <TableHead>
                   <TableRow>
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Description</StyledTableCell>
@@ -286,9 +286,7 @@ export default function PolypharmacyCommon() {
                 </TableBody>
               </Table>
             </TableContainer>
-            <p>
-              <b>Key notes: COM_DDI_PYS means "COMMON DDIs WITH PSYCHOTROPICS"</b>{" "}
-            </p>
+            
           </div>
           <Footer />
         </>

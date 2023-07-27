@@ -75,12 +75,10 @@ export default function PolypharmacyCommon() {
   const [value, setValue] = useState("");
 
   const admin = localStorage.getItem("admin");
-  const [listHeader, setlistHeader] = useState("");
+  const listHeader ="NOTABLE_CHA" ;
   const [description, setDescription] = useState("");
 
-  const handleHeader = (event) => {
-    setlistHeader(event.target.value);
-  };
+ 
 
   const handleDescription = (event) => {
     setDescription(event.target.value);
@@ -177,18 +175,16 @@ export default function PolypharmacyCommon() {
               <Table aria-label="customized table" id="polypharmacyNotableTable">
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>List Header Id</StyledTableCell>
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Description</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {data.map((dataObj, index) => (
                     <StyledTableRow key={index}>
-                      <StyledTableCell component="th" scope="row">
-                        {dataObj.LIST_HEADERS_Id}
-                      </StyledTableCell>
+                      
                       <StyledTableCell align="left">
                         <input
+                          style={{ minWidth: "500px" }}
                           id="`Description`"
                           name={dataObj.Description}
                           type="text"
@@ -214,27 +210,12 @@ export default function PolypharmacyCommon() {
                     <Typography variant="h5" className="title">
                       Add New Information to the page
                     </Typography>
-                    <p>
-                      <b>Key notes: NOTABLE_CHA means "NOTABLE CHANGES IN OLDER ADULTS THAT AFFECT PRESCRIBING"</b>{" "}
-                    </p>
-                    <br></br>
-                    <br></br>
-                    <br></br>
+                    
                   </Box>
                 </div>
 
                 <form onSubmit={handleSubmit}>
-                  <Box>
-                    <TextField
-                      style={{ minWidth: "400px" }}
-                      label="List Header (must be from one of above headers): "
-                      variant="filled"
-                      value={listHeader}
-                      onChange={handleHeader}
-                      multiline
-                      required
-                    />
-                  </Box>
+                 
 
                   <Box>
                     <TextField
@@ -292,16 +273,12 @@ export default function PolypharmacyCommon() {
               <Table aria-label="customized table" id="polypharmacyNotableTable">
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>List Header Id</StyledTableCell>
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Description</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {data.map((dataObj, index) => (
                     <StyledTableRow key={index}>
-                      <StyledTableCell component="th" scope="row">
-                        {dataObj.LIST_HEADERS_Id}
-                      </StyledTableCell>
                       <StyledTableCell align="left">{dataObj[`Description`]} </StyledTableCell>
                     </StyledTableRow>
                   ))}
