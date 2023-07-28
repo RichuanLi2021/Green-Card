@@ -389,7 +389,7 @@ export default function CognitiveEnhancersGuide() {
           </table>
         </div>
           
-          <div className="grid-container">
+          <div className="grid-container" id="cognitiveEnhancers-grid">
             {Object.keys(data).map((id) => {
               const dataObj = data[id];
               const isDrugSelected = selectedDrugs.includes(dataObj);

@@ -150,7 +150,7 @@ export default function MoodStabilizers() {
               </div>
             </Typography>
     
-            <div className="grid-container">
+            <div className="grid-container" id="moodStab-grid">
               {Object.keys(data).map((id) => {
                 const dataObj = data[id];
                 const isDrugSelected = selectedDrugs.includes(dataObj);
@@ -372,7 +372,7 @@ delete
               </div>
             </Typography>
 
-            <div className="grid-container">
+            <div className="grid-container" id="moodStab-grid">
               {Object.keys(data).map((id) => {
                 const dataObj = data[id];
                 const isDrugSelected = selectedDrugs.includes(dataObj);
