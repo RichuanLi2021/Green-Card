@@ -1,30 +1,24 @@
-import * as React from "react";
-import Navigation from "../../Navigation/navigation";
-import axios from "axios";
-import { useState, useEffect } from "react";
-import Typography from "@mui/material/Typography";
-// import Data from "../../searchBar/Data.json";
-// import SearchBar from "../../searchBar/searchBar";
+import * as React from 'react';
+import Navigation from '../../Navigation/navigation';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import Typography from '@mui/material/Typography';
+import Data from "../../searchBar/Data.json";
+import SearchBar from "../../searchBar/searchBar";
 import AntidepressantGuideUpdate from "./AntidepressantGuidebackend.js";
-import "./AntidepressantsGuide.css";
-import Footer from "../../Footer/Footer";
-import { useNavigate } from "react-router-dom";
-import Search from "../../Search/Search";
+import './AntidepressantsGuide.css';
+import Footer from '../../Footer/Footer';
+
 
 export default function MoodStabilizers() {
   const [data, setData] = useState({});
-  const navigate = useNavigate();
   useEffect(() => {
     fetchData();
   }, []);
 
-  const handleSearch = (searchTerm) => {
-    navigate(`/search/${searchTerm}`);
-  };
-
   const fetchData = () => {
     axios
-      .get("http://localhost:8887/api/antidepressantguide")
+      .get('http://localhost:8887/api/antidepressantguide')
       .then((response) => {
         setData(response.data);
       })
@@ -34,9 +28,24 @@ export default function MoodStabilizers() {
   };
 
   const [selectedDrugs, setSelectedDrugs] = useState([]);
-  const [value, setValue] = useState("");
-  const admin = localStorage.getItem("admin");
+  const [value, setValue] = useState('');
+  const [formVisible, setFormVisible] = useState(false);
+  const admin = localStorage.getItem('admin');
 
+  
+  const [newDrug, setNewDrug] = useState({
+    Name: "",
+    Half_life: "",
+    Primary_NT: "",
+    Dose: "",
+    Frequency: "",
+    supplied: "",
+  });
+  
+  const handleInputChange = (e) => {
+    setNewDrug({ ...newDrug, [e.target.name]: e.target.value });
+  };
+  
   //used to store value when an input is selected by user
   const store_value = (event) => {
     setValue(event.target.value);
@@ -50,14 +59,7 @@ export default function MoodStabilizers() {
         event.preventDefault();
         AntidepressantGuideUpdate(event.target.name, event.target.id, event.target.value)
           .then((data) => {
-            alert(
-              "Updated Successfully Called! \nDrug:" +
-                event.target.name +
-                "\nColumn:" +
-                event.target.id +
-                "\nValue:" +
-                event.target.value
-            );
+            alert('Updated Successfully Called! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nValue:"+ event.target.value);
           })
           .catch((error) => {
             console.error(error);
@@ -70,6 +72,37 @@ export default function MoodStabilizers() {
       alert("You must be an administrator to edit");
     }
   };
+  
+    // addDrug function
+    const addDrug = (drugData) => {
+      if (admin) {
+        axios
+          .post("http://localhost:8887/api/AntidepressantGuide/add", drugData)
+          .then((response) => {
+            alert("Data successfully added! \nDrug:" + drugData.Name);
+            fetchData(); // Refresh the data after the new drug is added.
+          })
+          .catch((error) => {
+            console.error(error);
+            alert("Failed to add drug!");
+          });
+      } else {
+        alert("You must be an administrator to add a drug");
+      }
+    };
+
+    const handleDelete = async (Name) => {
+      if (window.confirm("Are you sure you want to delete this record?")) {
+        try {
+          console.log(Name);
+          await axios.delete("http://localhost:8887/api/AntidepressantGuide/delete/" + Name);
+          alert("Data deleted succesfully! \nDrug:" + Name);
+          window.location.reload();
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    };
 
   const handleDrugClick = (dataObj) => {
     setSelectedDrugs((prevSelectedDrugs) => {
@@ -81,20 +114,24 @@ export default function MoodStabilizers() {
       }
     });
   };
-
+  
   if (Object.keys(data).length > 0) {
+
     // Editable Fields
     if (admin) {
-      return (
+      return (  
         <>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+          />
           <Navigation />
-          <Search onSearch={handleSearch}></Search>
-          {/* <SearchBar placeholder="Search" data={Data} /> */}
-          <div style={{ marginTop: "2rem", padding: "0 1rem" }}>
-            <Typography className="page-heading" gutterBottom>
-              Antidepressant Guide
+          <SearchBar placeholder="Search" data={Data} />
+          <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
+            <Typography className='page-heading' gutterBottom>
+            Antidepressant Guide
             </Typography>
-
+    
             <div className="grid-container" id="antidepressant-grid">
               {Object.keys(data).map((id) => {
                 const dataObj = data[id];
@@ -102,109 +139,173 @@ export default function MoodStabilizers() {
                 return (
                   <div className="grid-item" key={id}>
                     <button
-                      id="drug-button-id"
                       onClick={() => handleDrugClick(dataObj)}
-                      className={`drug-button ${isDrugSelected ? "active" : ""}`}
+                      className={`drug-button ${isDrugSelected ? 'active' : ''}`}
                     >
                       {dataObj.Name}
+                      <button
+                        style={{ background: "none", border: "none", cursor: "pointer" }}
+                        onClick={(e) => handleDelete(dataObj.Name)}
+                      >
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
                     </button>
-
+    
                     {isDrugSelected && (
-                      <div className="box" id="box-id">
+                      <div className="box">
                         <div className="box-content">
-                          <strong>Half-life: </strong>
-                          <input
-                            id="`Half-life`"
-                            name={dataObj.Name}
-                            type="text"
-                            onFocus={store_value}
-                            onBlur={update_value}
-                            defaultValue={dataObj[`Half-life`]}
-                          />
+                        <strong>Half-life: </strong>
+                        <input
+                          id="`Half-life`"
+                          name={dataObj.Name}
+                          type="text"
+                          onFocus={store_value}
+                          onBlur={update_value}
+                          defaultValue={dataObj[`Half-life`]}
+                        />
                         </div>
                         <div className="box-content">
-                          <strong>Primary NT: </strong>
-                          <input
-                            id="`Primary NT`"
-                            name={dataObj.Name}
-                            type="text"
-                            onFocus={store_value}
-                            onBlur={update_value}
-                            defaultValue={dataObj[`Primary NT`]}
-                          />
+                        <strong>Primary NT: </strong>
+                        <input
+                          id="`Primary NT`"
+                          name={dataObj.Name}
+                          type="text"
+                          onFocus={store_value}
+                          onBlur={update_value}
+                          defaultValue={dataObj[`Primary NT`]}
+                        />
                         </div>
 
                         <div className="box-content">
                           <strong>Dose (mg/day) Initial | Maint. | Max: </strong>
-                          <input
-                            id="`Dose (mg/day) Initial | Maint. | Max.`"
-                            name={dataObj.Name}
-                            type="text"
-                            onFocus={store_value}
-                            onBlur={update_value}
-                            defaultValue={dataObj[`Dose (mg/day) Initial | Maint. | Max.`]}
-                          />
+                           <input
+                                id="`Dose (mg/day) Initial | Maint. | Max.`"
+                                name={dataObj.Name}
+                                type="text"
+                                onFocus={store_value}
+                                onBlur={update_value}
+                                defaultValue={dataObj[`Dose (mg/day) Initial | Maint. | Max.`]}
+                              />
                         </div>
-
+    
                         <div className="box-content">
                           <strong>Frequency: </strong>
-                          <input
-                            id="`Frequency`"
-                            name={dataObj.Name}
-                            type="text"
-                            onFocus={store_value}
-                            onBlur={update_value}
-                            defaultValue={dataObj[`Frequency`]}
-                          />
+                           <input
+                                id="`Frequency`"
+                                name={dataObj.Name}
+                                type="text"
+                                onFocus={store_value}
+                                onBlur={update_value}
+                                defaultValue={dataObj[`Frequency`]}
+                              />
                         </div>
-
+                        
                         <div className="box-content">
                           <strong>mg/Form Supplied: </strong>
-                          <input
-                            id="`mg/Form Supplied`"
-                            name={dataObj.Name}
-                            type="text"
-                            onFocus={store_value}
-                            onBlur={update_value}
-                            defaultValue={dataObj[`mg/Form Supplied`]}
-                          />
+                              <input
+                                id="`mg/Form Supplied`"
+                                name={dataObj.Name}
+                                type="text"
+                                onFocus={store_value}
+                                onBlur={update_value}
+                                defaultValue={dataObj[`mg/Form Supplied`]}
+                              />
                         </div>
-                      </div>
+                    </div>
                     )}
                   </div>
                 );
               })}
+              <div>
+                <button onClick={() => setFormVisible(!formVisible)} className="button-style">
+                  {formVisible ? "Cancel" : "Add Drug"}
+                </button>
+                {formVisible && (
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      addDrug(newDrug);
+                      setFormVisible(false);
+                    }}
+                    className="form-style"
+                  >
+                    <input
+                    type="text"
+                    name="Name"
+                    placeholder="Name"
+                    onChange={handleInputChange}
+                    className="input-style"
+                    />
+                    <input
+                    type="text"
+                    name="Half-life"
+                    placeholder="Half-life"
+                    onChange={handleInputChange}
+                    className="input-style"
+                    />
+                    <input
+                    type="text"
+                    name="Primary NT"
+                    placeholder="Primary NT"
+                    onChange={handleInputChange}
+                    className="input-style"
+                    />
+                    <input
+                    type="text"
+                    name="Dose (mg/day) Initial | Maint. | Max."
+                    placeholder="Dose (mg/day) Initial | Maint. | Max."
+                    onChange={handleInputChange}
+                    className="input-style"
+                    />
+                    <input
+                    type="text"
+                    name="Frequency"
+                    placeholder="Frequency"
+                    onChange={handleInputChange}
+                    className="input-style"
+                    />
+                    <input
+                    type="text"
+                    name="mg/Form Supplied"
+                    placeholder="mg/Form Supplied"
+                    onChange={handleInputChange}
+                    className="input-style"
+                    />
+                    <button type="submit" className="submit-button">
+                      Submit
+                    </button>
+                  </form>
+                  )}
+              </div>
             </div>
-            <div className="keynote-div">
-              <p className="keynote">
-                <b>Key:</b> 5HT: serotonin; DA: dopamine; NaSSA: noradrenaline serotonin specific antidepressant; NDRI:
-                noradrenaline dopamine reuptake inhibitor; NT: neurotransmitter; NA: noradrenaline; SARI: serotonin
-                antagonist & reuptake inhibitor; SSRI: selective serotonin reuptake inhibitor; TCA: tricyclic
-                antidepressant (2°&3°: secondary and tertiary amines); xl, sr & er: slow release; † therapeutic levels
-                available and useful; ^ accounts for half life of active metabolite; **preferred choice based on
-                existing evidence; ∅ less appropriate due to long half life; ♯ less appropriate due to anticholinergic
-                activity.
-                <b>NOTES:</b> doses may not reflect manufacturers' recommendations but are based on clinical literature
-                and expert opinion. Half lives are estimates based on adult data and in older adults they can often be
-                increased up to 170%.{" "}
-              </p>
+            
+            <div className='keynote-div'>
+              <p className='keynote'><b>Key:</b> 5HT: serotonin; DA: dopamine; NaSSA: noradrenaline serotonin specific antidepressant; NDRI:
+              noradrenaline dopamine reuptake inhibitor; NT: neurotransmitter; NA: noradrenaline; SARI: serotonin
+              antagonist & reuptake inhibitor; SSRI: selective serotonin reuptake inhibitor; TCA: tricyclic
+              antidepressant (2°&3°: secondary and tertiary amines); xl, sr & er: slow release; †
+              therapeutic levels
+              available and useful; ^ accounts for half life of active metabolite; **preferred choice based on existing
+              evidence; ∅ less appropriate due to long half life; ♯ less appropriate due to anticholinergic activity.
+              <b>NOTES:</b> doses may not reflect manufacturers' recommendations but are based on clinical literature
+              and expert opinion. Half lives are estimates based on adult data and in older adults they can often be
+              increased up to 170%. </p>
             </div>
           </div>
           <Footer />
         </>
       );
     }
-
+    
     // Non-Editable Fields
     else {
       return (
         <>
           <Navigation />
-          <Search onSearch={handleSearch}></Search>
-          {/* <SearchBar placeholder="Search" data={Data} /> */}
-          <div style={{ marginTop: "2rem", padding: "0 1rem" }}>
-            <Typography className="page-heading" gutterBottom>
-              Antidepressant Guide
+          <SearchBar placeholder="Search" data={Data} />
+          <div style={{ marginTop: '2rem', padding: '0 1rem' }}>
+            <Typography className='page-heading' gutterBottom>
+            Antidepressant Guide
             </Typography>
 
             <div className="grid-container" id="antidepressant-grid">
@@ -215,59 +316,59 @@ export default function MoodStabilizers() {
                   <div className="grid-item" key={id}>
                     <button
                       onClick={() => handleDrugClick(dataObj)}
-                      className={`drug-button ${isDrugSelected ? "active" : ""}`}
+                      className={`drug-button ${isDrugSelected ? 'active' : ''}`}
                     >
                       {dataObj.Name}
                     </button>
 
                     {isDrugSelected && (
-                      <div className="box">
-                        <div className="box-content">
-                          <strong>Half-life: </strong>
-                          <span>{dataObj[`Half-life`]}</span>
-                        </div>
-                        <div className="box-content">
-                          <strong>Primary NT: </strong>
-                          <span>{dataObj[`Primary NT`]}</span>
-                        </div>
-                        <div className="box-content">
-                          <strong>Dose (mg/day) Initial | Maint. | Max.: </strong>
-                          <span>{dataObj[`Dose (mg/day) Initial | Maint. | Max.`]}</span>
-                        </div>
-
-                        <div className="box-content">
-                          <strong>Frequency: </strong>
-                          <span>{dataObj[`Frequency`]}</span>
-                        </div>
-
-                        <div className="box-content">
-                          <strong>mg/Form Supplied: </strong>
-                          <span>{dataObj[`mg/Form Supplied`]}</span>
-                        </div>
+                    <div className="box">
+                      <div className="box-content">
+                        <strong>Half-life: </strong>
+                        <span>{dataObj[`Half-life`]}</span>
                       </div>
-                    )}
-                  </div>
+                      <div className="box-content">
+                        <strong>Primary NT: </strong>
+                        <span>{dataObj[`Primary NT`]}</span>
+                      </div>
+                      <div className="box-content">
+                        <strong>Dose (mg/day) Initial | Maint. | Max.: </strong>
+                        <span>{dataObj[`Dose (mg/day) Initial | Maint. | Max.`]}</span>
+                      </div>
+   
+                      <div className="box-content">
+                        <strong>Frequency: </strong>
+                        <span>{dataObj[`Frequency`]}</span>
+                      </div>
+
+                      <div className="box-content">
+                        <strong>mg/Form Supplied: </strong>
+                        <span>{dataObj[`mg/Form Supplied`]}</span>
+                      </div>
+                      
+                    </div>
+                  )}
+                </div>
+                  
                 );
               })}
             </div>
             <div className="keynote-div">
-              <p className="keynote">
-                <b>Key:</b> 5HT: serotonin; DA: dopamine; NaSSA: noradrenaline serotonin specific antidepressant; NDRI:
-                noradrenaline dopamine reuptake inhibitor; NT: neurotransmitter; NA: noradrenaline; SARI: serotonin
-                antagonist & reuptake inhibitor; SSRI: selective serotonin reuptake inhibitor; TCA: tricyclic
-                antidepressant (2°&3°: secondary and tertiary amines); xl, sr & er: slow release; † therapeutic levels
-                available and useful; ^ accounts for half life of active metabolite; **preferred choice based on
-                existing evidence; ∅ less appropriate due to long half life; ♯ less appropriate due to anticholinergic
-                activity.
-                <b> NOTES:</b> doses may not reflect manufacturers' recommendations but are based on clinical literature
-                and expert opinion. Half lives are estimates based on adult data and in older adults they can often be
-                increased up to 170%.{" "}
-              </p>
+              <p className='keynote'><b>Key:</b> 5HT: serotonin; DA: dopamine; NaSSA: noradrenaline serotonin specific antidepressant; NDRI:
+              noradrenaline dopamine reuptake inhibitor; NT: neurotransmitter; NA: noradrenaline; SARI: serotonin
+              antagonist & reuptake inhibitor; SSRI: selective serotonin reuptake inhibitor; TCA: tricyclic
+              antidepressant (2°&3°: secondary and tertiary amines); xl, sr & er: slow release; †
+              therapeutic levels
+              available and useful; ^ accounts for half life of active metabolite; **preferred choice based on existing
+              evidence; ∅ less appropriate due to long half life; ♯ less appropriate due to anticholinergic activity.
+              <b> NOTES:</b> doses may not reflect manufacturers' recommendations but are based on clinical literature
+              and expert opinion. Half lives are estimates based on adult data and in older adults they can often be
+              increased up to 170%. </p>
             </div>
           </div>
           <Footer />
         </>
       );
     }
-  }
+  } 
 }

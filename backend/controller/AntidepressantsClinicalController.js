@@ -18,8 +18,40 @@ const updateData = async (req, res, next) => {
       next(error);
       throw error;
    }
+};
+
+const addData = async (req, res, next) => {
+   try {
+      const { Description } = req.body;
+      await pool.query(
+         "INSERT INTO `green_card`.`ANTIDEPRESSANT CLINICAL GUIDE`(`LIST_HEADERS_Id`,`Description`) VALUES (?, ?)",
+         ["ANTID_INAD", Description]
+      );
+      res.send("Added Successfully!");
+   } catch (error) {
+      console.log(error);
+      next(error);
+      throw error;
+   }
+};
+ 
+const deleteData = async (req, res, next) => {
+try {
+   const { Description } = req.params;
+   await pool.query(`DELETE FROM \`green_card\`.\`ANTIDEPRESSANT CLINICAL GUIDE\` WHERE Description = ?`, [
+      Description,
+   ]);
+   res.send("Deleted Successfully!");
+} catch (error) {
+   console.log(error);
+   next(error);
+   throw error;
 }
+};
+
 module.exports = {
    getData,
-   updateData
+   updateData,
+   addData,
+   deleteData
 };
