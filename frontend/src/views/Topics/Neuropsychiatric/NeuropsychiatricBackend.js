@@ -7,7 +7,7 @@ export const NeuropsychiatricUpdate = async (name, column, value) => {
 
   try {
 
-    const response = await axios.post('http://localhost:8887/api/Delirium/update', {
+    const response = await axios.post('http://localhost:8887/api/Neuropsychiatric/update', {
 
      name,
 
@@ -32,10 +32,10 @@ export const NeuropsychiatricUpdate = async (name, column, value) => {
 };
 
 
-export const submitDrug = async (listHeader, description) => {
+export const submitDrug = async (medication, recommendedAction) => {
   try {
-    const response = await axios.post('http://localhost:8887/api/add/Delirium', {
-      listHeader, description
+    const response = await axios.post('http://localhost:8887/api/add/Neuropsychiatric', {
+      medication, recommendedAction
     });
     console.log(response.data); // log response from server
     return response.data;
