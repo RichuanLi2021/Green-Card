@@ -24,10 +24,10 @@ const updateData = async (req, res, next) => {
 }
 
 const drugData = async (req, res, next) => {
-  const { header,concern} = req.body;
+  const { concern} = req.body;
   try {
-      await pool.query('INSERT INTO `green_card`.`sedatives/hypnotic safety concerns` (`LIST_HEADERS_Id`,`Description`) VALUES (?, ?)',
-          [header, concern]);
+      await pool.query('INSERT INTO `green_card`.`sedatives/hypnotic safety concerns` (`Description`) VALUES (?)',
+          [concern]);
       res.send('Drug was submitted successfully');
   } catch (err) {
       next(err);

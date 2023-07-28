@@ -132,7 +132,7 @@ export default function MoodStabilizers() {
             Antidepressant Guide
             </Typography>
     
-            <div className="grid-container">
+            <div className="grid-container" id="antidepressant-grid">
               {Object.keys(data).map((id) => {
                 const dataObj = data[id];
                 const isDrugSelected = selectedDrugs.includes(dataObj);
@@ -308,7 +308,7 @@ export default function MoodStabilizers() {
             Antidepressant Guide
             </Typography>
 
-            <div className="grid-container">
+            <div className="grid-container" id="antidepressant-grid">
               {Object.keys(data).map((id) => {
                 const dataObj = data[id];
                 const isDrugSelected = selectedDrugs.includes(dataObj);
@@ -372,5 +372,3 @@ export default function MoodStabilizers() {
     }
   } 
 }
-
-
