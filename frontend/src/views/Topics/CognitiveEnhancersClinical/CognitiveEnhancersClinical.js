@@ -72,7 +72,6 @@ export default function AntidepressantsClinical() {
       });
   }, []);
 
-  // const [value, setValue] = useState("");
   const admin = localStorage.getItem("admin");
 
   // add drug components shifted to this page itself
@@ -87,9 +86,7 @@ export default function AntidepressantsClinical() {
     setDescription(event.target.value);
   };
 
-  // const store_value = (event) => {
-  //   setValue(event.target.value);
-  // };
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -136,6 +133,10 @@ export default function AntidepressantsClinical() {
     if (admin) {
       return (
         <>
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+          />
           <Navigation />
           <Search onSearch={handleSearch}></Search>
           <div style={{ marginTop: "2rem", padding: "0 1rem" }}>
@@ -144,7 +145,7 @@ export default function AntidepressantsClinical() {
             </Typography>
 
             <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 700 }} aria-label="customized table" id="antidepressantClinicalTable">
+              <Table  aria-label="customized table" id="cognitiveClinicalTable">
                 <TableHead>
                   <TableRow>
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Contraindications</StyledTableCell>
@@ -155,8 +156,6 @@ export default function AntidepressantsClinical() {
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Baseline</StyledTableCell>
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Monitoring</StyledTableCell>
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>How & When</StyledTableCell>
-                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Actions</StyledTableCell>{" "}
-                    {/* New column for admin actions */}
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -180,6 +179,12 @@ export default function AntidepressantsClinical() {
                             name="COG_CONTRA"
                             data-id={index}
                           />
+                          <button
+                        style={{ background: "none", border: "none", cursor: "pointer" }}
+                        onClick={(e) => handleDelete(data.COG_CONTRA[index])}
+                      >
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
                         </StyledTableCell>
                         <StyledTableCell>
                           <input
@@ -189,6 +194,12 @@ export default function AntidepressantsClinical() {
                             name="COG_ACHEI"
                             data-id={index}
                           />
+                          <button
+                        style={{ background: "none", border: "none", cursor: "pointer" }}
+                        onClick={(e) => handleDelete(data.COG_ACHEI[index])}
+                      >
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
                         </StyledTableCell>
                         <StyledTableCell>
                           <input
@@ -198,6 +209,12 @@ export default function AntidepressantsClinical() {
                             name="COG_ACHEI_ME"
                             data-id={index}
                           />
+                          <button
+                        style={{ background: "none", border: "none", cursor: "pointer" }}
+                        onClick={(e) => handleDelete(data.COG_ACHEI_ME[index])}
+                      >
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
                         </StyledTableCell>
                         <StyledTableCell>
                           <input
@@ -207,6 +224,12 @@ export default function AntidepressantsClinical() {
                             name="COG_BASELINE"
                             data-id={index}
                           />
+                          <button
+                        style={{ background: "none", border: "none", cursor: "pointer" }}
+                        onClick={(e) => handleDelete(data.COG_BASELINE[index])}
+                      >
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
                         </StyledTableCell>
                         <StyledTableCell>
                           <input
@@ -216,6 +239,12 @@ export default function AntidepressantsClinical() {
                             name="COG_MONITOR"
                             data-id={index}
                           />
+                          <button
+                        style={{ background: "none", border: "none", cursor: "pointer" }}
+                        onClick={(e) => handleDelete(data.COG_MONITOR[index])}
+                      >
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
                         </StyledTableCell>
                         <StyledTableCell>
                           <input
@@ -225,17 +254,19 @@ export default function AntidepressantsClinical() {
                             name="COG_HOW_WHEN"
                             data-id={index}
                           />
+                          <button
+                        style={{ background: "none", border: "none", cursor: "pointer" }}
+                        onClick={(e) => handleDelete(data.COG_HOW_WHEN[index])}
+                      >
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
                         </StyledTableCell>
-                        <StyledTableCell>
-                          <button onClick={() => handleDelete(data.COG_CONTRA[index] || "")}>Delete</button>
-                          {/* Modified to delete by index */}
-                        </StyledTableCell>
+                    
                       </StyledTableRow>
                     ))}
                 </TableBody>
               </Table>
-            </TableContainer>
-            <div className="box-content">
+              <div className="box-content" style={{marginBottom:10}}>
               <div className="form-header">
                 <Box display="flex" justifyContent="space-between" alignItems="center">
                   <Typography variant="h5" className="title">
@@ -245,7 +276,8 @@ export default function AntidepressantsClinical() {
               </div>
 
               <form onSubmit={handleSubmit}>
-                <Box>
+                {/* <Box>
+
                   <TextField
                     style={{ width: "400px" }}
                     label="List Header (must be from one of above headers): "
@@ -255,7 +287,18 @@ export default function AntidepressantsClinical() {
                     multiline
                     required
                   />
-                </Box>
+                </Box> */}
+                <Box>
+                    <select value={listHeader} onChange={handleHeader} >
+                      <option >SELECT AN OPTION</option>
+                      <option value='COG_CONTRA'>Contraindications</option>
+                      <option value='COG_ACHEI'>Adverse Effects (AChEI)</option>
+                      <option value='COG_ACHEI_ME'>Adverse Effects (Memantine)</option>
+                      <option value='COG_BASELINE'>Baseline</option>
+                      <option value='COG_MONITOR'>monitoring</option>
+                      <option value='COG_HOW_WHEN'>How and When</option>
+                    </select>
+                  </Box>
 
                 <Box>
                   <TextField
@@ -268,7 +311,7 @@ export default function AntidepressantsClinical() {
                     required
                   />
                 </Box>
-                <Box sx={{ display: "flex" }}>
+                <Box sx={{ display: "flex", marginBottom:10 }} >
                   <Button
                     style={{ width: "400px" }}
                     type="submit"
@@ -281,15 +324,10 @@ export default function AntidepressantsClinical() {
                 </Box>
               </form>
             </div>
-
-            <br></br>
+            
+            </TableContainer>
           </div>
-          <div className="cognitive-footer">
-            <p className="cognitive-notes">
-              <b>Key: </b>COG_CONTRA means "Contraindications", COG_ACHEI means "Adverse Effects (AChEI)", COG_ACHEI_ME
-              means "Adverse Effects (Memantine)", COG_BASELINE means "Baseline", COG_MONITOR means "monitoring"
-            </p>
-          </div>
+          
           <Footer />
         </>
       );

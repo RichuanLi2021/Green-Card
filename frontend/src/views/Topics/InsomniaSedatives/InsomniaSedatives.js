@@ -11,6 +11,12 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Footer from "../../Footer/Footer";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+
 import Search from "../../Search/Search";
 import { useNavigate } from "react-router-dom";
 
@@ -159,7 +165,7 @@ export default function InsomniaSedatives() {
             <Typography className="subtitle" gutterBottom>
               Sedatives/Hypnotics Guide
             </Typography>
-            <div className="grid-container">
+            <div className="grid-container" id="insomnia-sedatives-grid">
               {Object.keys(data).map((id) => {
                 const dataObj = data[id];
                 const isDrugSelected = selectedDrugs.includes(dataObj);
@@ -338,70 +344,44 @@ export default function InsomniaSedatives() {
     } else {
       return (
         <>
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
-          />
-
           <Navigation />
           <Search onSearch={handleSearch}></Search>
           <div style={{ marginTop: "1rem", padding: "0 1rem" }}>
             <Typography className="subtitle" gutterBottom>
               Sedatives/Hypnotics Guide
             </Typography>
-            <div className="grid-container">
-              {Object.keys(data).map((id) => {
-                const dataObj = data[id];
-                const isDrugSelected = selectedDrugs.includes(dataObj);
-                return (
-                  <div className="grid-item" key={id}>
-                    <button
-                      onClick={() => handleDrugClick(dataObj)}
-                      className={`drug-button ${isDrugSelected ? "active" : ""}`}
-                    >
-                      {dataObj.Name}
 
-                      
-                    </button>
+            <div className="table-container">
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell className="sticky-col">Name</TableCell>
+                    <TableCell>Dose equiv.</TableCell>
+                    <TableCell>Time to peak in plasma</TableCell>
+                    <TableCell>Half-life</TableCell>
+                    <TableCell>Avg dose range (mg/day)</TableCell>
+                    <TableCell>mg/Form supplied</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {Array.isArray(data) &&
+                    data.map((dataObj, idx) => {
+                      const isDrugSelected = selectedDrugs.includes(dataObj);
+                      return (
+                        <TableRow key={idx} style={isDrugSelected ? { background: "lightgray" } : {}}>
+                          <TableCell className="sticky-col">{dataObj.Name}</TableCell>
+                          <TableCell>{dataObj["Dose equiv."]}</TableCell>
+                          <TableCell>{dataObj["Time to peak in plasma"]}</TableCell>
+                          <TableCell>{dataObj["Half-life"]}</TableCell>
+                          <TableCell>{dataObj["Avg dose range (mg/day)"]}</TableCell>
+                          <TableCell>{dataObj["mg/Form supplied"]}</TableCell>
+                        </TableRow>
+                      );
+                    })}
+                </TableBody>
+              </Table>
+            </div>
 
-                    {isDrugSelected && (
-                      <div>
-                        <div className="box">
-                          <div className="box-content">
-                            <strong>Dose equiv.: </strong>
-                            {dataObj[`Dose equiv.`]}
-                            
-                          </div>
-                          <div className="box-content">
-                            <strong>Time to peak in plasma: </strong>
-                            {dataObj[`Time to peak in plasma`]}
-                            
-                          </div>
-
-                          <div className="box-content">
-                            <strong>Half-life: </strong>
-                           {dataObj[`Half-life`]}
-                            
-                          </div>
-                          <div className="box-content" style={{ width: 230 }}>
-                            <strong>Avg dose range (mg/day): </strong>
-                           {dataObj[`Avg dose range (mg/day)`]}
-                            
-                          </div>
-                          <div className="box-content">
-                            <strong>mg/Form supplied: </strong>
-                            {dataObj[`mg/Form supplied`]}
-                            
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-              
-            </div>{" "}
-           
             <div className="keynote-div">
               <p className="keynote">
                 <b>Key: </b> †does not reflect maximum doses; *should be given 30-90 mins before bedtime.

@@ -77,13 +77,10 @@ export default function PolypharmacyCommon() {
   const admin = localStorage.getItem("admin");
 
   //add drug components shifted to this page itself
-  const [listHeader, setlistHeader] = useState("");
+  const listHeader = "COM_DDI_PYS";
   const [description, setDescription] = useState("");
 
-  const handleHeader = (event) => {
-    setlistHeader(event.target.value);
-  };
-
+  
   const handleDescription = (event) => {
     setDescription(event.target.value);
   };
@@ -180,18 +177,17 @@ export default function PolypharmacyCommon() {
               <Table aria-label="customized table" id="polypharmacyCommonTable">
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>List Header Id</StyledTableCell>
+
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Description</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {data.map((dataObj, index) => (
                     <StyledTableRow key={index}>
-                      <StyledTableCell component="th" scope="row">
-                        {dataObj.LIST_HEADERS_Id}
-                      </StyledTableCell>
+                  
                       <StyledTableCell align="left">
                         <input
+                          style={{ minWidth: "700px" }}
                           id="`Description`"
                           name={dataObj.Description}
                           type="text"
@@ -215,27 +211,11 @@ export default function PolypharmacyCommon() {
                   <Box display="flex" justifyContent="space-between" alignItems="center">
                     <Typography variant="h5" className="title">
                       Add New Information to the page
-                    </Typography>
-
-                    <p>
-                      <b>Key notes: COM_DDI_PYS means "COMMON DDIs WITH PSYCHOTROPICS"</b>{" "}
-                    </p>
+                    </Typography>         
                   </Box>
                 </div>
 
                 <form onSubmit={handleSubmit}>
-                  <Box>
-                    <TextField
-                      style={{ minWidth: "400px" }}
-                      label="List Header (must be from one of above headers): "
-                      variant="filled"
-                      value={listHeader}
-                      onChange={handleHeader}
-                      multiline
-                      required
-                    />
-                  </Box>
-
                   <Box>
                     <TextField
                       style={{ minWidth: "400px" }}
@@ -258,7 +238,7 @@ export default function PolypharmacyCommon() {
                       Submit
                     </Button>
                   </Box>
-                  {/*<p><b>Key notes: COM_DDI_PYS means "COMMON DDIs WITH PSYCHOTROPICS"</b> </p>*/}
+                  
                 </form>
               </div>
             </TableContainer>
@@ -290,29 +270,23 @@ export default function PolypharmacyCommon() {
               </Typography>
             </Box>
 
-            <TableContainer component={Paper}>
-              <Table aria-label="customized table" id="deliriumTable">
+            <TableContainer component={Paper} sx={{ marginBottom:10 }}>
+              <Table aria-label="customized table" id="deliriumTable" >
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>List Header Id</StyledTableCell>
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Description</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {data.map((dataObj, index) => (
                     <StyledTableRow key={index}>
-                      <StyledTableCell component="th" scope="row">
-                        {dataObj.LIST_HEADERS_Id}
-                      </StyledTableCell>
                       <StyledTableCell align="left">{dataObj[`Description`]} </StyledTableCell>
                     </StyledTableRow>
                   ))}
                 </TableBody>
               </Table>
             </TableContainer>
-            <p>
-              <b>Key notes: COM_DDI_PYS means "COMMON DDIs WITH PSYCHOTROPICS"</b>{" "}
-            </p>
+            
           </div>
           <Footer />
         </>

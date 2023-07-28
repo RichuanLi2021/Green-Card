@@ -95,13 +95,14 @@ export default function MoodStabilizers() {
               Antidepressant Guide
             </Typography>
 
-            <div className="grid-container">
+            <div className="grid-container" id="antidepressant-grid">
               {Object.keys(data).map((id) => {
                 const dataObj = data[id];
                 const isDrugSelected = selectedDrugs.includes(dataObj);
                 return (
                   <div className="grid-item" key={id}>
                     <button
+                      id="drug-button-id"
                       onClick={() => handleDrugClick(dataObj)}
                       className={`drug-button ${isDrugSelected ? "active" : ""}`}
                     >
@@ -109,7 +110,7 @@ export default function MoodStabilizers() {
                     </button>
 
                     {isDrugSelected && (
-                      <div className="box">
+                      <div className="box" id="box-id">
                         <div className="box-content">
                           <strong>Half-life: </strong>
                           <input
@@ -206,7 +207,7 @@ export default function MoodStabilizers() {
               Antidepressant Guide
             </Typography>
 
-            <div className="grid-container">
+            <div className="grid-container" id="antidepressant-grid">
               {Object.keys(data).map((id) => {
                 const dataObj = data[id];
                 const isDrugSelected = selectedDrugs.includes(dataObj);
