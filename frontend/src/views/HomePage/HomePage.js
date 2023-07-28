@@ -131,17 +131,14 @@ const HomePage = () => {
                         {" "}
                         <a href="CognitiveEnhancersGuide"> Cognitive Enhancers Guide </a>{" "}
                       </Typography>
-                      <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
-                        {" "}
-                        <a href="CognitiveEnhancersGuideCont"> Cognitive Enhancers Guide continued </a>{" "}
-                      </Typography>
+                    
                       <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
                         {" "}
                         <a href="CognitiveEnhancersClinical"> Cognitive Enhancers Clinical Guide </a>{" "}
                       </Typography>
                       <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
                         {" "}
-                        <a href="Neuropsychiatric"> NPS Management </a>{" "}
+                        <a href="NPSManagement"> NPS Management </a>{" "}
                       </Typography>
                     </AccordionDetails>
                   </Accordion>

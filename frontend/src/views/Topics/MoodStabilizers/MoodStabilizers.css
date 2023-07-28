@@ -1,6 +1,6 @@
 @media screen and (min-width: 1024px) {
 
-  #moodStabilizers-grid {
+  #moodStab-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(200px, 1fr));
       gap: 10px;
@@ -10,7 +10,7 @@
 
 @media  screen and (max-width:900px) {
 
-  #moodStabilizers-grid {
+  #moodStab-grid {
       align-items: center;
     }
 }
