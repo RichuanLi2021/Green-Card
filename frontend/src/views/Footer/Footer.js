@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Typography, Box, Link } from '@mui/material';
+import { Typography, Box, Link, Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import './Footer.css';
 
 const theme = createTheme({
@@ -13,6 +13,16 @@ const theme = createTheme({
 });
 
 const Footer = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Box component="footer" className="main-footer">
@@ -22,9 +32,28 @@ const Footer = () => {
         <Typography variant="body2" align="center">
           <Link href="#">Privacy Policy</Link>
           {' | '}
-          <Link href="#">Disclaimer</Link>
+          <Link onClick={handleOpen}>Disclaimer</Link>
         </Typography>
       </Box>
+
+      {/* Disclaimer Dialog */}
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Disclaimer</DialogTitle>
+        <DialogContent>
+          <Typography variant="body1">
+            WARNING: This card is meant to support rather than guide management decisions in older adults.
+            Information is not comprehensive and errors may occur. Drug doses and other management recommendations
+            may not reflect manufacturers’ recommendation but are based on clinical literature and expert opinion.
+            Listed maximum doses are meant for physically healthy older adults, and in general not recommended for
+            frail patients. The Green Card should not supersede clinical judgment and is not applicable in all circumstances
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </ThemeProvider>
   );
 };
