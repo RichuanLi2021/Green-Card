@@ -371,7 +371,7 @@ import Data from "../../searchBar/Data.json";
 
 import Box from '@mui/material/Box';
 
- 
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
@@ -400,7 +400,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 }));
 
- 
+
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
