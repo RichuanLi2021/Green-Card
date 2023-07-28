@@ -119,18 +119,18 @@ export default function AntidepressantsClinical() {
     }
   };
 
-  const handleDelete = async (Description) => {
-    if (window.confirm("Are you sure you want to delete this record?")) {
-      try {
-        console.log(Description);
-        await axios.delete("http://localhost:8887/api/antidepressantsclinical/delete/" + Description);
-        alert("Data deleted succesfully! \nClinical: " + Description);
-        window.location.reload();
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  };
+  // const handleDelete = async (Description) => {
+  //   if (window.confirm("Are you sure you want to delete this record?")) {
+  //     try {
+  //       console.log(Description);
+  //       await axios.delete("http://localhost:8887/api/antidepressantsclinical/delete/" + Description);
+  //       alert("Data deleted succesfully! \nClinical: " + Description);
+  //       window.location.reload();
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  // };
 
   const handleInputChange = (e) => {
     setNewClinical(e.target.value);
