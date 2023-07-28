@@ -137,6 +137,7 @@ export default function CognitiveEnhancersGuide() {
       console.log(value);
       if (event.target.value !== value) {
         event.preventDefault();
+        console.log(event.target.name, event.target.id, event.target.value)
         CognitiveEnhancersGuideUpdate(event.target.name, event.target.id, event.target.value).then((data) => {
           alert('Data successfully updated! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nNew Value:"+ event.target.value);
         }).catch((error) => {
@@ -226,6 +227,7 @@ export default function CognitiveEnhancersGuide() {
                     <td>{dataObj.Name}</td>
                     <td>
                       <input
+                        id="`Action`"
                         name={dataObj.Name}
                         type="text"
                         onFocus={store_value}
@@ -235,6 +237,7 @@ export default function CognitiveEnhancersGuide() {
                     </td>
                     <td>
                       <input
+                       id="`Half-life`"
                         name={dataObj.Name}
                         type="text"
                         onFocus={store_value}
@@ -244,6 +247,7 @@ export default function CognitiveEnhancersGuide() {
                     </td>
                     <td>
                       <input
+                      id="`Dose`"
                         name={dataObj.Name}
                         type="text"
                         onFocus={store_value}
@@ -253,6 +257,7 @@ export default function CognitiveEnhancersGuide() {
                     </td>
                     <td>
                       <input
+                      id="`Frequency`"
                         name={dataObj.Name}
                         type="text"
                         onFocus={store_value}
@@ -262,6 +267,7 @@ export default function CognitiveEnhancersGuide() {
                     </td>
                     <td>
                       <input
+                      id="`mg/form supplied`"
                         name={dataObj.Name}
                         type="text"
                         onFocus={store_value}
@@ -271,6 +277,7 @@ export default function CognitiveEnhancersGuide() {
                     </td>
                     <td>
                       <input
+                      id="`With food`"
                         name={dataObj.Name}
                         type="text"
                         onFocus={store_value}
@@ -280,6 +287,7 @@ export default function CognitiveEnhancersGuide() {
                     </td>
                     <td>
                       <input
+                      id="`MCI`"
                         name={dataObj.Name}
                         type="text"
                         onFocus={store_value}
@@ -289,6 +297,7 @@ export default function CognitiveEnhancersGuide() {
                     </td>
                     <td>
                       <input
+                      id="`Mild-mod Alz`"
                         name={dataObj.Name}
                         type="text"
                         onFocus={store_value}
@@ -298,6 +307,7 @@ export default function CognitiveEnhancersGuide() {
                     </td>
                     <td>
                       <input
+                      id="`Severe Alz`"
                         name={dataObj.Name}
                         type="text"
                         onFocus={store_value}
@@ -307,6 +317,7 @@ export default function CognitiveEnhancersGuide() {
                     </td>
                     <td>
                       <input
+                      id="`Mixed (Alz+vas)`"
                         name={dataObj.Name}
                         type="text"
                         onFocus={store_value}
@@ -316,6 +327,7 @@ export default function CognitiveEnhancersGuide() {
                     </td>
                     <td>
                       <input
+                        id="`Vascular`"
                         name={dataObj.Name}
                         type="text"
                         onFocus={store_value}
@@ -325,6 +337,7 @@ export default function CognitiveEnhancersGuide() {
                     </td>
                     <td>
                       <input
+                      id="`LBD`"
                         name={dataObj.Name}
                         type="text"
                         onFocus={store_value}
@@ -334,6 +347,7 @@ export default function CognitiveEnhancersGuide() {
                     </td>
                     <td>
                       <input
+                      id="`FTD`"
                         name={dataObj.Name}
                         type="text"
                         onFocus={store_value}
@@ -343,6 +357,7 @@ export default function CognitiveEnhancersGuide() {
                     </td>
                     <td>
                       <input
+                      id="`PD`"
                         name={dataObj.Name}
                         type="text"
                         onFocus={store_value}
@@ -352,6 +367,7 @@ export default function CognitiveEnhancersGuide() {
                     </td>
                     <td>
                       <input
+                      id="`DSD`"
                         name={dataObj.Name}
                         type="text"
                         onFocus={store_value}

@@ -27,5 +27,3 @@ export const submitDrug = async (drugName, action, halfLife, dose, frequency, mg
     throw error; // throw error to be handled by calling function
   }
 };
-
-
