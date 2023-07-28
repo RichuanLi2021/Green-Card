@@ -177,15 +177,15 @@ const HomePage = () => {
                     <AccordionDetails>
                       <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
                         {" "}
-                        <a href="PolypharmacyCommonDDIs"> Common DDI's </a>{" "}
+                        <a href="PolypharmacyCommon"> Common DDI's </a>{" "}
                       </Typography>
                       <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
                         {" "}
-                        <a href="PolypharmacyNotableChanges"> Notable changes in older adults </a>{" "}
+                        <a href="PolypharmacyNotable"> Notable changes in older adults </a>{" "}
                       </Typography>
                       <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
                         {" "}
-                        <a href="PolypharmacyPrinciples"> Prescribing and deprescribing principles </a>{" "}
+                        <a href="PrinciplesPolypharmacy"> Prescribing and deprescribing principles </a>{" "}
                       </Typography>
                     </AccordionDetails>
                   </Accordion>

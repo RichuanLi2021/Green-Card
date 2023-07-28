@@ -883,6 +883,3 @@ export default function CognitiveEnhancersGuide() {
   }
 } 
 }
-
-
-

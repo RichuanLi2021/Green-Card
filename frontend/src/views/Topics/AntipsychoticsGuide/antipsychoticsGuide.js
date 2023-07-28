@@ -4,8 +4,8 @@ import Navigation from "../../Navigation/navigation";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
-import Data from "../../searchBar/Data.json";
-import SearchBar from "../../searchBar/searchBar";
+// import Data from "../../searchBar/Data.json";
+// import SearchBar from "../../searchBar/searchBar";
 import antipsychoticsGuideUpdate from "./antipsychoticsGuidebackend";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -13,9 +13,17 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import Footer from "../../Footer/Footer";
+import Search from "../../Search/Search";
+import { useNavigate } from "react-router-dom";
 
 export default function AntipsychoticsGuide() {
   const [data, setData] = useState({});
+  const navigate = useNavigate();
+
+  const handleSearch = (searchTerm) => {
+    navigate(`/search/${searchTerm}`);
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -138,12 +146,12 @@ export default function AntipsychoticsGuide() {
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
           />
           <Navigation />
-          <SearchBar placeholder="Search" data={Data} />
+          <Search onSearch={handleSearch}></Search>
           <div className="subHeader" style={{ marginTop: "1rem", padding: "0 1rem" }}>
             <Typography className="heading-antipsychotics" gutterBottom>
               Antipsychotics Guide
             </Typography>
-            <div className="grid-container">
+            <div className="grid-container" id="antipsychotics-grid">
               {Object.keys(data).map((id) => {
                 const dataObj = data[id];
                 const isDrugSelected = selectedDrugs.includes(dataObj);
@@ -439,13 +447,13 @@ export default function AntipsychoticsGuide() {
       return (
         <>
           <Navigation />
-          <SearchBar placeholder="Search" data={Data} />
+          <Search onSearch={handleSearch}></Search>
           <div style={{ marginTop: "1rem", padding: "0 1rem" }}>
             <Typography className="heading-antipsychotics" gutterBottom>
               Antipsychotics Guide
             </Typography>
 
-            <div className="grid-container">
+            <div className="grid-container" id="antipsychotics-grid">
               {Object.keys(data).map((id) => {
                 const dataObj = data[id];
                 const isDrugSelected = selectedDrugs.includes(dataObj);

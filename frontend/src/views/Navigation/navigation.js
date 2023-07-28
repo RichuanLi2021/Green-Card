@@ -322,13 +322,13 @@ const Navbar = () => {
                 sx={{ marginTop: '40px' }}
               >
                 <MenuItem onClick={handlePolypharmacyMenuClose}>
-                  <Button component={Link} to="/PolypharmacyCommonDDIs" sx={{ color: '#000' }}>Common DDI's</Button>
+                  <Button component={Link} to="/PolypharmacyCommon" sx={{ color: '#000' }}>Common DDI's</Button>
                 </MenuItem>
                 <MenuItem onClick={handlePolypharmacyMenuClose}>
-                  <Button component={Link} to="/PolypharmacyNotableChanges" sx={{ color: '#000' }}>Notable changes in older adults</Button>
+                  <Button component={Link} to="/PolypharmacyNotable" sx={{ color: '#000' }}>Notable changes in older adults</Button>
                 </MenuItem>
                 <MenuItem onClick={handlePolypharmacyMenuClose}>
-                  <Button component={Link} to="/PolypharmacyPrinciples" sx={{ color: '#000' }}>Prescribing and deprescribing principles</Button>
+                  <Button component={Link} to="/PrinciplesPolypharmacy" sx={{ color: '#000' }}>Prescribing and deprescribing principles</Button>
                 </MenuItem>
               </Menu>
             </MenuItem>
@@ -522,13 +522,13 @@ const Navbar = () => {
               sx={{ marginTop: '40px' }}
             >
               <MenuItem onClick={handlePolypharmacyMenuClose}>
-                <Button component={Link} to="/PolypharmacyCommonDDIs" sx={{ color: '#000' }}>Common DDI's</Button>
+                <Button component={Link} to="/PolypharmacyCommon" sx={{ color: '#000' }}>Common DDI's</Button>
               </MenuItem>
               <MenuItem onClick={handlePolypharmacyMenuClose}>
-                <Button component={Link} to="/PolypharmacyNotableChanges" sx={{ color: '#000' }}>Notable changes in older adults</Button>
+                <Button component={Link} to="/PolypharmacyNotable" sx={{ color: '#000' }}>Notable changes in older adults</Button>
               </MenuItem>
               <MenuItem onClick={handlePolypharmacyMenuClose}>
-                <Button component={Link} to="/PolypharmacyPrinciples" sx={{ color: '#000' }}>Prescribing and deprescribing principles</Button>
+                <Button component={Link} to="/PrinciplesPolypharmacy" sx={{ color: '#000' }}>Prescribing and deprescribing principles</Button>
               </MenuItem>
             </Menu>
 
@@ -770,13 +770,13 @@ const Navbar = () => {
                 sx={{ marginTop: '40px' }}
               >
                 <MenuItem onClick={handlePolypharmacyMenuClose}>
-                  <Button component={Link} to="/PolypharmacyCommonDDIs" sx={{ color: '#000' }}>Common DDI's</Button>
+                  <Button component={Link} to="/PolypharmacyCommon" sx={{ color: '#000' }}>Common DDI's</Button>
                 </MenuItem>
                 <MenuItem onClick={handlePolypharmacyMenuClose}>
-                  <Button component={Link} to="/PolypharmacyNotableChanges" sx={{ color: '#000' }}>Notable changes in older adults</Button>
+                  <Button component={Link} to="/PolypharmacyNotable" sx={{ color: '#000' }}>Notable changes in older adults</Button>
                 </MenuItem>
                 <MenuItem onClick={handlePolypharmacyMenuClose}>
-                  <Button component={Link} to="/PolypharmacyPrinciples" sx={{ color: '#000' }}>Prescribing and deprescribing principles</Button>
+                  <Button component={Link} to="/PrinciplesPolypharmacy" sx={{ color: '#000' }}>Prescribing and deprescribing principles</Button>
                 </MenuItem>
               </Menu>
             </MenuItem>
@@ -965,13 +965,13 @@ const Navbar = () => {
               sx={{ marginTop: '40px' }}
             >
               <MenuItem onClick={handlePolypharmacyMenuClose}>
-                <Button component={Link} to="/PolypharmacyCommonDDIs" sx={{ color: '#000' }}>Common DDI's</Button>
+                <Button component={Link} to="/PolypharmacyCommon" sx={{ color: '#000' }}>Common DDI's</Button>
               </MenuItem>
               <MenuItem onClick={handlePolypharmacyMenuClose}>
-                <Button component={Link} to="/PolypharmacyNotableChanges" sx={{ color: '#000' }}>Notable changes in older adults</Button>
+                <Button component={Link} to="/PolypharmacyNotable" sx={{ color: '#000' }}>Notable changes in older adults</Button>
               </MenuItem>
               <MenuItem onClick={handlePolypharmacyMenuClose}>
-                <Button component={Link} to="/PolypharmacyPrinciples" sx={{ color: '#000' }}>Prescribing and deprescribing principles</Button>
+                <Button component={Link} to="/PrinciplesPolypharmacy" sx={{ color: '#000' }}>Prescribing and deprescribing principles</Button>
               </MenuItem>
             </Menu>
 

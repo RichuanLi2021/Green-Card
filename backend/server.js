@@ -22,9 +22,6 @@ var PsychotropicMonitoringSectionRoute = require("./routes/PsychotropicMonitorin
 var AntidepressantGuideRoute = require("./routes/AntidepressantGuideRoute");
 var AntidepressantSafetyRoute = require("./routes/AntidepressantSafetyRoute");
 var AntidepressantsClinicalRoute = require("./routes/AntidepressantsClinicalRoute");
-var PolypharmacyCommonDDIsRoute = require("./routes/PolypharmacyCommonDDIsRoute");
-var PolypharmacyNotableRoute = require("./routes/PolypharmacyNotableRoute");
-var PolypharmacyPrinciplesRoute = require("./routes/PolypharmacyPrinciplesRoute");
 var SearchResultsRoute = require("./routes/SearchResultsRoute");
 var CognitiveEnhancersGuideRoute = require("./routes/CognitiveEnhancersGuideRoute");
 var CognitiveEnhancersGuideContRoute = require("./routes/CognitiveEnhancersGuideContRoute");
@@ -34,6 +31,9 @@ var NPSManagementRoute = require("./routes/NPSManagementRoute");
 var neuropsychiatricRoute = require("./routes/neuropsychiatricRoute");
 var AntipsychoticSafetyRoute = require('./routes/AntipsychoticSafetyRoute');
 var deliriumRoute = require("./routes/deliriumRoute");
+var PolypharmacyCommonRoute = require("./routes/PolypharmacyCommonRoute");
+var PolypharmacyRouteNotable = require("./routes/PolypharmacyRouteNotable");
+var PrinciplesPolypharmacyRoute = require("./routes/PrinciplesPolypharmacyRoute");
 
 //for parsing application/json
 app.use(express.json());
@@ -50,9 +50,6 @@ app.use("/api", PsychotropicMonitoringSectionRoute);
 app.use("/api", AntidepressantGuideRoute);
 app.use("/api", AntidepressantSafetyRoute);
 app.use("/api", AntidepressantsClinicalRoute);
-app.use("/api", PolypharmacyCommonDDIsRoute);
-app.use("/api", PolypharmacyNotableRoute);
-app.use("/api", PolypharmacyPrinciplesRoute);
 app.use("/api", SearchResultsRoute);
 app.use("/api", CognitiveEnhancersGuideRoute);
 app.use("/api", CognitiveEnhancersGuideContRoute);
@@ -62,6 +59,9 @@ app.use("/api", NPSManagementRoute);
 app.use("/api", neuropsychiatricRoute);
 app.use('/api', AntipsychoticSafetyRoute);
 app.use("/api", deliriumRoute);
+app.use("/api", PolypharmacyCommonRoute);
+app.use("/api", PolypharmacyRouteNotable);
+app.use("/api", PrinciplesPolypharmacyRoute);
 
 var port = 8887;
 

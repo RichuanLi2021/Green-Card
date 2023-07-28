@@ -1,6 +1,25 @@
+@media screen and (min-width: 1024px) {
+
+  #antipsychotics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(200px, 1fr));
+      gap: 10px;
+  
+  }
+}
+
+@media  screen and (max-width:900px) {
+
+  #antipsychotics-grid {
+      align-items: center;
+    }
+}
+
+
 html {
   display: block;
 }
+
 
 .grid-container {
   display: grid;
