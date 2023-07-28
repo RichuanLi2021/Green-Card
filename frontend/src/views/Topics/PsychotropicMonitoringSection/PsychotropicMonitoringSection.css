@@ -48,27 +48,34 @@
     margin-bottom: 0.5rem;
   }
   
-  .tableFixHead {
-    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
-    height: 200px; /* gives an initial height of 200px to the table */
-  }
-  .tableFixHead thead th {
-    position: sticky; /* make the table heads sticky */
-    top: 0px; /* table head will be placed from the top of the table and sticks to it */
-  }
-  table {
-    border-collapse: collapse; /* make the table borders collapse to each other */
-    width: 100%;
-  }
-  th,
-  td {
-    padding: 8px 16px;
-    border: 1px solid #ccc;
-  }
-  th {
-    background: #eee;
-  }
 
+
+ .tbl-fixed{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: fit-content;
+  max-height: 70vh;
+  max-width: 100vh;
+  margin-top: 40px;
+ }
+
+ table{
+  min-width: max-content;
+  border-collapse: separate;
+ }
+
+ table th{
+  position:sticky;
+  top: 0px;
+  background-color: blue;
+  
+ }
+
+ table td{
+
+  text-align: center;
+ 
+ }
   @media  screen and (min-width:200px) and (max-width:1000px) {
     #table td, #table th {
         font-size: 20px;
