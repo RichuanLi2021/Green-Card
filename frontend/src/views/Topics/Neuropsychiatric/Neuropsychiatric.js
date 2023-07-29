@@ -68,7 +68,7 @@ export default function Neuropsychiatric() {
       });
   };
 
-  const [selectedDrugs, setSelectedDrugs] = useState([]);
+ 
   const [value, setValue] = useState("");
   const admin = localStorage.getItem("admin");
 
@@ -133,16 +133,7 @@ export default function Neuropsychiatric() {
     }
   };
 
-  const handleDrugClick = (dataObj) => {
-    setSelectedDrugs((prevSelectedDrugs) => {
-      const isSelected = prevSelectedDrugs.includes(dataObj);
-      if (isSelected) {
-        return prevSelectedDrugs.filter((drug) => drug !== dataObj);
-      } else {
-        return [...prevSelectedDrugs, dataObj];
-      }
-    });
-  };
+  
 
   const handleDelete = async (Medication) => {
     if (window.confirm("Are you sure you want to delete this record?")) {
