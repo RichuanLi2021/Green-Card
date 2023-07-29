@@ -262,9 +262,14 @@ export default function Neuropsychiatric() {
                       </Box>
                     </form>
                   </div>
+                  <p className="keynote">
+                    <b>Key: </b>ChEIs:cholinesterase inhibitors; MAOIs: monoamine oxidase inhibitors; *If highly
+                    tolerant (and high doses), do not taper abruptly due to risk of prolonged seizure.
+                  </p>
             </TableContainer>
             
           </div>
+          
 
           <Footer />
         </>
@@ -311,8 +316,14 @@ export default function Neuropsychiatric() {
                   ))}
                 </TableBody>
               </Table>
+              <p className="keynote">
+                    <b>Key: </b>ChEIs:cholinesterase inhibitors; MAOIs: monoamine oxidase inhibitors; *If highly
+                    tolerant (and high doses), do not taper abruptly due to risk of prolonged seizure.
+                  </p>
             </TableContainer>
+            
           </div>
+         
 
           <Footer />
         </>
