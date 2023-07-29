@@ -1,7 +1,6 @@
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import SearchBar from "../../searchBar/searchBar";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -20,7 +19,7 @@ import Navigation from "../../Navigation/navigation";
 import { useNavigate } from "react-router-dom";
 import Search from "../../Search/Search";
 import Footer from "../../Footer/Footer";
-import Data from "../../searchBar/Data.json";
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
