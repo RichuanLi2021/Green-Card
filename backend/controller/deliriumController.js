@@ -14,7 +14,7 @@ const getData = async (req, res, next) => {
 const updateData = async (req, res, next) => {
   try {
     const { name, column, value } = req.body;
-    await pool.query('UPDATE `green_card`.`ANTICHOLINERGIC ACTIVITY` SET ' + column + ' = ' + '"' + value + '"' + ' WHERE Description = ' + '"' + name + '"');
+    await pool.query('UPDATE `green_card`.`ANTICHOLINERGIC ACTIVITY` SET ' + column + ' = ' + '"' + value + '"' + ' WHERE `Id` = ' + '"' + name + '"');
     res.send("Updated Successfully!");
   } catch (error) {
     console.log(error);
