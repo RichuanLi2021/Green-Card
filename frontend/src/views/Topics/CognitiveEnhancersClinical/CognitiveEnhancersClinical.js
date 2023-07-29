@@ -144,7 +144,7 @@ export default function AntidepressantsClinical() {
               <div className="subtitle">Cognitive Enhancers Clinical Guide</div>
             </Typography>
 
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} sx={{marginBottom:20}}>
               <Table  aria-label="customized table" id="cognitiveClinicalTable">
                 <TableHead>
                   <TableRow>
@@ -276,18 +276,7 @@ export default function AntidepressantsClinical() {
               </div>
 
               <form onSubmit={handleSubmit}>
-                {/* <Box>
-
-                  <TextField
-                    style={{ width: "400px" }}
-                    label="List Header (must be from one of above headers): "
-                    variant="filled"
-                    value={listHeader}
-                    onChange={handleHeader}
-                    multiline
-                    required
-                  />
-                </Box> */}
+               
                 <Box>
                     <select value={listHeader} onChange={handleHeader} >
                       <option >SELECT AN OPTION</option>
@@ -341,7 +330,7 @@ export default function AntidepressantsClinical() {
               <div className="subtitle">Cognitive Enhancers Clinical Guide</div>
             </Typography>
 
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} sx={{marginBottom:20}}>
               <Table sx={{ minWidth: 700 }} aria-label="customized table" id="antidepressantClinicalTable">
                 <TableHead>
                   <TableRow>
@@ -381,13 +370,7 @@ export default function AntidepressantsClinical() {
             </TableContainer>
             <br></br>
 
-            <div className="cognitive-footer">
-              <p className="cognitive-notes">
-                <b>Key: </b>COG_CONTRA means "Contraindications", COG_ACHEI means "Adverse Effects (AChEI)",
-                COG_ACHEI_ME means "Adverse Effects (Memantine)", COG_BASELINE means "Baseline", COG_MONITOR means
-                "monitoring"
-              </p>
-            </div>
+           
           </div>
           <Footer />
         </>
