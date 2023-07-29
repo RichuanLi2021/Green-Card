@@ -16,7 +16,6 @@ import AntidepressantSafetyUpdate from "./AntidepressantSafetyBackend";
 import Navigation from "../../Navigation/navigation";
 import Footer from "../../Footer/Footer";
 // import Data from "../../searchBar/Data.json";
-
 import "./AntidepressantSafety.css";
 import { useNavigate } from "react-router-dom";
 import Search from "../../Search/Search";
@@ -45,26 +44,69 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function AntidepressantSafety() {
+  const [data, setData] = useState([]);
+  const [formVisible, setFormVisible] = useState(false);
+  const [newSafetyConcern, setNewSafetyConcern] = useState("");
+  const [admin] = useState(localStorage.getItem("admin") === "true");
+  const [value, setValue] = useState("");
   const navigate = useNavigate();
 
   const handleSearch = (searchTerm) => {
     navigate(`/search/${searchTerm}`);
   };
-  const [data, setData] = useState([]);
-  const [admin] = useState(localStorage.getItem("admin") === "true");
-  const [value, setValue] = useState("");
 
-  useEffect(() => {
+  const fetchData = () => {
     axios
-      .get("http://localhost:8887/api/antidepressantsafety")
+      .get("http://localhost:8887/api/AntidepressantSafety")
       .then((response) => {
         setData(response.data);
-        console.log(response.data[0]);
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
+
+  const addSafetyConcern = (description) => {
+    if (admin) {
+      axios
+        .post("http://localhost:8887/api/AntidepressantSafety/add", { Description: description })
+        .then((response) => {
+          alert("Data successfully added! \nSafety Concern:" + description);
+          fetchData();
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("Failed to add safety concern!");
+        });
+    } else {
+      alert("You must be an administrator to add a safety concern");
+    }
+  };
+
+  const handleDelete = async (Description) => {
+    if (admin) {
+      if (window.confirm("Are you sure you want to delete this record?")) {
+        try {
+          console.log(Description);
+          await axios.delete("http://localhost:8887/api/AntidepressantSafety/delete/" + Description);
+          alert("Data deleted succesfully! \nSymptom:" + Description);
+          window.location.reload();
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    } else {
+      alert("Must be an administrator to edit");
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setNewSafetyConcern(e.target.value);
+  };
 
   const store_value = (event) => {
     setValue(event.target.value);
@@ -91,10 +133,15 @@ export default function AntidepressantSafety() {
     }
   };
 
+  //page has not been made updatable yet
   if (data.length > 0) {
     if (admin) {
       return (
         <>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+          />
           <Navigation />
           <Search onSearch={handleSearch}></Search>
           <div id="antidepressantSafety">
@@ -106,11 +153,41 @@ export default function AntidepressantSafety() {
                 alignItems: "center",
               }}
             >
-              <Typography variant="h3" id="antidepressantSafetyHeader">
-                Antidepressants Safety Concerns
-              </Typography>
+              <Typography id="antidepressantSafetyHeader">Antidepressant Safety Concerns</Typography>
             </Box>
-            <TableContainer component={Paper}>
+
+            {/* Add a new Safety Concern */}
+            {admin && (
+              <div>
+                <h2>Add a new Safety Concern</h2>
+                <button onClick={() => setFormVisible(!formVisible)} className="button-style">
+                  {formVisible ? "Cancel" : "Add Safety Concern"}
+            </button>
+                {formVisible && (
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      addSafetyConcern(newSafetyConcern);
+                      setFormVisible(false);
+                    }}
+                    className="form-style"
+                  >
+                    <input
+                      type="text"
+                      name="Description"
+                      placeholder="Description"
+                      onChange={handleInputChange}
+                      className="input-style"
+                    />
+                    <button type="submit" className="submit-button">
+                      Submit
+                    </button>
+                  </form>
+                )}
+              </div>
+            )}
+
+            <TableContainer component={Paper} sx={{ marginBottom: 20 }}>
               <Table aria-label="customized table" id="antidepressantSafetyTable">
                 <TableBody>
                   {data.map((dataObj, index) => (
@@ -125,12 +202,17 @@ export default function AntidepressantSafety() {
                           defaultValue={dataObj[`Description`]}
                         />
                       </StyledTableCell>
+                      <button
+                        style={{ background: "none", border: "none", cursor: "pointer", padding: "15px 2px" }}
+                        onClick={(e) => handleDelete(dataObj.Description)}
+                      >
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
                     </StyledTableRow>
                   ))}
                 </TableBody>
               </Table>
             </TableContainer>
-            <br></br>
           </div>
           <Footer />
         </>
@@ -138,6 +220,10 @@ export default function AntidepressantSafety() {
     } else {
       return (
         <>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+          />
           <Navigation />
           <Search onSearch={handleSearch}></Search>
           <div id="antidepressantSafety">
@@ -149,11 +235,10 @@ export default function AntidepressantSafety() {
                 alignItems: "center",
               }}
             >
-              <Typography variant="h3" id="antidepressantSafetyHeader">
-                Antidepressants Safety Concerns
-              </Typography>
+              <Typography id="antidepressantSafetyHeader">Antidepressant Safety Concerns</Typography>
             </Box>
-            <TableContainer component={Paper}>
+
+            <TableContainer component={Paper} sx={{ marginBottom: 20 }}>
               <Table aria-label="customized table" id="antidepressantSafetyTable">
                 <TableBody>
                   {data.map((dataObj, index) => (
@@ -165,9 +250,15 @@ export default function AntidepressantSafety() {
               </Table>
             </TableContainer>
           </div>
+
           <Footer />
         </>
       );
     }
   }
 }
+
+
+
+
+

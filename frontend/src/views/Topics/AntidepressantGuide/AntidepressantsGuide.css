@@ -1,0 +1,16 @@
+ @media screen and (min-width: 1024px) {
+
+    #antidepressant-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(200px, 1fr));
+        gap: 10px;
+    
+    }
+  }
+  
+  @media  screen and (max-width:900px) {
+
+    #antidepressant-grid {
+        align-items: center;
+      }
+  }

@@ -15,10 +15,9 @@ export const InsomniaSafetyUpdate = async (name, column, value) => {
   }
 };
 
- export const submitDrug = async (header,concern) => {
+ export const submitDrug = async (concern) => {
   try {
     const response = await axios.post('http://localhost:8887/api/add/InsomniaSafety', {
-        header,
         concern
         
     });

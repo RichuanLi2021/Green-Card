@@ -124,6 +124,7 @@ export default function Delirium() {
         DeliriumBackendUpdate(event.target.name, event.target.id, event.target.value)
           .then((data) => {
             alert(`Data successfully updated!\nNew Value: ${event.target.value}`);
+            window.location.reload();
           })
           .catch((error) => {
             console.error(error);
@@ -227,7 +228,7 @@ export default function Delirium() {
               </Typography>
             </Box>
 
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} sx={{marginBottom:20}}>
               <Table aria-label="customized table" id="deliriumTable">
                 <TableHead>
                   <TableRow>
@@ -242,7 +243,7 @@ export default function Delirium() {
                         <input
                           input
                           id="`Description`"
-                          name={dataObj[`Description`]}
+                          name={dataObj[`Id`]}
                           type="text"
                           onFocus={store_value}
                           onBlur={update_value}
@@ -253,7 +254,7 @@ export default function Delirium() {
                         <input
                           input
                           id="`LIST_HEADERS`"
-                          name={dataObj[`LIST_HEADERS`]}
+                          name={dataObj[`Id`]}
                           type="text"
                           onFocus={store_value}
                           onBlur={update_value}
@@ -392,7 +393,7 @@ export default function Delirium() {
               </Typography>
             </Box>
 
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} sx={{marginBottom:20}}>
               <Table aria-label="customized table" id="deliriumTable">
                 <TableHead>
                   <TableRow>

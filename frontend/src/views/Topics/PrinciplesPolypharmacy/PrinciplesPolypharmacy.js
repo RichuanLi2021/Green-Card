@@ -75,13 +75,11 @@ export default function PrinciplesPolypharmacy() {
   const [value, setValue] = useState("");
 
   const admin = localStorage.getItem("admin");
+  const listHeader ="PRESCR_DEPRE" ;
 
-  const [listHeader, setlistHeader] = useState("");
   const [description, setDescription] = useState("");
 
-  const handleHeader = (event) => {
-    setlistHeader(event.target.value);
-  };
+  
 
   const handleDescription = (event) => {
     setDescription(event.target.value);
@@ -174,22 +172,19 @@ export default function PrinciplesPolypharmacy() {
               </Typography>
             </Box>
 
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} sx={{marginBottom:20}}>
               <Table aria-label="customized table" id="principlesPolypharmacyTable">
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>List Header Id</StyledTableCell>
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Description</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {data.map((dataObj, index) => (
                     <StyledTableRow key={index}>
-                      <StyledTableCell component="th" scope="row">
-                        {dataObj.LIST_HEADERS_Id}
-                      </StyledTableCell>
                       <StyledTableCell align="left">
                         <input
+                         style={{ width: "570px" }}
                           id="`Description`"
                           name={dataObj.Description}
                           type="text"
@@ -211,7 +206,6 @@ export default function PrinciplesPolypharmacy() {
 
               <p>
                 <b>
-                  Key notes: PRESCR_DEPRE means "PRESCRIBING AND DEPRESCRIBING PRINCIPLES".
                   <b>For additional information: </b>deprescribing.org, Beers criteria, STOPP/START criteria
                 </b>{" "}
               </p>
@@ -225,18 +219,6 @@ export default function PrinciplesPolypharmacy() {
                 </div>
 
                 <form onSubmit={handleSubmit}>
-                  <Box>
-                    <TextField
-                      style={{ minWidth: "400px" }}
-                      label="List Header (must be from one of above headers): "
-                      variant="filled"
-                      value={listHeader}
-                      onChange={handleHeader}
-                      multiline
-                      required
-                    />
-                  </Box>
-
                   <Box>
                     <TextField
                       style={{ minWidth: "400px" }}
@@ -289,32 +271,28 @@ export default function PrinciplesPolypharmacy() {
               </Typography>
             </Box>
 
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} sx={{marginBottom:20}}>
               <Table aria-label="customized table" id="principlesPolypharmacyTable">
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>List Header Id</StyledTableCell>
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Description</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {data.map((dataObj, index) => (
-                    <StyledTableRow key={index}>
-                      <StyledTableCell component="th" scope="row">
-                        {dataObj.LIST_HEADERS_Id}
-                      </StyledTableCell>
+                    <StyledTableRow key={index}>       
                       <StyledTableCell align="left">{dataObj[`Description`]} </StyledTableCell>
                     </StyledTableRow>
                   ))}
                 </TableBody>
               </Table>
-            </TableContainer>
-            <p>
+              <p>
               <b>
-                Key notes: PRESCR_DEPRE means "PRESCRIBING AND DEPRESCRIBING PRINCIPLES".
                 <b>For additional information: </b>deprescribing.org, Beers criteria, STOPP/START criteria
               </b>{" "}
             </p>
+            </TableContainer>
+            
           </div>
           <Footer />
         </>

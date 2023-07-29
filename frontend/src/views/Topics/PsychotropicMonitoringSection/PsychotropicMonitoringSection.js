@@ -107,7 +107,8 @@ export default function PsychotropicMonitoringSection() {
             event.preventDefault();
             PsychotropicMonitoringUpdate(event.target.name, event.target.id, event.target.value)
               .then((data) => {
-                alert('Updated Successfully Called! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nValue:"+ event.target.value);
+                alert(' Data Updated Successfully ! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nValue:"+ event.target.value);
+                window.location.reload();
               })
               .catch((error) => {
                 console.error(error);
@@ -121,7 +122,8 @@ export default function PsychotropicMonitoringSection() {
         }
       };
   const [data, setData] = useState([]);
-
+  
+  
   useEffect(() => {
 
     axios.get('http://localhost:8887/api/psychotropicmonitoringsection')

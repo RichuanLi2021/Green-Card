@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState, useEffect } from "react";
-// import SearchBar from "../../searchBar/searchBar";
+
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -9,7 +9,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
-// import Data from "../../searchBar/Data.json";
 import Navigation from "../../Navigation/navigation";
 import Footer from "../../Footer/Footer";
 import Box from "@mui/material/Box";
@@ -52,15 +51,12 @@ export default function InsomniaSafety() {
 
   const [value, setValue] = useState("");
   const admin = localStorage.getItem("admin");
-  const [header, setHeader] = useState("");
   const [concern, setConcern] = useState("");
 
   const handleConcern = (event) => {
     setConcern(event.target.value);
   };
-  const handleHeader = (event) => {
-    setHeader(event.target.value);
-  };
+
   const update_value = (event) => {
     if (admin) {
       console.log(event.target.name, event.target.value, event.target.column);
@@ -104,10 +100,10 @@ export default function InsomniaSafety() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log({ header, concern });
-    submitDrug(header, concern)
+    submitDrug(concern)
       .then((data) => {
         window.alert("Drug was added Successfully!");
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);
@@ -146,7 +142,7 @@ export default function InsomniaSafety() {
             <div style={{ marginTop: "1rem", padding: "0 1rem" }}>
               <Typography id="topicHeader">Sedatives/Hypnotics Safety Concerns</Typography>
 
-              <TableContainer component={Paper}>
+              <TableContainer component={Paper} sx={{marginBottom:20}}>
                 <Table aria-label="customized table" id="safetyTable">
                   {Object.keys(data).map((id) => {
                     const dataObj = data[id];
@@ -182,8 +178,7 @@ export default function InsomniaSafety() {
                     );
                   })}
                 </Table>
-              </TableContainer>
-              <div className="box-content">
+                <div className="box-content">
                 <div className="form-header">
                   <Box display="flex" justifyContent="space-between" alignItems="center">
                     <Typography id="topicHeader">Add a new Safety Concern</Typography>
@@ -191,23 +186,6 @@ export default function InsomniaSafety() {
                 </div>
 
                 <form onSubmit={handleSubmit}>
-                  <Box>
-                    {/* <TextField
-              label="LIST_HEADER"
-              variant="filled"
-              value={header}
-              onChange={handleHeader}
-              placeholder="SHYPCLIN_SAF"
-              
-              disabled
-              required
-            />    */}
-
-                    <select value={header} onChange={handleHeader} name="languages" id="lang">
-                      <option value="SHYPCLIN_SAF">SHYPCLIN_SAF</option>
-                      <option value="SHYPCLIN_SAF">SHYPCLIN_SAF</option>
-                    </select>
-                  </Box>
                   <Box>
                     <TextField
                       label="Safety Concern"
@@ -224,11 +202,9 @@ export default function InsomniaSafety() {
                   </Box>
                 </form>
               </div>
-              <div className="keynote-div">
-                <p className="keynote">
-                  <b>Key notes:</b> SHYPCLIN_SAF means safety concerns{" "}
-                </p>
-              </div>
+              </TableContainer>
+              
+              
             </div>
           </div>
 
@@ -251,7 +227,7 @@ export default function InsomniaSafety() {
             >
               <Typography id="topicHeader">Sedatives/Hypnotics Safety Concerns</Typography>
             </Box>
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} sx={{marginBottom:20}}>
               <Table aria-label="customized table" id="safetyTable">
                 <TableBody>
                   {data.map((dataObj, index) => (
@@ -262,11 +238,7 @@ export default function InsomniaSafety() {
                 </TableBody>
               </Table>
             </TableContainer>
-            <div className="keynote-div">
-              <p className="keynote">
-                <b>Key notes:</b> SHYPCLIN_SAF means safety concerns{" "}
-              </p>
-            </div>
+            
           </div>
           <Footer />
         </>

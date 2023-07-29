@@ -44,6 +44,10 @@ const drugData = async (req, res, next) => {
   }
 };
 
+
+
+
+
 const drugDelete = async (req, res, next) => {
   const  Name  = req.params.Name;
   try {
