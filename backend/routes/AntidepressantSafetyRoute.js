@@ -5,5 +5,7 @@ const antidepressantSafetyController = require('../controller/AntidepressantSafe
 
 router.get('/AntidepressantSafety', antidepressantSafetyController.getData);
 router.post("/AntidepressantSafety/update", antidepressantSafetyController.updateData);
+router.post("/AntidepressantSafety/add", antidepressantSafetyController.addData);
+router.delete("/AntidepressantSafety/delete/:Description", antidepressantSafetyController.deleteData);
 
 module.exports = router;
