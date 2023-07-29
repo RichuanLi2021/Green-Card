@@ -13,9 +13,10 @@ import Button from "@mui/material/Button";
 import Footer from "../../Footer/Footer";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableHead from "@mui/material/TableHead";
 import TableCell from "@mui/material/TableCell";
+import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+
 import Search from "../../Search/Search";
 import { useNavigate } from "react-router-dom";
 
@@ -164,7 +165,7 @@ export default function InsomniaSedatives() {
             <Typography className="subtitle" gutterBottom>
               Sedatives/Hypnotics Guide
             </Typography>
-            <div className="grid-container">
+            <div className="grid-container" id="insomnia-sedatives-grid">
               {Object.keys(data).map((id) => {
                 const dataObj = data[id];
                 const isDrugSelected = selectedDrugs.includes(dataObj);

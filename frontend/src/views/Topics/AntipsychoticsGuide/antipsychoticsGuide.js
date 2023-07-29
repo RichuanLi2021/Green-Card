@@ -151,7 +151,7 @@ export default function AntipsychoticsGuide() {
             <Typography className="heading-antipsychotics" gutterBottom>
               Antipsychotics Guide
             </Typography>
-            <div className="grid-container">
+            <div className="grid-container" id="antipsychotics-grid">
               {Object.keys(data).map((id) => {
                 const dataObj = data[id];
                 const isDrugSelected = selectedDrugs.includes(dataObj);
@@ -453,7 +453,7 @@ export default function AntipsychoticsGuide() {
               Antipsychotics Guide
             </Typography>
 
-            <div className="grid-container">
+            <div className="grid-container" id="antipsychotics-grid">
               {Object.keys(data).map((id) => {
                 const dataObj = data[id];
                 const isDrugSelected = selectedDrugs.includes(dataObj);

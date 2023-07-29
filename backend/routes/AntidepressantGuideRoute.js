@@ -6,5 +6,7 @@ const antidepressantGuideController = require('../controller/AntidepressantGuide
 
 router.get('/AntidepressantGuide', antidepressantGuideController.getData);
 router.post('/AntidepressantGuide/update', antidepressantGuideController.updateData);
+router.post("/AntidepressantGuide/add", antidepressantGuideController.addData);
+router.delete("/AntidepressantGuide/delete/:Name", antidepressantGuideController.deleteData);
 
 module.exports = router;
