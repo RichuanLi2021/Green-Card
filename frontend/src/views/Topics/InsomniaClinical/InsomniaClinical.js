@@ -155,7 +155,7 @@ export default function InsomniaClinical() {
       return (
         <>
           <Navigation />
-          <SearchBar placeholder="Search" data={Data} />
+          <Search onSearch={handleSearch}></Search>
           <div id="insomniaClinical">
             <Box
               sx={{

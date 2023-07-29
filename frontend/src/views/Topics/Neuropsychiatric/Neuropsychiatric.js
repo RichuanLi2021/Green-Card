@@ -3,17 +3,47 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState, useEffect } from "react";
-// import SearchBar from "../../searchBar/searchBar";
 import Navigation from "../../Navigation/navigation";
-// import Data from "../../searchBar/Data.json";
 import { NeuropsychiatricUpdate, submitDrug } from "./NeuropsychiatricBackend";
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Footer from "../../Footer/Footer";
+import { styled } from "@mui/material/styles";
+import TableHead from "@mui/material/TableHead";
+
 import { useNavigate } from "react-router-dom";
 import Search from "../../Search/Search";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.success.main,
+    color: theme.palette.common.white,
+    fontWeight: "bold",
+    fontStyle: "italic",
+    textDecorationLine: "underline",
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
 
 export default function Neuropsychiatric() {
   const navigate = useNavigate();
@@ -38,7 +68,7 @@ export default function Neuropsychiatric() {
       });
   };
 
-  const [selectedDrugs, setSelectedDrugs] = useState([]);
+ 
   const [value, setValue] = useState("");
   const admin = localStorage.getItem("admin");
 
@@ -88,11 +118,13 @@ export default function Neuropsychiatric() {
                 "\nNew Value:" +
                 event.target.value
             );
+            window.location.reload();
           })
           .catch((error) => {
             console.error(error);
             alert("Failed to update!");
           });
+          
       } else {
         console.log("value was not changed, not updating");
       }
@@ -101,16 +133,7 @@ export default function Neuropsychiatric() {
     }
   };
 
-  const handleDrugClick = (dataObj) => {
-    setSelectedDrugs((prevSelectedDrugs) => {
-      const isSelected = prevSelectedDrugs.includes(dataObj);
-      if (isSelected) {
-        return prevSelectedDrugs.filter((drug) => drug !== dataObj);
-      } else {
-        return [...prevSelectedDrugs, dataObj];
-      }
-    });
-  };
+  
 
   const handleDelete = async (Medication) => {
     if (window.confirm("Are you sure you want to delete this record?")) {
@@ -129,41 +152,49 @@ export default function Neuropsychiatric() {
     if (admin) {
       return (
         <>
-          <link
+        <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
           />
           <Navigation />
           <Search onSearch={handleSearch}></Search>
-          <div style={{ marginTop: "1rem", padding: "0 1rem" }}>
-            <Typography id="page-heading">ECT AND PSYCHOACTIVE MEDICATIONS</Typography>
-            
-                <div className="grid-container">
-                  {Object.keys(data).map((id) => {
-                    const dataObj = data[id];
-                    const isDrugSelected = selectedDrugs.includes(dataObj);
-                    return (
-                      <div className="grid-item" key={id}>
-                        <button
-                          id="ect-button"
-                          onClick={() => handleDrugClick(dataObj)}
-                          className={`drug-button ${isDrugSelected ? "active" : ""}`}
-                        >
-                          {dataObj.Medication}
-                          <button
-                            style={{ background: "none", border: "none", cursor: "pointer" }}
-                            onClick={(e) => handleDelete(dataObj.Medication)}
-                          >
-                            <span class="material-symbols-outlined">delete</span>
-                          </button>
-                        </button>
+          <div id="insomniaClinical">
+            <Box
+              sx={{
+                marginTop: 3,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Typography id="topicHeader">ECT AND PSYCHOACTIVE MEDICATIONS</Typography>
+            </Box>
 
-                        {isDrugSelected && (
-                          <div>
-                            <div className="box">
-                              <div className="box-content">
-                                <strong>Recommended Action</strong>
+            <TableContainer component={Paper} sx={{ marginBottom: 20 }}>
+              <Table aria-label="customized table" id="clinicalTable">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Medication</StyledTableCell>
+                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Action</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {data.map((dataObj, index) => (
+                    <StyledTableRow key={index}>
+                      <StyledTableCell component="th" scope="row">
+                               <input
+                               
+                                  id="`Medication`"
+                                  name={dataObj.Medication}
+                                  type="text"
+                                  onFocus={store_value}
+                                  onBlur={update_value}
+                                  defaultValue={dataObj[`Medication`]}
+                                />
+                      </StyledTableCell>
+                      <StyledTableCell>
                                 <input
+                                style={{ minWidth: "700px" }}
                                   id="`Recommended Action`"
                                   name={dataObj.Medication}
                                   type="text"
@@ -171,14 +202,20 @@ export default function Neuropsychiatric() {
                                   onBlur={update_value}
                                   defaultValue={dataObj[`Recommended Action`]}
                                 />
-                              </div>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                  <div className="box-content">
+
+<button
+                            style={{ background: "none", border: "none", cursor: "pointer" }}
+                            onClick={(e) => handleDelete(dataObj.Medication)}
+                          >
+                            <span class="material-symbols-outlined">delete</span>
+                          </button>
+                      </StyledTableCell>
+                      
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+              <div className="box-content">
                     <div className="form-header">
                       <Box display="flex" justifyContent="space-between" alignItems="center">
                         <Typography variant="h5" className="title">
@@ -216,17 +253,16 @@ export default function Neuropsychiatric() {
                       </Box>
                     </form>
                   </div>
-                </div>
-
-                <div className="keynote-meddiv">
                   <p className="keynote">
                     <b>Key: </b>ChEIs:cholinesterase inhibitors; MAOIs: monoamine oxidase inhibitors; *If highly
                     tolerant (and high doses), do not taper abruptly due to risk of prolonged seizure.
                   </p>
-                </div>
+            </TableContainer>
             
-            <Footer />
           </div>
+          
+
+          <Footer />
         </>
       );
     } else {
@@ -234,44 +270,53 @@ export default function Neuropsychiatric() {
         <>
           <Navigation />
           <Search onSearch={handleSearch}></Search>
-          <div style={{ marginTop: "1rem", padding: "0 1rem" }}>
-            <Typography id="page-heading">ECT AND PSYCHOACTIVE MEDICATIONS</Typography>
-           
-                <div className="grid-container">
-                  {Object.keys(data).map((id) => {
-                    const dataObj = data[id];
-                    const isDrugSelected = selectedDrugs.includes(dataObj);
-                    return (
-                      <div className="grid-item" key={id}>
-                        <button
-                          id="ect-button"
-                          onClick={() => handleDrugClick(dataObj)}
-                          className={`drug-button ${isDrugSelected ? "active" : ""}`}
-                        >
-                          {dataObj.Medication}
-                        </button>
+          <div id="insomniaClinical">
+            <Box
+              sx={{
+                marginTop: 3,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Typography id="topicHeader">ECT AND PSYCHOACTIVE MEDICATIONS</Typography>
+            </Box>
 
-                        {isDrugSelected && (
-                          <div className="box">
-                            <div className="box-content">
-                              <strong>Recommended Action: </strong>
-                              <span>{dataObj[`Recommended Action`]}</span>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-                <div className="keynote-meddiv">
-                  <p className="keynote">
+            <TableContainer component={Paper} sx={{ marginBottom: 20 }}>
+              <Table aria-label="customized table" id="clinicalTable">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Medication</StyledTableCell>
+                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Action</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {data.map((dataObj, index) => (
+                    <StyledTableRow key={index}>
+                      <StyledTableCell component="th" scope="row">
+                              
+                                  {dataObj[`Medication`]}
+                                
+                      </StyledTableCell>
+                      <StyledTableCell>
+                               
+                                 {dataObj[`Recommended Action`]}
+                              
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+              <p className="keynote">
                     <b>Key: </b>ChEIs:cholinesterase inhibitors; MAOIs: monoamine oxidase inhibitors; *If highly
                     tolerant (and high doses), do not taper abruptly due to risk of prolonged seizure.
                   </p>
-                </div>
-              
-            <Footer />
+            </TableContainer>
+            
           </div>
+         
+
+          <Footer />
         </>
       );
     }
