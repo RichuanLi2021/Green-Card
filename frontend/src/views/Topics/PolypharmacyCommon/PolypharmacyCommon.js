@@ -173,7 +173,7 @@ export default function PolypharmacyCommon() {
               </Typography>
             </Box>
 
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} sx={{marginBottom:20}}>
               <Table aria-label="customized table" id="polypharmacyCommonTable">
                 <TableHead>
                   <TableRow>
@@ -270,7 +270,7 @@ export default function PolypharmacyCommon() {
               </Typography>
             </Box>
 
-            <TableContainer component={Paper} sx={{ marginBottom:10 }}>
+            <TableContainer component={Paper} sx={{ marginBottom:20 }}>
               <Table aria-label="customized table" id="deliriumTable" >
                 <TableHead>
                   <TableRow>

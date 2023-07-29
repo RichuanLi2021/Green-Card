@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState, useEffect } from "react";
-// import SearchBar from "../../searchBar/searchBar";
+
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -9,7 +9,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
-// import Data from "../../searchBar/Data.json";
 import Navigation from "../../Navigation/navigation";
 import Footer from "../../Footer/Footer";
 import Box from "@mui/material/Box";
@@ -143,7 +142,7 @@ export default function InsomniaSafety() {
             <div style={{ marginTop: "1rem", padding: "0 1rem" }}>
               <Typography id="topicHeader">Sedatives/Hypnotics Safety Concerns</Typography>
 
-              <TableContainer component={Paper}>
+              <TableContainer component={Paper} sx={{marginBottom:20}}>
                 <Table aria-label="customized table" id="safetyTable">
                   {Object.keys(data).map((id) => {
                     const dataObj = data[id];
@@ -205,11 +204,7 @@ export default function InsomniaSafety() {
               </div>
               </TableContainer>
               
-              <div className="keynote-div">
-                <p className="keynote">
-                  <b>Key notes:</b> SHYPCLIN_SAF means safety concerns{" "}
-                </p>
-              </div>
+              
             </div>
           </div>
 
@@ -232,7 +227,7 @@ export default function InsomniaSafety() {
             >
               <Typography id="topicHeader">Sedatives/Hypnotics Safety Concerns</Typography>
             </Box>
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} sx={{marginBottom:20}}>
               <Table aria-label="customized table" id="safetyTable">
                 <TableBody>
                   {data.map((dataObj, index) => (
@@ -243,11 +238,7 @@ export default function InsomniaSafety() {
                 </TableBody>
               </Table>
             </TableContainer>
-            <div className="keynote-div">
-              <p className="keynote">
-                <b>Key notes:</b> SHYPCLIN_SAF means safety concerns{" "}
-              </p>
-            </div>
+            
           </div>
           <Footer />
         </>

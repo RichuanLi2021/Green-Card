@@ -427,11 +427,8 @@ export default function AntipsychoticsGuide() {
             </div>
 
             <div className="antipsychoticsGuide-footer">
-              <p className="footer-notes">
-                <b>Key: </b> AD: antidepressant; er: extended release; ir: immediate release; EO-SCZ: early-onset
-                schizophrenia; LO-SCZ: late-onset schizophrenia; MDE: major depressive disorder; NPS: neuropsychiatric
-                symptoms of dementia; NR: not recommended; PP: Parkinson's psychosis; †0.25 of adult equivalent dose
-                shown (see Yellow Card); ‡take with meal (≥350 kcal); ^accounts for half-life of active metabolites;
+            <p className="footer-notes">
+                <b>Key: </b> er: extended release; ir: immediate release;  NR: not recommended;  ‡take with meal (≥350 kcal);
                 **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data.
                 <br /> <br />
                 <b>NOTES: </b> doses may not reflect manufacturers' recommendations but are based on clinical literature
@@ -535,10 +532,7 @@ export default function AntipsychoticsGuide() {
             </div>
             <div className="antipsychoticsGuide-footer">
               <p className="footer-notes">
-                <b>Key: </b> AD: antidepressant; er: extended release; ir: immediate release; EO-SCZ: early-onset
-                schizophrenia; LO-SCZ: late-onset schizophrenia; MDE: major depressive disorder; NPS: neuropsychiatric
-                symptoms of dementia; NR: not recommended; PP: Parkinson's psychosis; †0.25 of adult equivalent dose
-                shown (see Yellow Card); ‡take with meal (≥350 kcal); ^accounts for half-life of active metabolites;
+                <b>Key: </b> er: extended release; ir: immediate release;  NR: not recommended;  ‡take with meal (≥350 kcal);
                 **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data.
                 <br /> <br />
                 <b>NOTES: </b> doses may not reflect manufacturers' recommendations but are based on clinical literature
