@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const PsychotropicMonitoringUpdate = async (name, column, value) => {
+export const PsychotropicMonitoringUpdate = async (name, column, value) => {
   try {
     const response = await axios.post('http://localhost:8887/api/PsychotropicMonitoringSection/update', {
       name,
@@ -15,4 +15,16 @@ const PsychotropicMonitoringUpdate = async (name, column, value) => {
   }
 };
 
-export default PsychotropicMonitoringUpdate;
+
+export const submitDrug = async (drugName, Antipsychotics, Lithium, Valproate) => {
+  try {
+    const response = await axios.post('http://localhost:8887/api/add/PsychotropicMonitoringSection', {
+      drugName, Antipsychotics, Lithium, Valproate
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
