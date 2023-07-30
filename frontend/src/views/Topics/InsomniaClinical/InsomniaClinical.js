@@ -36,7 +36,7 @@ export default function InsomniaClinical() {
     setAdmin(localStorage.getItem("admin") === "true");
   }, []);
 
-  const [value, setValue] = useState("");
+  const [setValue] = useState("");
 
   const store_value = (event) => {
     setValue(event.target.value);
