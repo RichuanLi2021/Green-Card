@@ -13,7 +13,7 @@ const getData = async (req, res, next) => {
 const updateData = async (req, res, next) => {
   try {
     const { name, column, value } = req.body;
-    await pool.query( 'UPDATE `green_card`.`sedatives/hypnotics clinical guide` SET ' + column + ' = ' + '"' + value + '"' + ' WHERE `Id` = ' + '"' + name + '"'
+    await pool.query('UPDATE `green_card`.`sedatives/hypnotics clinical guide` SET ' + column + ' = ' + '"' + value + '"' + ' WHERE `Id` = ' + '"' + name + '"'
     );
     res.send("Updated Successfully!");
   } catch (error) {
@@ -24,7 +24,6 @@ const updateData = async (req, res, next) => {
 };
 
 module.exports = {
-   getData,
-   updateData
- };
- 
+  getData,
+  updateData
+};
