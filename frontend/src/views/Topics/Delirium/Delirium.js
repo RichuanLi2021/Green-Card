@@ -228,7 +228,7 @@ export default function Delirium() {
               </Typography>
             </Box>
 
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} sx={{marginBottom:20}}>
               <Table aria-label="customized table" id="deliriumTable">
                 <TableHead>
                   <TableRow>
@@ -393,7 +393,7 @@ export default function Delirium() {
               </Typography>
             </Box>
 
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} sx={{marginBottom:20}}>
               <Table aria-label="customized table" id="deliriumTable">
                 <TableHead>
                   <TableRow>
