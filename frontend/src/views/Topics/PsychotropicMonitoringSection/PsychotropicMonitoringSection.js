@@ -78,7 +78,7 @@ export default function PsychotropicMonitoringSection() {
       });
   };
 
-  const [selectedDrugs, setSelectedDrugs] = useState([]);
+  
   const [value, setValue] = useState('');
   const admin = localStorage.getItem('admin');
 
@@ -110,7 +110,7 @@ export default function PsychotropicMonitoringSection() {
     submitDrug(drugName, Antipsychotics, Lithium, Valproate)
       .then((data) => {
         window.alert('Drug was added Successfully!');
-
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);
@@ -147,6 +147,7 @@ export default function PsychotropicMonitoringSection() {
         PsychotropicMonitoringUpdate(event.target.name, event.target.id, event.target.value)
           .then((data) => {
             alert('Updated Successfully Called! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nValue:" + event.target.value);
+            window.location.reload();
           })
           .catch((error) => {
             console.error(error);
@@ -162,16 +163,7 @@ export default function PsychotropicMonitoringSection() {
 
 
 
-  const handleDrugClick = (dataObj) => {
-    setSelectedDrugs((prevSelectedDrugs) => {
-      const isSelected = prevSelectedDrugs.includes(dataObj);
-      if (isSelected) {
-        return prevSelectedDrugs.filter((drug) => drug !== dataObj);
-      } else {
-        return [...prevSelectedDrugs, dataObj];
-      }
-    });
-  };
+
 
   if(data.length > 0)
 

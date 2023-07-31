@@ -81,40 +81,6 @@ export default function InsomniaClinical() {
     setValue(event.target.value);
   };
 
-  // const update_value = (event) => {
-  //   if (admin) {
-  //     event.preventDefault();
-  //     InsomniaClinicalUpdate(event.target.name, event.target.id, event.target.value)
-  //       .then((data) => {
-  //         alert(`Data successfully updated!\nNew Value: ${event.target.value}`);
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //         alert("Failed to update!");
-  //       });
-  //   } else {
-  //     alert("You must be an administrator to edit");
-  //   }
-  // };
-
-
-  // const groupDataByHeader = (data) => {
-  //   const groupedData = {};
-
-  //   data.forEach((item) => {
-  //     const header = item.LIST_HEADERS_Id;
-       
-  //     if (!groupedData[header]) {
-  //       groupedData[header] = [];
-  //     }
-  //     groupedData[header].push(item);
-  //   });
-
-  //   return groupedData;
-  // };
-  
-
-  // const groupedData = groupDataByHeader(data);
 
   const update_value = (event) => {
     if (admin) {

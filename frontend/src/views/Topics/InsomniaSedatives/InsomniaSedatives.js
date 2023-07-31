@@ -85,6 +85,7 @@ export default function InsomniaSedatives() {
     submitDrug(drugName, doseEquiv, timeToPeakInPlasma, halfLife, avgDoseRange, mgFormsupplied)
       .then((data) => {
         window.alert("Drug was added Successfully!");
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);
