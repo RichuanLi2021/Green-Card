@@ -57,8 +57,8 @@ export default function AntipsychoticsGuide() {
   });
   const admin = localStorage.getItem("admin");
 
-  //used to store value when an input is selected by user
-  const store_value = (event) => {
+   //used to store value when an input is selected by user
+   const store_value = (event) => {
     setValue(event.target.value);
   };
   //calls update query when an input was selected and is not anymore (if the value actually changed)
@@ -147,14 +147,15 @@ export default function AntipsychoticsGuide() {
           <Navigation />
           <Search onSearch={handleSearch}></Search>
           <div className="subHeader" style={{ marginTop: "1rem", padding: "0 1rem" }}>
-            <Typography className="heading-antipsychotics" gutterBottom>
-              Antipsychotics Guide
-            </Typography>
-            <div className="grid-container" id="antipsychotics-grid">
-              {Object.keys(data).map((id) => {
-                const dataObj = data[id];
-                const isDrugSelected = selectedDrugs.includes(dataObj);
-                return (
+          <Typography className="heading-antipsychotics" gutterBottom>
+            Antipsychotics Guide
+          </Typography>
+          <div className="grid-container" id="antipsychotics-grid">
+            {Object.keys(data).map((id) => {
+              const dataObj = data[id];
+              const isDrugSelected = selectedDrugs.includes(dataObj);
+
+              return (
                   <div className="grid-item" key={id}>
                     <button
                       onClick={() => handleDrugClick(dataObj)}
@@ -226,7 +227,6 @@ export default function AntipsychoticsGuide() {
                             </AccordionDetails>
                           </Accordion>
                         </div>
-
                         <div className="box-content">
                           <Accordion>
                             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -426,7 +426,7 @@ export default function AntipsychoticsGuide() {
             </div>
 
             <div className="antipsychoticsGuide-footer">
-            <p className="footer-notes">
+              <p className="footer-notes">
                 <b>Key: </b> er: extended release; ir: immediate release;  NR: not recommended;  ‡take with meal (≥350 kcal);
                 **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data.
                 <br /> <br />
@@ -528,16 +528,18 @@ export default function AntipsychoticsGuide() {
                   </div>
                 );
               })}
-            </div>
-            <div className="antipsychoticsGuide-footer">
-              <p className="footer-notes">
-                <b>Key: </b> er: extended release; ir: immediate release;  NR: not recommended;  ‡take with meal (≥350 kcal);
-                **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data.
-                <br /> <br />
-                <b>NOTES: </b> doses may not reflect manufacturers' recommendations but are based on clinical literature
-                and opinion. Half-lives are estimates based on adult data and in older adults they can often be
-                increased up to 170%.
-              </p>
+              <div className="antipsychoticsGuide-footer">
+                <p className="footer-notes">
+                  <b>Key: </b> AD: antidepressant; er: extended release; ir: immediate release; EO-SCZ: early-onset schizophrenia; LO-SCZ: late-onset
+                  schizophrenia; MDE: major depressive disorder; NPS: neuropsychiatric symptoms of dementia; NR: not recommended; PP: Parkinson's psychosis;
+                  †0.25 of adult equivalent dose shown (see Yellow Card); ‡take with meal (≥350 kcal); ^accounts for half-life of active metabolites;
+                  **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data.
+                  <br /> <br /> 
+                  <b>NOTES: </b> doses may not
+                  reflect manufacturers' recommendations but are based on clinical literature and opinion. Half-lives are estimates based on adult data
+                  and in older adults they can often be increased up to 170%.
+                </p>
+              </div>
             </div>
           </div>
           <Footer />

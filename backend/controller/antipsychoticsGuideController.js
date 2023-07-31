@@ -103,3 +103,5 @@ module.exports = {
   addData,
   deleteData,
 };
+
+//admin view

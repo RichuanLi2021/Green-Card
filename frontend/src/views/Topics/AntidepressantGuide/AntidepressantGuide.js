@@ -9,7 +9,6 @@ import AntidepressantGuideUpdate from "./AntidepressantGuidebackend.js";
 import './AntidepressantsGuide.css';
 import Footer from '../../Footer/Footer';
 
-
 export default function MoodStabilizers() {
   const [data, setData] = useState({});
   useEffect(() => {

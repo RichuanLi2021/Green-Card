@@ -9,6 +9,4 @@ router.post("/PsychotropicMonitoringSection/update", PsychotropicMonitoringSecti
 router.post('/add/PsychotropicMonitoringSection', PsychotropicMonitoringSectionController.drugData);
 router.delete('/psychotropic/delete/:Name',PsychotropicMonitoringSectionController.drugDelete);
 
-
-
 module.exports = router;
