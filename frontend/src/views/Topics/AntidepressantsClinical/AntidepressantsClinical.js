@@ -164,7 +164,7 @@ export default function AntidepressantsClinical() {
           <br></br>
 
           <div id="antidepressantClinical">
-            
+
             <Box
               sx={{
                 marginTop: 3,
@@ -283,7 +283,7 @@ export default function AntidepressantsClinical() {
           <br></br>
 
           <div id="antidepressantClinical">
-            
+
             <Box
               sx={{
                 marginTop: 3,

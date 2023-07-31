@@ -6,10 +6,10 @@ const getPsychotropicMonitoringSectionData = async () => {
 };
 
 const PsychotropicMonitoringSectionController = {
-   getData: async (req,res, next) => {
+  getData: async (req, res, next) => {
     const PsychotropicMonitoringSectionControllerData = await getPsychotropicMonitoringSectionData();
     res.send(PsychotropicMonitoringSectionControllerData);
-   }
+  }
 
 };
 const updatePsychotropicMonitoringSectionData = async (req, res, next) => {
@@ -17,15 +17,15 @@ const updatePsychotropicMonitoringSectionData = async (req, res, next) => {
     const { name, column, value } = req.body;
     await pool.query(
       "UPDATE `green_card`.`Psychotropic Monitoring` SET " +
-        column +
-        " = " +
-        '"' +
-        value +
-        '"' +
-        " WHERE name = " +
-        '"' +
-        name +
-        '"'
+      column +
+      " = " +
+      '"' +
+      value +
+      '"' +
+      " WHERE name = " +
+      '"' +
+      name +
+      '"'
     );
     res.send("Updated Successfully!");
   } catch (error) {
@@ -35,12 +35,33 @@ const updatePsychotropicMonitoringSectionData = async (req, res, next) => {
   }
 };
 
+const drugData = async (req, res, next) => {
+  const {
+    drugName, Antipsychotics, Lithium, Valproate
+  } = req.body;
+
+  try {
+    await pool.query(
+      "INSERT INTO `green_card`.`Psychotropic Monitoring` (`Name`, `Antipsychotics`, `Lithium`, `Valproate`) VALUES (?, ?, ?, ?)",
+      [
+        drugName, Antipsychotics, Lithium, Valproate
+      ]
+    );
+
+    res.send('Drug was submitted successfully');
+  } catch (err) {
+    next(err);
+    throw err;
+  }
+};
+
+
 const drugDelete = async (req, res, next) => {
   const  Name  = req.params.Name;
   try {
-      await pool.query('DELETE FROM `green_card`.`Psychotropic Monitoring` WHERE Name = ? ',
+      await pool.query('DELETE FROM `green_card`.`Psychotropic Monitoring` WHERE `Name` = ? ',
           Name);
-      res.send('Drug was deleted successfully');
+      console.log('Drug was deleted successfully');
   } catch (err) {
       next(err);
       throw err;
@@ -48,4 +69,4 @@ const drugDelete = async (req, res, next) => {
 };
 
 
-module.exports = { PsychotropicMonitoringSectionController, updatePsychotropicMonitoringSectionData,drugDelete};
+module.exports = { PsychotropicMonitoringSectionController, updatePsychotropicMonitoringSectionData, drugData ,drugDelete};

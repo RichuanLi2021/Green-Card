@@ -1,431 +1,123 @@
-// import './PsychotropicMonitoringSection.css';
-// import * as React from 'react';
-// import Navigation from '../../Navigation/navigation';
-// import axios from 'axios';
-// import { useState, useEffect } from 'react';
-// import Typography from '@mui/material/Typography';
-// import Data from "../../searchBar/Data.json";
-// import SearchBar from "../../searchBar/searchBar";
-// import PsychotropicMonitoringUpdate from "./PsychotropicMonitoringbackend";
-
-// import Footer from '../../Footer/Footer';
-
-// export default function PsychotropicMonitoringSection() {
-//   const [data, setData] = useState({});
-//   useEffect(() => {
-//     fetchData();
-//   }, []);
-
-//   const fetchData = () => {
-//     axios
-//       .get('http://localhost:8887/api/psychotropicmonitoringsection')
-//       .then((response) => {
-//         setData(response.data);
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//       });
-//   };
-
-//   const [selectedDrugs, setSelectedDrugs] = useState([]);
-//   const [value, setValue] = useState('');
-//   const admin = localStorage.getItem('admin');
-
-//    //used to store value when an input is selected by user
-//   const store_value = (event) => {
-//     setValue(event.target.value);
-//   };
-
-//   //calls update query when an input was selected and is not anymore (if the value actually changed)
-//   const update_value = (event) => {
-//     if (admin) {
-//       console.log(value);
-//       if (event.target.value !== value) {
-//         event.preventDefault();
-//         PsychotropicMonitoringUpdate(event.target.name, event.target.id, event.target.value)
-//           .then((data) => {
-//             alert('Updated Successfully Called! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nValue:"+ event.target.value);
-//           })
-//           .catch((error) => {
-//             console.error(error);
-//             alert("Failed to update!");
-//           });
-//       } else {
-//         console.log("value was not changed, not updating");
-//       }
-//     } else {
-//       alert("You must be an administrator to edit");
-//     }
-//   };
-
-
-
-//   const handleDrugClick = (dataObj) => {
-//     setSelectedDrugs((prevSelectedDrugs) => {
-//       const isSelected = prevSelectedDrugs.includes(dataObj);
-//       if (isSelected) {
-//         return prevSelectedDrugs.filter((drug) => drug !== dataObj);
-//       } else {
-//         return [...prevSelectedDrugs, dataObj];
-//       }
-//     });
-//   };
-
-//   if (Object.keys(data).length > 0) {
-//     // Editable Fields
-//     if (admin) {
-//       return (
-//         <>
-//           <Navigation />
-//           <SearchBar placeholder="Search" data={Data} />
-//           <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
-//             <Typography variant="h4" align="center" gutterBottom>
-//             <div className='subtitle'>
-//               Psychotropic Monitoring
-//             </div>
-//             </Typography>
-    
-//             <div className="grid-container">
-             
-                   
-
-                 
-//               {Object.keys(data).map((id) => {
-//                 const dataObj = data[id];
-                
-//                 return (
-//                   <div className="grid-item" key={id}>
-//                     {/* <button
-//                       onClick={() => handleDrugClick(dataObj)}
-//                       className={`drug-button ${isDrugSelected ? 'active' : ''}`}
-//                     >
-//                       {dataObj.Name}
-//                     </button> */}
-//                      <div className='tableFixHead'>
-//                 <table>
-//                   <thead>
-//                   <tr>
-//                       <th></th>
-//                       <th> Antipsychotics </th>
-//                       <th>Lithium</th>
-//                       <th>Valproate</th>
-//                     </tr> 
-//                     </thead>
-//                     <tbody>
-
-//                     {/* <tr>
-//                         <td> 
-//                           <input id="`Antipsychotics`"
-//                             name={dataObj.Name}
-//                             type='text'
-//                             onFocus={store_value}
-//                             onBlur={update_value}
-//                             defaultValue={dataObj[`Antipsychotics`]} />
-//                             </td>
-//                        </tr> */}
-                       
-//                     </tbody>
-//                     </table>
-//                     </div>
-                    
-                    
-//                       {/* <div className="box">
-
-//                         <div className="box-content">
-                      
-//                         </div>
-
-//                         <div className="box-content">
-//                           <strong>Lithium: </strong>
-//                           <input id="`Lithium`"
-//                           name={dataObj.Name} 
-//                           type='text' 
-//                           onFocus={store_value} 
-//                           onBlur={update_value} 
-//                           defaultValue={dataObj[`Lithium`]}  />
-//                         </div>
-    
-//                         <div className="box-content">
-//                           <strong>Valproate: </strong>
-//                           <input id="`Valproate`" 
-//                           name={dataObj.Name} 
-//                           type='text' 
-//                           onFocus={store_value} 
-//                           onBlur={update_value} 
-//                           defaultValue={dataObj[`Valproate`]} />
-//                         </div>
-
-                      
-
-//                     </div> */}
-                    
-//                   </div>
-//                 );
-//               })}
-
-// {/* <div class="tableFixHead">
-//       <table>
-//         <thead>
-//           <tr>
-//             <th>Antipsychotics</th>
-//             <th>Lithium</th>
-//             <th>Valproate</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           <tr>
-//             <td>1.1</td>
-//             <td>2.1</td>
-//           </tr>
-//           <tr>
-//             <td>1.2</td>
-//             <td>2.2</td>
-//           </tr>
-//           <tr>
-//             <td>1.3</td>
-//             <td>2.3</td>
-//           </tr>
-//           <tr>
-//             <td>1.4</td>
-//             <td>2.4</td>
-//           </tr>
-//           <tr>
-//             <td>1.5</td>
-//             <td>2.5</td>
-//           </tr>
-//           <tr>
-//             <td>1.6</td>
-//             <td>2.5</td>
-//           </tr>
-//           <tr>
-//             <td>1.7</td>
-//             <td>2.5</td>
-//           </tr>
-//           <tr>
-//             <td>1.8</td>
-//             <td>2.5</td>
-//           </tr>
-//         </tbody>
-//       </table>
-//     </div> */}
-  
-//     {/* </thead>
-//                 </table>
-//               </div> */}
-//             </div>
-//             <div className="psychotropic-footer">
-//               <p className='psychotropic-notes'>
-//               <b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark).  <br /> <br />
-//               <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be necessary based on clinical judgment  
-//               </p>
-//             </div>
-//           </div>
-//           <Footer />
-//         </>
-//       );
-//     }
-    
-//     // Non-Editable Fields
-//     else {
-//       return (
-//         <>
-//           <Navigation />
-//           <SearchBar placeholder="Search" data={Data} />
-//           <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
-//             <Typography variant="h4" align="center" gutterBottom>
-//             <div className='subtitle'>
-//               Psychotropic Monitoring
-//             </div>
-//             </Typography>
-
-//             <div className="grid-container">
-//               {Object.keys(data).map((id) => {
-//                 const dataObj = data[id];
-//                 const isDrugSelected = selectedDrugs.includes(dataObj);
-//                 return (
-//                   <div className="grid-item" key={id}>
-//                     <button
-//                       onClick={() => handleDrugClick(dataObj)}
-//                       className={`drug-button ${isDrugSelected ? 'active' : ''}`}
-//                     >
-//                       {dataObj.Name}
-//                     </button>
-
-//                     {isDrugSelected && (
-//                     <div className="box">
-//                       <div className="box-content">
-//                         <strong>Antipsychotics: </strong>
-//                         <span>{dataObj[`Antipsychotics`]}</span>
-//                       </div>
-//                       <div className="box-content">
-//                         <strong>Lithium: </strong>
-//                         <span>{dataObj[`Lithium`]}</span>
-//                       </div>
-                      
-//                       <div className="box-content">
-//                         <strong>Valproate: </strong>
-//                         <span>{dataObj[`Valproate`]}</span>
-//                       </div>
-                      
-//                     </div>
-//                   )}
-//                 </div>
-                  
-//                 );
-//               })}
-//             </div>
-
-//             <div class="tableFixHead">
-//       <table>
-//         <thead>
-//           <tr>
-//             <th>Col 1</th>
-//             <th>Col 2</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           <tr>
-//             <td>1.1</td>
-//             <td>2.1</td>
-//           </tr>
-//           <tr>
-//             <td>1.2</td>
-//             <td>2.2</td>
-//           </tr>
-//           <tr>
-//             <td>1.3</td>
-//             <td>2.3</td>
-//           </tr>
-//           <tr>
-//             <td>1.4</td>
-//             <td>2.4</td>
-//           </tr>
-//           <tr>
-//             <td>1.5</td>
-//             <td>2.5</td>
-//           </tr>
-//           <tr>
-//             <td>1.6</td>
-//             <td>2.5</td>
-//           </tr>
-//           <tr>
-//             <td>1.7</td>
-//             <td>2.5</td>
-//           </tr>
-//           <tr>
-//             <td>1.8</td>
-//             <td>2.5</td>
-//           </tr>
-//         </tbody>
-//       </table>
-//     </div>
-//             <div className="psychotropic-footer">
-//               <p className='psychotropic-notes'>
-//               <b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark).  <br /> <br />
-//               <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be necessary based on clinical judgment  
-//               </p>
-//             </div>
-//           </div>
-//           <Footer />
-//         </>
-//       );
-//     }
-//   } 
-// }
-
-
-import PsychotropicMonitoringUpdate from "./PsychotropicMonitoringbackend";
 import './PsychotropicMonitoringSection.css';
-
 import * as React from 'react';
-
-import Typography from '@mui/material/Typography';
-
-import axios from 'axios';
-
-import {useState, useEffect} from 'react';
-
-import SearchBar from "../../searchBar/searchBar";
-
-import Table from '@mui/material/Table';
-
-import TableBody from '@mui/material/TableBody';
-
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-
-import TableContainer from '@mui/material/TableContainer';
-
-import TableHead from '@mui/material/TableHead';
-
-import TableRow from '@mui/material/TableRow';
-
-import Paper from '@mui/material/Paper';
-
-import { styled } from '@mui/material/styles';
-
 import Navigation from '../../Navigation/navigation';
-
-import Footer from '../../Footer/Footer';
-
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import Typography from '@mui/material/Typography';
 import Data from "../../searchBar/Data.json";
-
+import SearchBar from "../../searchBar/searchBar";
+import { PsychotropicMonitoringUpdate, submitDrug } from "./PsychotropicMonitoringbackend";
 import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Footer from '../../Footer/Footer';
+import Table from "@mui/material/Table";
 
+import TableBody from "@mui/material/TableBody";
+
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+
+import TableContainer from "@mui/material/TableContainer";
+
+import TableHead from "@mui/material/TableHead";
+
+import TableRow from "@mui/material/TableRow";
+
+import Paper from "@mui/material/Paper";
+
+import { styled } from "@mui/material/styles";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
-
   [`&.${tableCellClasses.head}`]: {
-
     backgroundColor: theme.palette.success.main,
 
-    color:theme.palette.common.white,
+    color: theme.palette.common.white,
 
-    fontWeight:'bold',
+    fontWeight: "bold",
 
-    fontStyle:'italic',
+    fontStyle: "italic",
 
-    textDecorationLine:'underline',
-
-
-
+    textDecorationLine: "underline",
   },
 
   [`&.${tableCellClasses.body}`]: {
-
     fontSize: 14,
-
-
   },
-
 }));
-
-
-
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-
-  '&:nth-of-type(odd)': {
-
+  "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
-
   },
 
   // hide last border
 
-  '&:last-child td, &:last-child th': {
-
+  "&:last-child td, &:last-child th": {
     border: 0,
-
   },
-
 }));
 
 
- 
+
+
 
 export default function PsychotropicMonitoringSection() {
+  const [data, setData] = useState({});
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
+    axios
+      .get('http://localhost:8887/api/psychotropicmonitoringsection')
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  
   const [value, setValue] = useState('');
   const admin = localStorage.getItem('admin');
+
+
+  const [drugName, setdrugName] = useState('');
+  const [Antipsychotics, setAntipsychotics] = useState('');
+  const [Lithium, setLithium] = useState('');
+  const [Valproate, setValproate] = useState('');
+
+  const handleDrugName = (event) => {
+    setdrugName(event.target.value);
+  };
+
+  const handleAntipyschotics = (event) => {
+    setAntipsychotics(event.target.value);
+  };
+
+  const handleLitihum = (event) => {
+    setLithium(event.target.value);
+  };
+
+  const handleValproate = (event) => {
+    setValproate(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log({ drugName, Antipsychotics, Lithium, Valproate });
+    submitDrug(drugName, Antipsychotics, Lithium, Valproate)
+      .then((data) => {
+        window.alert('Drug was added Successfully!');
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error(error);
+        window.alert('Failed to submit the Drug!');
+      });
+  };
+
 
   const handleDelete = async (Name) =>{
     if(window.confirm('Are you sure you want to delete this record?')){
@@ -440,56 +132,38 @@ export default function PsychotropicMonitoringSection() {
   }
   }
 
-   //used to store value when an input is selected by user
+
+  //used to store value when an input is selected by user
   const store_value = (event) => {
     setValue(event.target.value);
   };
- 
+
+  //calls update query when an input was selected and is not anymore (if the value actually changed)
   const update_value = (event) => {
-        if (admin) {
-          console.log(value);
-          if (event.target.value !== value) {
-            event.preventDefault();
-            PsychotropicMonitoringUpdate(event.target.name, event.target.id, event.target.value)
-              .then((data) => {
-                alert(' Data Updated Successfully ! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nValue:"+ event.target.value);
-                window.location.reload();
-              })
-              .catch((error) => {
-                console.error(error);
-                alert("Failed to update!");
-              });
-          } else {
-            console.log("value was not changed, not updating");
-          }
-        } else {
-          alert("You must be an administrator to edit");
-        }
-      };
-  const [data, setData] = useState([]);
-  
-  
-  useEffect(() => {
+    if (admin) {
+      console.log(value);
+      if (event.target.value !== value) {
+        event.preventDefault();
+        PsychotropicMonitoringUpdate(event.target.name, event.target.id, event.target.value)
+          .then((data) => {
+            alert('Updated Successfully Called! \nDrug:' + event.target.name + "\nColumn:" + event.target.id + "\nValue:" + event.target.value);
+            window.location.reload();
+          })
+          .catch((error) => {
+            console.error(error);
+            alert("Failed to update!");
+          });
+      } else {
+        console.log("value was not changed, not updating");
+      }
+    } else {
+      alert("You must be an administrator to edit");
+    }
+  };
 
-    axios.get('http://localhost:8887/api/psychotropicmonitoringsection')
 
-        .then(response => {
 
-          setData(response.data)
 
-          console.log(response.data[0]);
-
-        })
-
-        .catch(error => {
-
-          console.log(error);
-
-        });
-
-  }, []);
-
- 
 
   if(data.length > 0)
 
@@ -597,6 +271,72 @@ delete
               </table>
                     </div>
             </div><br></br>
+            <div className="box-content"  >
+              <div className="form-header" >
+                <Box display="flex" justifyContent="space-between" alignItems="center">
+                  <Typography variant="h5" className="title">
+                    Add New Drug
+                  </Typography>
+
+                </Box>
+              </div>
+
+              <form onSubmit={handleSubmit} >
+                <Box >
+                  <TextField
+                    label="Drug Name: "
+                    variant="filled"
+                    value={drugName}
+                    onChange={handleDrugName}
+                    required
+                  />
+
+                </Box>
+                <Box >
+                  <TextField
+                    label="Antipyschotics:"
+                    variant="filled"
+                    value={Antipsychotics}
+                    onChange={handleAntipyschotics}
+                    type="text"
+                    multiline
+                    required
+                  />
+                </Box>
+
+                <Box >
+                  <TextField
+                    label="Litihium:"
+                    variant="filled"
+                    value={Lithium}
+                    onChange={handleLitihum}
+                    multiline
+                    required
+                  />
+                </Box>
+
+                <Box >
+                  <TextField
+                    label="Valproate:"
+                    variant="filled"
+                    value={Valproate}
+                    onChange={handleValproate}
+                    multiline
+                    required
+                  />
+                </Box>
+
+                <Box sx={{ display: 'flex' }}>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    className="submit-button"
+                    color="primary">
+                    Submit
+                  </Button>
+                </Box>
+              </form>
+            </div>
 
             
           <p><b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark).  <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be necessary based on clinical judgment  </p>
@@ -673,11 +413,26 @@ delete
 
                   </StyledTableCell>
 
-                  <StyledTableCell >{dataObj[`Antipsychotics`]} </StyledTableCell>
+                  <StyledTableCell ><input id="`Antipsychotics`"
+                             name={dataObj.Name}
+                             type='text'
+                             onFocus={store_value}
+                             onBlur={update_value}
+                             defaultValue={dataObj[`Antipsychotics`]} /></StyledTableCell>
 
-                  <StyledTableCell >{dataObj[`Lithium`]}  </StyledTableCell>
+                  <StyledTableCell ><input id="`Lithium`"
+                          name={dataObj.Name} 
+                          type='text' 
+                          onFocus={store_value} 
+                          onBlur={update_value} 
+                          defaultValue={dataObj[`Lithium`]}  /></StyledTableCell>
 
-                  <StyledTableCell >{dataObj[`Valproate`]} </StyledTableCell>
+                  <StyledTableCell ><input id="`Valproate`" 
+                          name={dataObj.Name} 
+                          type='text' 
+                          onFocus={store_value} 
+                          onBlur={update_value} 
+                          defaultValue={dataObj[`Valproate`]} /></StyledTableCell>
 
                 </StyledTableRow>
 
@@ -701,5 +456,4 @@ delete
 
 }
 
-};
-
+}
