@@ -43,7 +43,7 @@ export default function CognitiveEnhancersGuide() {
   const [dose, setDose] = useState('');
   const [frequency, setFrequency] = useState('');
   const [mgFormsupplied, setmgFormsupplied] = useState('');
-  const [withFood, setwithFood] = useState('');
+  const [withFood, setwithfood] = useState('');
   const [mci, setmci] = useState('');
   const [mildModeAlz, setmildModeAlz] = useState('');
   const [severeAlz, setsevereAlz] = useState('');
@@ -78,7 +78,7 @@ export default function CognitiveEnhancersGuide() {
     setmgFormsupplied(event.target.value);
   }
   const handlewithFood = (event) => {
-    setwithFood(event.target.value);
+    setwithfood(event.target.value);
   }
 
   const handlemci = (event) => {
@@ -115,7 +115,7 @@ export default function CognitiveEnhancersGuide() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log({ drugName, action, halfLife, dose, frequency, mgFormsupplied, withFood, mci, mildModeAlz, severeAlz, mixed, vascular, lbd, ftd, pd, dsd });
+    console.log({ drugName, action, halfLife, dose, frequency, mgFormsupplied, withfood: withFood, mci, mildModeAlz, severeAlz, mixed, vascular, lbd, ftd, pd, dsd });
     submitDrug(drugName, action, halfLife, dose, frequency, mgFormsupplied, withFood, mci, mildModeAlz, severeAlz, mixed, vascular, lbd, ftd, pd, dsd)
       .then((data) => {
         window.alert('Drug was added Successfully!');
