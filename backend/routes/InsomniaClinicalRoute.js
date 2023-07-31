@@ -6,5 +6,7 @@ const InsomniaClinicalController = require('../controller/InsomniaClinicalContro
 
 router.get('/InsomniaClinical', InsomniaClinicalController.getData);
 router.post("/InsomniaClinical/update", InsomniaClinicalController.updateData);
+router.post('/add/Insomnia/Clinical', InsomniaClinicalController.drugData);
+router.delete('/clinical/delete/:Description',InsomniaClinicalController.drugDelete);
 
 module.exports = router;

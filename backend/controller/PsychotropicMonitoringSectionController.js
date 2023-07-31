@@ -54,4 +54,19 @@ const drugData = async (req, res, next) => {
     throw err;
   }
 };
-module.exports = { PsychotropicMonitoringSectionController, updatePsychotropicMonitoringSectionData, drugData };
+
+
+const drugDelete = async (req, res, next) => {
+  const  Name  = req.params.Name;
+  try {
+      await pool.query('DELETE FROM `green_card`.`Psychotropic Monitoring` WHERE `Name` = ? ',
+          Name);
+      console.log('Drug was deleted successfully');
+  } catch (err) {
+      next(err);
+      throw err;
+  }
+};
+
+
+module.exports = { PsychotropicMonitoringSectionController, updatePsychotropicMonitoringSectionData, drugData ,drugDelete};

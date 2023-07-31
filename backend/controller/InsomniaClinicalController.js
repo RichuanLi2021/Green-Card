@@ -23,7 +23,36 @@ const updateData = async (req, res, next) => {
   }
 };
 
+
+const drugData = async (req, res, next) => {
+  const { when, what} = req.body;
+  try {
+      await pool.query('INSERT INTO `green_card`.`sedatives/hypnotics clinical guide` (`LIST_HEADERS_Id`,`Description`) VALUES (?, ?)',
+          [when, what]);
+      res.send('Drug was submitted successfully');
+  } catch (err) {
+      next(err);
+      throw err;
+  }
+};
+
+
+const drugDelete = async (req, res, next) => {
+  const  Description  = req.params.Description;
+  try {
+      await pool.query('DELETE FROM `green_card`.`SEDATIVES/HYPNOTICS CLINICAL GUIDE` WHERE `Id` = ? ',
+          Description);
+      console.log('Drug was deleted successfully');
+  } catch (err) {
+      next(err);
+      throw err;
+  }
+};
+
+
 module.exports = {
   getData,
-  updateData
+  updateData,
+  drugData,
+  drugDelete
 };

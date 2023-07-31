@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const InsomniaClinicalUpdate = async (name, column, value) => {
+export const InsomniaClinicalUpdate = async (name, column, value) => {
   try {
     const response = await axios.post(
       "http://localhost:8887/api/InsomniaClinical/update",
@@ -18,4 +18,20 @@ const InsomniaClinicalUpdate = async (name, column, value) => {
   }
 };
 
-export default InsomniaClinicalUpdate;
+export const submitDrug = async (when, what) => {
+  try {
+    const response = await axios.post('http://localhost:8887/api/add/Insomnia/Clinical', {
+        when,
+        what
+        
+    });
+    console.log(response.data); // log response from server
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error; // throw error to be handled by calling function
+  }
+};
+
+
+

@@ -3,9 +3,8 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState, useEffect } from "react";
-// import SearchBar from "../../searchBar/searchBar";
 import Navigation from "../../Navigation/navigation";
-// import Data from "../../searchBar/Data.json";
+
 import { InsomniaSedativesUpdate, submitDrug } from "./InsomniaSedativesBackend";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
@@ -86,6 +85,7 @@ export default function InsomniaSedatives() {
     submitDrug(drugName, doseEquiv, timeToPeakInPlasma, halfLife, avgDoseRange, mgFormsupplied)
       .then((data) => {
         window.alert("Drug was added Successfully!");
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);
