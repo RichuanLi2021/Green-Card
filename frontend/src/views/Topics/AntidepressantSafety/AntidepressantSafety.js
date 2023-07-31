@@ -2,7 +2,7 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState, useEffect } from "react";
-// import SearchBar from "../../searchBar/searchBar";
+
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -15,7 +15,7 @@ import AntidepressantSafetyUpdate from "./AntidepressantSafetyBackend";
 
 import Navigation from "../../Navigation/navigation";
 import Footer from "../../Footer/Footer";
-// import Data from "../../searchBar/Data.json";
+
 import "./AntidepressantSafety.css";
 import { useNavigate } from "react-router-dom";
 import Search from "../../Search/Search";
@@ -133,7 +133,7 @@ export default function AntidepressantSafety() {
     }
   };
 
-  //page has not been made updatable yet
+  
   if (data.length > 0) {
     if (admin) {
       return (

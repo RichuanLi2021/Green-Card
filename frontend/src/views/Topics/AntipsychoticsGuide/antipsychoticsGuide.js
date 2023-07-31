@@ -4,8 +4,7 @@ import Navigation from "../../Navigation/navigation";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
-// import Data from "../../searchBar/Data.json";
-// import SearchBar from "../../searchBar/searchBar";
+
 import antipsychoticsGuideUpdate from "./antipsychoticsGuidebackend";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
