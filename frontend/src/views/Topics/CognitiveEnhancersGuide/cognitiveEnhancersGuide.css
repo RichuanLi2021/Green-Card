@@ -131,10 +131,29 @@
   }
   
   
+  
   .drug-table th {
     position: sticky;
     
   }
+  
+  
+.drug-table th:first-child {
+  background-color: #96d2b0; 
+  position: sticky;
+  left: 0;
+  z-index: 1; 
+  top: 0;
+}
+
+
+.drug-table td:first-child {
+  background-color: #96d2b0; 
+  position: sticky;
+  left: 0;
+  z-index: 1; 
+}
+
   
   
   @media  screen and (max-width:700px) {

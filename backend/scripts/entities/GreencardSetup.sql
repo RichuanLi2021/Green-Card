@@ -373,7 +373,7 @@ CREATE TABLE IF NOT EXISTS `green_card`.`SEARCH RESULTS` (
   `Dose equiv.` VARCHAR(256) NULL,
   `Frequency` VARCHAR(256) NULL,
   `mg/form supplied` VARCHAR(256) NULL,
-  `With food?` VARCHAR(256) NULL,
+  `With food` VARCHAR(256) NULL,
   `MCI` VARCHAR(256) NULL,
   `mild-mod Alz` VARCHAR(256) NULL,
   `Severe Alz` VARCHAR(256) NULL,

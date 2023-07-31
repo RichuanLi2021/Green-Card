@@ -43,7 +43,7 @@ export default function CognitiveEnhancersGuide() {
   const [dose, setDose] = useState('');
   const [frequency, setFrequency] = useState('');
   const [mgFormsupplied, setmgFormsupplied] = useState('');
-  const [withFood, setwithFood] = useState('');
+  const [withfood, setwithfood] = useState('');
   const [mci, setmci] = useState('');
   const [mildModeAlz, setmildModeAlz] = useState('');
   const [severeAlz, setsevereAlz] = useState('');
@@ -77,8 +77,8 @@ export default function CognitiveEnhancersGuide() {
   const handleMgFormSupplied = (event) => {
     setmgFormsupplied(event.target.value);
   }
-  const handlewithFood = (event) => {
-    setwithFood(event.target.value);
+  const handlewithfood = (event) => {
+    setwithfood(event.target.value);
   }
 
   const handlemci = (event) => {
@@ -115,8 +115,8 @@ export default function CognitiveEnhancersGuide() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log({ drugName, action, halfLife, dose, frequency, mgFormsupplied, withFood, mci, mildModeAlz, severeAlz, mixed, vascular, lbd, ftd, pd, dsd });
-    submitDrug(drugName, action, halfLife, dose, frequency, mgFormsupplied, withFood, mci, mildModeAlz, severeAlz, mixed, vascular, lbd, ftd, pd, dsd)
+    console.log({ drugName, action, halfLife, dose, frequency, mgFormsupplied, withfood, mci, mildModeAlz, severeAlz, mixed, vascular, lbd, ftd, pd, dsd });
+    submitDrug(drugName, action, halfLife, dose, frequency, mgFormsupplied, withfood, mci, mildModeAlz, severeAlz, mixed, vascular, lbd, ftd, pd, dsd)
       .then((data) => {
         window.alert('Drug was added Successfully!');
         window.location.reload();
@@ -206,7 +206,7 @@ export default function CognitiveEnhancersGuide() {
                 <th>Dose (initial/monthly increment/maint)</th>
                 <th>Frequency</th>
                 <th>mg/Form supplied</th>
-                <th>With Food</th>
+                <th>With food</th>
                 <th>MCI</th>
                 <th>Mild-mod Alz</th>
                 <th>Severe Alz</th>
@@ -282,7 +282,7 @@ export default function CognitiveEnhancersGuide() {
                         type="text"
                         onFocus={store_value}
                         onBlur={update_value}
-                        defaultValue={dataObj['With food?']}
+                        defaultValue={dataObj['With food']}
                       />
                     </td>
                     <td>
@@ -664,10 +664,10 @@ export default function CognitiveEnhancersGuide() {
             </Box>
             <Box >
             <TextField
-              label="With Food?:"
+              label="With Food:"
               variant="filled"
-              value={withFood}
-              onChange={handlewithFood}
+              value={withfood}
+              onChange={handlewithfood}
               multiline
               required
             />
@@ -846,7 +846,7 @@ export default function CognitiveEnhancersGuide() {
                     </div>
                     <div className="box-content">
                       <strong>With Food?: </strong>
-                      <span>{dataObj['With Food?']}</span>
+                      <span>{dataObj['With Food']}</span>
                     </div>
                     <div className="box-content">
                       <strong>MCI: </strong>
