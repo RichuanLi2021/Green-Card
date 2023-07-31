@@ -40,9 +40,9 @@ const drugData = async (req, res, next) => {
 const drugDelete = async (req, res, next) => {
   const  Description  = req.params.Description;
   try {
-      await pool.query('DELETE FROM `green_card`.`SEDATIVES/HYPNOTICS CLINICAL GUIDE` WHERE `Id` = ? ',
+      await pool.query('DELETE FROM `green_card`.`SEDATIVES/HYPNOTICS CLINICAL GUIDE` WHERE `Description` = ? ',
           Description);
-      console.log('Drug was deleted successfully');
+      res.send('Deleted successfully !')
   } catch (err) {
       next(err);
       throw err;
