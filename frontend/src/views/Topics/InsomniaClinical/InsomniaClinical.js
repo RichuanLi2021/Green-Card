@@ -45,6 +45,19 @@ export default function InsomniaClinical() {
       });
   };
 
+  const handleDelete = async (Description) => {
+    if (window.confirm("Are you sure you want to delete this record?")) {
+      try {
+        await axios.delete("http://localhost:8887/api/clinical/delete/" + Description);
+        window.alert("Drug Deleted Successfully !");
+        window.location.reload();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
+
   useEffect(() => {
     axios
       .get("http://localhost:8887/api/insomniaclinical")
@@ -62,29 +75,75 @@ export default function InsomniaClinical() {
     setAdmin(localStorage.getItem("admin") === "true");
   }, []);
 
-  const [setValue] = useState("");
+  const [value,setValue] = useState("");
 
   const store_value = (event) => {
     setValue(event.target.value);
   };
 
+  // const update_value = (event) => {
+  //   if (admin) {
+  //     event.preventDefault();
+  //     InsomniaClinicalUpdate(event.target.name, event.target.id, event.target.value)
+  //       .then((data) => {
+  //         alert(`Data successfully updated!\nNew Value: ${event.target.value}`);
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //         alert("Failed to update!");
+  //       });
+  //   } else {
+  //     alert("You must be an administrator to edit");
+  //   }
+  // };
+
+
+  // const groupDataByHeader = (data) => {
+  //   const groupedData = {};
+
+  //   data.forEach((item) => {
+  //     const header = item.LIST_HEADERS_Id;
+       
+  //     if (!groupedData[header]) {
+  //       groupedData[header] = [];
+  //     }
+  //     groupedData[header].push(item);
+  //   });
+
+  //   return groupedData;
+  // };
+  
+
+  // const groupedData = groupDataByHeader(data);
+
   const update_value = (event) => {
     if (admin) {
-      event.preventDefault();
-      InsomniaClinicalUpdate(event.target.name, event.target.id, event.target.value)
-        .then((data) => {
-          alert(`Data successfully updated!\nNew Value: ${event.target.value}`);
-        })
-        .catch((error) => {
-          console.error(error);
-          alert("Failed to update!");
-        });
+      console.log(event.target.name, event.target.value, event.target.column);
+      if (event.target.value !== value) {
+        event.preventDefault();
+        InsomniaClinicalUpdate(event.target.name, event.target.id, event.target.value)
+          .then((data) => {
+            alert(
+              "Data successfully updated! \nDrug:" +
+                event.target.name +
+                "\nColumn:" +
+                event.target.id +
+                "\nNew Value:" +
+                event.target.value
+            );
+            window.location.reload();
+          })
+          .catch((error) => {
+            console.error(error);
+            alert("Failed to update!");
+          });
+      } else {
+        console.log("value was not changed, not updating");
+      }
     } else {
       alert("You must be an administrator to edit");
     }
   };
-
-
   const groupDataByHeader = (data) => {
     const groupedData = {};
 
@@ -100,11 +159,17 @@ export default function InsomniaClinical() {
   };
 
   const groupedData = groupDataByHeader(data);
-  if (data.length > 0) {
-    if (admin) {
 
+ 
+  if (Object.keys(data).length > 0) {
+    if (admin) {
+      
   return (
     <>
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+          />
       <Navigation />
       <Search onSearch={handleSearch}></Search>
       <div id="insomniaClinical">
@@ -118,7 +183,7 @@ export default function InsomniaClinical() {
         >
           <Typography id="topicHeader">Sedatives/Hypnotics Clinical Guide</Typography>
         </Box>
-
+        
         {Object.keys(groupedData).map((headerKey) =>
           admin ? (
             <Accordion key={headerKey} id={headerKey}>
@@ -134,16 +199,25 @@ export default function InsomniaClinical() {
               <AccordionDetails>
                 <div>
                   {groupedData[headerKey].map((dataObj, index) => (
-                    <input
-                      key={index}
-                      id={`LIST_HEADERS-${index}`}
-                      name={dataObj[`Id`]}
-                      type="text"
-                      onFocus={store_value}
-                      onBlur={update_value}
-                      defaultValue={dataObj[`Description`]}
-                    />
+                    <><input
+                        key={index}
+                        id={`LIST_HEADERS-${index}`}
+                        name={dataObj[`Id`]}
+                        type="text"
+                        onFocus={store_value}
+                        onBlur={update_value}
+                        defaultValue={dataObj[`Description`]} /><button
+                        style={{ background: "none", border: "none", cursor: "pointer", marginTop: "10px" }}
+                        onClick={(e) => handleDelete(dataObj.Description)}
+                      >
+                        {" "}
+                        <span class="material-symbols-outlined">delete</span>
+                      </button></>
+                    
+                   
+                                
                   ))}
+                   
                 </div>
               </AccordionDetails>
 
@@ -176,12 +250,13 @@ export default function InsomniaClinical() {
                     </Typography>
                   </Box>
                 </div>
-
+              
                 <form onSubmit={handleSubmit}>
                  
                   <Box>
-                  <label>When to do ?</label> 
-                  <select value={when} onChange={handleWhen} name="dog-names" id="dog-names"> 
+                  
+                  <select value={when} onChange={handleWhen} name="dog-names" id="dog-names">
+
                       <option >SHYPCLIN_BFR</option> 
                       <option >SHYPCLIN_STR</option> 
                       <option >SHYPCLIN_END</option> 
@@ -207,17 +282,17 @@ export default function InsomniaClinical() {
                     </Button>
                   </Box>
                 </form>
+                
               </div>
-
-        <div className='keynote-div'>
-          <p className='keynote'><b>Key notes:</b> SHYPCLIN_BFR means before prescribing, SHYPCLIN_STR means starting, SHYPCLIN_END means ending </p>
-        </div>
-      </div>
+              
+                </div>
       <Footer />
     </>
   );
-}else{
+}
+else{
   return(
+   
     <>
     <Navigation />
     <Search onSearch={handleSearch}></Search>
@@ -287,5 +362,7 @@ export default function InsomniaClinical() {
     </div>
     <Footer />
   </>
+        
+      
   );
 }}}

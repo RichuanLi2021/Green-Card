@@ -20,7 +20,7 @@ export const InsomniaClinicalUpdate = async (name, column, value) => {
 
 export const submitDrug = async (when, what) => {
   try {
-    const response = await axios.post('http://localhost:8887/api/add/InsomniaClinical', {
+    const response = await axios.post('http://localhost:8887/api/add/Insomnia/Clinical', {
         when,
         what
         
