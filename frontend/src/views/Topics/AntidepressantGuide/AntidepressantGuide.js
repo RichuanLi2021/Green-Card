@@ -79,7 +79,7 @@ export default function MoodStabilizers() {
         axios
           .post("http://localhost:8887/api/AntidepressantGuide/add", drugData)
           .then((response) => {
-            alert("Data successfully added! \nDrug:" + drugData.Name);
+            alert("Data successfully added! \nDrug:" + drugData.Name + drugData.Half_life);
             fetchData(); // Refresh the data after the new drug is added.
           })
           .catch((error) => {
@@ -238,21 +238,21 @@ export default function MoodStabilizers() {
                     />
                     <input
                     type="text"
-                    name="Half-life"
+                    name="Half_life"
                     placeholder="Half-life"
                     onChange={handleInputChange}
                     className="input-style"
                     />
                     <input
                     type="text"
-                    name="Primary NT"
+                    name="Primary_NT"
                     placeholder="Primary NT"
                     onChange={handleInputChange}
                     className="input-style"
                     />
                     <input
                     type="text"
-                    name="Dose (mg/day) Initial | Maint. | Max."
+                    name="Dose"
                     placeholder="Dose (mg/day) Initial | Maint. | Max."
                     onChange={handleInputChange}
                     className="input-style"
@@ -266,7 +266,7 @@ export default function MoodStabilizers() {
                     />
                     <input
                     type="text"
-                    name="mg/Form Supplied"
+                    name="supplied"
                     placeholder="mg/Form Supplied"
                     onChange={handleInputChange}
                     className="input-style"

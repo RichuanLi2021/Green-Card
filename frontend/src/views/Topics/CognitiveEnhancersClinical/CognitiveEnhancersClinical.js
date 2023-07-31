@@ -3,9 +3,9 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState, useEffect } from "react";
-// import SearchBar from "../../searchBar/searchBar";
+
 import Navigation from "../../Navigation/navigation";
-// import Data from "../../searchBar/Data.json";
+
 import { CognitiveEnhancersClinicalUpdate, submitDrug } from "./CognitiveEnhancersClinicalBackend";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
