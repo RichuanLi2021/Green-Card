@@ -3,9 +3,9 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState, useEffect } from "react";
-// import SearchBar from "../../searchBar/searchBar";
+
 import Navigation from "../../Navigation/navigation";
-// import Data from "../../searchBar/Data.json";
+
 import { InsomniaDeprescribingUpdate, submitDrug } from "./InsomniaDeprescribingBackend";
 import Footer from "../../Footer/Footer";
 import { useNavigate } from "react-router-dom";
@@ -332,52 +332,3 @@ export default function InsomniaDeprescribing() {
     }
   }
 }
-
-/* <>
-<Navigation />
-<SearchBar placeholder="Search" data={Data} />
-<div style={{ marginTop: '2rem', padding: '0 1rem' }}>
-  <Typography variant="h3" align="center" gutterBottom>
-  <div className='subtitle'>
-    Deprescribing Sedatives/Hypnotics
-  </div>
-  </Typography>
-
-          <table className="sticky-table">
-            <thead className="heading-bg">
-              <tr>
-                <th>Drug Details</th>
-                <th>Dose Reduction Schedule Duration (weeks)</th>
-                <th>Interval Between Dose Reductions (weeks)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.keys(data).map((id) => {
-                const dataObj = data[id];
-                const isDrugSelected = selectedDrugs.includes(dataObj);
-                return (
-                  <tr key={id} className={isDrugSelected ? "active" : ""}>
-                    <td onClick={() => handleDrugClick(dataObj)}>
-                      BZRA {dataObj["Duration of BZRA use (months)"]} weeks
-                    </td>
-                    <td>{dataObj["Dose Reduction Schedule Duration (weeks)"]}</td>
-                    <td>{dataObj["Interval Between Dose Reductions (weeks)"]}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-
-          <div className="insomnia-footer">
-            <p className="insomnia-notes">
-              <b>Key: </b> BZRA: benzodiazepine and z-drugs (benzodiazepine agonists)
-            </p>
-          </div>
-        </div>
-
-        <Footer />
-      </>
-    );
-  }
-}
-*/

@@ -1,7 +1,6 @@
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState, useEffect } from "react";
-// import SearchBar from "../../searchBar/searchBar";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -11,13 +10,13 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import InsomniaClinicalUpdate from "./InsomniaClinicalBackend";
-
+import {InsomniaClinicalUpdate,submitDrug} from "./InsomniaClinicalBackend";
 import Navigation from "../../Navigation/navigation";
 import { useNavigate } from "react-router-dom";
 import Search from "../../Search/Search";
 import Footer from "../../Footer/Footer";
-// import Data from "../../searchBar/Data.json";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -45,7 +44,16 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function InsomniaClinical() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
+  const [when,setWhen] = useState('');
+  const [what,setWhat] = useState('');
 
+  const handleWhen = (event)=>{
+    setWhen(event.target.value);
+  }
+
+  const handleWhat = (event)=>{
+    setWhat(event.target.value);
+  }
   const handleSearch = (searchTerm) => {
     navigate(`/search/${searchTerm}`);
   };
@@ -87,6 +95,20 @@ export default function InsomniaClinical() {
     } else {
       alert("You must be an administrator to edit");
     }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log({ when, what });
+    submitDrug(when, what)
+      .then((data) => {
+        window.alert("Drug was added Successfully!");
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error(error);
+        window.alert("Failed to submit the Drug!");
+      });
   };
 
   if (data.length > 0) {
@@ -144,7 +166,44 @@ export default function InsomniaClinical() {
               </Table>
             </TableContainer>
           </div>
+          <div className="box-content">
+                <div className="form-header">
+                  <Box display="flex" justifyContent="space-between" alignItems="center">
+                    <Typography variant="h5" className="title">
+                      Add New Drug
+                    </Typography>
+                  </Box>
+                </div>
 
+                <form onSubmit={handleSubmit}>
+                 
+                  <Box>
+                    <TextField
+                      label="When to do ?"
+                      variant="filled"
+                      value={when}
+                      onChange={handleWhen}
+                      type="text"
+                      required
+                    />
+                  </Box>
+                  <Box>
+                    <TextField
+                      label="What to do ?"
+                      variant="filled"
+                      value={what}
+                      onChange={handleWhat}
+                      required
+                    />
+                  </Box>
+
+                  <Box sx={{ display: "flex" }}>
+                    <Button type="submit" variant="contained" className="submit-button" color="primary">
+                      Submit
+                    </Button>
+                  </Box>
+                </form>
+              </div>
           <Footer />
         </>
       );

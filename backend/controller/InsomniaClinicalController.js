@@ -23,8 +23,23 @@ const updateData = async (req, res, next) => {
   }
 };
 
+
+const drugData = async (req, res, next) => {
+  const { when, what} = req.body;
+  try {
+      await pool.query('INSERT INTO `green_card`.`sedatives/hypnotics clinical guide` (`LIST_HEADERS`,`Description`) VALUES (?, ?)',
+          [when, what]);
+      res.send('Drug was submitted successfully');
+  } catch (err) {
+      next(err);
+      throw err;
+  }
+};
+
+
 module.exports = {
    getData,
-   updateData
+   updateData,
+   drugData
  };
  
