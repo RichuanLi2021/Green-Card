@@ -15,6 +15,13 @@
     }
 }
 
+.css-ahj2mt-MuiTypography-root {
+  font-size: 0.9rem !important;
+}
+
+.smaller-box {
+  font-size: 0.9rem !important;
+}
 
 html {
   display: block;
@@ -125,15 +132,22 @@ html {
   font-size: 16px;
 }
 
+.add-div {
+  text-align: center;
+  margin-top: 1rem;
+}
+
 .form-style {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
+  width: 70vw;
   margin-top: 20px;
+  margin: auto;
 }
 
 .input-style {
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .submit-button {
@@ -202,3 +216,21 @@ html {
     padding: 10px;
   }
 }
+
+@media (max-width: 800px) {
+  .antipsychoticsGuide-footer {
+      background: #d7ece0;
+      border-radius: 2px;
+      display: inline-block;
+      height: 100%;
+      margin: 1rem;
+      width: 90%;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+      margin-bottom: 6.5rem;
+      font-size: 13px;
+    }
+    .footer-notes {
+      padding: 10px;
+    }
+}
+

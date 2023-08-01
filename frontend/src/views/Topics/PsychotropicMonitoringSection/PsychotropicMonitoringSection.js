@@ -4,29 +4,21 @@ import Navigation from '../../Navigation/navigation';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
-import Data from "../../searchBar/Data.json";
-import SearchBar from "../../searchBar/searchBar";
 import { PsychotropicMonitoringUpdate, submitDrug } from "./PsychotropicMonitoringbackend";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Footer from '../../Footer/Footer';
 import Table from "@mui/material/Table";
-
 import TableBody from "@mui/material/TableBody";
-
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-
 import TableContainer from "@mui/material/TableContainer";
-
 import TableHead from "@mui/material/TableHead";
-
 import TableRow from "@mui/material/TableRow";
-
 import Paper from "@mui/material/Paper";
-
 import { styled } from "@mui/material/styles";
-
+import Search from '../../Search/Search';
+import { useNavigate } from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,10 +27,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     color: theme.palette.common.white,
 
     fontWeight: "bold",
-
-    fontStyle: "italic",
-
-    textDecorationLine: "underline",
   },
 
   [`&.${tableCellClasses.body}`]: {
@@ -57,10 +45,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-
-
-
-
 export default function PsychotropicMonitoringSection() {
   const [data, setData] = useState({});
   useEffect(() => {
@@ -76,6 +60,11 @@ export default function PsychotropicMonitoringSection() {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const navigate = useNavigate();
+  const handleSearch = (searchTerm) => {
+    navigate(`/search/${searchTerm}`);
   };
 
   
@@ -161,299 +150,203 @@ export default function PsychotropicMonitoringSection() {
     }
   };
 
-
-
-
-
   if(data.length > 0)
-
   {
     if (admin){
       return (
-
         <>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap/.min.css" />
-          <Navigation />
-    
-          <SearchBar placeholder="Search" data={Data} />
-    
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap/.min.css" />
+        <Navigation />
+        <Search onSearch={handleSearch}></Search>
         <div id="Psychotropic">
-    
+
         <Box
-    
-            sx={{
-    
-              marginTop: 3,
-    
-              display: 'flex',
-    
-              flexDirection: 'column',
-    
-              alignItems: 'center',
-    
-            }}
-    
-          >
-    
-            <Typography variant="h3" id="topicHeader">Psychotropic Monitoring</Typography>
-    
-          </Box>
-    
-            <div class = "container tbl-container" >
-              <div class = "row tbl-fixed">
-                
-              
-    
-              <table class="table-striped table-condensed" aria-label="customized table" id="psychotropicMonitoringTable" >
-                
-
-                
-                <thead >
-    
-                  <tr >
-    
-                    <th style={{ backgroundColor: '#96d2b0' }} >Name</th>
-    
-                    <th style={{ backgroundColor: '#96d2b0' }}>Antipsychotics</th>
-    
-                    <th style={{ backgroundColor: '#96d2b0' }}>Lithium</th>
-    
-                    <th style={{ backgroundColor: '#96d2b0' }}>Valproate</th>
-    
-                  </tr>
-    
-                </thead>
-             
-              
-                <tbody 
-                >
-    
-                  {data.map((dataObj, index) => (
-    
-                    <tr key={index} >
-    
-                      <td >
-    
-                        {dataObj.Name}
-                        <button style={{background:'none',border:'none',cursor:'pointer',marginTop:'10px'}} onClick={e => handleDelete(dataObj.Name)} > <span class="material-symbols-outlined">
-delete
-</span></button>
-                      </td>
-    
-                      <td ><input id="`Antipsychotics`"
-                                 name={dataObj.Name}
-                                 type='text'
-                                 onFocus={store_value}
-                                 onBlur={update_value}
-                                 defaultValue={dataObj[`Antipsychotics`]} /></td>
-    
-                      <td ><input id="`Lithium`"
-                              name={dataObj.Name} 
-                              type='text' 
-                              onFocus={store_value} 
-                              onBlur={update_value} 
-                              defaultValue={dataObj[`Lithium`]}  /></td>
-    
-                      <td ><input id="`Valproate`" 
-                              name={dataObj.Name} 
-                              type='text' 
-                              onFocus={store_value} 
-                              onBlur={update_value} 
-                              defaultValue={dataObj[`Valproate`]} /></td>
-    
-                    </tr>
-    
-                  ))}
-    
-                </tbody>
-    
-              </table>
-                    </div>
-            </div><br></br>
-            <div className="box-content"  >
-              <div className="form-header" >
-                <Box display="flex" justifyContent="space-between" alignItems="center">
-                  <Typography variant="h5" className="title">
-                    Add New Drug
-                  </Typography>
-
-                </Box>
-              </div>
-
-              <form onSubmit={handleSubmit} >
-                <Box >
-                  <TextField
-                    label="Drug Name: "
-                    variant="filled"
-                    value={drugName}
-                    onChange={handleDrugName}
-                    required
-                  />
-
-                </Box>
-                <Box >
-                  <TextField
-                    label="Antipyschotics:"
-                    variant="filled"
-                    value={Antipsychotics}
-                    onChange={handleAntipyschotics}
-                    type="text"
-                    multiline
-                    required
-                  />
-                </Box>
-
-                <Box >
-                  <TextField
-                    label="Litihium:"
-                    variant="filled"
-                    value={Lithium}
-                    onChange={handleLitihum}
-                    multiline
-                    required
-                  />
-                </Box>
-
-                <Box >
-                  <TextField
-                    label="Valproate:"
-                    variant="filled"
-                    value={Valproate}
-                    onChange={handleValproate}
-                    multiline
-                    required
-                  />
-                </Box>
-
-                <Box sx={{ display: 'flex' }}>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    className="submit-button"
-                    color="primary">
-                    Submit
-                  </Button>
-                </Box>
-              </form>
-            </div>
-
-            
-          <p><b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark).  <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be necessary based on clinical judgment  </p>
-    
-        </div>
-    
-        <Footer />
-    
-        </>
-    
-      );
-    }
-
-  return (
-
-    <>
-
-      <Navigation />
-
-      <SearchBar placeholder="Search" data={Data} />
-
-    <div id="Psychotropic">
-
-    <Box
-
-        sx={{
-
+          sx={{
           marginTop: 3,
-
           display: 'flex',
-
           flexDirection: 'column',
-
           alignItems: 'center',
+          }}>
+    
+          <Typography id="topicHeader">Psychotropic Monitoring</Typography>
+        </Box>
+        
+        <div class = "container tbl-container" >
+          <div class = "row tbl-fixed">
+            <table class="table-striped table-condensed" aria-label="customized table" id="psychotropicMonitoringTable" >
+              <thead>
+                <tr>
+                  <th style={{ backgroundColor: '#96d2b0' }} >Name</th>
+                  <th style={{ backgroundColor: '#96d2b0' }}>Antipsychotics</th>
+                  <th style={{ backgroundColor: '#96d2b0' }}>Lithium</th>
+                  <th style={{ backgroundColor: '#96d2b0' }}>Valproate</th>
+                </tr>
+              </thead>
+              
+              <tbody>
+                {data.map((dataObj, index) => (
+                  <tr key={index}>
+                    <td>
+                      {dataObj.Name}
+                      <button style={{background:'none',border:'none',cursor:'pointer',marginTop:'10px'}} onClick={e => handleDelete(dataObj.Name)} > <span class="material-symbols-outlined">delete</span></button>
+                    </td>
+                    <td>
+                      <input id="`Antipsychotics`"
+                        name={dataObj.Name}
+                        type='text'
+                        onFocus={store_value}
+                        onBlur={update_value}
+                        defaultValue={dataObj[`Antipsychotics`]} />
+                    </td>
+                    <td>
+                      <input id="`Lithium`"
+                        name={dataObj.Name} 
+                        type='text' 
+                        onFocus={store_value} 
+                        onBlur={update_value} 
+                        defaultValue={dataObj[`Lithium`]} />
+                    </td>
+                    <td>
+                      <input id="`Valproate`" 
+                        name={dataObj.Name} 
+                        type='text' 
+                        onFocus={store_value} 
+                        onBlur={update_value} 
+                        defaultValue={dataObj[`Valproate`]} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-        }}
+        <div className="box-content"  >
+          <div className="form-header" >
+            <Box display="flex" justifyContent="space-between" alignItems="center">
+              <Typography variant="h5" className="title">
+                Add New Drug
+              </Typography>
 
-      >
+            </Box>
+          </div>
 
+          <form onSubmit={handleSubmit} >
+            <Box >
+              <TextField
+                label="Drug Name: "
+                variant="filled"
+                value={drugName}
+                onChange={handleDrugName}
+                required
+              />
+
+            </Box>
+            <Box >
+              <TextField
+                label="Antipyschotics:"
+                variant="filled"
+                value={Antipsychotics}
+                onChange={handleAntipyschotics}
+                type="text"
+                multiline
+                required
+              />
+            </Box>
+
+            <Box >
+              <TextField
+                label="Litihium:"
+                variant="filled"
+                value={Lithium}
+                onChange={handleLitihum}
+                multiline
+                required
+              />
+            </Box>
+
+            <Box >
+              <TextField
+                label="Valproate:"
+                variant="filled"
+                value={Valproate}
+                onChange={handleValproate}
+                multiline
+                required
+              />
+            </Box>
+
+            <Box sx={{ display: 'flex' }}>
+              <Button
+                type="submit"
+                variant="contained"
+                className="submit-button"
+                color="primary">
+                Submit
+              </Button>
+            </Box>
+          </form>
+        </div>
+        
+        <div className='keynote-div'>
+          <p className='keynote'><b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark).  <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be necessary based on clinical judgment  </p>
+        </div>
+      </div>
+      <Footer />
+    </>);
+  }
+  return(
+    <>
+    <Navigation />
+    <Search onSearch={handleSearch}></Search>
+    <div id="Psychotropic">
+      <Box
+        sx={{
+          marginTop: 3,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}>
         <Typography variant="h3" id="topicHeader">Psychotropic Monitoring</Typography>
-
       </Box>
 
-        <TableContainer component={Paper} >
+      <TableContainer component={Paper} className='table-div'>
+        <Table aria-label="customized table" id="psychotropicMonitoringTable" >
+          <TableHead>
+            <TableRow>
+              <StyledTableCell style={{ backgroundColor: '#96d2b0' }} className='head-col' >Name</StyledTableCell>
+              <StyledTableCell style={{ backgroundColor: '#96d2b0' }} className='second-column'>Antipsychotics</StyledTableCell>
+              <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Lithium</StyledTableCell>
+              <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Valproate</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          
+          <TableBody>
+            {data.map((dataObj, index) => (
+            <StyledTableRow key={index}>
+              <StyledTableCell component="th" scope="row" className='head-col'>
+                {dataObj.Name}
+              </StyledTableCell>
+              <StyledTableCell className='second-column'>
+              {dataObj[`Antipsychotics`]}
+              </StyledTableCell>
+              <StyledTableCell >
+              {dataObj[`Lithium`]}
+              </StyledTableCell>
+              <StyledTableCell >
+              {dataObj[`Valproate`]}
+              </StyledTableCell>
+            </StyledTableRow>))}
+          </TableBody>
+        </Table>
+      </TableContainer>
 
-          <Table sx={{ minWidth: 700 }} aria-label="customized table" id="psychotropicMonitoringTable" >
-            
-            <TableHead >
-
-              <TableRow >
-
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }} >Name</StyledTableCell>
-
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Antipsychotics</StyledTableCell>
-
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Lithium</StyledTableCell>
-
-                <StyledTableCell style={{ backgroundColor: '#96d2b0' }}>Valproate</StyledTableCell>
-
-              </TableRow>
-
-            </TableHead>
-         
-
-            <TableBody>
-
-              {data.map((dataObj, index) => (
-
-                <StyledTableRow key={index} >
-
-                  <StyledTableCell component="th" scope="row">
-
-                    {dataObj.Name}
-
-                  </StyledTableCell>
-
-                  <StyledTableCell ><input id="`Antipsychotics`"
-                             name={dataObj.Name}
-                             type='text'
-                             onFocus={store_value}
-                             onBlur={update_value}
-                             defaultValue={dataObj[`Antipsychotics`]} /></StyledTableCell>
-
-                  <StyledTableCell ><input id="`Lithium`"
-                          name={dataObj.Name} 
-                          type='text' 
-                          onFocus={store_value} 
-                          onBlur={update_value} 
-                          defaultValue={dataObj[`Lithium`]}  /></StyledTableCell>
-
-                  <StyledTableCell ><input id="`Valproate`" 
-                          name={dataObj.Name} 
-                          type='text' 
-                          onFocus={store_value} 
-                          onBlur={update_value} 
-                          defaultValue={dataObj[`Valproate`]} /></StyledTableCell>
-
-                </StyledTableRow>
-
-              ))}
-
-            </TableBody>
-
-          </Table>
-
-        </TableContainer><br></br>
-
-      <p><b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark).  <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be necessary based on clinical judgment  </p>
-
+      <div className='keynote-div'>
+        <p className='keynote'><b>Key:</b>ACI: as clinically indicated, BL: baseline, m: month mark (eg. 6m: 6 month mark).  <b>NOTES</b>: these are meant to be minimum screening requirements, more frequent investigation may be necessary based on clinical judgment.</p>
+      </div>
     </div>
-
     <Footer />
-
-    </>
-
-  );
-
-}
-
+  </>);
+  }
 }

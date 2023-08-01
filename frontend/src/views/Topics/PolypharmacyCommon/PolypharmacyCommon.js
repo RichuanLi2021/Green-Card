@@ -7,7 +7,6 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
@@ -20,6 +19,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Search from "../../Search/Search";
 import { useNavigate } from "react-router-dom";
+import "./PolypharmacyCommon.css";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -157,7 +157,6 @@ export default function PolypharmacyCommon() {
           <Navigation />
 
           <Search onSearch={handleSearch}></Search>
-          <br></br>
 
           <div id="polypharmacyCommon">
             <Box
@@ -168,19 +167,13 @@ export default function PolypharmacyCommon() {
                 alignItems: "center",
               }}
             >
-              <Typography variant="h3" id="topicHeader">
-                COMMON DDIs WITH PSYCHOTROPICS
+              <Typography id="topicHeader">
+                Common DDIs with Psychotropics
               </Typography>
             </Box>
 
-            <TableContainer component={Paper} sx={{marginBottom:20}}>
+            <TableContainer component={Paper}>
               <Table aria-label="customized table" id="polypharmacyCommonTable">
-                <TableHead>
-                  <TableRow>
-
-                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Description</StyledTableCell>
-                  </TableRow>
-                </TableHead>
                 <TableBody>
                   {data.map((dataObj, index) => (
                     <StyledTableRow key={index}>
@@ -254,7 +247,6 @@ export default function PolypharmacyCommon() {
         <>
           <Navigation />
           <Search onSearch={handleSearch}></Search>
-          <br></br>
 
           <div id="polypharmacyCommon">
             <Box
@@ -265,18 +257,13 @@ export default function PolypharmacyCommon() {
                 alignItems: "center",
               }}
             >
-              <Typography variant="h3" id="topicHeader">
-                COMMON DDIs WITH PSYCHOTROPICS
+              <Typography id="topicHeader">
+                Common DDIs with Psychotropics
               </Typography>
             </Box>
 
-            <TableContainer component={Paper} sx={{ marginBottom:20 }}>
-              <Table aria-label="customized table" id="deliriumTable" >
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Description</StyledTableCell>
-                  </TableRow>
-                </TableHead>
+            <TableContainer component={Paper}>
+              <Table aria-label="customized table" id="common-ddi">
                 <TableBody>
                   {data.map((dataObj, index) => (
                     <StyledTableRow key={index}>

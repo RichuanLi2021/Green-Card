@@ -24,21 +24,14 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Search from "../../Search/Search";
 import { useNavigate } from "react-router-dom";
+import "./Delirium.css";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.success.main,
-
     color: theme.palette.common.white,
-
-    fontWeight: "bold",
-
-    textDecorationLine: "underline",
   },
 
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -168,7 +161,8 @@ export default function Delirium() {
           <br></br>
 
           <div id="delirium">
-            <Accordion id="firstAccordion">
+          <Typography id="topicHeader">Delirium Management</Typography>
+            <Accordion id="firstAccordion" className="nps-accordion">
               <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                 <Typography>
                   <b>Nonpharmacological Approach</b>
@@ -215,19 +209,15 @@ export default function Delirium() {
                 </Typography>
               </AccordionDetails>
             </Accordion>
-            <Box
-              sx={{
-                marginTop: 3,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Typography variant="h3" id="topicHeader">
-                ANTICHOLINERGIC ACTIVITY
-              </Typography>
-            </Box>
 
+            <Accordion>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                <Typography>
+                  <b>Anticholinergic Activity</b>
+                </Typography>
+              </AccordionSummary>
+
+            <AccordionDetails>
             <TableContainer component={Paper} sx={{marginBottom:20}}>
               <Table aria-label="customized table" id="deliriumTable">
                 <TableHead>
@@ -318,6 +308,8 @@ export default function Delirium() {
                 </form>
               </div>
             </TableContainer>
+            </AccordionDetails>
+            </Accordion>
           </div>
 
           <Footer />
@@ -333,7 +325,8 @@ export default function Delirium() {
           <br></br>
 
           <div id="delirium">
-            <Accordion id="firstAccordion">
+            <Typography id="topicHeader">Delirium Management</Typography>
+            <Accordion id="firstAccordion" className="nps-accordion">
               <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                 <Typography>
                   <b>Nonpharmacological Approach</b>
@@ -380,39 +373,36 @@ export default function Delirium() {
                 </Typography>
               </AccordionDetails>
             </Accordion>
-            <Box
-              sx={{
-                marginTop: 3,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Typography variant="h3" id="topicHeader">
-                ANTICHOLINERGIC ACTIVITY
-              </Typography>
-            </Box>
 
-            <TableContainer component={Paper} sx={{marginBottom:20}}>
-              <Table aria-label="customized table" id="deliriumTable">
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Description-Drug</StyledTableCell>
-                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Header</StyledTableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {data.map((dataObj, index) => (
-                    <StyledTableRow key={index}>
-                      <StyledTableCell component="th" scope="row">
-                        {dataObj[`Description`]}
-                      </StyledTableCell>
-                      <StyledTableCell>{dataObj[`LIST_HEADERS`]}</StyledTableCell>
-                    </StyledTableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
+            <Accordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                <Typography>
+                  <b>Anticholinergic Activity</b>
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <TableContainer  sx={{marginBottom:20}}>
+                  <Table aria-label="customized table" id="deliriumTable">
+                    <TableHead>
+                      <TableRow>
+                        <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Drug</StyledTableCell>
+                        <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Activity</StyledTableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {data.map((dataObj, index) => (
+                        <StyledTableRow key={index}>
+                          <StyledTableCell component="th" scope="row">
+                            {dataObj[`Description`]}
+                          </StyledTableCell>
+                          <StyledTableCell>{dataObj[`LIST_HEADERS`]}</StyledTableCell>
+                        </StyledTableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </AccordionDetails>
+            </Accordion>
           </div>
 
           <Footer />

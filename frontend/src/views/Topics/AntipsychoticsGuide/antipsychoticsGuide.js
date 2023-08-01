@@ -57,8 +57,8 @@ export default function AntipsychoticsGuide() {
   });
   const admin = localStorage.getItem("admin");
 
-  //used to store value when an input is selected by user
-  const store_value = (event) => {
+   //used to store value when an input is selected by user
+   const store_value = (event) => {
     setValue(event.target.value);
   };
   //calls update query when an input was selected and is not anymore (if the value actually changed)
@@ -147,15 +147,16 @@ export default function AntipsychoticsGuide() {
           <Navigation />
           <Search onSearch={handleSearch}></Search>
           <div className="subHeader" style={{ marginTop: "1rem", padding: "0 1rem" }}>
-            <Typography className="heading-antipsychotics" gutterBottom>
-              Antipsychotics Guide
-            </Typography>
-            <div className="grid-container" id="antipsychotics-grid">
-              {Object.keys(data).map((id) => {
-                const dataObj = data[id];
-                const isDrugSelected = selectedDrugs.includes(dataObj);
-                return (
-                  <div className="grid-item" key={id}>
+          <Typography id="topicHeader" gutterBottom>
+            Antipsychotics Guide
+          </Typography>
+          <div className="grid-container" id="antipsychotics-grid">
+            {Object.keys(data).map((id) => {
+              const dataObj = data[id];
+              const isDrugSelected = selectedDrugs.includes(dataObj);
+
+              return (
+                  <div className="grid-item drug-display" key={id}>
                     <button
                       onClick={() => handleDrugClick(dataObj)}
                       className={`drug-button ${isDrugSelected ? "active" : ""}`}
@@ -170,7 +171,7 @@ export default function AntipsychoticsGuide() {
                     </button>
 
                     {isDrugSelected && (
-                      <div className="box">
+                      <div className="box drug-box">
                         <div className="box-content">
                           <Accordion>
                             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -226,7 +227,6 @@ export default function AntipsychoticsGuide() {
                             </AccordionDetails>
                           </Accordion>
                         </div>
-
                         <div className="box-content">
                           <Accordion>
                             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -321,7 +321,7 @@ export default function AntipsychoticsGuide() {
                 );
               })}
             </div>
-            <div>
+            <div className="add-div">
               <button onClick={() => setFormVisible(!formVisible)} className="button-style">
                 {formVisible ? "Cancel" : "Add Drug"}
               </button>
@@ -426,7 +426,7 @@ export default function AntipsychoticsGuide() {
             </div>
 
             <div className="antipsychoticsGuide-footer">
-            <p className="footer-notes">
+              <p className="footer-notes">
                 <b>Key: </b> er: extended release; ir: immediate release;  NR: not recommended;  ‡take with meal (≥350 kcal);
                 **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data.
                 <br /> <br />
@@ -445,7 +445,7 @@ export default function AntipsychoticsGuide() {
           <Navigation />
           <Search onSearch={handleSearch}></Search>
           <div style={{ marginTop: "1rem", padding: "0 1rem" }}>
-            <Typography className="heading-antipsychotics" gutterBottom>
+            <Typography id='topicHeader' gutterBottom>
               Antipsychotics Guide
             </Typography>
 
@@ -454,7 +454,7 @@ export default function AntipsychoticsGuide() {
                 const dataObj = data[id];
                 const isDrugSelected = selectedDrugs.includes(dataObj);
                 return (
-                  <div className="grid-item" key={id}>
+                  <div className="grid-item drug-display" key={id}>
                     <button
                       onClick={() => handleDrugClick(dataObj)}
                       className={`drug-button ${isDrugSelected ? "active" : ""}`}
@@ -463,25 +463,25 @@ export default function AntipsychoticsGuide() {
                     </button>
 
                     {isDrugSelected && (
-                      <div className="box">
+                      <div className="box drug-box">
                         <Accordion>
                           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                             <Typography>General Information</Typography>
                           </AccordionSummary>
                           <AccordionDetails>
-                            <div className="box-content">
+                            <div className="box-content smaller-box">
                               <strong>Approx equiv dose: </strong>
                               <span>{dataObj["Approx. equiv. dose"]}</span>
                             </div>
-                            <div className="box-content">
+                            <div className="box-content smaller-box">
                               <strong>Half-Life: </strong>
                               <span>{dataObj["Half-life"]}</span>
                             </div>
-                            <div className="box-content">
+                            <div className="box-content smaller-box">
                               <strong>Frequency: </strong>
                               <span>{dataObj["Frequency"]}</span>
                             </div>
-                            <div className="box-content" style={{ width: 230 }}>
+                            <div className="box-content smaller-box" style={{ width: 230 }}>
                               <strong>Tablet Strength/Form Supplied: </strong>
                               <span>{dataObj["Tab Strength/Form Supplied"]}</span>
                             </div>
@@ -493,31 +493,31 @@ export default function AntipsychoticsGuide() {
                             <Typography>Recommended Dosing</Typography>
                           </AccordionSummary>
                           <AccordionDetails>
-                            <div className="box-content">
+                            <div className="box-content smaller-box">
                               <strong>Neuropsychiatric symptoms of dementia: </strong>
                               <span>{dataObj["NPS"]}</span>
                             </div>
-                            <div className="box-content">
+                            <div className="box-content smaller-box">
                               <strong>Parkinson's psychosis: </strong>
                               <span>{dataObj["PP"]}</span>
                             </div>
-                            <div className="box-content">
+                            <div className="box-content smaller-box">
                               <strong>Major depressive disorder (antidepressant augment):</strong>
                               <span>{dataObj["MDE (ADaugment)"]}</span>
                             </div>
-                            <div className="box-content">
+                            <div className="box-content smaller-box">
                               <strong>Major depressive disorder (w.psychosis): </strong>
                               <span>{dataObj["MDE (w.psychosis)"]}</span>
                             </div>
-                            <div className="box-content">
+                            <div className="box-content smaller-box">
                               <strong>Delirium: </strong>
                               <span>{dataObj["Delirium"]}</span>
                             </div>
-                            <div className="box-content">
+                            <div className="box-content smaller-box">
                               <strong>Early-onset schizophrenia: </strong>
                               <span>{dataObj["EO-SCZ"]}</span>
                             </div>
-                            <div className="box-content">
+                            <div className="box-content smaller-box">
                               <strong>Late-onset schizophrenia: </strong>
                               <span>{dataObj["LO-SCZ"]}</span>
                             </div>
@@ -528,16 +528,18 @@ export default function AntipsychoticsGuide() {
                   </div>
                 );
               })}
-            </div>
-            <div className="antipsychoticsGuide-footer">
-              <p className="footer-notes">
-                <b>Key: </b> er: extended release; ir: immediate release;  NR: not recommended;  ‡take with meal (≥350 kcal);
-                **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data.
-                <br /> <br />
-                <b>NOTES: </b> doses may not reflect manufacturers' recommendations but are based on clinical literature
-                and opinion. Half-lives are estimates based on adult data and in older adults they can often be
-                increased up to 170%.
-              </p>
+              <div className="antipsychoticsGuide-footer">
+                <p className="footer-notes">
+                  <b>Key: </b> AD: antidepressant; er: extended release; ir: immediate release; EO-SCZ: early-onset schizophrenia; LO-SCZ: late-onset
+                  schizophrenia; MDE: major depressive disorder; NPS: neuropsychiatric symptoms of dementia; NR: not recommended; PP: Parkinson's psychosis;
+                  †0.25 of adult equivalent dose shown (see Yellow Card); ‡take with meal (≥350 kcal); ^accounts for half-life of active metabolites;
+                  **preferred medication based on research and/or expert opinion; ?inconsistent or insufficient data.
+                  <br /> <br /> 
+                  <b>NOTES: </b> doses may not
+                  reflect manufacturers' recommendations but are based on clinical literature and opinion. Half-lives are estimates based on adult data
+                  and in older adults they can often be increased up to 170%.
+                </p>
+              </div>
             </div>
           </div>
           <Footer />

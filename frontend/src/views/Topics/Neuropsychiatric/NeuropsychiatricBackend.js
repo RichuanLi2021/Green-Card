@@ -45,4 +45,3 @@ export const submitDrug = async (medication, recommendedAction) => {
   }
 };
 
-

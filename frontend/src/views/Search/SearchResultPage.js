@@ -2,10 +2,18 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./SearchResultPage.css";
+import Navbar from "../Navigation/navigation";
+import Search from "./Search"
+import Footer from "../Footer/Footer";
+import { useNavigate } from "react-router-dom";
 
 const SearchResultPage = () => {
   const { searchTerm } = useParams();
   const [results, setResults] = useState([]);
+  const navigate = useNavigate();
+  const handleSearch = (searchTerm) => {
+    navigate(`/search/${searchTerm}`);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,8 +28,10 @@ const SearchResultPage = () => {
 
   return (
     <div>
+      <Navbar />
+      <Search onSearch={handleSearch}></Search>
       {results.length > 0 ? (
-        <div className="grid-container">
+        <div className="grid-container result-div">
           {results.map((row, index) => (
             <div className="grid-item" key={index}>
               <div className="table-name">{row.tableName}</div>
@@ -45,6 +55,8 @@ const SearchResultPage = () => {
       ) : (
         <div className="no-results">No results found</div>
       )}
+
+    <Footer/>
     </div>
   );
 };

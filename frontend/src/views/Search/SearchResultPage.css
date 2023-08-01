@@ -18,6 +18,11 @@
   width: 75%;
 }
 
+.result-div {
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+}
+
 .box-content {
   margin-bottom: 5px;
 }

@@ -2,6 +2,10 @@
   font-family: "Work Sans", sans-serif;
 }
 
+.css-c8ybf4-MuiTableCell-root {
+  font-family: "Work Sans", sans-serif !important;
+}
+
 .css-11xur9t-MuiPaper-root-MuiTableContainer-root {
   width: 95% !important;
   margin: auto !important;
@@ -27,4 +31,19 @@
       .antidepressantSafety-notes-key {
         padding: 10px;
       }
+}
+
+.anti-button {
+  margin-bottom: 5.5rem;
+  text-align: center;
+}
+
+.input-style {
+  width: 70vw;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.css-1erxr6y-MuiPaper-root-MuiTableContainer-root {
+  margin-bottom: 20px !important;
 }

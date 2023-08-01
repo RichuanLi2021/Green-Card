@@ -13,6 +13,7 @@ import Search from "../../Search/Search";
 import Footer from "../../Footer/Footer";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import "./InsomniaClinical.css";
 
 export default function InsomniaClinical() {
   const [data, setData] = useState([]);
@@ -114,7 +115,7 @@ export default function InsomniaClinical() {
     const groupedData = {};
 
     data.forEach((item) => {
-      const header = item.LIST_HEADERS_Id;
+      const header = item.LIST_HEADERS;
       if (!groupedData[header]) {
         groupedData[header] = [];
       }
@@ -125,6 +126,7 @@ export default function InsomniaClinical() {
   };
 
   const groupedData = groupDataByHeader(data);
+  console.log(groupedData);
 
  
   if (Object.keys(data).length > 0) {
@@ -212,7 +214,7 @@ export default function InsomniaClinical() {
                 <div className="form-header">
                   <Box display="flex" justifyContent="space-between" alignItems="center">
                     <Typography variant="h5" className="title">
-                      Add New Drug
+                      Add new guide
                     </Typography>
                   </Box>
                 </div>
@@ -221,12 +223,11 @@ export default function InsomniaClinical() {
                  
                   <Box>
                   
-                  <select value={when} onChange={handleWhen} name="dog-names" id="dog-names">
-
-                      <option >SHYPCLIN_BFR</option> 
-                      <option >SHYPCLIN_STR</option> 
-                      <option >SHYPCLIN_END</option> 
-                      
+                  <select value={when} onChange={handleWhen}>
+                      <option>SELECT AN OPTION</option> 
+                      <option value='Before prescribing'>Before prescribing</option>
+                      <option value='Starting'>Starting</option> 
+                      <option value='Ending'>Ending</option> 
                   </select>
                   </Box>
                   <Box>
@@ -311,9 +312,9 @@ else{
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography sx={{ textAlign: "left" }}>
+              <Typography sx={{ textAlign: "left", padding: '0 10px' }}>
                 {groupedData[headerKey].map((dataObj, index) => (
-                  <li key={index}>
+                  <li key={index} className='custom-font'>
                     {dataObj.Description}
                   </li>
                 ))}
@@ -322,9 +323,6 @@ else{
           </Accordion>
         )
       )}
-      <div className='keynote-div'>
-        <p className='keynote'><b>Key notes:</b> SHYPCLIN_BFR means before prescribing, SHYPCLIN_STR means starting, SHYPCLIN_END means ending </p>
-      </div>
     </div>
     <Footer />
   </>

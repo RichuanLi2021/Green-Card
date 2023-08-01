@@ -153,39 +153,8 @@ export default function AntidepressantSafety() {
                 alignItems: "center",
               }}
             >
-              <Typography id="antidepressantSafetyHeader">Antidepressant Safety Concerns</Typography>
+              <Typography id="topicHeader">Antidepressant Safety Concerns</Typography>
             </Box>
-
-            {/* Add a new Safety Concern */}
-            {admin && (
-              <div>
-                <h2>Add a new Safety Concern</h2>
-                <button onClick={() => setFormVisible(!formVisible)} className="button-style">
-                  {formVisible ? "Cancel" : "Add Safety Concern"}
-            </button>
-                {formVisible && (
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      addSafetyConcern(newSafetyConcern);
-                      setFormVisible(false);
-                    }}
-                    className="form-style"
-                  >
-                    <input
-                      type="text"
-                      name="Description"
-                      placeholder="Description"
-                      onChange={handleInputChange}
-                      className="input-style"
-                    />
-                    <button type="submit" className="submit-button">
-                      Submit
-                    </button>
-                  </form>
-                )}
-              </div>
-            )}
 
             <TableContainer component={Paper} sx={{ marginBottom: 20 }}>
               <Table aria-label="customized table" id="antidepressantSafetyTable">
@@ -213,6 +182,36 @@ export default function AntidepressantSafety() {
                 </TableBody>
               </Table>
             </TableContainer>
+
+            {/* Add a new Safety Concern */}
+            {admin && (
+                <div className="anti-button">
+                  <button onClick={() => setFormVisible(!formVisible)} className="button-style">
+                    {formVisible ? "Cancel" : "Add Safety Concern"}
+              </button>
+                  {formVisible && (
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        addSafetyConcern(newSafetyConcern);
+                        setFormVisible(false);
+                      }}
+                      className="form-style"
+                    >
+                      <input
+                        type="text"
+                        name="Description"
+                        placeholder="Description"
+                        onChange={handleInputChange}
+                        className="input-style"
+                      />
+                      <button type="submit" className="submit-button">
+                        Submit
+                      </button>
+                    </form>
+                  )}
+                </div>
+              )}
           </div>
           <Footer />
         </>
@@ -235,10 +234,10 @@ export default function AntidepressantSafety() {
                 alignItems: "center",
               }}
             >
-              <Typography id="antidepressantSafetyHeader">Antidepressant Safety Concerns</Typography>
+              <Typography id="topicHeader">Antidepressant Safety Concerns</Typography>
             </Box>
 
-            <TableContainer component={Paper} sx={{ marginBottom: 20 }}>
+            <TableContainer component={Paper}>
               <Table aria-label="customized table" id="antidepressantSafetyTable">
                 <TableBody>
                   {data.map((dataObj, index) => (

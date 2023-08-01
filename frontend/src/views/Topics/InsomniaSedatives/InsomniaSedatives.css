@@ -90,6 +90,10 @@
   font-family: "Work Sans", sans-serif !important;
 }
 
+.css-1ygcj2i-MuiTableCell-root, .css-1ex1afd-MuiTableCell-root {
+  font-family: "Work Sans", sans-serif !important;
+}
+
 .keynote-div {
   background: #d7ece0;
   border-radius: 2px;
@@ -115,8 +119,15 @@
 .sticky-col {
   position: sticky;
   left: 0;
-  background-color: white; /* Optional but ensures the column is not semi-transparent */
-  z-index: 2; /* Ensure the sticky column is above the others */
+  background-color: #d7ece0;
+}
+
+#sedative-table {
+  margin-left: 0;
+}
+
+.background-cl {
+  background-color: #d7ece0;
 }
 
 @media screen and (min-width: 200px) and (max-width: 1000px) {
