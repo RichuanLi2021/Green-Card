@@ -28,8 +28,7 @@
     font-size: 1.2rem;
     background-color: #e0e0e0;
     border: none;
-    border-radius: 4px;
-    margin-bottom: 1rem;
+   
     cursor: pointer;
     align-items: center;
   }
@@ -49,6 +48,46 @@
   }
   
 
+
+ .tbl-fixed{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: fit-content;
+  max-height: 70vh;
+  max-width: 100vh;
+  margin-top: 40px;
+ }
+
+ .css-tgh5dz-MuiTableCell-root {
+  font-family: "Work Sans", sans-serif !important;
+ }
+
+ #psychotropicMonitoringTable {
+  min-width: max-content;
+  border-collapse: separate;
+ }
+
+ .head-col {
+  position: absolute;
+  width: 9em;
+  background-color: #d7ece0;
+  font-size: 1rem;
+ }
+
+ .table-div {
+  overflow-x: scroll;
+  overflow-y: visible;
+ }
+
+ .second-column {
+  padding-left: 11rem !important;
+ }
+
+ table td{
+
+  text-align: center;
+ 
+ }
   @media  screen and (min-width:200px) and (max-width:1000px) {
     #table td, #table th {
         font-size: 20px;
@@ -60,7 +99,7 @@
     .grid-container {
       display: grid;
       grid-template-columns: repeat(4, minmax(150px, 1fr));
-      gap: 10px;
+      
     }
   
     .box {
@@ -84,7 +123,7 @@
     .grid-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 10px;
+     
     }
   }
   
@@ -98,10 +137,6 @@
 #psychotropicSubject{
     text-decoration:none;
     font-size:20pt;  
-}
-
-#psychotropicMonitoringTableTable td, #psychotropicMonitoringTable th{
-    font-size:1rem;
 }
 
 #topicHeader {

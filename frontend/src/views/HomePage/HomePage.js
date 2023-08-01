@@ -131,17 +131,14 @@ const HomePage = () => {
                         {" "}
                         <a href="CognitiveEnhancersGuide"> Cognitive Enhancers Guide </a>{" "}
                       </Typography>
-                      <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
-                        {" "}
-                        <a href="CognitiveEnhancersGuideCont"> Cognitive Enhancers Guide continued </a>{" "}
-                      </Typography>
+                    
                       <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
                         {" "}
                         <a href="CognitiveEnhancersClinical"> Cognitive Enhancers Clinical Guide </a>{" "}
                       </Typography>
                       <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
                         {" "}
-                        <a href="Neuropsychiatric"> NPS Management </a>{" "}
+                        <a href="NPSManagement"> NPS Management </a>{" "}
                       </Typography>
                     </AccordionDetails>
                   </Accordion>
@@ -157,11 +154,11 @@ const HomePage = () => {
                     <AccordionDetails>
                       <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
                         {" "}
-                        <a href="DeliriumManagement"> Delirium Management </a>{" "}
+                        <a href="Delirium"> Delirium Management </a>{" "}
                       </Typography>
                       <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
                         {" "}
-                        <a href="DeliriumManagement"> Anticholinergic activity </a>{" "}
+                        <a href="Delirium"> Anticholinergic activity </a>{" "}
                       </Typography>
                     </AccordionDetails>
                   </Accordion>
@@ -177,15 +174,15 @@ const HomePage = () => {
                     <AccordionDetails>
                       <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
                         {" "}
-                        <a href="PolypharmacyCommonDDIs"> Common DDI's </a>{" "}
+                        <a href="PolypharmacyCommon"> Common DDI's </a>{" "}
                       </Typography>
                       <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
                         {" "}
-                        <a href="PolypharmacyNotableChanges"> Notable changes in older adults </a>{" "}
+                        <a href="PolypharmacyNotable"> Notable changes in older adults </a>{" "}
                       </Typography>
                       <Typography sx={{ fontWeight: 300, fontSize: "1rem" }}>
                         {" "}
-                        <a href="PolypharmacyPrinciples"> Prescribing and deprescribing principles </a>{" "}
+                        <a href="PrinciplesPolypharmacy"> Prescribing and deprescribing principles </a>{" "}
                       </Typography>
                     </AccordionDetails>
                   </Accordion>

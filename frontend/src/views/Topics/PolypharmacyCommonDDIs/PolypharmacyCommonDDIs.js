@@ -74,7 +74,7 @@ export default function PolypharmacyCommonDDIs() {
           alignItems: 'center',
         }}
       >
-        <Typography variant="h3" id="polypharmacyCommonHeader">
+        <Typography id="topicHeader">
         <div className="subtitle">
           Common DDIs with Psychotropics
         </div>

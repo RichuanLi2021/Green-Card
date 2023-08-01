@@ -7,8 +7,8 @@
     font-style:bold;
 }
 
-#firstAccordion, #secondAccordion, #thirdAccordion{
-    background-color:#d7ece0;
+#firstAccordion {
+    background-color:#96d2b0;
     color:black; 
 }
 
@@ -31,7 +31,7 @@
 }
 
 .keynote-meddiv {
-  background: #d7ece0;
+  background: #96d2b0;
   border-radius: 2px;
   display: inline-block;
   height: 100%;
@@ -72,7 +72,7 @@
     height: 70px;
     padding: 1rem;
     font-size: 1.2rem;
-    background-color: #e0e0e0;
+    background-color: #96d2b0;
     border: none;
     border-radius: 4px;
     margin-bottom: 1rem;
@@ -86,7 +86,7 @@
   
   .box {
     padding: 1rem;
-    background-color: #f0f0f0;
+    background-color: #96d2b0;
     margin-top: 1rem;
   }
   
@@ -120,6 +120,7 @@
     }
     #footer{
         font-size:24px;
+        background-color:#96d2b0;
     }
   
     .grid-container {

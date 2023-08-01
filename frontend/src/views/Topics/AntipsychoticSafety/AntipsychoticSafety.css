@@ -15,6 +15,14 @@
     padding: 10px;
 }
 
+#antipsychoticSafetyTable {
+    margin-bottom: 5rem;
+}
+
+.extra-margin {
+    margin-top: 1rem;
+}
+
 #antipsychoticSafetyHeader {
     font-family: "Work Sans", sans-serif !important;
     font-size: 1.5rem !important;

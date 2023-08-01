@@ -33,7 +33,41 @@ const updateData = async (req, res, next) => {
   }
 }
 
+const drugData = async (req, res, next) => {
+  const {
+    medication, recommendedAction
+  } = req.body;
+  
+  try {
+    await pool.query(
+      "INSERT INTO `green_card`.`ect & psychoactive medications` (`Medication`, `Recommended Action`) VALUES (?, ?)",
+      [
+        medication, recommendedAction
+      ]
+    );
+    
+    res.send('Drug was submitted successfully');
+  } catch (err) {
+    next(err);
+    throw err;
+  }
+};
+
+const drugDelete = async (req, res, next) => {
+  const  Medication = req.params.Medication;
+  try {
+      await pool.query('DELETE FROM `green_card`.`ect & psychoactive medications` WHERE `Medication` = ? ',
+      Medication);
+      res.send('Drug was deleted successfully');
+  } catch (err) {
+      next(err);
+      throw err;
+  }
+};
+
 module.exports = {
   getData,
-  updateData
+  updateData,
+  drugData,
+  drugDelete
 };
