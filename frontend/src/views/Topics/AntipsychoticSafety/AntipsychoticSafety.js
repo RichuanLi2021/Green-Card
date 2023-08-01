@@ -57,7 +57,7 @@ export default function AntipsychoticSafety() {
 
   const fetchData = () => {
     axios
-      .get("http://localhost:8887/api/AntipsychoticSafety")
+      .get("https://gpgc-server.vercel.app/api/AntipsychoticSafety")
       .then((response) => {
         setData(response.data);
       })
@@ -73,7 +73,7 @@ export default function AntipsychoticSafety() {
   const addSafetyConcern = (description) => {
     if (admin) {
       axios
-        .post("http://localhost:8887/api/AntipsychoticSafety/add", { Description: description })
+        .post("https://gpgc-server.vercel.app/api/AntipsychoticSafety/add", { Description: description })
         .then((response) => {
           alert("Data successfully added! \nSafety Concern:" + description);
           fetchData();
@@ -92,7 +92,7 @@ export default function AntipsychoticSafety() {
       if (window.confirm("Are you sure you want to delete this record?")) {
         try {
           console.log(Description);
-          await axios.delete("http://localhost:8887/api/AntipsychoticsSafety/delete/" + Description);
+          await axios.delete("https://gpgc-server.vercel.app/api/AntipsychoticsSafety/delete/" + Description);
           alert("Data deleted succesfully! \nSymptom:" + Description);
           window.location.reload();
         } catch (err) {

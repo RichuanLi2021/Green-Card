@@ -1,8 +1,9 @@
 {
   "database": {
-    "host": "127.0.0.1",
-    "user": "root",
-    "password": "Pn230922",
-    "database": "green_card"
+    "host": "green-card.clvfyppgcaqq.us-east-2.rds.amazonaws.com",
+    "user": "admin",
+    "password": "greencard",
+    "database": "green_card",
+    "port": "33066"
   }
 }

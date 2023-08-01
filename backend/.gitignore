@@ -23,3 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 # db config ignored (different on each machine, dont want to overwrite one and others)
 ./config/databaseConfig.json
+.vercel

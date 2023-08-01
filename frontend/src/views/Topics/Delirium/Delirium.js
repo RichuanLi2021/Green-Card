@@ -56,7 +56,7 @@ export default function Delirium() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8887/api/delirium")
+      .get("https://gpgc-server.vercel.app/api/delirium")
 
       .then((response) => {
         setData(response.data);
@@ -136,7 +136,7 @@ export default function Delirium() {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
         console.log(Description);
-        await axios.delete("http://localhost:8887/api/Delirium/delete/" + Description);
+        await axios.delete("https://gpgc-server.vercel.app/api/Delirium/delete/" + Description);
         window.alert("Drug Deleted Successfully !");
         window.location.reload();
       } catch (err) {

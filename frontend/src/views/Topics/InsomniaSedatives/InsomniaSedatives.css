@@ -85,12 +85,16 @@
   margin-top: 20px;
 }
 
+.css-1bigob2 {
+  padding: 0 !important;
+}
+
 .subtitle {
   font-size: 1.5rem !important;
   font-family: "Work Sans", sans-serif !important;
 }
 
-.css-1ygcj2i-MuiTableCell-root, .css-1ex1afd-MuiTableCell-root {
+.css-1ygcj2i-MuiTableCell-root, .css-1ex1afd-MuiTableCell-root, .css-1bigob2, .css-q34dxg {
   font-family: "Work Sans", sans-serif !important;
 }
 
@@ -120,6 +124,7 @@
   position: sticky;
   left: 0;
   background-color: #d7ece0;
+  text-align: center !important;
 }
 
 #sedative-table {

@@ -26,7 +26,7 @@ function Panel() {
 
     const fetchData = () => {
         axios
-            .get("http://localhost:8887/api/login")
+            .get("https://gpgc-server.vercel.app/api/login")
             .then((response) => {
                 setData(response.data);
                 // console.log(data);
@@ -48,7 +48,7 @@ function Panel() {
             password: password
         };
 
-        axios.post("http://localhost:8887/api/register", userData)
+        axios.post("https://gpgc-server.vercel.app/api/register", userData)
             .then((response) => {
                 console.log(response.data);
                 fetchData();

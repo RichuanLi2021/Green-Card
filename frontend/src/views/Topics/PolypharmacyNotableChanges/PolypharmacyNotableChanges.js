@@ -47,7 +47,7 @@ export default function PolypharmacyNotableChanges() {
 
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:8887/api/polypharmacynotablechanges')
+    axios.get('https://gpgc-server.vercel.app/api/polypharmacynotablechanges')
         .then(response => {
           setData(response.data)
           console.log(response.data[0]);

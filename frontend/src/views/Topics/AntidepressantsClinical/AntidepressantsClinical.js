@@ -20,6 +20,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Search from "../../Search/Search";
 import { useNavigate } from "react-router-dom";
+import "./AntidepressantsClinical.css";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -57,7 +58,7 @@ export default function AntidepressantsClinical() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8887/api/antidepressantsclinical")
+      .get("https://gpgc-server.vercel.app/api/antidepressantsclinical")
 
       .then((response) => {
         setData(response.data);
@@ -137,7 +138,7 @@ export default function AntidepressantsClinical() {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
         console.log(Description);
-        await axios.delete("http://localhost:8887/api/AntidepressantsClinical/delete/" + Description);
+        await axios.delete("https://gpgc-server.vercel.app/api/AntidepressantsClinical/delete/" + Description);
         window.alert("Data Deleted Successfully !");
         window.location.reload();
       } catch (err) {

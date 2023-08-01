@@ -20,6 +20,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Search from "../../Search/Search";
 import { useNavigate } from "react-router-dom";
+import "./PolypharmacyNotable.css";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -59,7 +60,7 @@ export default function PolypharmacyCommon() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8887/api/polypharmacynotable")
+      .get("https://gpgc-server.vercel.app/api/polypharmacynotable")
 
       .then((response) => {
         setData(response.data);
@@ -134,7 +135,7 @@ export default function PolypharmacyCommon() {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
         console.log(Description);
-        await axios.delete("http://localhost:8887/api/PolypharmacyNotable/delete/" + Description);
+        await axios.delete("https://gpgc-server.vercel.app/api/PolypharmacyNotable/delete/" + Description);
         window.alert("Data Deleted Successfully !");
         window.location.reload();
       } catch (err) {

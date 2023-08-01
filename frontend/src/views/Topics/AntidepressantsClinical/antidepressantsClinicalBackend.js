@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const antidepressantClinicalUpdate = async (name, column, value) => {
     try {
-        const response = await axios.post('http://localhost:8887/api/AntidepressantsClinical/update', {
+        const response = await axios.post('https://gpgc-server.vercel.app/api/AntidepressantsClinical/update', {
             name,
             column,
             value
@@ -17,7 +17,7 @@ export const antidepressantClinicalUpdate = async (name, column, value) => {
 
 export const submitData = async (listHeader, description) => {
     try {
-      const response = await axios.post('http://localhost:8887/api/AntidepressantsClinical/add', {
+      const response = await axios.post('https://gpgc-server.vercel.app/api/AntidepressantsClinical/add', {
         listHeader, description
       });
       console.log(response.data); // log response from server

@@ -13,6 +13,7 @@ const connection = mysql.createPool({
   user: config.user,
   password: config.password,
   database: config.database,
+  port: config.port,
 });
 
 exports.search = async (req, res) => {

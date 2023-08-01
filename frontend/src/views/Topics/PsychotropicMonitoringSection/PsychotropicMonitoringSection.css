@@ -58,13 +58,14 @@
   margin-top: 40px;
  }
 
- .css-tgh5dz-MuiTableCell-root {
+ .css-tgh5dz-MuiTableCell-root, .css-1o8fxhl, .css-9zlzxu {
   font-family: "Work Sans", sans-serif !important;
  }
 
  #psychotropicMonitoringTable {
   min-width: max-content;
   border-collapse: separate;
+  margin-top: 1.5rem;
  }
 
  .head-col {

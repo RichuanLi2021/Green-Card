@@ -56,7 +56,7 @@ export default function PrinciplesPolypharmacy() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8887/api/principlespolypharmacy")
+      .get("https://gpgc-server.vercel.app/api/principlespolypharmacy")
 
       .then((response) => {
         setData(response.data);
@@ -132,7 +132,7 @@ export default function PrinciplesPolypharmacy() {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
         console.log(Description);
-        await axios.delete("http://localhost:8887/api/PrinciplesPolypharmacy/delete/" + Description);
+        await axios.delete("https://gpgc-server.vercel.app/api/PrinciplesPolypharmacy/delete/" + Description);
         window.alert("Data Deleted Successfully !");
         window.location.reload();
       } catch (err) {

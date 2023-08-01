@@ -17,7 +17,7 @@ export default function MoodStabilizers() {
 
   const fetchData = () => {
     axios
-      .get('http://localhost:8887/api/antidepressantguide')
+      .get('https://gpgc-server.vercel.app/api/antidepressantguide')
       .then((response) => {
         setData(response.data);
       })
@@ -81,7 +81,7 @@ export default function MoodStabilizers() {
     const addDrug = (drugData) => {
       if (admin) {
         axios
-          .post("http://localhost:8887/api/AntidepressantGuide/add", drugData)
+          .post("https://gpgc-server.vercel.app/api/AntidepressantGuide/add", drugData)
           .then((response) => {
             alert("Data successfully added! \nDrug:" + drugData.Name + drugData.Half_life);
             fetchData(); // Refresh the data after the new drug is added.
@@ -99,7 +99,7 @@ export default function MoodStabilizers() {
       if (window.confirm("Are you sure you want to delete this record?")) {
         try {
           console.log(Name);
-          await axios.delete("http://localhost:8887/api/AntidepressantGuide/delete/" + Name);
+          await axios.delete("https://gpgc-server.vercel.app/api/AntidepressantGuide/delete/" + Name);
           alert("Data deleted succesfully! \nDrug:" + Name);
           window.location.reload();
         } catch (err) {

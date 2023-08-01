@@ -16,7 +16,7 @@ const updatePsychotropicMonitoringSectionData = async (req, res, next) => {
   try {
     const { name, column, value } = req.body;
     await pool.query(
-      "UPDATE `green_card`.`Psychotropic Monitoring` SET " +
+      "UPDATE `green_card`.`PSYCHOTROPIC MONITORING` SET " +
       column +
       " = " +
       '"' +
@@ -42,7 +42,7 @@ const drugData = async (req, res, next) => {
 
   try {
     await pool.query(
-      "INSERT INTO `green_card`.`Psychotropic Monitoring` (`Name`, `Antipsychotics`, `Lithium`, `Valproate`) VALUES (?, ?, ?, ?)",
+      "INSERT INTO `green_card`.`PSYCHOTROPIC MONITORING` (`Name`, `Antipsychotics`, `Lithium`, `Valproate`) VALUES (?, ?, ?, ?)",
       [
         drugName, Antipsychotics, Lithium, Valproate
       ]
@@ -59,7 +59,7 @@ const drugData = async (req, res, next) => {
 const drugDelete = async (req, res, next) => {
   const  Name  = req.params.Name;
   try {
-      await pool.query('DELETE FROM `green_card`.`Psychotropic Monitoring` WHERE `Name` = ? ',
+      await pool.query('DELETE FROM `green_card`.`PSYCHOTROPIC MONITORING` WHERE `Name` = ? ',
           Name);
       console.log('Drug was deleted successfully');
   } catch (err) {

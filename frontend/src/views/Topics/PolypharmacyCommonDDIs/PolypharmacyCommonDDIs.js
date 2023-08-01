@@ -49,7 +49,7 @@ export default function PolypharmacyCommonDDIs() {
 
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:8887/api/polypharmacycommonddis')
+    axios.get('https://gpgc-server.vercel.app/api/polypharmacycommonddis')
         .then(response => {
           setData(response.data)
           console.log(response.data[0]);

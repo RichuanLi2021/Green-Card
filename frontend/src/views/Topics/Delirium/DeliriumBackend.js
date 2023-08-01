@@ -7,7 +7,7 @@ export const DeliriumBackendUpdate = async (name, column, value) => {
 
   try {
 
-    const response = await axios.post('http://localhost:8887/api/Delirium/update', {
+    const response = await axios.post('https://gpgc-server.vercel.app/api/Delirium/update', {
 
      name,
 
@@ -34,7 +34,7 @@ export const DeliriumBackendUpdate = async (name, column, value) => {
 
 export const submitDrug = async (listHeader, description) => {
   try {
-    const response = await axios.post('http://localhost:8887/api/add/Delirium', {
+    const response = await axios.post('https://gpgc-server.vercel.app/api/add/Delirium', {
       listHeader, description
     });
     console.log(response.data); // log response from server
