@@ -135,7 +135,7 @@ export default function InsomniaDeprescribing() {
           />
           <Navigation />
           <Search onSearch={handleSearch}></Search>
-          <div style={{ marginTop: "1rem", padding: "0 1rem", overflowX: "auto" }}>
+          <div style={{ marginTop: "1rem", padding: "0 1rem", overflowX: "scroll" }}>
             <Typography className="subtitle" gutterBottom>
               Deprescribing Sedatives/Hypnotics
             </Typography>

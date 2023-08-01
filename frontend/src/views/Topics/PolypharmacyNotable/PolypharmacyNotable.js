@@ -167,7 +167,7 @@ export default function PolypharmacyCommon() {
               }}
             >
               <Typography variant="h3" id="topicHeader">
-                NOTABLE CHANGES IN OLDER ADULTS THAT AFFECT PRESCRIBING
+                Notable Changes in Older Adults That Affect Prescribing
               </Typography>
             </Box>
 
@@ -264,18 +264,13 @@ export default function PolypharmacyCommon() {
                 alignItems: "center",
               }}
             >
-              <Typography variant="h3" id="topicHeader">
-                NOTABLE CHANGES IN OLDER ADULTS THAT AFFECT PRESCRIBING
+              <Typography id="topicHeader">
+              Notable Changes in Older Adults That Affect Prescribing
               </Typography>
             </Box>
 
-            <TableContainer component={Paper} sx={{marginBottom:10}}>
-              <Table aria-label="customized table" id="polypharmacyNotableTable">
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Description</StyledTableCell>
-                  </TableRow>
-                </TableHead>
+            <TableContainer component={Paper}>
+              <Table aria-label="customized table" id="common-ddi">
                 <TableBody>
                   {data.map((dataObj, index) => (
                     <StyledTableRow key={index}>

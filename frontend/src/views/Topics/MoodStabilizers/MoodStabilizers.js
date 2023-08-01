@@ -3,14 +3,14 @@ import Navigation from '../../Navigation/navigation';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
-import Data from "../../searchBar/Data.json";
-import SearchBar from "../../searchBar/searchBar";
 import './MoodStabilizers.css';
 import {MoodStabilizersUpdate, submitDrug }from './moodStabilizersbackend';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Footer from '../../Footer/Footer';
+import Search from '../../Search/Search';
+import { useNavigate } from "react-router-dom";
 
 
 export default function MoodStabilizers() {
@@ -28,6 +28,11 @@ export default function MoodStabilizers() {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const navigate = useNavigate();
+  const handleSearch = (searchTerm) => {
+    navigate(`/search/${searchTerm}`);
   };
 
   const [selectedDrugs, setSelectedDrugs] = useState([]);
@@ -143,7 +148,7 @@ export default function MoodStabilizers() {
         <link rel="stylesheet" href= "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
           <Navigation />
-          <SearchBar placeholder="Search" data={Data} />
+          <Search onSearch={handleSearch}></Search>
           <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
             <Typography variant="h4" align="center" gutterBottom>
               <div className='subtitle-mood'>
@@ -156,7 +161,7 @@ export default function MoodStabilizers() {
                 const dataObj = data[id];
                 const isDrugSelected = selectedDrugs.includes(dataObj);
                 return (
-                  <div className="grid-item" key={id}>
+                  <div className="grid-item drug-display" key={id}>
                     <button
                       onClick={() => handleDrugClick(dataObj)}
                       className={`drug-button ${isDrugSelected ? 'active' : ''}`}
@@ -169,7 +174,7 @@ delete
                     </button>
     
                     {isDrugSelected && (
-                      <div className="box">
+                      <div className="box drug-box">
 
                         <div className="box-content">
                         <strong>Half-life: </strong>
@@ -365,7 +370,7 @@ delete
       return (
         <>
           <Navigation />
-          <SearchBar placeholder="Search" data={Data} />
+          <Search onSearch={handleSearch}></Search>
           <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
             <Typography variant="h4" align="center" gutterBottom>
             <div className='subtitle-mood'>
@@ -378,7 +383,7 @@ delete
                 const dataObj = data[id];
                 const isDrugSelected = selectedDrugs.includes(dataObj);
                 return (
-                  <div className="grid-item" key={id}>
+                  <div className="grid-item drug-display" key={id}>
                     <button
                       onClick={() => handleDrugClick(dataObj)}
                       className={`drug-button ${isDrugSelected ? 'active' : ''}`}
@@ -387,7 +392,7 @@ delete
                     </button>
 
                     {isDrugSelected && (
-                    <div className="box">
+                    <div className="box drug-box">
                       <div className="box-content">
                         <strong>Half-life: </strong>
                         <span>{dataObj[`Half-life`]}</span>

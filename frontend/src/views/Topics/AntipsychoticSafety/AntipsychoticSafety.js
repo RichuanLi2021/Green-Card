@@ -153,13 +153,39 @@ export default function AntipsychoticSafety() {
                 alignItems: "center",
               }}
             >
-              <Typography id="antipsychoticSafetyHeader">Antipsychotics Safety Concerns</Typography>
+              <Typography id="topicHeader">Antipsychotics Safety Concerns</Typography>
             </Box>
+
+            <TableContainer component={Paper}>
+              <Table aria-label="customized table">
+                <TableBody>
+                  {data.map((dataObj, index) => (
+                    <StyledTableRow key={index}>
+                      <StyledTableCell>
+                        <input
+                          id="`Description`"
+                          name={dataObj[`Description`]}
+                          type="text"
+                          onFocus={store_value}
+                          onBlur={update_value}
+                          defaultValue={dataObj[`Description`]}
+                        />
+                      </StyledTableCell>
+                      <button
+                        style={{ background: "none", border: "none", cursor: "pointer", padding: "15px 2px" }}
+                        onClick={(e) => handleDelete(dataObj.Description)}
+                      >
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
 
             {/* Add a new Safety Concern */}
             {admin && (
-              <div>
-                <h2>Add a new Safety Concern</h2>
+              <div className="anti-button extra-margin">
                 <button onClick={() => setFormVisible(!formVisible)} className="button-style">
                   {formVisible ? "Cancel" : "Add Safety Concern"}
                 </button>
@@ -186,33 +212,6 @@ export default function AntipsychoticSafety() {
                 )}
               </div>
             )}
-
-            <TableContainer component={Paper} sx={{ marginBottom: 20 }}>
-              <Table aria-label="customized table" id="antipsychoticSafetyTable">
-                <TableBody>
-                  {data.map((dataObj, index) => (
-                    <StyledTableRow key={index}>
-                      <StyledTableCell>
-                        <input
-                          id="`Description`"
-                          name={dataObj[`Description`]}
-                          type="text"
-                          onFocus={store_value}
-                          onBlur={update_value}
-                          defaultValue={dataObj[`Description`]}
-                        />
-                      </StyledTableCell>
-                      <button
-                        style={{ background: "none", border: "none", cursor: "pointer", padding: "15px 2px" }}
-                        onClick={(e) => handleDelete(dataObj.Description)}
-                      >
-                        <span class="material-symbols-outlined">delete</span>
-                      </button>
-                    </StyledTableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
           </div>
           <Footer />
         </>
@@ -235,10 +234,10 @@ export default function AntipsychoticSafety() {
                 alignItems: "center",
               }}
             >
-              <Typography id="antipsychoticSafetyHeader">Antipsychotics Safety Concerns</Typography>
+              <Typography id="topicHeader">Antipsychotics Safety Concerns</Typography>
             </Box>
 
-            <TableContainer component={Paper} sx={{ marginBottom: 20 }}>
+            <TableContainer component={Paper}>
               <Table aria-label="customized table" id="antipsychoticSafetyTable">
                 <TableBody>
                   {data.map((dataObj, index) => (

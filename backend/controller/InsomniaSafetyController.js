@@ -38,12 +38,14 @@ const drugData = async (req, res, next) => {
 const drugDelete = async (req, res, next) => {
   const  Description  = req.params.Description;
   try {
-      await pool.query('DELETE FROM `green_card`.`sedatives/hypnotic safety concerns` WHERE Description = ? ',
-          Description);
-      res.send('Drug was deleted successfully');
+    await pool.query(
+      "DELETE FROM `green_card`.`sedatives/hypnotic safety concerns` WHERE `Description` = ?",
+      [Description]
+    );
+    res.send('Drug was deleted successfully');
   } catch (err) {
-      next(err);
-      throw err;
+    next(err);
+    throw err;
   }
 };
 

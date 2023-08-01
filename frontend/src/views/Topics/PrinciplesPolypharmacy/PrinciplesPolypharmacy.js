@@ -20,16 +20,13 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import Search from "../../Search/Search";
+import "./PrinciplesPolypharmacy.css";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.success.main,
 
     color: theme.palette.common.white,
-
-    fontWeight: "bold",
-
-    textDecorationLine: "underline",
   },
 
   [`&.${tableCellClasses.body}`]: {
@@ -206,7 +203,7 @@ export default function PrinciplesPolypharmacy() {
 
               <p>
                 <b>
-                  <b>For additional information: </b>deprescribing.org, Beers criteria, STOPP/START criteria
+                  <b>For additional information: </b>deprescribing.org, Beers criteria, STOP/START criteria
                 </b>{" "}
               </p>
               <div className="box-content" style={{ width: "600px" }}>
@@ -266,18 +263,13 @@ export default function PrinciplesPolypharmacy() {
                 alignItems: "center",
               }}
             >
-              <Typography variant="h3" id="topicHeader">
-                PRESCRIBING AND DEPRESCRIBING PRINCIPLES
+              <Typography id="topicHeader">
+                Prescribing and Deprescribing Principles
               </Typography>
             </Box>
 
-            <TableContainer component={Paper} sx={{marginBottom:20}}>
-              <Table aria-label="customized table" id="principlesPolypharmacyTable">
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Description</StyledTableCell>
-                  </TableRow>
-                </TableHead>
+            <TableContainer component={Paper}>
+              <Table aria-label="customized table">
                 <TableBody>
                   {data.map((dataObj, index) => (
                     <StyledTableRow key={index}>       
@@ -286,12 +278,13 @@ export default function PrinciplesPolypharmacy() {
                   ))}
                 </TableBody>
               </Table>
-              <p>
-              <b>
-                <b>For additional information: </b>deprescribing.org, Beers criteria, STOPP/START criteria
-              </b>{" "}
-            </p>
             </TableContainer>
+
+            <div className="keynote-div">
+              <p className="keynote">
+              <b>For additional information: </b>deprescribing.org, Beers criteria, STOP/START criteria
+              </p>
+            </div>
             
           </div>
           <Footer />

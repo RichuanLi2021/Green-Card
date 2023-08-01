@@ -10,9 +10,9 @@ import {useState, useEffect} from 'react';
 import Navigation from '../../Navigation/navigation';
 import Footer from '../../Footer/Footer';
 import { Box } from '@mui/system';
-import Data from "../../searchBar/Data.json";
-import SearchBar from "../../searchBar/searchBar";
-
+import "./NPSManagement.css";
+import Search from '../../Search/Search';
+import { useNavigate } from "react-router-dom";
 
 export default function NPSManagement() {
     
@@ -28,6 +28,11 @@ export default function NPSManagement() {
         });
   }, []);
 
+  const navigate = useNavigate();
+  const handleSearch = (searchTerm) => {
+    navigate(`/search/${searchTerm}`);
+  };
+
   if(data.length > 0)
   {
   
@@ -36,7 +41,7 @@ export default function NPSManagement() {
       
     <><div id="npsmanagement">
         <Navigation />
-        <SearchBar placeholder="Search" data={Data} />
+        <Search onSearch={handleSearch}></Search>
         <Box
           sx={{
             marginTop: 3,
@@ -46,9 +51,9 @@ export default function NPSManagement() {
             alignItems: 'center',
           }}
         >
-            <Typography variant="h3" id="topicHeader"> NPS Management & ECT & Psychoactive Meds</Typography>
+            <Typography id="topicHeader">NPS Management</Typography>
         </Box>
-        <Accordion id="firstAccordion">
+        <Accordion id="firstAccordion" className='nps-accordion'>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -57,7 +62,7 @@ export default function NPSManagement() {
             <Typography><b>Nonpharmacological Approach</b></Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography sx={{ textAlign: 'left' }}>
+            <Typography sx={{ textAlign: 'left', padding: '12px' }}>
 
                 <li>Individualize approach to patient </li>
                 <li>Examine ABCs of behavior and identify the issue</li>
@@ -78,7 +83,7 @@ export default function NPSManagement() {
             <Typography ><b>Pharmacological Approach</b></Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography sx={{ textAlign: 'left' }}>
+            <Typography sx={{ textAlign: 'left', padding: '12px' }}>
 
 
                 <li>Only use if clinically signficant distress/agitation/aggression, when benefits{'>'}harm, and non pharmacological approach failed</li>
@@ -89,10 +94,11 @@ export default function NPSManagement() {
                 <li>Treatment should be evaluated for tapering or discontinuation every 3-6 months</li>
                 <li>See antipsychotic table for additional information</li>
 
-
-              <p><b>Key:</b> ABC: antecedent, behavior, consequence. *Recommended atypical antipsychotics include <br></br>
-                risperidone, olanzapine, and aripiprazole according to the 4th Canadian Consensus Conference on <br></br>
-                the Diagnosis and Treatment of Dementia</p>
+                <div className="keynote-div">
+                  <p className='keynote'><b>Key:</b> ABC: antecedent, behavior, consequence. *Recommended atypical antipsychotics include <br></br>
+                  risperidone, olanzapine, and aripiprazole according to the 4th Canadian Consensus Conference on <br></br>
+                  the Diagnosis and Treatment of Dementia</p>
+                </div>
 
             </Typography>
           </AccordionDetails>

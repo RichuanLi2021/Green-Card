@@ -142,8 +142,8 @@ export default function InsomniaSafety() {
             <div style={{ marginTop: "1rem", padding: "0 1rem" }}>
               <Typography id="topicHeader">Sedatives/Hypnotics Safety Concerns</Typography>
 
-              <TableContainer component={Paper} sx={{marginBottom:20}}>
-                <Table aria-label="customized table" id="safetyTable">
+              <TableContainer component={Paper}>
+                <Table aria-label="customized table">
                   {Object.keys(data).map((id) => {
                     const dataObj = data[id];
 
@@ -178,7 +178,7 @@ export default function InsomniaSafety() {
                     );
                   })}
                 </Table>
-                <div className="box-content">
+                <div className="box-content extra-margin-bottom">
                 <div className="form-header">
                   <Box display="flex" justifyContent="space-between" alignItems="center">
                     <Typography id="topicHeader">Add a new Safety Concern</Typography>
@@ -227,7 +227,7 @@ export default function InsomniaSafety() {
             >
               <Typography id="topicHeader">Sedatives/Hypnotics Safety Concerns</Typography>
             </Box>
-            <TableContainer component={Paper} sx={{marginBottom:20}}>
+            <TableContainer component={Paper}>
               <Table aria-label="customized table" id="safetyTable">
                 <TableBody>
                   {data.map((dataObj, index) => (

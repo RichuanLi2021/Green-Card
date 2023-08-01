@@ -7,6 +7,10 @@
   margin-top: 1rem;
 }
 
+.css-tgh5dz-MuiTableCell-root {
+  font-family: "Work Sans", sans-serif !important;
+}
+
 @media screen and (max-width: 900px) {
   .responsive-table { 
     max-width: 90%; 

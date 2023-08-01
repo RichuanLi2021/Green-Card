@@ -15,6 +15,13 @@
     }
 }
 
+.css-ahj2mt-MuiTypography-root {
+  font-size: 0.9rem !important;
+}
+
+.smaller-box {
+  font-size: 0.9rem !important;
+}
 
 html {
   display: block;
@@ -125,15 +132,22 @@ html {
   font-size: 16px;
 }
 
+.add-div {
+  text-align: center;
+  margin-top: 1rem;
+}
+
 .form-style {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
+  width: 70vw;
   margin-top: 20px;
+  margin: auto;
 }
 
 .input-style {
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .submit-button {

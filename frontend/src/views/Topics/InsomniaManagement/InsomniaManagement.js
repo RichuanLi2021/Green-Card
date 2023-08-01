@@ -21,7 +21,7 @@ export default function InsomniaManagement() {
       <Search onSearch={handleSearch}></Search>
       <br></br>
       <div id="insomniaManagement">
-        <Typography id="mainTopic">Insomnia Management</Typography>
+        <Typography id="topicHeader">Insomnia Management</Typography>
         <AccordionDetails>
           <Typography id="mainText">
             <div className="content-insomnia">

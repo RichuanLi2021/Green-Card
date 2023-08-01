@@ -27,8 +27,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     backgroundColor: theme.palette.success.main,
     color: theme.palette.common.white,
     fontWeight: "bold",
-    fontStyle: "italic",
-    textDecorationLine: "underline",
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
@@ -284,7 +282,7 @@ export default function AntidepressantsClinical() {
                       <option value='COG_ACHEI'>Adverse Effects (AChEI)</option>
                       <option value='COG_ACHEI_ME'>Adverse Effects (Memantine)</option>
                       <option value='COG_BASELINE'>Baseline</option>
-                      <option value='COG_MONITOR'>monitoring</option>
+                      <option value='COG_MONITOR'>Monitoring</option>
                       <option value='COG_HOW_WHEN'>How and When</option>
                     </select>
                   </Box>

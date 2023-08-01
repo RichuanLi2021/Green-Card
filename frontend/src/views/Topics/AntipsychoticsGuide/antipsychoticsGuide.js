@@ -147,7 +147,7 @@ export default function AntipsychoticsGuide() {
           <Navigation />
           <Search onSearch={handleSearch}></Search>
           <div className="subHeader" style={{ marginTop: "1rem", padding: "0 1rem" }}>
-          <Typography className="heading-antipsychotics" gutterBottom>
+          <Typography id="topicHeader" gutterBottom>
             Antipsychotics Guide
           </Typography>
           <div className="grid-container" id="antipsychotics-grid">
@@ -156,7 +156,7 @@ export default function AntipsychoticsGuide() {
               const isDrugSelected = selectedDrugs.includes(dataObj);
 
               return (
-                  <div className="grid-item" key={id}>
+                  <div className="grid-item drug-display" key={id}>
                     <button
                       onClick={() => handleDrugClick(dataObj)}
                       className={`drug-button ${isDrugSelected ? "active" : ""}`}
@@ -171,7 +171,7 @@ export default function AntipsychoticsGuide() {
                     </button>
 
                     {isDrugSelected && (
-                      <div className="box">
+                      <div className="box drug-box">
                         <div className="box-content">
                           <Accordion>
                             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -321,7 +321,7 @@ export default function AntipsychoticsGuide() {
                 );
               })}
             </div>
-            <div>
+            <div className="add-div">
               <button onClick={() => setFormVisible(!formVisible)} className="button-style">
                 {formVisible ? "Cancel" : "Add Drug"}
               </button>
@@ -445,7 +445,7 @@ export default function AntipsychoticsGuide() {
           <Navigation />
           <Search onSearch={handleSearch}></Search>
           <div style={{ marginTop: "1rem", padding: "0 1rem" }}>
-            <Typography className="heading-antipsychotics" gutterBottom>
+            <Typography id='topicHeader' gutterBottom>
               Antipsychotics Guide
             </Typography>
 
@@ -454,7 +454,7 @@ export default function AntipsychoticsGuide() {
                 const dataObj = data[id];
                 const isDrugSelected = selectedDrugs.includes(dataObj);
                 return (
-                  <div className="grid-item" key={id}>
+                  <div className="grid-item drug-display" key={id}>
                     <button
                       onClick={() => handleDrugClick(dataObj)}
                       className={`drug-button ${isDrugSelected ? "active" : ""}`}
@@ -463,25 +463,25 @@ export default function AntipsychoticsGuide() {
                     </button>
 
                     {isDrugSelected && (
-                      <div className="box">
+                      <div className="box drug-box">
                         <Accordion>
                           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                             <Typography>General Information</Typography>
                           </AccordionSummary>
                           <AccordionDetails>
-                            <div className="box-content">
+                            <div className="box-content smaller-box">
                               <strong>Approx equiv dose: </strong>
                               <span>{dataObj["Approx. equiv. dose"]}</span>
                             </div>
-                            <div className="box-content">
+                            <div className="box-content smaller-box">
                               <strong>Half-Life: </strong>
                               <span>{dataObj["Half-life"]}</span>
                             </div>
-                            <div className="box-content">
+                            <div className="box-content smaller-box">
                               <strong>Frequency: </strong>
                               <span>{dataObj["Frequency"]}</span>
                             </div>
-                            <div className="box-content" style={{ width: 230 }}>
+                            <div className="box-content smaller-box" style={{ width: 230 }}>
                               <strong>Tablet Strength/Form Supplied: </strong>
                               <span>{dataObj["Tab Strength/Form Supplied"]}</span>
                             </div>
@@ -493,31 +493,31 @@ export default function AntipsychoticsGuide() {
                             <Typography>Recommended Dosing</Typography>
                           </AccordionSummary>
                           <AccordionDetails>
-                            <div className="box-content">
+                            <div className="box-content smaller-box">
                               <strong>Neuropsychiatric symptoms of dementia: </strong>
                               <span>{dataObj["NPS"]}</span>
                             </div>
-                            <div className="box-content">
+                            <div className="box-content smaller-box">
                               <strong>Parkinson's psychosis: </strong>
                               <span>{dataObj["PP"]}</span>
                             </div>
-                            <div className="box-content">
+                            <div className="box-content smaller-box">
                               <strong>Major depressive disorder (antidepressant augment):</strong>
                               <span>{dataObj["MDE (ADaugment)"]}</span>
                             </div>
-                            <div className="box-content">
+                            <div className="box-content smaller-box">
                               <strong>Major depressive disorder (w.psychosis): </strong>
                               <span>{dataObj["MDE (w.psychosis)"]}</span>
                             </div>
-                            <div className="box-content">
+                            <div className="box-content smaller-box">
                               <strong>Delirium: </strong>
                               <span>{dataObj["Delirium"]}</span>
                             </div>
-                            <div className="box-content">
+                            <div className="box-content smaller-box">
                               <strong>Early-onset schizophrenia: </strong>
                               <span>{dataObj["EO-SCZ"]}</span>
                             </div>
-                            <div className="box-content">
+                            <div className="box-content smaller-box">
                               <strong>Late-onset schizophrenia: </strong>
                               <span>{dataObj["LO-SCZ"]}</span>
                             </div>

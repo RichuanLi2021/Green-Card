@@ -27,8 +27,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     backgroundColor: theme.palette.success.main,
     color: theme.palette.common.white,
     fontWeight: "bold",
-    fontStyle: "italic",
-    textDecorationLine: "underline",
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
@@ -167,7 +165,7 @@ export default function Neuropsychiatric() {
                 alignItems: "center",
               }}
             >
-              <Typography id="topicHeader">ECT AND PSYCHOACTIVE MEDICATIONS</Typography>
+              <Typography id="topicHeader">ECT and Psychoactive Medications</Typography>
             </Box>
 
             <TableContainer component={Paper} sx={{ marginBottom: 20 }}>
@@ -202,11 +200,10 @@ export default function Neuropsychiatric() {
                                   onBlur={update_value}
                                   defaultValue={dataObj[`Recommended Action`]}
                                 />
-
-<button
+                          <button
                             style={{ background: "none", border: "none", cursor: "pointer" }}
                             onClick={(e) => handleDelete(dataObj.Medication)}
-                          >
+                            >
                             <span class="material-symbols-outlined">delete</span>
                           </button>
                       </StyledTableCell>
@@ -279,11 +276,11 @@ export default function Neuropsychiatric() {
                 alignItems: "center",
               }}
             >
-              <Typography id="topicHeader">ECT AND PSYCHOACTIVE MEDICATIONS</Typography>
+              <Typography id="topicHeader">ECT and Psychoactive Medications</Typography>
             </Box>
 
-            <TableContainer component={Paper} sx={{ marginBottom: 20 }}>
-              <Table aria-label="customized table" id="clinicalTable">
+            <TableContainer component={Paper}>
+              <Table aria-label="customized table">
                 <TableHead>
                   <TableRow>
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Medication</StyledTableCell>
@@ -294,23 +291,21 @@ export default function Neuropsychiatric() {
                   {data.map((dataObj, index) => (
                     <StyledTableRow key={index}>
                       <StyledTableCell component="th" scope="row">
-                              
-                                  {dataObj[`Medication`]}
-                                
+                        {dataObj[`Medication`]}
                       </StyledTableCell>
                       <StyledTableCell>
-                               
-                                 {dataObj[`Recommended Action`]}
-                              
+                        {dataObj[`Recommended Action`]}
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}
                 </TableBody>
               </Table>
-              <p className="keynote">
-                    <b>Key: </b>ChEIs:cholinesterase inhibitors; MAOIs: monoamine oxidase inhibitors; *If highly
+              <div className="keynote-div">
+                <p className="keynote">
+                  <b>Key: </b>ChEIs:cholinesterase inhibitors; MAOIs: monoamine oxidase inhibitors; *If highly
                     tolerant (and high doses), do not taper abruptly due to risk of prolonged seizure.
-                  </p>
+                </p>
+              </div>
             </TableContainer>
             
           </div>

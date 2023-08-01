@@ -28,8 +28,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     color: theme.palette.common.white,
 
     fontWeight: "bold",
-
-    textDecorationLine: "underline",
   },
 
   [`&.${tableCellClasses.body}`]: {
@@ -173,13 +171,13 @@ export default function AntidepressantsClinical() {
                 alignItems: "center",
               }}
             >
-              <Typography variant="h3" id="topicHeader">
+              <Typography id="topicHeader">
                 Antidepressant Clinical Guide
               </Typography>
             </Box>
 
             <TableContainer component={Paper}>
-              <Table aria-label="customized table" id="deliriumTable">
+              <Table aria-label="customized table">
                 <TableHead>
                   <TableRow>
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Description</StyledTableCell>
@@ -221,10 +219,11 @@ export default function AntidepressantsClinical() {
                   ))}
                 </TableBody>
               </Table>
-              <div className="box-content" style={{ width: "600px" }}>
+
+              <div>
                 <div className="form-header">
-                  <Box display="flex" justifyContent="space-between" alignItems="center">
-                    <Typography variant="h5" className="title">
+                  <Box display="flex" justifyContent="space-between" alignItems="center" textAlign="center">
+                    <Typography>
                       Add New Information to the page
                     </Typography>
                   </Box>
@@ -233,7 +232,6 @@ export default function AntidepressantsClinical() {
                 <form onSubmit={handleSubmit}>
                   <Box>
                     <TextField
-                      style={{ minWidth: "400px" }}
                       label="List Header"
                       variant="filled"
                       value={listHeader}
@@ -245,7 +243,6 @@ export default function AntidepressantsClinical() {
 
                   <Box>
                     <TextField
-                      style={{ minWidth: "400px" }}
                       label="Description:"
                       variant="filled"
                       value={description}
@@ -256,7 +253,6 @@ export default function AntidepressantsClinical() {
                   </Box>
                   <Box sx={{ display: "flex", marginBottom: 10 }}>
                     <Button
-                      style={{ minWidth: "400px" }}
                       type="submit"
                       variant="contained"
                       className="submit-button"
@@ -267,6 +263,7 @@ export default function AntidepressantsClinical() {
                   </Box>
                 </form>
               </div>
+
             </TableContainer>
           </div>
 
@@ -286,19 +283,19 @@ export default function AntidepressantsClinical() {
 
             <Box
               sx={{
-                marginTop: 3,
+                marginTop: 0.5,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
               }}
             >
-              <Typography variant="h3" id="topicHeader">
+              <Typography id="topicHeader">
                 Antidepressant Clinical Guide
               </Typography>
             </Box>
 
             <TableContainer component={Paper}>
-              <Table aria-label="customized table" id="deliriumTable">
+              <Table aria-label="customized table">
                 <TableHead>
                   <TableRow>
                     <StyledTableCell style={{ backgroundColor: "#96d2b0" }}>Description</StyledTableCell>

@@ -170,7 +170,7 @@ export default function InsomniaSedatives() {
                 const dataObj = data[id];
                 const isDrugSelected = selectedDrugs.includes(dataObj);
                 return (
-                  <div className="grid-item" key={id}>
+                  <div className="grid-item drug-display" key={id}>
                     <button
                       onClick={() => handleDrugClick(dataObj)}
                       className={`drug-button ${isDrugSelected ? "active" : ""}`}
@@ -187,7 +187,7 @@ export default function InsomniaSedatives() {
 
                     {isDrugSelected && (
                       <div>
-                        <div className="box">
+                        <div className="box drug-box">
                           <div className="box-content">
                             <strong>Dose equiv.: </strong>
                             <input
@@ -346,21 +346,21 @@ export default function InsomniaSedatives() {
         <>
           <Navigation />
           <Search onSearch={handleSearch}></Search>
-          <div style={{ marginTop: "1rem", padding: "0 1rem" }}>
+          <div style={{ marginTop: "1rem" }}>
             <Typography className="subtitle" gutterBottom>
               Sedatives/Hypnotics Guide
             </Typography>
 
             <div className="table-container">
-              <Table>
+              <Table id="sedative-table">
                 <TableHead>
                   <TableRow>
                     <TableCell className="sticky-col">Name</TableCell>
-                    <TableCell>Dose equiv.</TableCell>
-                    <TableCell>Time to peak in plasma</TableCell>
-                    <TableCell>Half-life</TableCell>
-                    <TableCell>Avg dose range (mg/day)</TableCell>
-                    <TableCell>mg/Form supplied</TableCell>
+                    <TableCell className="background-cl">Dose equiv.</TableCell>
+                    <TableCell className="background-cl">Time to peak in plasma</TableCell>
+                    <TableCell className="background-cl">Half-life</TableCell>
+                    <TableCell className="background-cl">Avg dose range (mg/day)</TableCell>
+                    <TableCell className="background-cl">mg/Form supplied</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
