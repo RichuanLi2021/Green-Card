@@ -1,7 +1,7 @@
 const pool = require('../config/database');
 
 const getPolypharmacyPrinciplesData = async () => {
-  const [rows, fields] = await pool.query('SELECT * FROM `green_card`.`prescribing and deprescribing principles`');
+  const [rows, fields] = await pool.query('SELECT * FROM `green_card`.`PRESCRIBING AND DEPRESCRIBING PRINCIPLES`');
   return rows;
 };
 

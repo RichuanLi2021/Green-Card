@@ -18,7 +18,7 @@ export default function NPSManagement() {
     
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:8887/api/NPSManagement')
+    axios.get('https://gpgc-server.vercel.app/api/NPSManagement')
         .then(response => {
           setData(response.data)
           console.log(response.data[0]);
@@ -74,7 +74,7 @@ export default function NPSManagement() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion id="secondAccordion">
+        <Accordion id="secondAccordion" className='nps-second'>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"

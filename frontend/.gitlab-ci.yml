@@ -1,0 +1,22 @@
+default:
+  image: node:latest
+
+deploy_preview:
+  stage: deploy
+  except:
+    - release
+  script:
+    - npm install --global vercel
+    - vercel pull --yes --environment=preview --token=$VERCEL_TOKEN_FRONTEND
+    - vercel build --token=$VERCEL_TOKEN_FRONTEND
+    - vercel deploy --prebuilt --token=$VERCEL_TOKEN_FRONTEND
+
+deploy_production:
+  stage: deploy
+  only:
+    - release
+  script:
+    - npm install --global vercel
+    - vercel pull --yes --environment=production --token=$VERCEL_TOKEN_FRONTEND
+    - vercel build --prod --token=$VERCEL_TOKEN_FRONTEND
+    - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN_FRONTEND

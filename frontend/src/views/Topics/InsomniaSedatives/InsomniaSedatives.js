@@ -18,6 +18,7 @@ import TableRow from "@mui/material/TableRow";
 
 import Search from "../../Search/Search";
 import { useNavigate } from "react-router-dom";
+import "./InsomniaSedatives.css";
 
 export default function InsomniaSedatives() {
   const [data, setData] = useState([]);
@@ -33,7 +34,7 @@ export default function InsomniaSedatives() {
 
   const fetchData = () => {
     axios
-      .get("http://localhost:8887/api/insomniasedatives")
+      .get("https://gpgc-server.vercel.app/api/insomniasedatives")
       .then((response) => {
         console.log("Fetched data:", response.data);
         setData(response.data);
@@ -141,7 +142,7 @@ export default function InsomniaSedatives() {
   const handleDelete = async (Name) => {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
-        await axios.delete("http://localhost:8887/api/InsomniaSedatives/delete/" + Name);
+        await axios.delete("https://gpgc-server.vercel.app/api/InsomniaSedatives/delete/" + Name);
         window.alert("Drug Deleted Successfully !");
         window.location.reload();
       } catch (err) {

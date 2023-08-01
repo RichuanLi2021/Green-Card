@@ -1,7 +1,7 @@
 const pool = require('../config/database');
 
 const getAPData = async () => {
-    const [rows, fields] = await pool.query('SELECT * FROM `green_card`.`prescribing and deprescribing principles`');
+    const [rows, fields] = await pool.query('SELECT * FROM `green_card`.`PRESCRIBING AND DEPRESCRIBING PRINCIPLES`');
     return rows;
   };
   
@@ -15,7 +15,7 @@ const getData = async (req, res, next) => {
 const updateData = async (req, res, next) => {
   try {
     const { name, column, value } = req.body;
-    await pool.query('UPDATE `green_card`.`prescribing and deprescribing principles` SET ' + column + ' = ' + '"' + value + '"' + ' WHERE Description = ' + '"' + name + '"');
+    await pool.query('UPDATE `green_card`.`PRESCRIBING AND DEPRESCRIBING PRINCIPLES` SET ' + column + ' = ' + '"' + value + '"' + ' WHERE Description = ' + '"' + name + '"');
     res.send("Updated Successfully!");
   } catch (error) {
     console.log(error);

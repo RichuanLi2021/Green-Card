@@ -2,7 +2,7 @@ const pool = require('../config/database');
 
 
 const getAPData = async () => {
-  const [rows, fields] = await pool.query('SELECT * FROM `green_card`.`ect & psychoactive medications`');
+  const [rows, fields] = await pool.query('SELECT * FROM `green_card`.`ECT & PSYCHOACTIVE MEDICATIONS`');
   return rows;
 };
 
@@ -15,7 +15,7 @@ const getData = async (req, res, next) => {
 const updateData = async (req, res, next) => {
   try {
     const { name, column, value } = req.body;
-    await pool.query("UPDATE `green_card`.`ect & psychoactive medications` SET " +
+    await pool.query("UPDATE `green_card`.`ECT & PSYCHOACTIVE MEDICATIONS` SET " +
     column +
     " = " +
     '"' +
@@ -40,7 +40,7 @@ const drugData = async (req, res, next) => {
   
   try {
     await pool.query(
-      "INSERT INTO `green_card`.`ect & psychoactive medications` (`Medication`, `Recommended Action`) VALUES (?, ?)",
+      "INSERT INTO `green_card`.`ECT & PSYCHOACTIVE MEDICATIONS` (`Medication`, `Recommended Action`) VALUES (?, ?)",
       [
         medication, recommendedAction
       ]
@@ -56,7 +56,7 @@ const drugData = async (req, res, next) => {
 const drugDelete = async (req, res, next) => {
   const  Medication = req.params.Medication;
   try {
-      await pool.query('DELETE FROM `green_card`.`ect & psychoactive medications` WHERE `Medication` = ? ',
+      await pool.query('DELETE FROM `green_card`.`ECT & PSYCHOACTIVE MEDICATIONS` WHERE `Medication` = ? ',
       Medication);
       res.send('Drug was deleted successfully');
   } catch (err) {

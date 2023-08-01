@@ -53,7 +53,7 @@ export default function PsychotropicMonitoringSection() {
 
   const fetchData = () => {
     axios
-      .get('http://localhost:8887/api/psychotropicmonitoringsection')
+      .get('https://gpgc-server.vercel.app/api/psychotropicmonitoringsection')
       .then((response) => {
         setData(response.data);
       })
@@ -112,7 +112,7 @@ export default function PsychotropicMonitoringSection() {
     if(window.confirm('Are you sure you want to delete this record?')){
     try{
       
-      await axios.delete('http://localhost:8887/api/psychotropic/delete/'+Name)
+      await axios.delete('https://gpgc-server.vercel.app/api/psychotropic/delete/'+Name)
       window.alert('Drug Deleted Successfully !')
       window.location.reload();
     }catch(err) {

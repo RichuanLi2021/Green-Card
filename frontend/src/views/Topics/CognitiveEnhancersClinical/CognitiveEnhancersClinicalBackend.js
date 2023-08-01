@@ -3,7 +3,7 @@ import axios from "axios";
 export const CognitiveEnhancersClinicalUpdate = async (column, oldValue, newValue) => {
   try {
     console.log("About to execute the query with:", { column, oldValue, newValue });
-    const response = await axios.post("http://localhost:8887/api/CognitiveEnhancersClinical/update", {
+    const response = await axios.post("https://gpgc-server.vercel.app/api/CognitiveEnhancersClinical/update", {
       column,
       oldValue,
       newValue,
@@ -18,7 +18,7 @@ export const CognitiveEnhancersClinicalUpdate = async (column, oldValue, newValu
 
 export const submitDrug = async (listHeader, description) => {
   try {
-    const response = await axios.post("http://localhost:8887/api/add/CognitiveEnhancersClinical", {
+    const response = await axios.post("https://gpgc-server.vercel.app/api/add/CognitiveEnhancersClinical", {
       listHeader,
       description,
     });

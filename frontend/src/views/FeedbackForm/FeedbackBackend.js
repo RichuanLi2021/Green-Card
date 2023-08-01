@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const submitFeedback = async (name, email, comment, rating, subscribe) => {
   try {
-    const response = await axios.post('http://localhost:8887/api/submit-feedback', {
+    const response = await axios.post('https://gpgc-server.vercel.app/api/submit-feedback', {
       name,
       email,
       comment,

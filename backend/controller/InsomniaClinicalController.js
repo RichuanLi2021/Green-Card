@@ -1,7 +1,7 @@
 const pool = require("../config/database");
 
 const getAPData = async () => {
-  const [rows, fields] = await pool.query("SELECT * FROM `green_card`.`sedatives/hypnotics clinical guide`");
+  const [rows, fields] = await pool.query("SELECT * FROM green_card.`SEDATIVES/HYPNOTICS CLINICAL GUIDE`;");
   return rows;
 };
 
@@ -13,7 +13,7 @@ const getData = async (req, res, next) => {
 const updateData = async (req, res, next) => {
   try {
     const { name, column, value } = req.body;
-    await pool.query('UPDATE `green_card`.`sedatives/hypnotics clinical guide` SET ' + column + ' = ' + '"' + value + '"' + ' WHERE `Id` = ' + '"' + name + '"'
+    await pool.query('UPDATE `green_card`.`SEDATIVES/HYPNOTICS CLINICAL GUIDE` SET ' + column + ' = ' + '"' + value + '"' + ' WHERE `Id` = ' + '"' + name + '"'
     );
     res.send("Updated Successfully!");
   } catch (error) {
@@ -27,7 +27,7 @@ const updateData = async (req, res, next) => {
 const drugData = async (req, res, next) => {
   const { when, what} = req.body;
   try {
-      await pool.query('INSERT INTO `green_card`.`sedatives/hypnotics clinical guide` (`LIST_HEADERS`,`Description`) VALUES (?, ?)',
+      await pool.query('INSERT INTO `green_card`.`SEDATIVES/HYPNOTICS CLINICAL GUIDE` (`LIST_HEADERS`,`Description`) VALUES (?, ?)',
           [when, what]);
       res.send('Drug was submitted successfully');
   } catch (err) {

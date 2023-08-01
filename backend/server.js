@@ -4,7 +4,7 @@ var app = express();
 var cors = require("cors");
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // Replace with your React app's URL
+  res.header("Access-Control-Allow-Origin", 'https://gpgc.vercel.app'); // Replace with your React app's URL
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS");
   next();
@@ -60,6 +60,10 @@ app.use("/api", deliriumRoute);
 app.use("/api", PolypharmacyCommonRoute);
 app.use("/api", PolypharmacyRouteNotable);
 app.use("/api", PrinciplesPolypharmacyRoute);
+
+app.get("/", function (req, res) {
+  res.send("Express on Vercel");
+});
 
 var port = 8887;
 

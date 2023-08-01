@@ -3,7 +3,7 @@ import axios from "axios";
 export const MoodStabilizersUpdate = async (name, column, value) => {
   try {
     const response = await axios.post(
-      "http://localhost:8887/api/MoodStabilizers/update",
+      "https://gpgc-server.vercel.app/api/MoodStabilizers/update",
       {
         name,
         column,
@@ -19,7 +19,7 @@ export const MoodStabilizersUpdate = async (name, column, value) => {
 };
 export const submitDrug = async (drugName, doseInitial, frequency, mgFormSupplied, halfLife, monitoringLevel) => {
   try {
-    const response = await axios.post('http://localhost:8887/api/add/MoodStabilizers', {
+    const response = await axios.post('https://gpgc-server.vercel.app/api/add/MoodStabilizers', {
       drugName, 
       doseInitial,
       frequency, 

@@ -1,7 +1,7 @@
 const pool = require('../config/database');
 
 const getPolypharmacyNotableData = async () => {
-  const [rows, fields] = await pool.query('SELECT * FROM `green_card`.`notable changes in older adults that affect prescribing`');
+  const [rows, fields] = await pool.query('SELECT * FROM `green_card`.`NOTABLE CHANGES IN OLDER ADULTS THAT AFFECT PRESCRIBING`');
   return rows;
 };
 

@@ -26,7 +26,7 @@ export default function InsomniaDeprescribing() {
 
   const fetchData = () => {
     axios
-      .get("http://localhost:8887/api/insomniadeprescribing")
+      .get("https://gpgc-server.vercel.app/api/insomniadeprescribing")
       .then((response) => {
         setData(response.data);
       })
@@ -91,7 +91,7 @@ export default function InsomniaDeprescribing() {
   const handleDelete = async (Duration) => {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
-        await axios.delete("http://localhost:8887/api/deprescribing/delete/" + Duration);
+        await axios.delete("https://gpgc-server.vercel.app/api/deprescribing/delete/" + Duration);
         window.alert("Drug Deleted Successfully !");
         window.location.reload();
       } catch (err) {
