@@ -19,6 +19,45 @@ a {
     color: #000;
 }
 
+.myStyledButton {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #cbcbcb;
+    text-decoration: none;
+    color: inherit;
+    background-color: #fff;
+  }
+  
+  .myStyledButton:hover {
+    background-color: #ccc;
+  }
+
+
+  .myAccordion {
+    background: #ffffff;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #cbcbcb;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .myAccordion:hover {
+    background-color: #96D2B0;
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
 @media (max-width:600px) {
     .main-container {
         width: 100%;
@@ -34,3 +73,21 @@ a {
     }
 
 }
+
+
+/* Desktop view: 3x3 grid */
+@media (min-width: 600px) {
+    .main-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  
+  /* Mobile view: single column */
+  @media (max-width: 599px) {
+    .main-container {
+      flex-direction: column;
+    }
+  }
