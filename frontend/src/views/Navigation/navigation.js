@@ -563,7 +563,8 @@ const Navbar = () => {
             aria-label="menu"
             aria-haspopup="true"
             onClick={handleMenuToggle}
-            sx={{ display: { xs: 'block', md: 'none' }, color: '#000' }}
+            className="customIconButton"
+            sx={{color: '#000' }}
           >
             <MenuIcon />
           </IconButton>
