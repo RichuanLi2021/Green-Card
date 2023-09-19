@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import FeedbackForm from './FeedbackForm';
 import Button from '@mui/material/Button';
-import myImage from '../Images/feedback.png';
 
 const FeedbackFormHandler = () => {
   const [showForm, setShowForm] = useState(false);
@@ -29,7 +28,7 @@ const FeedbackFormHandler = () => {
           color: '#000',
           ':hover': { opacity: 1, background: '#96d2b0' },
         }}>
-        <img src={myImage} alt="Feedback" style={{width: 'auto', height: '100%'}} /> {/* Add this line */}
+        Feedback
       </Button>
       {showForm && (
         <>

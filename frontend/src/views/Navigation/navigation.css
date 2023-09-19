@@ -41,21 +41,11 @@
   font-family: "Work Sans", sans-serif !important;
 }
 
-
-.customIconButton {
-  display: none !important;
-}
-
-
-@media screen and (max-width: 1624px) {
+@media screen and (max-width: 899px) {
   .navbar {
     flex-direction: column;
     height: auto;
     padding: 20px;
-  }
-
-  .customIconButton {
-    display: block !important;
   }
 
   .navbar__menu {
