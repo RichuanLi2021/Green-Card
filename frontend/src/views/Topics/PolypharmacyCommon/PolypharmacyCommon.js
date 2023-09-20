@@ -54,7 +54,7 @@ export default function PolypharmacyCommon() {
 
   useEffect(() => {
     axios
-      .get("https://gpgc-server.vercel.app/api/polypharmacycommon")
+      .get(process.env.REACT_APP_BACKEND_URL + "/api/polypharmacycommon")
 
       .then((response) => {
         setData(response.data);
@@ -135,7 +135,7 @@ export default function PolypharmacyCommon() {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
         console.log(Description);
-        await axios.delete("https://gpgc-server.vercel.app/api/PolypharmacyCommon/delete/" + Description);
+        await axios.delete(process.env.REACT_APP_BACKEND_URL + "/api/PolypharmacyCommon/delete/" + Description);
         window.alert("Information Deleted Successfully !");
         window.location.reload();
       } catch (err) {

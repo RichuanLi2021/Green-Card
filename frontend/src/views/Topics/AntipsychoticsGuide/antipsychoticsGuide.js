@@ -29,7 +29,7 @@ export default function AntipsychoticsGuide() {
 
   const fetchData = () => {
     axios
-      .get("https://gpgc-server.vercel.app/api/antipsychoticsGuide")
+      .get(process.env.REACT_APP_BACKEND_URL + "/api/antipsychoticsGuide")
       .then((response) => {
         setData(response.data);
       })
@@ -94,7 +94,7 @@ export default function AntipsychoticsGuide() {
   const addDrug = (drugData) => {
     if (admin) {
       axios
-        .post("https://gpgc-server.vercel.app/api/antipsychoticsGuide/add", drugData)
+        .post(process.env.REACT_APP_BACKEND_URL + "/api/antipsychoticsGuide/add", drugData)
         .then((response) => {
           alert("Data successfully added! \nDrug:" + drugData.Name);
           fetchData(); // Refresh the data after the new drug is added.
@@ -112,7 +112,7 @@ export default function AntipsychoticsGuide() {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
         console.log(Name);
-        await axios.delete("https://gpgc-server.vercel.app/api/antipsychoticsGuide/delete/" + Name);
+        await axios.delete(process.env.REACT_APP_BACKEND_URL + "/api/antipsychoticsGuide/delete/" + Name);
         alert("Data deleted succesfully! \nDrug:" + Name);
         window.location.reload();
       } catch (err) {

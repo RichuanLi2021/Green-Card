@@ -7,7 +7,7 @@ export const PolypharmacyCommonBackendUpdate = async (name, column, value) => {
 
   try {
 
-    const response = await axios.post('https://gpgc-server.vercel.app/api/PolypharmacyCommon/update', {
+    const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/api/PolypharmacyCommon/update", {
 
      name,
 
@@ -36,7 +36,7 @@ export const PolypharmacyCommonBackendUpdate = async (name, column, value) => {
 
 export const submitData = async (listHeader, description) => {
   try {
-    const response = await axios.post('https://gpgc-server.vercel.app/api/add/PolypharmacyCommon', {
+    const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/api/add/PolypharmacyCommon", {
       listHeader, description
     });
     console.log(response.data); // log response from server

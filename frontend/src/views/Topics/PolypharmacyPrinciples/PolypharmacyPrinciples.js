@@ -45,7 +45,7 @@ export default function PolypharmacyPrinciples() {
 
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get('https://gpgc-server.vercel.app/api/polypharmacyprinciples')
+    axios.get(process.env.REACT_APP_BACKEND_URL + "/api/polypharmacyprinciples")
         .then(response => {
           setData(response.data)
           console.log(response.data[0]);

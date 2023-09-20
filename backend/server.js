@@ -1,14 +1,21 @@
 "use strict";
-var express = require("express");
-var app = express();
-var cors = require("cors");
+const dotenv = require("dotenv").config({ path: __dirname + "/.env" }); // Required for .env file
+const config = require("./config/config");
+
+const express = require("express");
+const app = express();
+const cors = require("cors");
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", 'https://gpgc.vercel.app'); // Replace with your React app's URL
+  res.header("Access-Control-Allow-Origin", config.frontend_url);
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS");
   next();
 });
+
+
+console.log("config.frontend_url: " + process.env.FRONTEND_URL);
+console.log("config.frontend_url: " + config.frontend_url);
 
 var routeLogin = require("./routes/loginRoute");
 var routeFeedback = require("./routes/feedbackRoute");
@@ -65,8 +72,8 @@ app.get("/", function (req, res) {
   res.send("Express on Vercel");
 });
 
-var port = 8887;
+const port = config.api_port || 8887;
 
 app.listen(port, function () {
-  console.log("Server started on port ".concat(port));
+  console.log("Server started on port " + port);
 });

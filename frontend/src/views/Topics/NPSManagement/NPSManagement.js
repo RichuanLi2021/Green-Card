@@ -18,7 +18,7 @@ export default function NPSManagement() {
     
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get('https://gpgc-server.vercel.app/api/NPSManagement')
+    axios.get(process.env.REACT_APP_BACKEND_URL + "/api/NPSManagement")
         .then(response => {
           setData(response.data)
           console.log(response.data[0]);

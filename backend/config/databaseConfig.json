@@ -1,9 +1,0 @@
-{
-  "database": {
-    "host": "green-card.clvfyppgcaqq.us-east-2.rds.amazonaws.com",
-    "user": "admin",
-    "password": "greencard",
-    "database": "green_card",
-    "port": "33066"
-  }
-}

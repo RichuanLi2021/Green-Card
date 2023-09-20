@@ -34,7 +34,7 @@ export default function InsomniaSedatives() {
 
   const fetchData = () => {
     axios
-      .get("https://gpgc-server.vercel.app/api/insomniasedatives")
+      .get(process.env.REACT_APP_BACKEND_URL + "/api/insomniasedatives")
       .then((response) => {
         console.log("Fetched data:", response.data);
         setData(response.data);
@@ -142,7 +142,7 @@ export default function InsomniaSedatives() {
   const handleDelete = async (Name) => {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
-        await axios.delete("https://gpgc-server.vercel.app/api/InsomniaSedatives/delete/" + Name);
+        await axios.delete(process.env.REACT_APP_BACKEND_URL + "/api/InsomniaSedatives/delete/" + Name);
         window.alert("Drug Deleted Successfully !");
         window.location.reload();
       } catch (err) {

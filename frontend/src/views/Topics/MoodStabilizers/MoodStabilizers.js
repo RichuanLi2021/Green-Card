@@ -21,7 +21,7 @@ export default function MoodStabilizers() {
 
   const fetchData = () => {
     axios
-      .get('https://gpgc-server.vercel.app/api/moodstabilizers')
+      .get(process.env.REACT_APP_BACKEND_URL + "/api/moodstabilizers")
       .then((response) => {
         setData(response.data);
       })
@@ -131,7 +131,7 @@ export default function MoodStabilizers() {
     if(window.confirm('Are you sure you want to delete this record?')){
     try{
       
-      await axios.delete('https://gpgc-server.vercel.app/api/MoodStabilizers/delete/'+Name)
+      await axios.delete(process.env.REACT_APP_BACKEND_URL + "/api/MoodStabilizers/delete/" + Name)
       window.alert('Drug Deleted Successfully !')
       window.location.reload();
     }catch(err) {

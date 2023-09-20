@@ -89,7 +89,7 @@ export default function InsomniaSafety() {
   const handleDelete = async (Description) => {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
-        await axios.delete("https://gpgc-server.vercel.app/api/insomniasafety/delete/" + Description);
+        await axios.delete(process.env.REACT_APP_BACKEND_URL + "/api/insomniasafety/delete/" + Description);
         window.alert("Drug Deleted Successfully !");
         window.location.reload();
       } catch (err) {
@@ -117,7 +117,7 @@ export default function InsomniaSafety() {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get("https://gpgc-server.vercel.app/api/insomniasafety")
+      .get(process.env.REACT_APP_BACKEND_URL + "/api/insomniasafety")
       .then((response) => {
         setData(response.data);
         console.log(response.data[0]);

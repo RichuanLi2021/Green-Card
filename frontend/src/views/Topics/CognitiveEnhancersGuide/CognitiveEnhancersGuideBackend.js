@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const CognitiveEnhancersGuideUpdate = async (name, column, value) => {
   try {
-    const response = await axios.post('https://gpgc-server.vercel.app/api/CognitiveEnhancersGuide/update', {
+    const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/api/CognitiveEnhancersGuide/update", {
      name,
      column,
      value
@@ -17,7 +17,7 @@ export const CognitiveEnhancersGuideUpdate = async (name, column, value) => {
 
 export const submitDrug = async (drugName, action, halfLife, dose, frequency, mgFormsupplied, withFood, mci, mildModeAlz, severeAlz, mixed, vascular, lbd, ftd, pd, dsd) => {
   try {
-    const response = await axios.post('https://gpgc-server.vercel.app/api/add/CognitiveEnhancersGuide', {
+    const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/api/add/CognitiveEnhancersGuide", {
       drugName, action, halfLife, dose, frequency, mgFormsupplied, withFood, mci, mildModeAlz, severeAlz, mixed, vascular, lbd, ftd, pd, dsd
     });
     console.log(response.data); // log response from server

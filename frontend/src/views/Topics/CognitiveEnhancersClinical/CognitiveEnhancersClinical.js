@@ -60,7 +60,7 @@ export default function AntidepressantsClinical() {
 
   useEffect(() => {
     axios
-      .get("https://gpgc-server.vercel.app/api/cognitiveenhancersclinical")
+      .get(process.env.REACT_APP_BACKEND_URL + "/api/cognitiveenhancersclinical")
       .then((response) => {
         setData(response.data);
         console.log(response.data);
@@ -116,7 +116,7 @@ export default function AntidepressantsClinical() {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
         console.log("Deleting description:", Description);
-        await axios.delete("https://gpgc-server.vercel.app/api/CognitiveEnhancersClinical/delete/" + Description);
+        await axios.delete(process.env.REACT_APP_BACKEND_URL + "/api/CognitiveEnhancersClinical/delete/" + Description);
         window.alert("Drug Deleted Successfully !");
         window.location.reload();
       } catch (err) {

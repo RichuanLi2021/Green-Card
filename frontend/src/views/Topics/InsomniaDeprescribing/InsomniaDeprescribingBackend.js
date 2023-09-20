@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const InsomniaDeprescribingUpdate = async (name, column, value) => {
   try {
-    const response = await axios.post('https://gpgc-server.vercel.app/api/InsomniaDeprescribing/update', {
+    const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/api/InsomniaDeprescribing/update", {
      name,
      column,
      value
@@ -17,7 +17,7 @@ export const InsomniaDeprescribingUpdate = async (name, column, value) => {
 
  export const submitDrug = async (duration, doseReduction, interval) => {
   try {
-    const response = await axios.post('https://gpgc-server.vercel.app/api/add/InsomniaDeprescribing', {
+    const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/api/add/InsomniaDeprescribing", {
         duration,
         doseReduction, 
         interval
