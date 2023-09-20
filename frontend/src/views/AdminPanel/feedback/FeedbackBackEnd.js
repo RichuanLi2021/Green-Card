@@ -8,7 +8,7 @@ function FeedbackBackEnd({ onClose }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('https://gpgc-server.vercel.app/api/get-feedback')
+        axios.get(process.env.REACT_APP_BACKEND_URL + "/api/get-feedback")
             .then(response => {
                 setFeedbackData(response.data);
                 setLoading(false);

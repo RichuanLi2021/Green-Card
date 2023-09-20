@@ -22,7 +22,7 @@ export default function CognitiveEnhancersGuide() {
 
   const fetchData = () => {
     axios
-      .get('https://gpgc-server.vercel.app/api/cognitiveEnhancersguide')
+      .get(process.env.REACT_APP_BACKEND_URL + "/api/cognitiveEnhancersguide")
       .then((response) => {
         setData(response.data);
       })
@@ -176,7 +176,7 @@ export default function CognitiveEnhancersGuide() {
     if (window.confirm('Are you sure you want to delete this record?')) {
       try {
         console.log(Name);
-        await axios.delete('https://gpgc-server.vercel.app/api/CognitiveEnhancersGuide/delete/' + Name)
+        await axios.delete(process.env.REACT_APP_BACKEND_URL + "/api/CognitiveEnhancersGuide/delete/" + Name)
         window.alert('Drug Deleted Successfully!')
         window.location.reload();
       } catch (err) {

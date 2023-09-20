@@ -3,7 +3,7 @@ import axios from "axios";
 export const InsomniaClinicalUpdate = async (name, column, value) => {
   try {
     const response = await axios.post(
-      "https://gpgc-server.vercel.app/api/InsomniaClinical/update",
+      process.env.REACT_APP_BACKEND_URL + "/api/InsomniaClinical/update",
       {
         name,
         column,
@@ -20,7 +20,7 @@ export const InsomniaClinicalUpdate = async (name, column, value) => {
 
 export const submitDrug = async (when, what) => {
   try {
-    const response = await axios.post('https://gpgc-server.vercel.app/api/add/Insomnia/Clinical', {
+    const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/api/add/Insomnia/Clinical", {
         when,
         what
         

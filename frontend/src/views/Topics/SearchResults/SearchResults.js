@@ -21,7 +21,7 @@ const [filterVal,setFilterVal] = useState('');
 
 useEffect(()=>{
    const fetchData=()=>{
-      fetch('https://gpgc-server.vercel.app/api/SearchResults')
+      fetch(process.env.REACT_APP_BACKEND_URL + "/api/SearchResults")
       .then(response=>response.json())
       .then(json =>{
          // setData(json)

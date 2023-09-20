@@ -49,7 +49,7 @@ export default function InsomniaClinical() {
   const handleDelete = async (Description) => {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
-        await axios.delete("https://gpgc-server.vercel.app/api/clinical/delete/" + Description);
+        await axios.delete(process.env.REACT_APP_BACKEND_URL + "/api/clinical/delete/" + Description);
         window.alert("Drug Deleted Successfully !");
         window.location.reload();
       } catch (err) {
@@ -61,7 +61,7 @@ export default function InsomniaClinical() {
 
   useEffect(() => {
     axios
-      .get("https://gpgc-server.vercel.app/api/insomniaclinical")
+      .get(process.env.REACT_APP_BACKEND_URL + "/api/insomniaclinical")
       .then((response) => {
         setData(response.data);
       })

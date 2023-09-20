@@ -57,7 +57,7 @@ export default function Neuropsychiatric() {
 
   const fetchData = () => {
     axios
-      .get("https://gpgc-server.vercel.app/api/neuropsychiatric")
+      .get(process.env.REACT_APP_BACKEND_URL + "/api/neuropsychiatric")
       .then((response) => {
         setData(response.data);
       })
@@ -137,7 +137,7 @@ export default function Neuropsychiatric() {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
         console.log(Medication);
-        await axios.delete("https://gpgc-server.vercel.app/api/Neuropsychiatric/delete/" + Medication);
+        await axios.delete(process.env.REACT_APP_BACKEND_URL + "/api/Neuropsychiatric/delete/" + Medication);
         window.alert("Drug Deleted Successfully!");
         window.location.reload();
       } catch (err) {

@@ -3,7 +3,7 @@ import axios from "axios";
 const AntidepressantSafetyUpdate = async (name, column, value) => {
   try {
     const response = await axios.post(
-      "https://gpgc-server.vercel.app/api/AntidepressantSafety/update",
+      process.env.REACT_APP_BACKEND_URL + "/api/AntidepressantSafety/update",
       {
         name,
         column,

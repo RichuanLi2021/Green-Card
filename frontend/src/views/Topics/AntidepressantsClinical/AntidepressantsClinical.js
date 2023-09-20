@@ -58,7 +58,7 @@ export default function AntidepressantsClinical() {
 
   useEffect(() => {
     axios
-      .get("https://gpgc-server.vercel.app/api/antidepressantsclinical")
+      .get(process.env.REACT_APP_BACKEND_URL + "/api/antidepressantsclinical")
 
       .then((response) => {
         setData(response.data);
@@ -138,7 +138,7 @@ export default function AntidepressantsClinical() {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
         console.log(Description);
-        await axios.delete("https://gpgc-server.vercel.app/api/AntidepressantsClinical/delete/" + Description);
+        await axios.delete(process.env.REACT_APP_BACKEND_URL + "/api/AntidepressantsClinical/delete/" + Description);
         window.alert("Data Deleted Successfully !");
         window.location.reload();
       } catch (err) {

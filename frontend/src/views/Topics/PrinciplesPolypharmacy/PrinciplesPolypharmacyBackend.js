@@ -7,7 +7,7 @@ export const PrinciplesPolypharmacyBackendUpdate = async (name, column, value) =
 
   try {
 
-    const response = await axios.post('https://gpgc-server.vercel.app/api/PrinciplesPolypharmacy/update', {
+    const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/api/PrinciplesPolypharmacy/update", {
 
      name,
 
@@ -36,7 +36,7 @@ export const PrinciplesPolypharmacyBackendUpdate = async (name, column, value) =
 
 export const submitData = async (listHeader, description) => {
   try {
-    const response = await axios.post('https://gpgc-server.vercel.app/api/add/PrinciplesPolypharmacy', {
+    const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/api/add/PrinciplesPolypharmacy", {
       listHeader, description
     });
     console.log(response.data); // log response from server

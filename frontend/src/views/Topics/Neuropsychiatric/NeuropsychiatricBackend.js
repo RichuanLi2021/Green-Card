@@ -7,7 +7,7 @@ export const NeuropsychiatricUpdate = async (name, column, value) => {
 
   try {
 
-    const response = await axios.post('https://gpgc-server.vercel.app/api/Neuropsychiatric/update', {
+    const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/api/Neuropsychiatric/update", {
 
      name,
 
@@ -34,7 +34,7 @@ export const NeuropsychiatricUpdate = async (name, column, value) => {
 
 export const submitDrug = async (medication, recommendedAction) => {
   try {
-    const response = await axios.post('https://gpgc-server.vercel.app/api/add/Neuropsychiatric', {
+    const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/api/add/Neuropsychiatric", {
       medication, recommendedAction
     });
     console.log(response.data); // log response from server

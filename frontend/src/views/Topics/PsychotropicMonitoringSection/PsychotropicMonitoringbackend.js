@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const PsychotropicMonitoringUpdate = async (name, column, value) => {
   try {
-    const response = await axios.post('https://gpgc-server.vercel.app/api/PsychotropicMonitoringSection/update', {
+    const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/api/PsychotropicMonitoringSection/update", {
       name,
       column,
       value
@@ -18,7 +18,7 @@ export const PsychotropicMonitoringUpdate = async (name, column, value) => {
 
 export const submitDrug = async (drugName, Antipsychotics, Lithium, Valproate) => {
   try {
-    const response = await axios.post('https://gpgc-server.vercel.app/api/add/PsychotropicMonitoringSection', {
+    const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/api/add/PsychotropicMonitoringSection", {
       drugName, Antipsychotics, Lithium, Valproate
     });
     console.log(response.data);

@@ -57,7 +57,7 @@ export default function AntidepressantSafety() {
 
   const fetchData = () => {
     axios
-      .get("https://gpgc-server.vercel.app/api/AntidepressantSafety")
+      .get(process.env.REACT_APP_BACKEND_URL + "/api/AntidepressantSafety")
       .then((response) => {
         setData(response.data);
       })
@@ -73,7 +73,7 @@ export default function AntidepressantSafety() {
   const addSafetyConcern = (description) => {
     if (admin) {
       axios
-        .post("https://gpgc-server.vercel.app/api/AntidepressantSafety/add", { Description: description })
+        .post(process.env.REACT_APP_BACKEND_URL + "/api/AntidepressantSafety/add", { Description: description })
         .then((response) => {
           alert("Data successfully added! \nSafety Concern:" + description);
           fetchData();
@@ -92,7 +92,7 @@ export default function AntidepressantSafety() {
       if (window.confirm("Are you sure you want to delete this record?")) {
         try {
           console.log(Description);
-          await axios.delete("https://gpgc-server.vercel.app/api/AntidepressantSafety/delete/" + Description);
+          await axios.delete(process.env.REACT_APP_BACKEND_URL + "/api/AntidepressantSafety/delete/" + Description);
           alert("Data deleted succesfully! \nSymptom:" + Description);
           window.location.reload();
         } catch (err) {
