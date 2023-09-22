@@ -1,4 +1,4 @@
-import { Card, CardContent, Container, Grid, Typography, Button } from "@mui/material";
+import { Card, CardContent, Container, Grid, Typography, Button,Box } from "@mui/material";
 import Navigation from "../Navigation/navigation";
 import "./HomePage.css";
 import Accordion from "@mui/material/Accordion";
@@ -8,6 +8,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Search from "../Search/Search";
 import { useNavigate } from "react-router-dom";
+
 
 const theme = createTheme({
   typography: {
@@ -31,16 +32,10 @@ const HomePage = () => {
         <Navigation />
         <Search onSearch={handleSearch}></Search>
         {/* <SearchBar placeholder="Search" data={Data} /> */}
-        <Container className="main-container" sx={{ overflow: "auto", display: "flex" }}>
-          <Grid
-            container
-            spacing={4}
-            direction="column"
-            alignItems="center"
-            justify="center"
-            sx={{ textAlign: "center" }}
-          >
-            <Grid item xs={12}>
+        <Container className="main-container" maxWidth={false}>
+
+          <Grid container spacing={4} direction="row" sx={{ textAlign: "center" }}>
+            <Grid item xs={12} sm={3}>
               <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
                 <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
                   <Accordion className="myAccordion">
@@ -484,6 +479,11 @@ const HomePage = () => {
 
 
               </Card>
+            </Grid>
+            <Grid item xs={12} sm={9}>
+              <Box className="gray-square">
+                
+              </Box>
             </Grid>
           </Grid>
         </Container>
