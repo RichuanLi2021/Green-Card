@@ -120,7 +120,7 @@ const Disclaimer = () => {
                     <Button autoFocus onClick={handleClose} type="submit" variant="contained">
                         I understand
                     </Button>
-                    <Button autoFocus onClick={handleCloseDontShowAgain} variant="outlined">
+                    <Button autoFocus onClick={handleCloseDontShowAgain} variant="contained">
                         I understand and Don't show again
                     </Button>
                 </DialogActions>
