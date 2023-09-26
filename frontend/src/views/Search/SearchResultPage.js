@@ -18,7 +18,7 @@ const SearchResultPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       console.log("Fetching data with search term:", searchTerm);
-      const response = await axios.get(process.env.REACT_APP_BACKEND_URL + `http://localhost:8887/api/search?term=${searchTerm}`);
+      const response = await axios.get(process.env.REACT_APP_BACKEND_URL + `/api/search?term=${searchTerm}`);
       console.log(response.data);
       setResults(response.data);
     };

@@ -1,6 +1,7 @@
 import './searchBar.css';
 import React,{useState} from "react";
 import SearchIcon from '@mui/icons-material/Search';
+import {Link} from "@mui/material";
 
 export default function SearchBar({placeholder,data}) {
     const[filteredData,setFilteredData] = useState([]);
@@ -22,13 +23,13 @@ export default function SearchBar({placeholder,data}) {
             <div className='searchBar'>
 
                 <form id="form">
-                    <input type = "text" className='inputField' placeholder ={placeholder} onChange={handleFilter} />
+                    <input type = "text" className='inputField' placeholder={placeholder} onChange={handleFilter} />
                 </form>
-                <SearchIcon /> 
+                <SearchIcon onClick={handleFilter} />
             </div>
             {filteredData.length !== 0 && (
                 <div className='dataResult'>
-                    <a className='dataItem' href="http://localhost:3000/SearchResults"><p>Searching By Drug Name?</p></a>
+                    <Link className={"dataItem"} href={"/SearchResults"}><p>Searching By Drug Name?</p></Link>
                 {filteredData.map((value,key)=>{
                     return  <a className='dataItem' href={value.link} >
                          <p>{value.title}</p> </a>
