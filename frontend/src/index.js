@@ -10,7 +10,6 @@ import InsomniaManagement from "./views/Topics/InsomniaManagement/InsomniaManage
 import InsomniaSedatives from "./views/Topics/InsomniaSedatives/InsomniaSedatives";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SearchBar from "./views/searchBar/searchBar";
 import AntipsychoticsGuide from "./views/Topics/AntipsychoticsGuide/antipsychoticsGuide";
 
 import CognitiveEnhancersGuide from "./views/Topics/CognitiveEnhancersGuide/CognitiveEnhancersGuide";
@@ -25,8 +24,6 @@ import InsomniaClinical from "./views/Topics/InsomniaClinical/InsomniaClinical";
 import InsomniaSafety from "./views/Topics/InsomniaSafety/InsomniaSafety";
 import MoodStabilizers from "./views/Topics/MoodStabilizers/MoodStabilizers";
 import PsychotropicMonitoringSection from "./views/Topics/PsychotropicMonitoringSection/PsychotropicMonitoringSection";
-// import PrescribingAndDeprescribing from './views/Topics/PrescribingAndDeprescribing/PrescribingAndDeprescribing';
-// import NotableChangesInAdults from './views/Topics/NotableChangesInAdults/NotableChangesInAdults';
 import SearchResults from "./views/Topics/SearchResults/SearchResults";
 
 import AntidepressantGuide from "./views/Topics/AntidepressantGuide/AntidepressantGuide";
@@ -44,12 +41,9 @@ root.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/login" element={<LoginIndex />} />
-      <Route path="/searchBar" element={<SearchBar />} />
       <Route path="/navigation" element={<Navigation />} />
       <Route path="/AntipsychoticsGuide" element={<AntipsychoticsGuide />} />
-
       <Route path="/InsomniaManagement" element={<InsomniaManagement />} />
-
       <Route path="/MoodStabilizers" element={<MoodStabilizers />} />
       <Route path="/CognitiveEnhancersGuide" element={<CognitiveEnhancersGuide />} />
       <Route path="/CognitiveEnhancersClinical" element={<CognitiveEnhancersClinical />} />
@@ -61,8 +55,6 @@ root.render(
       <Route path="/InsomniaClinical" element={<InsomniaClinical />} />
       <Route path="/InsomniaSafety" element={<InsomniaSafety />} />
       <Route path="/PsychotropicMonitoringSection" element={<PsychotropicMonitoringSection />} />
-      {/* <Route path='/PrescribingAndDeprescribing' element={<PrescribingAndDeprescribing/>}/> */}
-      {/* <Route path='/NotableChangesInAdults' element={<NotableChangesInAdults/>}/> */}
       <Route path="/SearchResults" element={<SearchResults />} />
       <Route path="/AntidepressantGuide" element={<AntidepressantGuide />} />
       <Route path="/AntidepressantSafety" element={<AntidepressantSafety />} />
