@@ -20,11 +20,15 @@
     font-family: "Work Sans", sans-serif !important;
 }
 
+
+/* Md: Navbar position changes to relative so that it does not stick up on top  */
+.css-11b3ww9-MuiPaper-root-MuiAppBar-root {
+  position: relative !important; 
+}
+
 a {
     color: #000;
 }
-
-
 
 .myStyledButton {
     padding: 10px;
@@ -66,14 +70,12 @@ a {
     margin-right: 15px;
   }
   
+
   .gray-square {
     background-color: grey;
     width: 100%;
     height: 100vh;
 }
-
-
-
 
 
 @media (max-width:600px) {
@@ -88,6 +90,12 @@ a {
 
     .MuiCard-root {
         width: 100%;
+    }
+
+    /* Md: Navbar position changes to relative so that it does not stick up on top  */
+    .css-11b3ww9-MuiPaper-root-MuiAppBar-root {
+      position: relative !important; 
+    
     }
 
 }
