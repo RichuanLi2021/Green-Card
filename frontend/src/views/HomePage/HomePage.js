@@ -48,6 +48,7 @@ const HomePage = () => {
                     <AccordionDetails>
                       <div className="item-container">
                         <input type="checkbox" id="AntidepressantGuideCheckbox" />
+
                         <Typography
                           className="myStyledButton"
                           sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }} 
@@ -58,10 +59,12 @@ const HomePage = () => {
                           }}
                         >
                           Antidepressant Guide
+                          
                         </Typography>
                       </div>
                       <div className="item-container">
                         <input type="checkbox" id="AntidepressantsClinicalCheckbox" />
+
                         <Typography
                           className="myStyledButton"
                           sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
@@ -72,10 +75,12 @@ const HomePage = () => {
                           }}
                         >
                           Antidepressant Clinical Guide
+
                         </Typography>
                       </div>
                       <div className="item-container">
                         <input type="checkbox" id="AntidepressantSafetyCheckbox" />
+
                         <Typography
                           className="myStyledButton"
                           sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
@@ -86,9 +91,11 @@ const HomePage = () => {
                           }}
                         >
                           Antidepressant Safety Concerns
+
                         </Typography>
                       </div>
                     </AccordionDetails>
+
 
 
                   </Accordion>
@@ -104,6 +111,7 @@ const HomePage = () => {
                     <AccordionDetails>
                       <div className="item-container">
                         <input type="checkbox" id="AntipsychoticsGuideCheckbox" />
+
                         <Typography
                           className="myStyledButton"
                           sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }} 
@@ -114,10 +122,12 @@ const HomePage = () => {
                           }}
                         >
                           Antipsychotics Guide
+
                         </Typography>
                       </div>
                       <div className="item-container">
                         <input type="checkbox" id="AntipsychoticSafetyCheckbox" />
+
                         <Typography
                           className="myStyledButton"
                           sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
@@ -128,12 +138,12 @@ const HomePage = () => {
                           }}
                         >
                           Antipsychotics Safety Concerns
+
                         </Typography>
                       </div>
                     </AccordionDetails>
-
-
                   </Accordion>
+                  
                 </CardContent>
                 <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
                   <Accordion className="myAccordion">
@@ -146,6 +156,7 @@ const HomePage = () => {
                     <AccordionDetails>
                       <div className="item-container">
                         <input type="checkbox" id="InsomniaManagementCheckbox" />
+
                         <Typography
                           className="myStyledButton"
                           sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
@@ -216,6 +227,7 @@ const HomePage = () => {
                           }}
                         >
                           Deprescribing Sedatives/Hypnotics
+
                         </Typography>
                       </div>
                     </AccordionDetails>
@@ -234,6 +246,7 @@ const HomePage = () => {
                     <AccordionDetails>
                       <div className="item-container">
                         <input type="checkbox" id="CognitiveEnhancersGuideCheckbox" />
+
                         <Typography
                           className="myStyledButton"
                           sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
@@ -274,6 +287,7 @@ const HomePage = () => {
                           }}
                         >
                           NPS Management
+
                         </Typography>
                       </div>
                     </AccordionDetails>
@@ -292,6 +306,7 @@ const HomePage = () => {
                     <AccordionDetails>
                       <div className="item-container">
                         <input type="checkbox" id="DeliriumManagementCheckbox" />
+
                         <Typography
                           className="myStyledButton"
                           sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
@@ -317,6 +332,7 @@ const HomePage = () => {
                           }}
                         >
                           Anticholinergic activity
+
                         </Typography>
                       </div>
                     </AccordionDetails>
@@ -335,6 +351,7 @@ const HomePage = () => {
                     <AccordionDetails>
                       <div className="item-container">
                         <input type="checkbox" id="CommonDDIsCheckbox" />
+
                         <Typography 
                           className="myStyledButton" 
                           sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
@@ -375,6 +392,7 @@ const HomePage = () => {
                           }}
                         >
                           Prescribing and deprescribing principles
+
                         </Typography>
                       </div>
                     </AccordionDetails>
@@ -386,6 +404,7 @@ const HomePage = () => {
                   <Button
                       variant="h1"
                       sx={{
+
                         background: "#ffffff", 
                         width: "100%",
                         display: "flex",
@@ -405,6 +424,7 @@ const HomePage = () => {
                         const checkbox = document.getElementById("ECTandPsychoactiveCheckbox");
                         if (checkbox) checkbox.checked = !checkbox.checked;
                       }}
+
                   >
                       <input type="checkbox" id="ECTandPsychoactiveCheckbox" style={{ marginRight: "10px" }} />
                       <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
@@ -421,14 +441,17 @@ const HomePage = () => {
                         background: "#ffffff", // Set white background
                         width: "100%",
                         display: "flex",
+
                         flexDirection: "row", // changed to row to have checkbox and text side by side
                         alignItems: "center", // added to vertically align checkbox and text
                         justifyContent: "center", // added to horizontally center content
+
                         textTransform: "none",
                         padding: "15px",
                         border: "1px solid #cbcbcb", // Add border
                         boxShadow: "0px 1px 1px rgba(0,0,0,0.5)", // Add shadow
                         '&:hover': {
+
                             backgroundColor: "#96D2B0", // Change background color when hovered
                         }
                       }}
@@ -437,6 +460,7 @@ const HomePage = () => {
                         const checkbox = document.getElementById("MoodStabilizersCheckbox");
                         if (checkbox) checkbox.checked = !checkbox.checked;
                       }}
+
                   >
                       <input type="checkbox" id="MoodStabilizersCheckbox" style={{ marginRight: "10px" }} />
                       <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
@@ -448,6 +472,7 @@ const HomePage = () => {
 
                 <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
                   <Button
+
                       variant="h1"
                       sx={{
                           background: "#ffffff", // Set white background
@@ -469,6 +494,7 @@ const HomePage = () => {
                           const checkbox = document.getElementById("PsychotropicMonitoringCheckbox");
                           if (checkbox) checkbox.checked = !checkbox.checked;
                       }}
+
                   >
                       <input type="checkbox" id="PsychotropicMonitoringCheckbox" style={{ marginRight: "10px" }} />
                       <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>

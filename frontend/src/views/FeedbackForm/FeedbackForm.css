@@ -17,17 +17,18 @@
   backdrop-filter: blur(10px);
 }
 
-/* Feedback Button */
-.feedback-icon-button {
-  position: fixed;
-  bottom: 5vw;
-  right: 5vw;
-  width: 100px;
-  height: 100px;
+/* Rc:Feedback Button adjusted style*/
+.feedback-button {
+  font-family: "Work Sans", sans-serif !important;
+  width: 70px;
+  height: 30px;
   border: none;
   outline: none;
   cursor: pointer;
+  /* Rc: Capitalize the F */
+  text-transform: capitalize !important;
 }
+
 
 /* Feedback Form Container */
 .form-container-pg {
