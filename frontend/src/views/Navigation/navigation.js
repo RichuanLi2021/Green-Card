@@ -551,7 +551,7 @@ const Navbar = () => {
     );
   } else {
     return (
-      <AppBar style={{ boxShadow: "none", marginBottom: "50px" }}>
+      <AppBar style={{ boxShadow: "none", marginBottom: "2rem" }}>
         <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
           <Typography className="web-title" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none' }}>
             Geriatric Psychotropic Green Card
