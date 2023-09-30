@@ -77,4 +77,13 @@ a:hover{
     background-color: lightgrey;
 }
 
+@media screen and (max-width: 600px){
+    
+    .Search-Bar-Container {
+
+    padding-bottom: 0px !important;  /* Adjusted the padding of search bar for mobile version.*/
+
+    }
+
+}
 
