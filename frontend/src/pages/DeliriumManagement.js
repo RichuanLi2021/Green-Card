@@ -1,30 +1,29 @@
-import * as React from "react";
-import Typography from "@mui/material/Typography";
 import axios from "axios";
-import { useState, useEffect } from "react";
 
+import * as React from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Paper from "@mui/material/Paper";
+import { styled } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
+import TextField from "@mui/material/TextField";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Navigation from "../../Navigation/navigation";
-import Footer from "../../Footer/Footer";
 
-import { DeliriumBackendUpdate, submitDrug } from "./DeliriumBackend";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import Search from "../../Search/Search";
-import { useNavigate } from "react-router-dom";
-import "./Delirium.css";
+import Search from "../views/Search/Search";
+import {addDrug, updateDrug} from "../controllers/DeliriumManagementController";
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -46,7 +45,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function Delirium() {
+export default function DeliriumManagement() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
 
@@ -94,7 +93,7 @@ export default function Delirium() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log({ listHeader, description });
-    submitDrug(listHeader, description)
+    addDrug(listHeader, description)
       .then((data) => {
         window.alert("Drug was added Successfully!");
         window.location.reload();
@@ -114,7 +113,7 @@ export default function Delirium() {
       if (event.target.value !== value) {
         event.preventDefault();
 
-        DeliriumBackendUpdate(event.target.name, event.target.id, event.target.value)
+        updateDrug(event.target.name, event.target.id, event.target.value)
           .then((data) => {
             alert(`Data successfully updated!\nNew Value: ${event.target.value}`);
             window.location.reload();
@@ -155,12 +154,11 @@ export default function Delirium() {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
           />
-          <Navigation />
 
           <Search onSearch={handleSearch}></Search>
           <br></br>
 
-          <div id="delirium">
+          <div id="delirium" className={"margin-bottom-5rem"}>
           <Typography id="topicHeader">Delirium Management</Typography>
             <Accordion id="firstAccordion" className="nps-accordion">
               <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
@@ -311,8 +309,6 @@ export default function Delirium() {
             </AccordionDetails>
             </Accordion>
           </div>
-
-          <Footer />
         </>
       );
     }
@@ -320,11 +316,10 @@ export default function Delirium() {
     else {
       return (
         <>
-          <Navigation />
           <Search onSearch={handleSearch}></Search>
           <br></br>
 
-          <div id="delirium">
+          <div id="delirium" className={"margin-bottom-5rem"}>
             <Typography id="topicHeader">Delirium Management</Typography>
             <Accordion id="firstAccordion" className="nps-accordion">
               <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
@@ -404,8 +399,6 @@ export default function Delirium() {
               </AccordionDetails>
             </Accordion>
           </div>
-
-          <Footer />
         </>
       );
     }
