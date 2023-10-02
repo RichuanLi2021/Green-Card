@@ -586,8 +586,8 @@ const Navbar = () => {
             </MenuItem>
             {window.location.pathname !== '/login' && (
               <MenuItem>
-                <Button component={Link} to="/login" sx={{ color: '#000', fontSize: isMobile ? '0.8rem' : '1rem' }}>Admin Login</Button>
-              </MenuItem>
+                <Button component={Link} to="/login" sx={{ color: '#000'}}>Admin Login</Button> 
+              </MenuItem>  /* MD - Removed the extra font size for Admin Login */
             )}
             {/* {window.location.pathname !== '/logout' && (
               <MenuItem onClick={handleLogout}>
