@@ -8,6 +8,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Search from "../Search/Search";
 import { useNavigate } from "react-router-dom";
+import externalLinkImg from '../../images/external-link.png';
+import { Link } from 'react-router-dom';
 
 
 const theme = createTheme({
@@ -35,7 +37,7 @@ const HomePage = () => {
         <Container className="main-container" maxWidth={false}>
 
           <Grid container spacing={4} direction="row" sx={{ textAlign: "center" }}>
-            <Grid item xs={12} sm={3}>
+            <Grid item xs={12} sm={3.5}>
               <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
                 <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
                   <Accordion className="myAccordion">
@@ -61,6 +63,9 @@ const HomePage = () => {
                           Antidepressant Guide
                           
                         </Typography>
+                        <Button className="external-link" component={Link} to="/AntidepressantGuide">
+                            <img src={externalLinkImg} alt="External Link" />
+                        </Button>
                       </div>
                       <div className="item-container">
                         <input type="checkbox" id="AntidepressantsClinicalCheckbox" />
@@ -77,6 +82,9 @@ const HomePage = () => {
                           Antidepressant Clinical Guide
 
                         </Typography>
+                        <Button className="external-link" component={Link} to="/AntidepressantsClinical">
+                            <img src={externalLinkImg} alt="External Link" />
+                        </Button>
                       </div>
                       <div className="item-container">
                         <input type="checkbox" id="AntidepressantSafetyCheckbox" />
@@ -93,7 +101,11 @@ const HomePage = () => {
                           Antidepressant Safety Concerns
 
                         </Typography>
-                      </div>
+                        
+                        <Button className="external-link" component={Link} to="/AntidepressantSafety">
+                            <img src={externalLinkImg} alt="External Link" />
+                        </Button>
+                    </div>
                     </AccordionDetails>
 
 
@@ -124,6 +136,9 @@ const HomePage = () => {
                           Antipsychotics Guide
 
                         </Typography>
+                        <Button className="external-link" component={Link} to="/AntipsychoticsGuide">
+                            <img src={externalLinkImg} alt="External Link" />
+                        </Button>
                       </div>
                       <div className="item-container">
                         <input type="checkbox" id="AntipsychoticSafetyCheckbox" />
@@ -140,6 +155,9 @@ const HomePage = () => {
                           Antipsychotics Safety Concerns
 
                         </Typography>
+                        <Button className="external-link" component={Link} to="/AntipsychoticSafety">
+                            <img src={externalLinkImg} alt="External Link" />
+                        </Button>
                       </div>
                     </AccordionDetails>
                   </Accordion>
@@ -168,6 +186,9 @@ const HomePage = () => {
                         >
                           Insomnia management
                         </Typography>
+                        <Button className="external-link" component={Link} to="/InsomniaManagement">
+                            <img src={externalLinkImg} alt="External Link" />
+                        </Button>
                       </div>
 
                       <div className="item-container">
@@ -183,6 +204,9 @@ const HomePage = () => {
                         >
                           Sedatives/hypnotics Guide
                         </Typography>
+                        <Button className="external-link" component={Link} to="/InsomniaSedatives">
+                            <img src={externalLinkImg} alt="External Link" />
+                        </Button>
                       </div>
 
                       <div className="item-container">
@@ -198,6 +222,9 @@ const HomePage = () => {
                         >
                           Sedatives/hypnotics Clinical Guide
                         </Typography>
+                        <Button className="external-link" component={Link} to="/InsomniaClinical">
+                            <img src={externalLinkImg} alt="External Link" />
+                        </Button>
                       </div>
 
                       <div className="item-container">
@@ -213,6 +240,9 @@ const HomePage = () => {
                         >
                           Sedatives/hypnotics Safety Concerns
                         </Typography>
+                        <Button className="external-link" component={Link} to="/InsomniaSafety">
+                            <img src={externalLinkImg} alt="External Link" />
+                        </Button>
                       </div>
 
                       <div className="item-container">
@@ -229,6 +259,9 @@ const HomePage = () => {
                           Deprescribing Sedatives/Hypnotics
 
                         </Typography>
+                        <Button className="external-link" component={Link} to="/InsomniaDeprescribing">
+                            <img src={externalLinkImg} alt="External Link" />
+                        </Button>
                       </div>
                     </AccordionDetails>
 
@@ -258,6 +291,9 @@ const HomePage = () => {
                         >
                           Cognitive Enhancers Guide
                         </Typography>
+                        <Button className="external-link" component={Link} to="/CognitiveEnhancersGuide">
+                            <img src={externalLinkImg} alt="External Link" />
+                        </Button>
                       </div>
 
                       <div className="item-container">
@@ -273,6 +309,9 @@ const HomePage = () => {
                         >
                           Cognitive Enhancers Clinical Guide
                         </Typography>
+                        <Button className="external-link" component={Link} to="/CognitiveEnhancersClinical">
+                            <img src={externalLinkImg} alt="External Link" />
+                        </Button>
                       </div>
 
                       <div className="item-container">
@@ -289,6 +328,9 @@ const HomePage = () => {
                           NPS Management
 
                         </Typography>
+                        <Button className="external-link" component={Link} to="/NPSManagement">
+                            <img src={externalLinkImg} alt="External Link" />
+                        </Button>
                       </div>
                     </AccordionDetails>
 
@@ -302,6 +344,7 @@ const HomePage = () => {
                         {" "}
                         Delirium{" "}
                       </Typography>
+                      
                     </AccordionSummary>
                     <AccordionDetails>
                       <div className="item-container">
@@ -318,6 +361,9 @@ const HomePage = () => {
                         >
                           Delirium Management
                         </Typography>
+                        <Button className="external-link" component={Link} to="/Delirium">
+                            <img src={externalLinkImg} alt="External Link" />
+                        </Button>
                       </div>
 
                       <div className="item-container">
@@ -334,6 +380,9 @@ const HomePage = () => {
                           Anticholinergic activity
 
                         </Typography>
+                        <Button className="external-link" component={Link} to="/Delirium">
+                            <img src={externalLinkImg} alt="External Link" />
+                        </Button>
                       </div>
                     </AccordionDetails>
 
@@ -363,6 +412,9 @@ const HomePage = () => {
                         >
                           Common DDI's
                         </Typography>
+                        <Button className="external-link" component={Link} to="/PolypharmacyCommon">
+                            <img src={externalLinkImg} alt="External Link" />
+                        </Button>
                       </div>
 
                       <div className="item-container">
@@ -378,6 +430,9 @@ const HomePage = () => {
                         >
                           Notable changes in older adults
                         </Typography>
+                        <Button className="external-link" component={Link} to="/PolypharmacyNotable">
+                            <img src={externalLinkImg} alt="External Link" />
+                        </Button>
                       </div>
 
                       <div className="item-container">
@@ -394,6 +449,10 @@ const HomePage = () => {
                           Prescribing and deprescribing principles
 
                         </Typography>
+                        <Button className="external-link" component={Link} to="/PrinciplesPolypharmacy">
+                            <img src={externalLinkImg} alt="External Link" />
+                        </Button>
+                        
                       </div>
                     </AccordionDetails>
 
@@ -431,6 +490,9 @@ const HomePage = () => {
                           ECT & Psychoactive Medications
                       </Typography>
                   </Button>
+                  <Button className="external-linkBig" component={Link} to="/Neuropsychiatric">
+                      <img src={externalLinkImg} alt="External Link" />
+                  </Button>
                 </CardContent>
 
 
@@ -467,6 +529,9 @@ const HomePage = () => {
                           Mood Stabilizers
                       </Typography>
                   </Button>
+                  <Button className="external-linkBig" component={Link} to="/MoodStabilizers">
+                    <img src={externalLinkImg} alt="External Link" />
+                  </Button>
                 </CardContent>
 
 
@@ -501,12 +566,15 @@ const HomePage = () => {
                           Psychotropic Monitoring
                       </Typography>
                   </Button>
+                  <Button className="external-linkBig" component={Link} to="/PsychotropicMonitoringSection">
+                            <img src={externalLinkImg} alt="External Link" />
+                  </Button>
                 </CardContent>
 
 
               </Card>
             </Grid>
-            <Grid item xs={12} sm={9}>
+            <Grid item xs={12} sm={8.5}>
               <Box className="gray-square">
                 
               </Box>
