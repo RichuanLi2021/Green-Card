@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import {
   AppBar,
   Toolbar,
@@ -554,7 +555,7 @@ const Navbar = () => {
       <AppBar style={{ boxShadow: "none", marginBottom: "2rem" }}>
         <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
           <Typography className="web-title" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none' }}>
-            Geriatric Psychotropic Green Card
+            <Link to={"/"} className={'navigation-title'}>Geriatric Psychotropic Green Card</Link>
           </Typography>
 
           <IconButton
