@@ -10,7 +10,7 @@ import Search from "../Search/Search";
 import { useNavigate } from "react-router-dom";
 import externalLinkImg from '../../images/external-link.png';
 import { Link } from 'react-router-dom';
-
+import GridTest from '../../components/testData/gridTest';
 
 const theme = createTheme({
   typography: {
@@ -410,7 +410,7 @@ const HomePage = () => {
                             if (checkbox) checkbox.checked = !checkbox.checked;
                           }}
                         >
-                          Common DDI's
+                          
                         </Typography>
                         <Button className="external-link" component={Link} to="/PolypharmacyCommon">
                             <img src={externalLinkImg} alt="External Link" />
@@ -576,7 +576,9 @@ const HomePage = () => {
             </Grid>
             <Grid item xs={12} sm={8.5}>
               <Box className="gray-square">
-                
+
+                <GridTest/>
+
               </Box>
             </Grid>
           </Grid>
