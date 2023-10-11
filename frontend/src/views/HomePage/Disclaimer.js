@@ -113,13 +113,17 @@ const Disclaimer = () => {
                         Information is not comprehensive and errors may occur. Drug doses and other management recommendations
                         may not reflect manufacturers’ recommendation but are based on clinical literature and expert opinion.
                         Listed maximum doses are meant for physically healthy older adults, and in general not recommended for
-                        frail patients. The Green Card should not supersede clinical judgment and is not applicable in all circumstances
+                        frail patients. The Green Card should not supersede clinical judgment and is not applicable in all circumstances.
                     </Typography>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleCloseDontShowAgain} variant="contained">
-                        I understand
-                    </Button>
+                    <div>
+                        <Button onClick={handleCloseDontShowAgain} variant="contained">
+                            I understand
+                        </Button>
+                        <input type="checkbox" id="box1" name="box1"/>
+                        <label for="box1">Do not show again</label>
+                    </div>
                 </DialogActions>
             </GreenCardDisclaimer>
         </ThemeProvider>
