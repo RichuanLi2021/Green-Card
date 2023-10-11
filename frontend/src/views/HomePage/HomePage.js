@@ -8,7 +8,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Search from "../Search/Search";
 import { useNavigate } from "react-router-dom";
-import externalLinkImg from '../../images/external-link.png';
+import externalLinkImg from '../../assets/images/external-link.png';
 import { Link } from 'react-router-dom';
 import GridTest from '../../components/testData/gridTest';
 
@@ -449,7 +449,7 @@ const HomePage = () => {
                           Prescribing and deprescribing principles
 
                         </Typography>
-                        <Button className="external-link" component={Link} to="/PrinciplesPolypharmacy">
+                        <Button className="external-link" component={Link} to="/PolypharmacyPrinciples">
                             <img src={externalLinkImg} alt="External Link" />
                         </Button>
                         

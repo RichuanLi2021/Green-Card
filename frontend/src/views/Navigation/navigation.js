@@ -326,7 +326,7 @@ const Navbar = () => {
                   <Button component={Link} to="/PolypharmacyNotable" sx={{ color: '#000' }}>Notable changes in older adults</Button>
                 </MenuItem>
                 <MenuItem onClick={handlePolypharmacyMenuClose}>
-                  <Button component={Link} to="/PrinciplesPolypharmacy" sx={{ color: '#000' }}>Prescribing and deprescribing principles</Button>
+                  <Button component={Link} to="/PolypharmacyPrinciples" sx={{ color: '#000' }}>Prescribing and deprescribing principles</Button>
                 </MenuItem>
               </Menu>
             </MenuItem>
@@ -523,7 +523,7 @@ const Navbar = () => {
                 <Button component={Link} to="/PolypharmacyNotable" sx={{ color: '#000' }}>Notable changes in older adults</Button>
               </MenuItem>
               <MenuItem onClick={handlePolypharmacyMenuClose}>
-                <Button component={Link} to="/PrinciplesPolypharmacy" sx={{ color: '#000' }}>Prescribing and deprescribing principles</Button>
+                <Button component={Link} to="/PolypharmacyPrinciples" sx={{ color: '#000' }}>Prescribing and deprescribing principles</Button>
               </MenuItem>
             </Menu>
 
