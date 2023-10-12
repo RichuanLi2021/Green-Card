@@ -8,8 +8,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Search from "../Search/Search";
 import { useNavigate } from "react-router-dom";
-import externalLinkImg from '../../assets/images/external-link.png';
-import { Link } from 'react-router-dom';
 import GridTest from '../../components/testData/gridTest';
 
 const theme = createTheme({
@@ -50,7 +48,7 @@ const HomePage = () => {
                     <AccordionDetails>
                       <div className="item-container">
                         <input type="checkbox" id="AntidepressantGuideCheckbox" />
-
+              
                         <Typography
                           className="myStyledButton"
                           sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }} 
@@ -60,12 +58,8 @@ const HomePage = () => {
                             if (checkbox) checkbox.checked = !checkbox.checked;
                           }}
                         >
-                          Antidepressant Guide
-                          
+                          Antidepressant Guide     
                         </Typography>
-                        <Button className="external-link" component={Link} to="/AntidepressantGuide">
-                            <img src={externalLinkImg} alt="External Link" />
-                        </Button>
                       </div>
                       <div className="item-container">
                         <input type="checkbox" id="AntidepressantsClinicalCheckbox" />
@@ -82,9 +76,6 @@ const HomePage = () => {
                           Antidepressant Clinical Guide
 
                         </Typography>
-                        <Button className="external-link" component={Link} to="/AntidepressantsClinical">
-                            <img src={externalLinkImg} alt="External Link" />
-                        </Button>
                       </div>
                       <div className="item-container">
                         <input type="checkbox" id="AntidepressantSafetyCheckbox" />
@@ -100,18 +91,12 @@ const HomePage = () => {
                         >
                           Antidepressant Safety Concerns
 
-                        </Typography>
-                        
-                        <Button className="external-link" component={Link} to="/AntidepressantSafety">
-                            <img src={externalLinkImg} alt="External Link" />
-                        </Button>
+                        </Typography>                    
                     </div>
                     </AccordionDetails>
-
-
-
                   </Accordion>
                 </CardContent>
+
                 <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
                   <Accordion className="myAccordion">
                     <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
@@ -135,10 +120,7 @@ const HomePage = () => {
                         >
                           Antipsychotics Guide
 
-                        </Typography>
-                        <Button className="external-link" component={Link} to="/AntipsychoticsGuide">
-                            <img src={externalLinkImg} alt="External Link" />
-                        </Button>
+                        </Typography>                   
                       </div>
                       <div className="item-container">
                         <input type="checkbox" id="AntipsychoticSafetyCheckbox" />
@@ -155,9 +137,6 @@ const HomePage = () => {
                           Antipsychotics Safety Concerns
 
                         </Typography>
-                        <Button className="external-link" component={Link} to="/AntipsychoticSafety">
-                            <img src={externalLinkImg} alt="External Link" />
-                        </Button>
                       </div>
                     </AccordionDetails>
                   </Accordion>
@@ -185,14 +164,13 @@ const HomePage = () => {
                           }}
                         >
                           Insomnia management
+
                         </Typography>
-                        <Button className="external-link" component={Link} to="/InsomniaManagement">
-                            <img src={externalLinkImg} alt="External Link" />
-                        </Button>
                       </div>
 
                       <div className="item-container">
                         <input type="checkbox" id="InsomniaSedativesCheckbox" />
+
                         <Typography
                           className="myStyledButton"
                           sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
@@ -203,14 +181,13 @@ const HomePage = () => {
                           }}
                         >
                           Sedatives/hypnotics Guide
+
                         </Typography>
-                        <Button className="external-link" component={Link} to="/InsomniaSedatives">
-                            <img src={externalLinkImg} alt="External Link" />
-                        </Button>
                       </div>
 
                       <div className="item-container">
                         <input type="checkbox" id="InsomniaClinicalCheckbox" />
+
                         <Typography
                           className="myStyledButton"
                           sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
@@ -221,14 +198,13 @@ const HomePage = () => {
                           }}
                         >
                           Sedatives/hypnotics Clinical Guide
+
                         </Typography>
-                        <Button className="external-link" component={Link} to="/InsomniaClinical">
-                            <img src={externalLinkImg} alt="External Link" />
-                        </Button>
                       </div>
 
                       <div className="item-container">
                         <input type="checkbox" id="InsomniaSafetyCheckbox" />
+
                         <Typography
                           className="myStyledButton"
                           sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
@@ -239,14 +215,13 @@ const HomePage = () => {
                           }}
                         >
                           Sedatives/hypnotics Safety Concerns
+
                         </Typography>
-                        <Button className="external-link" component={Link} to="/InsomniaSafety">
-                            <img src={externalLinkImg} alt="External Link" />
-                        </Button>
                       </div>
 
                       <div className="item-container">
                         <input type="checkbox" id="InsomniaDeprescribingCheckbox" />
+                        
                         <Typography
                           className="myStyledButton"
                           sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
@@ -259,13 +234,8 @@ const HomePage = () => {
                           Deprescribing Sedatives/Hypnotics
 
                         </Typography>
-                        <Button className="external-link" component={Link} to="/InsomniaDeprescribing">
-                            <img src={externalLinkImg} alt="External Link" />
-                        </Button>
                       </div>
                     </AccordionDetails>
-
-
                   </Accordion>
                 </CardContent>
                 <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
@@ -290,14 +260,13 @@ const HomePage = () => {
                           }}
                         >
                           Cognitive Enhancers Guide
+
                         </Typography>
-                        <Button className="external-link" component={Link} to="/CognitiveEnhancersGuide">
-                            <img src={externalLinkImg} alt="External Link" />
-                        </Button>
                       </div>
 
                       <div className="item-container">
                         <input type="checkbox" id="CognitiveEnhancersClinicalCheckbox" />
+
                         <Typography
                           className="myStyledButton"
                           sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
@@ -308,14 +277,13 @@ const HomePage = () => {
                           }}
                         >
                           Cognitive Enhancers Clinical Guide
+
                         </Typography>
-                        <Button className="external-link" component={Link} to="/CognitiveEnhancersClinical">
-                            <img src={externalLinkImg} alt="External Link" />
-                        </Button>
                       </div>
 
                       <div className="item-container">
                         <input type="checkbox" id="NPSManagementCheckbox" />
+
                         <Typography
                           className="myStyledButton"
                           sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
@@ -327,13 +295,9 @@ const HomePage = () => {
                         >
                           NPS Management
 
-                        </Typography>
-                        <Button className="external-link" component={Link} to="/NPSManagement">
-                            <img src={externalLinkImg} alt="External Link" />
-                        </Button>
+                        </Typography>                   
                       </div>
                     </AccordionDetails>
-
 
                   </Accordion>
                 </CardContent>
@@ -360,14 +324,13 @@ const HomePage = () => {
                           }}
                         >
                           Delirium Management
-                        </Typography>
-                        <Button className="external-link" component={Link} to="/Delirium">
-                            <img src={externalLinkImg} alt="External Link" />
-                        </Button>
+
+                        </Typography>                      
                       </div>
 
                       <div className="item-container">
                         <input type="checkbox" id="AnticholinergicActivityCheckbox" />
+
                         <Typography
                           className="myStyledButton"
                           sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
@@ -379,14 +342,9 @@ const HomePage = () => {
                         >
                           Anticholinergic activity
 
-                        </Typography>
-                        <Button className="external-link" component={Link} to="/Delirium">
-                            <img src={externalLinkImg} alt="External Link" />
-                        </Button>
+                        </Typography>                        
                       </div>
                     </AccordionDetails>
-
-
                   </Accordion>
                 </CardContent>
                 <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
@@ -409,16 +367,13 @@ const HomePage = () => {
                             const checkbox = document.getElementById("CommonDDIsCheckbox");
                             if (checkbox) checkbox.checked = !checkbox.checked;
                           }}
-                        >
-                          
-                        </Typography>
-                        <Button className="external-link" component={Link} to="/PolypharmacyCommon">
-                            <img src={externalLinkImg} alt="External Link" />
-                        </Button>
+                        >                          
+                        </Typography>                      
                       </div>
 
                       <div className="item-container">
                         <input type="checkbox" id="NotableChangesCheckbox" />
+
                         <Typography 
                           className="myStyledButton" 
                           sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
@@ -429,14 +384,13 @@ const HomePage = () => {
                           }}
                         >
                           Notable changes in older adults
-                        </Typography>
-                        <Button className="external-link" component={Link} to="/PolypharmacyNotable">
-                            <img src={externalLinkImg} alt="External Link" />
-                        </Button>
+
+                        </Typography>                      
                       </div>
 
                       <div className="item-container">
                         <input type="checkbox" id="PrescribingPrinciplesCheckbox" />
+
                         <Typography 
                           className="myStyledButton" 
                           sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
@@ -448,14 +402,9 @@ const HomePage = () => {
                         >
                           Prescribing and deprescribing principles
 
-                        </Typography>
-                        <Button className="external-link" component={Link} to="/PolypharmacyPrinciples">
-                            <img src={externalLinkImg} alt="External Link" />
-                        </Button>
-                        
+                        </Typography>                       
                       </div>
                     </AccordionDetails>
-
 
                   </Accordion>
                 </CardContent>
@@ -486,15 +435,13 @@ const HomePage = () => {
 
                   >
                       <input type="checkbox" id="ECTandPsychoactiveCheckbox" style={{ marginRight: "10px" }} />
+
                       <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
                           ECT & Psychoactive Medications
                       </Typography>
                   </Button>
-                  <Button className="external-linkBig" component={Link} to="/Neuropsychiatric">
-                      <img src={externalLinkImg} alt="External Link" />
-                  </Button>
+                 
                 </CardContent>
-
 
                 <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
                   <Button
@@ -525,15 +472,12 @@ const HomePage = () => {
 
                   >
                       <input type="checkbox" id="MoodStabilizersCheckbox" style={{ marginRight: "10px" }} />
+
                       <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
                           Mood Stabilizers
                       </Typography>
                   </Button>
-                  <Button className="external-linkBig" component={Link} to="/MoodStabilizers">
-                    <img src={externalLinkImg} alt="External Link" />
-                  </Button>
                 </CardContent>
-
 
                 <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
                   <Button
@@ -562,16 +506,12 @@ const HomePage = () => {
 
                   >
                       <input type="checkbox" id="PsychotropicMonitoringCheckbox" style={{ marginRight: "10px" }} />
+                      
                       <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
                           Psychotropic Monitoring
                       </Typography>
-                  </Button>
-                  <Button className="external-linkBig" component={Link} to="/PsychotropicMonitoringSection">
-                            <img src={externalLinkImg} alt="External Link" />
-                  </Button>
+                  </Button>                 
                 </CardContent>
-
-
               </Card>
             </Grid>
             <Grid item xs={12} sm={8.5}>
