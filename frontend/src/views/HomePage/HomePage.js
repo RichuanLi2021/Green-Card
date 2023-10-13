@@ -1,5 +1,4 @@
 import { Card, CardContent, Container, Grid, Typography, Button,Box } from "@mui/material";
-import Navigation from "../Navigation/navigation";
 import "./HomePage.css";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -29,7 +28,7 @@ const HomePage = () => {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Navigation />
+        
         <Search onSearch={handleSearch}></Search>
         {/* <SearchBar placeholder="Search" data={Data} /> */}
         <Container className="main-container" maxWidth={false}>
