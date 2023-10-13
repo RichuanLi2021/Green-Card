@@ -22,9 +22,9 @@ const FeedbackFormHandler = () => {
         className="feedback-button"
          sx={{
           textDecoration: 'underline',
+          textDecorationColor: 'rgba(0,0,0,0.4)',
           borderRadius: '0%',
-          opacity: 0.8,
-          paddingBottom: 1.1,
+          paddingBottom: 1,
           background: '#96d2b0',
         }}>
         Feedback
