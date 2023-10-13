@@ -367,7 +367,8 @@ const HomePage = () => {
                             const checkbox = document.getElementById("CommonDDIsCheckbox");
                             if (checkbox) checkbox.checked = !checkbox.checked;
                           }}
-                        >                          
+                        >            
+                         Common DDI's             
                         </Typography>                      
                       </div>
 
