@@ -66,6 +66,12 @@
   align-items: center;
 }
 
+.css-11b3ww9-MuiPaper-root-MuiAppBar-root {
+
+  z-index: 0 !important; /* Keeps the navbar at the bottom of the blur effect. */
+
+}
+
 /* Media Query */
 @media only screen and (max-width: 600px) {
   .form-container-pg {
