@@ -59,7 +59,7 @@ function GreenCardDisclaimerTitle(props) {
                         top: 8,
                         color: (theme) => theme.palette.grey[500],
                     }}>
-                    <CloseIcon />
+                    <CloseIcon/>
                 </IconButton>
             ) : null}
         </DialogTitle>
@@ -68,37 +68,36 @@ function GreenCardDisclaimerTitle(props) {
 
 const Disclaimer = () => {
     const [open, setOpen] = useState(false);
+    const [isChecked, setIsChecked] = useState(false);
 
     useEffect(() => {
-        const hasSeenNotice = localStorage.getItem('hasSeenNotice');
         const disclaimerDismissedOn = localStorage.getItem('disclaimerDismissedOn');
-        const ONE_DAY_IN_MS = 86400000;
-
-        if (hasSeenNotice) {
-            setOpen(false);
-        } else if (disclaimerDismissedOn) {
+        const ONE_YEAR_IN_MS = 31536000000;
+        
+        if (disclaimerDismissedOn) {
             const lastDismissed = new Date(disclaimerDismissedOn).getTime();
             const currentTime = new Date().getTime();
             const timePassed = currentTime - lastDismissed;
 
-            if (timePassed >= ONE_DAY_IN_MS) {
+            if (timePassed >= ONE_YEAR_IN_MS) {
                 setOpen(true);
             } else {
                 setOpen(false);
             }
         } else {
-            setOpen(true);
+            setOpen(false);
         }
-    }, []);
-
-    const handleCloseDontShowAgain = () => {
-        setOpen(false);
-        localStorage.setItem('hasSeenNotice', 'true');
-        localStorage.setItem('disclaimerDismissedOn', new Date().toISOString());
-    };
+    },[]);
 
     const handleClose = () => {
         setOpen(false);
+        if (isChecked) {
+            localStorage.setItem('disclaimerDismissedOn', new Date().toISOString());
+        }
+    };
+
+    const handleCheckboxChange = (event) => {
+        setIsChecked(event.target.checked);
     };
 
     return (
@@ -118,10 +117,10 @@ const Disclaimer = () => {
                 </DialogContent>
                 <DialogActions>
                     <div>
-                        <Button onClick={handleCloseDontShowAgain} variant="contained">
+                        <Button onClick={handleClose} variant="contained">
                             I understand
                         </Button>
-                        <input type="checkbox" id="box1" name="box1"/>
+                        <input type="checkbox" id="box1" name="box1" checked={isChecked} onChange={handleCheckboxChange}/>
                         <label for="box1">Do not show again</label>
                     </div>
                 </DialogActions>
