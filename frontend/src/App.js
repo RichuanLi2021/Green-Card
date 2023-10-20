@@ -44,8 +44,10 @@ export default function App() {
                     </Route>
                 </Routes>
 
-                <Footer />
             </main>
+            
+            <Footer />
+
         </Router>
     );
 }

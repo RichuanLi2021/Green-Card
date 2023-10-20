@@ -10,12 +10,13 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import VaccinesIcon from '@mui/icons-material/Vaccines';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Footer from '../Footer/Footer';
-import Navigation from '../Navigation/navigation';
+// import Footer from '../Footer/Footer';
+// import Navigation from '../Navigation/navigation';
 import './Login.css';
 
 const theme = createTheme({
@@ -54,23 +55,31 @@ export default function SignIn() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Navigation />
+      {/* <Navigation /> */}
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         {/* Setting up sign in form */}
+
+        
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 20,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+    
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+          {/* <Typography component="h1" variant="h5" sx={{mb:3}}>
+          Geriatric Psychotropic Green Card
+          </Typography> */}
+
+          <Avatar sx={{ width: 70, height: 70, bgcolor: '#96d2b0', border: '3px solid darkgreen' }}>
+            <VaccinesIcon style={{width: 37, height: 37, color: 'darkgreen'}} />
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Admin Sign in
+
+          <Typography component="h1" variant="h5" sx={{mt: 3, mb: 2, color: 'darkgreen'}}>
+            Log in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -101,7 +110,7 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, color: 'darkgreen' }}
             >
               Sign In
             </Button>
@@ -109,7 +118,7 @@ export default function SignIn() {
         </Box>
       </Container>
       {/* Adding Footer component */}
-      <Footer />
+      {/* <Footer /> */}
     </ThemeProvider>
   );
 }
