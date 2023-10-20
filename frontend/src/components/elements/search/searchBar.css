@@ -1,0 +1,89 @@
+
+/* RC: Adjusted the white space underneath Nav Bar*/
+.Search-Bar-Container{
+    padding-top: 0rem;
+    padding-bottom: 1rem;
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 200px;
+
+}
+
+#form {
+    display: flex;
+    flex-direction: row;
+}
+
+.searchBar {
+    
+    background-color: white;
+    border-radius: 10px;
+    height: 2.5rem;
+    padding: 0 15px;
+    box-shadow: 0px 0px 8px #ddd;
+    display: flex;
+    align-items: center;
+}
+
+.inputField{
+    
+    height:100%;
+    background-color:transparent;
+    font-size: 1.25rem;
+    margin-right:5px;
+    border: none;
+    
+}
+
+input:focus{
+    outline: none;
+}
+
+.dataResult{
+    
+    width: 300px;
+    height: 200px;
+    background-color: #fff;
+    box-shadow: 0px 0px 8px #ddd;
+    overflow: hidden;
+    overrflow-y: auto;
+
+}
+
+.dataResult::-webkit-scrollbar{
+    display: none;
+}
+
+.dataResult .dataItem{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    color: black;
+}
+
+.dataItem p {
+    margin-left: 10px;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    background-color: lightgrey;
+}
+
+@media screen and (max-width: 600px){
+    
+    .Search-Bar-Container {
+
+    padding-bottom: 0px !important;  /* Adjusted the padding of search bar for mobile version.*/
+
+    }
+
+}
+

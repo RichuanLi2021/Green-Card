@@ -17,17 +17,18 @@
   backdrop-filter: blur(10px);
 }
 
-/* Feedback Button */
-.feedback-icon-button {
-  position: fixed;
-  bottom: 5vw;
-  right: 5vw;
-  width: 100px;
-  height: 100px;
+/* Rc:Feedback Button adjusted style*/
+.feedback-button {
+  font-family: "Work Sans", sans-serif !important;
+  width: 70px;
+  height: 30px;
   border: none;
   outline: none;
   cursor: pointer;
+  /* Rc: Capitalize the F */
+  text-transform: capitalize !important;
 }
+
 
 /* Feedback Form Container */
 .form-container-pg {
@@ -57,6 +58,18 @@
   background-color: var(--primary-color);
   color: #fff;
   transition: background-color 0.3s ease;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.css-11b3ww9-MuiPaper-root-MuiAppBar-root {
+
+  z-index: 0 !important; /* Keeps the navbar at the bottom of the blur effect. */
+
 }
 
 /* Media Query */

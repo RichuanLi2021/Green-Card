@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import "../searchBar/searchBar.css";
+import "../../components/elements/search/searchBar.css";
 
 const Search = (props) => {
   const [searchTerm, setSearchTerm] = useState("");

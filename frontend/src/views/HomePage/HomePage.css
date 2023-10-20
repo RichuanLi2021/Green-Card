@@ -5,6 +5,11 @@
     top: 64px;
     padding-left: 0px!important;
     padding-right: 0px!important;
+
+}
+
+.MuiContainer-root.main-container {
+    width: 95vw !important;
 }
 
 .css-16vq84g-MuiPaper-root-MuiCard-root {
@@ -15,9 +20,117 @@
     font-family: "Work Sans", sans-serif !important;
 }
 
+.css-11b3ww9-MuiPaper-root-MuiAppBar-root {
+  position: relative !important;
+}
+
 a {
     color: #000;
 }
+
+
+
+.MuiButton-root.external-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: #fff !important;
+  border: 1px solid #CBCBCB;
+  transition: background-color 0.2s ease;
+}
+
+.MuiButton-root.external-link:hover {
+  background-color: #ccc;
+}
+
+.MuiButton-root.external-link img {
+  display: block;
+  width: auto;
+  height: 20px; /* Adjust according to your image's aspect ratio */
+}
+
+.MuiButton-root.external-linkBig {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 19px;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: #fff !important;
+  border: 1px solid #CBCBCB;
+  transition: background-color 0.2s ease;
+}
+
+.MuiButton-root.external-linkBig:hover {
+  background-color: #ccc;
+}
+
+.MuiButton-root.external-linkBig img {
+  display: block;
+  width: auto;
+  height: 20px; /* Adjust according to your image's aspect ratio */
+}
+
+
+
+
+
+.myStyledButton {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #cbcbcb;
+    text-decoration: none;
+    color: inherit;
+    background-color: #fff;
+  }
+  
+  .myStyledButton:hover {
+    background-color: #ccc;
+  }
+
+
+  .myAccordion {
+    background: #ffffff;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #cbcbcb;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .myAccordion:hover {
+    background-color: #96D2B0;
+  }
+  
+
+
+  .item-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2.5rem;
+  }
+  
+  .item-container input[type="checkbox"] {
+    margin-right: 15px;
+  }
+  
+  .gray-square {
+    background-color: grey;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px;
+}
+
+
+
+
 
 @media (max-width:600px) {
     .main-container {
@@ -32,5 +145,18 @@ a {
     .MuiCard-root {
         width: 100%;
     }
+
+    .css-11b3ww9-MuiPaper-root-MuiAppBar-root {
+      position: relative !important;
+
+    }
+
+
+
+    .gray-square {
+      
+      padding: 10px;
+    }
+  
 
 }

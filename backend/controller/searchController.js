@@ -1,19 +1,12 @@
 const mysql = require("mysql2/promise");
-const fs = require("fs");
-const path = require("path");
+const config = require("../config/config");
 
-// Read the database configuration from databaseConfig.json
-const configPath = path.join(__dirname, "../config/databaseConfig.json");
-const configData = fs.readFileSync(configPath, "utf8");
-const config = JSON.parse(configData).database;
-
-// Setup your MySQL connection using the configuration
 const connection = mysql.createPool({
-  host: config.host,
-  user: config.user,
-  password: config.password,
   database: config.database,
-  port: config.port,
+  host: config.db_host,
+  port: config.db_port,
+  user: config.db_username,
+  password: config.db_password
 });
 
 exports.search = async (req, res) => {

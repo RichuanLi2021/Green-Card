@@ -59,7 +59,7 @@ function GreenCardDisclaimerTitle(props) {
                         top: 8,
                         color: (theme) => theme.palette.grey[500],
                     }}>
-                    <CloseIcon />
+                    <CloseIcon/>
                 </IconButton>
             ) : null}
         </DialogTitle>
@@ -68,37 +68,36 @@ function GreenCardDisclaimerTitle(props) {
 
 const Disclaimer = () => {
     const [open, setOpen] = useState(false);
+    const [isChecked, setIsChecked] = useState(false);
 
     useEffect(() => {
-        const hasSeenNotice = localStorage.getItem('hasSeenNotice');
         const disclaimerDismissedOn = localStorage.getItem('disclaimerDismissedOn');
-        const ONE_DAY_IN_MS = 86400000;
-
-        if (hasSeenNotice) {
-            setOpen(false);
-        } else if (disclaimerDismissedOn) {
+        const ONE_YEAR_IN_MS = 31536000000;
+        
+        if (disclaimerDismissedOn) {
             const lastDismissed = new Date(disclaimerDismissedOn).getTime();
             const currentTime = new Date().getTime();
             const timePassed = currentTime - lastDismissed;
 
-            if (timePassed >= ONE_DAY_IN_MS) {
+            if (timePassed >= ONE_YEAR_IN_MS) {
                 setOpen(true);
             } else {
                 setOpen(false);
             }
         } else {
-            setOpen(true);
+            setOpen(false);
         }
-    }, []);
-
-    const handleCloseDontShowAgain = () => {
-        setOpen(false);
-        localStorage.setItem('hasSeenNotice', 'true');
-        localStorage.setItem('disclaimerDismissedOn', new Date().toISOString());
-    };
+    },[]);
 
     const handleClose = () => {
         setOpen(false);
+        if (isChecked) {
+            localStorage.setItem('disclaimerDismissedOn', new Date().toISOString());
+        }
+    };
+
+    const handleCheckboxChange = (event) => {
+        setIsChecked(event.target.checked);
     };
 
     return (
@@ -113,16 +112,17 @@ const Disclaimer = () => {
                         Information is not comprehensive and errors may occur. Drug doses and other management recommendations
                         may not reflect manufacturers’ recommendation but are based on clinical literature and expert opinion.
                         Listed maximum doses are meant for physically healthy older adults, and in general not recommended for
-                        frail patients. The Green Card should not supersede clinical judgment and is not applicable in all circumstances
+                        frail patients. The Green Card should not supersede clinical judgment and is not applicable in all circumstances.
                     </Typography>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleClose} type="submit" variant="contained">
-                        I understand
-                    </Button>
-                    <Button autoFocus onClick={handleCloseDontShowAgain} variant="outlined">
-                        I understand and Don't show again
-                    </Button>
+                    <div>
+                        <Button onClick={handleClose} variant="contained">
+                            I understand
+                        </Button>
+                        <input type="checkbox" id="box1" name="box1" checked={isChecked} onChange={handleCheckboxChange}/>
+                        <label for="box1">Do not show again</label>
+                    </div>
                 </DialogActions>
             </GreenCardDisclaimer>
         </ThemeProvider>
