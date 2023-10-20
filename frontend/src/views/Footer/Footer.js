@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Typography, Box, Link, Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import './Footer.css';
+//Import the FeedBack button from FeedbackForm
+import FeedbackFormHandler from '../FeedbackForm/FeedbackFormHandler';
+
 
 const theme = createTheme({
   palette: {
@@ -23,18 +26,27 @@ const Footer = () => {
     setOpen(false);
   };
 
+
+
   return (
     <ThemeProvider theme={theme}>
+
+      {/* Footer Info contents */}
       <Box component="footer" className="main-footer">
-        <Typography variant="body2" align="center">
-          © {new Date().getFullYear()} The Green Card: Geriatric Psychotropic Drug Reference Card
-        </Typography>
-        <Typography variant="body2" align="center">
-          <Link href="#">Privacy Policy</Link>
-          {' | '}
-          <Link onClick={handleOpen}>Disclaimer</Link>
-        </Typography>
+        <div className="footer-content">
+          <Typography align="center">
+            © {new Date().getFullYear()} The Green Card: Geriatric Psychotropic Drug Reference Card
+          </Typography>
+          <Typography variant="body2" align="center">
+            <Link href="#">Privacy Policy</Link>
+            {' | '}
+            <Link onClick={handleOpen}>Disclaimer</Link>
+            {' | '}
+            <FeedbackFormHandler/>
+          </Typography>
+        </div>
       </Box>
+      {/* Footer Info contents ends*/}
 
       {/* Disclaimer Dialog */}
       <Dialog open={open} onClose={handleClose}>
@@ -54,6 +66,8 @@ const Footer = () => {
           </Button>
         </DialogActions>
       </Dialog>
+
+      
     </ThemeProvider>
   );
 };

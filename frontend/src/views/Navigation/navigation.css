@@ -74,4 +74,8 @@
   .navbar__menu--open {
     display: flex;
   }
+
+  .navigation-title{
+    background-color:transparent !important;
+  }
 }

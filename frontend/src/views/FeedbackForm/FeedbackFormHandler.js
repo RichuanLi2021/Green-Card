@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import FeedbackForm from './FeedbackForm';
 import Button from '@mui/material/Button';
 
+
 const FeedbackFormHandler = () => {
   const [showForm, setShowForm] = useState(false);
 
@@ -16,20 +17,19 @@ const FeedbackFormHandler = () => {
   return (
     <>
       <Button
-        variant="contained"
+        // variant="contained"
         onClick={handleOpenForm}
-        className="feedback-icon-button"
-        sx={{
-          position: 'fixed',
-          borderRadius: '50%',
-          font: 'inherit',
-          opacity: 0.7,
-          background: '#96D2B0',
-          color: '#000',
-          ':hover': { opacity: 1, background: '#96d2b0' },
+        className="feedback-button"
+         sx={{
+          textDecoration: 'underline',
+          textDecorationColor: 'rgba(0,0,0,0.4)',
+          borderRadius: '0%',
+          paddingBottom: 1,
+          background: '#96d2b0',
         }}>
         Feedback
       </Button>
+
       {showForm && (
         <>
           <div className="feedback-form-backdrop" onClick={handleCloseForm} />

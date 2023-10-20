@@ -452,7 +452,7 @@ INSERT INTO `green_card`.`SEARCH RESULTS` (
   `Dose equiv.` ,
   `Frequency` ,
   `mg/Form Supplied`,
-  `With food?` ,
+  `With food` ,
   `MCI`,
   `mild-mod Alz` ,
   `Severe Alz` ,
