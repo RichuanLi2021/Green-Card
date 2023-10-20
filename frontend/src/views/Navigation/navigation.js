@@ -123,6 +123,7 @@ const Navbar = () => {
             sx={{ marginTop: '40px' }}
           >
             <MenuItem onClick={handleMenuClose}>
+          
               <Button component={Link} to="/" sx={{ color: '#000' }}>Home</Button>
             </MenuItem>
             {window.location.pathname !== '/login' && (
@@ -133,7 +134,9 @@ const Navbar = () => {
           </Menu>
        
           <div className="navbar__menu">
+            {window.location.pathname !== "/" &&
             <Button component={Link} to="/" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>Home</Button>
+            }
             {window.location.pathname !== '/login' && (
               <Button component={Link} to="/login" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
                 Admin Login
@@ -148,3 +151,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
