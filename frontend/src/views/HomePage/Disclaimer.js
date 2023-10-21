@@ -85,7 +85,7 @@ const Disclaimer = () => {
                 setOpen(false);
             }
         } else {
-            setOpen(false);
+            setOpen(true);
         }
     },[]);
 
