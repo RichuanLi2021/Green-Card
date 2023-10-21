@@ -36,6 +36,9 @@
   display: none;
   cursor: pointer;
 }
+.navigation-title:hover{
+  background-color: #96d2b0;
+}
 
 .web-title {
   font-family: "Work Sans", sans-serif !important;

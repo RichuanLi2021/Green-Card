@@ -16,7 +16,16 @@
   .footer-content {
     text-align: center;
 }
-  
+  .Policy:hover { 
+    background-color: #89cea7; 
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .disclaimer:hover { 
+    background-color: #89cea7; 
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
 
   .css-1ypfif-MuiTypography-root {
     font-family: "Work Sans", sans-serif !important;

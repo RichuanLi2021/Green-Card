@@ -38,9 +38,9 @@ const Footer = () => {
             © {new Date().getFullYear()} The Green Card: Geriatric Psychotropic Drug Reference Card
           </Typography>
           <Typography variant="body2" align="center">
-            <Link href="#">Privacy Policy</Link>
+            <Link href="#" className='Policy'>Privacy Policy</Link>
             {' | '}
-            <Link onClick={handleOpen}>Disclaimer</Link>
+            <Link onClick={handleOpen} className='disclaimer'>Disclaimer</Link>
             {' | '}
             <FeedbackFormHandler/>
           </Typography>
@@ -52,7 +52,7 @@ const Footer = () => {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Disclaimer</DialogTitle>
         <DialogContent>
-          <Typography variant="body1">
+          <Typography variant="body1" >
             WARNING: This card is meant to support rather than guide management decisions in older adults.
             Information is not comprehensive and errors may occur. Drug doses and other management recommendations
             may not reflect manufacturers’ recommendation but are based on clinical literature and expert opinion.
