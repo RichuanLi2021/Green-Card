@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import createTheme from '@mui/material/styles/createTheme';
 import './Panel.css';
 import axios from "axios";
-import Navigation from '../../views/Navigation/navigation';
+import Navigation from '../../components/Navigation';
 import FeedbackHandler from './AdminFeedbackHandler';
 import { ThemeProvider } from '@mui/material/styles';
 
