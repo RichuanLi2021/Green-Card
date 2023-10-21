@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Typography, Box, Link, Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import './Footer.css';
-//Import the FeedBack button from FeedbackForm
-import FeedbackFormHandler from '../FeedbackForm/FeedbackFormHandler';
+import FeedbackFormHandler from './elements/feedback/FeedbackFormHandler';
 
 
 const theme = createTheme({

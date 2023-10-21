@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {useState} from "react";
 import {useEffect} from "react";
-import Navigation from '../views/Navigation/navigation';
+import Navigation from '../components/Navigation';
 import SearchIcon from '@mui/icons-material/Search';
 import '../components/elements/search/searchBar.css';
 

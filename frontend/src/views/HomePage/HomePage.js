@@ -5,7 +5,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Search from "../Search/Search";
+import Search from "../../components/elements/search/Search";
 import { useNavigate } from "react-router-dom";
 import GridTest from '../../components/testData/gridTest';
 
