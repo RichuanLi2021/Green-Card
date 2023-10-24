@@ -1,4 +1,4 @@
-import { Card, CardContent, Container, Grid, Typography, Box } from "@mui/material";
+import { Card, CardContent, Container, Grid, Typography, Box, Button } from "@mui/material";
 import "./HomePage.css";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -53,69 +53,76 @@ const HomePage = () => {
   const drugList = [
     {
       category: 'Antidepressants',
-      drugs: [
-        'antidepressantguide',
-        'antidepressantsclinical',
-        'antidepressantsafety',
+      data: [
+        { name: 'Antidepressant Guide', route: 'antidepressant/guide' },
+        { name: 'Antidepressant Clinical Guide', route: 'antidepressant/clinical' },
+        { name: 'Antidepressant Safety Concerns', route: 'antidepressant/safety' }
       ]
     },
     {
       category: "Antipsychotics",
-      drugs: [
-        'antipsychoticsguide',
-        'antipsychoticsafety',
+      data: [
+        { name: 'Antipsychotics Guide', route: 'antipsychotic/guide' },
+        { name: 'Antipsychotics Safety Concerns', route: 'antipsychotic/safety' }
       ]
+   
     },
     {
       category: "Insomnia",
-      drugs: [
-        'insomniamanagement',
-        'insomniasedatives',
-        'insomniaclinical',
-        'insomniasafety',
-        'insomniadeprescribing',
+      data: [
+        { name: 'Sedatives/hypnotics Guide', route: 'insomnia/sedatives-guide' },
+        { name: 'Sedatives/hypnotics Clinical Guide', route: 'insomnia/clinical' },
+        { name: 'Sedatives/hypnotics Safety Concerns', route: 'insomnia/safety' },
+        { name: 'Deprescribing Sedatives/Hypnotics', route: 'insomnia/deprescribing' }
       ]
+      
     },
     {
       category: "Dementia",
-      drugs: [
-        'cognitiveenhancersguide',
-        'cognitiveenhancersclinical',
-        'npsmanagement',
+      data: [
+        { name: 'Cognitive Enhancers Guide', route: 'cognitive/guide' },
+        { name: 'Cognitive Enhancers Clinical Guide', route: 'cognitive/clinical' },
+        { name: 'NPS Management', route: 'cognitive/guide-cont' }
       ]
+
     },
     {
       category: "Delirium",
-      drugs: [
-        'delirium',
-        'anticholinergicactivity',
+      data: [
+        { name: 'Anticholinergic activity', route: 'delirium/delirium' },
+        { name: 'Delirium Management', route: 'delirium/management' }
       ]
+      
     },
     {
       category: "Polypharmacy",
-      drugs: [
-        'polypharmacycommon',
-        'polypharmacynotable',
-        'principlespolypharmacy',
+      data: [
+        { name: 'Common DDIs', route: 'polypharmacy/polypharmacy-common-ddis' },
+        { name: 'Notable changes in older adults', route: 'polypharmacy/polypharmacy-notable-changes' },
+        { name: 'Prescribing and deprescribing principles', route: 'polypharmacy/polypharmacy-principles' }
       ]
+ 
     },
     {
       category: "ECT & Psychoactive Medications",
-      drugs: [
-        'ectandpsychoactive',
+      data: [
+        { name: 'ECT & Psychoactive Medications', route: 'neuropsy/neuropsychiatric' }
       ]
+      
     },
     {
       category: "Mood Stabilizers",
-      drugs: [
-        'moodStabilizers',
+      data: [
+        { name: 'Mood Stabilizers', route: 'stabilizers/mood-stabilizers' }
       ]
+     
     },
     {
       category: "Psychotropic Monitoring",
-      drugs: [
-        'psychotropicmonitoringsection',
+      data: [
+        { name: 'Psychotropic Monitoring', route: 'psychotropic/psychotropic-monitoring-section' }
       ]
+      
     },
   ];
   return (
@@ -126,43 +133,92 @@ const HomePage = () => {
           <Grid container spacing={4} direction="row" sx={{ textAlign: "center" }}>
             <Grid item xs={12} sm={3}>
               <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
-                {drugList.map(drugCategory => (
-                  <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-                    <Accordion className="myAccordion">
-                      <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
-                        <Typography variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                          {drugCategory.category} 
-                        </Typography>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        {drugCategory.drugs.map(drugName => (
-                          <div className="item-container">
+                {drugList.map(drugCategory => {
+                  // Check if data array has only one item
+                  if (drugCategory.data.length === 1) {
+                    const drugItem = drugCategory.data[0];
+                    return (
+                      <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
+                        <Button
+                          variant="h1"
+                          sx={{
+                              background: "#ffffff", 
+                              width: "100%",
+                              display: "flex",
+                              flexDirection: "row", 
+                              alignItems: "center", 
+                              justifyContent: "center", 
+                              textTransform: "none",
+                              padding: "15px",
+                              border: "1px solid #cbcbcb", 
+                              boxShadow: "0px 1px 1px rgba(0,0,0,0.5)", 
+                              '&:hover': {
+                                  backgroundColor: "#96D2B0", 
+                              }
+                          }}
+                          onClick={(e) => {
+                              e.preventDefault();
+                              const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
+                              if (checkbox) {
+                                  checkbox.checked = !checkbox.checked;
+                                  handleCheckboxChange(drugItem.route, checkbox.checked);
+                              }
+                          }}
+                        >
                             <input 
                                 type="checkbox" 
-                                id={`${drugName}Checkbox`} 
-                                onChange={(e) => handleCheckboxChange(drugName, e.target.checked)}
+                                id={`${drugItem.route}Checkbox`} 
+                                style={{ marginRight: "10px" }} 
                             />
-                            <Typography
-                              className="myStyledButton"
-                              sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }} 
-                              onClick={() => {
-                                const checkbox = document.getElementById(`${drugName}Checkbox`);
-                                if (checkbox) {
-                                  checkbox.checked = !checkbox.checked;
-                                  handleCheckboxChange(drugName, checkbox.checked);
-                                }
-                              }}
-                            >
-                              {drugName.charAt(0).toUpperCase() + drugName.slice(1)}
+                            <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
+                                {drugItem.name}
                             </Typography>
-                          </div>
-                        ))}
-                      </AccordionDetails>
-                    </Accordion>
-                  </CardContent>
-                ))}
+                        </Button>
+                      </CardContent>
+                    );
+                  } else {
+                    return (
+                      <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
+                        <Accordion className="myAccordion">
+                          <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
+                            <Typography variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
+                              {drugCategory.category} 
+                            </Typography>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                            {drugCategory.data.map(drugItem => (
+                              <div className="item-container">
+                                <input 
+                                  type="checkbox" 
+                                  id={`${drugItem.route}Checkbox`} 
+                                  onChange={(e) => handleCheckboxChange(drugItem.route, e.target.checked)}
+                                />
+                                <Typography
+                                  className="myStyledButton"
+                                  sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }} 
+                                  onClick={() => {
+                                    const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
+                                    if (checkbox) {
+                                      checkbox.checked = !checkbox.checked;
+                                      handleCheckboxChange(drugItem.route, checkbox.checked);
+                                    }
+                                  }}
+                                >
+                                  {drugItem.name}
+                                </Typography>
+                              </div>
+                            ))}
+                          </AccordionDetails>
+                        </Accordion>
+                      </CardContent>
+                    );
+                  }
+                })}
               </Card>
             </Grid>
+
+
+            
             <Grid item xs={12} sm={9}>
               <Box className="gray-square">
                 <GridTest/>
