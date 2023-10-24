@@ -1,11 +1,21 @@
+
+
 main {
 
     min-height: 100vh !important;
-
+    
 }
 
 .MuiBox-root {
     z-index: 0 !important;
+}
+
+.signUpGrid {
+
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 3px !important;
+
 }
 
 @media (max-width: 600px) {
