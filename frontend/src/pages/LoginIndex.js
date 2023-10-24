@@ -10,6 +10,8 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import VaccinesIcon from '@mui/icons-material/Vaccines';
 import Typography from '@mui/material/Typography';
@@ -74,11 +76,11 @@ export default function SignIn() {
           Geriatric Psychotropic Green Card
           </Typography> */}
 
-          <Avatar sx={{ width: 70, height: 70, bgcolor: '#96d2b0', border: '3px solid darkgreen' }}>
-            <VaccinesIcon style={{width: 37, height: 37, color: 'darkgreen'}} />
+          <Avatar sx={{ width: 70, height: 70, bgcolor: '#96d2b0', border: '3px solid #5a8e70' }}>
+            <VaccinesIcon style={{width: 37, height: 37, color: '#5a8e70'}} />
           </Avatar>
 
-          <Typography component="h1" variant="h5" sx={{mt: 3, mb: 2, color: 'darkgreen'}}>
+          <Typography component="h1" variant="h5" sx={{mt: 3, mb: 2, color: '#68a783'}}>
             Log in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -103,8 +105,8 @@ export default function SignIn() {
               autoComplete="current-password"
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              control={<Checkbox value="remember" color="primary" sx={{color: '#68a783'}} />}
+              label="Remember me" sx={{color:'#68a783'}}
             />
             <Button
               type="submit"
@@ -114,6 +116,20 @@ export default function SignIn() {
             >
               Sign In
             </Button>
+            
+            <Grid container className='signUpGrid'>
+            <Grid item xs>
+                <Link href="#" variant="body2" sx={{color:'#68a783'}}>
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="#" variant="body2" sx={{color:'#68a783'}}>
+                  Forgot password?
+                </Link>
+              </Grid>
+           
+            </Grid>
           </Box>
         </Box>
       </Container>
