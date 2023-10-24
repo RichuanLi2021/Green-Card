@@ -11,6 +11,7 @@
   },
   "author": "CSCI2691/3691/4691 GPGC",
   "license": "ISC",
+
   "devDependencies": {
     "concurrently": "^7.3.0",
     "nodemon": "^3.0.1"

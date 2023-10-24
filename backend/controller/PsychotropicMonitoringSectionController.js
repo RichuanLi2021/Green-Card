@@ -69,4 +69,12 @@ const drugDelete = async (req, res, next) => {
 };
 
 
-module.exports = { PsychotropicMonitoringSectionController, updatePsychotropicMonitoringSectionData, drugData ,drugDelete};
+module.exports = {
+  getData: async (req, res, next) => {
+    const PsychotropicMonitoringSectionControllerData = await getPsychotropicMonitoringSectionData();
+    res.send(PsychotropicMonitoringSectionControllerData);
+  },
+  updatePsychotropicMonitoringSectionData,
+  drugData,
+  drugDelete
+};
