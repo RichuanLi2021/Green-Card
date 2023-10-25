@@ -50,6 +50,8 @@ const HomePage = () => {
   const handleSearch = (searchTerm) => {
     navigate(`/search/${searchTerm}`);
   };
+
+
   const drugList = [
     {
       category: 'Antidepressants',
@@ -67,6 +69,8 @@ const HomePage = () => {
       ]
    
     },
+
+    //dont work
     {
       category: "Insomnia",
       data: [
@@ -113,7 +117,7 @@ const HomePage = () => {
     {
       category: "Mood Stabilizers",
       data: [
-        { name: 'Mood Stabilizers', route: 'stabilizers/mood-stabilizers' }
+        { name: 'Mood Stabilizers', route: 'Mood/mood-stabilizers' }
       ]
      
     },

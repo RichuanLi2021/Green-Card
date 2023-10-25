@@ -5,6 +5,6 @@ const router = express.Router();
 const moodStabilizersRoute = require('./MoodStabilizersRoute');
 
 // Use the mood stabilizers routes when the path is accessed
-router.use('/', moodStabilizersRoute);
+router.use('Mood', moodStabilizersRoute);
 
 module.exports = router;
