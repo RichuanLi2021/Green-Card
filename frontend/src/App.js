@@ -14,7 +14,7 @@ import SearchResultPage from "./pages/SearchResultPage";
 import SearchResults from "./pages/SearchResults";
 
 // Admin Pages
-import AdminPanel from "./pages/admin/Panel";
+import AdminPanel from "./pages/admin/Dashboard";
 import AdminFeedback from "./pages/admin/ShowFeedback";
 
 // Components
