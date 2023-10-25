@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import createTheme from '@mui/material/styles/createTheme';
-import './Panel.css';
+import './Dashboard.css';
 import axios from "axios";
 import Navigation from '../../components/Navigation';
 import FeedbackHandler from './AdminFeedbackHandler';
