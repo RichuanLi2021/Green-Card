@@ -15,7 +15,7 @@ import SearchResults from "./pages/SearchResults";
 
 // Admin Pages
 import AdminPanel from "./pages/admin/Dashboard";
-import AdminFeedback from "./pages/admin/ShowFeedback";
+import AdminFeedback from "./pages/admin/Feedback";
 
 // Components
 import Disclaimer from './components/Disclaimer';

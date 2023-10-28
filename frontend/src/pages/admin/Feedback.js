@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Box, Button, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import './ShowFeedback.css';
+import './Feedback.css';
 
 const generateID = () => {
   return Math.random().toString(36).substr(2, 9);
