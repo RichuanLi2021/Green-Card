@@ -66,12 +66,25 @@ function GreenCardDisclaimerTitle(props) {
     );
 }
 
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+function setCookie(name, value, days = 7) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days*24*60*60*1000));
+    const expires = `expires=${date.toUTCString()}`;
+    document.cookie = `${name}=${value};${expires};path=/`;
+}
+
 const Disclaimer = () => {
     const [open, setOpen] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
 
     useEffect(() => {
-        const disclaimerDismissedOn = localStorage.getItem('disclaimerDismissedOn');
+        const disclaimerDismissedOn = getCookie('disclaimerDismissedOn');
         const ONE_YEAR_IN_MS = 31536000000;
         
         if (disclaimerDismissedOn) {
@@ -92,7 +105,7 @@ const Disclaimer = () => {
     const handleClose = () => {
         setOpen(false);
         if (isChecked) {
-            localStorage.setItem('disclaimerDismissedOn', new Date().toISOString());
+            setCookie('disclaimerDismissedOn', new Date().toISOString());
         }
     };
 
