@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import ShowFeedback from './ShowFeedback';
+import ShowFeedback from './Feedback';
 import { CircularProgress } from '@mui/material';
 
 function FeedbackBackEnd({ onClose }) {
