@@ -1,6 +1,5 @@
 import * as React from 'react';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 // Required MUI Components
 import Avatar from '@mui/material/Avatar';
@@ -30,30 +29,31 @@ const theme = createTheme({
 });
 
 export default function SignIn() {
-  // Setting up state, fetching data using axios and navigating pages using useNavigate
-  const navigate = useNavigate();
-  const [data, setData] = useState([]);
 
-  useEffect(() => {
-    axios.get(process.env.REACT_APP_BACKEND_URL + "/api/login")
-      .then(response => setData(response.data))
-      .catch(error => console.log(error));
-  }, []);
+  
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
-    // Preventing page from refreshing on submission and checking for validity of login credentials and navigating
     event.preventDefault();
-    const dataCredential = new FormData(event.currentTarget);
 
-    const user = data.find(item => item.username === dataCredential.get('username'));
-    if (user && user.password === dataCredential.get('password')) {
-      alert("Login Success");
-      localStorage.setItem('admin', 'true');
-      navigate("/panel");
-    } else {
-      alert("Incorrect Username or Password");
-    }
+    const dataCredential = new FormData(event.target);
+    
+    axios.post(process.env.REACT_APP_BACKEND_URL + "/api/login/login", {
+      username: dataCredential.get('username'),
+      password: dataCredential.get('password')
+    })
+    .then(response => {
+      if (response.data.success) {
+        alert(response.data.message);
+        localStorage.setItem('admin', 'true');
+        navigate("/panel");
+      } else {
+        alert(response.data.message);
+      }
+    })
+    .catch(error => console.log(error));
   };
+
 
   return (
     <ThemeProvider theme={theme}>
