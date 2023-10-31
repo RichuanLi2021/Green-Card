@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const InsomniaSedativesGuideController = require('../../controller/InsomniaSedativesGuideController.js');
 
-router.route('/insomnia-sedatives')
+router.route('/sedatives')
     .get(InsomniaSedativesGuideController.getData)
     .post(InsomniaSedativesGuideController.drugData);
 

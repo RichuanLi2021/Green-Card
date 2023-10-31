@@ -4,7 +4,7 @@ const controller = require('../../controller/CognitiveEnhancersGuideController.j
 
 router.route('/')
     .get(controller.getData)
-    .post(controller.drugData); // Assuming .post here intends to create/add data
+    .post(controller.drugData);
 
 router.route('/update')
     .post(controller.updateData);

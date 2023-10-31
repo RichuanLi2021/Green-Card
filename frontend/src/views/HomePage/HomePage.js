@@ -74,30 +74,31 @@ const HomePage = () => {
     {
       category: "Insomnia",
       data: [
-        { name: 'Sedatives/hypnotics Guide', route: 'insomnia/sedatives-guide' },
-        { name: 'Sedatives/hypnotics Clinical Guide', route: 'insomnia/clinical' },
-        { name: 'Sedatives/hypnotics Safety Concerns', route: 'insomnia/safety' },
-        { name: 'Deprescribing Sedatives/Hypnotics', route: 'insomnia/deprescribing' }
+        { name: 'Sedatives/hypnotics Guide', route: 'insomnia/sedatives-guide/sedatives' },
+        { name: 'Sedatives/hypnotics Clinical Guide', route: 'insomnia/clinical/insomnia-clinical' },
+        { name: 'Sedatives/hypnotics Safety Concerns', route: 'insomnia/safety/insomnia-safety' },
+        { name: 'Deprescribing Sedatives/Hypnotics', route: 'insomnia/deprescribing/insomnia-deprescribing' }
       ]
       
     },
+
     {
       category: "Dementia",
       data: [
         { name: 'Cognitive Enhancers Guide', route: 'cognitive/guide' },
-        { name: 'Cognitive Enhancers Clinical Guide', route: 'cognitive/clinical' },
+        { name: 'Cognitive Enhancers Clinical Guide', route: 'cognitive/clinical'},
         { name: 'NPS Management', route: 'cognitive/guide-cont' }
       ]
-
     },
+
     {
       category: "Delirium",
       data: [
         { name: 'Anticholinergic activity', route: 'delirium/delirium' },
         { name: 'Delirium Management', route: 'delirium/management' }
       ]
-      
     },
+
     {
       category: "Polypharmacy",
       data: [
@@ -105,8 +106,8 @@ const HomePage = () => {
         { name: 'Notable changes in older adults', route: 'polypharmacy/polypharmacy-notable-changes' },
         { name: 'Prescribing and deprescribing principles', route: 'polypharmacy/polypharmacy-principles' }
       ]
- 
     },
+
     {
       category: "ECT & Psychoactive Medications",
       data: [
@@ -114,13 +115,15 @@ const HomePage = () => {
       ]
       
     },
+
     {
       category: "Mood Stabilizers",
       data: [
-        { name: 'Mood Stabilizers', route: 'Mood/mood-stabilizers' }
+        { name: 'Mood Stabilizers', route: 'mood-sta/Mood/mood-stabilizers' }
       ]
      
     },
+
     {
       category: "Psychotropic Monitoring",
       data: [
