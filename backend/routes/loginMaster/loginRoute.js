@@ -3,7 +3,9 @@ const router = express.Router();
 const authController = require('../../controller/loginController');
 
 router.route('/login')
-    .get(authController.getLogin);
+    .get(authController.getLogin)
+    .post(authController.postLogin); 
+    
 
 router.route('/register')
     .post(authController.postRegister);
