@@ -7,7 +7,7 @@ import "./components/elements/feedback/FeedbackForm.css";
 import "./App.css";
 
 // Pages
-import Home from './views/HomePage/HomePage';
+import Home from './pages/HomePage';
 
 import Login from "./pages/LoginIndex";
 import SearchResultPage from "./pages/SearchResultPage";
