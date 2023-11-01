@@ -3,8 +3,8 @@
     margin-top: 1rem;
     margin-bottom: 50px;
     top: 64px;
-    padding-left: 0px!important;
-    padding-right: 0px!important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 
 }
 
@@ -99,7 +99,7 @@ a {
     display: flex;
     flex-direction: column;
     border: 1px solid #cbcbcb;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   .myAccordion:hover {
