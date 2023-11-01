@@ -1,13 +1,16 @@
-import { Card, CardContent, Container, Grid, Typography, Button,Box } from "@mui/material";
+import { Card, CardContent, Container, Grid, Typography, Box, Button } from "@mui/material";
 import "./HomePage.css";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Search from "../Search/Search";
+import Search from "../../components/elements/search/Search";
 import { useNavigate } from "react-router-dom";
+
 import GridTest from '../../components/testData/gridTest';
+import React, { useState, useEffect } from 'react'; 
+import axios from 'axios'; 
 
 const theme = createTheme({
   typography: {
@@ -20,505 +23,218 @@ const theme = createTheme({
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const [selectedDrugs, setSelectedDrugs] = useState([]);
+  const [drugData, setDrugData] = useState({});
 
+  useEffect(() => {
+      console.log('Drug data:', drugData);
+  }, [selectedDrugs, drugData]);
+
+  const handleCheckboxChange = (drugName, isChecked) => {
+      if (isChecked) {
+          setSelectedDrugs(prev => [...prev, drugName]);
+          if (!drugData[drugName]) {
+              axios
+              .get(`${process.env.REACT_APP_BACKEND_URL}/api/${drugName}`)
+              .then(response => {
+                  setDrugData(prev => ({ ...prev, [drugName]: response.data }));
+              })
+              .catch(error => {
+                  console.log(error);
+              });
+          }
+      } else {
+          setSelectedDrugs(prev => prev.filter(item => item !== drugName));
+      }
+  };
   const handleSearch = (searchTerm) => {
     navigate(`/search/${searchTerm}`);
   };
 
+
+  const drugList = [
+    {
+      category: 'Antidepressants',
+      data: [
+        { name: 'Antidepressant Guide', route: 'antidepressant/guide' },
+        { name: 'Antidepressant Clinical Guide', route: 'antidepressant/clinical' },
+        { name: 'Antidepressant Safety Concerns', route: 'antidepressant/safety' }
+      ]
+    },
+    {
+      category: "Antipsychotics",
+      data: [
+        { name: 'Antipsychotics Guide', route: 'antipsychotic/guide' },
+        { name: 'Antipsychotics Safety Concerns', route: 'antipsychotic/safety' }
+      ]
+   
+    },
+
+    //dont work
+    {
+      category: "Insomnia",
+      data: [
+        { name: 'Sedatives/hypnotics Guide', route: 'insomnia/sedatives-guide/sedatives' },
+        { name: 'Sedatives/hypnotics Clinical Guide', route: 'insomnia/clinical/insomnia-clinical' },
+        { name: 'Sedatives/hypnotics Safety Concerns', route: 'insomnia/safety/insomnia-safety' },
+        { name: 'Deprescribing Sedatives/Hypnotics', route: 'insomnia/deprescribing/insomnia-deprescribing' }
+      ]
+      
+    },
+
+    {
+      category: "Dementia",
+      data: [
+        { name: 'Cognitive Enhancers Guide', route: 'cognitive/guide' },
+        { name: 'Cognitive Enhancers Clinical Guide', route: 'cognitive/clinical'},
+        { name: 'NPS Management', route: 'cognitive/guide-cont' }
+      ]
+    },
+
+    {
+      category: "Delirium",
+      data: [
+        { name: 'Anticholinergic activity', route: 'delirium/delirium' },
+        { name: 'Delirium Management', route: 'delirium/management' }
+      ]
+    },
+
+    {
+      category: "Polypharmacy",
+      data: [
+        { name: 'Common DDIs', route: 'polypharmacy/polypharmacy-common-ddis' },
+        { name: 'Notable changes in older adults', route: 'polypharmacy/polypharmacy-notable-changes' },
+        { name: 'Prescribing and deprescribing principles', route: 'polypharmacy/polypharmacy-principles' }
+      ]
+    },
+
+    {
+      category: "ECT & Psychoactive Medications",
+      data: [
+        { name: 'ECT & Psychoactive Medications', route: 'neuropsy/neuropsychiatric' }
+      ]
+      
+    },
+
+    {
+      category: "Mood Stabilizers",
+      data: [
+        { name: 'Mood Stabilizers', route: 'mood-sta/Mood/mood-stabilizers' }
+      ]
+     
+    },
+
+    {
+      category: "Psychotropic Monitoring",
+      data: [
+        { name: 'Psychotropic Monitoring', route: 'psychotropic/psychotropic-monitoring-section' }
+      ]
+      
+    },
+  ];
   return (
     <div>
       <ThemeProvider theme={theme}>
-        
         <Search onSearch={handleSearch}></Search>
-        {/* <SearchBar placeholder="Search" data={Data} /> */}
         <Container className="main-container" maxWidth={false}>
-
           <Grid container spacing={4} direction="row" sx={{ textAlign: "center" }}>
-            <Grid item xs={12} sm={3.5}>
+            <Grid item xs={12} sm={3}>
               <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
-                <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-                  <Accordion className="myAccordion">
-                    <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
-                      <Typography variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                        {" "}
-                        Antidepressants{" "}
-                      </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <div className="item-container">
-                        <input type="checkbox" id="AntidepressantGuideCheckbox" />
-              
-                        <Typography
-                          className="myStyledButton"
-                          sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }} 
+                {drugList.map(drugCategory => {
+                  // Check if data array has only one item
+                  if (drugCategory.data.length === 1) {
+                    const drugItem = drugCategory.data[0];
+                    return (
+                      <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
+                        <Button
+                          variant="h1"
+                          sx={{
+                              background: "#ffffff", 
+                              width: "100%",
+                              display: "flex",
+                              flexDirection: "row", 
+                              alignItems: "center", 
+                              justifyContent: "center", 
+                              textTransform: "none",
+                              padding: "15px",
+                              border: "1px solid #cbcbcb", 
+                              boxShadow: "0px 1px 1px rgba(0,0,0,0.5)", 
+                              '&:hover': {
+                                  backgroundColor: "#96D2B0", 
+                              }
+                          }}
                           onClick={(e) => {
-                            e.preventDefault();  // Prevent any default behavior
-                            const checkbox = document.getElementById("AntidepressantGuideCheckbox");
-                            if (checkbox) checkbox.checked = !checkbox.checked;
+                              e.preventDefault();
+                              const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
+                              if (checkbox) {
+                                  checkbox.checked = !checkbox.checked;
+                                  handleCheckboxChange(drugItem.route, checkbox.checked);
+                              }
                           }}
                         >
-                          Antidepressant Guide     
-                        </Typography>
-                      </div>
-                      <div className="item-container">
-                        <input type="checkbox" id="AntidepressantsClinicalCheckbox" />
-
-                        <Typography
-                          className="myStyledButton"
-                          sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            const checkbox = document.getElementById("AntidepressantsClinicalCheckbox");
-                            if (checkbox) checkbox.checked = !checkbox.checked;
-                          }}
-                        >
-                          Antidepressant Clinical Guide
-
-                        </Typography>
-                      </div>
-                      <div className="item-container">
-                        <input type="checkbox" id="AntidepressantSafetyCheckbox" />
-
-                        <Typography
-                          className="myStyledButton"
-                          sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            const checkbox = document.getElementById("AntidepressantSafetyCheckbox");
-                            if (checkbox) checkbox.checked = !checkbox.checked;
-                          }}
-                        >
-                          Antidepressant Safety Concerns
-
-                        </Typography>                    
-                    </div>
-                    </AccordionDetails>
-                  </Accordion>
-                </CardContent>
-
-                <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-                  <Accordion className="myAccordion">
-                    <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
-                      <Typography variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                        {" "}
-                        Antipsychotics{" "}
-                      </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <div className="item-container">
-                        <input type="checkbox" id="AntipsychoticsGuideCheckbox" />
-
-                        <Typography
-                          className="myStyledButton"
-                          sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }} 
-                          onClick={(e) => {
-                            e.preventDefault();  // Prevent any default behavior
-                            const checkbox = document.getElementById("AntipsychoticsGuideCheckbox");
-                            if (checkbox) checkbox.checked = !checkbox.checked;
-                          }}
-                        >
-                          Antipsychotics Guide
-
-                        </Typography>                   
-                      </div>
-                      <div className="item-container">
-                        <input type="checkbox" id="AntipsychoticSafetyCheckbox" />
-
-                        <Typography
-                          className="myStyledButton"
-                          sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            const checkbox = document.getElementById("AntipsychoticSafetyCheckbox");
-                            if (checkbox) checkbox.checked = !checkbox.checked;
-                          }}
-                        >
-                          Antipsychotics Safety Concerns
-
-                        </Typography>
-                      </div>
-                    </AccordionDetails>
-                  </Accordion>
-                  
-                </CardContent>
-                <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-                  <Accordion className="myAccordion">
-                    <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
-                      <Typography variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                        {" "}
-                        Insomnia{" "}
-                      </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <div className="item-container">
-                        <input type="checkbox" id="InsomniaManagementCheckbox" />
-
-                        <Typography
-                          className="myStyledButton"
-                          sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            const checkbox = document.getElementById("InsomniaManagementCheckbox");
-                            if (checkbox) checkbox.checked = !checkbox.checked;
-                          }}
-                        >
-                          Insomnia management
-
-                        </Typography>
-                      </div>
-
-                      <div className="item-container">
-                        <input type="checkbox" id="InsomniaSedativesCheckbox" />
-
-                        <Typography
-                          className="myStyledButton"
-                          sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            const checkbox = document.getElementById("InsomniaSedativesCheckbox");
-                            if (checkbox) checkbox.checked = !checkbox.checked;
-                          }}
-                        >
-                          Sedatives/hypnotics Guide
-
-                        </Typography>
-                      </div>
-
-                      <div className="item-container">
-                        <input type="checkbox" id="InsomniaClinicalCheckbox" />
-
-                        <Typography
-                          className="myStyledButton"
-                          sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            const checkbox = document.getElementById("InsomniaClinicalCheckbox");
-                            if (checkbox) checkbox.checked = !checkbox.checked;
-                          }}
-                        >
-                          Sedatives/hypnotics Clinical Guide
-
-                        </Typography>
-                      </div>
-
-                      <div className="item-container">
-                        <input type="checkbox" id="InsomniaSafetyCheckbox" />
-
-                        <Typography
-                          className="myStyledButton"
-                          sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            const checkbox = document.getElementById("InsomniaSafetyCheckbox");
-                            if (checkbox) checkbox.checked = !checkbox.checked;
-                          }}
-                        >
-                          Sedatives/hypnotics Safety Concerns
-
-                        </Typography>
-                      </div>
-
-                      <div className="item-container">
-                        <input type="checkbox" id="InsomniaDeprescribingCheckbox" />
-                        
-                        <Typography
-                          className="myStyledButton"
-                          sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            const checkbox = document.getElementById("InsomniaDeprescribingCheckbox");
-                            if (checkbox) checkbox.checked = !checkbox.checked;
-                          }}
-                        >
-                          Deprescribing Sedatives/Hypnotics
-
-                        </Typography>
-                      </div>
-                    </AccordionDetails>
-                  </Accordion>
-                </CardContent>
-                <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-                  <Accordion className="myAccordion">
-                    <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
-                      <Typography variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                        {" "}
-                        Dementia{" "}
-                      </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <div className="item-container">
-                        <input type="checkbox" id="CognitiveEnhancersGuideCheckbox" />
-
-                        <Typography
-                          className="myStyledButton"
-                          sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            const checkbox = document.getElementById("CognitiveEnhancersGuideCheckbox");
-                            if (checkbox) checkbox.checked = !checkbox.checked;
-                          }}
-                        >
-                          Cognitive Enhancers Guide
-
-                        </Typography>
-                      </div>
-
-                      <div className="item-container">
-                        <input type="checkbox" id="CognitiveEnhancersClinicalCheckbox" />
-
-                        <Typography
-                          className="myStyledButton"
-                          sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            const checkbox = document.getElementById("CognitiveEnhancersClinicalCheckbox");
-                            if (checkbox) checkbox.checked = !checkbox.checked;
-                          }}
-                        >
-                          Cognitive Enhancers Clinical Guide
-
-                        </Typography>
-                      </div>
-
-                      <div className="item-container">
-                        <input type="checkbox" id="NPSManagementCheckbox" />
-
-                        <Typography
-                          className="myStyledButton"
-                          sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            const checkbox = document.getElementById("NPSManagementCheckbox");
-                            if (checkbox) checkbox.checked = !checkbox.checked;
-                          }}
-                        >
-                          NPS Management
-
-                        </Typography>                   
-                      </div>
-                    </AccordionDetails>
-
-                  </Accordion>
-                </CardContent>
-                <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-                  <Accordion className="myAccordion">
-                    <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
-                      <Typography variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                        {" "}
-                        Delirium{" "}
-                      </Typography>
-                      
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <div className="item-container">
-                        <input type="checkbox" id="DeliriumManagementCheckbox" />
-
-                        <Typography
-                          className="myStyledButton"
-                          sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            const checkbox = document.getElementById("DeliriumManagementCheckbox");
-                            if (checkbox) checkbox.checked = !checkbox.checked;
-                          }}
-                        >
-                          Delirium Management
-
-                        </Typography>                      
-                      </div>
-
-                      <div className="item-container">
-                        <input type="checkbox" id="AnticholinergicActivityCheckbox" />
-
-                        <Typography
-                          className="myStyledButton"
-                          sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            const checkbox = document.getElementById("AnticholinergicActivityCheckbox");
-                            if (checkbox) checkbox.checked = !checkbox.checked;
-                          }}
-                        >
-                          Anticholinergic activity
-
-                        </Typography>                        
-                      </div>
-                    </AccordionDetails>
-                  </Accordion>
-                </CardContent>
-                <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-                  <Accordion className="myAccordion">
-                    <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
-                      <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                        {" "}
-                        Polypharmacy{" "}
-                      </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <div className="item-container">
-                        <input type="checkbox" id="CommonDDIsCheckbox" />
-
-                        <Typography 
-                          className="myStyledButton" 
-                          sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            const checkbox = document.getElementById("CommonDDIsCheckbox");
-                            if (checkbox) checkbox.checked = !checkbox.checked;
-                          }}
-                        >            
-                         Common DDI's             
-                        </Typography>                      
-                      </div>
-
-                      <div className="item-container">
-                        <input type="checkbox" id="NotableChangesCheckbox" />
-
-                        <Typography 
-                          className="myStyledButton" 
-                          sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            const checkbox = document.getElementById("NotableChangesCheckbox");
-                            if (checkbox) checkbox.checked = !checkbox.checked;
-                          }}
-                        >
-                          Notable changes in older adults
-
-                        </Typography>                      
-                      </div>
-
-                      <div className="item-container">
-                        <input type="checkbox" id="PrescribingPrinciplesCheckbox" />
-
-                        <Typography 
-                          className="myStyledButton" 
-                          sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            const checkbox = document.getElementById("PrescribingPrinciplesCheckbox");
-                            if (checkbox) checkbox.checked = !checkbox.checked;
-                          }}
-                        >
-                          Prescribing and deprescribing principles
-
-                        </Typography>                       
-                      </div>
-                    </AccordionDetails>
-
-                  </Accordion>
-                </CardContent>
-                <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-                  <Button
-                      variant="h1"
-                      sx={{
-
-                        background: "#ffffff", 
-                        width: "100%",
-                        display: "flex",
-                        flexDirection: "row", 
-                        alignItems: "center", 
-                        justifyContent: "center", 
-                        textTransform: "none",
-                        padding: "15px",
-                        border: "1px solid #cbcbcb", 
-                        boxShadow: "0px 1px 1px rgba(0,0,0,0.5)", 
-                        '&:hover': {
-                            backgroundColor: "#96D2B0", 
-                        }
-                      }}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        const checkbox = document.getElementById("ECTandPsychoactiveCheckbox");
-                        if (checkbox) checkbox.checked = !checkbox.checked;
-                      }}
-
-                  >
-                      <input type="checkbox" id="ECTandPsychoactiveCheckbox" style={{ marginRight: "10px" }} />
-
-                      <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                          ECT & Psychoactive Medications
-                      </Typography>
-                  </Button>
-                 
-                </CardContent>
-
-                <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-                  <Button
-                      variant="h1"
-                      sx={{
-                        background: "#ffffff", // Set white background
-                        width: "100%",
-                        display: "flex",
-
-                        flexDirection: "row", // changed to row to have checkbox and text side by side
-                        alignItems: "center", // added to vertically align checkbox and text
-                        justifyContent: "center", // added to horizontally center content
-
-                        textTransform: "none",
-                        padding: "15px",
-                        border: "1px solid #cbcbcb", // Add border
-                        boxShadow: "0px 1px 1px rgba(0,0,0,0.5)", // Add shadow
-                        '&:hover': {
-
-                            backgroundColor: "#96D2B0", // Change background color when hovered
-                        }
-                      }}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        const checkbox = document.getElementById("MoodStabilizersCheckbox");
-                        if (checkbox) checkbox.checked = !checkbox.checked;
-                      }}
-
-                  >
-                      <input type="checkbox" id="MoodStabilizersCheckbox" style={{ marginRight: "10px" }} />
-
-                      <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                          Mood Stabilizers
-                      </Typography>
-                  </Button>
-                </CardContent>
-
-                <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-                  <Button
-
-                      variant="h1"
-                      sx={{
-                          background: "#ffffff", // Set white background
-                          width: "100%",
-                          display: "flex",
-                          flexDirection: "row", // changed to row to have checkbox and text side by side
-                          alignItems: "center", // added to vertically align checkbox and text
-                          justifyContent: "center", // added to horizontally center content
-                          textTransform: "none",
-                          padding: "15px",
-                          border: "1px solid #cbcbcb", // Add border
-                          boxShadow: "0px 1px 1px rgba(0,0,0,0.5)", // Add shadow
-                          '&:hover': {
-                              backgroundColor: "#96D2B0", // Change background color when hovered
-                          }
-                      }}
-                      onClick={(e) => {
-                          e.preventDefault();
-                          const checkbox = document.getElementById("PsychotropicMonitoringCheckbox");
-                          if (checkbox) checkbox.checked = !checkbox.checked;
-                      }}
-
-                  >
-                      <input type="checkbox" id="PsychotropicMonitoringCheckbox" style={{ marginRight: "10px" }} />
-                      
-                      <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                          Psychotropic Monitoring
-                      </Typography>
-                  </Button>                 
-                </CardContent>
+                            <input 
+                                type="checkbox" 
+                                id={`${drugItem.route}Checkbox`} 
+                                style={{ marginRight: "10px" }} 
+                            />
+                            <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
+                                {drugItem.name}
+                            </Typography>
+                        </Button>
+                      </CardContent>
+                    );
+                  } else {
+                    return (
+                      <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
+                        <Accordion className="myAccordion">
+                          <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
+                            <Typography variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
+                              {drugCategory.category} 
+                            </Typography>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                            {drugCategory.data.map(drugItem => (
+                              <div className="item-container">
+                                <input 
+                                  type="checkbox" 
+                                  id={`${drugItem.route}Checkbox`} 
+                                  onChange={(e) => handleCheckboxChange(drugItem.route, e.target.checked)}
+                                />
+                                <Typography
+                                  className="myStyledButton"
+                                  sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }} 
+                                  onClick={() => {
+                                    const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
+                                    if (checkbox) {
+                                      checkbox.checked = !checkbox.checked;
+                                      handleCheckboxChange(drugItem.route, checkbox.checked);
+                                    }
+                                  }}
+                                >
+                                  {drugItem.name}
+                                </Typography>
+                              </div>
+                            ))}
+                          </AccordionDetails>
+                        </Accordion>
+                      </CardContent>
+                    );
+                  }
+                })}
               </Card>
             </Grid>
-            <Grid item xs={12} sm={8.5}>
+
+
+            
+            <Grid item xs={12} sm={9}>
               <Box className="gray-square">
-
                 <GridTest/>
-
+                {selectedDrugs.map(drugName => (
+                    <div key={drugName}>
+                        <h2>Rendering GridTest for {drugName}</h2>
+                        <GridTest drugData={drugData[drugName]} />
+                    </div>
+                ))}
               </Box>
             </Grid>
           </Grid>
