@@ -26,6 +26,12 @@ const updateData = async (req, res, next) => {
         name +
         '"'
     );
+
+  //   await pool.query(
+  //     "UPDATE `green_card`.`MOOD STABILIZERS GUIDE` SET ?? = ? WHERE name = ?",
+  //     [column, value, name]
+  // );
+  
     res.send("Updated Successfully!");
   } catch (error) {
     console.log(error);
@@ -33,6 +39,8 @@ const updateData = async (req, res, next) => {
     throw error;
   }
 };
+
+
 
 const drugData = async (req, res, next) => {
   const {
@@ -59,6 +67,12 @@ const drugDelete = async (req, res, next) => {
   try {
       await pool.query('DELETE FROM `green_card`.`MOOD STABILIZERS GUIDE` WHERE `Name` = ? ',
           Name);
+
+        //   await pool.query(
+        //     'DELETE FROM `green_card`.`MOOD STABILIZERS GUIDE` WHERE `Name` = ?',
+        //     [Name]
+        // );
+        
       res.send('Drug was deleted successfully');
   } catch (err) {
       next(err);

@@ -2,25 +2,25 @@ import * as React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 
-import './views/Navigation/navigation.css';
-import "./views/FeedbackForm/FeedbackForm.css";
+import './components/Navigation.css';
+import "./components/elements/feedback/FeedbackForm.css";
 import "./App.css";
 
 // Pages
-import Home from './views/HomePage/HomePage';
+import Home from './pages/HomePage';
 
-import Login from "./views/Login/LoginIndex";
+import Login from "./pages/LoginIndex";
 import SearchResultPage from "./pages/SearchResultPage";
 import SearchResults from "./pages/SearchResults";
 
 // Admin Pages
-import AdminPanel from "./pages/admin/Panel";
-import AdminFeedback from "./pages/admin/ShowFeedback";
+import AdminPanel from "./pages/admin/Dashboard";
+import AdminFeedback from "./pages/admin/Feedback";
 
 // Components
-import Disclaimer from './views/HomePage/Disclaimer';
-import NavBar from "./views/Navigation/navigation";
-import Footer from './views/Footer/Footer';
+import Disclaimer from './components/Disclaimer';
+import NavBar from "./components/Navigation";
+import Footer from './components/Footer';
 
 
 export default function App() {
@@ -44,8 +44,10 @@ export default function App() {
                     </Route>
                 </Routes>
 
-                <Footer />
             </main>
+            
+            <Footer />
+
         </Router>
     );
 }

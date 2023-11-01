@@ -2,9 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./SearchResultPage.css";
-import Navbar from "../views/Navigation/navigation";
-import Search from "../views/Search/Search"
-import Footer from "../views/Footer/Footer";
+import Navbar from "../components/Navigation";
+import Search from "../components/elements/search/Search"
+import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 
 const SearchResultPage = () => {
