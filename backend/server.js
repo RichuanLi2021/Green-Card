@@ -8,7 +8,7 @@ const cors = require("cors");
 // const { sequelize } = require('./models') // Sequelize
 
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", config.frontend_url);
+  res.header("Access-Control-Allow-Origin", config.FRONTEND_URL);
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS");
   next();
@@ -49,7 +49,7 @@ app.use("/api/search", searchMaster);
 // const routesIndex = require('./routes/index');
 // app.use("/api", routesIndex);
 
-const port = config.api_port || 8887;
+const port = config.API_PORT || 8887;
 
 try {
   app.listen(port, function () {
