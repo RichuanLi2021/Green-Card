@@ -8,7 +8,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Search from "../components/elements/search/Search";
 import { useNavigate } from "react-router-dom";
 
-import GridTest from '../components/testData/gridTest';
+import DataDisplay from '../components/DataDisplay/dataDisplay';
 import React, { useState, useEffect } from 'react'; 
 import axios from 'axios'; 
 
@@ -228,11 +228,11 @@ const HomePage = () => {
             
             <Grid item xs={12} sm={9}>
               <Box className="gray-square">
-                <GridTest/>
+                <DataDisplay/>
                 {selectedDrugs.map(drugName => (
-                    <div key={drugName}>
+                    <div className="grid" key={drugName}>
                         <h2>Rendering GridTest for {drugName}</h2>
-                        <GridTest drugData={drugData[drugName]} />
+                        <DataDisplay drugData={drugData[drugName]} />
                     </div>
                 ))}
               </Box>
