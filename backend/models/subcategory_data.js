@@ -6,10 +6,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models.Subcategory_Header, { foreignKey: 'headerID', as: 'subcategory_header' })
     }
-
-    toJSON() {
-      return { ...this.get(), id: undefined, headerID: undefined }
-    }
   }
 
   subcategory_data.init({
@@ -27,6 +23,12 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: { msg: 'Subcategory Data must have a value' },
         notEmpty: { msg: 'Subcategory Data value cannot be empty' }
+      }
+    },
+    info: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: { msg: 'Subcategory Data info cannot be empty' }
       }
     }
   }, {

@@ -3,26 +3,27 @@
 
 module.exports = {
   async up (queryInterface, DataTypes) {
-    await queryInterface.bulkInsert('roles', [
+    await queryInterface.bulkInsert('subcategory_data', [
+      // ECT & Psychoactive Medications - Medication Table
       {
-        title: 'admin',
+        headerID: 1,
+        value: '',
+        info: '',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        title: 'user',
+        headerID: 1,
+        value: '',
+        info: '',
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      {
-        title: 'guest',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }
+
     ], {});
   },
 
   async down (queryInterface, DataTypes) {
-    await queryInterface.bulkDelete('roles', null, {});
+    await queryInterface.bulkDelete('subcategory_data', null, {});
   }
 };

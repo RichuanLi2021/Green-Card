@@ -20,12 +20,6 @@ module.exports = (sequelize, DataTypes) => {
         notNull: { msg: 'Role must have a title' },
         notEmpty: { msg: 'Role title cannot be empty' }
       }
-    },
-    description: {
-      type: DataTypes.STRING,
-      validate: {
-        notEmpty: { msg: 'Role description cannot be empty' }
-      }
     }
   }, {
     sequelize,
