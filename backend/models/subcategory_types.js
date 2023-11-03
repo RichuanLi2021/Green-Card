@@ -6,10 +6,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.hasMany(models.Subcategory)
     }
-
-    toJSON() {
-      return { ...this.get(), id: undefined }
-    }
   }
 
   subcategory_types.init({

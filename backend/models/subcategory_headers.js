@@ -7,10 +7,6 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Subcategory, { foreignKey: 'subcategoryID', as: 'subcategory' })
       this.hasMany(models.Subcategory_Data)
     }
-
-    toJSON() {
-      return { ...this.get(), id: undefined, subcategoryID: undefined }
-    }
   }
   subcategory_headers.init({
     subcategoryID: {
@@ -23,18 +19,6 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: { msg: 'Subcategory Header must have a title' },
         notEmpty: { msg: 'Subcategory Header title cannot be empty' }
-      }
-    },
-    abbreviation: {
-      type: DataTypes.STRING,
-      validate: {
-        notEmpty: { msg: 'Subcategory Header abbreviation cannot be empty' }
-      }
-    },
-    description: {
-      type: DataTypes.STRING,
-      validate: {
-        notEmpty: { msg: 'Subcategory Header description cannot be empty' }
       }
     }
   }, {

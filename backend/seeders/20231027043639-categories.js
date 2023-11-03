@@ -5,50 +5,50 @@ module.exports = {
   async up (queryInterface, DataTypes) {
     await queryInterface.bulkInsert('categories', [
       {
+        id: 1,
         title: 'Antidepressants',
-        description: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
+        id: 2,
         title: 'Antipsychotics',
-        description: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
+        id: 3,
         title: 'Cognitive Enhancers',
-        description: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
+        id: 4,
         title: 'Sedatives/Hypnotics',
-        description: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
+        id: 5,
         title: 'Mood Stabilizers',
-        description: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
+        id: 6,
         title: 'Neuropsychiatric Symptoms on Dementia',
-        description: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
+        id: 7,
         title: 'Delirium',
-        description: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
+        id: 8,
         title: 'ECT & Psychoactive Medications',
-        description: null,
         createdAt: new Date(),
         updatedAt: new Date()
       }

@@ -6,10 +6,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.hasMany(models.Subcategory)
     }
-
-    toJSON() {
-      return { ...this.get(), id: undefined }
-    }
   }
 
   categories.init({
@@ -19,12 +15,6 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: { msg: 'Category must have a title' },
         notEmpty: { msg: 'Category title cannot be empty' }
-      }
-    },
-    description: {
-      type: DataTypes.STRING,
-      validate: {
-        notEmpty: { msg: 'Category description cannot be empty' }
       }
     }
   }, {

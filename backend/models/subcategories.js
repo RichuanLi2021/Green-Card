@@ -8,10 +8,6 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Subcategory_Type, { foreignKey: 'subcategoryTypeID', as: 'subcategory_type' })
       this.hasMany(models.Subcategory_Header)
     }
-
-    toJSON() {
-      return { ...this.get(), id: undefined, categoryID: undefined, subcategoryTypeID: undefined }
-    }
   }
 
   subcategories.init({
