@@ -28,7 +28,16 @@ module.exports = {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
       }
-    });
+    }).then(async () => {
+      await queryInterface.addConstraint('subcategory_headers', {
+        type: 'FOREIGN KEY',
+        fields: ['subcategoryID'],
+        references: {
+          table: 'subcategories',
+          field: 'id'
+        }
+      })
+    })
   },
 
   async down(queryInterface, DataTypes) {
