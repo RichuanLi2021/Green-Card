@@ -28,7 +28,24 @@ module.exports = {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
       }
-    });
+    }).then(async () => {
+        await queryInterface.addConstraint('user_roles', {
+          type: 'FOREIGN KEY',
+          fields: ['userID'],
+          references: {
+            table: 'users',
+            field: 'id'
+          }
+        })
+        await queryInterface.addConstraint('user_roles', {
+          type: 'FOREIGN KEY',
+          fields: ['roleID'],
+          references: {
+            table: 'roles',
+            field: 'id'
+          }
+        })
+      })
   },
 
   async down(queryInterface, DataTypes) {
