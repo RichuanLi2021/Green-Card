@@ -19,18 +19,15 @@ module.exports = {
         type: DataTypes.INTEGER
       },
       description: {
-        defaultValue: null,
         type: DataTypes.STRING
       },
       createdAt: {
         allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+        defaultValue: new Date(),
+        type: DataTypes.DATE
       },
       updatedAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+        type: DataTypes.DATE
       }
     }).then(async () => {
       await queryInterface.addConstraint('subcategories', {

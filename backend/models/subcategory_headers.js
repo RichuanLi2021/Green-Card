@@ -8,10 +8,18 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Subcategory_Data)
     }
   }
+
   subcategory_headers.init({
     subcategoryID: {
       allowNull: false,
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      validate: {
+        notNull: { msg: 'Subcategory Header must have a subcategoryID' },
+        notEmpty: { msg: 'Subcategory Header subcategoryID cannot be empty' }
+      },
+      set(value) {
+        this.setDataValue('subcategoryID', value)
+      }
     },
     title: {
       allowNull: false,
@@ -19,6 +27,9 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: { msg: 'Subcategory Header must have a title' },
         notEmpty: { msg: 'Subcategory Header title cannot be empty' }
+      },
+      set(value) {
+        this.setDataValue('title', value)
       }
     }
   }, {
@@ -27,5 +38,6 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'subcategory_headers',
     timestamps: true
   });
+
   return subcategory_headers;
 };

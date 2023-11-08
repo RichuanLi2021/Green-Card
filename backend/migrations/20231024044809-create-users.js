@@ -28,25 +28,21 @@ module.exports = {
         type: DataTypes.STRING
       },
       phone: {
-        defaultValue: null,
         type: DataTypes.STRING
       },
       lastLogin: {
-        defaultValue: null,
         type: DataTypes.DATE
       },
       createdAt: {
         allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+        defaultValue: new Date(),
+        type: DataTypes.DATE
       },
       updatedAt: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+        type: DataTypes.DATE
       },
       deletedAt: {
-        type: DataTypes.DATE,
-        defaultValue: null
+        type: DataTypes.DATE
       }
     });
   },

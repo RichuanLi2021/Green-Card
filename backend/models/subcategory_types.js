@@ -15,6 +15,9 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: { msg: 'Subcategory Type must have a title' },
         notEmpty: { msg: 'Subcategory Type title cannot be empty' }
+      },
+      set(value) {
+        this.setDataValue('title', value)
       }
     }
   }, {

@@ -19,10 +19,10 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
+        defaultValue: new Date(),
         type: DataTypes.DATE
       },
       updatedAt: {
-        allowNull: false,
         type: DataTypes.DATE
       }
     }).then(async () => {
