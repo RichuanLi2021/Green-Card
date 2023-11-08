@@ -19,6 +19,9 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: { msg: 'User must have a fName' },
         notEmpty: { msg: 'User fName cannot be empty' }
+      },
+      set(value) {
+        this.setDataValue('fName', value)
       }
     },
     lName: {
@@ -27,6 +30,9 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: { msg: 'User must have a lName' },
         notEmpty: { msg: 'User lName cannot be empty' }
+      },
+      set(value) {
+        this.setDataValue('lName', value)
       }
     },
     email: {
@@ -36,6 +42,9 @@ module.exports = (sequelize, DataTypes) => {
         notNull: { msg: 'User must have an email' },
         notEmpty: { msg: 'User email cannot be empty' },
         isEmail: { msg: 'User email must be a valid email address' }
+      },
+      set(value) {
+        this.setDataValue('email', value)
       }
     },
     password: {
@@ -44,18 +53,28 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: { msg: 'User must have a password' },
         notEmpty: { msg: 'User password cannot be empty' }
+      },
+      set(value) {
+        this.setDataValue('password', value)
       }
     },
     phone: {
       type: DataTypes.STRING,
       validate: {
         notEmpty: { msg: 'User phone cannot be empty' }
+      },
+      set(value) {
+        this.setDataValue('phone', value)
       }
     },
     lastLogin: {
       type: DataTypes.DATE,
       validate: {
-        notEmpty: { msg: 'User lastLogin cannot be empty' }
+        notEmpty: { msg: 'User lastLogin cannot be empty' },
+        isDate: { msg: 'User lastLogin must be a date'}
+      },
+      set(value) {
+        this.setDataValue('lastLogin', value)
       }
     }
   }, {

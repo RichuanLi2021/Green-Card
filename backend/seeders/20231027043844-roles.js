@@ -4,21 +4,8 @@
 module.exports = {
   async up (queryInterface, DataTypes) {
     await queryInterface.bulkInsert('roles', [
-      {
-        title: 'admin',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        title: 'user',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        title: 'guest',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }
+      { id: 1, title: 'admin' },
+      { id: 2, title: 'user' }
     ], {});
   },
 

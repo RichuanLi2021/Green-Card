@@ -15,9 +15,6 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: { msg: 'Auth_Token must have an user' },
         notEmpty: { msg: 'Auth_Token user cannot be empty' }
-      },
-      get() {
-        return this.getDataValue('userID')
       }
     },
     expiresAt: {
@@ -26,15 +23,12 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: { msg: 'Auth_Token must have an expiresAt' },
         notEmpty: { msg: 'Auth_Token expiresAt cannot be empty' },
-        notDate: { msg: 'Auth_Token expiresAt must be a date'},
-        expirationDate(value) {
+        isDate: { msg: 'Auth_Token expiresAt must be a date'},
+        expireDateIsYounger(value) {
           if (value <= this.createdAt || value <= this.updatedAt) {
             throw new Error('Auth_Token expiresAt must be dated after createdAt and updatedAt')
           }
         }
-      },
-      get() {
-        return this.getDataValue('expiresAt')
       },
       set(value) {
         this.setDataValue('expiresAt', value)

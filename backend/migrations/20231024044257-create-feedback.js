@@ -11,11 +11,9 @@ module.exports = {
         type: DataTypes.INTEGER
       },
       name: {
-        allowNull: false,
         type: DataTypes.STRING
       },
       email: {
-        allowNull: false,
         type: DataTypes.STRING
       },
       comment: {
@@ -27,18 +25,12 @@ module.exports = {
         type: DataTypes.INTEGER
       },
       allowEmailBack: {
-        allowNull: false,
         type: DataTypes.BOOLEAN
       },
       createdAt: {
         allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
-      },
-      updatedAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+        defaultValue: new Date(),
+        type: DataTypes.DATE
       }
     });
   },
