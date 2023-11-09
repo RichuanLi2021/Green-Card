@@ -52,9 +52,15 @@ module.exports = {
 
 
       // Mood Stabilizers - Medication Table
-
+      { id: 51,  subcategoryID: 13,  title: 'Name' },
+      { id: 52,  subcategoryID: 13,  title: 'Half-life' },
+      { id: 53,  subcategoryID: 13,  title: 'Dose (mg/day) Initial | Maint. | Max' },
+      { id: 54,  subcategoryID: 13,  title: 'Frequency' },
+      { id: 55,  subcategoryID: 13,  title: 'mg/Form Supplied' },
+      { id: 56,  subcategoryID: 13,  title: 'Monitoring level' },
 
       // Mood Stabilizers - Adverse Effects and Safety
+      { id: 57,  subcategoryID: 14,  title: 'Adverse Effects and Safety' },
 
 
 
@@ -76,8 +82,8 @@ module.exports = {
 
 
       // ECT & Psychoactive Medications - Medication Table
-
-
+      { id: 81,  subcategoryID: 20,  title: 'Medication' },
+      { id: 82,  subcategoryID: 20,  title: 'Recommended Action' },
     ], {});
   },
 
