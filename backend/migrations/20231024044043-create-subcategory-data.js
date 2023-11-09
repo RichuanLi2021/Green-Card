@@ -10,15 +10,16 @@ module.exports = {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
+      uuid: {
+        defaultValue: DataTypes.UUIDV4,
+        type: DataTypes.UUID
+      },
       headerID: {
         allowNull: false,
         type: DataTypes.INTEGER
       },
       value: {
         allowNull: false,
-        type: DataTypes.STRING
-      },
-      info: {
         type: DataTypes.STRING
       },
       createdAt: {

@@ -1,14 +1,27 @@
 'use strict';
 const { Model } = require('sequelize');
+const { v4: uuidv4 } = require("uuid");
 
 module.exports = (sequelize, DataTypes) => {
   class subcategory_data extends Model {
     static associate(models) {
       this.belongsTo(models.Subcategory_Header, { foreignKey: 'headerID', as: 'subcategory_header' })
     }
+
+    toJSON() {
+      return { ...this.get(), id: undefined, headerID: undefined }
+    }
   }
 
   subcategory_data.init({
+    uuid: {
+      defaultValue: uuidv4(),
+      type: DataTypes.UUID,
+      validate: {
+        isUUID: 4,
+        notEmpty: { msg: 'Subcategory Data uuid cannot be empty' }
+      }
+    },
     headerID: {
       allowNull: false,
       type: DataTypes.INTEGER,
@@ -29,15 +42,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       set(value) {
         this.setDataValue('value', value)
-      }
-    },
-    info: {
-      type: DataTypes.STRING,
-      validate: {
-        notEmpty: { msg: 'Subcategory Data info cannot be empty' }
-      },
-      set(value) {
-        this.setDataValue('info', value)
       }
     }
   }, {

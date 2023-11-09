@@ -1,5 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
+const { v4: uuidv4 } = require("uuid");
 
 module.exports = (sequelize, DataTypes) => {
   class subcategories extends Model {
@@ -8,9 +9,21 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Subcategory_Type, { foreignKey: 'subcategoryTypeID', as: 'subcategory_type' })
       this.hasMany(models.Subcategory_Header)
     }
+
+    toJSON() {
+      return { ...this.get(), id: undefined, categoryID: undefined, subcategoryTypeID: undefined }
+    }
   }
 
   subcategories.init({
+    uuid: {
+      defaultValue: uuidv4(),
+      type: DataTypes.UUID,
+      validate: {
+        isUUID: 4,
+        notEmpty: { msg: 'Subcategory uuid cannot be empty' }
+      }
+    },
     categoryID: {
       allowNull: false,
       type: DataTypes.INTEGER,

@@ -33,6 +33,7 @@
     "mysql2": "^3.6.2",
     "sequelize": "^6.33.0",
     "sequelize-cli": "^6.6.1",
+    "uuid": "^9.0.1",
     "yarn": "^1.22.19"
   },
   "devDependencies": {

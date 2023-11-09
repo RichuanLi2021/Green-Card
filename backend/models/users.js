@@ -1,5 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
+const { v4: uuidv4 } = require("uuid");
 
 module.exports = (sequelize, DataTypes) => {
   class users extends Model {
@@ -13,6 +14,14 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   users.init({
+    uuid: {
+      defaultValue: uuidv4(),
+      type: DataTypes.UUID,
+      validate: {
+        isUUID: 4,
+        notEmpty: { msg: 'User uuid cannot be empty' }
+      }
+    },
     fName: {
       allowNull: false,
       type: DataTypes.STRING,
@@ -58,13 +67,13 @@ module.exports = (sequelize, DataTypes) => {
         this.setDataValue('password', value)
       }
     },
-    phone: {
-      type: DataTypes.STRING,
+    verified: {
+      type: DataTypes.BOOLEAN,
       validate: {
-        notEmpty: { msg: 'User phone cannot be empty' }
+        notEmpty: { msg: 'User verified cannot be empty' }
       },
       set(value) {
-        this.setDataValue('phone', value)
+        this.setDataValue('verified', value)
       }
     },
     lastLogin: {
