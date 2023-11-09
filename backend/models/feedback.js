@@ -1,5 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
+const { v4: uuidv4 } = require("uuid");
 
 module.exports = (sequelize, DataTypes) => {
   class feedback extends Model {
@@ -11,23 +12,12 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   feedback.init({
-    name: {
-      type: DataTypes.STRING,
+    uuid: {
+      defaultValue: uuidv4(),
+      type: DataTypes.UUID,
       validate: {
-        notEmpty: { msg: 'Feedback name cannot be empty' }
-      },
-      set(value) {
-        this.setDataValue('name', value)
-      }
-    },
-    email: {
-      type: DataTypes.STRING,
-      validate: {
-        notEmpty: { msg: 'Feedback email cannot be empty' },
-        isEmail: { msg: 'Feedback email must be a valid email address' }
-      },
-      set(value) {
-        this.setDataValue('email', value)
+        isUUID: 4,
+        notEmpty: { msg: 'Feedback uuid cannot be empty' }
       }
     },
     comment: {
@@ -50,6 +40,25 @@ module.exports = (sequelize, DataTypes) => {
       },
       set(value) {
         this.setDataValue('rating', value)
+      }
+    },
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: { msg: 'Feedback name cannot be empty' }
+      },
+      set(value) {
+        this.setDataValue('name', value)
+      }
+    },
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: { msg: 'Feedback email cannot be empty' },
+        isEmail: { msg: 'Feedback email must be a valid email address' }
+      },
+      set(value) {
+        this.setDataValue('email', value)
       }
     },
     allowEmailBack: {

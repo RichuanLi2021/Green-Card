@@ -1,5 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
+const { v4: uuidv4 } = require("uuid");
 
 module.exports = (sequelize, DataTypes) => {
   class user_roles extends Model {
@@ -9,11 +10,19 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     toJSON() {
-      return {} // Table contains only IDs, so no return values necessary
+      return { ...this.get(), id: undefined, userID: undefined, roleID: undefined }
     }
   }
 
   user_roles.init({
+    uuid: {
+      defaultValue: uuidv4(),
+      type: DataTypes.UUID,
+      validate: {
+        isUUID: 4,
+        notEmpty: { msg: 'User Role uuid cannot be empty' }
+      }
+    },
     userID: {
       allowNull: false,
       type: DataTypes.INTEGER,

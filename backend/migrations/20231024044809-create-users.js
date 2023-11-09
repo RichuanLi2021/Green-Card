@@ -10,6 +10,10 @@ module.exports = {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
+      uuid: {
+        defaultValue: DataTypes.UUIDV4,
+        type: DataTypes.UUID
+      },
       fName: {
         allowNull: false,
         type: DataTypes.STRING
@@ -27,8 +31,10 @@ module.exports = {
         allowNull: false,
         type: DataTypes.STRING
       },
-      phone: {
-        type: DataTypes.STRING
+      verified: {
+        allowNull: false,
+        defaultValue: 0,
+        type: DataTypes.BOOLEAN
       },
       lastLogin: {
         type: DataTypes.DATE

@@ -10,11 +10,9 @@ module.exports = {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      name: {
-        type: DataTypes.STRING
-      },
-      email: {
-        type: DataTypes.STRING
+      uuid: {
+        defaultValue: DataTypes.UUIDV4,
+        type: DataTypes.UUID
       },
       comment: {
         allowNull: false,
@@ -23,6 +21,12 @@ module.exports = {
       rating: {
         allowNull: false,
         type: DataTypes.INTEGER
+      },
+      name: {
+        type: DataTypes.STRING
+      },
+      email: {
+        type: DataTypes.STRING
       },
       allowEmailBack: {
         type: DataTypes.BOOLEAN
