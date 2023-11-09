@@ -72,12 +72,15 @@ module.exports = {
 
 
       // Delirium - Nonpharmalogical
-
+      {id: 108, subcategoryID: 17, title: 'Nonpharmacological Approach' },
 
       // Delirium - Pharmalogical
-
+      {id: 109, subcategoryID: 18, title: 'Pharmacological Approach' },
 
       // Delirium - Anticholinergic Activity
+      {id: 110, subcategoryID: 19, title: 'High' },
+      {id: 111, subcategoryID: 19, title: 'Medium' },
+      {id: 112, subcategoryID: 19, title: 'Low' },
 
 
 
