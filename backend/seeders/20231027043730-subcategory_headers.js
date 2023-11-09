@@ -59,10 +59,10 @@ module.exports = {
 
 
       // Neuropsychiatric Symptoms on Dementia - Nonpharmalogical
-
+      { id: 101, subcategoryID: 15, title: 'Nonpharmacological Approach' },
 
       // Neuropsychiatric Symptoms on Dementia - Pharmalogical
-
+      { id: 102, subcategoryID: 16, title: 'Pharmacological Approach' },
 
 
       // Delirium - Nonpharmalogical
