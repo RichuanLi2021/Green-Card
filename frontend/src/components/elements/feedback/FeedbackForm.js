@@ -83,7 +83,6 @@ const FeedbackForm = ({ onClose }) => {
               fullWidth
               value={name}
               onChange={handleNameChange}
-              required
             />
           </Box>
           <Box sx={{ m: 1.5 }}>
@@ -94,7 +93,6 @@ const FeedbackForm = ({ onClose }) => {
               type="email"
               value={email}
               onChange={handleEmailChange}
-              required
             />
           </Box>
           <Box sx={{ m: 1.5 }}>
@@ -105,7 +103,6 @@ const FeedbackForm = ({ onClose }) => {
               multiline
               value={comment}
               onChange={handleCommentChange}
-              required
             />
           </Box>
           <Box sx={{ m: 1.5 }}>
