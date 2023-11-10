@@ -11,7 +11,6 @@ router.get('/', async (req, res) => {
       } catch (err) {
         return res.status(500).json(err)
       }
-
 })
 
 // Get One
@@ -23,46 +22,38 @@ router.get('/:id', async (req, res) => {
       } catch (err) {
         return res.status(500).json(err)
       }
-
-
 })
 
 // Create One
 router.post('/', async (req, res) => {
     const {userID, roleID } = req.body
     // Add input validation
+    
     try {
         await User.create({
           userID: userID,
           roleID: roleID,
-          createdAt: new Date(),
-          updatedAt: new Date()
         }).then((message) => { return res.status(201).json({message}) })
           .catch((err) => { return res.status(400).json(err) })
       } catch (err) {
         return res.status(500).json(err)
       }
-
 })
 
 // Update One
 router.put('/:id', async (req, res) => {
-    const {userID, roleID } = req.body
+    const {userID, roleID} = req.body
     // Add input validation
     try {
         await User.update({
           userID: userID,
           roleID: roleID,
-          createdAt: new Date(),
-          updatedAt: new Date()
         }, { where: { id: req.params.id } })
           .then((message) => { return res.status(200).json({message}) })
           .catch((err) => { return res.status(400).json(err) })
       } catch (err) {
         return res.status(500).json(err)
       }
-
-
 })
 
 // Delete One
