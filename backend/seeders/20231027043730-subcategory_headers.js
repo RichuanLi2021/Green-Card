@@ -32,23 +32,49 @@ module.exports = {
 
 
       // Cognitive Enhancers - Medication Table
-
+      { id: 131, subcategoryID: 7,  title: 'Name' },
+      { id: 182, subcategoryID: 7,  title: 'Action'},
+      { id: 132, subcategoryID: 7,  title: 'Half-life'},
+      { id: 133, subcategoryID: 7,  title: 'Dose (initial/monthly/increment/maint.' },
+      { id: 134, subcategoryID: 7,  title: 'Frequency' },
+      { id: 135, subcategoryID: 7,  title: 'mg/Form Supplied' },
+      { id: 185, subcategoryID: 7,  title: 'With food?' },
+      { id: 136, subcategoryID: 7,  title: 'MCI' },
+      { id: 137, subcategoryID: 7,  title: 'Mild-mod Alz' },
+      { id: 138, subcategoryID: 7,  title: 'Severe Alz' },
+      { id: 139, subcategoryID: 7,  title: 'Mixed (Alz+Vas)' },
+      { id: 140, subcategoryID: 7,  title: 'Vascular' },
+      { id: 141, subcategoryID: 7,  title: 'LBD' },
+      { id: 142, subcategoryID: 7,  title: 'FTD' },
+      { id: 143, subcategoryID: 7,  title: 'PD' },
+      { id: 144, subcategoryID: 7,  title: 'DSD' },
 
       // Cognitive Enhancers - Adverse Effects and Safety
-
+      { id: 146, subcategoryID: 8, title: 'Contraindictions' },
+      { id: 147, subcategoryID: 8, title: 'Adverse Effects (AChEI)'},
+      { id: 148, subcategoryID: 8, title: 'Adverse Effects (Memantine)' },
 
       // Cognitive Enhancers - Clinical Guide
-
-
+      { id: 149, subcategoryID: 9, title: 'Baseline' },
+      { id: 150, subcategoryID: 9, title: 'Monitoring' },
+      { id: 151, subcategoryID: 9, title: 'How & When' },
+      
 
       // Sedatives/Hypnotics - Medication Table
-
-
+      { id: 152, subcategoryID: 10, title: 'Name' },
+      { id: 153, subcategoryID: 10, title: 'Dose equiv.'},
+      { id: 154, subcategoryID: 10, title: 'Time to peak in plasma' },
+      { id: 155, subcategoryID: 10, title: 'Half-Life' },
+      { id: 156, subcategoryID: 10, title: 'Avg dose range (mg/day)' },
+      { id: 157, subcategoryID: 10, title: 'mg/Form supplied' },
+      
       // Sedatives/Hypnotics - Adverse Effects and Safety
-
+      { id: 517, subcategoryID: 11,  title: 'Adverse Effects and Safety' },
 
       // Sedatives/Hypnotics - Clinical Guide
-
+      { id: 158, subcategoryID: 12, title: 'Before Prescribing' },
+      { id: 159, subcategoryID: 12, title: 'Starting'},
+      { id: 160, subcategoryID: 12, title: 'Ending' },
 
 
       // Mood Stabilizers - Medication Table
