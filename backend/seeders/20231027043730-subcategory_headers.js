@@ -17,24 +17,35 @@ module.exports = {
 
       // Antidepressants - Clinical Guide
       { id: 8,  subcategoryID: 3,  title: 'For inadequate response' },
-      { id: 9,  subcategoryID: 3,  title: 'Maintenance'},
+      { id: 9,  subcategoryID: 3,  title: 'Maintenance' },
       { id: 10, subcategoryID: 3,  title: 'Tapering' },
 
 
       // Antipsychotics - Medication Table
-
-
+      { id: 11, subcategoryID: 4, title: 'Name' },
+      { id: 12, subcategoryID: 4, title: 'Approx. equiv. dose' },
+      { id: 13, subcategoryID: 4, title: 'Half-life' },
+      { id: 14, subcategoryID: 4, title: 'Frequency' },
+      { id: 15, subcategoryID: 4, title: 'Tab Strength/Form Supplied' },
+      { id: 16, subcategoryID: 4, title: 'NPS' },
+      { id: 17, subcategoryID: 4, title: 'PP' },
+      { id: 18, subcategoryID: 4, title: 'MDE(AD augment)' },
+      { id: 19, subcategoryID: 4, title: 'MDE(w. psychosis)' },
+      { id: 20, subcategoryID: 4, title: 'Delirium' },
+      { id: 21, subcategoryID: 4, title: 'EO-SCZ' },
+      { id: 22, subcategoryID: 4, title: 'LO-SCZ' },
+      
       // Antipsychotics - Adverse Effects and Safety
-
-
+      { id: 23,  subcategoryID: 5,  title: 'Adverse Effects and Safety' },
+    
       // Antipsychotics - Clinical Guide
-
+      { id: 24, subcategoryID: 6, title: 'Clinical Guide' },
 
 
       // Cognitive Enhancers - Medication Table
       { id: 131, subcategoryID: 7,  title: 'Name' },
-      { id: 182, subcategoryID: 7,  title: 'Action'},
-      { id: 132, subcategoryID: 7,  title: 'Half-life'},
+      { id: 182, subcategoryID: 7,  title: 'Action' },
+      { id: 132, subcategoryID: 7,  title: 'Half-life' },
       { id: 133, subcategoryID: 7,  title: 'Dose (initial/monthly/increment/maint.' },
       { id: 134, subcategoryID: 7,  title: 'Frequency' },
       { id: 135, subcategoryID: 7,  title: 'mg/Form Supplied' },
@@ -89,7 +100,6 @@ module.exports = {
       { id: 57,  subcategoryID: 14,  title: 'Adverse Effects and Safety' },
 
 
-
       // Neuropsychiatric Symptoms on Dementia - Nonpharmalogical
       { id: 101, subcategoryID: 15, title: 'Nonpharmacological Approach' },
 
@@ -107,7 +117,6 @@ module.exports = {
       {id: 110, subcategoryID: 19, title: 'High' },
       {id: 111, subcategoryID: 19, title: 'Medium' },
       {id: 112, subcategoryID: 19, title: 'Low' },
-
 
 
       // ECT & Psychoactive Medications - Medication Table
