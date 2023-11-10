@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 // Get One
 router.get('/:id', async (req, res) => {
   try {
-    await Category.findAll({ where: { id: req.params.id } })
+    await Category.findOne({ where: { id: req.params.id } })
       .then((message) => { return res.status(200).json({message}) })
       .catch((err) => { return res.status(400).json(err) })
   } catch (err) {
