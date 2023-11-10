@@ -5,8 +5,6 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Search from "../components/elements/search/Search";
-import { useNavigate } from "react-router-dom";
 
 import DataDisplay from '../components/DataDisplay/dataDisplay';
 import React, { useState, useEffect } from 'react'; 
@@ -22,7 +20,6 @@ const theme = createTheme({
 });
 
 const HomePage = () => {
-  const navigate = useNavigate();
   const [selectedDrugs, setSelectedDrugs] = useState([]);
   const [drugData, setDrugData] = useState({});
 
@@ -47,10 +44,6 @@ const HomePage = () => {
           setSelectedDrugs(prev => prev.filter(item => item !== drugName));
       }
   };
-  const handleSearch = (searchTerm) => {
-    navigate(`/search/${searchTerm}`);
-  };
-
 
   const drugList = [
     {
@@ -135,7 +128,6 @@ const HomePage = () => {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Search onSearch={handleSearch}></Search>
         <Container className="main-container" maxWidth={false}>
           <Grid container spacing={4} direction="row" sx={{ textAlign: "center" }}>
             <Grid item xs={12} sm={3}>
