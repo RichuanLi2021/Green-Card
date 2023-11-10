@@ -35,8 +35,6 @@ router.post('/', async (req, res) => {
       comment: comment,
       rating: rating,
       allowEmailBack: allowEmailBack,
-      createdAt: new Date(),
-      updatedAt: new Date()
     })
       .then((message) => { return res.status(201).json({message}) })
       .catch((err) => { return res.status(400).json(err) })
@@ -57,8 +55,6 @@ router.put('/:id', async (req, res) => {
       comment: comment,
       rating: rating,
       allowEmailBack: allowEmailBack,
-      createdAt: new Date(),
-      updatedAt: new Date()
     }, { where: { id: req.params.id } })
       .then((message) => { return res.status(200).json({message}) })
       .catch((err) => { return res.status(400).json(err) })

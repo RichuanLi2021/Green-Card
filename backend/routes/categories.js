@@ -33,8 +33,6 @@ router.post('/', async (req, res) => {
     await Category.create({
       title: title,
       description: description,
-      createdAt: new Date(),
-      updatedAt: new Date()
     }).then((message) => { return res.status(201).json({message}) })
       .catch((err) => { return res.status(400).json(err) })
   } catch (err) {
@@ -51,8 +49,6 @@ router.put('/:id', async (req, res) => {
     await Category.update({
       title: title,
       description: description,
-      createdAt: new Date(),
-      updatedAt: new Date()
     }, { where: { id: req.params.id } })
       .then((message) => { return res.status(200).json({message}) })
       .catch((err) => { return res.status(400).json(err) })
