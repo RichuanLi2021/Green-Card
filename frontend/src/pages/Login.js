@@ -119,7 +119,7 @@ export default function SignIn() {
             
             <Grid container className='signUpGrid'>
             <Grid item xs>
-                <Link href="#" variant="body2" sx={{color:'#68a783'}}>
+                <Link to="register" variant="body2" sx={{color:'#68a783'}}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
