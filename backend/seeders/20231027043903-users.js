@@ -9,19 +9,23 @@ module.exports = {
         id: 1,
         uuid: uuidv4(),
         fName: 'Admin',
-        lName: 'Admin',
+        lName: 'Test',
         email: 'admin@gpgc.ca',
         password: '$2a$12$FXH9LO5.Hp.7D7JDVgYlVO5bdN5E8OY2ln/1H0d5WQgLerm5GK252',
-        verified: true
+        verified: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
         id: 2,
         uuid: uuidv4(),
         fName: 'User',
-        lName: 'User',
+        lName: 'Test',
         email: 'user@gpgc.ca',
         password: '$2a$12$FXH9LO5.Hp.7D7JDVgYlVO5bdN5E8OY2ln/1H0d5WQgLerm5GK252',
-        verified: true
+        verified: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ], {});
   },

@@ -4,12 +4,10 @@ const { v4: uuidv4 } = require("uuid");
 
 module.exports = (sequelize, DataTypes) => {
   class users extends Model {
-    static associate(models) {
-      this.hasMany(models.User_Role)
-    }
+    static associate(models) {}
 
     toJSON() {
-      return { ...this.get(), id: undefined }
+      return { ...this.get(), id: undefined, password: undefined }
     }
   }
 
@@ -28,9 +26,6 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: { msg: 'User must have a fName' },
         notEmpty: { msg: 'User fName cannot be empty' }
-      },
-      set(value) {
-        this.setDataValue('fName', value)
       }
     },
     lName: {
@@ -39,9 +34,6 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: { msg: 'User must have a lName' },
         notEmpty: { msg: 'User lName cannot be empty' }
-      },
-      set(value) {
-        this.setDataValue('lName', value)
       }
     },
     email: {
@@ -51,9 +43,6 @@ module.exports = (sequelize, DataTypes) => {
         notNull: { msg: 'User must have an email' },
         notEmpty: { msg: 'User email cannot be empty' },
         isEmail: { msg: 'User email must be a valid email address' }
-      },
-      set(value) {
-        this.setDataValue('email', value)
       }
     },
     password: {
@@ -62,18 +51,12 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: { msg: 'User must have a password' },
         notEmpty: { msg: 'User password cannot be empty' }
-      },
-      set(value) {
-        this.setDataValue('password', value)
       }
     },
     verified: {
       type: DataTypes.BOOLEAN,
       validate: {
         notEmpty: { msg: 'User verified cannot be empty' }
-      },
-      set(value) {
-        this.setDataValue('verified', value)
       }
     },
     lastLogin: {
@@ -81,9 +64,6 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: { msg: 'User lastLogin cannot be empty' },
         isDate: { msg: 'User lastLogin must be a date'}
-      },
-      set(value) {
-        this.setDataValue('lastLogin', value)
       }
     }
   }, {
