@@ -40,8 +40,6 @@ module.exports = {
         type: DataTypes.DATE
       },
       createdAt: {
-        allowNull: false,
-        defaultValue: new Date(),
         type: DataTypes.DATE
       },
       updatedAt: {

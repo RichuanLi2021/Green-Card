@@ -23,8 +23,6 @@ module.exports = {
         type: DataTypes.INTEGER
       },
       createdAt: {
-        allowNull: false,
-        defaultValue: new Date(),
         type: DataTypes.DATE
       },
       updatedAt: {

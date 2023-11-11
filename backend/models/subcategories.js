@@ -4,11 +4,7 @@ const { v4: uuidv4 } = require("uuid");
 
 module.exports = (sequelize, DataTypes) => {
   class subcategories extends Model {
-    static associate(models) {
-      this.belongsTo(models.Category, { foreignKey: 'categoryID', as: 'category' })
-      this.belongsTo(models.Subcategory_Type, { foreignKey: 'subcategoryTypeID', as: 'subcategory_type' })
-      this.hasMany(models.Subcategory_Header)
-    }
+    static associate(models) {}
 
     toJSON() {
       return { ...this.get(), id: undefined, categoryID: undefined, subcategoryTypeID: undefined }

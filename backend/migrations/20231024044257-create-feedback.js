@@ -32,8 +32,6 @@ module.exports = {
         type: DataTypes.BOOLEAN
       },
       createdAt: {
-        allowNull: false,
-        defaultValue: new Date(),
         type: DataTypes.DATE
       }
     });

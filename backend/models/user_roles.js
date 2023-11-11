@@ -4,10 +4,7 @@ const { v4: uuidv4 } = require("uuid");
 
 module.exports = (sequelize, DataTypes) => {
   class user_roles extends Model {
-    static associate(models) {
-      this.belongsTo(models.User, { foreignKey: 'userID', as: 'user' })
-      this.belongsTo(models.Role, { foreignKey: 'roleID', as: 'role' })
-    }
+    static associate(models) {}
 
     toJSON() {
       return { ...this.get(), id: undefined, userID: undefined, roleID: undefined }

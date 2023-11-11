@@ -1,6 +1,8 @@
 module.exports = {
-  "FRONTEND_URL": process.env.FRONTEND_URL || 'http://localhost:3000',
   "API_PORT": process.env.API_PORT || 8887,
+  "FRONTEND_URL": process.env.FRONTEND_URL || 'http://localhost:3000',
+  "JWT_SECRET": process.env.JWT_SECRET,
+  "JWT_LENGTH_MS": process.env.JWT_LENGTH_MS || 604800000,
 
   "DB_HOST": process.env.DB_HOST || 'localhost',
   "DB_PORT": process.env.DB_PORT || 3306,
