@@ -5,7 +5,7 @@ const { User, User_Role, Role } = require('../models')
 const bcrypt = require("bcrypt");
 
 // Get All
-router.get('/', async (req, res) => {
+router.get('/', validateToken, async (req, res) => {
   try {
     await User.findAll({
       include: {
@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
 })
 
 // Get One
-router.get('/:id', async (req, res) => {
+router.get('/:id', validateToken, async (req, res) => {
   try {
     await User.findOne({
       where: { uuid: req.params.id },
@@ -42,7 +42,7 @@ router.get('/:id', async (req, res) => {
 })
 
 // Create One
-router.post('/', async (req, res) => {
+router.post('/', validateToken, async (req, res) => {
   const { fName, lName, email, password } = req.body
   // Sanitize and validate
 
@@ -76,7 +76,7 @@ router.post('/', async (req, res) => {
 })
 
 // Update One
-router.put('/:id', async (req, res) => {
+router.put('/:id', validateToken, async (req, res) => {
   const { fName, lName, email, password } = req.body
   // Sanitize and validate
 
@@ -101,7 +101,7 @@ router.put('/:id', async (req, res) => {
 })
 
 // Delete One
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', validateToken, async (req, res) => {
   try {
     await User.destroy({ where: { uuid: req.params.id } })
       .then((message) => { return res.status(200).json({message}) })

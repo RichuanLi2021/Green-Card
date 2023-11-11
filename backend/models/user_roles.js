@@ -24,22 +24,16 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.INTEGER,
       validate: {
-        notNull: { msg: 'User Role must have a userID' },
-        notEmpty: { msg: 'User Role userID cannot be empty' }
-      },
-      set(value) {
-        this.setDataValue('userID', value)
+        notNull: { msg: 'User Role must have a user' },
+        notEmpty: { msg: 'User Role user cannot be empty' }
       }
     },
     roleID: {
       allowNull: false,
       type: DataTypes.INTEGER,
       validate: {
-        notNull: { msg: 'User Role must have a roleID' },
-        notEmpty: { msg: 'User Role roleID cannot be empty' }
-      },
-      set(value) {
-        this.setDataValue('roleID', value)
+        notNull: { msg: 'User Role must have a role' },
+        notEmpty: { msg: 'User Role role cannot be empty' }
       }
     }
   }, {

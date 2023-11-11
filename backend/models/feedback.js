@@ -26,9 +26,6 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: { msg: 'Feedback must have a comment' },
         notEmpty: { msg: 'Feedback comment cannot be empty' }
-      },
-      set(value) {
-        this.setDataValue('comment', value)
       }
     },
     rating: {
@@ -37,18 +34,12 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: { msg: 'Feedback must have a rating' },
         notEmpty: { msg: 'Feedback rating cannot be empty' }
-      },
-      set(value) {
-        this.setDataValue('rating', value)
       }
     },
     name: {
       type: DataTypes.STRING,
       validate: {
         notEmpty: { msg: 'Feedback name cannot be empty' }
-      },
-      set(value) {
-        this.setDataValue('name', value)
       }
     },
     email: {
@@ -56,18 +47,12 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: { msg: 'Feedback email cannot be empty' },
         isEmail: { msg: 'Feedback email must be a valid email address' }
-      },
-      set(value) {
-        this.setDataValue('email', value)
       }
     },
     allowEmailBack: {
       type: DataTypes.BOOLEAN,
       validate: {
-        notEmpty: { msg: 'Feedback allowEmailBack cannot be empty' }
-      },
-      set(value) {
-        this.setDataValue('allowEmailBack', value)
+        notEmpty: { msg: 'Feedback must allow or disallow email follow up' }
       }
     }
   }, {

@@ -26,9 +26,6 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: { msg: 'Role must have a title' },
         notEmpty: { msg: 'Role title cannot be empty' }
-      },
-      set(value) {
-        this.setDataValue('title', value)
       }
     }
   }, {

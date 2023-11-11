@@ -24,25 +24,25 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING,
       validate: {
-        notNull: { msg: 'User must have a fName' },
-        notEmpty: { msg: 'User fName cannot be empty' }
+        notNull: { msg: 'User must have a first name' },
+        notEmpty: { msg: 'First name cannot be empty' }
       }
     },
     lName: {
       allowNull: false,
       type: DataTypes.STRING,
       validate: {
-        notNull: { msg: 'User must have a lName' },
-        notEmpty: { msg: 'User lName cannot be empty' }
+        notNull: { msg: 'User must have a last name' },
+        notEmpty: { msg: 'Last name cannot be empty' }
       }
     },
     email: {
       allowNull: false,
       type: DataTypes.STRING,
       validate: {
-        notNull: { msg: 'User must have an email' },
-        notEmpty: { msg: 'User email cannot be empty' },
-        isEmail: { msg: 'User email must be a valid email address' }
+        notNull: { msg: 'User must have an email address' },
+        notEmpty: { msg: 'Email address cannot be empty' },
+        isEmail: { msg: 'Email address must be valid' }
       }
     },
     password: {
@@ -50,20 +50,20 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         notNull: { msg: 'User must have a password' },
-        notEmpty: { msg: 'User password cannot be empty' }
+        notEmpty: { msg: 'Password cannot be empty' }
       }
     },
     verified: {
       type: DataTypes.BOOLEAN,
       validate: {
-        notEmpty: { msg: 'User verified cannot be empty' }
+        notEmpty: { msg: 'User verification cannot be empty' }
       }
     },
     lastLogin: {
       type: DataTypes.DATE,
       validate: {
         notEmpty: { msg: 'User lastLogin cannot be empty' },
-        isDate: { msg: 'User lastLogin must be a date'}
+        isDate: { msg: 'User lastLogin must be a date' }
       }
     }
   }, {
