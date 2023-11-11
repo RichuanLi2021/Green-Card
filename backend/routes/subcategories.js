@@ -1,9 +1,11 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
+const { validateToken } = require("../middleware/validate")
 const { Subcategory } = require('../models')
 
+
 // Get All
-router.get('/', async (req, res) => {
+router.get('/', validateToken, async (req, res) => {
   try {
     await Subcategory.findAll()
       .then((message) => { return res.status(200).json({message}) })
@@ -14,7 +16,7 @@ router.get('/', async (req, res) => {
 })
 
 // Get One
-router.get('/:id', async (req, res) => {
+router.get('/:id', validateToken, async (req, res) => {
   try {
     await Subcategory.findOne({ where: { id: req.params.id } })
       .then((message) => { return res.status(200).json({message}) })
@@ -25,7 +27,7 @@ router.get('/:id', async (req, res) => {
 })
 
 // Create One
-router.post('/', async (req, res) => {
+router.post('/', validateToken, async (req, res) => {
   const { categoryID, subcategoryTypeID, description} = req.body
   // Add input validation
 
@@ -42,7 +44,7 @@ router.post('/', async (req, res) => {
 })
 
 // Update One
-router.put('/:id', async (req, res) => {
+router.put('/:id', validateToken, async (req, res) => {
   const { categoryID, subcategoryTypeID, description} = req.body
   // Add input validation
 
@@ -60,7 +62,7 @@ router.put('/:id', async (req, res) => {
 })
 
 // Delete One
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', validateToken, async (req, res) => {
   try {
     await Subcategory.destroy({ where: { id: req.params.id } })
       .then((message) => { return res.status(200).json({message}) })

@@ -24,31 +24,22 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.INTEGER,
       validate: {
-        notNull: { msg: 'Subcategory must have a categoryID' },
-        notEmpty: { msg: 'Subcategory categoryID cannot be empty' }
-      },
-      set(value) {
-        this.setDataValue('categoryID', value)
+        notNull: { msg: 'Subcategory must have a category' },
+        notEmpty: { msg: 'Subcategory category cannot be empty' }
       }
     },
     subcategoryTypeID: {
       allowNull: false,
       type: DataTypes.INTEGER,
       validate: {
-        notNull: { msg: 'Subcategory must have a typeID' },
-        notEmpty: { msg: 'Subcategory typeID cannot be empty' }
-      },
-      set(value) {
-        this.setDataValue('subcategoryTypeID', value)
+        notNull: { msg: 'Subcategory must have a type' },
+        notEmpty: { msg: 'Subcategory type cannot be empty' }
       }
     },
     description: {
       type: DataTypes.STRING,
       validate: {
         notEmpty: { msg: 'Subcategory description cannot be empty' }
-      },
-      set(value) {
-        this.setDataValue('description', value)
       }
     }
   }, {

@@ -26,11 +26,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING,
       validate: {
-        notNull: { msg: 'Subcategory Type must have a title' },
-        notEmpty: { msg: 'Subcategory Type title cannot be empty' }
-      },
-      set(value) {
-        this.setDataValue('title', value)
+        notNull: { msg: 'Type must have a title' },
+        notEmpty: { msg: 'Type title cannot be empty' }
       }
     }
   }, {
