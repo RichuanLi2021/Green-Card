@@ -1,9 +1,9 @@
 const env = require('../config/env')
 const { sign } = require("jsonwebtoken")
 
-const createToken = (user) => {
+const createToken = (user, roleUUID) => {
   return sign(
-    { u_uuid: user.uuid },
+    { u_uuid: user.uuid, role: roleUUID },
     env.JWT_SECRET
   )
 }
