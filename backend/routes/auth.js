@@ -3,36 +3,47 @@ const router = express.Router()
 const bcrypt = require('bcrypt')
 const env = require('../config/env')
 const { createToken } = require('../utils/token')
-const { User, User_Role} = require('../models')
+const { User, User_Role, Role } = require('../models')
 
 router.post('/login', async (req, res) => {
   const { email, password } = req.body
 
   try {
     const user = await User.findOne({ where: { email: email } })
-    if (!user) res.status(400).json({ error: 'Incorrect email or password is incorrect, or the account does not exist' })
+    if (!user) res.status(400).json({ error: 'Incorrect email or password, or the account does not exist' })
 
     const hashedPass = user.password
     bcrypt.compare(password, hashedPass).then((match) => {
       if (!match) {
-        res.status(400).json({ error: 'Incorrect email or password is incorrect, or the account does not exist' })
+        res.status(400).json({ error: 'Incorrect email or password, or the account does not exist' })
       }
       else {
-        User.update({ lastLogin: new Date() }, {
-          where: {
-            id: user.id
-          }
-        }).then(() => {
+        User.update(
+          { lastLogin: new Date() },
+          { where: { id: user.id } }
+        ).then(async () => {
+
+          const role = await Role.findOne({
+            include: {
+              model: User_Role,
+              include: {
+                model: User,
+                where: { uuid: user.uuid }
+              }
+            }
+          })
+          const roleUUID = role.dataValues.uuid
+
           return res
             .status(200)
             .cookie(
               'access-token',
-              createToken(user),
+              createToken(user, roleUUID),
               {
                 httpOnly: true,
                 maxAge: env.JWT_LENGTH_MS
               }
-            ).json({ message: 'Successfully logged in' })
+            ).json({message: 'Successfully logged in'})
         }).catch((err) => {
           return res.status(400).json({ error: err })
         })

@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { validateToken } = require('../middleware/validate')
 const { User, User_Role, Role } = require('../models')
+const { validateAdminToken } = require('../middleware/validate')
 const bcrypt = require("bcrypt");
 
 // Get All
-router.get('/', validateToken, async (req, res) => {
+router.get('/', validateAdminToken, async (req, res) => {
   try {
     await User.findAll({
       include: {
@@ -23,7 +23,7 @@ router.get('/', validateToken, async (req, res) => {
 })
 
 // Get One
-router.get('/:id', validateToken, async (req, res) => {
+router.get('/:id', validateAdminToken, async (req, res) => {
   try {
     await User.findOne({
       where: { uuid: req.params.id },
@@ -42,7 +42,7 @@ router.get('/:id', validateToken, async (req, res) => {
 })
 
 // Create One
-router.post('/', validateToken, async (req, res) => {
+router.post('/', validateAdminToken, async (req, res) => {
   const { fName, lName, email, password } = req.body
   // Sanitize and validate
 
@@ -57,7 +57,7 @@ router.post('/', validateToken, async (req, res) => {
         .then((user) => {
           User_Role.create({
             userID: user.id,
-            roleID: 2
+            roleID: 2 // 'user' Role
           })
             .then(() => {
               res.status(201).json({ message: user })
@@ -76,7 +76,7 @@ router.post('/', validateToken, async (req, res) => {
 })
 
 // Update One
-router.put('/:id', validateToken, async (req, res) => {
+router.put('/:id', validateAdminToken, async (req, res) => {
   const { fName, lName, email, password } = req.body
   // Sanitize and validate
 
@@ -101,7 +101,7 @@ router.put('/:id', validateToken, async (req, res) => {
 })
 
 // Delete One
-router.delete('/:id', validateToken, async (req, res) => {
+router.delete('/:id', validateAdminToken, async (req, res) => {
   try {
     await User.destroy({ where: { uuid: req.params.id } })
       .then((message) => { return res.status(200).json({message}) })
