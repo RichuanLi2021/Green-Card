@@ -1,0 +1,13 @@
+<svg id="White_Pill_with_Green" data-name="White Pill with Green" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="31.98" height="31.98" viewBox="0 0 820 820">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <image id="Light_Green_Pill_w_Green_Outline" data-name="Light Green Pill w/ Green Outline" x="62" y="55" width="706" height="706" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAdCAYAAABWk2cPAAABS0lEQVRIib3XvUoDQRSG4TeLoL2IRQQrA15IwMLKi5BEu4CiN6BowEoTvI+A5EZioaU2gljYJFXCgZmwDNnN/JzJVy1sJg/fLnMmafxN/3GyC5wDJ0ALaACfwBh4BX7cBaFx0Tvgds139IHrFLQoXT97gJIr4AXYSUXvgcuAdRfAUywsj3cv4T0NgR4wDVkkTbuRIGZtcGNBzxLQKFjQ40Q0GC7MPtSINyzoRAnFFxZ0pIh6wbJlmsCXMkzddpKm32a0aaeysZ1IMksHm4LLs7e3KXirdHNmYMxs1Ybndr4Xzs1ZxsZS5JEV56nNtnkk2o0lh25Tm5yNu1UoGeHTOjQX3FqHZoF9UG343RfVhEdVW6YuqdvpIKSpTUrjBzlgYlAiYfnsjVzEohaWWepzLErD5e/qmHe6KvtAB2gDR2a4fwBv5v/P73IRsADVlljKAuZYqQAAAABJRU5ErkJggg=="/>
+  <image id="Green_Half" data-name="Green Half" x="75" y="68" width="476" height="476" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAA60lEQVQ4ja3UvS4EURiA4ccQrVDsLUho3QTF3oZGotiCgo4IDYnYQqVQ02lchVqHC1Ao6ORMdpLP7MyJ2dm3mWImz3xnfs7Czcuj0Ap2sYN1FHjDM8b4kGkpnBriDqu1ywfYwggHuGrjislxGw8NUGwZlzjLYQm4x2JuCaHDNjBhe1j7J1TVCBaTZzVLU2DCNmbE1MGi9kZ7gQl6xeYcwHKyp55Q1WfCrvE9h8nOE/aO/b6Q8Afc4rQPFLHUUUfwD1THuoBTUBNWgSddoVTbB3sc4Fjagi7a7tI0WQTjhFkoN1kEf/CV2xTL8AvUvij18CdqVwAAAABJRU5ErkJggg=="/>
+  <path id="Shine" class="cls-1" d="M132.477,318.505S82.708,224.36,164.466,157.087c0,0.007-50.1,10.885-61.151,58.306S108.186,294.81,132.477,318.505Z"/>
+</svg>
