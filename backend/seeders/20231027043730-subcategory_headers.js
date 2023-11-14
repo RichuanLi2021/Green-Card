@@ -96,29 +96,26 @@ module.exports = {
       { id: 64, uuid: uuidv4(), subcategoryID: 13, title: 'mg/Form Supplied', createdAt: new Date(), updatedAt: new Date() },
       { id: 65, uuid: uuidv4(), subcategoryID: 13, title: 'Monitoring level', createdAt: new Date(), updatedAt: new Date() },
 
-      // Mood Stabilizers - Adverse Effects and Safety
-      { id: 66, uuid: uuidv4(), subcategoryID: 14,  title: 'Mood Stabilizers Adverse Effects and Safety', createdAt: new Date(), updatedAt: new Date() },
-
       // Neuropsychiatric Symptoms on Dementia - Nonpharmalogical
-      { id: 67, uuid: uuidv4(), subcategoryID: 15, title: 'Neuropsychiatric Symptoms on Dementia Nonpharmacological Approach', createdAt: new Date(), updatedAt: new Date() },
+      { id: 66, uuid: uuidv4(), subcategoryID: 14, title: 'Neuropsychiatric Symptoms on Dementia Nonpharmacological Approach', createdAt: new Date(), updatedAt: new Date() },
 
       // Neuropsychiatric Symptoms on Dementia - Pharmalogical
-      { id: 68, uuid: uuidv4(), subcategoryID: 16, title: 'Neuropsychiatric Symptoms on Dementia Pharmacological Approach', createdAt: new Date(), updatedAt: new Date() },
+      { id: 67, uuid: uuidv4(), subcategoryID: 15, title: 'Neuropsychiatric Symptoms on Dementia Pharmacological Approach', createdAt: new Date(), updatedAt: new Date() },
 
       // Delirium - Nonpharmalogical
-      { id: 69, uuid: uuidv4(), subcategoryID: 17, title: 'Delirium Nonpharmacological Approach', createdAt: new Date(), updatedAt: new Date() },
+      { id: 68, uuid: uuidv4(), subcategoryID: 16, title: 'Delirium Nonpharmacological Approach', createdAt: new Date(), updatedAt: new Date() },
 
       // Delirium - Pharmalogical
-      { id: 70, uuid: uuidv4(), subcategoryID: 18, title: 'Delirium Pharmacological Approach', createdAt: new Date(), updatedAt: new Date() },
+      { id: 69, uuid: uuidv4(), subcategoryID: 17, title: 'Delirium Pharmacological Approach', createdAt: new Date(), updatedAt: new Date() },
 
       // Delirium - Anticholinergic Activity
-      { id: 71, uuid: uuidv4(), subcategoryID: 19, title: 'High', createdAt: new Date(), updatedAt: new Date() },
-      { id: 72, uuid: uuidv4(), subcategoryID: 19, title: 'Medium', createdAt: new Date(), updatedAt: new Date() },
-      { id: 73, uuid: uuidv4(), subcategoryID: 19, title: 'Low', createdAt: new Date(), updatedAt: new Date() },
+      { id: 70, uuid: uuidv4(), subcategoryID: 18, title: 'High', createdAt: new Date(), updatedAt: new Date() },
+      { id: 71, uuid: uuidv4(), subcategoryID: 18, title: 'Medium', createdAt: new Date(), updatedAt: new Date() },
+      { id: 72, uuid: uuidv4(), subcategoryID: 18, title: 'Low', createdAt: new Date(), updatedAt: new Date() },
 
       // ECT & Psychoactive Medications - Medication Table
-      { id: 74, uuid: uuidv4(), subcategoryID: 20, title: 'Medication', createdAt: new Date(), updatedAt: new Date() },
-      { id: 75, uuid: uuidv4(), subcategoryID: 20, title: 'Recommended Action', createdAt: new Date(), updatedAt: new Date() },
+      { id: 73, uuid: uuidv4(), subcategoryID: 19, title: 'Medication', createdAt: new Date(), updatedAt: new Date() },
+      { id: 74, uuid: uuidv4(), subcategoryID: 19, title: 'Recommended Action', createdAt: new Date(), updatedAt: new Date() },
     ], {});
   },
 
