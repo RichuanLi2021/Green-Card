@@ -81,41 +81,42 @@ module.exports = {
       { id: 53, uuid: uuidv4(), subcategoryID: 11,  title: 'Adverse Effects and Safety', createdAt: new Date(), updatedAt: new Date() },
 
       // Sedatives/Hypnotics - Clinical Guide
-      { id: 54, uuid: uuidv4(), subcategoryID: 12, title: 'Before Prescribing', createdAt: new Date(), updatedAt: new Date() },
-      { id: 55, uuid: uuidv4(), subcategoryID: 12, title: 'Starting', createdAt: new Date(), updatedAt: new Date() },
-      { id: 56, uuid: uuidv4(), subcategoryID: 12, title: 'Ending', createdAt: new Date(), updatedAt: new Date() },
-      { id: 57, uuid: uuidv4(), subcategoryID: 12, title: 'Duration of BZRA use (months)', createdAt: new Date(), updatedAt: new Date() },
-      { id: 58, uuid: uuidv4(), subcategoryID: 12, title: 'Dose Reduction Schedule Duration (weeks)', createdAt: new Date(), updatedAt: new Date() },
-      { id: 59, uuid: uuidv4(), subcategoryID: 12, title: 'Interval Between Dose Reductions (weeks)', createdAt: new Date(), updatedAt: new Date() },
+      { id: 54, uuid: uuidv4(), subcategoryID: 12, title: 'Treatments', createdAt: new Date(), updatedAt: new Date() },
+      { id: 55, uuid: uuidv4(), subcategoryID: 12, title: 'Before Prescribing', createdAt: new Date(), updatedAt: new Date() },
+      { id: 56, uuid: uuidv4(), subcategoryID: 12, title: 'Starting', createdAt: new Date(), updatedAt: new Date() },
+      { id: 57, uuid: uuidv4(), subcategoryID: 12, title: 'Ending', createdAt: new Date(), updatedAt: new Date() },
+      { id: 58, uuid: uuidv4(), subcategoryID: 12, title: 'Duration of BZRA use (months)', createdAt: new Date(), updatedAt: new Date() },
+      { id: 59, uuid: uuidv4(), subcategoryID: 12, title: 'Dose Reduction Schedule Duration (weeks)', createdAt: new Date(), updatedAt: new Date() },
+      { id: 60, uuid: uuidv4(), subcategoryID: 12, title: 'Interval Between Dose Reductions (weeks)', createdAt: new Date(), updatedAt: new Date() },
 
       // Mood Stabilizers - Medication Table
-      { id: 60, uuid: uuidv4(), subcategoryID: 13, title: 'Name', createdAt: new Date(), updatedAt: new Date() },
-      { id: 61, uuid: uuidv4(), subcategoryID: 13, title: 'Half-life', createdAt: new Date(), updatedAt: new Date() },
-      { id: 62, uuid: uuidv4(), subcategoryID: 13, title: 'Dose (mg/day) (Initial | Maint. | Max)', createdAt: new Date(), updatedAt: new Date() },
-      { id: 63, uuid: uuidv4(), subcategoryID: 13, title: 'Frequency', createdAt: new Date(), updatedAt: new Date() },
-      { id: 64, uuid: uuidv4(), subcategoryID: 13, title: 'mg/Form Supplied', createdAt: new Date(), updatedAt: new Date() },
-      { id: 65, uuid: uuidv4(), subcategoryID: 13, title: 'Monitoring level', createdAt: new Date(), updatedAt: new Date() },
+      { id: 61, uuid: uuidv4(), subcategoryID: 13, title: 'Name', createdAt: new Date(), updatedAt: new Date() },
+      { id: 62, uuid: uuidv4(), subcategoryID: 13, title: 'Half-life', createdAt: new Date(), updatedAt: new Date() },
+      { id: 63, uuid: uuidv4(), subcategoryID: 13, title: 'Dose (mg/day) (Initial | Maint. | Max)', createdAt: new Date(), updatedAt: new Date() },
+      { id: 64, uuid: uuidv4(), subcategoryID: 13, title: 'Frequency', createdAt: new Date(), updatedAt: new Date() },
+      { id: 65, uuid: uuidv4(), subcategoryID: 13, title: 'mg/Form Supplied', createdAt: new Date(), updatedAt: new Date() },
+      { id: 66, uuid: uuidv4(), subcategoryID: 13, title: 'Monitoring level', createdAt: new Date(), updatedAt: new Date() },
 
       // Neuropsychiatric Symptoms on Dementia - Nonpharmalogical
-      { id: 66, uuid: uuidv4(), subcategoryID: 14, title: 'Neuropsychiatric Symptoms on Dementia Nonpharmacological Approach', createdAt: new Date(), updatedAt: new Date() },
+      { id: 67, uuid: uuidv4(), subcategoryID: 14, title: 'Neuropsychiatric Symptoms on Dementia Nonpharmacological Approach', createdAt: new Date(), updatedAt: new Date() },
 
       // Neuropsychiatric Symptoms on Dementia - Pharmalogical
-      { id: 67, uuid: uuidv4(), subcategoryID: 15, title: 'Neuropsychiatric Symptoms on Dementia Pharmacological Approach', createdAt: new Date(), updatedAt: new Date() },
+      { id: 68, uuid: uuidv4(), subcategoryID: 15, title: 'Neuropsychiatric Symptoms on Dementia Pharmacological Approach', createdAt: new Date(), updatedAt: new Date() },
 
       // Delirium - Nonpharmalogical
-      { id: 68, uuid: uuidv4(), subcategoryID: 16, title: 'Delirium Nonpharmacological Approach', createdAt: new Date(), updatedAt: new Date() },
+      { id: 69, uuid: uuidv4(), subcategoryID: 16, title: 'Delirium Nonpharmacological Approach', createdAt: new Date(), updatedAt: new Date() },
 
       // Delirium - Pharmalogical
-      { id: 69, uuid: uuidv4(), subcategoryID: 17, title: 'Delirium Pharmacological Approach', createdAt: new Date(), updatedAt: new Date() },
+      { id: 70, uuid: uuidv4(), subcategoryID: 17, title: 'Delirium Pharmacological Approach', createdAt: new Date(), updatedAt: new Date() },
 
       // Delirium - Anticholinergic Activity
-      { id: 70, uuid: uuidv4(), subcategoryID: 18, title: 'High', createdAt: new Date(), updatedAt: new Date() },
-      { id: 71, uuid: uuidv4(), subcategoryID: 18, title: 'Medium', createdAt: new Date(), updatedAt: new Date() },
-      { id: 72, uuid: uuidv4(), subcategoryID: 18, title: 'Low', createdAt: new Date(), updatedAt: new Date() },
+      { id: 71, uuid: uuidv4(), subcategoryID: 18, title: 'High', createdAt: new Date(), updatedAt: new Date() },
+      { id: 72, uuid: uuidv4(), subcategoryID: 18, title: 'Medium', createdAt: new Date(), updatedAt: new Date() },
+      { id: 73, uuid: uuidv4(), subcategoryID: 18, title: 'Low', createdAt: new Date(), updatedAt: new Date() },
 
       // ECT & Psychoactive Medications - Medication Table
-      { id: 73, uuid: uuidv4(), subcategoryID: 19, title: 'Medication', createdAt: new Date(), updatedAt: new Date() },
-      { id: 74, uuid: uuidv4(), subcategoryID: 19, title: 'Recommended Action', createdAt: new Date(), updatedAt: new Date() },
+      { id: 74, uuid: uuidv4(), subcategoryID: 19, title: 'Medication', createdAt: new Date(), updatedAt: new Date() },
+      { id: 75, uuid: uuidv4(), subcategoryID: 19, title: 'Recommended Action', createdAt: new Date(), updatedAt: new Date() },
     ], {});
   },
 

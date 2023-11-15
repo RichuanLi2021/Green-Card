@@ -14,12 +14,7 @@ module.exports = {
         defaultValue: DataTypes.UUIDV4,
         type: DataTypes.UUID
       },
-      fName: {
-        allowNull: false,
-        type: DataTypes.STRING
-      },
-      lName: {
-        allowNull: false,
+      discipline: {
         type: DataTypes.STRING
       },
       email: {

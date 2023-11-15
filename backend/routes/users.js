@@ -43,14 +43,13 @@ router.get('/:id', validateAdminToken, async (req, res) => {
 
 // Create One
 router.post('/', validateAdminToken, async (req, res) => {
-  const { fName, lName, email, password } = req.body
+  const { discipline, email, password } = req.body
   // Sanitize and validate
 
   try {
     bcrypt.hash(password, 12).then((hash) => {
       User.create({
-        fName: fName,
-        lName: lName,
+        discipline: discipline,
         email: email,
         password: hash
       })
@@ -77,14 +76,13 @@ router.post('/', validateAdminToken, async (req, res) => {
 
 // Update One
 router.put('/:id', validateAdminToken, async (req, res) => {
-  const { fName, lName, email, password } = req.body
+  const { discipline, email, password } = req.body
   // Sanitize and validate
 
   try {
     bcrypt.hash(password, 12).then((hash) => {
       User.update({
-        fName: fName,
-        lName: lName,
+        discipline: discipline,
         email: email,
         password: hash
       }, { where: { uuid: req.params.id } })

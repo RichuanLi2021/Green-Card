@@ -20,20 +20,10 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: { msg: 'User uuid cannot be empty' }
       }
     },
-    fName: {
-      allowNull: false,
+    discipline: {
       type: DataTypes.STRING,
       validate: {
-        notNull: { msg: 'User must have a first name' },
-        notEmpty: { msg: 'First name cannot be empty' }
-      }
-    },
-    lName: {
-      allowNull: false,
-      type: DataTypes.STRING,
-      validate: {
-        notNull: { msg: 'User must have a last name' },
-        notEmpty: { msg: 'Last name cannot be empty' }
+        notEmpty: { msg: 'User discipline cannot be empty' }
       }
     },
     email: {
