@@ -8,8 +8,7 @@ module.exports = {
       {
         id: 1,
         uuid: uuidv4(),
-        fName: 'Admin',
-        lName: 'Test',
+        discipline: 'RN/LPN',
         email: 'admin@gpgc.ca',
         password: '$2a$12$FXH9LO5.Hp.7D7JDVgYlVO5bdN5E8OY2ln/1H0d5WQgLerm5GK252',
         verified: true,
@@ -19,8 +18,7 @@ module.exports = {
       {
         id: 2,
         uuid: uuidv4(),
-        fName: 'User',
-        lName: 'Test',
+        discipline: 'Pharmacist',
         email: 'user@gpgc.ca',
         password: '$2a$12$FXH9LO5.Hp.7D7JDVgYlVO5bdN5E8OY2ln/1H0d5WQgLerm5GK252',
         verified: true,
