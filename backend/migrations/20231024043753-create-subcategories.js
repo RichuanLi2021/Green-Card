@@ -16,10 +16,12 @@ module.exports = {
       },
       categoryID: {
         allowNull: false,
+        onDelete: 'cascade',
         type: DataTypes.INTEGER
       },
       subcategoryTypeID: {
         allowNull: false,
+
         type: DataTypes.INTEGER
       },
       description: {
@@ -33,20 +35,20 @@ module.exports = {
       }
     }).then(async () => {
       await queryInterface.addConstraint('subcategories', {
-        type: 'FOREIGN KEY',
         fields: ['categoryID'],
-        references: {
-          table: 'categories',
-          field: 'id'
-        }
+        name: 'many_subcategories_to_one_category',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+        references: { table: 'categories', field: 'id' },
+        type: 'FOREIGN KEY'
       })
       await queryInterface.addConstraint('subcategories', {
-        type: 'FOREIGN KEY',
         fields: ['subcategoryTypeID'],
-        references: {
-          table: 'subcategory_types',
-          field: 'id'
-        }
+        name: 'many_subcategories_to_one_subcategory_type',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+        references: { table: 'subcategory_types', field: 'id' },
+        type: 'FOREIGN KEY'
       })
     })
   },

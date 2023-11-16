@@ -8,10 +8,10 @@ const subcategoriesRoute = require('./subcategories');
 router.use('/subcategories', subcategoriesRoute);
 
 const subcategoryTypesRoute = require('./subcategory_types');
-router.use('/subcategory-type', subcategoryTypesRoute);
+router.use('/subcategory-types', subcategoryTypesRoute);
 
 const subcategoryHeadersRoute = require('./subcategory_headers');
-router.use('/subcategory-header', subcategoryHeadersRoute);
+router.use('/subcategory-headers', subcategoryHeadersRoute);
 
 const subcategoryDataRoute = require('./subcategory_data');
 router.use('/subcategory-data', subcategoryDataRoute);
@@ -24,5 +24,8 @@ router.use('/feedback', feedbackRoute);
 
 const authRoute = require('./auth');
 router.use('/auth', authRoute);
+
+const generalRoute = require('./general');
+router.use('/general', generalRoute);
 
 module.exports = router;

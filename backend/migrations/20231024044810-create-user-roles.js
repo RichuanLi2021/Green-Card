@@ -30,20 +30,19 @@ module.exports = {
       }
     }).then(async () => {
         await queryInterface.addConstraint('user_roles', {
-          type: 'FOREIGN KEY',
           fields: ['userID'],
-          references: {
-            table: 'users',
-            field: 'id'
-          }
+          name: 'many_user_roles_to_one_user',
+          onUpdate: 'CASCADE',
+          references: { table: 'users', field: 'id' },
+          type: 'FOREIGN KEY'
         })
         await queryInterface.addConstraint('user_roles', {
-          type: 'FOREIGN KEY',
           fields: ['roleID'],
-          references: {
-            table: 'roles',
-            field: 'id'
-          }
+          name: 'many_user_roles_to_one_role',
+          onDelete: 'CASCADE',
+          onUpdate: 'CASCADE',
+          references: { table: 'roles', field: 'id' },
+          type: 'FOREIGN KEY'
         })
       })
   },
