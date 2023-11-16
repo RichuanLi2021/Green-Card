@@ -5,10 +5,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Search from "../components/elements/search/Search";
-import { useNavigate } from "react-router-dom";
-
-import GridTest from '../components/testData/gridTest';
+import DataDisplay from '../components/DataDisplay/dataDisplay';
 import React, { useState, useEffect } from 'react'; 
 import axios from 'axios'; 
 
@@ -22,7 +19,6 @@ const theme = createTheme({
 });
 
 const HomePage = () => {
-  const navigate = useNavigate();
   const [selectedDrugs, setSelectedDrugs] = useState([]);
   const [drugData, setDrugData] = useState({});
 
@@ -47,10 +43,6 @@ const HomePage = () => {
           setSelectedDrugs(prev => prev.filter(item => item !== drugName));
       }
   };
-  const handleSearch = (searchTerm) => {
-    navigate(`/search/${searchTerm}`);
-  };
-
 
   const drugList = [
     {
@@ -135,7 +127,6 @@ const HomePage = () => {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Search onSearch={handleSearch}></Search>
         <Container className="main-container" maxWidth={false}>
           <Grid container spacing={4} direction="row" sx={{ textAlign: "center" }}>
             <Grid item xs={12} sm={3}>
@@ -228,11 +219,11 @@ const HomePage = () => {
             
             <Grid item xs={12} sm={9}>
               <Box className="gray-square">
-                <GridTest/>
+                <DataDisplay/>
                 {selectedDrugs.map(drugName => (
-                    <div key={drugName}>
+                    <div className="grid" key={drugName}>
                         <h2>Rendering GridTest for {drugName}</h2>
-                        <GridTest drugData={drugData[drugName]} />
+                        <DataDisplay drugData={drugData[drugName]} />
                     </div>
                 ))}
               </Box>

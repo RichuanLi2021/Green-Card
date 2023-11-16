@@ -10,13 +10,9 @@ module.exports = {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      name: {
-        allowNull: false,
-        type: DataTypes.STRING
-      },
-      email: {
-        allowNull: false,
-        type: DataTypes.STRING
+      uuid: {
+        defaultValue: DataTypes.UUIDV4,
+        type: DataTypes.UUID
       },
       comment: {
         allowNull: false,
@@ -26,19 +22,17 @@ module.exports = {
         allowNull: false,
         type: DataTypes.INTEGER
       },
+      name: {
+        type: DataTypes.STRING
+      },
+      email: {
+        type: DataTypes.STRING
+      },
       allowEmailBack: {
-        allowNull: false,
         type: DataTypes.BOOLEAN
       },
       createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
-      },
-      updatedAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+        type: DataTypes.DATE
       }
     });
   },

@@ -10,33 +10,35 @@ module.exports = {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
+      uuid: {
+        defaultValue: DataTypes.UUIDV4,
+        type: DataTypes.UUID
+      },
       subcategoryID: {
         allowNull: false,
+        onDelete: 'CASCADE',
         type: DataTypes.INTEGER
       },
       title: {
         allowNull: false,
         type: DataTypes.STRING
       },
-      abbreviation: {
-        defaultValue: null,
-        type: DataTypes.STRING
-      },
-      description: {
-        defaultValue: null,
-        type: DataTypes.STRING
-      },
       createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+        type: DataTypes.DATE
       },
       updatedAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+        type: DataTypes.DATE
       }
-    });
+    }).then(async () => {
+      await queryInterface.addConstraint('subcategory_headers', {
+        fields: ['subcategoryID'],
+        name: 'many_subcategory_headers_to_one_subcategory',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+        references: { table: 'subcategories', field: 'id' },
+        type: 'FOREIGN KEY'
+      })
+    })
   },
 
   async down(queryInterface, DataTypes) {

@@ -1,5 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
+const { v4: uuidv4 } = require("uuid");
 
 module.exports = (sequelize, DataTypes) => {
   class feedback extends Model {
@@ -11,21 +12,12 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   feedback.init({
-    name: {
-      allowNull: false,
-      type: DataTypes.STRING,
+    uuid: {
+      defaultValue: uuidv4(),
+      type: DataTypes.UUID,
       validate: {
-        notNull: { msg: 'Feedback must have a name' },
-        notEmpty: { msg: 'Feedback name cannot be empty' }
-      }
-    },
-    email: {
-      allowNull: false,
-      type: DataTypes.STRING,
-      validate: {
-        notNull: { msg: 'Feedback must have an email' },
-        notEmpty: { msg: 'Feedback email cannot be empty' },
-        isEmail: { msg: 'Feedback email must be a valid email address' }
+        isUUID: 4,
+        notEmpty: { msg: 'Feedback uuid cannot be empty' }
       }
     },
     comment: {
@@ -44,19 +36,31 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: { msg: 'Feedback rating cannot be empty' }
       }
     },
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: { msg: 'Feedback name cannot be empty' }
+      }
+    },
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: { msg: 'Feedback email cannot be empty' },
+        isEmail: { msg: 'Feedback email must be a valid email address' }
+      }
+    },
     allowEmailBack: {
-      allowNull: false,
       type: DataTypes.BOOLEAN,
       validate: {
-        notNull: { msg: 'Feedback must have an allowEmailBack' },
-        notEmpty: { msg: 'Feedback allowEmailBack cannot be empty' }
+        notEmpty: { msg: 'Feedback must allow or disallow email follow up' }
       }
     }
   }, {
     sequelize,
     modelName: 'Feedback',
     tableName: 'feedback',
-    timestamps: true
+    timestamps: true,
+    updatedAt: false
   });
 
   return feedback;

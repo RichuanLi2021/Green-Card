@@ -1,40 +1,39 @@
 'use strict';
 const { Model } = require('sequelize');
+const { v4: uuidv4 } = require("uuid");
 
 module.exports = (sequelize, DataTypes) => {
   class subcategory_headers extends Model {
-    static associate(models) {
-      this.belongsTo(models.Subcategory, { foreignKey: 'subcategoryID', as: 'subcategory' })
-      this.hasMany(models.Subcategory_Data)
-    }
+    static associate(models) {}
 
     toJSON() {
       return { ...this.get(), id: undefined, subcategoryID: undefined }
     }
   }
+
   subcategory_headers.init({
+    uuid: {
+      defaultValue: uuidv4(),
+      type: DataTypes.UUID,
+      validate: {
+        isUUID: 4,
+        notEmpty: { msg: 'Subcategory Header uuid cannot be empty' }
+      }
+    },
     subcategoryID: {
       allowNull: false,
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      validate: {
+        notNull: { msg: 'Header must have a subcategory' },
+        notEmpty: { msg: 'Header subcategory cannot be empty' }
+      }
     },
     title: {
       allowNull: false,
       type: DataTypes.STRING,
       validate: {
-        notNull: { msg: 'Subcategory Header must have a title' },
-        notEmpty: { msg: 'Subcategory Header title cannot be empty' }
-      }
-    },
-    abbreviation: {
-      type: DataTypes.STRING,
-      validate: {
-        notEmpty: { msg: 'Subcategory Header abbreviation cannot be empty' }
-      }
-    },
-    description: {
-      type: DataTypes.STRING,
-      validate: {
-        notEmpty: { msg: 'Subcategory Header description cannot be empty' }
+        notNull: { msg: 'Header must have a title' },
+        notEmpty: { msg: 'Header title cannot be empty' }
       }
     }
   }, {
@@ -43,5 +42,6 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'subcategory_headers',
     timestamps: true
   });
+
   return subcategory_headers;
 };

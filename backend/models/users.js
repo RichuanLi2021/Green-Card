@@ -1,41 +1,38 @@
 'use strict';
 const { Model } = require('sequelize');
+const { v4: uuidv4 } = require("uuid");
 
 module.exports = (sequelize, DataTypes) => {
   class users extends Model {
-    static associate(models) {
-      this.hasMany(models.User_Role)
-    }
+    static associate(models) {}
 
     toJSON() {
-      return { ...this.get(), id: undefined }
+      return { ...this.get(), id: undefined, password: undefined }
     }
   }
 
   users.init({
-    fName: {
-      allowNull: false,
-      type: DataTypes.STRING,
+    uuid: {
+      defaultValue: uuidv4(),
+      type: DataTypes.UUID,
       validate: {
-        notNull: { msg: 'User must have a fName' },
-        notEmpty: { msg: 'User fName cannot be empty' }
+        isUUID: 4,
+        notEmpty: { msg: 'User uuid cannot be empty' }
       }
     },
-    lName: {
-      allowNull: false,
+    discipline: {
       type: DataTypes.STRING,
       validate: {
-        notNull: { msg: 'User must have a lName' },
-        notEmpty: { msg: 'User lName cannot be empty' }
+        notEmpty: { msg: 'User discipline cannot be empty' }
       }
     },
     email: {
       allowNull: false,
       type: DataTypes.STRING,
       validate: {
-        notNull: { msg: 'User must have an email' },
-        notEmpty: { msg: 'User email cannot be empty' },
-        isEmail: { msg: 'User email must be a valid email address' }
+        notNull: { msg: 'User must have an email address' },
+        notEmpty: { msg: 'Email address cannot be empty' },
+        isEmail: { msg: 'Email address must be valid' }
       }
     },
     password: {
@@ -43,24 +40,26 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         notNull: { msg: 'User must have a password' },
-        notEmpty: { msg: 'User password cannot be empty' }
+        notEmpty: { msg: 'Password cannot be empty' }
       }
     },
-    phone: {
-      type: DataTypes.STRING,
+    verified: {
+      type: DataTypes.BOOLEAN,
       validate: {
-        notEmpty: { msg: 'User phone cannot be empty' }
+        notEmpty: { msg: 'User verification cannot be empty' }
       }
     },
     lastLogin: {
       type: DataTypes.DATE,
       validate: {
-        notEmpty: { msg: 'User lastLogin cannot be empty' }
+        notEmpty: { msg: 'User lastLogin cannot be empty' },
+        isDate: { msg: 'User lastLogin must be a date' }
       }
     }
   }, {
     sequelize,
     modelName: 'User',
+    paranoid: true,
     tableName: 'users',
     timestamps: true
   });
