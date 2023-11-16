@@ -14,12 +14,12 @@ defineAssociations = (sequelize) => {
 
   Subcategory_Type.hasMany(Subcategory)
 
-  Subcategory.hasMany(Subcategory_Header)
   Subcategory.belongsTo(Category, { foreignKey: 'categoryID', targetKey: 'id' })
   Subcategory.belongsTo(Subcategory_Type, { foreignKey: 'subcategoryTypeID', targetKey: 'id' })
+  Subcategory.hasMany(Subcategory_Header)
 
-  Subcategory_Header.hasMany(Subcategory_Data)
   Subcategory_Header.belongsTo(Subcategory, { foreignKey: 'subcategoryID', targetKey: 'id' })
+  Subcategory_Header.hasMany(Subcategory_Data)
 
   Subcategory_Data.belongsTo(Subcategory_Header, { foreignKey: 'headerID', targetKey: 'id' })
 

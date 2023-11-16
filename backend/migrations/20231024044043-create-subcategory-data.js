@@ -30,12 +30,12 @@ module.exports = {
       }
     }).then(async () => {
       await queryInterface.addConstraint('subcategory_data', {
-        type: 'FOREIGN KEY',
         fields: ['headerID'],
-        references: {
-          table: 'subcategory_headers',
-          field: 'id'
-        }
+        name: 'many_subcategory_data_to_one_subcategory_header',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+        references: { table: 'subcategory_headers', field: 'id' },
+        type: 'FOREIGN KEY'
       })
     })
   },
