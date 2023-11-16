@@ -5,7 +5,6 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
 import DataDisplay from '../components/DataDisplay/dataDisplay';
 import React, { useState, useEffect } from 'react'; 
 import axios from 'axios'; 
