@@ -1,33 +1,39 @@
 'use strict';
 const { Model } = require('sequelize');
+const { v4: uuidv4 } = require("uuid");
 
 module.exports = (sequelize, DataTypes) => {
   class user_roles extends Model {
-    static associate(models) {
-      this.belongsTo(models.User, { foreignKey: 'userID', as: 'user' })
-      this.belongsTo(models.Role, { foreignKey: 'roleID', as: 'role' })
-    }
+    static associate(models) {}
 
     toJSON() {
-      return {} // Table contains only IDs, so no return values necessary
+      return { ...this.get(), id: undefined, userID: undefined, roleID: undefined }
     }
   }
 
   user_roles.init({
+    uuid: {
+      defaultValue: uuidv4(),
+      type: DataTypes.UUID,
+      validate: {
+        isUUID: 4,
+        notEmpty: { msg: 'User Role uuid cannot be empty' }
+      }
+    },
     userID: {
       allowNull: false,
       type: DataTypes.INTEGER,
       validate: {
-        notNull: { msg: 'User Role must have a userID' },
-        notEmpty: { msg: 'User Role userID cannot be empty' }
+        notNull: { msg: 'User Role must have a user' },
+        notEmpty: { msg: 'User Role user cannot be empty' }
       }
     },
     roleID: {
       allowNull: false,
       type: DataTypes.INTEGER,
       validate: {
-        notNull: { msg: 'User Role must have a roleID' },
-        notEmpty: { msg: 'User Role roleID cannot be empty' }
+        notNull: { msg: 'User Role must have a role' },
+        notEmpty: { msg: 'User Role role cannot be empty' }
       }
     }
   }, {

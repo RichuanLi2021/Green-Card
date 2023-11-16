@@ -10,39 +10,38 @@ module.exports = {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      fName: {
-        allowNull: false,
-        type: DataTypes.STRING
+      uuid: {
+        defaultValue: DataTypes.UUIDV4,
+        type: DataTypes.UUID
       },
-      lName: {
-        allowNull: false,
+      discipline: {
         type: DataTypes.STRING
       },
       email: {
         allowNull: false,
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        unique: true
       },
       password: {
         allowNull: false,
         type: DataTypes.STRING
       },
-      phone: {
-        defaultValue: null,
-        type: DataTypes.STRING
+      verified: {
+        allowNull: false,
+        defaultValue: 0,
+        type: DataTypes.BOOLEAN
       },
       lastLogin: {
-        defaultValue: null,
         type: DataTypes.DATE
       },
       createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+        type: DataTypes.DATE
       },
       updatedAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+        type: DataTypes.DATE
+      },
+      deletedAt: {
+        type: DataTypes.DATE
       }
     });
   },
