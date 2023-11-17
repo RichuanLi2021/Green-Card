@@ -8,7 +8,8 @@ const cors = require("cors");
 const { sequelize } = require('./models');
 const routesIndex = require('./routes/index');
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger/swagger');
+const swaggerDocument = require('./swagger/swaggerDocument');
+const swaggerOptions = require('./swagger/swaggerOptions');
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", config.FRONTEND_URL);
@@ -21,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors({ origin: true }));
 app.use("/api", routesIndex);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
 
 try {
   sequelize.authenticate()
