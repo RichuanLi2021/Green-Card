@@ -1,10 +1,7 @@
 const env = require('../config/env')
 const { verify } = require('jsonwebtoken')
 const { User, User_Role, Role } = require('../models');
-
-const getJwtPayload = (token) => {
-  return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-}
+const { decodePayload } = require('../utils/token')
 
 const validateUserToken = (req, res, next) => {
   const accessToken = req.cookies['access-token']
@@ -30,7 +27,7 @@ const validateAdminToken = async (req, res, next) => {
   try {
     const validToken = verify(accessToken, env.JWT_SECRET)
     if (validToken) {
-      const payload = getJwtPayload(accessToken)
+      const payload = decodePayload(accessToken)
       if (!payload.role) return res.status(400).json({ error: 'User does not have administrative privileges!' })
 
       const adminRole = await Role.findOne({ where: { title: 'admin' } })
