@@ -1,0 +1,3 @@
+swaggerOptions = {}
+
+module.exports = swaggerOptions
