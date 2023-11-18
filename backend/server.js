@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors({ origin: true }));
+app.use(cors({ origin: true, credentials: true }));
 app.use("/api", routesIndex);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
 
