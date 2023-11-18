@@ -1,6 +1,5 @@
 import * as React from 'react';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -26,27 +25,27 @@ const theme = createTheme({
 });
 
 export default function SignIn() {
-  const navigate = useNavigate();
+  if (localStorage.getItem('access-token')) window.location.href = '/home'
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const dataCredential = new FormData(event.target);
-    
+
     axios.post(Config.API_URL + "/api/auth/login", {
       email: dataCredential.get('email'),
       password: dataCredential.get('password')
-    })
+    }, { withCredentials: true })
       .then(response => {
         if (response.data.message) {
-          alert(response.data.message);
-          navigate("/home");
+          alert(response.data.message)
+          localStorage.setItem("access-token", response.data.token)
+          window.location.href = '/home'
         } else {
           alert(response.data.errorMessage);
         }
       })
       .catch(error => console.log(error));
   };
-
 
   return (
     <ThemeProvider theme={theme}>

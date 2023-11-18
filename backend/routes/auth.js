@@ -38,16 +38,19 @@ router.post('/login', async (req, res) => {
         })
         const roleUUID = role.dataValues.uuid
 
+        const token = createToken(user, roleUUID)
         return res
           .status(200)
           .cookie(
             'access-token',
-            createToken(user, roleUUID),
+            token,
             {
               httpOnly: true,
-              maxAge: env.JWT_LENGTH_MS
+              maxAge: env.JWT_LENGTH_MS,
+              sameSite: 'none',
+              secure: true
             }
-          ).json({ message: 'Successfully logged in' })
+          ).json({ message: 'Successfully logged in', token: token })
       }
     })
   } catch (error) {

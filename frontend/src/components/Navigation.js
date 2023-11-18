@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import {
   AppBar,
   Toolbar,
@@ -13,142 +12,134 @@ import {
   useTheme
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import axios from 'axios';
+import Config from "../config/config";
 
 const Navbar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const isLoggedIn = localStorage.getItem('access-token')
 
-  const handleMenuToggle = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const handleMobileMenuOpen = (event) => { setAnchorEl(event.currentTarget) };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
+  const handleMobileMenuClose = () => { setAnchorEl(null) };
 
   const handleLogout = async () => {
     try {
-      localStorage.removeItem('admin');
-
+      axios.post(Config.API_URL + "/api/auth/logout", {}, { withCredentials: true })
+        .then(response => {
+          if (response.data.message) {
+            alert(response.data.message)
+            localStorage.removeItem('access-token')
+            window.location.href = '/'
+          } else {
+            alert(response.data.errorMessage);
+          }
+        })
+        .catch(error => console.log(error));
     } catch (error) {
       console.log(error);
     }
   };
 
-  // Admin role
-  const admin = localStorage.getItem("admin");
-
-  if (admin) {
-    return (
-      <AppBar style={{ boxShadow: "none", marginBottom: "50px" }}>
-        <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
-          <Typography className="web-title" sx={{ flexGrow: 1, color: '#000' }}>
-          Geriatric Psychiatry Green Card
-           </Typography>
-
-           <IconButton
-            size="large"
-            edge="end"
-            aria-label="menu"
-            aria-haspopup="true"
-            onClick={handleMenuToggle}
-            sx={{ display: { xs: 'block', md: 'none' }, color: '#000' }}
-          >
-            <MenuIcon />
-          </IconButton>
-
-          {/* Dropdown menu for mobile */}
-          <Menu
-            id="menu-appbar"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleMenuClose}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            sx={{ marginTop: '40px' }}
-          >
-              
-            {window.location.pathname !== '/logout' && (
-              <MenuItem onClick={handleLogout}>
-                <Button component={Link} to="/" sx={{ color: '#000', fontSize: isMobile ? '0.8rem' : '1rem' }}>Log out</Button>
-              </MenuItem>
-            )}
-
-            <MenuItem onClick={handleMenuClose}>
-              <Button component={Link} to="/panel" sx={{ color: '#000', fontSize: isMobile ? '0.8rem' : '1rem' }}>Feedback</Button>
-            </MenuItem>
-          </Menu>
-
-          {/* Nav for desktop view */}
-          <div className="navbar__menu">
-            <Button component={Link} to="/" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>Home</Button>        
-            {window.location.pathname !== '/logout' && (
-              <Button component={Link} to="/" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }} onClick={handleLogout}>
-                Logout
-              </Button>
-            )}
-          </div>
-        </Toolbar>
-      </AppBar>
-    );
-  } else {
-    return (
-      <AppBar style={{ boxShadow: "none", marginBottom: "2rem" }}>
-        <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
-          <Typography className="web-title" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none' }}>
-            <Link to={"/"} className={'navigation-title'}>Geriatric Psychotropic Green Card</Link>
-          </Typography>
-
-          <IconButton
-            size="large"
-            edge="end"
-            aria-label="menu"
-            aria-haspopup="true"
-            onClick={handleMenuToggle}
-            sx={{ display: { xs: 'block', md: 'none' }, color: '#000' }}
-          >
-            <MenuIcon />
-          </IconButton>
-
-          <Menu
-            id="menu-appbar"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleMenuClose}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            sx={{ marginTop: '40px' }}
-          >
-            <MenuItem onClick={handleMenuClose}>
-          
-              <Button component={Link} to="/" sx={{ color: '#000' }}>Home</Button>
-            </MenuItem>
-            {window.location.pathname !== '/login' && (
-              <MenuItem>
-                <Button component={Link} to="/login" sx={{ color: '#000'}}>Admin Login</Button> 
-              </MenuItem>  
-            )}         
-          </Menu>
-       
-          <div className="navbar__menu">
-            {window.location.pathname !== "/" &&
-            <Button component={Link} to="/" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>Home</Button>
-            }
-            {window.location.pathname !== '/login' && (
-              <Button component={Link} to="/login" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
-                Admin Login
-              </Button>
-            )}
-          </div>
-
-        </Toolbar>
-      </AppBar>
-    );
+  const displayNavTitle = () => {
+    if (isLoggedIn) {
+      return (
+        <Typography className="web-title" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none' }}>
+          <Link to={"/home"} className={'navigation-title'}>Geriatric Psychotropic Green Card</Link>
+        </Typography>
+      )
+    } else {
+      return (
+        <Typography className="web-title" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none' }}>
+          <Link to={"/"} className={'navigation-title'}>Geriatric Psychotropic Green Card</Link>
+        </Typography>
+      )
+    }
   }
-};
+
+  const displayDesktopButtons = () => {
+    if (isLoggedIn) {
+      return (
+        <div className="navbar__menu">
+          <Button component={Link} to="/account" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
+            Account
+          </Button>
+
+          <Button onClick={handleLogout} sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
+            Logout
+          </Button>
+        </div>
+      )
+    } else {
+      return (
+        <div className="navbar__menu">
+          <Button component={Link} to="/login" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
+            Login
+          </Button>
+
+          <Button component={Link} to="/register" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
+            Register
+          </Button>
+        </div>
+      )
+    }
+  }
+
+  const displayMobileButtons = () => {
+    if (isLoggedIn) {
+      return (
+        <Menu id="menu-appbar" anchorEl={anchorEl} open={open} onClose={handleMobileMenuClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }} transformOrigin={{ vertical: 'top', horizontal: 'right' }} sx={{ marginTop: '40px' }}>
+          <MenuItem onClick={handleMobileMenuClose}>
+            <Button component={Link} to="/account" sx={{ color: '#000' }}>
+              Account
+            </Button>
+          </MenuItem>
+
+          <MenuItem onClick={handleMobileMenuClose}>
+            <Button onClick={handleLogout} sx={{ color: '#000' }}>
+              Logout
+            </Button>
+          </MenuItem>
+        </Menu>
+      )
+    } else {
+      return (<Menu id="menu-appbar" anchorEl={anchorEl} open={open} onClose={handleMobileMenuClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }} transformOrigin={{ vertical: 'top', horizontal: 'right' }} sx={{ marginTop: '40px' }}>
+        <MenuItem onClick={handleMobileMenuClose}>
+          <Button component={Link} to="/login" sx={{ color: '#000' }}>
+            Login
+          </Button>
+        </MenuItem>
+
+        <MenuItem onClick={handleMobileMenuClose}>
+          <Button component={Link} to="/register" sx={{ color: '#000'}}>
+            Register
+          </Button>
+        </MenuItem>
+      </Menu>)
+    }
+  }
+
+  return (
+    <AppBar style={{ boxShadow: "none", marginBottom: "2rem" }}>
+      <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
+
+        { displayNavTitle() }
+
+        {/* Mobile Hamburger Button */}
+        <IconButton size="large" edge="end" aria-label="menu" aria-haspopup="true" onClick={handleMobileMenuOpen} sx={{ display: { xs: 'block', md: 'none' }, color: '#000' }}>
+          <MenuIcon />
+        </IconButton>
+
+        { displayMobileButtons() }
+
+        { displayDesktopButtons() }
+
+      </Toolbar>
+    </AppBar>
+  )
+}
 
 export default Navbar;
-
