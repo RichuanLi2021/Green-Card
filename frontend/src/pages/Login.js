@@ -9,7 +9,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
-import VaccinesIcon from '@mui/icons-material/Vaccines';
+import logo from '../assets/images/icons/logo/white/WhiteShine256px.svg';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -53,8 +53,8 @@ export default function SignIn() {
         <CssBaseline />
         <Box sx={{ marginTop: 20, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 
-          <Avatar sx={{ width: 70, height: 70, bgcolor: '#96d2b0', border: '3px solid #5a8e70' }}>
-            <VaccinesIcon style={{width: 37, height: 37, color: '#5a8e70'}} />
+          <Avatar sx={{ width: 90, height: 90, bgcolor: '#96d2b0', border: '3px solid #5a8e70' }}>
+            <img src={logo} className={'height-width-5rem'} alt='GPGC Logo'></img>
           </Avatar>
 
           <Typography component="h1" variant="h5" sx={{mt: 3, mb: 2, color: '#68a783'}}>
