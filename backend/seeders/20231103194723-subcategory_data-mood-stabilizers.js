@@ -5,10 +5,9 @@ const { v4: uuidv4 } = require('uuid');
 module.exports = {
   async up (queryInterface, DataTypes) {
     await queryInterface.bulkInsert('subcategory_data', [
-     
       { uuid: uuidv4(), headerID: 61, value: 'lamotrigine (Lamictal)', createdAt: new Date(), updatedAt: new Date() },
       { uuid: uuidv4(), headerID: 62, value: '25h', createdAt: new Date(), updatedAt: new Date() },
-      { uuid: uuidv4(), headerID: 63, value: '12.5-25 hs | 50--250† | 200-300', createdAt: new Date(), updatedAt: new Date() },
+      { uuid: uuidv4(), headerID: 63, value: '12.5-25 hs | 50-250† | 200-300', createdAt: new Date(), updatedAt: new Date() },
       { uuid: uuidv4(), headerID: 64, value: 'bid', createdAt: new Date(), updatedAt: new Date() },
       { uuid: uuidv4(), headerID: 65, value: '25,100,150/tab 2,5/chewtab', createdAt: new Date(), updatedAt: new Date() },
       { uuid: uuidv4(), headerID: 66, value: 'nil', createdAt: new Date(), updatedAt: new Date() },
@@ -42,11 +41,13 @@ module.exports = {
       { uuid: uuidv4(), headerID: 66, value: '"', createdAt: new Date(), updatedAt: new Date() },
 
       { uuid: uuidv4(), headerID: 61, value: 'antipsychotics', createdAt: new Date(), updatedAt: new Date() },
-     
+      // { uuid: uuidv4(), headerID: ??, value: 'Please see antipsychotics table', createdAt: new Date(), updatedAt: new Date() },
+
       { uuid: uuidv4(), headerID: 61, value: 'carbamazepine (Tegretol)', createdAt: new Date(), updatedAt: new Date() },
-      
+      // { uuid: uuidv4(), headerID: ??, value: 'To be used with caution under expert supervision*', createdAt: new Date(), updatedAt: new Date() },
+
       { uuid: uuidv4(), headerID: 61, value: 'oxcarbazepine (Trileptal)', createdAt: new Date(), updatedAt: new Date() },
-      
+      // { uuid: uuidv4(), headerID: ??, value: 'To be used with caution under expert supervision*', createdAt: new Date(), updatedAt: new Date() }
     ], {});
   },
 
