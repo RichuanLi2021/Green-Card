@@ -64,7 +64,7 @@ export default function SignIn() {
           </Avatar>
 
           <Typography component="h1" variant="h5" sx={{mt: 3, mb: 2, color: '#68a783'}}>
-            Sign Up
+            Register
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <Grid container spacing={2}>
