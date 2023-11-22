@@ -10,8 +10,10 @@ const routesIndex = require('./routes/index');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger/swaggerDocument');
 const swaggerOptions = require('./swagger/swaggerOptions');
+const helmet = require('helmet');
 
 app.disable('x-powered-by');
+app.use(helmet());
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", config.FRONTEND_URL);
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
