@@ -8,6 +8,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import DataDisplay from '../components/DataDisplay/dataDisplay';
 import React, { useState, useEffect } from 'react'; 
 import axios from 'axios'; 
+//landingPage import
+import LandingPage from './LandingPage';
 
 const theme = createTheme({
   typography: {
@@ -21,8 +23,12 @@ const theme = createTheme({
 const HomePage = () => {
   const [selectedDrugs, setSelectedDrugs] = useState([]);
   const [drugData, setDrugData] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+      // Check for user authentication
+      const token = localStorage.getItem('access-token');
+      setIsLoggedIn(!!token);
       console.log('Drug data:', drugData);
   }, [selectedDrugs, drugData]);
 
@@ -124,111 +130,114 @@ const HomePage = () => {
       
     },
   ];
+
+
   return (
     <div>
       <ThemeProvider theme={theme}>
         <Container className="main-container" maxWidth={false}>
-          <Grid container spacing={4} direction="row" sx={{ textAlign: "center" }}>
-            <Grid item xs={12} sm={3}>
-              <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
-                {drugList.map(drugCategory => {
-                  // Check if data array has only one item
-                  if (drugCategory.data.length === 1) {
-                    const drugItem = drugCategory.data[0];
-                    return (
-                      <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-                        <Button
-                          variant="h1"
-                          sx={{
-                              background: "#ffffff", 
-                              width: "100%",
-                              display: "flex",
-                              flexDirection: "row", 
-                              alignItems: "center", 
-                              justifyContent: "center", 
-                              textTransform: "none",
-                              padding: "15px",
-                              border: "1px solid #cbcbcb", 
-                              boxShadow: "0px 1px 1px rgba(0,0,0,0.5)", 
-                              '&:hover': {
-                                  backgroundColor: "#96D2B0", 
-                              }
-                          }}
-                          onClick={(e) => {
-                              e.preventDefault();
-                              const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
-                              if (checkbox) {
-                                  checkbox.checked = !checkbox.checked;
-                                  handleCheckboxChange(drugItem.route, checkbox.checked);
-                              }
-                          }}
-                        >
-                            <input 
-                                type="checkbox" 
-                                id={`${drugItem.route}Checkbox`} 
-                                style={{ marginRight: "10px" }} 
-                            />
-                            <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                                {drugItem.name}
-                            </Typography>
-                        </Button>
-                      </CardContent>
-                    );
-                  } else {
-                    return (
-                      <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-                        <Accordion className="myAccordion">
-                          <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
-                            <Typography variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                              {drugCategory.category} 
-                            </Typography>
-                          </AccordionSummary>
-                          <AccordionDetails>
-                            {drugCategory.data.map(drugItem => (
-                              <div className="item-container">
-                                <input 
-                                  type="checkbox" 
-                                  id={`${drugItem.route}Checkbox`} 
-                                  onChange={(e) => handleCheckboxChange(drugItem.route, e.target.checked)}
-                                />
-                                <Typography
-                                  className="myStyledButton"
-                                  sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }} 
-                                  onClick={() => {
-                                    const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
-                                    if (checkbox) {
+        {!isLoggedIn ? (
+            <LandingPage />
+          ) : (<Grid container spacing={4} direction="row" sx={{ textAlign: "center" }}>
+                <Grid item xs={12} sm={3}>
+                  <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
+                    {drugList.map(drugCategory => {
+                      // Check if data array has only one item
+                      if (drugCategory.data.length === 1) {
+                        const drugItem = drugCategory.data[0];
+                        return (
+                          <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
+                            <Button
+                              variant="h1"
+                              sx={{
+                                  background: "#ffffff", 
+                                  width: "100%",
+                                  display: "flex",
+                                  flexDirection: "row", 
+                                  alignItems: "center", 
+                                  justifyContent: "center", 
+                                  textTransform: "none",
+                                  padding: "15px",
+                                  border: "1px solid #cbcbcb", 
+                                  boxShadow: "0px 1px 1px rgba(0,0,0,0.5)", 
+                                  '&:hover': {
+                                      backgroundColor: "#96D2B0", 
+                                  }
+                              }}
+                              onClick={(e) => {
+                                  e.preventDefault();
+                                  const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
+                                  if (checkbox) {
                                       checkbox.checked = !checkbox.checked;
                                       handleCheckboxChange(drugItem.route, checkbox.checked);
-                                    }
-                                  }}
-                                >
-                                  {drugItem.name}
+                                  }
+                              }}
+                            >
+                                <input 
+                                    type="checkbox" 
+                                    id={`${drugItem.route}Checkbox`} 
+                                    style={{ marginRight: "10px" }} 
+                                />
+                                <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
+                                    {drugItem.name}
                                 </Typography>
-                              </div>
-                            ))}
-                          </AccordionDetails>
-                        </Accordion>
-                      </CardContent>
-                    );
-                  }
-                })}
-              </Card>
-            </Grid>
-
-
-            
-            <Grid item xs={12} sm={9}>
-              <Box className="gray-square">
-                <DataDisplay/>
-                {selectedDrugs.map(drugName => (
-                    <div className="grid" key={drugName}>
-                        <h2>Rendering GridTest for {drugName}</h2>
-                        <DataDisplay drugData={drugData[drugName]} />
-                    </div>
-                ))}
-              </Box>
-            </Grid>
-          </Grid>
+                            </Button>
+                          </CardContent>
+                        );
+                      } else {
+                        return (
+                          <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
+                            <Accordion className="myAccordion">
+                              <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
+                                <Typography variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
+                                  {drugCategory.category} 
+                                </Typography>
+                              </AccordionSummary>
+                              <AccordionDetails>
+                                {drugCategory.data.map(drugItem => (
+                                  <div className="item-container">
+                                    <input 
+                                      type="checkbox" 
+                                      id={`${drugItem.route}Checkbox`} 
+                                      onChange={(e) => handleCheckboxChange(drugItem.route, e.target.checked)}
+                                    />
+                                    <Typography
+                                      className="myStyledButton"
+                                      sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }} 
+                                      onClick={() => {
+                                        const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
+                                        if (checkbox) {
+                                          checkbox.checked = !checkbox.checked;
+                                          handleCheckboxChange(drugItem.route, checkbox.checked);
+                                        }
+                                      }}
+                                    >
+                                      {drugItem.name}
+                                    </Typography>
+                                  </div>
+                                ))}
+                              </AccordionDetails>
+                            </Accordion>
+                          </CardContent>
+                        );
+                      }
+                    })}
+                  </Card>
+                </Grid>
+                
+                <Grid item xs={12} sm={9}>
+                  <Box className="gray-square">
+                    <DataDisplay/>
+                    {selectedDrugs.map(drugName => (
+                        <div className="grid" key={drugName}>
+                            <h2>Rendering GridTest for {drugName}</h2>
+                            <DataDisplay drugData={drugData[drugName]} />
+                        </div>
+                    ))}
+                  </Box>
+                </Grid>
+              </Grid>
+          )}
         </Container>
       </ThemeProvider>
     </div>

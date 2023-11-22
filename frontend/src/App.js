@@ -11,6 +11,8 @@ import Register from "./pages/Register";
 import AdminDashboard from "./pages/admin/Dashboard";
 import AdminFeedback from "./pages/admin/Feedback";
 
+//import LandingPage ...
+
 import Disclaimer from './components/Disclaimer';
 import NavBar from "./components/Navigation";
 import Footer from './components/Footer';
@@ -24,6 +26,8 @@ export default function App() {
       <NavBar />
       <main>
         <Routes>
+          {/* LandingPage at root */}
+          {/* <Route path="/" element={<LandingPage />} />  */}
           <Route path="home" element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
