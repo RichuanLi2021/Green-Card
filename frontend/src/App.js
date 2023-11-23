@@ -10,8 +10,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AdminDashboard from "./pages/admin/Dashboard";
 import AdminFeedback from "./pages/admin/Feedback";
-
-//import LandingPage ...
+import LandingPage from './pages/LandingPage';
 
 import Disclaimer from './components/Disclaimer';
 import NavBar from "./components/Navigation";
@@ -27,7 +26,7 @@ export default function App() {
       <main>
         <Routes>
           {/* LandingPage at root */}
-          {/* <Route path="/" element={<LandingPage />} />  */}
+          <Route path="/" element={<LandingPage />} /> 
           <Route path="home" element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
