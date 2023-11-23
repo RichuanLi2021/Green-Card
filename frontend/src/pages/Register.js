@@ -12,6 +12,11 @@ import logo from '../assets/images/icons/logo/white/WhiteShine256px.svg';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Config from '../config/config'
 
 const theme = createTheme({
   palette: {
@@ -24,15 +29,34 @@ const theme = createTheme({
 export default function SignIn() {
   const navigate = useNavigate();
 
+  const [occupation, setOccupation] = React.useState('');
+  const [showSpecialtyInput, setShowSpecialtyInput] = React.useState(false);
+  const [showOccupationInput, setShowOccupationInput] = React.useState(false);
+
+  const handleOccupationChange = (event) => {
+    const discipline = event.target.value
+    setOccupation(discipline);
+
+    if (discipline === 'Other') {
+      setShowOccupationInput(true);
+      setShowSpecialtyInput(false);
+    } else if (discipline === 'Other Specialist Physician') {
+      setShowOccupationInput(false);
+      setShowSpecialtyInput(true);
+    } else {
+      setShowOccupationInput(false);
+      setShowSpecialtyInput(false);
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const dataCredential = new FormData(event.target);
     
-    axios.post(process.env.REACT_APP_BACKEND_URL + "/api/auth/register", {
-      fName: dataCredential.get('firstName'),
-      lName: dataCredential.get('lastName'),
+    axios.post(Config.API_URL + "/api/auth/register", {
       email: dataCredential.get('email'),
-      password: dataCredential.get('password')
+      password: dataCredential.get('password'),
+      discipline: dataCredential.get('discipline') || dataCredential.get('specialty') || dataCredential.get('other-discipline')
     })
       .then(response => {
         if (response.data.message) {
@@ -79,7 +103,51 @@ export default function SignIn() {
                   autoComplete="email"
                 />
               </Grid>
-              
+
+          <Grid item xs={12}>
+            <FormControl fullWidth>
+              <InputLabel id="discipline-label">Discipline</InputLabel>
+              <Select
+                labelId="discipline-label"
+                id="discipline"
+                value={occupation}
+                label="Discipline"
+                onChange={handleOccupationChange}
+              >
+                <MenuItem value="Medical Student">Medical Student</MenuItem>
+                <MenuItem value="Resident">Resident</MenuItem>
+                <MenuItem value="Family Physician">Family Physician</MenuItem>
+                <MenuItem value="Other Specialist Physician">Other Specialist Physician</MenuItem>
+                <MenuItem value="RN/LPN">RN/LPN</MenuItem>
+                <MenuItem value="Pharmacy Resident">Pharmacy Resident</MenuItem>
+                <MenuItem value="Pharmacist">Pharmacist</MenuItem>
+                <MenuItem value="Other">Other</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+
+          {showSpecialtyInput && (
+          <Grid item xs={12}>
+              <TextField
+                fullWidth
+                id="specialty"
+                label="Specialty"
+                name="specialty"
+              />
+            </Grid>
+          )}
+
+          {showOccupationInput && (
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                id='other-discipline'
+                label="Other Discipline"
+                name="other-discipline"
+                onChange={(e) => setOccupation(e.target.value)}
+              />
+            </Grid>
+          )}
               <Grid item xs={12}>
                 <TextField
                   required
