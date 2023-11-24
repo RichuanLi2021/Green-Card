@@ -3,19 +3,41 @@ const router = express.Router();
 const { Category, Subcategory, Subcategory_Type, Subcategory_Header, Subcategory_Data } = require('../models')
 const { validateUserToken } = require('../middleware/validateToken')
 
-// Get All Categories (with subcategories and subcategory types)
+// Get All Categories (with subcategories, type, headers, and data)
 router.get('/categories', validateUserToken, async (req, res) => {
   try {
     await Category.findAll({
       attributes: {
         exclude: ['createdAt', 'updatedAt']
       },
-      include: {
-        model: Subcategory,
-        attributes: {
-          exclude: ['createdAt', 'updatedAt', 'SubcategoryTypeId', 'CategoryId']
+      include: [
+        {
+          model: Subcategory,
+          attributes: {
+            exclude: ['createdAt', 'updatedAt', 'SubcategoryTypeId', 'CategoryId']
+          },
+          include: [
+            {
+              model: Subcategory_Type,
+              attributes: {
+                exclude: ['createdAt', 'updatedAt', 'SubcategoryId']
+              }
+            },
+            {
+              model: Subcategory_Header,
+              attributes: {
+                exclude: ['createdAt', 'updatedAt', 'SubcategoryId']
+              },
+              include: {
+                model: Subcategory_Data,
+                attributes: {
+                  exclude: ['createdAt', 'updatedAt', 'SubcategoryHeaderId']
+                }
+              }
+            }
+          ]
         }
-      }
+      ]
     })
       .then((message) => { return res.status(200).json({message}) })
       .catch((err) => { return res.status(400).json(err) })
@@ -24,18 +46,18 @@ router.get('/categories', validateUserToken, async (req, res) => {
   }
 })
 
-// Get All Subcategories (with types, headers, and data)
+// Get All Subcategories (with type, headers, and data)
 router.get('/subcategories', validateUserToken, async (req, res) => {
   try {
     await Subcategory.findAll({
       attributes: {
-        exclude: ['CategoryId', 'SubcategoryTypeId','createdAt', 'updatedAt']
+        exclude: ['createdAt', 'updatedAt', 'SubcategoryTypeId', 'CategoryId']
       },
       include: [
         {
           model: Subcategory_Type,
           attributes: {
-            exclude: ['createdAt', 'updatedAt']
+            exclude: ['createdAt', 'updatedAt', 'SubcategoryId']
           }
         },
         {
@@ -43,9 +65,12 @@ router.get('/subcategories', validateUserToken, async (req, res) => {
           attributes: {
             exclude: ['createdAt', 'updatedAt', 'SubcategoryId']
           },
-          // include: {
-          //   model: Subcategory_Data
-          // }
+          include: {
+            model: Subcategory_Data,
+            attributes: {
+              exclude: ['createdAt', 'updatedAt', 'SubcategoryHeaderId']
+            }
+          }
         }
       ]
     })
@@ -61,14 +86,14 @@ router.get('/subcategory_headers', validateUserToken, async (req, res) => {
   try {
     await Subcategory_Header.findAll({
       attributes: {
-        exclude: ['SubcategoryId']
+        exclude: ['createdAt', 'updatedAt', 'SubcategoryId']
       },
-      // include: {
-      //   model: Subcategory_Data,
-      //   attributes: {
-      //     exclude: ['createdAt', 'updatedAt', 'SubcategoryHeaderId']
-      //   }
-      // }
+      include: {
+        model: Subcategory_Data,
+        attributes: {
+          exclude: ['createdAt', 'updatedAt', 'SubcategoryHeaderId']
+        }
+      }
     })
       .then((message) => { return res.status(200).json({message}) })
       .catch((err) => { return res.status(400).json(err) })
