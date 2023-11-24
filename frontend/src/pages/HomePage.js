@@ -24,6 +24,7 @@ const HomePage = () => {
   const [selectedDrugs, setSelectedDrugs] = useState([]);
   const [drugData, setDrugData] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [activeButtons, setActiveButtons] = useState({});
 
   useEffect(() => {
       // Check for user authentication
@@ -48,6 +49,10 @@ const HomePage = () => {
       } else {
           setSelectedDrugs(prev => prev.filter(item => item !== drugName));
       }
+      setActiveButtons(prev => ({
+        ...prev,
+        [drugName]: !prev[drugName]
+    }));
   };
 
   const drugList = [
@@ -150,38 +155,40 @@ const HomePage = () => {
                             <Button
                               variant="h1"
                               sx={{
-                                  background: "#ffffff", 
-                                  width: "100%",
-                                  display: "flex",
-                                  flexDirection: "row", 
-                                  alignItems: "center", 
-                                  justifyContent: "center", 
-                                  textTransform: "none",
-                                  padding: "15px",
-                                  border: "1px solid #cbcbcb", 
-                                  boxShadow: "0px 1px 1px rgba(0,0,0,0.5)", 
-                                  '&:hover': {
-                                      backgroundColor: "#96D2B0", 
-                                  }
+                                background: "#ffffff", 
+                                width: "100%",
+                                display: "flex",
+                                flexDirection: "row", 
+                                alignItems: "center", 
+                                justifyContent: "center", 
+                                textTransform: "none",
+                                padding: "15px",
+                                border: "1px solid #cbcbcb", 
+                                boxShadow: "0px 1px 1px rgba(0,0,0,0.5)", 
+                                '&:hover': {
+                                    backgroundColor: "#96D2B0", 
+                                },
+                                backgroundColor: activeButtons[drugItem.route] ? "#96D2B0" : "#ffffff"
                               }}
                               onClick={(e) => {
-                                  e.preventDefault();
-                                  const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
-                                  if (checkbox) {
-                                      checkbox.checked = !checkbox.checked;
-                                      handleCheckboxChange(drugItem.route, checkbox.checked);
-                                  }
+                                e.preventDefault();
+                                const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
+                                if (checkbox) {
+                                    checkbox.checked = !checkbox.checked;
+                                    handleCheckboxChange(drugItem.route, checkbox.checked);
+                                }
                               }}
                             >
-                                <input 
-                                    type="checkbox" 
-                                    id={`${drugItem.route}Checkbox`} 
-                                    style={{ marginRight: "10px" }} 
-                                />
-                                <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                                    {drugItem.name}
-                                </Typography>
+                              <input 
+                                  type="checkbox" 
+                                  id={`${drugItem.route}Checkbox`} 
+                                  style={{ visibility: "hidden", marginRight: "10px" }} 
+                              />
+                              <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
+                                  {drugItem.name}
+                              </Typography>
                             </Button>
+
                           </CardContent>
                         );
                       } else {
@@ -199,10 +206,11 @@ const HomePage = () => {
                                     <input 
                                       type="checkbox" 
                                       id={`${drugItem.route}Checkbox`} 
+                                      style={{ visibility: "hidden" }} 
                                       onChange={(e) => handleCheckboxChange(drugItem.route, e.target.checked)}
                                     />
                                     <Typography
-                                      className="myStyledButton"
+                                      className={`myStyledButton ${activeButtons[drugItem.route] ? 'activeButton' : ''}`}
                                       sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }} 
                                       onClick={() => {
                                         const checkbox = document.getElementById(`${drugItem.route}Checkbox`);

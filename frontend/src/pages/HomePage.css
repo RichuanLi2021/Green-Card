@@ -137,7 +137,13 @@ a {
 }
 
 
+.activeButton {
+  background-color: #96D2B0; /* Active state color */
+}
 
+.inactiveButton {
+  background-color: #ffffff; /* Inactive state color */
+}
 
 
 @media (max-width:600px) {
