@@ -134,7 +134,7 @@ const Disclaimer = () => {
                             I understand
                         </Button>
                         <input type="checkbox" id="box1" name="box1" checked={isChecked} onChange={handleCheckboxChange}/>
-                        <label for="box1">Do not show again</label>
+                        <label htmlFor="box1">Do not show again</label>
                     </div>
                 </DialogActions>
             </GreenCardDisclaimer>
