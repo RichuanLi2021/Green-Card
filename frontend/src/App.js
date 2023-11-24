@@ -5,12 +5,13 @@ import './components/Navigation.css';
 import "./components/elements/feedback/FeedbackForm.css";
 import "./App.css";
 
+import LandingPage from './pages/LandingPage';
 import Home from './pages/HomePage';
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Account from "./pages/Account";
 import AdminDashboard from "./pages/admin/Dashboard";
 import AdminFeedback from "./pages/admin/Feedback";
-import LandingPage from './pages/LandingPage';
 
 import Disclaimer from './components/Disclaimer';
 import NavBar from "./components/Navigation";
@@ -25,11 +26,11 @@ export default function App() {
       <NavBar />
       <main>
         <Routes>
-          {/* LandingPage at root */}
           <Route path="/" element={<LandingPage />} /> 
           <Route path="home" element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="account" element={<Account/>} />
 
           <Route path="admin">
             <Route path="dashboard" element={<AdminDashboard />} />
