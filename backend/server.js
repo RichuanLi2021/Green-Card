@@ -14,12 +14,6 @@ const helmet = require('helmet');
 
 app.disable('x-powered-by');
 app.use(helmet());
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", config.FRONTEND_URL);
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS");
-  next();
-});
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
