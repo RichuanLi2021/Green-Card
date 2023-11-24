@@ -6,17 +6,17 @@ const { v4: uuidv4 } = require("uuid")
 
 // Get All
 router.get('/', validateUserToken, async (req, res) => {
-    try {
-        await Subcategory_Data.findAll({
-          attributes: {
-            exclude: ['HeaderId']
-          }
-        })
-          .then((message) => { return res.status(200).json(message) })
-          .catch((error) => { return res.status(400).json({ error, errorMessage: error['errors'][0].message }) })
-    } catch (error) {
-        return res.status(500).json({ error, errorMessage: 'Encountered unexpected error while finding all subcategory data' })
-    }
+  try {
+    await Subcategory_Data.findAll({
+      attributes: {
+        exclude: ['SubcategoryHeaderId']
+      }
+    })
+      .then((message) => { return res.status(200).json(message) })
+      .catch((error) => { return res.status(400).json({ error, errorMessage: error['errors'][0].message }) })
+  } catch (error) {
+    return res.status(500).json({ error, errorMessage: 'Encountered unexpected error while finding all subcategory data' })
+  }
 })
 
 // Get One
@@ -25,21 +25,19 @@ router.get('/:id', validateUserToken, async (req, res) => {
     await Subcategory_Data.findOne({
       where: { uuid: req.params.id },
       attributes: {
-        exclude: ['HeaderId']
+        exclude: ['SubcategoryHeaderId']
       },
       include: {
         model: Subcategory_Header,
-        include: {
-          model: Subcategory,
-          include: [
-            {
-              model: Subcategory_Type
-            },
-            {
-              model: Category
-            }
-          ]
-        }
+        include: [
+          {
+            model: Subcategory,
+            include: [
+              { model: Subcategory_Type },
+              { model: Category }
+            ]
+          }
+        ]
       }
     })
       .then((message) => {
