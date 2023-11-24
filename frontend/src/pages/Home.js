@@ -1,5 +1,5 @@
 import { Card, CardContent, Container, Grid, Typography, Box, Button } from "@mui/material";
-import "./HomePage.css";
+import "./Home.css";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -9,7 +9,7 @@ import DataDisplay from '../components/DataDisplay/dataDisplay';
 import React, { useState, useEffect } from 'react'; 
 import axios from 'axios'; 
 //landingPage import
-import LandingPage from './LandingPage';
+import LandingPage from './Landing';
 
 const theme = createTheme({
   typography: {

@@ -5,8 +5,8 @@ import './components/Navigation.css';
 import "./components/elements/feedback/FeedbackForm.css";
 import "./App.css";
 
-import LandingPage from './pages/LandingPage';
-import Home from './pages/HomePage';
+import LandingPage from './pages/Landing';
+import Home from './pages/Home';
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Account from "./pages/Account";
