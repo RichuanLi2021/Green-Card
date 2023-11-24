@@ -12,23 +12,23 @@ defineAssociations = (sequelize) => {
 
   Category.hasMany(Subcategory)
 
-  Subcategory_Type.hasMany(Subcategory)
+  Subcategory_Type.hasMany(Subcategory, { foreignKey: 'subcategoryTypeID' })
 
-  Subcategory.belongsTo(Category, { foreignKey: 'categoryID', targetKey: 'id' })
-  Subcategory.belongsTo(Subcategory_Type, { foreignKey: 'subcategoryTypeID', targetKey: 'id' })
+  Subcategory.belongsTo(Category, { foreignKey: 'categoryID' })
+  Subcategory.belongsTo(Subcategory_Type, { foreignKey: 'subcategoryTypeID' })
   Subcategory.hasMany(Subcategory_Header)
 
-  Subcategory_Header.belongsTo(Subcategory, { foreignKey: 'subcategoryID', targetKey: 'id' })
-  Subcategory_Header.hasMany(Subcategory_Data)
+  Subcategory_Header.belongsTo(Subcategory, { foreignKey: 'subcategoryID' })
+  Subcategory_Header.hasMany(Subcategory_Data, { foreignKey: 'headerID' })
 
-  Subcategory_Data.belongsTo(Subcategory_Header, { foreignKey: 'headerID', targetKey: 'id' })
+  Subcategory_Data.belongsTo(Subcategory_Header, { foreignKey: 'headerID' })
 
-  User.hasMany(User_Role)
+  User.hasMany(User_Role, { foreignKey: 'userID' })
 
-  Role.hasMany(User_Role)
+  Role.hasMany(User_Role, { foreignKey: 'roleID' })
 
-  User_Role.belongsTo(User, { foreignKey: 'userID', targetKey: 'id' })
-  User_Role.belongsTo(Role, { foreignKey: 'roleID', targetKey: 'id' })
+  User_Role.belongsTo(User, { foreignKey: 'userID' })
+  User_Role.belongsTo(Role, { foreignKey: 'roleID' })
 }
 
 module.exports = { defineAssociations };
