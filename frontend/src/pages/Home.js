@@ -8,8 +8,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import DataDisplay from '../components/DataDisplay/dataDisplay';
 import React, { useState, useEffect } from 'react'; 
 import axios from 'axios'; 
-//landingPage import
-import LandingPage from './Landing';
 
 const theme = createTheme({
   typography: {
@@ -23,13 +21,9 @@ const theme = createTheme({
 const HomePage = () => {
   const [selectedDrugs, setSelectedDrugs] = useState([]);
   const [drugData, setDrugData] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeButtons, setActiveButtons] = useState({});
 
   useEffect(() => {
-      // Check for user authentication
-      const token = localStorage.getItem('access-token');
-      setIsLoggedIn(!!token);
       console.log('Drug data:', drugData);
   }, [selectedDrugs, drugData]);
 
@@ -73,7 +67,6 @@ const HomePage = () => {
    
     },
 
-    //dont work
     {
       category: "Insomnia",
       data: [
@@ -141,9 +134,7 @@ const HomePage = () => {
     <div>
       <ThemeProvider theme={theme}>
         <Container className="main-container" maxWidth={false}>
-        {!isLoggedIn ? (
-            <LandingPage />
-          ) : (<Grid container spacing={4} direction="row" sx={{ textAlign: "center" }}>
+            <Grid container spacing={4} direction="row" sx={{ textAlign: "center" }}>
                 <Grid item xs={12} sm={3}>
                   <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
                     {drugList.map(drugCategory => {
@@ -245,7 +236,6 @@ const HomePage = () => {
                   </Box>
                 </Grid>
               </Grid>
-          )}
         </Container>
       </ThemeProvider>
     </div>
