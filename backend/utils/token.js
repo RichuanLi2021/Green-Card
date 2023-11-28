@@ -2,11 +2,11 @@ const env = require('../config/env')
 const { sign } = require("jsonwebtoken")
 
 // Note: Payload contents are not encrypted (see `decodePayload` function below), so do not place sensitive data the payload
-const createToken = (user, roleUUID) => {
+const createToken = (user, roleTitle) => {
   return sign(
     {
-      u_uuid: user.uuid,
-      role: roleUUID
+      uuid: user.uuid,
+      role: roleTitle
     },
     env.JWT_SECRET
   )
