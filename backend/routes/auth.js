@@ -38,9 +38,9 @@ router.post('/login', async (req, res) => {
           }
         }
       })
-      const roleUUID = role.dataValues.uuid
+      const roleTitle = role.dataValues.title
 
-      const token = createToken(user, roleUUID)
+      const token = createToken(user, roleTitle)
       return res
         .status(200)
         .cookie(
