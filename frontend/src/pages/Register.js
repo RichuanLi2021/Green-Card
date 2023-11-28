@@ -80,104 +80,70 @@ export default function SignIn() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-    
           }}
         >
           <Avatar sx={{ width: 90, height: 90, bgcolor: '#96d2b0', border: '3px solid #5a8e70' }}>
-           <img src={logo} className={'height-width-5rem'} alt='GPGC Logo'></img>
+            <img src={logo} className={'height-width-5rem'} alt='GPGC Logo'></img>
           </Avatar>
 
           <Typography component="h1" variant="h5" sx={{mt: 3, mb: 2, color: '#68a783'}}>
             Register
           </Typography>
+
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <Grid container spacing={2}>
-              
+            <Grid container spacing={2}>
               <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
+                <TextField required fullWidth id="email" label="Email Address" name="email" autoComplete="email" />
               </Grid>
 
-          <Grid item xs={12}>
-            <FormControl fullWidth>
-              <InputLabel id="discipline-label">Discipline</InputLabel>
-              <Select
-                labelId="discipline-label"
-                id="discipline"
-                value={occupation}
-                label="Discipline"
-                onChange={handleOccupationChange}
-              >
-                <MenuItem value="Medical Student">Medical Student</MenuItem>
-                <MenuItem value="Resident">Resident</MenuItem>
-                <MenuItem value="Family Physician">Family Physician</MenuItem>
-                <MenuItem value="Other Specialist Physician">Other Specialist Physician</MenuItem>
-                <MenuItem value="RN/LPN">RN/LPN</MenuItem>
-                <MenuItem value="Pharmacy Resident">Pharmacy Resident</MenuItem>
-                <MenuItem value="Pharmacist">Pharmacist</MenuItem>
-                <MenuItem value="Other">Other</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-
-          {showSpecialtyInput && (
-          <Grid item xs={12}>
-              <TextField
-                fullWidth
-                id="specialty"
-                label="Specialty"
-                name="specialty"
-              />
-            </Grid>
-          )}
-
-          {showOccupationInput && (
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                id='other-discipline'
-                label="Other Discipline"
-                name="other-discipline"
-                onChange={(e) => setOccupation(e.target.value)}
-              />
-            </Grid>
-          )}
               <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
+                <FormControl fullWidth>
+                  <InputLabel id="discipline-label">Discipline</InputLabel>
+                  <Select labelId="discipline-label" id="discipline" value={occupation} label="Discipline" onChange={handleOccupationChange} >
+                    <MenuItem value="Medical Student">Medical Student</MenuItem>
+                    <MenuItem value="Resident">Resident</MenuItem>
+                    <MenuItem value="Family Physician">Family Physician</MenuItem>
+                    <MenuItem value="Other Specialist Physician">Other Specialist Physician</MenuItem>
+                    <MenuItem value="RN/LPN">RN/LPN</MenuItem>
+                    <MenuItem value="Pharmacy Resident">Pharmacy Resident</MenuItem>
+                    <MenuItem value="Pharmacist">Pharmacist</MenuItem>
+                    <MenuItem value="Other">Other</MenuItem>
+                  </Select>
+                </FormControl>
               </Grid>
+
+              {showSpecialtyInput && (
+                <Grid item xs={12}>
+                  <TextField fullWidth id="specialty" label="Specialty" name="specialty" />
+                </Grid>
+              )}
+
+              {showOccupationInput && (
+                <Grid item xs={12}>
+                  <TextField fullWidth id='other-discipline' label="Other Discipline" name="other-discipline" onChange={(e) => setOccupation(e.target.value)} />
+                </Grid>
+              )}
+
+              <Grid item xs={12}>
+                <TextField required fullWidth name="password" label="Password" type="password" id="password" autoComplete="new-password" />
               </Grid>
-              <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
+            </Grid>
+
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               Sign Up
             </Button>
+
             <Grid container className='signUpGrid'>
-            <Grid item xs>
-                <Link to="login" variant="body2" sx={{color:'#68a783'}}>
-                  {"Already have an Account? Sign In"}
+              <Grid item xs>
+                <Link href='/login' variant="body2" sx={{color:'#68a783'}}>
+                  Already have an Account? Sign In
                 </Link>
               </Grid>
             </Grid>
-          </Box>
-        </Box>
 
+          </Box>
+
+        </Box>
       </Container>
     </ThemeProvider>
   );
