@@ -12,11 +12,11 @@ const swaggerDocument = require('./swagger/swaggerDocument');
 const swaggerOptions = require('./swagger/swaggerOptions');
 const helmet = require('helmet');
 
+app.use(cookieParser());
 app.disable('x-powered-by');
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
 app.use(cors({ origin: true, credentials: true }));
 app.use("/api", routesIndex);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
