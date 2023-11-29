@@ -4,7 +4,7 @@ const { Category, Subcategory, Subcategory_Type, Subcategory_Header, Subcategory
 const { validateUserToken } = require('../middleware/validateToken')
 
 // Get All Categories (with subcategories, type, headers, and data)
-router.get('/categories', validateUserToken, async (req, res) => {
+router.get('/categories', async (req, res) => {
   try {
     await Category.findAll({
       attributes: {
