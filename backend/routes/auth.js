@@ -61,6 +61,7 @@ router.post('/login', async (req, res) => {
 
 router.post('/logout', async (req, res) => {
   try {
+    
     if (!req.cookies['access-token']) return res.status(400).json({ errorMessage: 'Not logged in' })
     return res.clearCookie('access-token').status(200).json({ message: 'Successfully logged out' })
   } catch (error) {

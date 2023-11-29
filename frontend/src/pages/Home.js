@@ -32,7 +32,7 @@ const HomePage = () => {
           setSelectedDrugs(prev => [...prev, drugName]);
           if (!drugData[drugName]) {
               axios
-              .get(`${process.env.REACT_APP_BACKEND_URL}/api/${drugName}`)
+              .get(`${process.env.REACT_APP_DEV_API_URL}/api/subcategories/${drugName}`)
               .then(response => {
                   setDrugData(prev => ({ ...prev, [drugName]: response.data }));
               })
@@ -53,61 +53,55 @@ const HomePage = () => {
     {
       category: 'Antidepressants',
       data: [
-        { name: 'Antidepressant Guide', route: 'antidepressant/guide' },
-        { name: 'Antidepressant Clinical Guide', route: 'antidepressant/clinical' },
-        { name: 'Antidepressant Safety Concerns', route: 'antidepressant/safety' }
+        { name: 'Antidepressants Medication Table', route: '9a56b502-ebec-4584-8ff6-11c8c6f26ca4' },
+        { name: 'Antidepressants Adverse Effects and Safety', route: '3c4da90f-089d-43d0-897b-72cb318a392e' },
+        { name: 'Antidepressants Clinical Guide', route: 'b5f661bc-1085-4cdd-869d-e3508a462819' }
       ]
     },
     {
       category: "Antipsychotics",
       data: [
-        { name: 'Antipsychotics Guide', route: 'antipsychotic/guide' },
-        { name: 'Antipsychotics Safety Concerns', route: 'antipsychotic/safety' }
+        { name: 'Antipsychotics Medication Table', route: 'fb69854a-cb70-4234-81ec-ec1a2e02aab9' },
+        { name: 'Antipsychotics Adverse Effects and Safety', route: 'e10741f6-5e45-494f-96e2-df8889235a1f' }
+        
       ]
    
     },
 
     {
+      category: "Dementia",
+      data: [
+        { name: 'Cognitive Enhancers Medication Table', route: 'a95f6ba6-c753-4ce0-a6bc-ee0ef97a6c28' },
+        { name: 'Cognitive Enhancers Adverse Effects and Safety', route: 'e04c2562-30c4-4cce-b337-45916dd296d2'},
+        { name: 'Cognitive Enhancers Clinical Guide', route: '625e131d-85e3-4366-ae1e-756d547b7131' }
+      ]
+    },
+
+    {
       category: "Insomnia",
       data: [
-        { name: 'Sedatives/hypnotics Guide', route: 'insomnia/sedatives-guide/sedatives' },
-        { name: 'Sedatives/hypnotics Clinical Guide', route: 'insomnia/clinical/insomnia-clinical' },
-        { name: 'Sedatives/hypnotics Safety Concerns', route: 'insomnia/safety/insomnia-safety' },
-        { name: 'Deprescribing Sedatives/Hypnotics', route: 'insomnia/deprescribing/insomnia-deprescribing' }
+        { name: 'Sedatives/Hypnotics Medication Table', route: 'f1215bc3-b24b-4b61-ad3b-08e31cf6aae6' },
+        { name: 'Sedatives/Hypnotics Adverse Effects and Safety', route: '91cb79f9-84a8-44bd-8097-765c7d328d3d' },
+        { name: 'Sedatives/Hypnotics Clinical Guide', route: '968cc37f-8776-4e47-866d-98f2165e6212' }
       ]
       
     },
 
     {
-      category: "Dementia",
-      data: [
-        { name: 'Cognitive Enhancers Guide', route: 'cognitive/guide' },
-        { name: 'Cognitive Enhancers Clinical Guide', route: 'cognitive/clinical'},
-        { name: 'NPS Management', route: 'cognitive/guide-cont' }
-      ]
-    },
-
-    {
       category: "Delirium",
       data: [
-        { name: 'Anticholinergic activity', route: 'delirium/delirium' },
-        { name: 'Delirium Management', route: 'delirium/management' }
+        { name: 'Delirium Nonpharmalogical', route: '1e0f973c-0d1c-4078-a514-f0ccd96d8e91' },
+        { name: 'Delirium Pharmalogical', route: '683fb42a-ae49-436f-9ce3-dacea24db402' },
+        { name: 'Delirium Anticholinergic Activity', route: 'ad92d63b-9f0e-4729-a1bd-f304658c4e80' }
       ]
     },
 
-    {
-      category: "Polypharmacy",
-      data: [
-        { name: 'Common DDIs', route: 'polypharmacy/polypharmacy-common-ddis' },
-        { name: 'Notable changes in older adults', route: 'polypharmacy/polypharmacy-notable-changes' },
-        { name: 'Prescribing and deprescribing principles', route: 'polypharmacy/polypharmacy-principles' }
-      ]
-    },
+   
 
     {
       category: "ECT & Psychoactive Medications",
       data: [
-        { name: 'ECT & Psychoactive Medications', route: 'neuropsy/neuropsychiatric' }
+        { name: 'ECT & Psychoactive Medications Medication Table', route: 'b78720b1-afe8-4f36-8013-cf6f62269002' }
       ]
       
     },
@@ -115,18 +109,12 @@ const HomePage = () => {
     {
       category: "Mood Stabilizers",
       data: [
-        { name: 'Mood Stabilizers', route: 'mood-sta/Mood/mood-stabilizers' }
+        { name: 'Mood Stabilizers Medication Table', route: 'c536e448-fda6-480b-b236-16703fe361b7' }
       ]
      
     },
 
-    {
-      category: "Psychotropic Monitoring",
-      data: [
-        { name: 'Psychotropic Monitoring', route: 'psychotropic/psychotropic-monitoring-section' }
-      ]
-      
-    },
+ 
   ];
 
 
@@ -229,8 +217,9 @@ const HomePage = () => {
                     <DataDisplay/>
                     {selectedDrugs.map(drugName => (
                         <div className="grid" key={drugName}>
-                            <h2>Rendering GridTest for {drugName}</h2>
-                            <DataDisplay drugData={drugData[drugName]} />
+                            <h2>{drugData[drugName]?.description || 'Default Description'}</h2>
+                            <DataDisplay subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
+
                         </div>
                     ))}
                   </Box>

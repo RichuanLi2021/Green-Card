@@ -20,7 +20,7 @@ router.get('/', validateUserToken, async (req, res) => {
 })
 
 // Get One
-router.get('/:id', validateUserToken, async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     await Subcategory.findOne({
       where: { uuid: req.params.id },
