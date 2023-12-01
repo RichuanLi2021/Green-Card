@@ -31,7 +31,7 @@ export default function SignIn() {
     event.preventDefault();
     const dataCredential = new FormData(event.target);
 
-    axios.post(Config.API_URL + "/api/auth/login", {
+    axios.post(`${Config.API_URL}/api/auth/login`, {
       email: dataCredential.get('email'),
       password: dataCredential.get('password')
     }, { withCredentials: true })
