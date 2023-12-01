@@ -10,13 +10,19 @@
     width: 4rem;
 }
 
+/* ~~~ Page Specific ~~~ */
+@media (max-width:600px) {
+  .landing-content {
+    flex-direction: column !important;
+  }
+}
+
 .Policy,
 .disclaimer,
 .feedback-button {
   text-decoration: none !important;
 }
 
-/* Style changes for hover effect */
 .Policy:hover,
 .disclaimer:hover,
 .feedback-button:hover {
@@ -25,9 +31,6 @@
   padding-bottom: 5px;
   text-decoration: none !important;
 }
-
-
-/* ~~~ Page Specific ~~~ */
 
 /* Delirium Management */
 .css-14096co-MuiTableCell-root, .css-1659btm-MuiTableCell-root, .css-9l3uo3, .css-17vih54, .css-1fboncs {
