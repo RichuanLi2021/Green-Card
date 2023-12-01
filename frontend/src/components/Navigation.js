@@ -14,13 +14,14 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import axios from 'axios';
 import Config from "../config/config";
+import logo from '../assets/images/icons/logo/white/WhiteShine256px.svg';
 
 const Navbar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const isLoggedIn = localStorage.getItem('access-token')
+  const isLoggedIn = localStorage.getItem('access-token');
 
   const handleMobileMenuOpen = (event) => { setAnchorEl(event.currentTarget) };
 
@@ -43,22 +44,6 @@ const Navbar = () => {
       console.log(error);
     }
   };
-
-  const displayNavTitle = () => {
-    if (isLoggedIn) {
-      return (
-        <Typography className="web-title" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none' }}>
-          <Link to={"/home"} className={'navigation-title'}>Geriatric Psychotropic Green Card</Link>
-        </Typography>
-      )
-    } else {
-      return (
-        <Typography className="web-title" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none' }}>
-          <Link to={"/"} className={'navigation-title'}>Geriatric Psychotropic Green Card</Link>
-        </Typography>
-      )
-    }
-  }
 
   const displayDesktopButtons = () => {
     if (isLoggedIn) {
@@ -126,7 +111,14 @@ const Navbar = () => {
     <AppBar style={{ boxShadow: "none", marginBottom: "2rem" }}>
       <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
 
-        { displayNavTitle() }
+
+        <Link to={ isLoggedIn ? '/home' : '/' }>
+          <img src={logo} className="navbar_logo" alt="GPGC Logo"/>
+        </Link>
+
+        <Typography className="web-title" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none' }}>
+          <Link to={ isLoggedIn ? '/home' : '/' } className={'navigation-title'} >Geriatric Psychotropic Green Card</Link>
+        </Typography>
 
         {/* Mobile Hamburger Button */}
         <IconButton size="large" edge="end" aria-label="menu" aria-haspopup="true" onClick={handleMobileMenuOpen} sx={{ display: { xs: 'block', md: 'none' }, color: '#000' }}>
