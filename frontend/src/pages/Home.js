@@ -7,7 +7,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import DataDisplay from '../components/DataDisplay/dataDisplay';
 import React, { useState, useEffect } from 'react'; 
-import axios from 'axios'; 
+import axios from 'axios';
+import Config from "../config/config";
 
 const theme = createTheme({
   typography: {
@@ -17,17 +18,16 @@ const theme = createTheme({
     },
   },
 });
-
 const HomePage = () => {
   const [selectedDrugs, setSelectedDrugs] = useState([]);
   const [drugData, setDrugData] = useState({});
   const [activeButtons, setActiveButtons] = useState({});
-  const [drugList, setDrugList] = useState([]); // New state for dynamic drug list
+  const [drugList, setDrugList] = useState([]); 
 
   useEffect(() => {
     const fetchDrugCategories = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_DEV_API_URL}/api/all/categories`);
+        const response = await axios.get(`${Config.API_URL}/api/all/categories`, { withCredentials: true });
         const formattedData = response.data.message.map(category => ({
           category: category.title,
           data: category.Subcategories.map(sub => ({
@@ -53,7 +53,7 @@ const HomePage = () => {
           setSelectedDrugs(prev => [...prev, drugName]);
           if (!drugData[drugName]) {
               axios
-              .get(`${process.env.REACT_APP_DEV_API_URL}/api/subcategories/${drugName}`)
+              .get(`${Config.API_URL}/api/subcategories/${drugName}`, { withCredentials: true })
               .then(response => {
                   setDrugData(prev => ({ ...prev, [drugName]: response.data }));
               })

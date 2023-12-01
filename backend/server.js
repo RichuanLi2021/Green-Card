@@ -13,11 +13,11 @@ const swaggerOptions = require('./swagger/swaggerOptions');
 const { sequelize } = require('./models');
 const routesIndex = require('./routes/index');
 
+app.use(cors({ origin: config.FRONTEND_URL, credentials: true }));
 app.use(rateLimit)
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: true, credentials: true }));
 app.disable('x-powered-by');
 app.use(helmet());
 app.use("/api", routesIndex);
