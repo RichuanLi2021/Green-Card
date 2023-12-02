@@ -5,28 +5,35 @@ import './components/Navigation.css';
 import "./components/elements/feedback/FeedbackForm.css";
 import "./App.css";
 
-import Home from './pages/HomePage';
+import LandingPage from './pages/Landing';
+import Home from './pages/Home';
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Account from "./pages/Account";
 import AdminDashboard from "./pages/admin/Dashboard";
 import AdminFeedback from "./pages/admin/Feedback";
-
 import Disclaimer from './components/Disclaimer';
 import NavBar from "./components/Navigation";
 import Footer from './components/Footer';
+
+import PrivateRoute from './middleware/PrivateRoute';
+import PublicRoute from './middleware/PublicRoute';
+
 
 export default function App() {
   return (
     <Router>
       <CssBaseline />
-
       <Disclaimer />
       <NavBar />
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
+          <Route path="/" element={<PublicRoute><LandingPage /></PublicRoute>} />
+          <Route path="login" element={<PublicRoute><Login /></PublicRoute>} />
+          <Route path="register" element={<PublicRoute><Register /></PublicRoute>} />
+
+          <Route path="home" element={<PrivateRoute><Home /></PrivateRoute>} />
+          <Route path="account" element={<PrivateRoute><Account/></PrivateRoute>} />
 
           <Route path="admin">
             <Route path="dashboard" element={<AdminDashboard />} />

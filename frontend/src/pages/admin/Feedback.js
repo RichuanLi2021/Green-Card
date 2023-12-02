@@ -4,9 +4,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './Feedback.css';
 
-const generateID = () => {
-  return Math.random().toString(36).substr(2, 9);
-};
 
 const theme = createTheme({
   palette: {
@@ -16,19 +13,20 @@ const theme = createTheme({
   },
 });
 
-const ShowFeedback = ({ feedbackData, onClose }) => {
-  const [filteredFeedbacks, setFilteredFeedbacks] = useState(feedbackData);
+// const ShowFeedback = ({ feedbackData, onClose, onFeedbackSelect }) => {
+const ShowFeedback = ({ onClose }) => {
+  // const [filteredFeedbacks, setFilteredFeedbacks] = useState(feedbackData);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterSelected, setFilterSelected] = useState(false);
 
   const handleFilterButtonClick = () => {
-    const filtered = feedbackData.filter((feedback) => feedback.overall_rating > 3);
-    setFilteredFeedbacks(filtered);
+    // const filtered = feedbackData.filter((feedback) => feedback.overall_rating > 3);
+    // setFilteredFeedbacks(filtered);
     setFilterSelected(true);
   };
 
   const handleResetButtonClick = () => {
-    setFilteredFeedbacks(feedbackData);
+    // setFilteredFeedbacks(feedbackData);
     setSearchTerm("");
     setFilterSelected(false);
   };
@@ -36,15 +34,21 @@ const ShowFeedback = ({ feedbackData, onClose }) => {
   const handleSearchChange = (event) => {
     const value = event.target.value.toLowerCase();
     setSearchTerm(value);
-    const filtered = feedbackData.filter((feedback) => {
-      const lowerCaseName = feedback.name.toLowerCase();
-      const lowerCaseEmail = feedback.email.toLowerCase();
-      return (
-        lowerCaseName.includes(value) || lowerCaseEmail.includes(value)
-      );
-    });
-    setFilteredFeedbacks(filtered);
+    // const filtered = feedbackData.filter((feedback) => {
+    //   const lowerCaseName = feedback.name.toLowerCase();
+    //   const lowerCaseEmail = feedback.email.toLowerCase();
+    //   return (
+    //     lowerCaseName.includes(value) || lowerCaseEmail.includes(value)
+    //   );
+    // });
+    // setFilteredFeedbacks(filtered);
   };
+
+  // const handleRowClick = (feedback) => {
+  //   if (onFeedbackSelect) {
+  //     onFeedbackSelect(feedback);
+  //   }
+  // };
 
   return (
     <ThemeProvider theme={theme}>
@@ -98,18 +102,18 @@ const ShowFeedback = ({ feedbackData, onClose }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {filteredFeedbacks.map((feedback) => (
-                <TableRow key={generateID()}>
-                  <TableCell>{feedback.id}</TableCell>
-                  <TableCell>{feedback.name}</TableCell>
-                  <TableCell>{feedback.email}</TableCell>
-                  <TableCell>{feedback.comment}</TableCell>
-                  <TableCell>{feedback.overall_rating}</TableCell>
-                  <TableCell>
-                    {feedback.subscribe ? "Yes" : "No"}
-                  </TableCell>
-                </TableRow>
-              ))}
+              {/*{filteredFeedbacks.map((feedback) => (*/}
+              {/*  <TableRow key={generateID()} onClick={() => handleRowClick(feedback)}>*/}
+              {/*    <TableCell>{feedback.id}</TableCell>*/}
+              {/*    <TableCell>{feedback.name}</TableCell>*/}
+              {/*    <TableCell>{feedback.email}</TableCell>*/}
+              {/*    <TableCell>{feedback.comment}</TableCell>*/}
+              {/*    <TableCell>{feedback.overall_rating}</TableCell>*/}
+              {/*    <TableCell>*/}
+              {/*      {feedback.subscribe ? "Yes" : "No"}*/}
+              {/*    </TableCell>*/}
+              {/*  </TableRow>*/}
+              {/*))}*/}
             </TableBody>
           </Table>
         </TableContainer>

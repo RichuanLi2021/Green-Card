@@ -1,30 +1,34 @@
 "use strict";
-require("dotenv").config({ path: __dirname + "/.env" }); // Required for .env file
+require("dotenv").config({ path: __dirname + "/.env" }); // Must be called first
 const config = require("./config/env");
-const cookieParser = require('cookie-parser');
-const routesIndex = require('./routes/index');
+const envCheck = require('./utils/environmentCheck')
+envCheck()
 const express = require("express");
 const app = express();
+const rateLimit = require('./middleware/rateLimit')
+const cookieParser = require('cookie-parser');
 const cors = require("cors");
+const helmet = require('helmet');
+const routesIndex = require('./routes/index');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger/swaggerDocument');
+const swaggerOptions = require('./swagger/swaggerOptions');
 const { sequelize } = require('./models');
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", config.FRONTEND_URL);
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS");
-  next();
-});
+app.use(rateLimit)
 app.use(cookieParser());
+app.use(cors({ origin: config.FRONTEND_URL, credentials: true }));
 app.use(express.json());
-app.use(cors({ origin: true }));
 app.use(express.urlencoded({ extended: true }));
+app.disable('x-powered-by');
+app.use(helmet());
 app.use("/api", routesIndex);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
 
-const port = config.API_PORT || 8887;
 try {
   sequelize.authenticate()
     .then(() => {
-      app.listen(port, () => console.log("API server started on port " + port))
+      app.listen(config.API_PORT, () => console.log("API server started on port " + config.API_PORT))
     })
 } catch (err) {
   console.error("API server unable to start: ", err);

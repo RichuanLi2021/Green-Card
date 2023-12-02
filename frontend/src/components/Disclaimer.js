@@ -112,7 +112,7 @@ const Disclaimer = () => {
     const handleCheckboxChange = (event) => {
         setIsChecked(event.target.checked);
     };
-
+  
     return (
         <ThemeProvider theme={theme}>
             <GreenCardDisclaimer onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
@@ -134,7 +134,7 @@ const Disclaimer = () => {
                             I understand
                         </Button>
                         <input type="checkbox" id="box1" name="box1" checked={isChecked} onChange={handleCheckboxChange}/>
-                        <label for="box1">Do not show again</label>
+                        <label htmlFor="box1">Do not show again</label>
                     </div>
                 </DialogActions>
             </GreenCardDisclaimer>

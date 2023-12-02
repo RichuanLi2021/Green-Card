@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import FeedbackForm from './FeedbackForm';
-import Button from '@mui/material/Button';
+import { Link } from '@mui/material';
 
 
 const FeedbackFormHandler = () => {
@@ -16,7 +16,7 @@ const FeedbackFormHandler = () => {
 
   return (
     <>
-      <Button
+      <Link
         // variant="contained"
         onClick={handleOpenForm}
         className="feedback-button"
@@ -28,7 +28,7 @@ const FeedbackFormHandler = () => {
           background: '#96d2b0',
         }}>
         Feedback
-      </Button>
+      </Link>
 
       {showForm && (
         <>
