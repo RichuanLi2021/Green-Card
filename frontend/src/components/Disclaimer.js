@@ -112,7 +112,7 @@ const Disclaimer = () => {
     const handleCheckboxChange = (event) => {
         setIsChecked(event.target.checked);
     };
-
+  
     return (
         <ThemeProvider theme={theme}>
             <GreenCardDisclaimer onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
