@@ -90,8 +90,10 @@ a {
   
   .myStyledButton:hover {
     background-color: #ccc;
+    color: #000;
+    transition: 0.3s;
   }
-
+ 
 
   .myAccordion {
     background: #ffffff;
@@ -119,7 +121,7 @@ a {
   }
   
   .gray-square {
-    background-color: grey;
+    background-color: rgb(228, 230, 227);
     width: 100%;
     min-height: 100vh;
     display: flex;
@@ -138,8 +140,13 @@ a {
 
 
 .activeButton {
-  background-color: #96D2B0; /* Active state color */
+  /*background-color: #509872;  Active state color */
+  color: #131010;
+  border-color: #000;
+  border-width: 2px;
+  font-weight: bolder;
 }
+
 
 .inactiveButton {
   background-color: #ffffff; /* Inactive state color */

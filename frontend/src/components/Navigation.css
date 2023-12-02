@@ -28,9 +28,6 @@
   margin-left: 30px;
 }
 
-.navbar__link:hover {
-  text-decoration: underline;
-}
 
 .navbar__menu-toggle {
   display: none;
