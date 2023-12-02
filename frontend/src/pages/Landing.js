@@ -144,7 +144,6 @@ const LandingPage = () => {
           >
             Login For more Drug Information and The Usage.
           </Typography>
-          {/* Guide visitors to register or login */}
           <Button
             variant="contained"
             onClick={handleRegister}
