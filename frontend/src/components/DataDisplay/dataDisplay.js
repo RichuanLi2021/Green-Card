@@ -8,27 +8,32 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 
-function createData(drugData) {
-  return drugData;
-}
-
-export default function StickyHeadTable({ drugName, drugData }) {
+export default function StickyHeadTable({ drugName, subcategoryHeaders }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  if (!Array.isArray(drugData) || drugData.length === 0) {
+  if (!subcategoryHeaders || subcategoryHeaders.length === 0) {
     return <div class="Liam"></div>;
   }
 
-  const headers = Object.keys(drugData[0])
-    .filter(key => key !== "Id" && key !== "ID" && key !== "id")
-    .map(key => ({
-      id: key,
-      label: key,
-      minWidth: 170
-    }));
+  // Generate headers from the subcategory titles
+  const headers = subcategoryHeaders.map(header => ({
+    id: header.title,
+    label: header.title,
+    minWidth: 170
+  }));
 
-  const rows = drugData.map(item => createData(item));
+  // Generate rows by aligning data across subcategories
+  const rows = [];
+  const numberOfRows = subcategoryHeaders[0].Subcategory_Data.length;
+
+  for (let i = 0; i < numberOfRows; i++) {
+    let row = {};
+    subcategoryHeaders.forEach(header => {
+      row[header.title] = header.Subcategory_Data[i]?.value || '-';
+    });
+    rows.push(row);
+  }
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -40,7 +45,7 @@ export default function StickyHeadTable({ drugName, drugData }) {
   };
 
   return (
-    <Paper sx={{ width: '100%', maxWidth:'100%', overflow: 'hidden' }}>
+    <Paper sx={{ width: '100%', maxWidth: '100%', overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -57,17 +62,15 @@ export default function StickyHeadTable({ drugName, drugData }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row, rowIndex) => (
-                <TableRow hover tabIndex={-1} key={rowIndex}>
-                  {headers.map((header) => (
-                    <TableCell key={header.id} align={header.align}>
-                      {row[header.id] || '-'}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))}
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, rowIndex) => (
+              <TableRow hover tabIndex={-1} key={rowIndex}>
+                {headers.map((header) => (
+                  <TableCell key={header.id} align={header.align}>
+                    {row[header.id]}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

@@ -1,6 +1,5 @@
 'use strict';
 const { Model } = require('sequelize');
-const { v4: uuidv4 } = require("uuid");
 
 module.exports = (sequelize, DataTypes) => {
   class subcategory_types extends Model {
@@ -15,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
 
   subcategory_types.init({
     uuid: {
-      defaultValue: uuidv4(),
       type: DataTypes.UUID,
       validate: {
         isUUID: 4,

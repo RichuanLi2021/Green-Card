@@ -10,17 +10,7 @@ module.exports = {
         uuid: uuidv4(),
         discipline: 'RN/LPN',
         email: 'admin@gpgc.ca',
-        password: '$2a$12$FXH9LO5.Hp.7D7JDVgYlVO5bdN5E8OY2ln/1H0d5WQgLerm5GK252',
-        verified: true,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: 2,
-        uuid: uuidv4(),
-        discipline: 'Pharmacist',
-        email: 'user@gpgc.ca',
-        password: '$2a$12$FXH9LO5.Hp.7D7JDVgYlVO5bdN5E8OY2ln/1H0d5WQgLerm5GK252',
+        password: '$2b$12$A2mZHxpQwxRmsh.e9bMD0uS1q4ukYf3oDuvq7T87tnrjxe35WqfDK',
         verified: true,
         createdAt: new Date(),
         updatedAt: new Date()

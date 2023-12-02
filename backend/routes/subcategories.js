@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { Category, Subcategory, Subcategory_Type, Subcategory_Header } = require('../models')
+const { Category, Subcategory, Subcategory_Type, Subcategory_Header, Subcategory_Data } = require('../models')
 const { validateUserToken, validateAdminToken } = require('../middleware/validateToken')
 const { v4: uuidv4 } = require("uuid")
 
@@ -36,12 +36,12 @@ router.get('/:id', validateUserToken, async (req, res) => {
           attributes: {
             exclude: ['SubcategoryId']
           },
-          // include: {
-          //   model: Subcategory_Data,
-          //   attributes: {
-          //     exclude: ['HeaderId']
-          //   }
-          // }
+          include: {
+            model: Subcategory_Data,
+            attributes: {
+              exclude: ['SubcategoryHeaderId']
+            }
+          }
         }
       ]
     })

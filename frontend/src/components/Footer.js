@@ -30,7 +30,6 @@ const Footer = () => {
   return (
     <ThemeProvider theme={theme}>
 
-      {/* Footer Info contents */}
       <Box component="footer" className="main-footer">
         <div className="footer-content">
           <Typography align="center">
@@ -39,15 +38,13 @@ const Footer = () => {
           <Typography variant="body2" align="center">
             <Link href="#" className='Policy'>Privacy Policy</Link>
             {' | '}
-            <Link onClick={handleOpen} className='disclaimer'>Disclaimer</Link>
+            <Link sx={{ cursor: 'pointer' }} role="button" onClick={handleOpen} className='disclaimer'>Disclaimer</Link>
             {' | '}
             <FeedbackFormHandler/>
           </Typography>
         </div>
       </Box>
-      {/* Footer Info contents ends*/}
 
-      {/* Disclaimer Dialog */}
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Disclaimer</DialogTitle>
         <DialogContent>
@@ -66,7 +63,7 @@ const Footer = () => {
         </DialogActions>
       </Dialog>
 
-      
+
     </ThemeProvider>
   );
 };

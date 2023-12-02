@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Subcategory, Subcategory_Header } = require('../models')
+const { Subcategory, Subcategory_Header, Subcategory_Data } = require('../models')
 const { validateUserToken, validateAdminToken } = require('../middleware/validateToken')
 const { v4: uuidv4 } = require("uuid")
 
@@ -27,12 +27,12 @@ router.get('/:id', validateUserToken, async (req, res) => {
       attributes: {
         exclude: ['SubcategoryId']
       },
-      // include: {
-      //   model: Subcategory_Data,
-      //   attributes: {
-      //     exclude: ['HeaderID']
-      //   }
-      // }
+      include: {
+        model: Subcategory_Data,
+        attributes: {
+          exclude: ['SubcategoryHeaderId']
+        }
+      }
     })
       .then((message) => {
         if (!message) return res.status(400).json({ errorMessage: 'Encountered error while finding subcategory header' })
