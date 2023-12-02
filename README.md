@@ -8,7 +8,6 @@ information and practical medication data informed by expert opinion, into a qui
 * [Development](#development)
   * [Pre-requisites](#pre-requisites)
   * [Installation](#installation)
-* [Deployment](#deployment)
 * [Versions](#versions)
 
 ## Getting Started
@@ -19,54 +18,70 @@ To get started with developing the application, follow the steps found in the [I
 
 ### Pre-requisites
 
-* [GitBash](https://git-scm.com/downloads)
-* MySQL/MariaDB Database and DBMS
-  * **Recommended**: [Laragon](https://laragon.org/) (includes HeidiSQL DBMS)
+* [GitBash](https://git-scm.com/downloads) (Windows only)
+* MySQL instance and DBMS
+  * [Laragon](https://laragon.org/) (includes HeidiSQL DBMS) (**Recommended**)
   * [MAMP](https://www.mamp.info/en/) (includes PHPMyAdmin DBMS)
 * [Node.js](https://nodejs.org/en/)
 
 ### Installation
 
 1. Clone the repository
+
 ```
 git clone https://git.cs.dal.ca/courses/csci-x691/geriatric-psychiatry-green-card.git
 ```
 
-2. Navigate into the repository directory and open a terminal window to install the dependencies
+2. Navigate into the repository **root** **directory** by and **install project dependencies** by running the custom npm command:
+
+   * **Note:** If the npm command isn't working for you, run the command, `npm install` in **each** of the **root**, ***frontend***, and ***backend*** directories.
+
 ```
-npm install
+npm run dev:install
 ```
 
-3. After the dependencies have been installed, navigate into the ***/backend*** directory and create a copy of the
-   `.env.sample` file, then name it to `.env`. Edit this file to include your database information, frontend URL, and backend port.
+3. After the dependencies have been installed, navigate into the ***/backend*** directory and **create a copy** of the
+   `.env.sample` file, then name it to `.env`.
+
+   * Edit this file to include your **API port**, **frontend URL**, **JWT secret string**, and **database credentials**. DB_DIALECT is defaulted to 'mysql'.
+
 ```
+NODE_ENV=development
+
+API_PORT=8887
+FRONTEND_URL=http://localhost:3000
+JWT_SECRET=
+JWT_LENGTH_MS=604800000
+
 DB_HOST=localhost
 DB_PORT=3306
-DB_DATABASE=green_card
+DB_DATABASE=gpgc
 DB_USERNAME=root
 DB_PASSWORD=
-
-FRONTEND_URL=http://localhost:3000
-API_PORT=8887
+DB_DIALECT=
 ```
 
-4. Navigate to the ***/frontend*** directory and create a copy of the `.env.sample` file, then name it to `.env`. Edit
-   this file to include your backend URL and port.
+4. Navigate to the ***/frontend*** directory and **create a copy** of the `.env.sample` file, then name it to `.env`.
+
+   * Edit this file to include your **backend URL and port**.
 ```
-REACT_APP_BACKEND_URL=http://localhost:8887
+NODE_ENV=development
+
+REACT_APP_DEV_API_URL=http://localhost:8887
 ```
 
-5. Navigate back to the root directory and start the application
+5. Navigate back to the root directory, and create and seed the database by running the command:
+   * Note: This command also works in the */backend* directory.
+```
+npm run db:reset
+```
+
+5. Start the application by running the command:
 ```
 npm run dev
 ```
-
-## Deployment
 
 ## Versions
 
 All source code versions can be found in the [tags](https://git.cs.dal.ca/courses/csci-x691/geriatric-psychiatry-green-card/-/tags)
 section of the repository.
-
-### 2023F_Sprint_2 *(10/18/2021)*
-* Changes here.

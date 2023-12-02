@@ -4,8 +4,58 @@
     margin-bottom: 5rem;
 }
 
+/* Dimensions */
+.height-width-5rem {
+    height: 4rem;
+    width: 4rem;
+}
 
 /* ~~~ Page Specific ~~~ */
+@media (max-width:600px) {
+  .landing-content {
+    flex-direction: column !important;
+  }
+}
+
+.Policy,
+.disclaimer,
+.feedback-button {
+  text-decoration: none !important;
+}
+
+.Policy:hover,
+.disclaimer:hover,
+.feedback-button:hover {
+  background-color: #89cea7;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-decoration: none !important;
+}
+
+.navbar_logo {
+    height: 2.1rem;
+    width: auto;
+    margin-right: 15px;
+}
+
+.navigation-title,
+.navbar__menu a,
+#menu-appbar a {
+  color: #000;
+  text-decoration: none;
+  font-size: 1rem;
+  text-transform: capitalize ;
+  font-family: "Work Sans", sans-serif;
+}
+
+.navigation-title:hover,
+.navbar__menu a:hover,
+#menu-appbar a:hover {
+  background-color: #89cea7;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-decoration: none;
+}
 
 /* Delirium Management */
 .css-14096co-MuiTableCell-root, .css-1659btm-MuiTableCell-root, .css-9l3uo3, .css-17vih54, .css-1fboncs {
