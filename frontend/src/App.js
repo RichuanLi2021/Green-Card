@@ -19,6 +19,7 @@ import Footer from './components/Footer';
 import PrivateRoute from './middleware/PrivateRoute';
 import PublicRoute from './middleware/PublicRoute';
 
+
 export default function App() {
   return (
     <Router>
