@@ -19,7 +19,7 @@ To get started with developing the application, follow the steps found in the [I
 ### Pre-requisites
 
 * [GitBash](https://git-scm.com/downloads) (Windows only)
-* MySQL database and DBMS
+* MySQL instance and DBMS
   * [Laragon](https://laragon.org/) (includes HeidiSQL DBMS) (**Recommended**)
   * [MAMP](https://www.mamp.info/en/) (includes PHPMyAdmin DBMS)
 * [Node.js](https://nodejs.org/en/)
@@ -34,16 +34,16 @@ git clone https://git.cs.dal.ca/courses/csci-x691/geriatric-psychiatry-green-car
 
 2. Navigate into the repository **root** **directory** by and **install project dependencies** by running the custom npm command:
 
-**Note:** If the npm command isn't working for you, run the command, `npm install` in **each** of the **root**, ***frontend***, and ***backend*** directories.
+   * **Note:** If the npm command isn't working for you, run the command, `npm install` in **each** of the **root**, ***frontend***, and ***backend*** directories.
 
 ```
-npm run dev:init
+npm run dev:install
 ```
 
 3. After the dependencies have been installed, navigate into the ***/backend*** directory and **create a copy** of the
    `.env.sample` file, then name it to `.env`.
 
-Edit this file to include your **API port**, **frontend URL**, **JWT secret string**, and **database credentials**. DB_DIALECT is defaulted to 'mysql'.
+   * Edit this file to include your **API port**, **frontend URL**, **JWT secret string**, and **database credentials**. DB_DIALECT is defaulted to 'mysql'.
 
 ```
 NODE_ENV=development
@@ -63,15 +63,20 @@ DB_DIALECT=
 
 4. Navigate to the ***/frontend*** directory and **create a copy** of the `.env.sample` file, then name it to `.env`.
 
-Edit this file to include your **backend URL and port**. REACT_APP_PROD_API_URL is not used in development.
+   * Edit this file to include your **backend URL and port**.
 ```
 NODE_ENV=development
 
 REACT_APP_DEV_API_URL=http://localhost:8887
-REACT_APP_PROD_API_URL=
 ```
 
-5. Navigate back to the root directory, and start the application by running the command:
+5. Navigate back to the root directory, and create and seed the database by running the command:
+   * Note: This command also works in the */backend* directory.
+```
+npm run db:reset
+```
+
+5. Start the application by running the command:
 ```
 npm run dev
 ```

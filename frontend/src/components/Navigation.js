@@ -29,7 +29,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      axios.post(Config.API_URL + "/api/auth/logout", {}, { withCredentials: true })
+      axios.post(`${Config.API_URL}/api/auth/logout`, {}, { withCredentials: true })
         .then(response => {
           if (response.data.message) {
             alert(response.data.message)
@@ -110,7 +110,6 @@ const Navbar = () => {
   return (
     <AppBar style={{ boxShadow: "none", marginBottom: "2rem" }}>
       <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
-
 
         <Link to={ isLoggedIn ? '/home' : '/' }>
           <img src={logo} className="navbar_logo" alt="GPGC Logo"/>
