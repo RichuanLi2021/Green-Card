@@ -140,12 +140,11 @@ a {
 
 
 .activeButton {
-  background-color: #509872;  /* Active state color */
+  background-color: #ccc;  /* Active state color */
   color: #131010;
   border-color: #000;
   border-width: 2px;
   font-weight: bolder;
-
 }
 
 
