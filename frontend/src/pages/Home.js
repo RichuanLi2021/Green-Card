@@ -97,7 +97,6 @@ const HomePage = () => {
                                 justifyContent: "center", 
                                 textTransform: "none",
                                 padding: "15px",
-                                marginRight: "30px",
                                 border: "1px solid #cbcbcb", 
                                 boxShadow: "0px 1px 1px rgba(0,0,0,0.5)", 
                                 '&:hover': {
@@ -117,7 +116,7 @@ const HomePage = () => {
                               <input 
                                   type="checkbox" 
                                   id={`${drugItem.route}Checkbox`} 
-                                  style={{ visibility: "hidden", marginRight: "20px" }} 
+                                  style={{ visibility: "hidden", marginRight: "10px" }} 
                               />
                               <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
                                   {drugItem.name}
