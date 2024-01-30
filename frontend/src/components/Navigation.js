@@ -53,10 +53,12 @@ const Navbar = () => {
             Account
           </Button>
 
-          <Button onClick={handleLogout} sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
-            Logout
+          
+          <Button onClick={handleLogout} component={Link} to="/" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
+          Logout
           </Button>
         </div>
+        
       )
     } else {
       return (
