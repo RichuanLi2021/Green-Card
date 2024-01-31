@@ -14,7 +14,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './Login.css';
-import Config from "../config/config";
+import Config from "../config/config";  
+import {useState} from 'react';
+import ToastComponent from './ToastComponent';
+
 
 const theme = createTheme({
   palette: {
@@ -24,29 +27,67 @@ const theme = createTheme({
   }
 });
 
-export default function SignIn() {
-  if (localStorage.getItem('access-token')) window.location.href = '/home'
+export default function SignIn() { 
+  const [email, setEmail] = useState(''); 
+  const [password, setPassword] = useState('');
+  const [toastMessage, setToastMessage] = useState('');  
 
-  const handleSubmit = (event) => {
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  }; 
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  }
+
+  if (localStorage.getItem('access-token')) window.location.href = '/home';
+
+  const showToast = (message) => {
+    setToastMessage(message); 
+    //setting a timeout to hide the toast after 3 seconds 
+    setTimeout(() => setToastMessage(''), 3000);
+  }; 
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const dataCredential = new FormData(event.target);
-
-    axios.post(`${Config.API_URL}/api/auth/login`, {
-      email: dataCredential.get('email'),
-      password: dataCredential.get('password')
-    }, { withCredentials: true })
-      .then(response => {
-        if (response.data.message) {
-          alert(response.data.message)
-          localStorage.setItem("access-token", response.data.token)
-          window.location.href = '/home'
-        } else {
-          alert(response.data.errorMessage);
-        }
-      })
-      .catch(error => console.log(error));
+  
+    if (!email || !password) {
+      showToast('Please enter both email and password');
+      return;
+    }
+  
+    try {
+      const response = await axios.post(`${Config.API_URL}/api/auth/login`, {
+        email: dataCredential.get('email'),
+        password: dataCredential.get('password'),
+      }, { withCredentials: true });
+  
+      if (response.status === 200) {
+        console.log('Login Successful: ', response.data);
+        showToast('Login Successful');
+        localStorage.setItem("access-token", response.data.token);
+        window.location.href = '/home';
+      } else {
+        console.log('Log Failed:', response.data.errorMessage);
+        showToast(response.data.errorMessage || 'Login failed');
+      }
+    } catch (error) {
+      console.error('Error: ', error);
+  
+      if (error.response) {
+        console.log('Server Error: ', error.response.data);
+        showToast('Server Error. Please try again later.');
+      } else if (error.request) {
+        console.log('Network Error: ', error.request);
+        showToast('Network Error. Please check your internet connection.');
+      } else {
+        console.log('Error:', error.message);
+        showToast('An unexpected error occurred. Please try again.');
+      }
+    }
   };
-
+  
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -62,12 +103,13 @@ export default function SignIn() {
           </Typography>
 
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField margin="normal" id="email" label="Email" name="email" autoComplete="email@gmail.com" autoFocus fullWidth required />
-            <TextField margin="normal" name="password" label="Password" type="password" id="password" fullWidth required />
+            <TextField margin="normal" id="email" label="Email" name="email" autoComplete="email@gmail.com" autoFocus fullWidth required 
+            onChange={handleEmailChange} />
+            <TextField margin="normal" name="password" label="Password" type="password" id="password" fullWidth required onChange={handlePasswordChange}/>
             <FormControlLabel control={<Checkbox value="remember" color="primary" sx={{color: '#68a783'}} />} label="Remember me" sx={{color:'#68a783'}} />
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2, color: 'darkgreen' }}>
               Sign In
-            </Button>
+            </Button> 
             
             <Grid container className='signUpGrid'>
               <Grid item xs>
@@ -80,7 +122,9 @@ export default function SignIn() {
             </Grid>
           </Box>
 
-        </Box>
+        </Box> 
+
+        <ToastComponent message={toastMessage} />
       </Container>
     </ThemeProvider>
   );
