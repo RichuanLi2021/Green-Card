@@ -154,6 +154,7 @@ a {
 
 .css-y8ay40-MuiTableCell-root{
   z-index: 0 !important;
+  /* z-index pop-up for drug title bar*/
 }
 
 @media (max-width:600px) {
