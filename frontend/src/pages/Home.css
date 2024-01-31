@@ -152,6 +152,9 @@ a {
   background-color: #ffffff; /* Inactive state color */
 }
 
+.css-y8ay40-MuiTableCell-root{
+  z-index: 0 !important;
+}
 
 @media (max-width:600px) {
     .main-container {
