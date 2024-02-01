@@ -20,29 +20,39 @@ import PrivateRoute from './middleware/PrivateRoute';
 import PublicRoute from './middleware/PublicRoute';
 
 
-export default function App() {
-  return (
+
+export default function App() { 
+  const fontStyle = { 
+    fontSize: '18px'
+  }; 
+
+  return (  
     <Router>
       <CssBaseline />
       <Disclaimer />
-      <NavBar />
+      <NavBar /> 
+    <div style={fontStyle}> 
+    
       <main>
-        <Routes>
-          <Route path="/" element={<PublicRoute><LandingPage /></PublicRoute>} />
-          <Route path="login" element={<PublicRoute><Login /></PublicRoute>} />
-          <Route path="register" element={<PublicRoute><Register /></PublicRoute>} />
+          <Routes>
+            <Route path="/" element={<PublicRoute><LandingPage /></PublicRoute>} />
+            <Route path="login" element={<PublicRoute><Login /></PublicRoute>} />
+            <Route path="register" element={<PublicRoute><Register /></PublicRoute>} />
 
-          <Route path="home" element={<PrivateRoute><Home /></PrivateRoute>} />
-          <Route path="account" element={<PrivateRoute><Account/></PrivateRoute>} />
+            <Route path="home" element={<PrivateRoute><Home /></PrivateRoute>} />
+            <Route path="account" element={<PrivateRoute><Account/></PrivateRoute>} />
 
-          <Route path="admin">
-            <Route path="dashboard" element={<AdminDashboard />} />
-            <Route path="feedback" element={<AdminFeedback />} />
-          </Route>
-        </Routes>
-      </main>
-      <Footer />
+            <Route path="admin">
+              <Route path="dashboard" element={<AdminDashboard />} />
+              <Route path="feedback" element={<AdminFeedback />} />
+            </Route>
+          </Routes> 
+        </main> 
+      </div>
+  
+      <Footer /> 
 
-    </Router>
+    </Router>  
+    
   );
 }
