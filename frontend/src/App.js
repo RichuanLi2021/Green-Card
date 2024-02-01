@@ -15,6 +15,7 @@ import AdminFeedback from "./pages/admin/Feedback";
 import Disclaimer from './components/Disclaimer';
 import NavBar from "./components/Navigation";
 import Footer from './components/Footer';
+import Policy from './pages/Policy';
 
 import PrivateRoute from './middleware/PrivateRoute';
 import PublicRoute from './middleware/PublicRoute';
@@ -34,6 +35,7 @@ export default function App() {
 
           <Route path="home" element={<PrivateRoute><Home /></PrivateRoute>} />
           <Route path="account" element={<PrivateRoute><Account/></PrivateRoute>} />
+          <Route path="policy" element={<PrivateRoute><Policy/></PrivateRoute>} />
 
           <Route path="admin">
             <Route path="dashboard" element={<AdminDashboard />} />
@@ -41,7 +43,7 @@ export default function App() {
           </Route>
         </Routes>
       </main>
-      <Footer />
+      <Footer/>
 
     </Router>
   );
