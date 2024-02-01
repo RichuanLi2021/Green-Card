@@ -88,7 +88,7 @@ a {
     background-color: #fff;
   }
   
-  .myStyledButton:hover {
+.myStyledButton:hover {
     background-color: #ccc;
     color: #000;
     transition: 0.3s;
@@ -140,7 +140,7 @@ a {
 
 
 .activeButton {
-  /*background-color: #509872;  Active state color */
+  background-color: #ccc;  /* Active state color */
   color: #131010;
   border-color: #000;
   border-width: 2px;
@@ -152,6 +152,10 @@ a {
   background-color: #ffffff; /* Inactive state color */
 }
 
+.css-y8ay40-MuiTableCell-root{
+  z-index: 0 !important;
+  /* z-index pop-up for drug title bar*/
+}
 
 @media (max-width:600px) {
     .main-container {

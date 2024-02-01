@@ -2,6 +2,7 @@
   font-family: "Work Sans", sans-serif;
 }
 
+
 .css-c8ybf4-MuiTableCell-root, .css-cpq8aj {
   font-family: "Work Sans", sans-serif !important;
 }
@@ -10,7 +11,8 @@
   width: 95% !important;
   margin: auto !important;
   margin-top: 8px !important;
-}
+} 
+
 
 @media (max-width: 800px) {
     #antidepressantSafetyHeader {
