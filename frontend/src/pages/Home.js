@@ -9,7 +9,7 @@ import DataDisplay from '../components/DataDisplay/dataDisplay';
 import React, { useState, useEffect } from 'react'; 
 import axios from 'axios';
 import Config from "../config/config";
-import upArrowImage from '/Users/parthbindra/Desktop/git/csci2691/geriatric-psychiatry-green-card/frontend/src/assets/images/up-arrow.png';
+import upArrowImage from '../assets/images/up-arrow.png';
   
 
 const theme = createTheme({
