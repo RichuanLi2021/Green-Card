@@ -9,6 +9,8 @@ import DataDisplay from '../components/DataDisplay/dataDisplay';
 import React, { useState, useEffect } from 'react'; 
 import axios from 'axios';
 import Config from "../config/config";
+import upArrowImage from '/Users/parthbindra/Desktop/git/csci2691/geriatric-psychiatry-green-card/frontend/src/assets/images/up-arrow.png';
+  
 
 const theme = createTheme({
   typography: {
@@ -23,6 +25,17 @@ const HomePage = () => {
   const [drugData, setDrugData] = useState({});
   const [activeButtons, setActiveButtons] = useState({});
   const [drugList, setDrugList] = useState([]); 
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const handleScroll = (direction) => {
+    const scrollAmount = 200; 
+
+    if (direction === 'up') {
+      window.scrollTo(0, scrollPosition - scrollAmount);
+      setScrollPosition(scrollPosition - scrollAmount);
+    } 
+  };
+
+
 
   useEffect(() => {
     const fetchDrugCategories = async () => {
@@ -74,6 +87,7 @@ const HomePage = () => {
 
 
   return (
+   
     <div>
       <ThemeProvider theme={theme}>
         <Container className="main-container" maxWidth={false}>
@@ -182,7 +196,13 @@ const HomePage = () => {
               </Grid>
         </Container>
       </ThemeProvider>
-    </div>
+
+      <img onClick={() => handleScroll('up')} className="upImage" src={upArrowImage} alt="Scroll Up" />
+
+      
+    
+       
+      </div>
   );
 };
 

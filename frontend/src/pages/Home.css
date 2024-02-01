@@ -73,9 +73,26 @@ a {
   width: auto;
   height: 20px; /* Adjust according to your image's aspect ratio */
 }
+.upImage{
+  height: 70px;
+  width: 70px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1;
+}
 
 
-
+.upArrow{
+  width: 100px;
+  height: 100px;
+  align-content: center;
+  border-radius: 100%;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1;
+}
 
 
 .myStyledButton {
