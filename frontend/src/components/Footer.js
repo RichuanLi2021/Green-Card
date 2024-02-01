@@ -36,7 +36,7 @@ const Footer = () => {
             © {new Date().getFullYear()} The Green Card: Geriatric Psychotropic Drug Reference Card
           </Typography>
           <Typography variant="body2" align="center">
-            <Link href="#" className='Policy'>Privacy Policy</Link>
+            <Link href='/policy' className='Policy'>Privacy Policy</Link>
             {' | '}
             <Link sx={{ cursor: 'pointer' }} role="button" onClick={handleOpen} className='disclaimer'>Disclaimer</Link>
             {' | '}
