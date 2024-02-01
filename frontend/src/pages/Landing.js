@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Container, Typography, Button } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import logo from "../assets/images/icons/logo/white/WhiteShine256px.svg";
 import { useNavigate } from "react-router-dom";
