@@ -9,7 +9,12 @@ import Footer from '../../Footer/Footer';
 import Search from '../../Search/Search';
 import { useNavigate } from "react-router-dom";
 
-export default function MoodStabilizers() {
+export default function MoodStabilizers() { 
+
+  const fontStyle = { 
+    fontSize: '18px'
+  };  
+
   const [data, setData] = useState({});
   useEffect(() => {
     fetchData();
@@ -246,6 +251,7 @@ export default function MoodStabilizers() {
                     placeholder="Half-life"
                     onChange={handleInputChange}
                     className="input-style"
+                    style={{ fontSize: '20px'}}
                     />
                     <input
                     type="text"
@@ -253,6 +259,7 @@ export default function MoodStabilizers() {
                     placeholder="Primary NT"
                     onChange={handleInputChange}
                     className="input-style"
+                    style={{ fontSize: '16px'}}
                     />
                     <input
                     type="text"
@@ -304,7 +311,8 @@ export default function MoodStabilizers() {
     // Non-Editable Fields
     else {
       return (
-        <>
+        <> 
+        <div style={fontStyle}> 
           <Navigation />
           <Search onSearch={handleSearch}></Search>
           <div style={{ marginTop: '1rem', padding: '0 1rem' }}>
@@ -326,10 +334,10 @@ export default function MoodStabilizers() {
                     </button>
 
                     {isDrugSelected && (
-                    <div className="box drug-box">
+                    <div className="box drug-box" style={{fontSize:'2rem'}}>
                       <div className="box-content">
                         <strong>Half-life: </strong>
-                        <span>{dataObj[`Half-life`]}</span>
+                        <span style={{ fontSize: '100px' }}>{dataObj[`Half-life`]}</span>
                       </div>
                       <div className="box-content">
                         <strong>Primary NT: </strong>
@@ -370,7 +378,8 @@ export default function MoodStabilizers() {
               increased up to 170%. </p>
             </div>
           </div>
-          <Footer />
+          <Footer /> 
+        </div>  
         </>
       );
     }

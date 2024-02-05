@@ -21,12 +21,17 @@ import PrivateRoute from './middleware/PrivateRoute';
 import PublicRoute from './middleware/PublicRoute';
 
 
-export default function App() {
-  return (
+
+export default function App() { 
+ 
+
+  return (  
     <Router>
       <CssBaseline />
       <Disclaimer />
-      <NavBar />
+      <NavBar /> 
+  
+    
       <main>
         <Routes>
           <Route path="/" element={<PublicRoute><LandingPage /></PublicRoute>} />

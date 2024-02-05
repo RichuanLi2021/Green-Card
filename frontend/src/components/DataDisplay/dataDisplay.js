@@ -54,7 +54,8 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders }) {
                 <TableCell
                   key={header.id}
                   align={header.align}
-                  style={{ minWidth: header.minWidth }}
+                  style={{ minWidth: header.minWidth, fontSize: '16px'  }}
+                  
                 >
                   {header.label}
                 </TableCell>
@@ -65,8 +66,10 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders }) {
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, rowIndex) => (
               <TableRow hover tabIndex={-1} key={rowIndex}>
                 {headers.map((header) => (
-                  <TableCell key={header.id} align={header.align}>
+                  <TableCell key={header.id} align={header.align} style={{ fontSize: '16px'  }}>
                     {row[header.id]}
+                    
+                  
                   </TableCell>
                 ))}
               </TableRow>
