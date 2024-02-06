@@ -133,5 +133,5 @@ const ForgotPassword = () => {
     </ThemeProvider>
   );
 }
-
+/* */
 export default ForgotPassword;
