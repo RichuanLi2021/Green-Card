@@ -16,7 +16,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './Login.css';
 import Config from "../config/config";  
 import {useState} from 'react';
-import ToastComponent from './ToastComponent';
+import ToastComponent from '../components/ToastComponent';
 
 
 const theme = createTheme({
@@ -67,6 +67,7 @@ export default function SignIn() {
         console.log('Login Successful: ', response.data);
         showToast('Login Successful');
         localStorage.setItem("access-token", response.data.token);
+        localStorage.setItem("user-role", response.data.role);
         window.location.href = '/home';
       } else {
         console.log('Log Failed:', response.data.errorMessage);

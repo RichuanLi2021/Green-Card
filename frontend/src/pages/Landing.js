@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Container, Typography, Button } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import logo from "../assets/images/icons/logo/white/WhiteShine256px.svg";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +20,7 @@ const LandingPage = () => {
       className="landing-content"
       sx={{
         display: "flex",
-        flexDirection: "row", // Updated to row
+        flexDirection: "column", // Updated to column
         justifyContent: "space-between", // Adjusted to space between
         alignItems: "center",
         minHeight: "100vh",
@@ -105,33 +105,7 @@ const LandingPage = () => {
         >
           Dept of Psychiatry, Dalhousie University, Halifax, CANADA
         </Typography>
-      </Box>
-
-      {/* Right Content */}
-      <Container maxWidth="lg" sx={{ textAlign: "center", flex: "1", ml: 0 }}>
-        {" "}
-        {/* Add outer margin */}
-        <Box
-          sx={{
-            borderRadius: "8px",
-            borderColor: "#96d2b0",
-            backgroundColor: "#96d2b0",
-            p: 8,
-          }}
-        >
-          {" "}
-          {/* Add padding and border */}
-          <Typography variant="body1" sx={{ mb: 4, color: "#355944" }}>
-            Warning: This card is meant to support rather than guide management
-            decisions in older adults. Information is not comprehensive and
-            errors may occur. Drug doses and other management recommendations
-            may not reflect manufacturers’ recommendation but are based on
-            clinical literature and expert opinion. Listed maximum doses are
-            meant for physically healthy older adults, and in general not
-            recommended for frail patients. The Green Card should not supersede
-            clinical judgment and is not applicable in all circumstances.
-          </Typography>
-          <Typography
+        <Typography
             variant="subtitle2"
             gutterBottom
             sx={{
@@ -144,35 +118,40 @@ const LandingPage = () => {
           >
             Login For more Drug Information and The Usage.
           </Typography>
-          <Button
-            variant="contained"
-            onClick={handleRegister}
-            style={{
-              fontWeight: "bold",
-              marginRight: "1rem",
-              backgroundColor: "#8ab89d",
-              color: "#385143",
-              marginTop: "10px",
-            }}
-          >
-            Register
-          </Button>
-          <Button
-            variant="contained"
-            style={{
-              fontWeight: "bold",
-              marginRight: "1rem",
-              color: "#385143",
-              borderColor: "lightBlue",
-              marginTop: "10px",
-              backgroundColor: "#8ab89d",
-            }}
-            onClick={handleLogin}
-          >
-            Login
-          </Button>
-        </Box>
-      </Container>
+          <div>
+            <Button
+              variant="contained"
+              onClick={handleRegister}
+              style={{
+                fontWeight: "bold",
+                marginRight: "1rem",
+                backgroundColor: "#8ab89d",
+                color: "#385143",
+                marginTop: "10px",
+              }}
+            >
+              Register
+            </Button>
+            <Button
+              variant="contained"
+              style={{
+                fontWeight: "bold",
+                marginRight: "1rem",
+                color: "#385143",
+                borderColor: "lightBlue",
+                marginTop: "10px",
+                backgroundColor: "#8ab89d",
+              }}
+              onClick={handleLogin}
+            >
+              Login
+            </Button>
+          </div>
+          
+
+      </Box>
+
+    
     </Box>
   );
 };
