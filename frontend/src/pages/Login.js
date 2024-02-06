@@ -16,7 +16,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './Login.css';
 import Config from "../config/config";  
 import {useState} from 'react';
-import ToastComponent from './ToastComponent';
+import ToastComponent from '../components/ToastComponent';
 
 
 const theme = createTheme({
