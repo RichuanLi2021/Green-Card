@@ -67,6 +67,7 @@ export default function SignIn() {
         console.log('Login Successful: ', response.data);
         showToast('Login Successful');
         localStorage.setItem("access-token", response.data.token);
+        localStorage.setItem("user-role", response.data.role);
         window.location.href = '/home';
       } else {
         console.log('Log Failed:', response.data.errorMessage);

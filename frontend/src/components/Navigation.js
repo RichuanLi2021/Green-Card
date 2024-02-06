@@ -22,6 +22,7 @@ const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const isLoggedIn = localStorage.getItem('access-token');
+  const userRole = localStorage.getItem('user-role');
 
   const handleMobileMenuOpen = (event) => { setAnchorEl(event.currentTarget) };
 
@@ -34,6 +35,7 @@ const Navbar = () => {
           if (response.data.message) {
             alert(response.data.message)
             localStorage.removeItem('access-token')
+            localStorage.removeItem('user-role')
             window.location.href = '/'
           } else {
             alert(response.data.errorMessage);
@@ -52,8 +54,6 @@ const Navbar = () => {
           <Button component={Link} to="/account" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
             Account
           </Button>
-
-          
           <Button onClick={handleLogout} component={Link} to="/" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
           Logout
           </Button>
