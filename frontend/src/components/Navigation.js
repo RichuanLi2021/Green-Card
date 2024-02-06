@@ -22,7 +22,7 @@ const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const isLoggedIn = localStorage.getItem('access-token');
-  const userRole = localStorage.getItem('user-role');
+  //const userRole = localStorage.getItem('user-role');
 
   const handleMobileMenuOpen = (event) => { setAnchorEl(event.currentTarget) };
 
