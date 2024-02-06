@@ -106,7 +106,7 @@ a {
   }
   
 .myStyledButton:hover {
-    background-color: #ccc;
+    background-color: #96D2B0;
     color: #000;
     transition: 0.3s;
   }
@@ -120,11 +120,6 @@ a {
     border: 1px solid #cbcbcb;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
-  
-  .myAccordion:hover {
-    background-color: #96D2B0;
-  }
-  
 
 
   .item-container {
@@ -157,7 +152,7 @@ a {
 
 
 .activeButton {
-  background-color: #ccc;  /* Active state color */
+  background-color: #96D2B0;  /* Active state color */
   color: #131010;
   border-color: #000;
   border-width: 2px;
