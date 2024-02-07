@@ -15,6 +15,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import axios from 'axios';
 import Config from "../config/config";
 import logo from '../assets/images/icons/logo/white/WhiteShine256px.svg';
+import ToastComponent from './ToastComponent';
+
 
 const Navbar = () => {
   const theme = useTheme();
@@ -27,18 +29,26 @@ const Navbar = () => {
   const handleMobileMenuOpen = (event) => { setAnchorEl(event.currentTarget) };
 
   const handleMobileMenuClose = () => { setAnchorEl(null) };
+  const [toastMessage, setToastMessage] = useState('');  
+
+  const showToast = (message) => {
+    setToastMessage(message); 
+    //setting a timeout to hide the toast after 3 seconds 
+    setTimeout(() => setToastMessage(''), 3000);
+  }; 
+
 
   const handleLogout = async () => {
     try {
       axios.post(`${Config.API_URL}/api/auth/logout`, {}, { withCredentials: true })
         .then(response => {
           if (response.data.message) {
-            alert(response.data.message)
+            showToast(response.data.message)
             localStorage.removeItem('access-token')
             localStorage.removeItem('user-role')
             window.location.href = '/'
           } else {
-            alert(response.data.errorMessage);
+            showToast(response.data.errorMessage);
           }
         })
         .catch(error => console.log(error));
@@ -137,9 +147,10 @@ const Navbar = () => {
         { displayMobileButtons() }
 
         { displayDesktopButtons() }
-
+        <ToastComponent message={toastMessage} />
       </Toolbar>
     </AppBar>
+    
   )
 }
 
