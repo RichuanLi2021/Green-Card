@@ -81,6 +81,24 @@ a {
   right: 20px;
   z-index: 1;
 }
+.downImage{
+  height: 70px;
+  width: 70px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+}
+.downArrow{
+  width: 100px;
+  height: 100px;
+  align-content: center;
+  border-radius: 100%;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+}
 
 
 .upArrow{
