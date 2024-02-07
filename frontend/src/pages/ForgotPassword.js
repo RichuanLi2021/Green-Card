@@ -12,6 +12,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Config from "../config/config";
+import Link from '@mui/material/Link';
+
 
 const theme = createTheme({
   palette: {
@@ -125,8 +127,18 @@ const ForgotPassword = () => {
                 mb: 2,
               }}
             >
-              Reset Password
+              Reset Password.
             </Button>
+            <Grid container className='signUpGrid'>
+              <Grid item xs>
+                <Link href="/register" variant="body2" sx={{color:'#68a783'}}>Don't have an account? | Sign Up</Link>
+              </Grid>
+              
+              <Grid item>
+                <Link href="/Login" variant="body2" sx={{color:'#68a783'}}>Already Have An Account? | Sign In</Link>
+              </Grid>
+              
+        </Grid>
           </Box>
         </Box>
       </Container>
