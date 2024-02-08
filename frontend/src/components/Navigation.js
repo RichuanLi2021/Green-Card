@@ -15,6 +15,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import axios from 'axios';
 import Config from "../config/config";
 import logo from '../assets/images/icons/logo/white/WhiteShine256px.svg';
+import ToastComponent from './ToastComponent';
+
 
 const Navbar = () => {
   const theme = useTheme();
@@ -22,23 +24,31 @@ const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const isLoggedIn = localStorage.getItem('access-token');
-  //const userRole = localStorage.getItem('user-role');
+  const userRole = localStorage.getItem('user-role');
 
   const handleMobileMenuOpen = (event) => { setAnchorEl(event.currentTarget) };
 
   const handleMobileMenuClose = () => { setAnchorEl(null) };
+  const [toastMessage, setToastMessage] = useState('');  
+
+  const showToast = (message) => {
+    setToastMessage(message); 
+    //setting a timeout to hide the toast after 3 seconds 
+    setTimeout(() => setToastMessage(''), 3000);
+  }; 
+
 
   const handleLogout = async () => {
     try {
       axios.post(`${Config.API_URL}/api/auth/logout`, {}, { withCredentials: true })
         .then(response => {
           if (response.data.message) {
-            alert(response.data.message)
+            showToast(response.data.message)
             localStorage.removeItem('access-token')
             localStorage.removeItem('user-role')
             window.location.href = '/'
           } else {
-            alert(response.data.errorMessage);
+            showToast(response.data.errorMessage);
           }
         })
         .catch(error => console.log(error));
@@ -51,6 +61,12 @@ const Navbar = () => {
     if (isLoggedIn) {
       return (
         <div className="navbar__menu">
+           {userRole === "admin" &&(
+          <Button component={Link} to="/login" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
+          Dashboard
+        </Button>
+        )} 
+         
           <Button component={Link} to="/account" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
             Account
           </Button>
@@ -63,6 +79,8 @@ const Navbar = () => {
     } else {
       return (
         <div className="navbar__menu">
+          
+          
           <Button component={Link} to="/login" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
             Login
           </Button>
@@ -78,6 +96,7 @@ const Navbar = () => {
   const displayMobileButtons = () => {
     if (isLoggedIn) {
       return (
+       
         <Menu id="menu-appbar" anchorEl={anchorEl} open={open} onClose={handleMobileMenuClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }} transformOrigin={{ vertical: 'top', horizontal: 'right' }} sx={{ marginTop: '40px' }}>
           <MenuItem onClick={handleMobileMenuClose}>
             <Button component={Link} to="/account" sx={{ color: '#000' }}>
@@ -129,9 +148,10 @@ const Navbar = () => {
         { displayMobileButtons() }
 
         { displayDesktopButtons() }
-
+        <ToastComponent message={toastMessage} />
       </Toolbar>
     </AppBar>
+    
   )
 }
 
