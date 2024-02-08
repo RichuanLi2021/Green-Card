@@ -10,6 +10,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Config from "../config/config";
 import upArrowImage from '../assets/images/up-arrow.png';
+import logo from "../assets/images/icons/logo/white/WhiteShine256px.svg";
+import Avatar from "@mui/material/Avatar";
+
+
   
 
 const theme = createTheme({
@@ -195,6 +199,100 @@ const HomePage = () => {
                 
                 <Grid item xs={12} sm={9}>
                   <Box className="gray-square">
+
+
+                    <div>
+                      <Box
+                        sx={{
+                        textAlign: "center",
+                        flex: ".8",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                      }}
+                      >
+                      {" "}
+                      {/* Adjusted flex value and added display and alignItems */}
+                    <Avatar
+                        sx={{
+                        width: 90,
+                        height: 90,
+                        border: "3px solid #5a8e70",
+                        bgcolor: "#96d2b0",
+                        mb: 3,
+                        }}
+                      >
+                        <img src={logo} className={"height-width-5rem"} alt="GPGC Logo"></img>
+                      </Avatar>
+                    <Typography
+                        variant="h3"
+                        component="h1"
+                        sx={{
+                        fontWeight: "bold",
+                        backgroundColor: "#355944",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
+                      >
+                      THE GREEN CARD
+                    </Typography>
+                  <Typography
+                      variant="h6"
+                      component="h2"
+                      sx={{
+                      fontWeight: "bold",
+                      backgroundColor: "#355944",
+                      mb: 2,
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                    >
+                    GERIATRIC PSYCHOTROPIC DRUG REFERENCE CARD
+                  </Typography>
+                <Typography
+                    variant="h5"
+                    component="h2"
+                    sx={{
+                    mt: 1,
+                    backgroundColor: "#355944",
+                    mb: 2,
+                    fontSize: 18,
+                    px: 7,
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                  >
+                  Kathleen Singh, MD, FRCPC; Terry Chisholm, MD, FRCPC; David Gardner,
+                  PharmD, MSc
+                </Typography>
+              <Typography
+                  variant="h5"
+                  sx={{
+                  mb: 2,
+                  backgroundColor: "#355944",
+                  fontSize: 16,
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  fontsize: "500px",
+                  
+                }}
+                >
+                Dept of Psychiatry, Dalhousie University, Halifax, CANADA
+                </Typography>
+              <Typography
+                  variant="subtitle2"
+                  gutterBottom
+                  sx={{
+                  fontWeight: "bold",
+                  mt: 4,
+                  fontSize: "14px",
+                  mb: 2,
+                  color: "#355944",
+                }}
+                >
+              </Typography>
+            </Box>
+          </div>
                     <DataDisplay/>
                     {selectedDrugs.map(drugName => (
                         <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
@@ -203,6 +301,10 @@ const HomePage = () => {
 
                         </div>
                     ))}
+
+
+
+
                   </Box>
                 </Grid>
               </Grid>
