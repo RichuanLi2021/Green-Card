@@ -194,7 +194,7 @@ const HomePage = () => {
                 </Grid>
                 
                 <Grid item xs={12} sm={9}>
-                  <Box className="gray-square">
+                  <Box className="square">
                     <DataDisplay/>
                     {selectedDrugs.map(drugName => (
                         <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>

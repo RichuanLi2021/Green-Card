@@ -150,8 +150,7 @@ a {
     margin-right: 15px;
   }
   
-  .gray-square {
-    background-color: rgb(228, 230, 227);
+  .square {
     width: 100%;
     min-height: 100vh;
     display: flex;
