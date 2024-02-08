@@ -6,7 +6,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import DataDisplay from '../components/DataDisplay/dataDisplay';
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect, useRef } from 'react'; 
 import axios from 'axios';
 import Config from "../config/config";
 import upArrowImage from '../assets/images/up-arrow.png';
@@ -20,22 +20,15 @@ const theme = createTheme({
     },
   },
 });
+
 const HomePage = () => {
   const [selectedDrugs, setSelectedDrugs] = useState([]);
   const [drugData, setDrugData] = useState({});
   const [activeButtons, setActiveButtons] = useState({});
-  const [drugList, setDrugList] = useState([]); 
+  const [drugList, setDrugList] = useState([]);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const handleScroll = (direction) => {
-    const scrollAmount = 200; 
-
-    if (direction === 'up') {
-      window.scrollTo(0, scrollPosition - scrollAmount);
-      setScrollPosition(scrollPosition - scrollAmount);
-    } 
-  };
-
-
+  const [scrollToDrugName, setScrollToDrugName] = useState(null); // New state for triggering scroll
+  const drugDisplayRefs = useRef({});
 
   useEffect(() => {
     const fetchDrugCategories = async () => {
@@ -58,33 +51,50 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
-      console.log('Drug data:', drugData);
-  }, [selectedDrugs, drugData]);
+    if (scrollToDrugName && drugData[scrollToDrugName]) {
+      scrollToDisplay(scrollToDrugName);
+      setScrollToDrugName(null); // Reset after scrolling
+    }
+  }, [scrollToDrugName, drugData]); // Depend on scrollToDrugName and drugData
+
+  const handleScroll = (direction) => {
+    const scrollAmount = 200;
+    if (direction === 'up') {
+      window.scrollTo(0, scrollPosition - scrollAmount);
+      setScrollPosition(scrollPosition - scrollAmount);
+    }
+  };
 
   const handleCheckboxChange = (drugName, isChecked) => {
-      if (isChecked) {
-          setSelectedDrugs(prev => [...prev, drugName]);
-          if (!drugData[drugName]) {
-              axios
-              .get(`${Config.API_URL}/api/subcategories/${drugName}`, { withCredentials: true })
-              .then(response => {
-                  setDrugData(prev => ({ ...prev, [drugName]: response.data }));
-              })
-              .catch(error => {
-                  console.log(error);
-              });
-          }
+    if (isChecked) {
+      setSelectedDrugs(prev => [...prev, drugName]);
+      if (!drugData[drugName]) {
+        axios.get(`${Config.API_URL}/api/subcategories/${drugName}`, { withCredentials: true })
+          .then(response => {
+            setDrugData(prev => ({ ...prev, [drugName]: response.data }));
+            setScrollToDrugName(drugName); // Trigger scroll after data is fetched
+          })
+          .catch(error => {
+            console.log(error);
+          });
       } else {
-          setSelectedDrugs(prev => prev.filter(item => item !== drugName));
+        setScrollToDrugName(drugName); // Trigger scroll if data already exists
       }
-      setActiveButtons(prev => ({
-        ...prev,
-        [drugName]: !prev[drugName]
+    } else {
+      setSelectedDrugs(prev => prev.filter(item => item !== drugName));
+    }
+    setActiveButtons(prev => ({
+      ...prev,
+      [drugName]: !prev[drugName]
     }));
   };
 
-  
-
+  const scrollToDisplay = (drugName) => {
+    drugDisplayRefs.current[drugName]?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  };
 
   return (
    
@@ -124,6 +134,7 @@ const HomePage = () => {
                                 if (checkbox) {
                                     checkbox.checked = !checkbox.checked;
                                     handleCheckboxChange(drugItem.route, checkbox.checked);
+                                    scrollToDisplay(drugItem.route);
                                 }
                               }}
                             >
@@ -165,6 +176,7 @@ const HomePage = () => {
                                         if (checkbox) {
                                           checkbox.checked = !checkbox.checked;
                                           handleCheckboxChange(drugItem.route, checkbox.checked);
+                                          scrollToDisplay(drugItem.route);
                                         }
                                       }}
                                     >
@@ -185,7 +197,7 @@ const HomePage = () => {
                   <Box className="gray-square">
                     <DataDisplay/>
                     {selectedDrugs.map(drugName => (
-                        <div className="grid" key={drugName}>
+                        <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
                             <h2>{drugData[drugName]?.description || 'Default Description'}</h2>
                             <DataDisplay subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
 

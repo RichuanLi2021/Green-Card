@@ -66,6 +66,7 @@ const Navbar = () => {
           Dashboard
         </Button>
         )} 
+         
           <Button component={Link} to="/account" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
             Account
           </Button>
