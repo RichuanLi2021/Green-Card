@@ -198,7 +198,6 @@ const HomePage = () => {
                 </Grid>
                 
                 <Grid item xs={12} sm={9}>
-<<<<<<< HEAD
                   <Box className="gray-square">
 
 
@@ -294,9 +293,6 @@ const HomePage = () => {
               </Typography>
             </Box>
           </div>
-=======
-                  <Box className="square">
->>>>>>> 0f050d5d7c706985f169fb0b8caeb0dc78ebb465
                     <DataDisplay/>
                     {selectedDrugs.map(drugName => (
                         <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
