@@ -121,23 +121,23 @@ a {
     text-decoration: none;
     color: inherit;
     background-color: #fff;
-  }
+}
   
 .myStyledButton:hover {
     background-color: #96D2B0;
     color: #000;
     transition: 0.3s;
-  }
+}
  
 
-  .myAccordion {
-    background: #ffffff;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #cbcbcb;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+.myAccordion {
+  background: #ffffff;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #cbcbcb;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
 
   .item-container {
@@ -150,8 +150,7 @@ a {
     margin-right: 15px;
   }
   
-  .gray-square {
-    background-color: rgb(228, 230, 227);
+  .square {
     width: 100%;
     min-height: 100vh;
     display: flex;
@@ -159,7 +158,7 @@ a {
     justify-content: center;  
     align-items: center;      
     padding: 40px;
-}
+  }
 
 
 .grid {
@@ -184,7 +183,7 @@ a {
 
 .css-y8ay40-MuiTableCell-root{
   z-index: 0 !important;
-  /* z-index pop-up for drug title bar*/
+  /* z-index pop-up for drug title bar */
 }
 
 @media (max-width:600px) {
@@ -194,7 +193,7 @@ a {
     }
 
     .MuiCardContent-root {
-        font-size: 16px;
+        font-size: 160px;
     }
 
     .MuiCard-root {
@@ -205,8 +204,6 @@ a {
       position: relative !important;
 
     }
-
-
 
     .gray-square {
       
