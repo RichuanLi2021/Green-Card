@@ -16,6 +16,7 @@ import Disclaimer from './components/Disclaimer';
 import NavBar from "./components/Navigation";
 import Footer from './components/Footer';
 import Policy from './pages/Policy';
+import Customer from './pages/admin/Customer';
 
 import PrivateRoute from './middleware/PrivateRoute';
 import PublicRoute from './middleware/PublicRoute';
@@ -45,6 +46,7 @@ export default function App() {
           <Route path="admin">
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="feedback" element={<AdminFeedback />} />
+            <Route path="customer" element={<Customer/>}/>
           </Route>
         </Routes>
       </main>
