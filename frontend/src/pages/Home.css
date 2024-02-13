@@ -112,6 +112,10 @@ a {
   z-index: 1;
 }
 
+.back-to-top-anchor{
+  z-index: 2;
+}
+
 
 .myStyledButton {
     padding: 10px;

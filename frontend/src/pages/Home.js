@@ -9,7 +9,14 @@ import DataDisplay from '../components/DataDisplay/dataDisplay';
 import React, { useState, useEffect, useRef } from 'react'; 
 import axios from 'axios';
 import Config from "../config/config";
-import upArrowImage from '../assets/images/up-arrow.png';
+import PropTypes from 'prop-types';
+import Toolbar from '@mui/material/Toolbar';
+import CssBaseline from '@mui/material/CssBaseline';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
+import Fab from '@mui/material/Fab';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Fade from '@mui/material/Fade';
+
   
 
 const theme = createTheme({
@@ -21,12 +28,11 @@ const theme = createTheme({
   },
 });
 
-const HomePage = () => {
+const HomePage = (props) => {
   const [selectedDrugs, setSelectedDrugs] = useState([]);
   const [drugData, setDrugData] = useState({});
   const [activeButtons, setActiveButtons] = useState({});
   const [drugList, setDrugList] = useState([]);
-  const [scrollPosition, setScrollPosition] = useState(0);
   const [scrollToDrugName, setScrollToDrugName] = useState(null); // New state for triggering scroll
   const drugDisplayRefs = useRef({});
 
@@ -57,13 +63,7 @@ const HomePage = () => {
     }
   }, [scrollToDrugName, drugData]); // Depend on scrollToDrugName and drugData
 
-  const handleScroll = (direction) => {
-    const scrollAmount = 200;
-    if (direction === 'up') {
-      window.scrollTo(0, scrollPosition - scrollAmount);
-      setScrollPosition(scrollPosition - scrollAmount);
-    }
-  };
+
 
   const handleCheckboxChange = (drugName, isChecked) => {
     if (isChecked) {
@@ -96,123 +96,172 @@ const HomePage = () => {
     });
   };
 
-  return (
-   
-    <div>
-      <ThemeProvider theme={theme}>
-        <Container className="main-container" maxWidth={false}>
-            <Grid container spacing={4} direction="row" sx={{ textAlign: "center" }}>
-                <Grid item xs={12} sm={3}>
-                  <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
-                    {drugList.map(drugCategory => {
-                      // Check if data array has only one item
-                      if (drugCategory.data.length === 1) {
-                        const drugItem = drugCategory.data[0];
-                        return (
-                          <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-                            <Button
-                              variant="h1"
-                              sx={{
-                                background: "#ffffff", 
-                                width: "100%",
-                                display: "flex",
-                                flexDirection: "row", 
-                                alignItems: "center", 
-                                justifyContent: "center", 
-                                textTransform: "none",
-                                padding: "15px",
-                                border: "1px solid #cbcbcb", 
-                                boxShadow: "0px 1px 1px rgba(0,0,0,0.5)", 
-                                '&:hover': {
-                                    backgroundColor: "#96D2B0", 
-                                },
-                                backgroundColor: activeButtons[drugItem.route] ? "#96D2B0" : "#ffffff"
-                              }}
-                              onClick={(e) => {
-                                e.preventDefault();
-                                const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
-                                if (checkbox) {
-                                    checkbox.checked = !checkbox.checked;
-                                    handleCheckboxChange(drugItem.route, checkbox.checked);
-                                    scrollToDisplay(drugItem.route);
-                                }
-                              }}
-                            >
-                              <input 
-                                  type="checkbox" 
-                                  id={`${drugItem.route}Checkbox`} 
-                                  style={{ visibility: "hidden", marginRight: "10px" }} 
-                              />
-                              <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                                  {drugItem.name}
-                              </Typography>
-                            </Button>
 
-                          </CardContent>
-                        );
-                      } else {
-                        return (
-                          <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-                            <Accordion className="myAccordion">
-                              <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
-                                <Typography variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                                  {drugCategory.category} 
-                                </Typography>
-                              </AccordionSummary>
-                              <AccordionDetails>
-                                {drugCategory.data.map(drugItem => (
-                                  <div className="item-container">
-                                    <input 
+
+  function ScrollTop(props) {
+    const { children, window } = props;
+    const trigger = useScrollTrigger({
+      target: window ? window() : undefined,
+      disableHysteresis: true,
+      threshold: 100,
+    });
+  
+    const handleClick = (event) => {
+      const anchor = (event.target.ownerDocument || document).querySelector(
+        '#back-to-top-anchor',
+      );
+  
+      if (anchor) {
+        anchor.scrollIntoView({
+          block: 'center',
+          zIndex:1
+        });
+      }
+    };
+  
+    return (
+      <Fade in={trigger}>
+        <Box
+          onClick={handleClick}
+          role="presentation"
+          sx={{ position: 'fixed', bottom: 16, right: 16, zIndex: 9999 }}
+        >
+          {children}
+        </Box>
+      </Fade>
+    );
+  }
+
+
+  ScrollTop.propTypes = {
+    children: PropTypes.element.isRequired,
+    window: PropTypes.func,
+  };
+  
+  return (
+    <div>
+    <Toolbar id="back-to-top-anchor" />
+    <ThemeProvider theme={theme}>
+            <Container className="main-container" maxWidth={false}>
+                <Grid container spacing={4} direction="row" sx={{ textAlign: "center" }}>
+                    <Grid item xs={12} sm={3}>
+                      <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
+                        {drugList.map(drugCategory => {
+                          // Check if data array has only one item
+                          if (drugCategory.data.length === 1) {
+                            const drugItem = drugCategory.data[0];
+                            return (
+                              <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
+                                <Button
+                                  variant="h1"
+                                  sx={{
+                                    background: "#ffffff", 
+                                    width: "100%",
+                                    display: "flex",
+                                    flexDirection: "row", 
+                                    alignItems: "center", 
+                                    justifyContent: "center", 
+                                    textTransform: "none",
+                                    padding: "15px",
+                                    border: "1px solid #cbcbcb", 
+                                    boxShadow: "0px 1px 1px rgba(0,0,0,0.5)", 
+                                    '&:hover': {
+                                        backgroundColor: "#96D2B0", 
+                                    },
+                                    backgroundColor: activeButtons[drugItem.route] ? "#96D2B0" : "#ffffff"
+                                  }}
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
+                                    if (checkbox) {
+                                        checkbox.checked = !checkbox.checked;
+                                        handleCheckboxChange(drugItem.route, checkbox.checked);
+                                        scrollToDisplay(drugItem.route);
+                                    }
+                                  }}
+                                >
+                                  <input 
                                       type="checkbox" 
                                       id={`${drugItem.route}Checkbox`} 
-                                      style={{ visibility: "hidden" }} 
-                                      onChange={(e) => handleCheckboxChange(drugItem.route, e.target.checked)}
-                                    />
-                                    <Typography
-                                      className={`myStyledButton ${activeButtons[drugItem.route] ? 'activeButton' : ''}`}
-                                      sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }} 
-                                      onClick={() => {
-                                        const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
-                                        if (checkbox) {
-                                          checkbox.checked = !checkbox.checked;
-                                          handleCheckboxChange(drugItem.route, checkbox.checked);
-                                          scrollToDisplay(drugItem.route);
-                                        }
-                                      }}
-                                    >
+                                      style={{ visibility: "hidden", marginRight: "10px" }} 
+                                  />
+                                  <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
                                       {drugItem.name}
+                                  </Typography>
+                                </Button>
+
+                              </CardContent>
+                            );
+                          } else {
+                            return (
+                              <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
+                                <Accordion className="myAccordion">
+                                  <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
+                                    <Typography variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
+                                      {drugCategory.category} 
                                     </Typography>
-                                  </div>
-                                ))}
-                              </AccordionDetails>
-                            </Accordion>
-                          </CardContent>
-                        );
-                      }
-                    })}
-                  </Card>
-                </Grid>
-                
-                <Grid item xs={12} sm={9}>
-                  <Box className="gray-square">
-                    <DataDisplay/>
-                    {selectedDrugs.map(drugName => (
-                        <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
-                            <h2>{drugData[drugName]?.description || 'Default Description'}</h2>
-                            <DataDisplay subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
+                                  </AccordionSummary>
+                                  <AccordionDetails>
+                                    {drugCategory.data.map(drugItem => (
+                                      <div className="item-container">
+                                        <input 
+                                          type="checkbox" 
+                                          id={`${drugItem.route}Checkbox`} 
+                                          style={{ visibility: "hidden" }} 
+                                          onChange={(e) => handleCheckboxChange(drugItem.route, e.target.checked)}
+                                        />
+                                        <Typography
+                                          className={`myStyledButton ${activeButtons[drugItem.route] ? 'activeButton' : ''}`}
+                                          sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }} 
+                                          onClick={() => {
+                                            const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
+                                            if (checkbox) {
+                                              checkbox.checked = !checkbox.checked;
+                                              handleCheckboxChange(drugItem.route, checkbox.checked);
+                                              scrollToDisplay(drugItem.route);
+                                            }
+                                          }}
+                                        >
+                                          {drugItem.name}
+                                        </Typography>
+                                      </div>
+                                    ))}
+                                  </AccordionDetails>
+                                </Accordion>
+                              </CardContent>
+                            );
+                          }
+                        })}
+                      </Card>
+                    </Grid>
+                    
+                    <Grid item xs={12} sm={9}>
+                      <Box className="gray-square">
+                        <DataDisplay/>
+                        {selectedDrugs.map(drugName => (
+                            <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
+                                <h2>{drugData[drugName]?.description || 'Default Description'}</h2>
+                                <DataDisplay subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
 
-                        </div>
-                    ))}
-                  </Box>
-                </Grid>
-              </Grid>
-        </Container>
-      </ThemeProvider>
+                            </div>
+                        ))}
+                      </Box>
+                    </Grid>
+                  </Grid>
+            </Container>
+          </ThemeProvider>
 
-      <img onClick={() => handleScroll('up')} className="upImage" src={upArrowImage} alt="Scroll Up" />
 
-      
-    
+
+        <React.Fragment>
+          <CssBaseline />
+          <ScrollTop {...props}>
+            <Fab size="small" aria-label="scroll back to top">
+            <KeyboardArrowUpIcon />
+            </Fab>
+          </ScrollTop>
+        </React.Fragment>
+
        
       </div>
   );
