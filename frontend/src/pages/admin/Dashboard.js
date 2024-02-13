@@ -60,7 +60,7 @@ export default function Dashboard() {
               <ListItem key={text} disablePadding onClick={() => handleItemClick(text)}>
                 <ListItemButton>
                   <ListItemIcon>
-                    {index == 0 ? <GridViewIcon /> : index == 1 ? <GroupIcon/> : index == 2 ? <FeedbackIcon/> : <TableChartIcon/>}
+                    {index === 0 ? <GridViewIcon /> : index === 1 ? <GroupIcon/> : index === 2 ? <FeedbackIcon/> : <TableChartIcon/>}
                   </ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItemButton>

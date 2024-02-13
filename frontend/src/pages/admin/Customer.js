@@ -53,7 +53,7 @@ const Customer = () => {
       fetchData();
     }, []); */
 
-    const [customersList, setCustomersList] = useState(customers);
+    const [customersList, /* setCustomersList */] = useState(customers);
 
     // Other state variables and functions like handleFilterButtonClick, handleResetButtonClick, handleSearchChange, and handleRowClick should be here
   
