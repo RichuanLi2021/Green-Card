@@ -17,6 +17,7 @@ import NavBar from "./components/Navigation";
 import Footer from './components/Footer';
 import Policy from './pages/Policy';
 import Customer from './pages/admin/Customer';
+import ForgotPassword from './pages/ForgotPassword';
 
 import PrivateRoute from './middleware/PrivateRoute';
 import PublicRoute from './middleware/PublicRoute';
@@ -42,6 +43,8 @@ export default function App() {
           <Route path="home" element={<PrivateRoute><Home /></PrivateRoute>} />
           <Route path="account" element={<PrivateRoute><Account/></PrivateRoute>} />
           <Route path="policy" element={<PrivateRoute><Policy/></PrivateRoute>} />
+          <Route path="ForgotPassword" element={<PublicRoute><ForgotPassword/></PublicRoute>} />
+
 
           <Route path="admin">
             <Route path="dashboard" element={<AdminDashboard />} />

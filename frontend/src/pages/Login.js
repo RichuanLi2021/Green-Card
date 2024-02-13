@@ -116,10 +116,11 @@ export default function SignIn() {
               <Grid item xs>
                 <Link href="/register" variant="body2" sx={{color:'#68a783'}}>Don't have an account? Sign Up</Link>
               </Grid>
-
+              
               <Grid item>
-                <Link href="#" variant="body2" sx={{color:'#68a783'}}>Forgot password?</Link>
+                <Link href="/ForgotPassword" variant="body2" sx={{color:'#68a783'}}>Forgot password?</Link>
               </Grid>
+              
             </Grid>
           </Box>
 
