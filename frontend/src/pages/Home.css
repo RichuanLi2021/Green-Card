@@ -125,7 +125,8 @@ a {
   
 .myStyledButton:hover {
     background-color: #96D2B0;
-    color: #000;
+    color: #fff;
+    font-weight: bold !important;
     transition: 0.3s;
 }
  
@@ -170,10 +171,10 @@ a {
 
 .activeButton {
   background-color: #96D2B0;  /* Active state color */
-  color: #131010;
+  color: #153500;
   border-color: #000;
   border-width: 2px;
-  font-weight: bolder;
+  font-weight: bold !important;
 }
 
 
