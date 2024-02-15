@@ -61,12 +61,11 @@ const Navbar = () => {
     if (isLoggedIn) {
       return (
         <div className="navbar__menu">
-           {userRole === "admin" &&(
-          <Button component={Link} to="/login" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
+          {userRole === "admin" &&(
+          <Button component={Link} to="admin/dashboard" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
           Dashboard
-        </Button>
-        )} 
-         
+          </Button>
+          )}
           <Button component={Link} to="/account" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
             Account
           </Button>
@@ -98,6 +97,12 @@ const Navbar = () => {
       return (
        
         <Menu id="menu-appbar" anchorEl={anchorEl} open={open} onClose={handleMobileMenuClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }} transformOrigin={{ vertical: 'top', horizontal: 'right' }} sx={{ marginTop: '40px' }}>
+          {userRole === "admin" &&(
+          <Button component={Link} to="admin/dashboard" sx={{ color: '#000'}}>
+          Dashboard
+          </Button>
+          )}
+          
           <MenuItem onClick={handleMobileMenuClose}>
             <Button component={Link} to="/account" sx={{ color: '#000' }}>
               Account
