@@ -10,37 +10,44 @@
     align-items: center;  
     flex-direction: column;  /* Rc: Stack the contents vertically */
     position: relative !important; /* Rc: Stick the footer to the bottom */
-  }
+    z-index: 1 !important;
+  } 
 
   /* Rc: new footer style for footer centents*/
   .footer-content {
     text-align: center;
+    z-index: 0;
 }
   .Policy:hover { 
     background-color: #89cea7; 
     padding-top: 5px;
     padding-bottom: 5px;
+    z-index: 0;
   }
   .disclaimer:hover { 
     background-color: #89cea7; 
     padding-top: 5px;
     padding-bottom: 5px;
+    z-index: 0;
   }
 
   .css-1ypfif-MuiTypography-root {
     font-family: "Work Sans", sans-serif !important;
     padding-left: 5px;
     padding-right: 5px;
+    z-index: 0;
   }
 
   .css-62dh81 {
     font-family: "Work Sans", sans-serif !important;
+    z-index: 0;
   }
   
   @media (max-width: 599px) {
     .main-footer {
       font-size: 15px;
       padding: 5px
+      
     }
   }
   

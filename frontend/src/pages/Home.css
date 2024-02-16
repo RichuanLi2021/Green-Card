@@ -73,9 +73,48 @@ a {
   width: auto;
   height: 20px; /* Adjust according to your image's aspect ratio */
 }
+.upImage{
+  height: 70px;
+  width: 70px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1;
+}
+.downImage{
+  height: 70px;
+  width: 70px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+}
+.downArrow{
+  width: 100px;
+  height: 100px;
+  align-content: center;
+  border-radius: 100%;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+}
 
 
+.upArrow{
+  width: 100px;
+  height: 100px;
+  align-content: center;
+  border-radius: 100%;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1;
+}
 
+.back-to-top-anchor{
+  z-index: 2;
+}
 
 
 .myStyledButton {
@@ -86,28 +125,24 @@ a {
     text-decoration: none;
     color: inherit;
     background-color: #fff;
-  }
+}
   
-  .myStyledButton:hover {
-    background-color: #ccc;
-    color: #000;
+.myStyledButton:hover {
+    background-color: #96D2B0;
+    color: #fff;
+    font-weight: bold !important;
     transition: 0.3s;
-  }
+}
  
 
-  .myAccordion {
-    background: #ffffff;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #cbcbcb;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .myAccordion:hover {
-    background-color: #96D2B0;
-  }
-  
+.myAccordion {
+  background: #ffffff;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #cbcbcb;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
 
   .item-container {
@@ -120,8 +155,7 @@ a {
     margin-right: 15px;
   }
   
-  .gray-square {
-    background-color: rgb(228, 230, 227);
+  .square {
     width: 100%;
     min-height: 100vh;
     display: flex;
@@ -129,7 +163,7 @@ a {
     justify-content: center;  
     align-items: center;      
     padding: 40px;
-}
+  }
 
 
 .grid {
@@ -140,11 +174,11 @@ a {
 
 
 .activeButton {
-  /*background-color: #509872;  Active state color */
-  color: #131010;
+  background-color: #96D2B0;  /* Active state color */
+  color: #153500;
   border-color: #000;
   border-width: 2px;
-  font-weight: bolder;
+  font-weight: bold !important;
 }
 
 
@@ -152,6 +186,10 @@ a {
   background-color: #ffffff; /* Inactive state color */
 }
 
+.css-y8ay40-MuiTableCell-root{
+  z-index: 0 !important;
+  /* z-index pop-up for drug title bar */
+}
 
 @media (max-width:600px) {
     .main-container {
@@ -160,7 +198,7 @@ a {
     }
 
     .MuiCardContent-root {
-        font-size: 16px;
+        font-size: 160px;
     }
 
     .MuiCard-root {
@@ -171,8 +209,6 @@ a {
       position: relative !important;
 
     }
-
-
 
     .gray-square {
       

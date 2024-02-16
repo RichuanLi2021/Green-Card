@@ -52,7 +52,7 @@ router.post('/login', async (req, res) => {
             sameSite: 'none',
             secure: true
           }
-        ).json({ message: 'Successfully logged in', token: token })
+        ).json({ message: 'Successfully logged in', token: token, role: roleTitle })
     })
   } catch (error) {
     return res.status(500).json({ error, errorMessage: 'Encountered unexpected error while logging in' })

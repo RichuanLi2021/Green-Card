@@ -15,17 +15,25 @@ import AdminFeedback from "./pages/admin/Feedback";
 import Disclaimer from './components/Disclaimer';
 import NavBar from "./components/Navigation";
 import Footer from './components/Footer';
+import Policy from './pages/Policy';
+import Customer from './pages/admin/Customer';
+import ForgotPassword from './pages/ForgotPassword';
 
 import PrivateRoute from './middleware/PrivateRoute';
 import PublicRoute from './middleware/PublicRoute';
 
 
-export default function App() {
-  return (
+
+export default function App() { 
+ 
+
+  return (  
     <Router>
       <CssBaseline />
       <Disclaimer />
-      <NavBar />
+      <NavBar /> 
+  
+    
       <main>
         <Routes>
           <Route path="/" element={<PublicRoute><LandingPage /></PublicRoute>} />
@@ -34,14 +42,18 @@ export default function App() {
 
           <Route path="home" element={<PrivateRoute><Home /></PrivateRoute>} />
           <Route path="account" element={<PrivateRoute><Account/></PrivateRoute>} />
+          <Route path="policy" element={<PrivateRoute><Policy/></PrivateRoute>} />
+          <Route path="ForgotPassword" element={<PublicRoute><ForgotPassword/></PublicRoute>} />
+
 
           <Route path="admin">
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="feedback" element={<AdminFeedback />} />
+            <Route path="customer" element={<Customer/>}/>
           </Route>
         </Routes>
       </main>
-      <Footer />
+      <Footer/>
 
     </Router>
   );

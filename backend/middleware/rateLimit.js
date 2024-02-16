@@ -1,3 +1,4 @@
+//Rate Limit working, set to 10 request per second as limit.
 const { rateLimit: rateLimiter } = require('express-rate-limit')
 
 module.exports = rateLimiter({

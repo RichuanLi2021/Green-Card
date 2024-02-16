@@ -1,0 +1,4 @@
+Contact: mailto:admin@gpgc.ca
+Expires: 2024-06-30T17:00:00.000Z
+Encryption: https://example.com/pgp-key.txt
+Preferred-Languages: en
