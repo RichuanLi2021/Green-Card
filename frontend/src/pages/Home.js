@@ -6,7 +6,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import DataDisplay from '../components/DataDisplay/dataDisplay';
-import React, { useState, useEffect, useRef } from 'react'; 
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Config from "../config/config";
 import upArrowImage from '../assets/images/up-arrow.png';
@@ -14,7 +14,7 @@ import logo from "../assets/images/icons/logo/white/WhiteShine256px.svg";
 import Avatar from "@mui/material/Avatar";
 
 
-  
+
 
 const theme = createTheme({
   typography: {
@@ -101,222 +101,222 @@ const HomePage = () => {
   };
 
   return (
-   
+
     <div>
       <ThemeProvider theme={theme}>
         <Container className="main-container" maxWidth={false}>
-            <Grid container spacing={4} direction="row" sx={{ textAlign: "center" }}>
-                <Grid item xs={12} sm={3}>
-                  <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
-                    {drugList.map(drugCategory => {
-                      // Check if data array has only one item
-                      if (drugCategory.data.length === 1) {
-                        const drugItem = drugCategory.data[0];
-                        return (
-                          <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-                            <Button
-                              variant="h1"
-                              sx={{
-                                background: "#ffffff", 
-                                width: "100%",
-                                display: "flex",
-                                flexDirection: "row", 
-                                alignItems: "center", 
-                                justifyContent: "center", 
-                                textTransform: "none",
-                                padding: "15px",
-                                border: "1px solid #cbcbcb", 
-                                boxShadow: "0px 1px 1px rgba(0,0,0,0.5)", 
-                                '&:hover': {
-                                    backgroundColor: "#96D2B0", 
-                                },
-                                backgroundColor: activeButtons[drugItem.route] ? "#96D2B0" : "#ffffff"
-                              }}
-                              onClick={(e) => {
-                                e.preventDefault();
-                                const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
-                                if (checkbox) {
-                                    checkbox.checked = !checkbox.checked;
-                                    handleCheckboxChange(drugItem.route, checkbox.checked);
-                                    scrollToDisplay(drugItem.route);
-                                }
-                              }}
-                            >
-                              <input 
-                                  type="checkbox" 
-                                  id={`${drugItem.route}Checkbox`} 
-                                  style={{ visibility: "hidden", marginRight: "10px" }} 
-                              />
-                              <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
+          <Grid container spacing={4} direction="row" sx={{ textAlign: "center" }}>
+            <Grid item xs={12} sm={3}>
+              <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
+                {drugList.map(drugCategory => {
+                  // Check if data array has only one item
+                  if (drugCategory.data.length === 1) {
+                    const drugItem = drugCategory.data[0];
+                    return (
+                      <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
+                        <Button
+                          variant="h1"
+                          sx={{
+                            background: "#ffffff",
+                            width: "100%",
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            textTransform: "none",
+                            padding: "15px",
+                            border: "1px solid #cbcbcb",
+                            boxShadow: "0px 1px 1px rgba(0,0,0,0.5)",
+                            '&:hover': {
+                              backgroundColor: "#96D2B0",
+                            },
+                            backgroundColor: activeButtons[drugItem.route] ? "#96D2B0" : "#ffffff"
+                          }}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
+                            if (checkbox) {
+                              checkbox.checked = !checkbox.checked;
+                              handleCheckboxChange(drugItem.route, checkbox.checked);
+                              scrollToDisplay(drugItem.route);
+                            }
+                          }}
+                        >
+                          <input
+                            type="checkbox"
+                            id={`${drugItem.route}Checkbox`}
+                            style={{ visibility: "hidden", marginRight: "10px" }}
+                          />
+                          <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
+                            {drugItem.name}
+                          </Typography>
+                        </Button>
+
+                      </CardContent>
+                    );
+                  } else {
+                    return (
+                      <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
+                        <Accordion className="myAccordion">
+                          <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
+                            <Typography variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
+                              {drugCategory.category}
+                            </Typography>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                            {drugCategory.data.map(drugItem => (
+                              <div className="item-container">
+                                <input
+                                  type="checkbox"
+                                  id={`${drugItem.route}Checkbox`}
+                                  style={{ visibility: "hidden" }}
+                                  onChange={(e) => handleCheckboxChange(drugItem.route, e.target.checked)}
+                                />
+                                <Typography
+                                  className={`myStyledButton ${activeButtons[drugItem.route] ? 'activeButton' : ''}`}
+                                  sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
+                                  onClick={() => {
+                                    const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
+                                    if (checkbox) {
+                                      checkbox.checked = !checkbox.checked;
+                                      handleCheckboxChange(drugItem.route, checkbox.checked);
+                                      scrollToDisplay(drugItem.route);
+                                    }
+                                  }}
+                                >
                                   {drugItem.name}
-                              </Typography>
-                            </Button>
-
-                          </CardContent>
-                        );
-                      } else {
-                        return (
-                          <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-                            <Accordion className="myAccordion">
-                              <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
-                                <Typography variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                                  {drugCategory.category} 
                                 </Typography>
-                              </AccordionSummary>
-                              <AccordionDetails>
-                                {drugCategory.data.map(drugItem => (
-                                  <div className="item-container">
-                                    <input 
-                                      type="checkbox" 
-                                      id={`${drugItem.route}Checkbox`} 
-                                      style={{ visibility: "hidden" }} 
-                                      onChange={(e) => handleCheckboxChange(drugItem.route, e.target.checked)}
-                                    />
-                                    <Typography
-                                      className={`myStyledButton ${activeButtons[drugItem.route] ? 'activeButton' : ''}`}
-                                      sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }} 
-                                      onClick={() => {
-                                        const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
-                                        if (checkbox) {
-                                          checkbox.checked = !checkbox.checked;
-                                          handleCheckboxChange(drugItem.route, checkbox.checked);
-                                          scrollToDisplay(drugItem.route);
-                                        }
-                                      }}
-                                    >
-                                      {drugItem.name}
-                                    </Typography>
-                                  </div>
-                                ))}
-                              </AccordionDetails>
-                            </Accordion>
-                          </CardContent>
-                        );
-                      }
-                    })}
-                  </Card>
-                </Grid>
-                
-                <Grid item xs={12} sm={9}>
-                  <Box className="gray-square">
+                              </div>
+                            ))}
+                          </AccordionDetails>
+                        </Accordion>
+                      </CardContent>
+                    );
+                  }
+                })}
+              </Card>
+            </Grid>
+
+            <Grid item xs={12} sm={9}>
+              <Box className="gray-square">
 
 
-                    <div>
-                      <Box
-                        sx={{
-                        textAlign: "center",
-                        flex: ".8",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                      }}
-                      >
-                      {" "}
-                      {/* Adjusted flex value and added display and alignItems */}
+                <div>
+                  <Box
+                    sx={{
+                      textAlign: "center",
+                      flex: ".8",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    {" "}
+                    {/* Adjusted flex value and added display and alignItems */}
                     <Avatar
-                        sx={{
+                      sx={{
                         width: 90,
                         height: 90,
                         border: "3px solid #5a8e70",
                         bgcolor: "#96d2b0",
                         mb: 3,
-                        }}
-                      >
-                        <img src={logo} className={"height-width-5rem"} alt="GPGC Logo"></img>
-                      </Avatar>
+                      }}
+                    >
+                      <img src={logo} className={"height-width-5rem"} alt="GPGC Logo"></img>
+                    </Avatar>
                     <Typography
-                        variant="h3"
-                        component="h1"
-                        sx={{
+                      variant="h3"
+                      component="h1"
+                      sx={{
                         fontWeight: "bold",
                         backgroundColor: "#355944",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                       }}
-                      >
+                    >
                       THE GREEN CARD
                     </Typography>
-                  <Typography
+                    <Typography
                       variant="h6"
                       component="h2"
                       sx={{
-                      fontWeight: "bold",
-                      backgroundColor: "#355944",
-                      mb: 2,
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                    }}
+                        fontWeight: "bold",
+                        backgroundColor: "#355944",
+                        mb: 2,
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
                     >
-                    GERIATRIC PSYCHOTROPIC DRUG REFERENCE CARD
-                  </Typography>
-                <Typography
-                    variant="h5"
-                    component="h2"
-                    sx={{
-                    mt: 1,
-                    backgroundColor: "#355944",
-                    mb: 2,
-                    fontSize: 18,
-                    px: 7,
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                  >
-                  Kathleen Singh, MD, FRCPC; Terry Chisholm, MD, FRCPC; David Gardner,
-                  PharmD, MSc
-                </Typography>
-              <Typography
-                  variant="h5"
-                  sx={{
-                  mb: 2,
-                  backgroundColor: "#355944",
-                  fontSize: 16,
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  fontsize: "500px",
-                  
-                }}
-                >
-                Dept of Psychiatry, Dalhousie University, Halifax, CANADA
-                </Typography>
-              <Typography
-                  variant="subtitle2"
-                  gutterBottom
-                  sx={{
-                  fontWeight: "bold",
-                  mt: 4,
-                  fontSize: "14px",
-                  mb: 2,
-                  color: "#355944",
-                }}
-                >
-              </Typography>
-            </Box>
-          </div>
-                    <DataDisplay/>
-                    {selectedDrugs.map(drugName => (
-                        <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
-                            <h2>{drugData[drugName]?.description || 'Default Description'}</h2>
-                            <DataDisplay subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
+                      GERIATRIC PSYCHOTROPIC DRUG REFERENCE CARD
+                    </Typography>
+                    <Typography
+                      variant="h5"
+                      component="h2"
+                      sx={{
+                        mt: 1,
+                        backgroundColor: "#355944",
+                        mb: 2,
+                        fontSize: 18,
+                        px: 7,
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
+                    >
+                      Kathleen Singh, MD, FRCPC; Terry Chisholm, MD, FRCPC; David Gardner,
+                      PharmD, MSc
+                    </Typography>
+                    <Typography
+                      variant="h5"
+                      sx={{
+                        mb: 2,
+                        backgroundColor: "#355944",
+                        fontSize: 16,
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        fontsize: "500px",
 
-                        </div>
-                    ))}
-
-
-
-
+                      }}
+                    >
+                      Dept of Psychiatry, Dalhousie University, Halifax, CANADA
+                    </Typography>
+                    <Typography
+                      variant="subtitle2"
+                      gutterBottom
+                      sx={{
+                        fontWeight: "bold",
+                        mt: 4,
+                        fontSize: "14px",
+                        mb: 2,
+                        color: "#355944",
+                      }}
+                    >
+                    </Typography>
                   </Box>
-                </Grid>
-              </Grid>
+                </div>
+                <DataDisplay />
+                {selectedDrugs.map(drugName => (
+                  <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
+                    <h2>{drugData[drugName]?.description || 'Default Description'}</h2>
+                    <DataDisplay subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
+
+                  </div>
+                ))}
+
+
+
+
+              </Box>
+            </Grid>
+          </Grid>
         </Container>
       </ThemeProvider>
 
       <img onClick={() => handleScroll('up')} className="upImage" src={upArrowImage} alt="Scroll Up" />
 
-      
-    
-       
-      </div>
+
+
+
+    </div>
   );
 };
 
