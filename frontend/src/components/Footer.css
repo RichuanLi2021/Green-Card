@@ -10,7 +10,7 @@
     align-items: center;  
     flex-direction: column;  /* Rc: Stack the contents vertically */
     position: relative !important; /* Rc: Stick the footer to the bottom */
-    z-index: 1 !important;
+    z-index: -1 !important;
   } 
 
   /* Rc: new footer style for footer centents*/
