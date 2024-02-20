@@ -116,22 +116,7 @@ const HomePage = () => {
                           <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
                             <Button
                               variant="h1"
-                              sx={{
-                                background: "#ffffff", 
-                                width: "100%",
-                                display: "flex",
-                                flexDirection: "row", 
-                                alignItems: "center", 
-                                justifyContent: "center", 
-                                textTransform: "none",
-                                padding: "15px",
-                                border: "1px solid #cbcbcb", 
-                                boxShadow: "0px 1px 1px rgba(0,0,0,0.5)", 
-                                '&:hover': {
-                                    backgroundColor: "#96D2B0", 
-                                },
-                                backgroundColor: activeButtons[drugItem.route] ? "#96D2B0" : "#ffffff"
-                              }}
+                              className={`myStyledButton ${activeButtons[drugItem.route] ? 'activeButton' : ''}`}
                               onClick={(e) => {
                                 e.preventDefault();
                                 const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
@@ -147,7 +132,12 @@ const HomePage = () => {
                                   id={`${drugItem.route}Checkbox`} 
                                   style={{ visibility: "hidden", marginRight: "10px" }} 
                               />
-                              <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
+                              <Typography variant="h5" component="h1" 
+                              sx={{ 
+                                fontWeight: activeButtons[drugItem.route] ? 'bold' : 'normal',
+                                fontSize: "1rem" 
+                                }} 
+                              >
                                   {drugItem.name}
                               </Typography>
                             </Button>
