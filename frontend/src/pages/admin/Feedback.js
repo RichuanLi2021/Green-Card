@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Box, Button, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './Feedback.css';
 
@@ -62,9 +61,6 @@ const ShowFeedback = ({ onClose }) => {
             <Typography variant="h5" className="title">
               Feedbacks
             </Typography>
-            <Button onClick={onClose}>
-              <CloseIcon />
-            </Button>
           </Box>
           <Box mt={2} display="flex" justifyContent="center">
             <Button
@@ -80,7 +76,7 @@ const ShowFeedback = ({ onClose }) => {
             </Button>
           </Box>
         </div>
-        <Box mt={2} display="flex" justifyContent="center">
+        <Box mt={2} display="flex" alignItems="center">
           <TextField
             label="Search"
             variant="outlined"
