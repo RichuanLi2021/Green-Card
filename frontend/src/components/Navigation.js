@@ -30,32 +30,39 @@ const Navbar = () => {
 
   const handleMobileMenuClose = () => { setAnchorEl(null) };
   const [toastMessage, setToastMessage] = useState('');  
+  const [toastType, setToastType] = useState('');
 
-  const showToast = (message) => {
-    setToastMessage(message); 
-    //setting a timeout to hide the toast after 3 seconds 
-    setTimeout(() => setToastMessage(''), 3000);
-  }; 
+  const showToast = (message, type) => {
+    setToastMessage(message);
+    setToastType(type);
+    setTimeout(() => {
+      setToastMessage('');
+      setToastType('');
+    }, 3000);
+  };
 
 
   const handleLogout = async () => {
     try {
       axios.post(`${Config.API_URL}/api/auth/logout`, {}, { withCredentials: true })
-        .then(response => {
-          if (response.data.message) {
-            showToast(response.data.message)
-            localStorage.removeItem('access-token')
-            localStorage.removeItem('user-role')
-            window.location.href = '/'
-          } else {
-            showToast(response.data.errorMessage);
-          }
-        })
-        .catch(error => console.log(error));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+      .then(response => {
+        if (response.data.message) {
+          showToast(response.data.message, 'success'); // Indicate success
+          localStorage.removeItem('access-token');
+          localStorage.removeItem('user-role');
+          window.location.href = '/';
+        } else {
+          showToast(response.data.errorMessage, 'error'); // Indicate error
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        showToast('An error occurred during logout', 'error'); // Indicate error on failure
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
   const displayDesktopButtons = () => {
     if (isLoggedIn) {
@@ -153,7 +160,7 @@ const Navbar = () => {
         { displayMobileButtons() }
 
         { displayDesktopButtons() }
-        <ToastComponent message={toastMessage} />
+        <ToastComponent message={toastMessage} type={toastType} />
       </Toolbar>
     </AppBar>
     

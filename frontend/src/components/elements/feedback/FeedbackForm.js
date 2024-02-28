@@ -30,12 +30,17 @@ const FeedbackForm = ({ onClose }) => {
   const [rating, setRating] = useState(null);
   const [subscribe, setSubscribe] = useState(false);
   const [toastMessage, setToastMessage] = useState(''); // State for toast message
+  const [toastType, setToastType] = useState('');
 
     // Function to show toast
-  const showToast = (message) => {
-    setToastMessage(message); 
-    setTimeout(() => setToastMessage(''), 3000); // Hide the toast after 3 seconds
-  };
+    const showToast = (message, type) => {
+      setToastMessage(message);
+      setToastType(type);
+      setTimeout(() => {
+        setToastMessage('');
+        setToastType('');
+      }, 3000);
+    };
   
 
 
@@ -60,12 +65,12 @@ const FeedbackForm = ({ onClose }) => {
     console.log({ name, email, comment, rating, subscribe });
     submitFeedback(name, email, comment, rating, subscribe)
       .then((data) => {
-        showToast('Feedback submitted!'); // Use toast for success message
+        showToast('Feedback submitted!', 'success'); // Use toast for success message
         
       })
       .catch((error) => {
         console.error(error);
-        showToast('Failed to submit feedback!'); // Use toast for error message
+        showToast('Failed to submit feedback!', 'error'); // Use toast for error message
       });
   };
 
@@ -150,7 +155,7 @@ const FeedbackForm = ({ onClose }) => {
           </Box>
         </form>
       </div>
-      <ToastComponent message={toastMessage} />
+      <ToastComponent message={toastMessage} type={toastType} />
     </ThemeProvider>
   );
 };
