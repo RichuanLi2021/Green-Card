@@ -169,7 +169,9 @@ const HomePage = (props) => {
                                     border: "1px solid #cbcbcb", 
                                     boxShadow: "0px 1px 1px rgba(0,0,0,0.5)", 
                                     '&:hover': {
-                                        backgroundColor: "#96D2B0", 
+                                        backgroundColor: "#96D2B0",
+                                        fontWeight:"bold", 
+                                        color:"white"
                                     },
                                     backgroundColor: activeButtons[drugItem.route] ? "#96D2B0" : "#ffffff"
                                   }}
