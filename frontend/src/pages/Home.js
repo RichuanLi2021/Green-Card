@@ -146,7 +146,7 @@ const HomePage = (props) => {
     <Toolbar id="back-to-top-anchor" />
     <ThemeProvider theme={theme}>
             <Container className="main-container" maxWidth={false}>
-                <Grid container spacing={4} direction="row" sx={{ textAlign: "left" }}>
+                <Grid container spacing={4} direction="row" sx={{textAlign: "left"}}> 
                     <Grid item xs={12} sm={3}>
                       <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
                         {drugList.map(drugCategory => {
