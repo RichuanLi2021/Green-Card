@@ -4,7 +4,6 @@ import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import Config from "../../config/config";
-import { format } from 'date-fns';
 
 const theme = createTheme({
     palette: {
@@ -25,6 +24,7 @@ const Customer = () => {
       try {
         const response = await axios.get(`${Config.API_URL}/api/users`, { withCredentials: true });
         setCustomersList(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error('Error fetching users:', error);
       }
@@ -81,8 +81,8 @@ const Customer = () => {
                     <TableCell>{index }</TableCell>
                     <TableCell>{customer.discipline}</TableCell>
                     <TableCell>{customer.email}</TableCell>
-                    <TableCell>{format(new Date(customer.lastLogin), 'yyyy-MM-dd')}</TableCell>
-                    <TableCell>{format(new Date(customer.createdAt), 'yyyy-MM-dd')}</TableCell>
+                    <TableCell>{new Date(customer.lastLogin).toLocaleDateString('en-ca')}</TableCell>
+                    <TableCell>{new Date(customer.createdAt).toLocaleDateString('en-ca')}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
