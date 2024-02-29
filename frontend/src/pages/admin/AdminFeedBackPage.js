@@ -40,10 +40,7 @@ const FeedbackAdminPage = () => {
                 <Grid container spacing={5}>
                     <Grid item xs={12} md={4} style={{ marginTop: '100px' }}>
                         <Card>
-                            <CardContent style={{ overflow: 'auto' }}>
-                                <Typography variant="h1" gutterBottom>
-                                    Feedback Submissions
-                                </Typography>
+                            <CardContent style={{ overflow: 'auto' }}> 
                                 <FeedbackBackEnd onFeedbackSelect={handleFeedbackSelect} />
                             </CardContent>
                         </Card>
