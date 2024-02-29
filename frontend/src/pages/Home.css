@@ -118,14 +118,19 @@ a {
 
 
 .myStyledButton {
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    border: 1px solid #cbcbcb;
-    text-decoration: none;
-    color: inherit;
-    background-color: #fff;
-}
+  background-color: #ffffff;
+  width: 100%;
+  display: flex;
+  flexDirection: row;
+  alignItems: center;
+  justifyContent: center;
+  textTransform: none;
+  padding: 15px;
+  border: 1px solid #cbcbcb;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s; 
+} 
+
   
 .myStyledButton:hover {
     background-color: #96D2B0;
@@ -182,7 +187,7 @@ a {
 }
 
 
-.inactiveButton {
+.myStyledButton.inactiveButton {
   background-color: #ffffff; /* Inactive state color */
 }
 
