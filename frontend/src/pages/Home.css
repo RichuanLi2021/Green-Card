@@ -219,6 +219,11 @@ a {
       
       padding: 10px;
     }
+
+    .myStyledButton {
+      text-align: center;
+    } 
+    
   
 
 }
