@@ -31,6 +31,8 @@ export default function SignIn() {
   const [email, setEmail] = useState(''); 
   const [password, setPassword] = useState('');
   const [toastMessage, setToastMessage] = useState('');  
+  const [toastType, setToastType] = useState('');
+
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -42,11 +44,14 @@ export default function SignIn() {
 
   if (localStorage.getItem('access-token')) window.location.href = '/home';
 
-  const showToast = (message) => {
-    setToastMessage(message); 
-    //setting a timeout to hide the toast after 3 seconds 
-    setTimeout(() => setToastMessage(''), 3000);
-  }; 
+  const showToast = (message, type) => {
+    setToastMessage(message);
+    setToastType(type);
+    setTimeout(() => {
+      setToastMessage('');
+      setToastType('');
+    }, 9000);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -65,26 +70,26 @@ export default function SignIn() {
   
       if (response.status === 200) {
         console.log('Login Successful: ', response.data);
-        showToast('Login Successful');
+        showToast('Login Successful', 'success');
         localStorage.setItem("access-token", response.data.token);
         localStorage.setItem("user-role", response.data.role);
         window.location.href = '/home';
       } else {
         console.log('Log Failed:', response.data.errorMessage);
-        showToast(response.data.errorMessage || 'Login failed');
+        showToast(response.data.errorMessage || 'Login failed', 'error');
       }
     } catch (error) {
       console.error('Error: ', error);
   
       if (error.response) {
         console.log('Server Error: ', error.response.data);
-        showToast('Server Error. Please try again later.');
+        showToast('Server Error. Please try again later.', 'error');
       } else if (error.request) {
         console.log('Network Error: ', error.request);
-        showToast('Network Error. Please check your internet connection.');
+        showToast('Network Error. Please check your internet connection.', 'error');
       } else {
         console.log('Error:', error.message);
-        showToast('An unexpected error occurred. Please try again.');
+        showToast('An unexpected error occurred. Please try again.', 'error');
       }
     }
   };
@@ -125,8 +130,7 @@ export default function SignIn() {
           </Box>
 
         </Box> 
-
-        <ToastComponent message={toastMessage} />
+        <ToastComponent message={toastMessage} type={toastType} />
       </Container>
     </ThemeProvider>
   );

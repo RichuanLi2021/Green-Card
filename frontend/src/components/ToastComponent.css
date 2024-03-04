@@ -1,15 +1,27 @@
 .toast {
-    position: fixed;
-    bottom: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: white;
-    color: black;
-    padding: 8px 16px;
-    border-radius: 4px;
-    display: none;
-  }  
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 16px;
+  border-radius: 4px;
+  display: none;
+}
+
+.toast p {
+  margin: 0; /* Remove default margin for better styling */
+}
+
+.toast.error {
+  background-color: red;
+  color: white;
+}
+
+.toast.success {
+  background-color: green;
+  color: white;
+}
 
 .toast.show {
-    display: block;
+  display: block;
 }
