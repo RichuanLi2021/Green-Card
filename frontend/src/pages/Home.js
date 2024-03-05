@@ -75,13 +75,14 @@ const HomePage = (props) => {
         axios.get(`${Config.API_URL}/api/subcategories/${drugName}`, { withCredentials: true })
           .then(response => {
             setDrugData(prev => ({ ...prev, [drugName]: response.data }));
-            setScrollToDrugName(drugName); // Trigger scroll after data is fetched
+            setScrollToDrugName(drugName);
           })
           .catch(error => {
             console.log(error);
           });
-      } else {
-        setScrollToDrugName(drugName); // Trigger scroll if data already exists
+      }
+       else {
+        setScrollToDrugName(drugName);
       }
     } else {
       setSelectedDrugs(prev => prev.filter(item => item !== drugName));
@@ -90,6 +91,9 @@ const HomePage = (props) => {
       ...prev,
       [drugName]: !prev[drugName]
     }));
+    if (isChecked && drugDisplayRefs.current[drugName]) {
+      scrollToDisplay(drugName);
+    }
   };
 
   const scrollToDisplay = (drugName) => {
@@ -146,7 +150,7 @@ const HomePage = (props) => {
     <Toolbar id="back-to-top-anchor" />
     <ThemeProvider theme={theme}>
             <Container className="main-container" maxWidth={false}>
-                <Grid container spacing={4} direction="row" sx={{ textAlign: "center" }}>
+                <Grid container spacing={4} direction="row" sx={{textAlign: "left"}}> 
                     <Grid item xs={12} sm={3}>
                       <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
                         {drugList.map(drugCategory => {
@@ -181,8 +185,13 @@ const HomePage = (props) => {
                                     if (checkbox) {
                                         checkbox.checked = !checkbox.checked;
                                         handleCheckboxChange(drugItem.route, checkbox.checked);
-                                        scrollToDisplay(drugItem.route);
+                                        console.log("test");
+                                        if(checkbox.checked){
+                                          scrollToDisplay(drugItem.route);
+                                        }
+                                        
                                     }
+                                    
                                   }}
                                 >
                                   <input 
@@ -223,8 +232,11 @@ const HomePage = (props) => {
                                             if (checkbox) {
                                               checkbox.checked = !checkbox.checked;
                                               handleCheckboxChange(drugItem.route, checkbox.checked);
-                                              scrollToDisplay(drugItem.route);
+                                              if(checkbox.checked){
+                                                scrollToDisplay(drugItem.route);
+                                              }
                                             }
+                                           
                                           }}
                                         >
                                           {drugItem.name}

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
+import Config from "../../config/config";
 
 const theme = createTheme({
     palette: {
@@ -11,51 +13,33 @@ const theme = createTheme({
     },
   });
 
-const customers = [
-  {
-    id: 1,
-    name: 'Sebastian Plaza',
-    email: 'sb000000@hotmail.com',
-    signedUp: '02/10/2024',
-  },
-  {
-    id: 2,
-    name: 'Stefano Smith',
-    email: 'ss000000@gmail.com',
-    signedUp: '02/06/2024',
-  },
-  {
-    id: 3,
-    name: 'John Steph',
-    email: 'js000000@outlook.com',
-    signedUp: '01/17/2024',
-  },
-];
-
-// Mock database function to fetch customer data, TO BE IMPLEMENTED
-/* async function fetchCustomers() {
-    // Replace this with your actual database call
-    const response = await fetch('https://your-api-url.com/customers');
-    const data = await response.json();
-    return data;
-  } */
 
 const Customer = () => {
 
-    /* const [customers, setCustomers] = useState([]);
+  const [customersList, setCustomersList] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
-    useEffect(() => {
-      const fetchData = async () => {
-        const customersData = await fetchCustomers();
-        setCustomers(customersData);
-      };
+  useEffect(() => {
+    const fetchCustomers = async () => {
+      try {
+        const response = await axios.get(`${Config.API_URL}/api/users`, { withCredentials: true });
+        setCustomersList(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    fetchCustomers();
+  }, []);
   
-      fetchData();
-    }, []); */
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
 
-    const [customersList, /* setCustomersList */] = useState(customers);
-
-    // Other state variables and functions like handleFilterButtonClick, handleResetButtonClick, handleSearchChange, and handleRowClick should be here
+  const filteredCustomersList = customersList.filter((customer) =>
+    customer.email.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   
     return (
       <ThemeProvider theme={theme}>
@@ -76,8 +60,8 @@ const Customer = () => {
                     label="Search"
                     variant="outlined"
                     size="small"
-                    // value={searchTerm}
-                    // onChange={handleSearchChange}
+                    value={searchQuery}
+                    onChange={handleSearchChange}
                 />
           </Box>
           <TableContainer component={Paper} style={{ height: "70%" }}>
@@ -85,18 +69,20 @@ const Customer = () => {
               <TableHead>
                 <TableRow>
                   <TableCell stickyHeader>ID</TableCell>
-                  <TableCell stickyHeader>Name</TableCell>
+                  <TableCell stickyHeader>Discipline</TableCell>
                   <TableCell stickyHeader>Email</TableCell>
-                  <TableCell stickyHeader>Signed Up</TableCell>
+                  <TableCell stickyHeader>Last Login</TableCell>
+                  <TableCell stickyHeader>Date Created</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {customersList.map((customer) => (
-                  <TableRow key={customer.id}>
-                    <TableCell>{customer.id}</TableCell>
-                    <TableCell>{customer.name}</TableCell>
+                {filteredCustomersList.map((customer , index) => (
+                  <TableRow key={index}>
+                    <TableCell>{index }</TableCell>
+                    <TableCell>{customer.discipline}</TableCell>
                     <TableCell>{customer.email}</TableCell>
-                    <TableCell>{customer.signedUp}</TableCell>
+                    <TableCell>{new Date(customer.lastLogin).toLocaleDateString('en-ca')}</TableCell>
+                    <TableCell>{new Date(customer.createdAt).toLocaleDateString('en-ca')}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
