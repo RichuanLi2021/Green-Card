@@ -13,7 +13,7 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders }) {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   if (!subcategoryHeaders || subcategoryHeaders.length === 0) {
-    return <div class="Liam"></div>;
+    return <div className="Liam"></div>;
   }
 
   // Generate headers from the subcategory titles
@@ -46,7 +46,7 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders }) {
 
   return (
     <Paper sx={{ width: '100%', maxWidth: '100%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
+      <TableContainer>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -68,8 +68,6 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders }) {
                 {headers.map((header) => (
                   <TableCell key={header.id} align={header.align} style={{ fontSize: '16px'  }}>
                     {row[header.id]}
-                    
-                  
                   </TableCell>
                 ))}
               </TableRow>
