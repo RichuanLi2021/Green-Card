@@ -47,6 +47,7 @@ export default function SignIn() {
       })
       .catch((error) => console.log(error));
   };
+  const userEmail = localStorage.getItem("userEmail"); //to display on account page
 
   return (
     <ThemeProvider theme={theme}>
@@ -82,6 +83,15 @@ export default function SignIn() {
           >
             Edit Account
           </Typography>
+                    
+          <Typography
+          component="p"
+          variant="body2"
+          sx={{ color: "black"}}
+          >
+            Current Email: {userEmail}
+          </Typography>
+
           <Box
             component="form"
             onSubmit={handleSubmit}

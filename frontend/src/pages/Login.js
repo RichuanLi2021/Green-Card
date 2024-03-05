@@ -67,6 +67,9 @@ export default function SignIn() {
         email: dataCredential.get('email'),
         password: dataCredential.get('password'),
       }, { withCredentials: true });
+
+      const userEmail = dataCredential.get('email');
+      localStorage.setItem("userEmail", userEmail);
   
       if (response.status === 200) {
         console.log('Login Successful: ', response.data);
