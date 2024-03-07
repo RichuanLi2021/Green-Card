@@ -45,24 +45,23 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       axios.post(`${Config.API_URL}/api/auth/logout`, {}, { withCredentials: true })
-      .then(response => {
-        if (response.data.message) {
-          showToast(response.data.message, 'success'); // Indicate success
-          localStorage.removeItem('access-token');
-          localStorage.removeItem('user-role');
-          window.location.href = '/';
-        } else {
-          showToast(response.data.errorMessage, 'error'); // Indicate error
-        }
-      })
-      .catch(error => {
-        console.log(error);
-        showToast('An error occurred during logout', 'error'); // Indicate error on failure
-      });
-  } catch (error) {
-    console.log(error);
-  }
-};
+        .then(response => {
+          if (response.data.message) {
+            showToast(response.data.message , 'success');
+            localStorage.removeItem('access-token');
+            localStorage.removeItem('user-role');
+            setTimeout(() => {
+              window.location.href = '/';
+            }, 1000);
+          } else {
+            showToast(response.data.errorMessage, 'error');
+          }
+        })
+        .catch(error => console.log(error));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const displayDesktopButtons = () => {
     if (isLoggedIn) {

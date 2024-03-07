@@ -41,8 +41,13 @@ export default function SignIn() {
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   }
+  if (localStorage.getItem('access-token')) {
+    setTimeout(() => {
+      window.location.href = '/home';
+    }, 1000);
+  }
 
-  if (localStorage.getItem('access-token')) window.location.href = '/home';
+ 
 
   const showToast = (message, type) => {
     setToastMessage(message);
@@ -58,7 +63,7 @@ export default function SignIn() {
     const dataCredential = new FormData(event.target);
   
     if (!email || !password) {
-      showToast('Please enter both email and password');
+      showToast('Please enter both email and password', 'success');
       return;
     }
   
@@ -73,10 +78,12 @@ export default function SignIn() {
         showToast('Login Successful', 'success');
         localStorage.setItem("access-token", response.data.token);
         localStorage.setItem("user-role", response.data.role);
-        window.location.href = '/home';
+        setTimeout(() => {
+          window.location.href = '/home2';
+        }, 1000);
       } else {
         console.log('Log Failed:', response.data.errorMessage);
-        showToast(response.data.errorMessage || 'Login failed', 'error');
+        showToast(response.data.errorMgessage || 'Login failed', 'error');
       }
     } catch (error) {
       console.error('Error: ', error);
