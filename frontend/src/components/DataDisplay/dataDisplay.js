@@ -51,6 +51,7 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders }) {
             </TableCell>
           ))}
         </TableRow>
+        
       </TableHead>
       <TableBody>
         {rows.map((row, rowIndex) => (
