@@ -116,7 +116,7 @@ const LandingPage = () => {
               color: "#355944",
             }}
           >
-            Login For more Drug Information and The Usage.
+        
           </Typography>
           <div>
             <Button
