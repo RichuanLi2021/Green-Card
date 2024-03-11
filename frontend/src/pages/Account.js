@@ -21,6 +21,8 @@ const theme = createTheme({
   },
 });
 
+
+
 export default function SignIn() {
   const navigate = useNavigate();
 
@@ -61,18 +63,8 @@ export default function SignIn() {
             alignItems: "center",
           }}
         >
-          <Avatar
-            sx={{
-              width: 90,
-              height: 90,
-              border: "3px solid #5a8e70",
-            }}
-          >
-            <img
-              src={logo}
-              className={"height-width-5rem"}
-              alt="GPGC Logo"
-            ></img>
+          <Avatar sx={{ width: 90, height: 90, bgcolor: '#96d2b0', border: '3px solid #5a8e70' }}>
+            <img src={logo} className={'height-width-5rem'} alt='GPGC Logo'></img>
           </Avatar>
 
           <Typography
