@@ -18,6 +18,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Fade from '@mui/material/Fade';
 import logo from "../assets/images/icons/logo/white/WhiteShine256px.svg";
 import Avatar from "@mui/material/Avatar";
+import CloseIcon from '@mui/icons-material/Close';
 
 
 
@@ -34,10 +35,11 @@ const theme = createTheme({
 const HomePage = (props) => {
   const [selectedDrugs, setSelectedDrugs] = useState([]);
   const [drugData, setDrugData] = useState({});
-  const [activeButtons, setActiveButtons] = useState({});
+  const [activeButtons] = useState({});
   const [drugList, setDrugList] = useState([]);
   const [scrollToDrugName, setScrollToDrugName] = useState(null); // New state for triggering scroll
   const drugDisplayRefs = useRef({});
+  const [activeSubcategories, setActiveSubcategories] = useState({});
 
   useEffect(() => {
     const fetchDrugCategories = async () => {
@@ -67,33 +69,43 @@ const HomePage = (props) => {
   }, [scrollToDrugName, drugData]); // Depend on scrollToDrugName and drugData
 
 
-
-  const handleCheckboxChange = (drugName, isChecked) => {
-    if (isChecked) {
-      setSelectedDrugs(prev => [...prev, drugName]);
-      if (!drugData[drugName]) {
+  const toggleActiveSubcategory = (drugName, shouldDisplay) => {
+    if(shouldDisplay){
+      //Ensure the drug is added to the selectedDrugs only if it's not already there
+      if(!selectedDrugs.includes(drugName)){
+        setSelectedDrugs(prev => [...prev, drugName]);
+      }
+      //Fetch drug data
+      if(!drugData[drugName]){
         axios.get(`${Config.API_URL}/api/subcategories/${drugName}`, { withCredentials: true })
           .then(response => {
             setDrugData(prev => ({ ...prev, [drugName]: response.data }));
-            setScrollToDrugName(drugName);
           })
           .catch(error => {
             console.log(error);
           });
       }
-       else {
-        setScrollToDrugName(drugName);
-      }
-    } else {
+    }
+    else{
+      //Remove from selected drugs if it's being toggled of
       setSelectedDrugs(prev => prev.filter(item => item !== drugName));
     }
-    setActiveButtons(prev => ({
+    //Toggle visibility state
+    setActiveSubcategories(prev => ({
       ...prev,
-      [drugName]: !prev[drugName]
+      [drugName]: shouldDisplay
     }));
-    if (isChecked && drugDisplayRefs.current[drugName]) {
-      scrollToDisplay(drugName);
+    //Ensure checkbox is in sync with the state
+    const checkbox = document.getElementById(`${drugName}Checkbox`);
+    if(checkbox){
+      checkbox.checked = shouldDisplay;
     }
+    
+  };
+  
+
+  const handleCheckboxChange = (drugName, isChecked) => {
+    toggleActiveSubcategory(drugName, isChecked);
   };
 
   const scrollToDisplay = (drugName) => {
@@ -181,16 +193,12 @@ const HomePage = (props) => {
                                   }}
                                   onClick={(e) => {
                                     e.preventDefault();
-                                    const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
-                                    if (checkbox) {
-                                        checkbox.checked = !checkbox.checked;
-                                        handleCheckboxChange(drugItem.route, checkbox.checked);
-                                        console.log("test");
-                                        if(checkbox.checked){
-                                          scrollToDisplay(drugItem.route);
-                                        }
-                                        
+                                    const isVisible = !activeSubcategories[drugItem.route];
+                                    toggleActiveSubcategory(drugItem.route, isVisible);
+                                    if(isVisible){
+                                      scrollToDisplay(drugItem.route);
                                     }
+                                    
                                     
                                   }}
                                 >
@@ -228,14 +236,8 @@ const HomePage = (props) => {
                                           className={`myStyledButton ${activeButtons[drugItem.route] ? 'activeButton' : ''}`}
                                           sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }} 
                                           onClick={() => {
-                                            const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
-                                            if (checkbox) {
-                                              checkbox.checked = !checkbox.checked;
-                                              handleCheckboxChange(drugItem.route, checkbox.checked);
-                                              if(checkbox.checked){
-                                                scrollToDisplay(drugItem.route);
-                                              }
-                                            }
+                                            const shouldDisplay = activeSubcategories[drugItem.route];
+                                            toggleActiveSubcategory(drugItem.route, !shouldDisplay);
                                            
                                           }}
                                         >
@@ -256,7 +258,7 @@ const HomePage = (props) => {
                     <Box className="gray-square">
 
 
-<div>
+  <div>
   <Box
     sx={{
       textAlign: "center",
@@ -349,13 +351,18 @@ const HomePage = (props) => {
   </Box>
 </div>
 <DataDisplay />
-{selectedDrugs.map(drugName => (
-  <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
-    <h2>{drugData[drugName]?.description || 'Default Description'}</h2>
-    <DataDisplay subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
+  {selectedDrugs.map(drugName => (
+    <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
+      <div className="header-container">
+        <h2>{drugData[drugName]?.description || 'Default Description'}</h2>
+        <Button  sx={{backgroundColor: "#96d2b0", color: "#000000"}} onClick={() => toggleActiveSubcategory(drugName, false)}>
+          <CloseIcon />
+        </Button>
+      </div>
+      <DataDisplay subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
 
-  </div>
-))}
+    </div>
+  ))}
 
 
 
