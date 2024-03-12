@@ -50,13 +50,12 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders }) {
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              {headers.map((header) => (
+              {headers.map((header, index) => (
                 <TableCell
                   key={header.id}
                   align={header.align}
-                  style={{ minWidth: header.minWidth, fontSize: '16px'  }}
-                  
-                >
+                  style={{ backgroundColor:'white', fontSize: '16px', position: index === 0 ? 'sticky' : 'static', left: index === 0 ? 0 : 'auto', zIndex: index === 0 ? 1 : 'auto' }}
+                  >
                   {header.label}
                 </TableCell>
               ))}
@@ -65,8 +64,12 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders }) {
           <TableBody>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, rowIndex) => (
               <TableRow hover tabIndex={-1} key={rowIndex}>
-                {headers.map((header) => (
-                  <TableCell key={header.id} align={header.align} style={{ fontSize: '16px'  }}>
+                {headers.map((header, index) => (
+                  <TableCell
+                    key={header.id}
+                    align={header.align}
+                    style={{ backgroundColor:'white', fontSize: '16px', position: index === 0 ? 'sticky' : 'static', left: index === 0 ? 0 : 'auto', zIndex: index === 0 ? 1 : 'auto' }}
+                  >
                     {row[header.id]}
                   </TableCell>
                 ))}
