@@ -356,13 +356,15 @@ const HomePage = (props) => {
                 {selectedDrugs.map(drugName => (
                   <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
                     <div className="header-container">
-                      <h2>{drugData[drugName]?.description || 'Default Description'}</h2>
+                      <div>
+                        <h2>{drugData[drugName]?.description || 'Default Description'}</h2>
+                        <h4>Last update: {new Date (drugData[drugName]?.updatedAt).toLocaleString('en-CA') || 'Last Update'}</h4>
+                      </div>
                       <Button sx={{ backgroundColor: "#96d2b0", color: "#000000" }} onClick={() => toggleActiveSubcategory(drugName, false)}>
                         <CloseIcon />
                       </Button>
                     </div>
                     <DataDisplay subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
-
                   </div>
                 ))}
 
