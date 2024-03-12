@@ -147,7 +147,6 @@ const FeedbackForm = ({ onClose }) => {
               label="Use Email-ID for follow-up"
             />
           </Box> 
-          /* submit form Anonymously */
 
           <Box sx={{ m: 1.5 }}>
             <FormLabel component="legend" required>
