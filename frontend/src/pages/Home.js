@@ -18,6 +18,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Fade from '@mui/material/Fade';
 import logo from "../assets/images/icons/logo/white/WhiteShine256px.svg";
 import Avatar from "@mui/material/Avatar";
+import CloseIcon from '@mui/icons-material/Close';
 
 
 
@@ -31,13 +32,25 @@ const theme = createTheme({
 });
 
 
+
 const HomePage = (props) => {
   const [selectedDrugs, setSelectedDrugs] = useState([]);
   const [drugData, setDrugData] = useState({});
-  const [activeButtons, setActiveButtons] = useState({});
   const [drugList, setDrugList] = useState([]);
   const [scrollToDrugName, setScrollToDrugName] = useState(null); // New state for triggering scroll
   const drugDisplayRefs = useRef({});
+  const [activeSubcategories, setActiveSubcategories] = useState({});
+
+
+  useEffect(() => {
+    Object.keys(activeSubcategories).forEach(drugName => {
+      if (activeSubcategories[drugName]) {
+        scrollToDisplay(drugName);
+      }
+    });
+  }, [activeSubcategories]);
+
+
 
   useEffect(() => {
     const fetchDrugCategories = async () => {
@@ -67,29 +80,45 @@ const HomePage = (props) => {
   }, [scrollToDrugName, drugData]); // Depend on scrollToDrugName and drugData
 
 
-
-  const handleCheckboxChange = (drugName, isChecked) => {
-    if (isChecked) {
-      setSelectedDrugs(prev => [...prev, drugName]);
+  const toggleActiveSubcategory = (drugName, shouldDisplay) => {
+    if (shouldDisplay) {
+      //Ensure the drug is added to the selectedDrugs only if it's not already there
+      if (!selectedDrugs.includes(drugName)) {
+        setSelectedDrugs(prev => [...prev, drugName]);
+      }
+      //Fetch drug data
       if (!drugData[drugName]) {
         axios.get(`${Config.API_URL}/api/subcategories/${drugName}`, { withCredentials: true })
           .then(response => {
             setDrugData(prev => ({ ...prev, [drugName]: response.data }));
-            setScrollToDrugName(drugName); // Trigger scroll after data is fetched
           })
           .catch(error => {
             console.log(error);
           });
-      } else {
-        setScrollToDrugName(drugName); // Trigger scroll if data already exists
       }
-    } else {
+    }
+    else {
+      //Remove from selected drugs if it's being toggled of
       setSelectedDrugs(prev => prev.filter(item => item !== drugName));
     }
-    setActiveButtons(prev => ({
+    //Toggle visibility state
+    setActiveSubcategories(prev => ({
       ...prev,
-      [drugName]: !prev[drugName]
+      [drugName]: shouldDisplay
     }));
+    //Ensure checkbox is in sync with the state
+    const checkbox = document.getElementById(`${drugName}Checkbox`);
+    if (checkbox) {
+      checkbox.checked = shouldDisplay;
+
+    }
+
+
+  };
+
+
+  const handleCheckboxChange = (drugName, isChecked) => {
+    toggleActiveSubcategory(drugName, isChecked);
   };
 
   const scrollToDisplay = (drugName) => {
@@ -108,20 +137,20 @@ const HomePage = (props) => {
       disableHysteresis: true,
       threshold: 100,
     });
-  
+
     const handleClick = (event) => {
       const anchor = (event.target.ownerDocument || document).querySelector(
         '#back-to-top-anchor',
       );
-  
+
       if (anchor) {
         anchor.scrollIntoView({
           block: 'center',
-          zIndex:1
+          zIndex: 1
         });
       }
     };
-  
+
     return (
       <Fade in={trigger}>
         <Box
@@ -140,233 +169,227 @@ const HomePage = (props) => {
     children: PropTypes.element.isRequired,
     window: PropTypes.func,
   };
-  
+
   return (
     <div>
-    <Toolbar id="back-to-top-anchor" />
-    <ThemeProvider theme={theme}>
-            <Container className="main-container" maxWidth={false}>
-                <Grid container spacing={4} direction="row" sx={{ textAlign: "center" }}>
-                    <Grid item xs={12} sm={3}>
-                      <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
-                        {drugList.map(drugCategory => {
-                          // Check if data array has only one item
-                          if (drugCategory.data.length === 1) {
-                            const drugItem = drugCategory.data[0];
-                            return (
-                              <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-                                <Button
-                                  variant="h1"
-                                  sx={{
-                                    background: "#ffffff", 
-                                    width: "100%",
-                                    display: "flex",
-                                    flexDirection: "row", 
-                                    alignItems: "center", 
-                                    justifyContent: "center", 
-                                    textTransform: "none",
-                                    padding: "15px",
-                                    border: "1px solid #cbcbcb", 
-                                    boxShadow: "0px 1px 1px rgba(0,0,0,0.5)", 
-                                    '&:hover': {
-                                        backgroundColor: "#96D2B0",
-                                        fontWeight:"bold", 
-                                        color:"white"
-                                    },
-                                    backgroundColor: activeButtons[drugItem.route] ? "#96D2B0" : "#ffffff"
-                                  }}
-                                  onClick={(e) => {
-                                    e.preventDefault();
-                                    const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
-                                    if (checkbox) {
-                                        checkbox.checked = !checkbox.checked;
-                                        handleCheckboxChange(drugItem.route, checkbox.checked);
-                                        scrollToDisplay(drugItem.route);
-                                    }
+      <Toolbar id="back-to-top-anchor" />
+      <ThemeProvider theme={theme}>
+        <Container className="main-container" maxWidth={false}>
+          <Grid container spacing={4} direction="row" sx={{ textAlign: "left" }}>
+            <Grid item xs={12} sm={3}>
+              <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
+                {drugList.map(drugCategory => {
+                  // Check if data array has only one item
+                  if (drugCategory.data.length === 1) {
+                    const drugItem = drugCategory.data[0];
+                    return (
+                      <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
+                        <Button
+                          variant="h1"
+                          sx={{
+                            background: activeSubcategories[drugItem.route] ? "#96D2B0" : "#ffffff", // Change based on active state
+                            width: "100%",
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            textTransform: "none",
+                            padding: "15px",
+                            border: "1px solid #cbcbcb",
+                            boxShadow: "0px 1px 1px rgba(0,0,0,0.5)",
+                            '&:hover': {
+                              backgroundColor: "#96D2B0",
+                              fontWeight: "bold",
+                              color: "white"
+                            },
+                          }}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            const isVisible = !activeSubcategories[drugItem.route];
+                            toggleActiveSubcategory(drugItem.route, isVisible);
+                          }}
+                        >
+                          <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
+                            {drugItem.name}
+                          </Typography>
+                        </Button>
+
+                      </CardContent>
+                    );
+                  } else {
+                    return (
+                      <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
+                        <Accordion className="myAccordion">
+                          <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
+                            <Typography variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
+                              {drugCategory.category}
+                            </Typography>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                            {drugCategory.data.map(drugItem => (
+                              <div className="item-container" key={drugItem.route}>
+                                <input
+                                  type="checkbox"
+                                  id={`${drugItem.route}Checkbox`}
+                                  style={{ visibility: "hidden" }}
+                                  onChange={(e) => handleCheckboxChange(drugItem.route, e.target.checked)}
+                                  checked={activeSubcategories[drugItem.route] || false}
+                                />
+                                <Typography
+                                  className={`myStyledButton ${activeSubcategories[drugItem.route] ? 'activeButton' : ''}`}
+                                  sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
+                                  onClick={() => {
+                                    const shouldDisplay = !activeSubcategories[drugItem.route];
+                                    toggleActiveSubcategory(drugItem.route, shouldDisplay);
                                   }}
                                 >
-                                  <input 
-                                      type="checkbox" 
-                                      id={`${drugItem.route}Checkbox`} 
-                                      style={{ visibility: "hidden", marginRight: "10px" }} 
-                                  />
-                                  <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                                      {drugItem.name}
-                                  </Typography>
-                                </Button>
+                                  {drugItem.name}
+                                </Typography>
+                              </div>
+                            ))}
+                          </AccordionDetails>
+                        </Accordion>
+                      </CardContent>
+                    );
+                  }
+                })}
+              </Card>
+            </Grid>
 
-                              </CardContent>
-                            );
-                          } else {
-                            return (
-                              <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-                                <Accordion className="myAccordion">
-                                  <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
-                                    <Typography variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                                      {drugCategory.category} 
-                                    </Typography>
-                                  </AccordionSummary>
-                                  <AccordionDetails>
-                                    {drugCategory.data.map(drugItem => (
-                                      <div className="item-container">
-                                        <input 
-                                          type="checkbox" 
-                                          id={`${drugItem.route}Checkbox`} 
-                                          style={{ visibility: "hidden" }} 
-                                          onChange={(e) => handleCheckboxChange(drugItem.route, e.target.checked)}
-                                        />
-                                        <Typography
-                                          className={`myStyledButton ${activeButtons[drugItem.route] ? 'activeButton' : ''}`}
-                                          sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }} 
-                                          onClick={() => {
-                                            const checkbox = document.getElementById(`${drugItem.route}Checkbox`);
-                                            if (checkbox) {
-                                              checkbox.checked = !checkbox.checked;
-                                              handleCheckboxChange(drugItem.route, checkbox.checked);
-                                              scrollToDisplay(drugItem.route);
-                                            }
-                                          }}
-                                        >
-                                          {drugItem.name}
-                                        </Typography>
-                                      </div>
-                                    ))}
-                                  </AccordionDetails>
-                                </Accordion>
-                              </CardContent>
-                            );
-                          }
-                        })}
-                      </Card>
-                    </Grid>
-                    
-                    <Grid item xs={12} sm={9}>
-                    <Box className="gray-square">
+            <Grid item xs={12} sm={9}>
+              <Box className="gray-square">
 
 
-<div>
-  <Box
-    sx={{
-      textAlign: "center",
-      flex: ".8",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-    }}
-  >
-    {" "}
-    {/* Adjusted flex value and added display and alignItems */}
-    <Avatar
-      sx={{
-        width: 90,
-        height: 90,
-        border: "3px solid #5a8e70",
-        bgcolor: "#96d2b0",
-        mb: 3,
-      }}
-    >
-      <img src={logo} className={"height-width-5rem"} alt="GPGC Logo"></img>
-    </Avatar>
-    <Typography
-      variant="h3"
-      component="h1"
-      sx={{
-        fontWeight: "bold",
-        backgroundColor: "#355944",
-        WebkitBackgroundClip: "text",
-        WebkitTextFillColor: "transparent",
-      }}
-    >
-      THE GREEN CARD
-    </Typography>
-    <Typography
-      variant="h6"
-      component="h2"
-      sx={{
-        fontWeight: "bold",
-        backgroundColor: "#355944",
-        mb: 2,
-        WebkitBackgroundClip: "text",
-        WebkitTextFillColor: "transparent",
-      }}
-    >
-      GERIATRIC PSYCHOTROPIC DRUG REFERENCE CARD
-    </Typography>
-    <Typography
-      variant="h5"
-      component="h2"
-      sx={{
-        mt: 1,
-        backgroundColor: "#355944",
-        mb: 2,
-        fontSize: 18,
-        px: 7,
-        WebkitBackgroundClip: "text",
-        WebkitTextFillColor: "transparent",
-      }}
-    >
-      Kathleen Singh, MD, FRCPC; Terry Chisholm, MD, FRCPC; David Gardner,
-      PharmD, MSc
-    </Typography>
-    <Typography
-      variant="h5"
-      sx={{
-        mb: 2,
-        backgroundColor: "#355944",
-        fontSize: 16,
-        WebkitBackgroundClip: "text",
-        WebkitTextFillColor: "transparent",
-        fontsize: "500px",
+                <div>
+                  <Box
+                    sx={{
+                      textAlign: "center",
+                      flex: ".8",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    {" "}
+                    {/* Adjusted flex value and added display and alignItems */}
+                    <Avatar
+                      sx={{
+                        width: 90,
+                        height: 90,
+                        border: "3px solid #5a8e70",
+                        bgcolor: "#96d2b0",
+                        mb: 3,
+                      }}
+                    >
+                      <img src={logo} className={"height-width-5rem"} alt="GPGC Logo"></img>
+                    </Avatar>
+                    <Typography
+                      variant="h3"
+                      component="h1"
+                      sx={{
+                        fontWeight: "bold",
+                        backgroundColor: "#355944",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
+                    >
+                      THE GREEN CARD
+                    </Typography>
+                    <Typography
+                      variant="h6"
+                      component="h2"
+                      sx={{
+                        fontWeight: "bold",
+                        backgroundColor: "#355944",
+                        mb: 2,
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
+                    >
+                      GERIATRIC PSYCHOTROPIC DRUG REFERENCE CARD
+                    </Typography>
+                    <Typography
+                      variant="h5"
+                      component="h2"
+                      sx={{
+                        mt: 1,
+                        backgroundColor: "#355944",
+                        mb: 2,
+                        fontSize: 18,
+                        px: 7,
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
+                    >
+                      Kathleen Singh, MD, FRCPC; Terry Chisholm, MD, FRCPC; David Gardner,
+                      PharmD, MSc
+                    </Typography>
+                    <Typography
+                      variant="h5"
+                      sx={{
+                        mb: 2,
+                        backgroundColor: "#355944",
+                        fontSize: 16,
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        fontsize: "500px",
 
-      }}
-    >
-      Dept of Psychiatry, Dalhousie University, Halifax, CANADA
-    </Typography>
-    <Typography
-      variant="subtitle2"
-      gutterBottom
-      sx={{
-        fontWeight: "bold",
-        mt: 4,
-        fontSize: "14px",
-        mb: 2,
-        color: "#355944",
-      }}
-    >
-    </Typography>
-  </Box>
-</div>
-<DataDisplay />
-{selectedDrugs.map(drugName => (
-  <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
-    <h2>{drugData[drugName]?.description || 'Default Description'}</h2>
-    <DataDisplay subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
-
-  </div>
-))}
+                      }}
+                    >
+                      Dept of Psychiatry, Dalhousie University, Halifax, CANADA
+                    </Typography>
+                    <Typography
+                      variant="subtitle2"
+                      gutterBottom
+                      sx={{
+                        fontWeight: "bold",
+                        mt: 4,
+                        fontSize: "14px",
+                        mb: 2,
+                        color: "#355944",
+                      }}
+                    >
+                    </Typography>
+                  </Box>
+                </div>
+                <DataDisplay />
+                {selectedDrugs.map(drugName => (
+                  <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
+                    <div className="header-container">
+                      <div>
+                        <h2>{drugData[drugName]?.description || 'Default Description'}</h2>
+                        <h4>Last update: {new Date (drugData[drugName]?.updatedAt).toLocaleString('en-CA') || 'Last Update'}</h4>
+                      </div>
+                      <Button sx={{ backgroundColor: "#96d2b0", color: "#000000" }} onClick={() => toggleActiveSubcategory(drugName, false)}>
+                        <CloseIcon />
+                      </Button>
+                    </div>
+                    <DataDisplay subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
+                  </div>
+                ))}
 
 
 
 
-</Box>
-                    </Grid>
-                  </Grid>
-            </Container>
-          </ThemeProvider>
+              </Box>
+            </Grid>
+          </Grid>
+        </Container>
+      </ThemeProvider>
 
 
 
-        <React.Fragment>
-          <CssBaseline />
-          <ScrollTop {...props}>
-            <Fab size="small" aria-label="scroll back to top">
+      <React.Fragment>
+        <CssBaseline />
+        <ScrollTop {...props}>
+          <Fab size="small" aria-label="scroll back to top">
             <KeyboardArrowUpIcon />
-            </Fab>
-          </ScrollTop>
-        </React.Fragment>
+          </Fab>
+        </ScrollTop>
+      </React.Fragment>
 
-       
-      </div>
+
+    </div>
   );
 };
 

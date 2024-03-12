@@ -105,19 +105,7 @@ const LandingPage = () => {
         >
           Dept of Psychiatry, Dalhousie University, Halifax, CANADA
         </Typography>
-        <Typography
-            variant="subtitle2"
-            gutterBottom
-            sx={{
-              fontWeight: "bold",
-              mt: 4,
-              fontSize: "14px",
-              mb: 2,
-              color: "#355944",
-            }}
-          >
-            Login For more Drug Information and The Usage.
-          </Typography>
+        
           <div>
             <Button
               variant="contained"
