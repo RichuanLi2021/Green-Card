@@ -24,7 +24,6 @@ const Customer = () => {
       try {
         const response = await axios.get(`${Config.API_URL}/api/users`, { withCredentials: true });
         setCustomersList(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error('Error fetching users:', error);
       }

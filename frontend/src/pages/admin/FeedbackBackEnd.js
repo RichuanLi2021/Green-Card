@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+/* import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ShowFeedback from './Feedback';
 import { CircularProgress } from '@mui/material';
@@ -10,14 +10,16 @@ function FeedbackBackEnd({ onClose }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get(`${config.API_URL}/api/feedback`,{withCredentials:true})
-            .then(response => {
+        const fetchFeedback = async () => {
+            try{
+                const response = await axios.get(`${config.API_URL}/api/feedback`,{withCredentials:true})
                 setFeedbackData(response.data);
-                setLoading(false);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+            } catch (error) {
+                console.error('Error fetching feedback:', error);
+            }
+        };
+        
+        fetchFeedback();
     }, []);
 
     const handleClose = () => {
@@ -35,4 +37,4 @@ function FeedbackBackEnd({ onClose }) {
     );
 }
 
-export default FeedbackBackEnd;
+export default FeedbackBackEnd; */

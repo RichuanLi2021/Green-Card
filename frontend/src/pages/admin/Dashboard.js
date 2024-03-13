@@ -16,7 +16,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import TableChartIcon from '@mui/icons-material/TableChart';
 import SettingsIcon from '@mui/icons-material/Settings';
-import FeedbackAdminPage from './AdminFeedBackPage';
+import FeedbackPage from './Feedback';
 import Customer from './Customer';
 
 /* const theme = createTheme({
@@ -101,7 +101,7 @@ function renderComponentForSelectedItem(item) {
     case 'Users':
       return <Customer />;
     case 'Feedback':
-      return <FeedbackAdminPage />;
+      return <FeedbackPage />;
     case 'Data tables':
       return <box><Typography>Data tables view to be updated!</Typography></box>
     case 'Account':
