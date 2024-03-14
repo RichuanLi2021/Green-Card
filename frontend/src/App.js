@@ -18,6 +18,8 @@ import Footer from './components/Footer';
 import Policy from './pages/Policy';
 import Customer from './pages/admin/Customer';
 import ForgotPassword from './pages/ForgotPassword';
+import OverviewDashboard from './pages/admin/OverviewDashboard';
+
 
 import PrivateRoute from './middleware/PrivateRoute';
 import PublicRoute from './middleware/PublicRoute';
@@ -50,6 +52,7 @@ export default function App() {
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="feedback" element={<AdminFeedback />} />
             <Route path="customer" element={<Customer/>}/>
+            <Route path="overview" element={<OverviewDashboard/>}/>
           </Route>
         </Routes>
       </main>
