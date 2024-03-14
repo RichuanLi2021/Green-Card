@@ -66,8 +66,6 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders }) {
                 ))}
               </TableRow>
             ))}
-          </TableRow>
-        ))}
       </TableBody>
     </Table>
   </TableContainer>
