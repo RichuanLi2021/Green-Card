@@ -37,29 +37,34 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders }) {
 
   return (
     <Paper sx={{ width: '100%', maxWidth: '100%', overflow: 'hidden' }}>
-  <TableContainer>
-    <Table stickyHeader aria-label="sticky table">
-      <TableHead>
-        <TableRow>
-          {headers.map((header) => (
-            <TableCell
-              key={header.id}
-              align={header.align}
-              style={{ minWidth: header.minWidth, fontSize: '16px' }}
-            >
-              {header.label}
-            </TableCell>
-          ))}
-        </TableRow>
-        
-      </TableHead>
-      <TableBody>
-        {rows.map((row, rowIndex) => (
-          <TableRow hover tabIndex={-1} key={rowIndex}>
-            {headers.map((header) => (
-              <TableCell key={header.id} align={header.align} style={{ fontSize: '16px' }}>
-                {row[header.id]}
-              </TableCell>
+      <TableContainer>
+        <Table stickyHeader aria-label="sticky table">
+          <TableHead>
+            <TableRow>
+              {headers.map((header, index) => (
+                <TableCell
+                  key={header.id}
+                  align={header.align}
+                  style={{ backgroundColor:'white', fontSize: '16px', position: index === 0 ? 'sticky' : 'static', left: index === 0 ? 0 : 'auto', zIndex: index === 0 ? 1 : 'auto' }}
+                  >
+                  {header.label}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, rowIndex) => (
+              <TableRow hover tabIndex={-1} key={rowIndex}>
+                {headers.map((header, index) => (
+                  <TableCell
+                    key={header.id}
+                    align={header.align}
+                    style={{ backgroundColor:'white', fontSize: '16px', position: index === 0 ? 'sticky' : 'static', left: index === 0 ? 0 : 'auto', zIndex: index === 0 ? 1 : 'auto' }}
+                  >
+                    {row[header.id]}
+                  </TableCell>
+                ))}
+              </TableRow>
             ))}
           </TableRow>
         ))}

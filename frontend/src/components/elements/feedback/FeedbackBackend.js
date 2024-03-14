@@ -1,20 +1,18 @@
 import axios from 'axios';
-
-const submitFeedback = async (name, email, comment, rating, subscribe) => {
+import Config from '../../../config/config'; // Ensure this path matches your project structure
+const submitFeedback = async (name, email, comment, rating, allowEmailBack) => {
   try {
-    const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/api/submit-feedback", {
+    const response = await axios.post(`${Config.API_URL}/api/feedback`, {
       name,
       email,
       comment,
       rating,
-      subscribe,
-    });
-    console.log(response.data); // log response from server
+      allowEmailBack,
+    }, { withCredentials: true });
     return response.data;
   } catch (error) {
-    console.error(error);
-    throw error; // throw error to be handled by calling function
+    console.error('Error submitting feedback:', error);
+    throw error;
   }
 };
-
 export default submitFeedback;
