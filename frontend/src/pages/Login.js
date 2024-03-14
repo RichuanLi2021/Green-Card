@@ -47,7 +47,12 @@ export default function SignIn() {
     }, 1000);
   }
 
- 
+  if (localStorage.getItem('access-token')) {
+    setTimeout(() => {
+      window.location.href = '/home';
+    }, 1000); 
+  }
+  
 
   const showToast = (message, type) => {
     setToastMessage(message);
@@ -75,12 +80,10 @@ export default function SignIn() {
   
       if (response.status === 200) {
         console.log('Login Successful: ', response.data);
-        showToast('Login Successful', 'success');
+        showToast('Login Successfulll', 'success');
         localStorage.setItem("access-token", response.data.token);
         localStorage.setItem("user-role", response.data.role);
-        setTimeout(() => {
-          window.location.href = '/home2';
-        }, 1000);
+        //window.location.href = '/home';
       } else {
         console.log('Log Failed:', response.data.errorMessage);
         showToast(response.data.errorMgessage || 'Login failed', 'error');
