@@ -1,0 +1,5 @@
+.data-tables-container {
+    max-height: 70vh; /* Adjust based on the desired height */
+    overflow-y: auto; /* Allows vertical scrolling */
+    width: 100%; /* Adjust if you want a specific width */
+  }
