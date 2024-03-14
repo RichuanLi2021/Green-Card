@@ -80,7 +80,7 @@ const ShowFeedback = () =>{
               sx={{ mr: 1 }}
               color={filterSelected ? "warning" : "primary"}
             >
-              Filter (rating {">"} 3)
+              Filter (rating {"<"} 3)
             </Button>
             <Button variant="contained" onClick={handleResetButtonClick}>
               Reset
