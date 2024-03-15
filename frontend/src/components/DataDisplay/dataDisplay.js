@@ -33,7 +33,7 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders }) {
     rows.push(row);
   }
 
- 
+
 
   return (
     <Paper sx={{ width: '100%', maxWidth: '100%', overflow: 'hidden' }}>
@@ -45,31 +45,31 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders }) {
                 <TableCell
                   key={header.id}
                   align={header.align}
-                  style={{ backgroundColor:'white', fontSize: '16px', position: index === 0 ? 'sticky' : 'static', left: index === 0 ? 0 : 'auto', zIndex: index === 0 ? 1 : 'auto' }}
-                  >
+                  style={{ backgroundColor: 'white', fontSize: '16px', position: index === 0 ? 'sticky' : 'static', left: index === 0 ? 0 : 'auto', zIndex: index === 0 ? 1 : 'auto' }}
+                >
                   {header.label}
                 </TableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, rowIndex) => (
+            {rows.map((row, rowIndex) => (
               <TableRow hover tabIndex={-1} key={rowIndex}>
                 {headers.map((header, index) => (
                   <TableCell
                     key={header.id}
                     align={header.align}
-                    style={{ backgroundColor:'white', fontSize: '16px', position: index === 0 ? 'sticky' : 'static', left: index === 0 ? 0 : 'auto', zIndex: index === 0 ? 1 : 'auto' }}
+                    style={{ backgroundColor: 'white', fontSize: '16px', position: index === 0 ? 'sticky' : 'static', left: index === 0 ? 0 : 'auto', zIndex: index === 0 ? 1 : 'auto' }}
                   >
                     {row[header.id]}
                   </TableCell>
                 ))}
               </TableRow>
             ))}
-      </TableBody>
-    </Table>
-  </TableContainer>
-</Paper>
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Paper>
 
   );
 }
