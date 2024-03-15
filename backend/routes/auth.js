@@ -9,7 +9,7 @@ const env = require('../config/env')
 router.post('/login', async (req, res) => {
   if (req.cookies['access-token']) return res.status(400).json({ errorMessage: 'Already logged in' })
 
-  const { email, password } = req.body
+  const { email, password, } = req.body
   // Sanitize and Validate
 
   try {
@@ -52,7 +52,7 @@ router.post('/login', async (req, res) => {
             sameSite: 'none',
             secure: true
           }
-        ).json({ message: 'Successfully logged in', token: token, role: roleTitle })
+        ).json({ message: 'Successfully logged in', token: token, role: roleTitle, uuid: user.uuid })
     })
   } catch (error) {
     return res.status(500).json({ error, errorMessage: 'Encountered unexpected error while logging in' })
