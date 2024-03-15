@@ -20,6 +20,8 @@ const ShowFeedback = () =>{
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterSelected, setFilterSelected] = useState(false);
+  const [selectedFeedback, setSelectedFeedback] = useState(null);
+  const [popupOpen, setPopupOpen] = useState(false);
 
   useEffect(() => {
       const fetchFeedback = async () => {
@@ -89,6 +91,7 @@ const ShowFeedback = () =>{
         </div>
         <Box mt={2} display="flex" alignItems="center">
           <TextField
+            sx={{zIndex: '0'}}
             label="Search"
             variant="outlined"
             size="small"
@@ -110,20 +113,46 @@ const ShowFeedback = () =>{
             </TableHead>
             <TableBody>
               {filteredData.map((feedback, index) => (
-              <TableRow key={index}>
-                <TableCell>{feedback.name}</TableCell>
-                <TableCell>{feedback.email}</TableCell>
-                <TableCell>{feedback.comment}</TableCell>
-                <TableCell>{feedback.rating}</TableCell>
-                <TableCell>
-                  {feedback.allowEmailBack ? "Yes" : "No"}
-                </TableCell>
-                <TableCell>{new Date(feedback.createdAt).toLocaleDateString('en-ca')}</TableCell>
-              </TableRow>
+              <TableRow key={index} onClick={() => { setSelectedFeedback(feedback); setPopupOpen(true); }}>
+              <TableCell>{feedback.name}</TableCell>
+              <TableCell>{feedback.email}</TableCell>
+              <TableCell>{feedback.comment}</TableCell>
+              <TableCell>{feedback.rating}</TableCell>
+              <TableCell>
+                {feedback.allowEmailBack ? "Yes" : "No"}
+              </TableCell>
+              <TableCell>{new Date(feedback.createdAt).toLocaleDateString('en-ca')}</TableCell>
+            </TableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
+        {/* POPUP MODAL */}
+          {popupOpen && (
+            <Box className={`popup-backdrop show-popup`} onClick={() => setPopupOpen(false)} />
+          )}
+          {popupOpen && (
+            <Box className={`popup show-popup`}>
+              <Typography variant="h6" className="title" mb={2} align='center'>
+                Feedback Details
+              </Typography>
+              <Typography mb={2}>Name: {selectedFeedback.name}</Typography>
+              <Typography mb={2}>Email: {selectedFeedback.email}</Typography>
+              <Typography mb={2}>Comment: {selectedFeedback.comment}</Typography>
+              <Typography mb={2}>Overall Rating: {selectedFeedback.rating}</Typography>
+              <Typography mb={2}>
+                Subscribe: {selectedFeedback.allowEmailBack ? "Yes" : "No"}
+              </Typography>
+              <Typography mb={2}>
+                Date: {new Date(selectedFeedback.createdAt).toLocaleDateString('en-ca')}
+              </Typography>
+              <Box sx={{ m: 1.5, display: 'flex', justifyContent: 'center' }}>
+                <Button sx={{backgroundColor: '#96d2b0', color: 'black'}} onClick={() => setPopupOpen(false)} className="popup-close-button">
+                  Close
+                </Button>
+              </Box>
+            </Box>
+          )}
       </div>
     </ThemeProvider>
   );
