@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
@@ -25,6 +25,23 @@ const theme = createTheme({
 
 export default function SignIn() {
   const navigate = useNavigate();
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    const userUUID = localStorage.getItem('user-uuid');
+    if (userUUID) {
+      axios.get(`${Config.API_URL}/api/users/${userUUID}`, { withCredentials: true })
+        .then(response => {
+          if (response.status === 200) {
+            setUserData(response.data);
+          }
+        })
+        .catch(error => {
+          console.error("Failed to fetch user details:", error);
+        });
+    }
+  }, []);
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -49,7 +66,6 @@ export default function SignIn() {
       })
       .catch((error) => console.log(error));
   };
-  const userEmail = localStorage.getItem("userEmail"); //to display on account page
 
   return (
     <ThemeProvider theme={theme}>
@@ -81,8 +97,14 @@ export default function SignIn() {
           variant="body2"
           sx={{ color: "black"}}
           >
-            Current Email: {userEmail}
-          </Typography>
+          {userData && userData.User_Roles ? (
+          <div>
+            <Typography>Current Email: {userData.email}</Typography>
+            {/* <Typography>Role: {userData.User_Roles.map(ur => ur.Role.name).join(', ')}</Typography> */}
+          </div>
+          ) : (
+          <Typography>Loading...</Typography>
+          )}          </Typography>
 
           <Box
             component="form"
