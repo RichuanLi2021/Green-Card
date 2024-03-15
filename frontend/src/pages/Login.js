@@ -77,11 +77,13 @@ export default function SignIn() {
         email: dataCredential.get('email'),
         password: dataCredential.get('password'),
       }, { withCredentials: true });
+
   
       if (response.status === 200) {
         console.log('Login Successful: ', response.data);
-        showToast('Login Successfulll', 'success');
+        showToast('Login Successfull', 'success');
         localStorage.setItem("access-token", response.data.token);
+        localStorage.setItem("user-uuid", response.data.uuid);
         localStorage.setItem("user-role", response.data.role);
         //window.location.href = '/home';
       } else {
