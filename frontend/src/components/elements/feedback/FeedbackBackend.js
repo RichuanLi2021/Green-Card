@@ -8,7 +8,9 @@ const submitFeedback = async ({ name, email, comment, rating, allowEmailBack }) 
     rating,
     allowEmailBack,
   };
-
+  if(name) {
+    feedbackData.name = name;
+  }
   if (email) {
     feedbackData.email = email;
   }
