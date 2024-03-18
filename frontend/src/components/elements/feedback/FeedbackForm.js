@@ -63,7 +63,11 @@ const FeedbackForm = ({ onClose }) => {
     console.log({ name, email, comment, rating, subscribe });
     submitFeedback(name, email, comment, rating, subscribe)
       .then((data) => {
-        showToast('Feedback submitted!', 'success');
+        showToast('Feedback submitted!', 'success'); // Use toast for success message
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 1000);
+        
       })
       .catch((error) => {
         console.error(error);
