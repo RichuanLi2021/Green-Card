@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Box, Button, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField } from '@mui/material';
+import { Box, Button, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Checkbox } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import Config from "../../config/config";
@@ -22,6 +22,7 @@ const ShowFeedback = () =>{
   const [filterSelected, setFilterSelected] = useState(false);
   const [selectedFeedback, setSelectedFeedback] = useState(null);
   const [popupOpen, setPopupOpen] = useState(false);
+  const [selectedReviews, setSelectedReviews] = useState([]);
 
   useEffect(() => {
       const fetchFeedback = async () => {
@@ -62,6 +63,34 @@ const ShowFeedback = () =>{
     setFilteredData(filtered);
   };
 
+  const handleSelectReview = (event, id) => {
+    //to stop popup
+    event.stopPropagation();
+    const selectedIndex = selectedReviews.indexOf(id);
+    let newSelected = [];
+
+    if (selectedIndex === -1) {
+      newSelected = newSelected.concat(selectedReviews, id);
+    } else if (selectedIndex >= 0) {
+      newSelected = [...selectedReviews];
+      newSelected.splice(selectedIndex, 1);
+    }
+    setSelectedReviews(newSelected);
+  };
+
+  const handleMarkAsReviewed = () => {
+    /* Future backend linkup */
+    setSelectedReviews([]); 
+  };
+
+  const handleSelectAllReviews = () => {
+    if(selectedReviews.length === filteredData.length){
+      setSelectedReviews([]);
+    } else {
+      const newSelected = filteredData.map((feedback, index) => feedback.id || index);
+      setSelectedReviews(newSelected);
+    }
+  };  
   return (
     <ThemeProvider theme={theme}>
       <div className="form-container" style={{ height: "70%" }}>
@@ -76,6 +105,18 @@ const ShowFeedback = () =>{
             </Typography>
           </Box>
           <Box mt={2} display="flex" justifyContent="center">
+            <Button variant="contained" onClick={handleSelectAllReviews} sx={{ mr: 1 }}>
+              {selectedReviews.length === filteredData.length ? 'Deselect All' : 'Select All'}
+            </Button>
+            {selectedReviews.length > 0 && (
+              <Button
+              variant="contained"
+              onClick={handleMarkAsReviewed}
+              sx={{ backgroundColor: '#96d2b0', color: 'black', mr: 1}}
+              >
+                Reviewed
+              </Button>
+            )}
             <Button
               variant="contained"
               onClick={handleFilterButtonClick}
@@ -103,6 +144,7 @@ const ShowFeedback = () =>{
           <Table stickyHeader aria-label="feedback table">
             <TableHead>
               <TableRow>
+                <TableCell padding="checkbox">Reviewed</TableCell>
                 <TableCell stickyHeader>Name</TableCell>
                 <TableCell stickyHeader>Email</TableCell>
                 <TableCell stickyHeader>Comment</TableCell>
@@ -113,7 +155,13 @@ const ShowFeedback = () =>{
             </TableHead>
             <TableBody>
               {filteredData.map((feedback, index) => (
-              <TableRow key={index} onClick={() => { setSelectedFeedback(feedback); setPopupOpen(true); }}>
+              <TableRow key={feedback.id || index} onClick={() => { setSelectedFeedback(feedback); setPopupOpen(true); }}>
+              <TableCell padding="checkbox" onClick={(event) => event.stopPropagation()}>
+                <Checkbox
+                  checked={selectedReviews.includes(feedback.id || index)}
+                  onChange={(event) => handleSelectReview(event, feedback.id || index)}
+                />
+              </TableCell>
               <TableCell>{feedback.name}</TableCell>
               <TableCell>{feedback.email}</TableCell>
               <TableCell>{feedback.comment}</TableCell>
