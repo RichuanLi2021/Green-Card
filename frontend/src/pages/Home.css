@@ -8,6 +8,17 @@
 
 }
 
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-container h2,
+.header-container h4 {
+  margin: 0;
+}
+
 .MuiContainer-root.main-container {
     width: 95vw !important;
 }
@@ -121,10 +132,7 @@ a {
   background-color: #ffffff;
   width: 100%;
   display: flex;
-  flexDirection: row;
-  alignItems: center;
-  justifyContent: center;
-  textTransform: none;
+  
   padding: 15px;
   border: 1px solid #cbcbcb;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);

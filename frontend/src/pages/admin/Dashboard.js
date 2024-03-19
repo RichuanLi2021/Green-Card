@@ -16,8 +16,11 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import TableChartIcon from '@mui/icons-material/TableChart';
 import SettingsIcon from '@mui/icons-material/Settings';
-import FeedbackAdminPage from './AdminFeedBackPage';
+import FeedbackPage from './Feedback';
 import Customer from './Customer';
+import OverviewDashboard from './OverviewDashboard';
+import DataTables from './DataTables';
+
 
 /* const theme = createTheme({
     palette: {
@@ -37,7 +40,7 @@ export default function Dashboard() {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', width: 'auto' }}>
       <Drawer
         variant="permanent"
         sx={{
@@ -58,12 +61,12 @@ export default function Dashboard() {
           <List>
             {['Overview', 'Users', 'Feedback', 'Data tables'].map((text, index) => (
               <ListItem key={text} disablePadding onClick={() => handleItemClick(text)}>
-                <ListItemButton>
+                <ListItemButton sx={{ width: 'auto' }}>
                   <ListItemIcon>
                     {index === 0 ? <GridViewIcon /> : index === 1 ? <GroupIcon/> : index === 2 ? <FeedbackIcon/> : <TableChartIcon/>}
                   </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
+                  <ListItemText primary={text} sx={{ display: { xs: 'none', sm: 'initial' } }} />                
+                  </ListItemButton>
               </ListItem>
             ))}
           </List>
@@ -71,11 +74,12 @@ export default function Dashboard() {
           <List>
             {['Account', 'Settings'].map((text, index) => (
               <ListItem key={text} disablePadding onClick={() => handleItemClick(text)}>
-                <ListItemButton>
+                <ListItemButton sx={{ width: 'auto' }}>
                   <ListItemIcon>
                     {index % 2 === 0 ? <AccountCircleIcon /> : <SettingsIcon />}
                   </ListItemIcon>
-                  <ListItemText primary={text} />
+                  <ListItemText primary={text} sx={{ display: { xs: 'none', sm: 'initial' } }} />                
+                  
                 </ListItemButton>
               </ListItem>
             ))}
@@ -97,13 +101,13 @@ export default function Dashboard() {
 function renderComponentForSelectedItem(item) {
   switch (item) {
     case 'Overview':
-      return <box><Typography>Overview to be updated!</Typography></box>
+      return <OverviewDashboard/>;
     case 'Users':
       return <Customer />;
     case 'Feedback':
-      return <FeedbackAdminPage />;
+      return <FeedbackPage />;
     case 'Data tables':
-      return <box><Typography>Data tables view to be updated!</Typography></box>
+      return <DataTables />;
     case 'Account':
       return <box><Typography>Account view to be updated!</Typography></box>
     case 'Settings':
