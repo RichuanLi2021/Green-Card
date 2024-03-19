@@ -40,7 +40,7 @@ export default function Dashboard() {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', width: 'auto' }}>
       <Drawer
         variant="permanent"
         sx={{
@@ -61,12 +61,12 @@ export default function Dashboard() {
           <List>
             {['Overview', 'Users', 'Feedback', 'Data tables'].map((text, index) => (
               <ListItem key={text} disablePadding onClick={() => handleItemClick(text)}>
-                <ListItemButton>
+                <ListItemButton sx={{ width: 'auto' }}>
                   <ListItemIcon>
                     {index === 0 ? <GridViewIcon /> : index === 1 ? <GroupIcon/> : index === 2 ? <FeedbackIcon/> : <TableChartIcon/>}
                   </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
+                  <ListItemText primary={text} sx={{ display: { xs: 'none', sm: 'initial' } }} />                
+                  </ListItemButton>
               </ListItem>
             ))}
           </List>
@@ -74,11 +74,12 @@ export default function Dashboard() {
           <List>
             {['Account', 'Settings'].map((text, index) => (
               <ListItem key={text} disablePadding onClick={() => handleItemClick(text)}>
-                <ListItemButton>
+                <ListItemButton sx={{ width: 'auto' }}>
                   <ListItemIcon>
                     {index % 2 === 0 ? <AccountCircleIcon /> : <SettingsIcon />}
                   </ListItemIcon>
-                  <ListItemText primary={text} />
+                  <ListItemText primary={text} sx={{ display: { xs: 'none', sm: 'initial' } }} />                
+                  
                 </ListItemButton>
               </ListItem>
             ))}
