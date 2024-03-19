@@ -18,6 +18,9 @@
     "nodemon": "^3.0.1"
   },
   "dependencies": {
-    "@mui/material": "^5.15.7"
+    "@mui/material": "^5.15.7",
+    "@mui/x-charts": "^6.19.5",
+    "chart.js": "^4.4.2",
+    "react-chartjs-2": "^5.2.0"
   }
 }

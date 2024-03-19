@@ -18,6 +18,7 @@ import TableChartIcon from '@mui/icons-material/TableChart';
 import SettingsIcon from '@mui/icons-material/Settings';
 import FeedbackPage from './Feedback';
 import Customer from './Customer';
+import OverviewDashboard from './OverviewDashboard';
 import DataTables from './DataTables';
 
 
@@ -99,7 +100,7 @@ export default function Dashboard() {
 function renderComponentForSelectedItem(item) {
   switch (item) {
     case 'Overview':
-      return <box><Typography>Overview to be updated!</Typography></box>
+      return <OverviewDashboard/>;
     case 'Users':
       return <Customer />;
     case 'Feedback':
