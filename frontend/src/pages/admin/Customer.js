@@ -67,7 +67,6 @@ const Customer = () => {
             <Table stickyHeader aria-label="customer table">
               <TableHead>
                 <TableRow>
-                  <TableCell stickyHeader>ID</TableCell>
                   <TableCell stickyHeader>Discipline</TableCell>
                   <TableCell stickyHeader>Email</TableCell>
                   <TableCell stickyHeader>Last Login</TableCell>
@@ -77,7 +76,6 @@ const Customer = () => {
               <TableBody>
                 {filteredCustomersList.map((customer , index) => (
                   <TableRow key={index}>
-                    <TableCell>{index }</TableCell>
                     <TableCell>{customer.discipline}</TableCell>
                     <TableCell>{customer.email}</TableCell>
                     <TableCell>{new Date(customer.lastLogin).toLocaleDateString('en-ca')}</TableCell>
