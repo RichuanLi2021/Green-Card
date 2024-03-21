@@ -54,7 +54,7 @@ import ToastComponent from '../../ToastComponent'; // Adjust the import path as 
       allowEmailBack: additionalCheckbox, // Use additionalCheckbox here
     };
   
-    submitFeedback(feedbackData)
+   submitFeedback(feedbackData)
       .then(() => showToast('Feedback submitted!', 'success'))
       .catch(error => {
         console.error('Failed to submit feedback:', error);
