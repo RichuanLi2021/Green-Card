@@ -54,7 +54,6 @@ router.get('/:id', validateAdminToken, async (req, res) => {
 // Create One
 router.post('/', validateAdminToken, async (req, res) => {
   const { discipline, firstName, lastName, email, password } = req.body
-  console.log('Received body:', req.body);
   // Sanitize and validate
 
   try {
