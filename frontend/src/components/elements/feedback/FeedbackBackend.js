@@ -8,12 +8,11 @@ const submitFeedback = async ({ name, email, comment, rating, allowEmailBack }) 
     rating,
     allowEmailBack,
   };
-  if(name) {
+  if(name && email) {
     feedbackData.name = name;
-  }
-  if (email) {
     feedbackData.email = email;
   }
+
 
   try {
     const response = await axios.post(`${Config.API_URL}/api/feedback`, feedbackData, { withCredentials: true });
