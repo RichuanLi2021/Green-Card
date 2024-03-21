@@ -3,10 +3,12 @@ import axios from 'axios';
 import Config from "../../config/config";
 import DataDisplay from '../../components/DataDisplay/dataDisplay'; // Adjust path as necessary
 import "./DataTables.css";
+
 const DataTables = () => {
   const [categoriesData, setCategoriesData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -32,23 +34,26 @@ const DataTables = () => {
     };
     fetchData();
   }, []);
+
   if (loading) {
     return <div>Loading...</div>;
   }
   if (error) {
     return <div>Error fetching data</div>;
   }
+  
   return (
-<div className="data-tables-container"> {/* Use the CSS class here */}
-      {categoriesData.map((category, index) => (
-<div key={index} style={{ maxWidth: '80vw', margin: '0 auto' }}> {/* Inline style for width control */}
-<h2>{category.categoryName}</h2>
-          {category.subcategoryHeaders.map((subHeader, subIndex) => (
-<DataDisplay key={subIndex} subcategoryHeaders={subHeader.data} />
-          ))}
-</div>
+<div className="data-tables-container" style={{ gap: '20px', display: 'flex', flexDirection: 'column' }}>
+  {categoriesData.map((category, index) => (
+    <div key={index} style={{ maxWidth: '80vw', margin: '20px auto', padding: '20px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+      <h2>{category.categoryName}</h2>
+      {category.subcategoryHeaders.map((subHeader, subIndex) => (
+        <DataDisplay key={subIndex} subcategoryHeaders={subHeader.data} />
       ))}
+    </div>
+  ))}
 </div>
+
   );
 };
 export default DataTables;
