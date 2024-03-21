@@ -53,7 +53,8 @@ router.get('/:id', validateAdminToken, async (req, res) => {
 
 // Create One
 router.post('/', validateAdminToken, async (req, res) => {
-  const { discipline, email, password } = req.body
+  const { discipline, firstName, lastName, email, password } = req.body
+  console.log('Received body:', req.body);
   // Sanitize and validate
 
   try {
@@ -61,6 +62,8 @@ router.post('/', validateAdminToken, async (req, res) => {
       User.create({
         uuid: uuidv4(),
         discipline: discipline,
+        firstName: firstName,
+        lastName: lastName,
         email: email,
         password: hash
       })
