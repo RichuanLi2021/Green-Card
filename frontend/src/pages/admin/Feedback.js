@@ -4,6 +4,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import Config from "../../config/config";
 import './Feedback.css';
+import { TextareaAutosize } from '@mui/material';
 
 
 const theme = createTheme({
@@ -62,6 +63,15 @@ const ShowFeedback = () =>{
     setFilteredData(filtered);
   };
 
+  const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + '...';
+    }
+    return text;
+  };
+  
+  
+
   return (
     <ThemeProvider theme={theme}>
       <div className="form-container" style={{ height: "70%" }}>
@@ -116,7 +126,7 @@ const ShowFeedback = () =>{
               <TableRow key={index} onClick={() => { setSelectedFeedback(feedback); setPopupOpen(true); }}>
               <TableCell>{feedback.name}</TableCell>
               <TableCell>{feedback.email}</TableCell>
-              <TableCell>{feedback.comment}</TableCell>
+              <TableCell>{truncateText(feedback.comment, 20)}</TableCell>
               <TableCell>{feedback.rating}</TableCell>
               <TableCell>
                 {feedback.allowEmailBack ? "Yes" : "No"}
@@ -138,7 +148,14 @@ const ShowFeedback = () =>{
               </Typography>
               <Typography mb={2}>Name: {selectedFeedback.name}</Typography>
               <Typography mb={2}>Email: {selectedFeedback.email}</Typography>
-              <Typography mb={2}>Comment: {selectedFeedback.comment}</Typography>
+              <Box mb={2} style={{ maxHeight: '200px', overflowY: 'auto' }}>
+        <TextareaAutosize
+          aria-label="comment"
+          value={selectedFeedback.comment}
+          disabled
+          style={{ width: '100%', resize: 'none', border: 'none', outline: 'none', overflow: 'hidden' }}
+        />
+      </Box>
               <Typography mb={2}>Overall Rating: {selectedFeedback.rating}</Typography>
               <Typography mb={2}>
                 Subscribe: {selectedFeedback.allowEmailBack ? "Yes" : "No"}
