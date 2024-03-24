@@ -52,11 +52,16 @@ export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const dataCredential = new FormData(event.target);
-    
+    let discipline = dataCredential.get('discipline') || dataCredential.get('specialty') || dataCredential.get('other-discipline');
+    if (discipline === null && occupation) {
+      discipline = occupation;
+    }
     axios.post(Config.API_URL + "/api/auth/register", {
+      firstName: dataCredential.get('firstName'),
+      lastName: dataCredential.get('lastName'),
       email: dataCredential.get('email'),
       password: dataCredential.get('password'),
-      discipline: dataCredential.get('discipline') || dataCredential.get('specialty') || dataCredential.get('other-discipline')
+      discipline: discipline
     })
       .then(response => {
         if (response.data.message) {
@@ -76,7 +81,7 @@ export default function SignIn() {
 
         <Box
           sx={{
-            marginTop: 20,
+            marginTop: 10,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -92,6 +97,13 @@ export default function SignIn() {
 
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField required fullWidth id="firstName" label="First Name" name="firstName" autoComplete="given-name" />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField required fullWidth id="lastName" label="Last Name" name="lastName" autoComplete="last-name" />
+              </Grid>
+
               <Grid item xs={12}>
                 <TextField required fullWidth id="email" label="Email Address" name="email" autoComplete="email" />
               </Grid>
