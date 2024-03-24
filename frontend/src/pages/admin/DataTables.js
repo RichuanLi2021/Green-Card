@@ -44,7 +44,6 @@ const DataTables = () => {
     return <div>Error fetching data</div>;
   }
 
-  
   return (
 <div className="data-tables-container" style={{ gap: '20px', display: 'flex', flexDirection: 'column' }}>
   {categoriesData.map((category, index) => (
