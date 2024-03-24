@@ -4,12 +4,10 @@ import Config from "../../config/config";
 import DataDisplay from '../../components/DataDisplay/dataDisplay'; // Adjust path as necessary
 import "./DataTables.css";
 
-
 const DataTables = () => {
   const [categoriesData, setCategoriesData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,7 +33,6 @@ const DataTables = () => {
     fetchData();
   }, []);
 
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -45,9 +42,9 @@ const DataTables = () => {
   }
 
   return (
-<div className="data-tables-container" style={{ gap: '20px', display: 'flex', flexDirection: 'column' }}>
-  {categoriesData.map((category, index) => (
-    <div key={index} style={{ maxWidth: '80vw', margin: '20px auto', padding: '20px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+    <div className="data-tables-container">
+      {categoriesData.map((category, index) => (
+        <div key={index} style={{ maxWidth: '80vw', margin: '0 auto' }}>
           {/* Consistently display the last updated date, similar to Home.js */}
           <h4>Last update: {category.updatedAt ? new Date(category.updatedAt).toLocaleString('en-CA') : 'No update date available'}</h4>
           <h2>{category.categoryName}</h2>
@@ -61,3 +58,4 @@ const DataTables = () => {
 };
 
 export default DataTables;
+
