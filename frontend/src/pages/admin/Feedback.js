@@ -196,12 +196,12 @@ const ShowFeedback = () =>{
               </Typography>
               <Typography mb={2}>Name: {selectedFeedback.name}</Typography>
               <Typography mb={2}>Email: {selectedFeedback.email}</Typography>
-              <Box mb={2} style={{ maxHeight: '200px', overflowY: 'auto' }}>
+              <Box mb={2} style={{ maxHeight: '200px', overflowY: 'scroll' }}>
                 <TextareaAutosize
-                  aria-label="comment"
-                  value={selectedFeedback.comment}
-                  disabled
-                  style={{ width: '100%', resize: 'none', border: 'none', outline: 'none', overflow: 'hidden' }}
+                aria-label="comment"
+                value={selectedFeedback.comment}
+                disabled
+                style={{ width: '100%', resize: 'none', border: 'none', outline: 'none' }}
                 />
               </Box>
               <Typography mb={2}>Overall Rating: {selectedFeedback.rating}</Typography>
