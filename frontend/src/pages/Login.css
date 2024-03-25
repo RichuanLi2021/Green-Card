@@ -2,9 +2,13 @@
 
 main {
 
-    min-height: 100vh !important;
+    min-height: 73.3vh !important;
     
 }
+
+.css-hordx{
+    margin-top: 10px !important;
+  }
 
 .MuiBox-root {
     z-index: 0 !important;

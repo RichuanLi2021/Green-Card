@@ -16,132 +16,74 @@ const LandingPage = () => {
   };
 
   return (
-    <Box
-      className="landing-content"
-      sx={{
-        display: "flex",
-        flexDirection: "column", // Updated to column
-        justifyContent: "space-between", // Adjusted to space between
-        alignItems: "center",
-        minHeight: "100vh",
-        py: 4,
-        px: 4, // Add padding
+
+    <Box 
+    className="landing-content"
+    sx={{
+      width: "984px", 
+      height: "345px", 
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+      alignItems: "center",
+      margin: "auto", 
+      overflow: "auto", 
       }}
     >
-      {/* Left Content */}
-
       <Box
         sx={{
           textAlign: "center",
-          flex: ".8",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          p: 2, // Reduced padding here as well
+          height: "258px",
         }}
       >
-        {" "}
-        {/* Adjusted flex value and added display and alignItems */}
         <Avatar
           sx={{
-            width: 90,
-            height: 90,
-            border: "3px solid #5a8e70",
+            width: 80, // Slightly smaller avatar
+            height: 80, // Slightly smaller avatar
+            border: "2px solid #5a8e70",
             bgcolor: "#96d2b0",
-            mb: 3,
+            mb: 2, // Reduced margin
           }}
         >
-          <img src={logo} className={"height-width-5rem"} alt="GPGC Logo"></img>
+          <img src={logo} alt="GPGC Logo" className={"height-width-5rem"} />
         </Avatar>
-        <Typography
-          variant="h3"
-          component="h1"
-          sx={{
-            fontWeight: "bold",
-            backgroundColor: "#355944",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-          }}
-        >
-          THE GREEN CARD
-        </Typography>
-        <Typography
-          variant="h6"
-          component="h2"
-          sx={{
-            fontWeight: "bold",
-            backgroundColor: "#355944",
-            mb: 2,
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-          }}
-        >
-          GERIATRIC PSYCHOTROPIC DRUG REFERENCE CARD
-        </Typography>
-        <Typography
-          variant="h5"
-          component="h2"
-          sx={{
-            mt: 1,
-            backgroundColor: "#355944",
-            mb: 2,
-            fontSize: 18,
-            px: 7,
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-          }}
-        >
+        <Typography variant="h4" sx={{ mb: 1, px: 5, ...commonTextStyles }}>THE GREEN CARD</Typography>
+        <Typography variant="h6" sx={{ mb: 1, ...commonTextStyles }}>GERIATRIC PSYCHOTROPIC DRUG REFERENCE CARD</Typography>
+        <Typography variant="subtitle1" sx={{ mb: 1, ...commonTextStyles }}>
           Kathleen Singh, MD, FRCPC; Terry Chisholm, MD, FRCPC; David Gardner,
           PharmD, MSc
         </Typography>
-        <Typography
-          variant="h5"
-          sx={{
-            mb: 2,
-            backgroundColor: "#355944",
-            fontSize: 16,
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-          }}
-        >
+        <Typography variant="subtitle2" sx={{ mb: 2, ...commonTextStyles }}>
           Dept of Psychiatry, Dalhousie University, Halifax, CANADA
         </Typography>
-        
-          <div>
-            <Button
-              variant="contained"
-              onClick={handleRegister}
-              style={{
-                fontWeight: "bold",
-                marginRight: "1rem",
-                backgroundColor: "#8ab89d",
-                color: "#385143",
-                marginTop: "10px",
-              }}
-            >
-              Register
-            </Button>
-            <Button
-              variant="contained"
-              style={{
-                fontWeight: "bold",
-                marginRight: "1rem",
-                color: "#385143",
-                borderColor: "lightBlue",
-                marginTop: "10px",
-                backgroundColor: "#8ab89d",
-              }}
-              onClick={handleLogin}
-            >
-              Login
-            </Button>
-          </div>
-          
-
+        <div>
+          <Button variant="contained" onClick={handleRegister} sx={buttonStyle}>Register</Button>
+          <Button variant="contained" onClick={handleLogin} sx={buttonStyle}>Login</Button>
+        </div>
       </Box>
-
-    
     </Box>
   );
+};
+
+const commonTextStyles = {
+  fontWeight: "bold",
+  backgroundColor: "#355944",
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+};
+
+const buttonStyle = {
+  fontWeight: "bold",
+  marginRight: "8px",
+  backgroundColor: "#8ab89d",
+  color: "#385143",
+  '&:hover': {
+    backgroundColor: "#96d2b0",
+  },
 };
 
 export default LandingPage;
