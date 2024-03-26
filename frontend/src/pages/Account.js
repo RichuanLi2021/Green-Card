@@ -101,6 +101,8 @@ export default function SignIn() {
           <div>
             <Typography>Current Email: {userData.email}</Typography>
             {/* <Typography>Role: {userData.User_Roles.map(ur => ur.Role.name).join(', ')}</Typography> */}
+            <Typography>First Name: {userData.firstName}</Typography>
+            <Typography>Last Name: {userData.lastName}</Typography>
           </div>
           ) : (
           <Typography>Loading...</Typography>
