@@ -42,6 +42,15 @@
   justify-content: space-between;
   align-items: center;
 }
+
+
+
+.css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input{
+  padding-bottom: 50px !important;
+  max-height: 200px !important ;
+  overflow-y: scroll !important;
+
+}
 .form-container-pg {
   height: 70%;
   overflow-x: auto;
