@@ -37,7 +37,9 @@ const Customer = () => {
   };
 
   const filteredCustomersList = customersList.filter((customer) =>
-    customer.email.toLowerCase().includes(searchQuery.toLowerCase())
+    customer.email.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    customer.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    customer.lastName.toLowerCase().includes(searchQuery.toLowerCase())
   );
   
     return (
@@ -67,7 +69,8 @@ const Customer = () => {
             <Table stickyHeader aria-label="customer table">
               <TableHead>
                 <TableRow>
-                  <TableCell stickyHeader>ID</TableCell>
+                  <TableCell stickyHeader>First Name</TableCell>
+                  <TableCell stickyHeader>Last Name</TableCell>
                   <TableCell stickyHeader>Discipline</TableCell>
                   <TableCell stickyHeader>Email</TableCell>
                   <TableCell stickyHeader>Last Login</TableCell>
@@ -77,7 +80,8 @@ const Customer = () => {
               <TableBody>
                 {filteredCustomersList.map((customer , index) => (
                   <TableRow key={index}>
-                    <TableCell>{index }</TableCell>
+                    <TableCell>{customer.firstName }</TableCell>
+                    <TableCell>{customer.lastName }</TableCell>
                     <TableCell>{customer.discipline}</TableCell>
                     <TableCell>{customer.email}</TableCell>
                     <TableCell>{new Date(customer.lastLogin).toLocaleDateString('en-ca')}</TableCell>
