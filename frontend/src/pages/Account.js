@@ -100,7 +100,7 @@ export default function SignIn() {
           {userData && userData.User_Roles ? (
           <div>
             <Typography>Current Email: {userData.email}</Typography>
-            {/* <Typography>Role: {userData.User_Roles.map(ur => ur.Role.name).join(', ')}</Typography> */}
+            <Typography>Discipline: {userData.discipline}</Typography>
           </div>
           ) : (
           <Typography>Loading...</Typography>
