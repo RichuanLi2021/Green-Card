@@ -89,11 +89,14 @@ import ToastComponent from '../../ToastComponent'; // Adjust the import path as 
     <TextField label="Email" variant="outlined" fullWidth type="email" value={email} onChange={handleEmailChange} margin="normal" />
     
     </>
-            )}
-    <TextField label="Comment" variant="outlined" fullWidth multiline rows={4} value={comment} onChange={handleCommentChange} margin="normal" />
+    )}
+    <TextField label="Comment" variant="outlined" fullWidth multiline  value={comment} onChange={handleCommentChange} margin="normal" />
     <FormControlLabel control={<Checkbox checked={isAnonymous} onChange={handleIsAnonymousChange} />} label="Submit feedback anonymously" />
     {!isAnonymous && (
     <>
+
+
+
     <FormControlLabel control={<Checkbox checked={additionalCheckbox} onChange={handleSubscribe} />} label="Subscribe to email services" />
     </>
             )}
