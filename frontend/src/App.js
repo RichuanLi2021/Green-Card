@@ -41,10 +41,11 @@ export default function App() {
           <Route path="/" element={<PublicRoute><LandingPage /></PublicRoute>} />
           <Route path="login" element={<PublicRoute><Login /></PublicRoute>} />
           <Route path="register" element={<PublicRoute><Register /></PublicRoute>} />
+          <Route path="policy" element={<PublicRoute><Policy/></PublicRoute>} />
+
 
           <Route path="home" element={<PrivateRoute><Home /></PrivateRoute>} />
           <Route path="account" element={<PrivateRoute><Account/></PrivateRoute>} />
-          <Route path="policy" element={<PrivateRoute><Policy/></PrivateRoute>} />
           <Route path="ForgotPassword" element={<PublicRoute><ForgotPassword/></PublicRoute>} />
 
 
