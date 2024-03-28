@@ -12,6 +12,16 @@
     background-color: #fff;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
+.feedback-row-not-selected {
+    font-weight: bold;
+}
+.feedback-row-selected {
+    background-color: #f0f0f0;
+}
+.bold-text {
+    font-weight: bold;
+}
+
 
 .form-header {
     display: flex;
