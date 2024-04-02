@@ -292,9 +292,9 @@ const HomePage = (props) => {
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                         fontSize: {
-                          xs: '32px', // smaller font size on extra-small screens
-                          sm: '40px', // slightly larger font size on small screens
-                          md: '50px', // default font size for medium screens and up
+                          xs: '30px', 
+                          sm: '40px', 
+                          md: '48px', 
                         },
                       }}
                     >
