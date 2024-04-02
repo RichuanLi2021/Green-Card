@@ -1,0 +1,12 @@
+.main-footer {
+
+    position: relative !important ; /* Rc: Stick the footer to the bottom */
+    
+  } 
+  
+  
+main {
+
+    min-height: 80vh !important;
+    
+}
