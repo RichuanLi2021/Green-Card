@@ -274,14 +274,14 @@ const HomePage = (props) => {
                     {/* Adjusted flex value and added display and alignItems */}
                     <Avatar
                       sx={{
-                        width: 130,
-                        height: 130,
+                        width: 140,
+                        height: 140,
                         border: "3px solid #5a8e70",
                         bgcolor: "#96d2b0",
                         mb: 3,
                       }}
                     >
-                      <img src={logo} className={"height-width-5rem"} alt="GPGC Logo" style={{ height: '6.5rem', width: '6.5rem' }}></img>
+                      <img src={logo} className={"height-width-5rem"} alt="GPGC Logo" style={{ height: '7.0rem', width: '7.0rem' }}></img>
                     </Avatar>
                     <Typography
                       variant="h3"
