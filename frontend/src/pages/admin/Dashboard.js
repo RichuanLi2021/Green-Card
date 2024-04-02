@@ -20,6 +20,7 @@ import FeedbackPage from './Feedback';
 import Customer from './Customer';
 import OverviewDashboard from './OverviewDashboard';
 import DataTables from './DataTables';
+import Accounts from './Accounts';
 import "./Dashboard.css";
 
 
@@ -110,7 +111,7 @@ function renderComponentForSelectedItem(item) {
     case 'Data tables':
       return <DataTables />;
     case 'Account':
-      return <box><Typography>Account view to be updated!</Typography></box>
+      return <Accounts />;
     case 'Settings':
       return <box><Typography>Settings view o be updated!</Typography></box>
     default:
