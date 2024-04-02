@@ -12,6 +12,9 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Config from "../config/config";
+import "./Account.css";
+
+
 
 const theme = createTheme({
   palette: {
@@ -101,6 +104,8 @@ export default function SignIn() {
           <div>
             <Typography>Current Email: {userData.email}</Typography>
             <Typography>Discipline: {userData.discipline}</Typography>
+            <Typography>First Name: {userData.firstName}</Typography>
+            <Typography>Last Name: {userData.lastName}</Typography>
           </div>
           ) : (
           <Typography>Loading...</Typography>
