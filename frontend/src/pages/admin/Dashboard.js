@@ -20,6 +20,7 @@ import FeedbackPage from './Feedback';
 import Customer from './Customer';
 import OverviewDashboard from './OverviewDashboard';
 import DataTables from './DataTables';
+import "./Dashboard.css";
 
 
 /* const theme = createTheme({
