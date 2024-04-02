@@ -101,6 +101,8 @@ export default function SignIn() {
           <div>
             <Typography>Current Email: {userData.email}</Typography>
             <Typography>Discipline: {userData.discipline}</Typography>
+            <Typography>First Name: {userData.firstName}</Typography>
+            <Typography>Last Name: {userData.lastName}</Typography>
           </div>
           ) : (
           <Typography>Loading...</Typography>
