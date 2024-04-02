@@ -8,6 +8,13 @@
 
 }
 
+.main-footer {
+
+  position: relative !important ; /* Rc: Stick the footer to the bottom */
+  
+} 
+
+
 .header-container {
   display: flex;
   justify-content: space-between;

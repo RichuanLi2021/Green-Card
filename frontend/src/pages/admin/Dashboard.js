@@ -21,6 +21,7 @@ import Customer from './Customer';
 import OverviewDashboard from './OverviewDashboard';
 import DataTables from './DataTables';
 import Accounts from './Accounts';
+import "./Dashboard.css";
 
 
 /* const theme = createTheme({

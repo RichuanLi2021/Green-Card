@@ -4,12 +4,12 @@
     width: 100%;
     background-color: #96d2b0;
     margin-top: 30px;
-    padding: 10px;
+    padding: 20px;
     display: flex;
     justify-content: center;  /* Rc: Center the footer content */
     align-items: center;  
     flex-direction: column;  /* Rc: Stack the contents vertically */
-    position: relative !important; /* Rc: Stick the footer to the bottom */
+    position: absolute ; /* Rc: Stick the footer to the bottom */
     z-index: 1 !important;
   } 
 

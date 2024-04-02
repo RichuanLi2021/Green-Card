@@ -153,7 +153,10 @@ const ShowFeedback = () =>{
         <TableContainer component={Paper} style={{ height: "70%" }}>
           <Table stickyHeader aria-label="feedback table">
             <TableHead>
-              <TableRow>
+            <TableRow >
+
+  
+
                 <TableCell padding="checkbox">Reviewed</TableCell>
                 <TableCell stickyHeader>Name</TableCell>
                 <TableCell stickyHeader>Email</TableCell>
@@ -164,24 +167,36 @@ const ShowFeedback = () =>{
               </TableRow>
             </TableHead>
             <TableBody>
-              {filteredData.map((feedback, index) => (
-              <TableRow key={feedback.id || index} onClick={() => { setSelectedFeedback(feedback); setPopupOpen(true); }}>
-              <TableCell padding="checkbox" onClick={(event) => event.stopPropagation()}>
-                <Checkbox
-                  checked={selectedReviews.includes(feedback.id || index)}
-                  onChange={(event) => handleSelectReview(event, feedback.id || index)}
-                />
-              </TableCell>
-              <TableCell>{feedback.name}</TableCell>
-              <TableCell>{feedback.email}</TableCell>
-              <TableCell>{truncateText(feedback.comment, 20)}</TableCell>
-              <TableCell>{feedback.rating}</TableCell>
-              <TableCell>
-                {feedback.allowEmailBack ? "Yes" : "No"}
-              </TableCell>
-              <TableCell>{new Date(feedback.createdAt).toLocaleDateString('en-ca')}</TableCell>
-            </TableRow>
-              ))}
+            {filteredData.map((feedback, index) => (
+  <TableRow
+    key={feedback.id || index}
+    onClick={() => { setSelectedFeedback(feedback); setPopupOpen(true); }}
+    style={{ backgroundColor: selectedReviews.includes(feedback.id || index) ? '#f0f0f0' : '' }}
+  >
+    <TableCell padding="checkbox" onClick={(event) => event.stopPropagation()}>
+      <Checkbox
+        checked={selectedReviews.includes(feedback.id || index)}
+        onChange={(event) => handleSelectReview(event, feedback.id || index)}
+      />
+    </TableCell>
+    <TableCell className={selectedReviews.includes(feedback.id || index) ? '' : 'bold-text'}>{feedback.name}</TableCell>
+    <TableCell className={selectedReviews.includes(feedback.id || index) ? '' : 'bold-text'}>{feedback.email}</TableCell>
+    <TableCell className={selectedReviews.includes(feedback.id || index) ? '' : 'bold-text'}>
+      {truncateText(feedback.comment, 20)}
+    </TableCell>
+    <TableCell className={selectedReviews.includes(feedback.id || index) ? '' : 'bold-text'}>{feedback.rating}</TableCell>
+    <TableCell className={selectedReviews.includes(feedback.id || index) ? '' : 'bold-text'}>
+      {feedback.allowEmailBack ? "Yes" : "No"}
+    </TableCell>
+    <TableCell className={selectedReviews.includes(feedback.id || index) ? '' : 'bold-text'}>
+      {new Date(feedback.createdAt).toLocaleDateString('en-ca')}
+    </TableCell>
+  </TableRow>
+))}
+
+
+
+            
             </TableBody>
           </Table>
         </TableContainer>

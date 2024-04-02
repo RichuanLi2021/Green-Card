@@ -42,14 +42,14 @@ const LandingPage = () => {
       >
         <Avatar
           sx={{
-            width: 80, // Slightly smaller avatar
-            height: 80, // Slightly smaller avatar
+            width: 110, // Slightly smaller avatar
+            height: 110, // Slightly smaller avatar
             border: "2px solid #5a8e70",
             bgcolor: "#96d2b0",
             mb: 2, // Reduced margin
           }}
         >
-          <img src={logo} alt="GPGC Logo" className={"height-width-5rem"} />
+          <img src={logo} alt="GPGC Logo" className={"height-width-5rem"} style={{ height: '5.5rem', width: '5.5rem' }} />
         </Avatar>
         <Typography variant="h4" sx={{ mb: 1, px: 5, ...commonTextStyles }}>THE GREEN CARD</Typography>
         <Typography variant="h6" sx={{ mb: 1, ...commonTextStyles }}>GERIATRIC PSYCHOTROPIC DRUG REFERENCE CARD</Typography>
