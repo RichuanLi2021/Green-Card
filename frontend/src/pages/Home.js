@@ -22,6 +22,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 
 
+
 const theme = createTheme({
   typography: {
     h1: {
@@ -40,7 +41,28 @@ const HomePage = (props) => {
   const [scrollToDrugName, setScrollToDrugName] = useState(null); // New state for triggering scroll
   const drugDisplayRefs = useRef({});
   const [activeSubcategories, setActiveSubcategories] = useState({});
+  const [latestUpdated, setLatestUpdated] = useState(null);
+  
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(`${Config.API_URL}/api/all/categories`, { withCredentials: true });
+        const categories = response.data.message;
+        let latestTimestamp = new Date(0);
+        categories.forEach(category => {
+          const updatedAt = new Date(category.updatedAt);
+          if (updatedAt > latestTimestamp) {
+            latestTimestamp = updatedAt;
+          }
+        });
+        setLatestUpdated(latestTimestamp);
+      } catch (error) {
+        console.error("Failed to fetch categories:", error);
+      }
+    };
 
+    fetchCategories();
+  }, []);
 
   useEffect(() => {
     Object.keys(activeSubcategories).forEach(drugName => {
@@ -274,14 +296,14 @@ const HomePage = (props) => {
                     {/* Adjusted flex value and added display and alignItems */}
                     <Avatar
                       sx={{
-                        width: 180,
-                        height: 180,
+                        width: 140,
+                        height: 140,
                         border: "3px solid #5a8e70",
                         bgcolor: "#96d2b0",
                         mb: 3,
                       }}
                     >
-                      <img src={logo} className={"height-width-5rem"} alt="GPGC Logo" style={{ height: '10rem', width: '10rem' }}></img>
+                      <img src={logo} className={"height-width-5rem"} alt="GPGC Logo" style={{ height: '7.0rem', width: '7.0rem' }}></img>
                     </Avatar>
                     <Typography
                       variant="h3"
@@ -291,6 +313,11 @@ const HomePage = (props) => {
                         backgroundColor: "#355944",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
+                        fontSize: {
+                          xs: '30px', 
+                          sm: '40px', 
+                          md: '48px', 
+                        },
                       }}
                     >
                       THE GREEN CARD
@@ -337,19 +364,22 @@ const HomePage = (props) => {
                       }}
                     >
                       Dept of Psychiatry, Dalhousie University, Halifax, CANADA
-                    </Typography>
-                    <Typography
-                      variant="subtitle2"
-                      gutterBottom
-                      sx={{
-                        fontWeight: "bold",
-                        mt: 4,
-                        fontSize: "14px",
-                        mb: 2,
-                        color: "#355944",
-                      }}
-                    >
-                    </Typography>
+                      </Typography>
+                {/* Last Updated Timestamp Display */}
+   {latestUpdated && (
+    <Typography
+      variant="subtitle2"
+      gutterBottom
+      sx={{
+        fontWeight: "bold",
+        fontSize: "14px",
+        mb: 2,
+        color: "#355944",
+      }}
+    >
+      Last Updated: {latestUpdated.toLocaleDateString()} {latestUpdated.toLocaleTimeString()}
+    </Typography>
+  )}
                   </Box>
                 </div>
                 <DataDisplay />
