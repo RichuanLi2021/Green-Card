@@ -33,7 +33,7 @@ router.get('/:id', validateAdminToken, async (req, res) => {
 
 // Create One
 router.post('/', validateAdminToken, async (req, res) => {
-  const { name, email, comment, rating, allowEmailBack } = req.body
+  const { name, email, comment, rating, allowEmailBack, reviewed } = req.body
   // Sanitize and validate
 
   try {
@@ -44,6 +44,7 @@ router.post('/', validateAdminToken, async (req, res) => {
       comment: comment,
       rating: rating,
       allowEmailBack: allowEmailBack,
+      reviewed: reviewed,
     })
       .then((feedback) => { return res.status(201).json({ message: 'Successfully created feedback', feedback }) })
       .catch((error) => { return res.status(400).json({ error, errorMessage: error['errors'][0].message }) })
@@ -55,7 +56,7 @@ router.post('/', validateAdminToken, async (req, res) => {
 
 // Update One
 router.put('/:id', validateAdminToken, async (req, res) => {
-  const { name, email, comment, rating, allowEmailBack } = req.body
+  const { name, email, comment, rating, allowEmailBack, reviewed } = req.body
   // Sanitize and validate
 
   try {
@@ -65,6 +66,7 @@ router.put('/:id', validateAdminToken, async (req, res) => {
       comment: comment,
       rating: rating,
       allowEmailBack: allowEmailBack,
+      reviewed: reviewed,
     }, {
       where: { uuid: req.params.id }
     })

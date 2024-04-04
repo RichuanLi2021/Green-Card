@@ -52,6 +52,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: { msg: 'Feedback must allow or disallow email follow up' }
       }
+    },
+    reviewed: {
+      allowNull: false,
+      type: DataTypes.BOOLEAN,
     }
   }, {
     sequelize,
