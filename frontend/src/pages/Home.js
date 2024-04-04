@@ -274,14 +274,14 @@ const HomePage = (props) => {
                     {/* Adjusted flex value and added display and alignItems */}
                     <Avatar
                       sx={{
-                        width: 180,
-                        height: 180,
+                        width: 140,
+                        height: 140,
                         border: "3px solid #5a8e70",
                         bgcolor: "#96d2b0",
                         mb: 3,
                       }}
                     >
-                      <img src={logo} className={"height-width-5rem"} alt="GPGC Logo" style={{ height: '10rem', width: '10rem' }}></img>
+                      <img src={logo} className={"height-width-5rem"} alt="GPGC Logo" style={{ height: '7.0rem', width: '7.0rem' }}></img>
                     </Avatar>
                     <Typography
                       variant="h3"
@@ -291,6 +291,11 @@ const HomePage = (props) => {
                         backgroundColor: "#355944",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
+                        fontSize: {
+                          xs: '30px', 
+                          sm: '40px', 
+                          md: '48px', 
+                        },
                       }}
                     >
                       THE GREEN CARD
