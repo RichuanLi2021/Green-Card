@@ -40,5 +40,4 @@ function Policy() {
     </ThemeProvider>
   );
 }
-
 export default Policy;
