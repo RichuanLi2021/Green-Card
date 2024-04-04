@@ -3,6 +3,7 @@ import { Box, Button, Typography, Table, TableBody, TableCell, TableContainer, T
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import Config from "../../config/config";
+import ToastComponent from '../../components/ToastComponent';
 import './Feedback.css';
 import { TextareaAutosize } from '@mui/material';
 
@@ -24,21 +25,31 @@ const ShowFeedback = () =>{
   const [selectedFeedback, setSelectedFeedback] = useState(null);
   const [popupOpen, setPopupOpen] = useState(false);
   const [selectedReviews, setSelectedReviews] = useState([]);
+  const [toastMessage, setToastMessage] = useState('');  
+  const [toastType, setToastType] = useState('');
 
   useEffect(() => {
-      const fetchFeedback = async () => {
-          try{
-              const response = await axios.get(`${Config.API_URL}/api/feedback`,{withCredentials:true})
-              setFeedbackData(response.data);
-              setFilteredData(response.data);
-              console.log(response.data);
-          } catch (error) {
-              console.error('Error fetching feedback:', error);
-          }
-      };
-      
-      fetchFeedback();
+    fetchFeedbackData();
   }, []);
+
+  const fetchFeedbackData = async () => {
+    try {
+      const response = await axios.get(`${Config.API_URL}/api/feedback`, { withCredentials: true });
+      setFeedbackData(response.data);
+      setFilteredData(response.data);
+    } catch (error) {
+      console.error('Error fetching feedback data:', error);
+    }
+  };
+
+  const showToast = (message, type) => {
+    setToastMessage(message);
+    setToastType(type);
+    setTimeout(() => {
+      setToastMessage('');
+      setToastType('');
+    }, 9000);
+  };
 
   const handleFilterButtonClick = () => {
     const filtered = feedbackData.filter((feedback) => feedback.rating < 3);
@@ -89,11 +100,34 @@ const ShowFeedback = () =>{
     setSelectedReviews(newSelected);
   };
 
-  const handleMarkAsReviewed = () => {
-    /* Future backend linkup */
-    setSelectedReviews([]); 
-
-
+  const handleMarkAsReviewed = async () => {
+    // Iterate through all selectedReviews
+    const updatedFeedbackData = [...feedbackData]; // Clone the current feedbackData for immutability
+    for (let id of selectedReviews) {
+      const feedback = filteredData.find((_, index) => index === id);
+      if (feedback && !feedback.reviewed) {
+        try {
+          console.log(feedback.uuid);
+          // Assuming feedback.id is the correct identifier for your backend
+          await axios.put(`${Config.API_URL}/api/feedback/${feedback.uuid}`, {
+          
+            reviewed: true,
+          }, {withCredentials: true});
+          showToast('Successfully updated feedback', 'success');
+          fetchFeedbackData();
+          
+          // Find the index in the original feedbackData array and update the reviewed status
+          const originalIndex = updatedFeedbackData.findIndex(f => f.id === feedback.id);
+          if (originalIndex !== -1) {
+            updatedFeedbackData[originalIndex] = { ...updatedFeedbackData[originalIndex], reviewed: true };
+          }
+        } catch (error) {
+          console.error('Error updating feedback:', error);
+          showToast('Error updating feedback', 'error');
+        }
+      }
+    }
+    setSelectedReviews([]); // Clear selected reviews after updating
   };
 
   const handleSelectAllReviews = () => {
@@ -106,6 +140,7 @@ const ShowFeedback = () =>{
   };  
   return (
     <ThemeProvider theme={theme}>
+      <ToastComponent message={toastMessage} type={toastType} />
       <div className="form-container" style={{ height: "70%" }}>
         <div className="form-header">
           <Box
@@ -172,6 +207,7 @@ const ShowFeedback = () =>{
               <TableRow
                 key={index}
                 onClick={() => { setSelectedFeedback(feedback); setPopupOpen(true); }}
+                style={feedback.reviewed ? { backgroundColor: '#f0f0f0' } : {}}
               >
                 <TableCell padding="checkbox" onClick={(event) => event.stopPropagation()}>
                   <Checkbox

@@ -70,11 +70,7 @@ router.put('/:id', validateAdminToken, async (req, res) => {
     }, {
       where: { uuid: req.params.id }
     })
-      .then((result) => {
-        if (result !== 1) return res.status(400).json({ errorMessage: 'Encountered error while updating feedback' })
-        return res.status(201).json({ message: 'Successfully updated feedback' })
-      })
-      .catch((error) => { return res.status(400).json({ error, errorMessage: error['errors'][0].message }) })
+    return res.status(201).json({ message: 'Successfully updated feedback' })
   } catch (error) {
     return res.status(500).json({ error, errorMessage: 'Encountered unexpected error while updating feedback'})
   }
