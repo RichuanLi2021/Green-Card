@@ -4,6 +4,8 @@ import { Box, Button, Typography, Table, TableBody, TableCell, TableContainer, T
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import Config from "../../config/config";
+import "./Accounts.css";
+
 
 const theme = createTheme({
     palette: {
@@ -116,11 +118,11 @@ const Accounts = () => {
               justifyContent="space-between"
               alignItems="center"
             >
-              <Typography variant="h5" className="title">
+              <Typography variant="h5" className="title" sx={{ fontSize: { xs: '1.25rem', sm: '1.5rem', md: '2rem' } }}>
                 Account Privileges
               </Typography>
             </Box>
-            <Box mt={2} display="flex" justifyContent="center">
+            <Box mt={2} display="flex" justifyContent="center" flexWrap="wrap" gap={2}>
             <Button
                 variant="contained"
                 onClick={setAdminPrivileges}
@@ -137,7 +139,7 @@ const Accounts = () => {
             </Button>
           </Box>
           </div>
-          <Box mt={2} display="flex" alignItems="center"> 
+          <Box mt={2} display="flex" alignItems="center" padding="10px"> 
                 <TextField
                     label="Search"
                     variant="outlined"
