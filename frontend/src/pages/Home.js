@@ -22,6 +22,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 
 
+
 const theme = createTheme({
   typography: {
     h1: {
@@ -40,7 +41,28 @@ const HomePage = (props) => {
   const [scrollToDrugName, setScrollToDrugName] = useState(null); // New state for triggering scroll
   const drugDisplayRefs = useRef({});
   const [activeSubcategories, setActiveSubcategories] = useState({});
+  const [latestUpdated, setLatestUpdated] = useState(null);
+  
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(`${Config.API_URL}/api/all/categories`, { withCredentials: true });
+        const categories = response.data.message;
+        let latestTimestamp = new Date(0);
+        categories.forEach(category => {
+          const updatedAt = new Date(category.updatedAt);
+          if (updatedAt > latestTimestamp) {
+            latestTimestamp = updatedAt;
+          }
+        });
+        setLatestUpdated(latestTimestamp);
+      } catch (error) {
+        console.error("Failed to fetch categories:", error);
+      }
+    };
 
+    fetchCategories();
+  }, []);
 
   useEffect(() => {
     Object.keys(activeSubcategories).forEach(drugName => {
@@ -342,19 +364,22 @@ const HomePage = (props) => {
                       }}
                     >
                       Dept of Psychiatry, Dalhousie University, Halifax, CANADA
-                    </Typography>
-                    <Typography
-                      variant="subtitle2"
-                      gutterBottom
-                      sx={{
-                        fontWeight: "bold",
-                        mt: 4,
-                        fontSize: "14px",
-                        mb: 2,
-                        color: "#355944",
-                      }}
-                    >
-                    </Typography>
+                      </Typography>
+                {/* Last Updated Timestamp Display */}
+   {latestUpdated && (
+    <Typography
+      variant="subtitle2"
+      gutterBottom
+      sx={{
+        fontWeight: "bold",
+        fontSize: "14px",
+        mb: 2,
+        color: "#355944",
+      }}
+    >
+      Last Updated: {latestUpdated.toLocaleDateString()} {latestUpdated.toLocaleTimeString()}
+    </Typography>
+  )}
                   </Box>
                 </div>
                 <DataDisplay />
