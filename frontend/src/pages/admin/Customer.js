@@ -4,6 +4,7 @@ import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import Config from "../../config/config";
+import './Customer.css'
 
 const theme = createTheme({
     palette: {
