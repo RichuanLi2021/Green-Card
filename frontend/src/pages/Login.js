@@ -80,14 +80,13 @@ export default function SignIn() {
 
   
       if (response.status === 200) {
-        console.log('Login Successful: ', response.data);
         showToast('Login Successfull', 'success');
         localStorage.setItem("access-token", response.data.token);
         localStorage.setItem("user-uuid", response.data.uuid);
         localStorage.setItem("user-role", response.data.role);
         //window.location.href = '/home';
       } else {
-        console.log('Log Failed:', response.data.errorMessage);
+        /* console.log('Log Failed:', response.data.errorMessage); */
         showToast(response.data.errorMgessage || 'Login failed', 'error');
       }
     } catch (error) {
