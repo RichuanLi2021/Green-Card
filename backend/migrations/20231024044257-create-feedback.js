@@ -31,6 +31,10 @@ module.exports = {
       allowEmailBack: {
         type: DataTypes.BOOLEAN
       },
+      reviewed: {
+        allowNull: false,
+        type: DataTypes.BOOLEAN
+      },
       createdAt: {
         type: DataTypes.DATE
       }

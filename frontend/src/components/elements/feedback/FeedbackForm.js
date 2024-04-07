@@ -52,6 +52,7 @@ import ToastComponent from '../../ToastComponent'; // Adjust the import path as 
       comment,
       rating,
       allowEmailBack: additionalCheckbox, // Use additionalCheckbox here
+      reviewed: false, // Add the `reviewed` property with a default value of `false`
     };
   
    submitFeedback(feedbackData)

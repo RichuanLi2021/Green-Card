@@ -1,28 +1,31 @@
 .data-tables-container {
-    max-height: 70vh; /* Adjust based on the desired height */
-    overflow-y: auto; /* Allows vertical scrolling */
-    width: 100%; /* Adjust if you want a specific width */
-  }
+    max-height: 80vh;
+    overflow-y: auto;
+    width: 100%; /* Full width on mobile */
+}
 
+@media (max-width: 600px) {
+    .css-sf932x {
+        margin-left: 0 !important; /* Remove left margin */
+    }
+    .css-8k7wf8-MuiDrawer-docked .MuiDrawer-paper {
+        width: auto !important; /* Drawer menu uses auto width */
+    }
+    .css-hyum1k-MuiToolbar-root{
+      min-height: 0px !important;
+    }
+    .MuiBox-root {
+        margin-top: 0 !important; /* Remove top margin */
+    }
 
-
-
-
-
-@media (max-width:600px) {
-  .css-sf932x {
-    margin-left: 80px !important;
-  }
-  .css-8k7wf8-MuiDrawer-docked .MuiDrawer-paper {
-    width: auto !important;
-  }
-
-  .MuiBox-root {
-    margin-top: 0 !important;
-  }
-
-  .css-cveggr-MuiListItemIcon-root{
-    min-width: 0px !important;
-  }
-
+    .css-cveggr-MuiListItemIcon-root {
+        min-width: 0px !important; /* Icons use minimal width */
+    }
+    .data-tables-container {
+        width: 100% !important; /* Ensure table container is full width */
+        margin-left: 22px;
+    }
+    body{
+      line-height: 15px !important;
+    }
 }

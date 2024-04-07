@@ -36,7 +36,7 @@ const Footer = () => {
           <Typography align="center">
             
           </Typography>
-          <Typography variant="body2" align="center">
+          <Typography variant="body2" align="center" sx={{ fontSize: { xs: '1.1rem', sm: '1.0rem' } }}>
             <Link href='/policy' className='Policy'>Privacy Policy</Link>
             {' | '}
             <Link sx={{ cursor: 'pointer' }} role="button" onClick={handleOpen} className='disclaimer'>Disclaimer</Link>
