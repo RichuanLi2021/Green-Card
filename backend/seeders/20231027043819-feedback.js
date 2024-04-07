@@ -11,6 +11,7 @@ module.exports = {
       comment: 'Great service!',
       rating: 5,
       allowEmailBack: true,
+      reviewed: true,
       createdAt: new Date()
     }, {
       id: 2,
@@ -20,6 +21,7 @@ module.exports = {
       comment: 'Very helpful platform.',
       rating: 4,
       allowEmailBack: true,
+      reviewed: false,
       createdAt: new Date()
     }], {});
   },

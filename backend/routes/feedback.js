@@ -33,7 +33,7 @@ router.get('/:id', validateAdminToken, async (req, res) => {
 
 // Create One
 router.post('/', validateAdminToken, async (req, res) => {
-  const { name, email, comment, rating, allowEmailBack } = req.body;
+  const { name, email, comment, rating, allowEmailBack, reviewed } = req.body
 
   const alphanumericRegex = /^[a-zA-Z0-9\s,:]+/;
 
@@ -52,6 +52,7 @@ router.post('/', validateAdminToken, async (req, res) => {
       comment: comment,
       rating: rating,
       allowEmailBack: allowEmailBack,
+      reviewed: reviewed,
     });
 
     return res.status(201).json({ message: 'Successfully created feedback', feedback });
@@ -62,7 +63,7 @@ router.post('/', validateAdminToken, async (req, res) => {
 
 // Update One
 router.put('/:id', validateAdminToken, async (req, res) => {
-  const { name, email, comment, rating, allowEmailBack } = req.body
+  const { name, email, comment, rating, allowEmailBack, reviewed } = req.body
   // Sanitize and validate
 
   try {
@@ -72,14 +73,11 @@ router.put('/:id', validateAdminToken, async (req, res) => {
       comment: comment,
       rating: rating,
       allowEmailBack: allowEmailBack,
+      reviewed: reviewed,
     }, {
       where: { uuid: req.params.id }
     })
-      .then((result) => {
-        if (result !== 1) return res.status(400).json({ errorMessage: 'Encountered error while updating feedback' })
-        return res.status(201).json({ message: 'Successfully updated feedback' })
-      })
-      .catch((error) => { return res.status(400).json({ error, errorMessage: error['errors'][0].message }) })
+    return res.status(201).json({ message: 'Successfully updated feedback' })
   } catch (error) {
     return res.status(500).json({ error, errorMessage: 'Encountered unexpected error while updating feedback'})
   }
