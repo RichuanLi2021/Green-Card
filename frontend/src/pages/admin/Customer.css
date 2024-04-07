@@ -1,0 +1,20 @@
+
+  
+    
+  @media only screen and (max-width: 680px) {
+    .form-container {
+      width: 80%;
+      padding: 0px;
+      top:60% !important;
+    }
+  }
+  
+  @media only screen and (max-width: 420px) {
+    .form-container {
+      width: 80%;
+      padding: 0px;
+      top:60% !important;
+      left: 60% !important;
+    }
+  }
+  
