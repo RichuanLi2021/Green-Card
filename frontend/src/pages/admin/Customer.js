@@ -58,19 +58,29 @@ const Customer = () => {
             <Table aria-label="customer table">
               <TableHead>
                 <TableRow>
+<<<<<<< HEAD
                   <TableCell>First Name</TableCell>
                   <TableCell>Last Name</TableCell>
                   <TableCell>Discipline</TableCell>
                   <TableCell>Email</TableCell>
                   <TableCell>Last Login</TableCell>
                   <TableCell>Date Created</TableCell>
+=======
+                  <TableCell stickyHeader>Discipline</TableCell>
+                  <TableCell stickyHeader>Email</TableCell>
+                  <TableCell stickyHeader>Last Login</TableCell>
+                  <TableCell stickyHeader>Date Created</TableCell>
+>>>>>>> 2aeb05025b0fd601d0d11d52a79a15ef907ae668
                 </TableRow>
               </TableHead>
               <TableBody>
                 {filteredCustomersList.map((customer, index) => (
                   <TableRow key={index}>
+<<<<<<< HEAD
                     <TableCell>{customer.firstName}</TableCell>
                     <TableCell>{customer.lastName}</TableCell>
+=======
+>>>>>>> 2aeb05025b0fd601d0d11d52a79a15ef907ae668
                     <TableCell>{customer.discipline}</TableCell>
                     <TableCell>{customer.email}</TableCell>
                     <TableCell>{new Date(customer.lastLogin).toLocaleDateString('en-ca')}</TableCell>
