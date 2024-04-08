@@ -24,6 +24,20 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: { msg: 'User discipline cannot be empty' }
       }
     },
+    firstName: {
+      allowNull: false,
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: { msg: 'first name cannot be empty' }
+      }
+    },
+    lastName: {
+      allowNull: false,
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: { msg: 'last name cannot be empty' }
+      }
+    },
     email: {
       allowNull: false,
       type: DataTypes.STRING,

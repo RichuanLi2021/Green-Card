@@ -12,6 +12,9 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Config from "../config/config";
+import "./Account.css";
+
+
 
 const theme = createTheme({
   palette: {
@@ -93,15 +96,35 @@ export default function SignIn() {
           </Typography>
                     
           <Typography
-          component="p"
-          variant="body2"
-          sx={{ color: "black"}}
+          component="div"
+          sx={{
+            color: "black",
+            textAlign: "center",
+            display: "flex", 
+            flexDirection: "column", 
+            alignItems: "center", 
+            justifyContent: "center", 
+          }}
           >
           {userData && userData.User_Roles ? (
-          <div>
-            <Typography>Current Email: {userData.email}</Typography>
-            {/* <Typography>Role: {userData.User_Roles.map(ur => ur.Role.name).join(', ')}</Typography> */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+            {[
+              { label: "Email:", data: userData.email },
+              { label: "Discipline:", data: userData.discipline },
+              { label: "First Name:", data: userData.firstName },
+              { label: "Last Name:", data: userData.lastName }
+            ].map((item, index) => (
+              <div key={index} style={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '800px' }}>
+                <Typography variant="body2" component="span" sx={{ textAlign: 'left', width: '45%' }}>
+                  {item.label}
+                </Typography>
+                <Typography variant="body2" component="span" sx={{ textAlign: 'right', width: '55%', fontWeight: 'bold', fontSize: '1.0rem' }}>
+                  {item.data}
+                </Typography>
+              </div>
+            ))}
           </div>
+
           ) : (
           <Typography>Loading...</Typography>
           )}          </Typography>

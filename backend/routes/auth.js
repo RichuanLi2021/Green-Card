@@ -72,7 +72,7 @@ router.post('/logout', async (req, res) => {
 router.post('/register', async (req, res) => {
   if (req.cookies['access-token']) return res.status(400).json({ errorMessage: 'Cannot register a new account while logged in' })
 
-  const { discipline, email, password } = req.body
+  const { discipline, firstName, lastName, email, password } = req.body
   // Sanitize and Validate
 
   try {
@@ -80,6 +80,8 @@ router.post('/register', async (req, res) => {
         User.create({
           uuid: uuidv4(),
           discipline: discipline,
+          firstName: firstName,
+          lastName: lastName,
           email: email,
           password: hash
         })

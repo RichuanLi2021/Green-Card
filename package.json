@@ -19,8 +19,9 @@
   },
   "dependencies": {
     "@mui/material": "^5.15.7",
-    "@mui/x-charts": "^6.19.5",
+    "@mui/x-charts": "^6.19.8",
     "chart.js": "^4.4.2",
+    "date-fns": "^3.6.0",
     "react-chartjs-2": "^5.2.0"
   }
 }

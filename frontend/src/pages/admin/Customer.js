@@ -1,21 +1,19 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import Config from "../../config/config";
+import './Customer.css'; // Import the CSS file
 
 const theme = createTheme({
-    palette: {
-      primary: {
-        main: "#96d2b0",
-      },
+  palette: {
+    primary: {
+      main: "#96d2b0",
     },
-  });
-
+  },
+});
 
 const Customer = () => {
-
   const [customersList, setCustomersList] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -31,53 +29,48 @@ const Customer = () => {
 
     fetchCustomers();
   }, []);
-  
+
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
 
   const filteredCustomersList = customersList.filter((customer) =>
-    customer.email.toLowerCase().includes(searchQuery.toLowerCase())
+    customer.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    customer.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    customer.lastName.toLowerCase().includes(searchQuery.toLowerCase())
   );
-  
-    return (
-      <ThemeProvider theme={theme}>
-        <div className="form-container" style={{ height: "70%" }}>
-          <div className="form-header">
-            <Box
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-            >
-              <Typography variant="h5" className="title">
-                Customers
-              </Typography>
-            </Box>
-          </div>
-          <Box mt={2} display="flex" alignItems="center"> 
-                <TextField
-                    label="Search"
-                    variant="outlined"
-                    size="small"
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                />
-          </Box>
-          <TableContainer component={Paper} style={{ height: "70%" }}>
-            <Table stickyHeader aria-label="customer table">
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Box className="form-container">
+        <Typography variant="h5" align="center" style={{ marginBottom: "1rem" }}>Customers</Typography>
+        <TextField
+          label="Search"
+          variant="outlined"
+          size="small"
+          value={searchQuery}
+          onChange={handleSearchChange}
+          fullWidth
+          style={{ marginBottom: "1rem" }}
+        />
+        <div style={{ overflowX: "auto" }}>
+          <TableContainer component={Paper}>
+            <Table aria-label="customer table">
               <TableHead>
                 <TableRow>
-                  <TableCell stickyHeader>ID</TableCell>
-                  <TableCell stickyHeader>Discipline</TableCell>
-                  <TableCell stickyHeader>Email</TableCell>
-                  <TableCell stickyHeader>Last Login</TableCell>
-                  <TableCell stickyHeader>Date Created</TableCell>
+                  <TableCell>First Name</TableCell>
+                  <TableCell>Last Name</TableCell>
+                  <TableCell>Discipline</TableCell>
+                  <TableCell>Email</TableCell>
+                  <TableCell>Last Login</TableCell>
+                  <TableCell>Date Created</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {filteredCustomersList.map((customer , index) => (
+                {filteredCustomersList.map((customer, index) => (
                   <TableRow key={index}>
-                    <TableCell>{index }</TableCell>
+                    <TableCell>{customer.firstName}</TableCell>
+                    <TableCell>{customer.lastName}</TableCell>
                     <TableCell>{customer.discipline}</TableCell>
                     <TableCell>{customer.email}</TableCell>
                     <TableCell>{new Date(customer.lastLogin).toLocaleDateString('en-ca')}</TableCell>
@@ -88,8 +81,9 @@ const Customer = () => {
             </Table>
           </TableContainer>
         </div>
-      </ThemeProvider>
-    );
-  };
-  
-  export default Customer;
+      </Box>
+    </ThemeProvider>
+  );
+};
+
+export default Customer;

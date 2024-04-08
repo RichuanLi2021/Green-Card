@@ -16,7 +16,7 @@ module.exports = {
       },
       comment: {
         allowNull: false,
-        type: DataTypes.STRING
+        type: DataTypes.STRING(1000)
       },
       rating: {
         allowNull: false,
@@ -29,6 +29,10 @@ module.exports = {
         type: DataTypes.STRING
       },
       allowEmailBack: {
+        type: DataTypes.BOOLEAN
+      },
+      reviewed: {
+        allowNull: false,
         type: DataTypes.BOOLEAN
       },
       createdAt: {

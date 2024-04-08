@@ -13,10 +13,19 @@
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
 
-.form-header {
+/* Apply bold text for unselected feedback and different background for selected */
+.feedback-row-not-selected, .bold-text {
+    font-weight: bold;
+}
+
+.feedback-row-selected {
+    background-color: #f0f0f0;
+}
+
+.form-header, .btn-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-between; /* Adjust alignment for smaller screens */
+    width: 100%;
 }
 
 .title {
@@ -24,140 +33,66 @@
 }
 
 .btn-container {
-    display: flex;
-    justify-content: center;
     margin-top: 1rem;
 }
 
-.filter-btn {
-    margin-right: 1rem;
-}
-
-.search-field {
+.filter-btn, .search-field {
     margin-top: 2rem;
 }
 
-@media only screen and (max-width: 600px) {
+/* Smaller screens: Adjust base styles for better readability and interaction */
+@media only screen and (max-width: 768px) {
     .title {
-        font-size: 1.2rem;
+        font-size: 1.2rem; /* Slightly reduce font size */
     }
-}
-
-@media only screen and (max-width: 980px) {
+    
     .form-container {
-        max-width: 90%;
-        width: 90%;
-        height: 90%;
-        padding: 30px;
-        left: 64%;
+        width: 90vw;
+        top: 5%; /* Start closer to the top to use more vertical space */
+        left: 50%;
+        height: auto; /* Allow container to grow with content */
+        transform: translate(-50%, 0%); /* Adjust for vertical centering */
+        padding: 20px;
     }
 
-    .title {
-        font-size: 1rem;
-    }
-
-    .filter-btn {
-        margin-right: 0.5rem;
-    }
-
-    .search-field {
+    .filter-btn, .search-field {
         margin-top: 1rem;
     }
-
-    .MuiTableCell-root {
-        font-size: 14px;
-    }
-
-    .MuiButton-root {
-        font-size: 14px;
-        padding: 5px 10px;
-    }
-
-    .MuiInputBase-root {
-        font-size: 14px;
-        padding: 5px;
-    }
-
-    .MuiTableRow-root {
-        display: flex;
-        flex-wrap: wrap;
-    }
 }
 
-@media only screen and (max-width: 420px) {
+/* Very small devices: Use full screen for form container, adjust paddings */
+@media only screen and (max-width: 480px) {
     .form-container {
-        width: 100%;
+        width: 85vw !important;
+        height: 100vh; /* Full screen height */
+        top: 0;
+        margin-left: 58px;
+        margin-top: 60px;
+        left: 0;
+        transform: none; /* No need for translation */
         padding: 16px;
+        overflow-y: auto; /* Allow scrolling within the container */
     }
+
     .form-header {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start; /* Align items at the start */
     }
 
-    .title {
-        margin-bottom: 10px;
+    .title, .filter-btn, .search-field, .MuiTableCell-root, .MuiButton-root, .MuiInputBase-root {
+        font-size: 12px; /* Further reduce font sizes for space */
     }
-
-    .MuiTableCell-root {
-        font-size: 12px;
-    }
-
-    .MuiButton-root {
-        font-size: 12px;
-        padding: 5px 10px;
-    }
-
-    .MuiInputBase-root {
-        font-size: 12px;
-        padding: 5px;
+    
+    .popup {
+        width: 95vw; /* Allow some margin around the popup */
+        max-width: none; /* Override max-width for full width */
     }
 }
 
-/* PopUp Modal Feedback  */
+.popup-backdrop, .popup {
+    /* Styles for backdrop and popup remain consistent, focusing on full coverage and centered content */
+}
 
-.popup-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(1px);
-  }
-  
-  .popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 80%;
-    max-width: 600px;
-    transform: translate(-50%, -50%);
-    padding: 24px;
-    border-radius: 4px;
-    background-color: #fff;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-  }
-
-  .popup-close-button {
-    position: absolute;
-    width: 70px;
-    height: 30px;
-    font-family: "Work Sans", sans-serif;
-    cursor: pointer;
-    background-color: #96d2b0;
-    border: none;
-    outline: none;
-  }
-  
-  .show-popup {
-    display: block;
-  }
-  
-  @media only screen and (max-width: 600px) {
-    .popup {
-      width: 90%;
-    }
-  }
-
+.popup-close-button {
+    /* Adjust button size and positioning as needed */
+}

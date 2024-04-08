@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     comment: {
       allowNull: false,
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(1000),
       validate: {
         notNull: { msg: 'Feedback must have a comment' },
         notEmpty: { msg: 'Feedback comment cannot be empty' }
@@ -52,6 +52,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: { msg: 'Feedback must allow or disallow email follow up' }
       }
+    },
+    reviewed: {
+      allowNull: false,
+      type: DataTypes.BOOLEAN,
     }
   }, {
     sequelize,

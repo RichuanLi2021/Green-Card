@@ -19,6 +19,7 @@ import Policy from './pages/Policy';
 import Customer from './pages/admin/Customer';
 import ForgotPassword from './pages/ForgotPassword';
 import OverviewDashboard from './pages/admin/OverviewDashboard';
+import Accounts from './pages/admin/Accounts';
 
 
 import PrivateRoute from './middleware/PrivateRoute';
@@ -41,10 +42,11 @@ export default function App() {
           <Route path="/" element={<PublicRoute><LandingPage /></PublicRoute>} />
           <Route path="login" element={<PublicRoute><Login /></PublicRoute>} />
           <Route path="register" element={<PublicRoute><Register /></PublicRoute>} />
+          <Route path="policy" element={<PublicRoute><Policy/></PublicRoute>} />
+
 
           <Route path="home" element={<PrivateRoute><Home /></PrivateRoute>} />
           <Route path="account" element={<PrivateRoute><Account/></PrivateRoute>} />
-          <Route path="policy" element={<PrivateRoute><Policy/></PrivateRoute>} />
           <Route path="ForgotPassword" element={<PublicRoute><ForgotPassword/></PublicRoute>} />
 
 
@@ -52,6 +54,7 @@ export default function App() {
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="feedback" element={<AdminFeedback />} />
             <Route path="customer" element={<Customer/>}/>
+            <Route path="accounts" element={<Accounts/>}/>
             <Route path="overview" element={<OverviewDashboard/>}/>
           </Route>
         </Routes>

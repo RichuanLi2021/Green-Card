@@ -1,178 +1,116 @@
-import { useState } from 'react';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import FormLabel from '@mui/material/FormLabel';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import React, { useState } from 'react';
+import {
+        Typography,
+        TextField,
+        FormLabel,
+        FormControlLabel,
+        Checkbox,
+        Box,
+        Button,
+        Rating,
+        createTheme,
+        ThemeProvider
+        } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import Rating from '@mui/material/Rating';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import submitFeedback from './FeedbackBackend';
-import './FeedbackForm.css';
+import submitFeedback from './FeedbackBackend'; // Adjust the import path as necessary
+import ToastComponent from '../../ToastComponent'; // Adjust the import path as necessary
 
-import ToastComponent from '../../ToastComponent';
-
-const theme = createTheme({
+  const theme = createTheme({
   palette: {
-    primary: {
-      main: '#96d2b0',
-    },
+  primary: {
+  main: '#96d2b0',
   },
-});
+  },
+  });
 
-const FeedbackForm = ({ onClose }) => {
+  const FeedbackForm = ({ onClose }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(null);
-  const [subscribe, setSubscribe] = useState(false);
+  const [isAnonymous, setIsAnonymous] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [toastType, setToastType] = useState('');
-
-  const [additionalCheckbox, setAdditionalCheckbox] = useState(false);
-
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handleCommentChange = (event) => {
-    setComment(event.target.value);
-  };
-
-  const handleRatingChange = (event, value) => {
-    setRating(value);
-  };
-
-  const handleSubscribeChange = (event) => {
-    setSubscribe(event.target.checked);
-  };
-
-  const handleAdditionalCheckboxChange = () => {
-    setAdditionalCheckbox(!additionalCheckbox);
+  const [additionalCheckbox, setSubscribe] = useState(false);
+  const handleSubscribe = () => {
+    setSubscribe(!additionalCheckbox);
     console.log('Additional Checkbox: ', !additionalCheckbox);
   };
 
+  const handleNameChange = (event) => setName(event.target.value);
+  const handleEmailChange = (event) => setEmail(event.target.value);
+  const handleCommentChange = (event) => setComment(event.target.value);
+  const handleRatingChange = (_, newValue) => setRating(newValue);
+  const handleIsAnonymousChange = (event) => setIsAnonymous(event.target.checked);
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log({ name, email, comment, rating, subscribe });
-    submitFeedback(name, email, comment, rating, subscribe)
-      .then((data) => {
-        showToast('Feedback submitted!', 'success'); // Use toast for success message
-        setTimeout(() => {
-          window.location.href = '/';
-        }, 1000);
-        
-      })
-      .catch((error) => {
-        console.error(error);
+    const feedbackData = {
+      name: isAnonymous ? '' : name,
+      email: isAnonymous ? '' : email,
+      comment,
+      rating,
+      allowEmailBack: additionalCheckbox, // Use additionalCheckbox here
+      reviewed: false, // Add the `reviewed` property with a default value of `false`
+    };
+  
+   submitFeedback(feedbackData)
+      .then(() => showToast('Feedback submitted!', 'success'))
+      .catch(error => {
+        console.error('Failed to submit feedback:', error);
         showToast('Failed to submit feedback!', 'error');
       });
   };
 
   const showToast = (message, type) => {
-    setToastMessage(message);
-    setToastType(type);
-    setTimeout(() => {
-      setToastMessage('');
-      setToastType('');
-    }, 3000);
+  setToastMessage(message);
+  setToastType(type);
+  setTimeout(() => {
+  setToastMessage('');
+  setToastType('');
+  }, 3000);
   };
 
-  return (
+    return (
     <ThemeProvider theme={theme}>
-      <div className="form-container-pg">
-        <div className="form-header">
-          <Box display="flex" justifyContent="space-between" alignItems="center">
-            <Typography variant="h5" className="title">
-              Feedback Form
-            </Typography>
-          </Box>
-          <Button style={{ float: 'right' }} className="close-button" onClick={onClose}>
-            <CloseIcon />
-          </Button>
-        </div>
-        <form onSubmit={handleSubmit}>
-          <Box sx={{ m: 1.5 }}>
-            <TextField label="Name" variant="filled" fullWidth value={name} onChange={handleNameChange} />
-          </Box>
+    <Box className="form-container-pg">
+    <Box width="100%" maxWidth={500}>
+    <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+    <Typography variant="h5">Feedback Form</Typography>
+    <Button onClick={onClose}>
+    <CloseIcon />
+    </Button>
+    </Box>
+    <form onSubmit={handleSubmit}>
+    <Box margin={1}>
+            {!isAnonymous && (
+    <>
+    <TextField label="Name" variant="outlined" fullWidth value={name} onChange={handleNameChange} margin="normal" />
+    <TextField label="Email" variant="outlined" fullWidth type="email" value={email} onChange={handleEmailChange} margin="normal" />
+    
+    </>
+    )}
+    <TextField label="Comment" variant="outlined" fullWidth multiline  value={comment} onChange={handleCommentChange} margin="normal" />
+    <FormControlLabel control={<Checkbox checked={isAnonymous} onChange={handleIsAnonymousChange} />} label="Submit feedback anonymously" />
+    {!isAnonymous && (
+    <>
 
-          <Box sx={{ m: 1.5 }}>
-            <TextField
-              label="Comment"
-              variant="filled"
-              fullWidth
-              multiline
-              value={comment}
-              onChange={handleCommentChange}
-            />
-          </Box>
 
-          <Box sx={{ m: 1.5 }}>
-            {!subscribe && (
-              <TextField
-                label="Email"
-                variant="filled"
-                fullWidth
-                type="email"
-                value={email}
-                onChange={handleEmailChange}
-              />
+
+    <FormControlLabel control={<Checkbox checked={additionalCheckbox} onChange={handleSubscribe} />} label="Subscribe to email services" />
+    </>
             )}
-          </Box>
-
-          <Box sx={{ m: 1.5 }}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={subscribe}
-                  onChange={handleSubscribeChange}
-                  name="subscribe"
-                />
-              }
-              label="Submit Feedback Anonymously."
-            />
-          </Box>
-
-          <Box sx={{ m: 1.5 }}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={additionalCheckbox}
-                  onChange={handleAdditionalCheckboxChange}
-                  name="additionalCheckbox"
-                />
-              }
-              label="Use Email-ID for follow-up"
-            />
-          </Box> 
-
-          <Box sx={{ m: 1.5 }}>
-            <FormLabel component="legend" required>
-              How would you rate your overall experience using the website, from 1-5?
-            </FormLabel>
-            <Box sx={{ mt: 1 }}>
-              <Rating name="rating" value={rating} onChange={handleRatingChange} />
-            </Box>
-          </Box>
-          <Box sx={{ m: 1.5, display: 'flex', justifyContent: 'center' }}>
-            <Button
-              type="submit"
-              variant="contained"
-              className="submit-button"
-              color="primary"
-            >
-              Submit
-            </Button>
-          </Box>
-        </form>
-      </div>
-      <ToastComponent message={toastMessage} type={toastType} />
+    <FormLabel component="legend">Rate your experience</FormLabel>
+    <Rating name="rating" value={rating} onChange={handleRatingChange} />
+    <Box display="flex" justifyContent="center" marginY={2}>
+    <Button type="submit" variant="contained" color="primary">Submit</Button>
+    </Box>
+    </Box>
+    </form>
+    <ToastComponent message={toastMessage} type={toastType} />
+    </Box>
+    </Box>
     </ThemeProvider>
   );
 };

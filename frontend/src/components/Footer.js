@@ -10,6 +10,7 @@ const theme = createTheme({
     primary: {
       main: '#000000',
       contrastText: '#ffffff',
+    
     },
   },
 });
@@ -33,9 +34,9 @@ const Footer = () => {
       <Box component="footer" className="main-footer">
         <div className="footer-content">
           <Typography align="center">
-            © {new Date().getFullYear()} The Green Card: Geriatric Psychotropic Drug Reference Card
+            
           </Typography>
-          <Typography variant="body2" align="center">
+          <Typography variant="body2" align="center" sx={{ fontSize: { xs: '1.1rem', sm: '1.0rem' } }}>
             <Link href='/policy' className='Policy'>Privacy Policy</Link>
             {' | '}
             <Link sx={{ cursor: 'pointer' }} role="button" onClick={handleOpen} className='disclaimer'>Disclaimer</Link>
