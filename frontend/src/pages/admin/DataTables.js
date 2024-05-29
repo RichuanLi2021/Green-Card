@@ -42,7 +42,7 @@ const DataTables = () => {
   }
 
   return (
-<div className="data-tables-container" style={{ gap: '20px', display: 'flex', flexDirection: 'column' }}>
+  <div className="data-tables-container" style={{ gap: '20px', display: 'flex', flexDirection: 'column' }}>
   {categoriesData.map((category, index) => (
     <div key={index} style={{ maxWidth: '80vw', margin: '20px auto', padding: '20px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
           {/* Consistently display the last updated date, similar to Home.js */}

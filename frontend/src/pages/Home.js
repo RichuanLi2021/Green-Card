@@ -365,21 +365,21 @@ const HomePage = (props) => {
                     >
                       Dept of Psychiatry, Dalhousie University, Halifax, CANADA
                       </Typography>
-                {/* Last Updated Timestamp Display */}
-   {latestUpdated && (
-    <Typography
-      variant="subtitle2"
-      gutterBottom
-      sx={{
-        fontWeight: "bold",
-        fontSize: "14px",
-        mb: 2,
-        color: "#355944",
-      }}
-    >
-      Last Updated: {latestUpdated.toLocaleDateString()} {latestUpdated.toLocaleTimeString()}
-    </Typography>
-  )}
+                    {/* Last Updated Timestamp Display */}
+                  {latestUpdated && (
+                    <Typography
+                      variant="subtitle2"
+                      gutterBottom
+                      sx={{
+                        fontWeight: "bold",
+                        fontSize: "14px",
+                        mb: 2,
+                        color: "#355944",
+                      }}
+                    >
+                      Last Updated: {latestUpdated.toLocaleDateString()} {latestUpdated.toLocaleTimeString()}
+                    </Typography>
+                  )}
                   </Box>
                 </div>
                 <DataDisplay />

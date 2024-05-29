@@ -7,7 +7,7 @@ import { LineChart} from '@mui/x-charts/LineChart';
 export default function OverviewDashboard() {
   // Define a chart container style with scrolling
   const chartContainerStyle = {
-    height: '500px', // Adjust this value as needed
+    height: 'auto', // Adjust this value as needed
     overflow: 'auto',
   };
 

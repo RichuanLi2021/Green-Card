@@ -1,7 +1,11 @@
 .data-tables-container {
-    max-height: 80vh;
+    max-height: 75vh;
     overflow-y: auto;
-    width: 100%; /* Full width on mobile */
+    background-color: #fff;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    gap: '20px';
+    display: 'flex'; 
+    flex-direction: 'column';
 }
 
 @media (max-width: 600px) {
