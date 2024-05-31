@@ -16,7 +16,7 @@ module.exports = {
       },
       comment: {
         allowNull: false,
-        type: DataTypes.STRING(1000)
+        type: DataTypes.STRING(3000)
       },
       rating: {
         allowNull: false,
