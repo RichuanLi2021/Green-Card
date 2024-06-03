@@ -61,6 +61,7 @@ const Customer = () => {
                   <TableCell>First Name</TableCell>
                   <TableCell>Last Name</TableCell>
                   <TableCell>Discipline</TableCell>
+                  <TableCell>Title</TableCell>
                   <TableCell>Email</TableCell>
                   <TableCell>Last Login</TableCell>
                   <TableCell>Date Created</TableCell>
@@ -72,6 +73,7 @@ const Customer = () => {
                     <TableCell>{customer.firstName}</TableCell>
                     <TableCell>{customer.lastName}</TableCell>
                     <TableCell>{customer.discipline}</TableCell>
+                    <TableCell>{customer.title}</TableCell>
                     <TableCell>{customer.email}</TableCell>
                     <TableCell>{new Date(customer.lastLogin).toLocaleDateString('en-ca')}</TableCell>
                     <TableCell>{new Date(customer.createdAt).toLocaleDateString('en-ca')}</TableCell>
