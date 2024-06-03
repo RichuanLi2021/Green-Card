@@ -1,0 +1,22 @@
+.chart {
+    width: 50%;
+    height: auto;
+}
+
+.parentDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: cente;
+    margin: 1em;
+    overflow: auto;
+    width: 100%;
+    
+}
+
+.chartHolder{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: row;
+    width: 100%;
+}

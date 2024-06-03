@@ -3,21 +3,17 @@ import React from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { PieChart } from '@mui/x-charts/PieChart';
 import { LineChart} from '@mui/x-charts/LineChart';
+import "./OverviewDashboard.css";
 
 export default function OverviewDashboard() {
-  // Define a chart container style with scrolling
-  const chartContainerStyle = {
-    height: 'auto', // Adjust this value as needed
-    overflow: 'auto',
-  };
+  
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '1em', overflow: 'auto' }}>
-      <div style={chartContainerStyle}>
+    <div class={'parentDiv'}>
         {/* Container for all the charts */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', width: '100%' }}>
+        <div className={'chartHolder'}>
           {/* Bar Chart */}
-          <div style={{ width: '50%' }}>
+          <div className={'chart'}>
             <h4>BarChart for User Logins</h4>
             <BarChart
               series={[
@@ -32,7 +28,7 @@ export default function OverviewDashboard() {
             />
           </div>
           {/* Pie Chart */}
-          <div style={{ width: '50%' }}>
+          <div className={"chart"}>
             <h4>PieChart for User Logins</h4>
             <PieChart
               series={[
@@ -44,12 +40,12 @@ export default function OverviewDashboard() {
                   ],
                 },
               ]}
-              width={400}
               height={290}
+              width={400}
             />
           </div>
           {/* First Line Chart */}
-          <div style={{ width: '50%' }}>
+          <div className={"chart"}>
             <h4>LineChart for Monthly Activity</h4>
             <LineChart
               series={[
@@ -61,7 +57,7 @@ export default function OverviewDashboard() {
             />
           </div>
           {/* Second Line Chart */}
-          <div style={{ width: '50%' }}>
+          <div className={"chart"}>
             <h4>LineChart for Annual Revenue</h4>
             <LineChart
               series={[
@@ -73,7 +69,6 @@ export default function OverviewDashboard() {
             />
           </div>
         </div>
-      </div>
     </div>
   );
 }
