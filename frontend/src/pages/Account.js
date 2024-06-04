@@ -32,6 +32,9 @@ export default function SignIn() {
 
   useEffect(() => {
     const userUUID = localStorage.getItem('user-uuid');
+    const userAccess = localStorage.getItem('user-role');
+    console.log('User UUID:', userUUID); // Log and test user UUID
+    console.log('Access: ', userAccess); // log and test user access
     if (userUUID) {
       axios.get(`${Config.API_URL}/api/users/${userUUID}`, { withCredentials: true })
         .then(response => {
@@ -50,8 +53,7 @@ export default function SignIn() {
     event.preventDefault();
     const dataCredential = new FormData(event.target);
 
-    axios
-      .post(Config.API_URL + "/api/auth/register", {
+    axios.post(Config.API_URL + "/api/auth/register", {
         email: dataCredential.get("email"),
         password: dataCredential.get("password"),
         discipline:
@@ -126,8 +128,12 @@ export default function SignIn() {
           </div>
 
           ) : (
-          <Typography>Loading...</Typography>
-          )}          </Typography>
+          <Typography>
+            Loading...
+          </Typography>
+          )}          
+          
+          </Typography>
 
           <Box
             component="form"
