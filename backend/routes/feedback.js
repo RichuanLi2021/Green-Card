@@ -15,6 +15,19 @@ router.get('/', validateAdminToken, async (req, res) => {
   }
 })
 
+// Get Unreviewed Feedback Count
+router.get('/unreviewedCount/', validateAdminToken, async (req, res) => {
+  try {
+    const count = await Feedback.count({
+      where: { reviewed: false }
+    });
+    return res.status(200).json({ count: count });
+  } catch (error) {
+    console.error('Error counting unreviewed feedback:', error);
+    return res.status(500).json({ error: 'Encountered unexpected error while counting unreviewed feedback' });
+  }
+});
+
 // Get One
 router.get('/:id', validateAdminToken, async (req, res) => {
   try {
