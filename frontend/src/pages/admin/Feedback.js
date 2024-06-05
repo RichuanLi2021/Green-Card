@@ -226,13 +226,13 @@ const ShowFeedback = () =>{
                     onChange={(event) => handleSelectReview(event, index)}
                   />
                 </TableCell>
-                <TableCell>{feedback.reviewed ? "Yes" : "No"}</TableCell>
-                <TableCell>{feedback.name}</TableCell>
-                <TableCell>{feedback.email}</TableCell>
-                <TableCell>{truncateText(feedback.comment, 20)}</TableCell>
-                <TableCell>{feedback.rating}</TableCell>
-                <TableCell>{feedback.allowEmailBack ? "Yes" : "No"}</TableCell>
-                <TableCell>{new Date(feedback.createdAt).toLocaleDateString('en-ca')}</TableCell>
+                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{feedback.reviewed ? "Yes" : "No"}</TableCell>
+                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{feedback.name}</TableCell>
+                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{feedback.email}</TableCell>
+                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{truncateText(feedback.comment, 20)}</TableCell>
+                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{feedback.rating}</TableCell>
+                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{feedback.allowEmailBack ? "Yes" : "No"}</TableCell>
+                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{new Date(feedback.createdAt).toLocaleDateString('en-ca')}</TableCell>
               </TableRow>
             ))}
             </TableBody>
