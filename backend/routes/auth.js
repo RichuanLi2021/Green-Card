@@ -49,7 +49,7 @@ router.post('/login', async (req, res) => {
           {
             httpOnly: true,
             maxAge: env.JWT_LENGTH_MS,
-            sameSite: 'none',
+            sameSite: 'Lax',   // Cannot be 'None' when 'secure' is false
             secure: false   //Temporarily bypass security requirement to allow cookie over HTTP
           }
         ).json({ message: 'Successfully logged in', token: token, role: roleTitle, uuid: user.uuid })
