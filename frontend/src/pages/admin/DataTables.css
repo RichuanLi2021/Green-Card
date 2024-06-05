@@ -9,11 +9,10 @@
 }
 
 @media (max-width: 600px) {
-    .css-sf932x {
-        margin-left: 0 !important; /* Remove left margin */
-    }
     .css-8k7wf8-MuiDrawer-docked .MuiDrawer-paper {
         width: auto !important; /* Drawer menu uses auto width */
+        height: fit-content !important;
+
     }
     .css-hyum1k-MuiToolbar-root{
       min-height: 0px !important;

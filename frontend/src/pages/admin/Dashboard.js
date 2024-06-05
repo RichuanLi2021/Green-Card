@@ -88,11 +88,17 @@ export default function Dashboard() {
           </List>
         </Box>
       </Drawer>
-      <Box component="main" sx={{ marginLeft: '50px' }}>
+      <Box component="main">
         {selectedItem && (
           <>
             <Toolbar />
             {renderComponentForSelectedItem(selectedItem)}
+          </>
+        )}
+        {!selectedItem && (
+          <>
+            <Toolbar />
+            <OverviewDashboard/>
           </>
         )}
       </Box>

@@ -8,5 +8,17 @@
 main {
 
     min-height: 88vh !important;
+    width: 100%;
     
+}
+
+.css-8k7wf8-MuiDrawer-docked {
+  height: 100% !important;
+}
+
+
+@media (max-width: 599px) {
+  .css-8k7wf8-MuiDrawer-docked {
+    width: 10% !important;
+  }
 }
