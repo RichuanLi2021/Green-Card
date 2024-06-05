@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Box, Button, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Checkbox } from '@mui/material';
+import { Box, Button, Badge, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Checkbox } from '@mui/material';
+import MailIcon from '@mui/icons-material/Mail';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import Config from "../../config/config";
@@ -19,6 +20,7 @@ const theme = createTheme({
 const ShowFeedback = () =>{
 
   const [feedbackData, setFeedbackData] = useState([]);
+  const [unreviewedCount, setUnreviewedCount] = useState(0);
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterSelected, setFilterSelected] = useState(false);
@@ -31,6 +33,12 @@ const ShowFeedback = () =>{
   useEffect(() => {
     fetchFeedbackData();
   }, []);
+
+  // update count of unreviewed feedbacks
+  useEffect(() => {
+    const count = feedbackData?.filter(feedback => !feedback?.reviewed)?.length || 0;
+    setUnreviewedCount(count);
+  }, [feedbackData]);
 
   const fetchFeedbackData = async () => {
     try {
@@ -151,6 +159,9 @@ const ShowFeedback = () =>{
             <Typography variant="h5" className="title">
               Feedbacks
             </Typography>
+            <Badge badgeContent={unreviewedCount} color="primary" sx={{ ml: 1 }}>
+              <MailIcon color="action" />
+            </Badge>
           </Box>
           <Box mt={2} display="flex" justifyContent="center">
             <Button variant="contained" onClick={handleSelectAllReviews} sx={{ mr: 1 }}>
@@ -215,13 +226,13 @@ const ShowFeedback = () =>{
                     onChange={(event) => handleSelectReview(event, index)}
                   />
                 </TableCell>
-                <TableCell>{feedback.reviewed ? "Yes" : "No"}</TableCell>
-                <TableCell>{feedback.name}</TableCell>
-                <TableCell>{feedback.email}</TableCell>
-                <TableCell>{truncateText(feedback.comment, 20)}</TableCell>
-                <TableCell>{feedback.rating}</TableCell>
-                <TableCell>{feedback.allowEmailBack ? "Yes" : "No"}</TableCell>
-                <TableCell>{new Date(feedback.createdAt).toLocaleDateString('en-ca')}</TableCell>
+                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{feedback.reviewed ? "Yes" : "No"}</TableCell>
+                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{feedback.name}</TableCell>
+                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{feedback.email}</TableCell>
+                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{truncateText(feedback.comment, 20)}</TableCell>
+                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{feedback.rating}</TableCell>
+                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{feedback.allowEmailBack ? "Yes" : "No"}</TableCell>
+                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{new Date(feedback.createdAt).toLocaleDateString('en-ca')}</TableCell>
               </TableRow>
             ))}
             </TableBody>

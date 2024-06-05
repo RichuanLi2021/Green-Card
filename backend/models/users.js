@@ -24,6 +24,12 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: { msg: 'User discipline cannot be empty' }
       }
     },
+    title: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: { msg: 'User occupation cannot be empty' }
+      }
+    },
     firstName: {
       allowNull: false,
       type: DataTypes.STRING,

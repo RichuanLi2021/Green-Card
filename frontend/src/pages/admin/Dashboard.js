@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
@@ -22,6 +22,7 @@ import OverviewDashboard from './OverviewDashboard';
 import DataTables from './DataTables';
 import Accounts from './Accounts';
 import "./Dashboard.css";
+import { useLocation } from "react-router-dom";
 
 
 /* const theme = createTheme({
@@ -35,7 +36,12 @@ import "./Dashboard.css";
 const drawerWidth = 220;
 
 export default function Dashboard() {
-  const [selectedItem, setSelectedItem] = useState(null);
+  const location = useLocation();
+  const [selectedItem, setSelectedItem] = useState(location.state?.selectedItem || null);
+
+  useEffect(() => {
+    setSelectedItem(location.state?.selectedItem);
+  }, [location]);
 
   const handleItemClick = (item) => {
     setSelectedItem(item);

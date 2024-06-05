@@ -17,6 +17,9 @@ module.exports = {
       discipline: {
         type: DataTypes.STRING
       },
+      title: {
+        type: DataTypes.STRING
+      },
       firstName: {
         allowNull: false,
         type: DataTypes.STRING,
