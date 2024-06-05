@@ -6,7 +6,7 @@
   
   
 main {
-
+    
     min-height: 88vh !important;
     width: 100%;
     
@@ -14,6 +14,10 @@ main {
 
 .css-8k7wf8-MuiDrawer-docked {
   height: 100% !important;
+}
+
+.css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
+  height: auto !important;
 }
 
 
