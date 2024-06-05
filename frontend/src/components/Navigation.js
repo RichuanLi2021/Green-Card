@@ -82,7 +82,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    fetchUnreviewedFeedbackCount();
+    userRole === "admin" && fetchUnreviewedFeedbackCount();
   }, []);
 
   const displayDesktopButtons = () => {
