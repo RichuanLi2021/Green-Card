@@ -1,15 +1,18 @@
 .data-tables-container {
-    max-height: 80vh;
+    max-height: 75vh;
     overflow-y: auto;
-    width: 100%; /* Full width on mobile */
+    background-color: #fff;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    gap: '20px';
+    display: 'flex'; 
+    flex-direction: 'column';
 }
 
 @media (max-width: 600px) {
-    .css-sf932x {
-        margin-left: 0 !important; /* Remove left margin */
-    }
     .css-8k7wf8-MuiDrawer-docked .MuiDrawer-paper {
         width: auto !important; /* Drawer menu uses auto width */
+        height: fit-content !important;
+
     }
     .css-hyum1k-MuiToolbar-root{
       min-height: 0px !important;

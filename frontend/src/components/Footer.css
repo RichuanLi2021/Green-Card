@@ -9,7 +9,7 @@
     justify-content: center;  /* Rc: Center the footer content */
     align-items: center;  
     flex-direction: column;  /* Rc: Stack the contents vertically */
-    position: absolute ; /* Rc: Stick the footer to the bottom */
+    position:fixed ; /* Rc: Stick the footer to the bottom */
     z-index: 1 !important;
   } 
 

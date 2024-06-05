@@ -94,11 +94,17 @@ export default function Dashboard() {
           </List>
         </Box>
       </Drawer>
-      <Box component="main" sx={{ p: 3, position: 'fixed', marginLeft: '250px' }}>
+      <Box component="main">
         {selectedItem && (
           <>
             <Toolbar />
             {renderComponentForSelectedItem(selectedItem)}
+          </>
+        )}
+        {!selectedItem && (
+          <>
+            <Toolbar />
+            <OverviewDashboard/>
           </>
         )}
       </Box>
@@ -119,7 +125,7 @@ function renderComponentForSelectedItem(item) {
     case 'Account':
       return <Accounts />;
     case 'Settings':
-      return <box><Typography>Settings view o be updated!</Typography></box>
+      return <box><Typography>Settings view to be updated!</Typography></box>
     default:
       return null;
   }

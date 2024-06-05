@@ -149,7 +149,7 @@ const ShowFeedback = () =>{
   return (
     <ThemeProvider theme={theme}>
       <ToastComponent message={toastMessage} type={toastType} />
-      <div className="form-container" style={{ height: "70%" }}>
+      <div className="form-container">
         <div className="form-header">
           <Box
             display="flex"

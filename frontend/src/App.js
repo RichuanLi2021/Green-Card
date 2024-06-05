@@ -11,15 +11,12 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Account from "./pages/Account";
 import AdminDashboard from "./pages/admin/Dashboard";
-import AdminFeedback from "./pages/admin/Feedback";
 import Disclaimer from './components/Disclaimer';
 import NavBar from "./components/Navigation";
 import Footer from './components/Footer';
 import Policy from './pages/Policy';
-import Customer from './pages/admin/Customer';
 import ForgotPassword from './pages/ForgotPassword';
-import OverviewDashboard from './pages/admin/OverviewDashboard';
-import Accounts from './pages/admin/Accounts';
+
 
 
 import PrivateRoute from './middleware/PrivateRoute';
@@ -52,10 +49,6 @@ export default function App() {
 
           <Route path="admin">
             <Route path="dashboard" element={<AdminDashboard />} />
-            <Route path="feedback" element={<AdminFeedback />} />
-            <Route path="customer" element={<Customer/>}/>
-            <Route path="accounts" element={<Accounts/>}/>
-            <Route path="overview" element={<OverviewDashboard/>}/>
           </Route>
         </Routes>
       </main>
