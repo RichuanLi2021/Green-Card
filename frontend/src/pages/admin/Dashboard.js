@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -33,7 +32,6 @@ import { useLocation } from "react-router-dom";
     }
 }); */
 
-const drawerWidth = 220;
 
 export default function Dashboard() {
   const location = useLocation();
@@ -51,19 +49,8 @@ export default function Dashboard() {
     <Box sx={{ display: 'flex', width: 'auto' }}>
       <Drawer
         variant="permanent"
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          top: 0,
-          bottom: 0,
-          zIndex: 0,
-          [`& .MuiDrawer-paper`]: {
-            width: drawerWidth,
-            boxSizing: "border-box",
-            marginTop: "64px",
-            position: "absolute",
-          },
-        }}
+        className='sidebar'
+        
       >
         <Box sx={{ overflow: 'auto' }}>
           <List>
@@ -73,7 +60,7 @@ export default function Dashboard() {
                   <ListItemIcon>
                     {index === 0 ? <GridViewIcon /> : index === 1 ? <GroupIcon/> : index === 2 ? <FeedbackIcon/> : <TableChartIcon/>}
                   </ListItemIcon>
-                  <ListItemText primary={text} sx={{ display: { xs: 'none', sm: 'initial' } }} />                
+                  <ListItemText primary={text} className="sidebar-text" sx={{ display: { xs: 'none', sm: 'initial' } }} />                
                   </ListItemButton>
               </ListItem>
             ))}
@@ -86,7 +73,7 @@ export default function Dashboard() {
                   <ListItemIcon>
                     {index % 2 === 0 ? <AccountCircleIcon /> : <SettingsIcon />}
                   </ListItemIcon>
-                  <ListItemText primary={text} sx={{ display: { xs: 'none', sm: 'initial' } }} />                
+                  <ListItemText primary={text} className="sidebar-text" sx={{ display: { xs: 'none', sm: 'initial' } }} />                
                   
                 </ListItemButton>
               </ListItem>
@@ -94,16 +81,14 @@ export default function Dashboard() {
           </List>
         </Box>
       </Drawer>
-      <Box component="main">
+      <Box className="admin-root-container">
         {selectedItem && (
           <>
-            <Toolbar />
             {renderComponentForSelectedItem(selectedItem)}
           </>
         )}
         {!selectedItem && (
           <>
-            <Toolbar />
             <OverviewDashboard/>
           </>
         )}
@@ -125,7 +110,7 @@ function renderComponentForSelectedItem(item) {
     case 'Account':
       return <Accounts />;
     case 'Settings':
-      return <box><Typography>Settings view to be updated!</Typography></box>
+      return <box><Typography style={{margin:'1em'}}>Settings view to be updated!</Typography></box>
     default:
       return null;
   }

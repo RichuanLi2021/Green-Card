@@ -149,8 +149,8 @@ const ShowFeedback = () =>{
   return (
     <ThemeProvider theme={theme}>
       <ToastComponent message={toastMessage} type={toastType} />
-      <div className="form-container">
-        <div className="form-header">
+      <div className="feedback-form-container">
+        <div className="feedback-form-header">
           <Box
             display="flex"
             justifyContent="space-between"
@@ -199,7 +199,7 @@ const ShowFeedback = () =>{
             onChange={handleSearchChange}
           />
         </Box>
-        <TableContainer component={Paper} style={{ height: "70%" }}>
+        <TableContainer component={Paper} >
           <Table stickyHeader aria-label="feedback table">
             <TableHead>
             <TableRow >

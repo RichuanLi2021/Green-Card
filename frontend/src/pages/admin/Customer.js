@@ -42,7 +42,7 @@ const Customer = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box className="form-container">
+      <Box className="customer-form-container">
         <Typography variant="h5" align="center" style={{ marginBottom: "1rem" }}>Customers</Typography>
         <TextField
           label="Search"

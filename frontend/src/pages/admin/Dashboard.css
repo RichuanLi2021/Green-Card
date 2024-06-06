@@ -1,28 +1,89 @@
 .main-footer {
+    position: relative !important ; /* Rc: Stick the footer to the bottom */ 
+} 
+  
+  
+.admin-root-container {
+    width: 80%;
+}
 
-    position: relative !important ; /* Rc: Stick the footer to the bottom */
-    
-  } 
-  
-  
 main {
-    
-    min-height: 88vh !important;
-    width: 100%;
-    
+  width: 100%;
+  min-height: 90vh !important;
 }
 
-.css-8k7wf8-MuiDrawer-docked {
-  height: 100% !important;
+.sidebar {
+  width: 20%;
+  flex-shrink: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
 }
 
-.css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
+
+.MuiDrawer-paper {
   height: auto !important;
+  width: 20%;
+  box-sizing: border-box;
+  margin-top: 64px;
+  position: absolute !important;
+}
+
+@media (max-width: 1000px) {
+  .sidebar {
+    width: 7%;
+  }
+  .MuiDrawer-paper {
+    width: 7%;
+    position: absolute !important;
+  }
+
+  .MuiDrawer-paper > div {
+    overflow: hidden;
+  }
+
+  .sidebar-text > span {
+    display: none;
+  }
+
 }
 
 
-@media (max-width: 599px) {
-  .css-8k7wf8-MuiDrawer-docked {
-    width: 10% !important;
+@media (max-width: 800px) {
+  .sidebar {
+    width: 10%;
+    overflow: hidden;
+  }
+  .MuiDrawer-paper {
+    width: 10%;
+    position: absolute !important;
+    overflow: hidden;
+  }
+    
+}
+
+@media (max-width: 600px) {
+  .MuiDrawer-paper {
+    margin-top: 56px;
+  }
+}
+
+
+@media (max-width: 550px) {
+  .sidebar {
+    width: 15%;
+    overflow: hidden;
+  }
+  .MuiDrawer-paper {
+    width: 15%;
+    position: absolute !important;
+    overflow: hidden;
+  }
+    
+}
+
+@media (max-width: 325px) {
+  .MuiDrawer-paper {
+    margin-top: 72px;
   }
 }
