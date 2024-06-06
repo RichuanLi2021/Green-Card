@@ -7,6 +7,11 @@
     width: 80%;
 }
 
+main {
+  width: 100%;
+  min-height: 90vh !important;
+}
+
 .sidebar {
   width: 20%;
   flex-shrink: 0;
@@ -21,7 +26,7 @@
   width: 20%;
   box-sizing: border-box;
   margin-top: 64px;
-  position: absolute;
+  position: absolute !important;
 }
 
 @media (max-width: 1000px) {
@@ -57,6 +62,12 @@
     
 }
 
+@media (max-width: 600px) {
+  .MuiDrawer-paper {
+    margin-top: 56px;
+  }
+}
+
 
 @media (max-width: 550px) {
   .sidebar {
@@ -69,4 +80,10 @@
     overflow: hidden;
   }
     
+}
+
+@media (max-width: 325px) {
+  .MuiDrawer-paper {
+    margin-top: 72px;
+  }
 }
