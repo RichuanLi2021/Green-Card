@@ -164,7 +164,7 @@ const Navbar = () => {
   }
 
   return (
-    <AppBar style={{ boxShadow: "none", marginBottom: "2rem" }}>
+    <AppBar style={{ boxShadow: "none"}}>
       <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
 
         <Link to={ isLoggedIn ? '/home' : '/' }>
