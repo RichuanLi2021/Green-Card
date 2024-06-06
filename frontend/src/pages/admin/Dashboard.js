@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -33,7 +32,6 @@ import { useLocation } from "react-router-dom";
     }
 }); */
 
-const drawerWidth = '15%';
 
 export default function Dashboard() {
   const location = useLocation();
