@@ -61,7 +61,8 @@ export default function SignIn() {
       lastName: dataCredential.get('lastName'),
       email: dataCredential.get('email'),
       password: dataCredential.get('password'),
-      discipline: discipline
+      discipline: discipline,
+      title: dataCredential.get('title')
     })
       .then(response => {
         if (response.data.message) {
@@ -135,6 +136,10 @@ export default function SignIn() {
                   <TextField fullWidth id='other-discipline' label="Other Discipline" name="other-discipline" onChange={(e) => setOccupation(e.target.value)} />
                 </Grid>
               )}
+
+              <Grid item xs={12}>
+                <TextField required fullWidth name="title" label="Title" id="title" autoComplete="new-title" />
+              </Grid>
 
               <Grid item xs={12}>
                 <TextField required fullWidth name="password" label="Password" type="password" id="password" autoComplete="new-password" />
