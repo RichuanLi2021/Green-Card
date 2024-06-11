@@ -204,7 +204,6 @@ const ShowFeedback = () =>{
             <TableHead>
             <TableRow >
                 <TableCell padding="checkbox">Select</TableCell>
-                <TableCell stickyHeader>Reviewed</TableCell>
                 <TableCell stickyHeader>Name</TableCell>
                 <TableCell stickyHeader>Email</TableCell>
                 <TableCell stickyHeader>Comment</TableCell>
@@ -226,7 +225,6 @@ const ShowFeedback = () =>{
                     onChange={(event) => handleSelectReview(event, index)}
                   />
                 </TableCell>
-                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{feedback.reviewed ? "Yes" : "No"}</TableCell>
                 <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{feedback.name}</TableCell>
                 <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{feedback.email}</TableCell>
                 <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{truncateText(feedback.comment, 20)}</TableCell>
