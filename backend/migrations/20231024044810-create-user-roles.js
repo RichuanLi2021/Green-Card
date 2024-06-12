@@ -44,7 +44,7 @@ module.exports = {
         references: { table: 'roles', field: 'id' },
         type: 'FOREIGN KEY'
       })
-    } , { charset: 'utf8', collate: 'utf8_general_ci' })
+    })
   },
 
   async down(queryInterface, DataTypes) {
