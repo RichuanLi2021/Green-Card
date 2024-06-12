@@ -24,7 +24,7 @@ module.exports = {
       updatedAt: {
         type: DataTypes.DATE
       }
-    });
+    }, {charset: 'utf8', collate: 'utf8_general_ci' });
   },
 
   async down(queryInterface, DataTypes) {
