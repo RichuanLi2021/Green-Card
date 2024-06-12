@@ -194,7 +194,7 @@ const HomePage = (props) => {
 
   return (
     <div>
-      <Toolbar id="back-to-top-anchor" />
+      <Toolbar id="back-to-top-anchor" /> {/*This tool bar is only used as an anchor to return to the top of the page*/}
       <ThemeProvider theme={theme}>
         <Container className="main-container" maxWidth={false}>
           <Grid container spacing={4} direction="row" sx={{ textAlign: "left" }}>
@@ -280,8 +280,6 @@ const HomePage = (props) => {
 
             <Grid item xs={12} sm={9}>
               <Box className="gray-square">
-
-
                 <div>
                   <Box
                     sx={{
@@ -389,8 +387,6 @@ const HomePage = (props) => {
                     <div className="header-container">
                       <div>
                         <h2>{drugData[drugName]?.description || 'Default Description'}</h2>
-                        
-          
                       </div>
                       <Button sx={{ backgroundColor: "#96d2b0", color: "#000000" }} onClick={() => toggleActiveSubcategory(drugName, false)}>
                         <CloseIcon />
@@ -399,17 +395,11 @@ const HomePage = (props) => {
                     <DataDisplay subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
                   </div>
                 ))}
-
-
-
-
               </Box>
             </Grid>
           </Grid>
         </Container>
       </ThemeProvider>
-
-
 
       <React.Fragment>
         <CssBaseline />
@@ -419,8 +409,6 @@ const HomePage = (props) => {
           </Fab>
         </ScrollTop>
       </React.Fragment>
-
-
     </div>
   );
 };
