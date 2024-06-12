@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Box, Button, Badge, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Checkbox } from '@mui/material';
+import { Box, Button, Badge, Typography, TextField } from '@mui/material';
 import MailIcon from '@mui/icons-material/Mail';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
@@ -7,6 +7,7 @@ import Config from "../../config/config";
 import ToastComponent from '../../components/ToastComponent';
 import './Feedback.css';
 import { TextareaAutosize } from '@mui/material';
+import FeedbackTable from "../../components/FeedbackTable";
 
 
 const theme = createTheme({
@@ -84,15 +85,6 @@ const ShowFeedback = () =>{
     setFilteredData(filtered);
   };
 
-  const truncateText = (text, maxLength) => {
-    if (text.length > maxLength) {
-      return text.substring(0, maxLength) + '...';
-    }
-    return text;
-  };
-  
-  
-
   const handleSelectReview = (event, id) => {
     //to stop popup
     event.stopPropagation();
@@ -112,20 +104,19 @@ const ShowFeedback = () =>{
     // Iterate through all selectedReviews
     const updatedFeedbackData = [...feedbackData]; // Clone the current feedbackData for immutability
     for (let id of selectedReviews) {
-      const feedback = filteredData.find((_, index) => index === id);
+      // Use uuid to get the corresponding feedback from filteredData
+      const feedback = filteredData.find(feedback => feedback.uuid === id);
       if (feedback && !feedback.reviewed) {
         try {
-          console.log(feedback.uuid);
-          // Assuming feedback.id is the correct identifier for your backend
+          // Update feedback on the backend
           await axios.put(`${Config.API_URL}/api/feedback/${feedback.uuid}`, {
-          
             reviewed: true,
-          }, {withCredentials: true});
+          }, { withCredentials: true });
+
           showToast('Successfully updated feedback', 'success');
-          fetchFeedbackData();
-          
+
           // Find the index in the original feedbackData array and update the reviewed status
-          const originalIndex = updatedFeedbackData.findIndex(f => f.id === feedback.id);
+          const originalIndex = updatedFeedbackData.findIndex(f => f.uuid === feedback.uuid);
           if (originalIndex !== -1) {
             updatedFeedbackData[originalIndex] = { ...updatedFeedbackData[originalIndex], reviewed: true };
           }
@@ -135,7 +126,10 @@ const ShowFeedback = () =>{
         }
       }
     }
+
+    setFeedbackData(updatedFeedbackData);
     setSelectedReviews([]); // Clear selected reviews after updating
+    fetchFeedbackData();
   };
 
   const handleSelectAllReviews = () => {
@@ -199,43 +193,22 @@ const ShowFeedback = () =>{
             onChange={handleSearchChange}
           />
         </Box>
-        <TableContainer component={Paper} >
-          <Table stickyHeader aria-label="feedback table">
-            <TableHead>
-            <TableRow >
-                <TableCell padding="checkbox">Select</TableCell>
-                <TableCell stickyHeader>Name</TableCell>
-                <TableCell stickyHeader>Email</TableCell>
-                <TableCell stickyHeader>Comment</TableCell>
-                <TableCell stickyHeader>Overall Rating</TableCell>
-                <TableCell stickyHeader>Subscribe</TableCell>
-                <TableCell stickyHeader>Date</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {filteredData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map((feedback, index) => (
-              <TableRow
-                key={index}
-                onClick={() => { setSelectedFeedback(feedback); setPopupOpen(true); }}
-                style={feedback.reviewed ? { backgroundColor: '#f0f0f0' } : {}}
-              >
-                <TableCell padding="checkbox" onClick={(event) => event.stopPropagation()}>
-                  <Checkbox
-                    checked={selectedReviews.includes(index)}
-                    onChange={(event) => handleSelectReview(event, index)}
-                  />
-                </TableCell>
-                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{feedback.name}</TableCell>
-                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{feedback.email}</TableCell>
-                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{truncateText(feedback.comment, 20)}</TableCell>
-                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{feedback.rating}</TableCell>
-                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{feedback.allowEmailBack ? "Yes" : "No"}</TableCell>
-                <TableCell sx={{ fontWeight: feedback.reviewed ? 'normal' : 'bold' }}>{new Date(feedback.createdAt).toLocaleDateString('en-ca')}</TableCell>
-              </TableRow>
-            ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <FeedbackTable
+            title="New Feedbacks"
+            data={filteredData.filter((feedback) => !feedback.reviewed)}
+            selectedReviews={selectedReviews}
+            handleSelectReview={handleSelectReview}
+            setSelectedFeedback={setSelectedFeedback}
+            setPopupOpen={setPopupOpen}
+        />
+        <FeedbackTable
+            title="Reviewed Feedbacks"
+            data={filteredData.filter((feedback) => feedback.reviewed)}
+            selectedReviews={selectedReviews}
+            handleSelectReview={handleSelectReview}
+            setSelectedFeedback={setSelectedFeedback}
+            setPopupOpen={setPopupOpen}
+        />
         {/* POPUP MODAL */}
           {popupOpen && (
             <Box className={`popup-backdrop show-popup`} onClick={() => setPopupOpen(false)} />
