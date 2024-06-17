@@ -83,7 +83,8 @@ router.post('/register', async (req, res) => {
           firstName: firstName,
           lastName: lastName,
           email: email,
-          password: hash
+          password: hash,
+          title: title
         })
           .then((user) => {
             User_Role.create({
