@@ -17,6 +17,9 @@ module.exports = {
       discipline: {
         type: DataTypes.STRING
       },
+      title: {
+        type: DataTypes.STRING
+      },
       firstName: {
         allowNull: false,
         type: DataTypes.STRING,
@@ -51,7 +54,7 @@ module.exports = {
       deletedAt: {
         type: DataTypes.DATE
       }
-    });
+    }, { charset: 'utf8', collate: 'utf8_general_ci' });
   },
 
   async down(queryInterface, DataTypes) {

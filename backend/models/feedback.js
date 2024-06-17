@@ -20,10 +20,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     comment: {
       allowNull: false,
-      type: DataTypes.STRING(1000),
+      type: DataTypes.STRING(3000),
       validate: {
         notNull: { msg: 'Feedback must have a comment' },
-        notEmpty: { msg: 'Feedback comment cannot be empty' }
+        notEmpty: { msg: 'Feedback comment cannot be empty' },
       }
     },
     rating: {

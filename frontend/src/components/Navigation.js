@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 import {
   AppBar,
   Toolbar,
@@ -9,13 +9,15 @@ import {
   MenuItem,
   Button,
   useMediaQuery,
-  useTheme
+  useTheme,
+  Badge
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import axios from 'axios';
 import Config from "../config/config";
 import logo from '../assets/images/icons/logo/white/WhiteShine256px.svg';
 import ToastComponent from './ToastComponent';
+import MailIcon from "@mui/icons-material/Mail";
 
 
 const Navbar = () => {
@@ -25,6 +27,9 @@ const Navbar = () => {
   const open = Boolean(anchorEl);
   const isLoggedIn = localStorage.getItem('access-token');
   const userRole = localStorage.getItem('user-role');
+  const navigate = useNavigate();
+  const [unreviewedCount, setUnreviewedCount] = useState(0);
+  const [showFeedbackAlter, setShowFeedbackAlter] = useState(true);
 
   const handleMobileMenuOpen = (event) => { setAnchorEl(event.currentTarget) };
 
@@ -61,6 +66,26 @@ const Navbar = () => {
       console.log(error);
     }
   };
+
+  const handleAlertClick = () => {
+    navigate('/admin/dashboard', { state: { selectedItem: 'Feedback' } });
+    setShowFeedbackAlter(false);
+  };
+
+  const fetchUnreviewedFeedbackCount = async () => {
+    try {
+      const response = await axios.get(`${Config.API_URL}/api/feedback/unreviewedCount`, { withCredentials: true });
+      setUnreviewedCount(response.data?.count);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (userRole === "admin") {
+      fetchUnreviewedFeedbackCount();
+    }
+  }, [userRole]);
 
   const displayDesktopButtons = () => {
     if (isLoggedIn) {
@@ -139,7 +164,7 @@ const Navbar = () => {
   }
 
   return (
-    <AppBar style={{ boxShadow: "none", marginBottom: "2rem" }}>
+    <AppBar style={{ boxShadow: "none"}}>
       <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
 
         <Link to={ isLoggedIn ? '/home' : '/' }>
@@ -149,6 +174,18 @@ const Navbar = () => {
         <Typography className="web-title" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none' }}>
           <Link to={ isLoggedIn ? '/home' : '/' } className={'navigation-title'} >Geriatric Psychotropic Green Card</Link>
         </Typography>
+
+        {userRole === "admin" && (
+            <Badge
+                onClick={ handleAlertClick }
+                badgeContent={ showFeedbackAlter ? unreviewedCount : 0 }
+                variant="dot"
+                color="warning"
+                sx={{ mr: 1, cursor: 'pointer' }}
+            >
+              <MailIcon color="action" />
+            </Badge>
+        )}
 
         {/* Mobile Hamburger Button */}
         <IconButton size="large" edge="end" aria-label="menu" aria-haspopup="true" onClick={handleMobileMenuOpen} sx={{ display: { xs: 'block', md: 'none' }, color: '#000' }}>

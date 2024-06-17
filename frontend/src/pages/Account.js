@@ -32,6 +32,9 @@ export default function SignIn() {
 
   useEffect(() => {
     const userUUID = localStorage.getItem('user-uuid');
+    const userAccess = localStorage.getItem('user-role');
+    console.log('User UUID:', userUUID); // Log and test user UUID
+    console.log('Access: ', userAccess); // log and test user access
     if (userUUID) {
       axios.get(`${Config.API_URL}/api/users/${userUUID}`, { withCredentials: true })
         .then(response => {
@@ -50,8 +53,7 @@ export default function SignIn() {
     event.preventDefault();
     const dataCredential = new FormData(event.target);
 
-    axios
-      .post(Config.API_URL + "/api/auth/register", {
+    axios.post(Config.API_URL + "/api/auth/register", {
         email: dataCredential.get("email"),
         password: dataCredential.get("password"),
         discipline:
@@ -112,7 +114,8 @@ export default function SignIn() {
               { label: "Email:", data: userData.email },
               { label: "Discipline:", data: userData.discipline },
               { label: "First Name:", data: userData.firstName },
-              { label: "Last Name:", data: userData.lastName }
+              { label: "Last Name:", data: userData.lastName },
+              {label: "Title:", data: userData.title}
             ].map((item, index) => (
               <div key={index} style={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '800px' }}>
                 <Typography variant="body2" component="span" sx={{ textAlign: 'left', width: '45%' }}>
@@ -126,8 +129,12 @@ export default function SignIn() {
           </div>
 
           ) : (
-          <Typography>Loading...</Typography>
-          )}          </Typography>
+          <Typography>
+            Loading...
+          </Typography>
+          )}          
+          
+          </Typography>
 
           <Box
             component="form"

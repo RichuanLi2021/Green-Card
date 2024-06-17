@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Box, Button, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Checkbox } from '@mui/material';
+import { Box, Button, Badge, Typography, TextField } from '@mui/material';
+import MailIcon from '@mui/icons-material/Mail';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import Config from "../../config/config";
 import ToastComponent from '../../components/ToastComponent';
 import './Feedback.css';
 import { TextareaAutosize } from '@mui/material';
+import FeedbackTable from "../../components/FeedbackTable";
 
 
 const theme = createTheme({
@@ -19,6 +21,7 @@ const theme = createTheme({
 const ShowFeedback = () =>{
 
   const [feedbackData, setFeedbackData] = useState([]);
+  const [unreviewedCount, setUnreviewedCount] = useState(0);
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterSelected, setFilterSelected] = useState(false);
@@ -31,6 +34,12 @@ const ShowFeedback = () =>{
   useEffect(() => {
     fetchFeedbackData();
   }, []);
+
+  // update count of unreviewed feedbacks
+  useEffect(() => {
+    const count = feedbackData?.filter(feedback => !feedback?.reviewed)?.length || 0;
+    setUnreviewedCount(count);
+  }, [feedbackData]);
 
   const fetchFeedbackData = async () => {
     try {
@@ -76,15 +85,6 @@ const ShowFeedback = () =>{
     setFilteredData(filtered);
   };
 
-  const truncateText = (text, maxLength) => {
-    if (text.length > maxLength) {
-      return text.substring(0, maxLength) + '...';
-    }
-    return text;
-  };
-  
-  
-
   const handleSelectReview = (event, id) => {
     //to stop popup
     event.stopPropagation();
@@ -104,20 +104,19 @@ const ShowFeedback = () =>{
     // Iterate through all selectedReviews
     const updatedFeedbackData = [...feedbackData]; // Clone the current feedbackData for immutability
     for (let id of selectedReviews) {
-      const feedback = filteredData.find((_, index) => index === id);
+      // Use uuid to get the corresponding feedback from filteredData
+      const feedback = filteredData.find(feedback => feedback.uuid === id);
       if (feedback && !feedback.reviewed) {
         try {
-          console.log(feedback.uuid);
-          // Assuming feedback.id is the correct identifier for your backend
+          // Update feedback on the backend
           await axios.put(`${Config.API_URL}/api/feedback/${feedback.uuid}`, {
-          
             reviewed: true,
-          }, {withCredentials: true});
+          }, { withCredentials: true });
+
           showToast('Successfully updated feedback', 'success');
-          fetchFeedbackData();
-          
+
           // Find the index in the original feedbackData array and update the reviewed status
-          const originalIndex = updatedFeedbackData.findIndex(f => f.id === feedback.id);
+          const originalIndex = updatedFeedbackData.findIndex(f => f.uuid === feedback.uuid);
           if (originalIndex !== -1) {
             updatedFeedbackData[originalIndex] = { ...updatedFeedbackData[originalIndex], reviewed: true };
           }
@@ -127,7 +126,10 @@ const ShowFeedback = () =>{
         }
       }
     }
+
+    setFeedbackData(updatedFeedbackData);
     setSelectedReviews([]); // Clear selected reviews after updating
+    fetchFeedbackData();
   };
 
   const handleSelectAllReviews = () => {
@@ -141,8 +143,8 @@ const ShowFeedback = () =>{
   return (
     <ThemeProvider theme={theme}>
       <ToastComponent message={toastMessage} type={toastType} />
-      <div className="form-container">
-        <div className="form-header">
+      <div className="feedback-form-container">
+        <div className="feedback-form-header">
           <Box
             display="flex"
             justifyContent="space-between"
@@ -151,6 +153,9 @@ const ShowFeedback = () =>{
             <Typography variant="h5" className="title">
               Feedbacks
             </Typography>
+            <Badge badgeContent={unreviewedCount} color="primary" sx={{ ml: 1 }}>
+              <MailIcon color="action" />
+            </Badge>
           </Box>
           <Box mt={2} display="flex" justifyContent="center">
             <Button variant="contained" onClick={handleSelectAllReviews} sx={{ mr: 1 }}>
@@ -188,45 +193,22 @@ const ShowFeedback = () =>{
             onChange={handleSearchChange}
           />
         </Box>
-        <TableContainer component={Paper} style={{ height: "70%" }}>
-          <Table stickyHeader aria-label="feedback table">
-            <TableHead>
-            <TableRow >
-                <TableCell padding="checkbox">Select</TableCell>
-                <TableCell stickyHeader>Reviewed</TableCell>
-                <TableCell stickyHeader>Name</TableCell>
-                <TableCell stickyHeader>Email</TableCell>
-                <TableCell stickyHeader>Comment</TableCell>
-                <TableCell stickyHeader>Overall Rating</TableCell>
-                <TableCell stickyHeader>Subscribe</TableCell>
-                <TableCell stickyHeader>Date</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {filteredData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map((feedback, index) => (
-              <TableRow
-                key={index}
-                onClick={() => { setSelectedFeedback(feedback); setPopupOpen(true); }}
-                style={feedback.reviewed ? { backgroundColor: '#f0f0f0' } : {}}
-              >
-                <TableCell padding="checkbox" onClick={(event) => event.stopPropagation()}>
-                  <Checkbox
-                    checked={selectedReviews.includes(index)}
-                    onChange={(event) => handleSelectReview(event, index)}
-                  />
-                </TableCell>
-                <TableCell>{feedback.reviewed ? "Yes" : "No"}</TableCell>
-                <TableCell>{feedback.name}</TableCell>
-                <TableCell>{feedback.email}</TableCell>
-                <TableCell>{truncateText(feedback.comment, 20)}</TableCell>
-                <TableCell>{feedback.rating}</TableCell>
-                <TableCell>{feedback.allowEmailBack ? "Yes" : "No"}</TableCell>
-                <TableCell>{new Date(feedback.createdAt).toLocaleDateString('en-ca')}</TableCell>
-              </TableRow>
-            ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <FeedbackTable
+            title="New Feedbacks"
+            data={filteredData.filter((feedback) => !feedback.reviewed)}
+            selectedReviews={selectedReviews}
+            handleSelectReview={handleSelectReview}
+            setSelectedFeedback={setSelectedFeedback}
+            setPopupOpen={setPopupOpen}
+        />
+        <FeedbackTable
+            title="Reviewed Feedbacks"
+            data={filteredData.filter((feedback) => feedback.reviewed)}
+            selectedReviews={selectedReviews}
+            handleSelectReview={handleSelectReview}
+            setSelectedFeedback={setSelectedFeedback}
+            setPopupOpen={setPopupOpen}
+        />
         {/* POPUP MODAL */}
           {popupOpen && (
             <Box className={`popup-backdrop show-popup`} onClick={() => setPopupOpen(false)} />

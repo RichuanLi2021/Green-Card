@@ -9,7 +9,7 @@ export default function OverviewDashboard() {
   
 
   return (
-    <div class={'parentDiv'}>
+    <div className={'parentDiv'}>
         {/* Container for all the charts */}
         <div className={'chartHolder'}>
           {/* Bar Chart */}
@@ -22,7 +22,7 @@ export default function OverviewDashboard() {
                 { data: [15, 25, 30, 50] },
                 { data: [60, 50, 15, 25] },
               ]}
-              height={290}
+              // height={290}
               xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'band' }]}
               margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
             />
@@ -40,8 +40,8 @@ export default function OverviewDashboard() {
                   ],
                 },
               ]}
-              height={290}
-              width={400}
+              // height={290}
+              
             />
           </div>
           {/* First Line Chart */}
@@ -52,7 +52,7 @@ export default function OverviewDashboard() {
                 { data: [30, 40, 45, 50, 49, 60, 70, 91] },
               ]}
               xAxis={[{ data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'] }]}
-              height={290}
+              // height={290}
               margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
             />
           </div>
@@ -64,7 +64,7 @@ export default function OverviewDashboard() {
                 { data: [80, 82, 85, 88, 92, 95, 98, 100] },
               ]}
               xAxis={[{ data: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5', 'Year 6', 'Year 7', 'Year 8'] }]}
-              height={290}
+              // height={290}
               margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
             />
           </div>
