@@ -1,11 +1,11 @@
-.data-tables-container {
-    max-height: 75vh;
-    overflow-y: auto;
-    background-color: #fff;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-    gap: '20px';
-    display: 'flex'; 
-    flex-direction: 'column';
+#back-to-top-anchor{
+    height: 0px !important;
+    min-height: 0px !important;
+}
+
+.admin-data-holder {
+    display: flex;
+    width: 100%;
 }
 
 @media (max-width: 600px) {

@@ -4,7 +4,9 @@
   
   
 .admin-root-container {
-    width: 80%;
+    width: 85%;
+    display: flex;
+    /* overflow: hidden; */
 }
 
 main {
@@ -13,7 +15,7 @@ main {
 }
 
 .sidebar {
-  width: 20%;
+  width: 15%;
   flex-shrink: 0;
   top: 0;
   bottom: 0;
@@ -23,7 +25,7 @@ main {
 
 .MuiDrawer-paper {
   height: auto !important;
-  width: 20%;
+  width: 15%;
   box-sizing: border-box;
   margin-top: 64px;
   position: absolute !important;

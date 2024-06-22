@@ -1,10 +1,10 @@
 import { Card, CardContent, Container, Grid, Typography, Box, Button } from "@mui/material";
-import "./../Home.css";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import "./DataTables.css";
 import DataDisplay from '../../components/DataDisplay/dataDisplay';
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
@@ -191,11 +191,15 @@ const DataTables = (props) => {
   };
 
   return (
-    <div>
+    <div className="admin-data-holder">
       <Toolbar id="back-to-top-anchor" /> {/*This tool bar is only used as an anchor to return to the top of the page*/}
       <ThemeProvider theme={theme}>
-        <Container className="main-container" maxWidth={false}>
-          <Grid container spacing={4} direction="row" sx={{ textAlign: "left" }}>
+        <Container className="admin-data-main-container"  maxWidth={false}
+          sx={{
+                width: "100%",
+              }}
+        >
+          <Grid container spacing={4} direction="row" sx={{ textAlign: "left"}}>
             <Grid item xs={12} sm={3}>
               <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
                 {drugList.map(drugCategory => {
