@@ -16,7 +16,7 @@ const theme = createTheme({
 const Customer = () => {
   const [customersList, setCustomersList] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [anchorE1, setAnchorE1] = useState(null); //For handling dropdown menu
+  const [anchorEl, setAnchorEl] = useState(null); //For handling dropdown menu
 
   const fetchCustomers = async () => {
     try {
@@ -51,16 +51,16 @@ const Customer = () => {
     // Logic to reset any filters or sorting
     setSearchQuery('');
     fetchCustomers();
-    setAnchorE1();
+    setAnchorEl();
     handleCloseMenu();
   };
 
   const handleMenuClick = (event) => {
-    setAnchorE1(event.currentTarget);
+    setAnchorEl(event.currentTarget);
   };
 
   const handleCloseMenu = () => {
-    setAnchorE1(null);
+    setAnchorEl(null);
   };
 
   const filteredCustomersList = customersList.filter((customer) =>
@@ -84,10 +84,11 @@ const Customer = () => {
         <ButtonGroup variant="contained" aria-label="sort and reset button">
           <Button onClick={handleMenuClick}>Sort</Button>
           <Menu
-            anchorE1={anchorE1}
-            open={Boolean(anchorE1)}
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
             onClose={handleCloseMenu}
-            anchorOrigin={{vertical: 'center', horizontal: 'center'}}
+            anchorOrigin={{vertical: 'bottom', horizontal: 'center',}}
+            transformOrigin={{vertical: 'top', horizontal: 'center',}}
             >
               <MenuItem onClick={handleSortByDiscipline}>By Discipline</MenuItem>
               <MenuItem onClick={handleSortByTitle}>By Title</MenuItem>
@@ -99,6 +100,7 @@ const Customer = () => {
             <Table aria-label="customer table">
               <TableHead>
                 <TableRow>
+
                   <TableCell>First Name</TableCell>
                   <TableCell>Last Name</TableCell>
                   <TableCell>Discipline</TableCell>
@@ -106,6 +108,7 @@ const Customer = () => {
                   <TableCell>Email</TableCell>
                   <TableCell>Last Login</TableCell>
                   <TableCell>Date Created</TableCell>
+
                 </TableRow>
               </TableHead>
               <TableBody>
