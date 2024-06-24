@@ -30,6 +30,32 @@ module.exports = {
         verified: true, 
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        id: 3, 
+        uuid: uuidv4(),
+        discipline: 'Medical Student',
+        firstName: 'Bee',
+        lastName: 'Rad',
+        title: 'Bee User',
+        email: 'user2@gpgc.ca', 
+        password: '$2b$12$lvxPVQZ0EqHzAnqoYXAp3ezapE.r97C22wiGrWDmQVlyfZS3SoK7O', //pass: user123
+        verified: true, 
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 4, 
+        uuid: uuidv4(),
+        discipline: 'NP',
+        firstName: 'User',
+        lastName: 'User',
+        title: 'A User',
+        email: 'user3@gpgc.ca', 
+        password: '$2b$12$lvxPVQZ0EqHzAnqoYXAp3ezapE.r97C22wiGrWDmQVlyfZS3SoK7O', //pass: user123
+        verified: true, 
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ], {});
   },
