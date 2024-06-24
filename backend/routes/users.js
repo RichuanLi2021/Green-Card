@@ -107,8 +107,8 @@ router.put('/:id', validateAdminToken, async (req, res) => {
   }
 });
 
-// Delete One (Admin Only)
-router.delete('/:id', validateAdminToken, async (req, res) => {
+// Delete One (Admin)
+router.delete('/admin/:id', validateAdminToken, async (req, res) => {
   try {
     await User.destroy({
       where: { uuid: req.params.id }
@@ -118,6 +118,20 @@ router.delete('/:id', validateAdminToken, async (req, res) => {
         return res.status(200).json({ message: 'Successfully disabled account' });
       })
       .catch((error) => { return res.status(400).json({ error, errorMessage: error['errors'][0].message }) });
+  } catch (error) {
+    return res.status(500).json({ error, errorMessage: 'Encountered unexpected error' });
+  }
+});
+
+// Delete One (User)
+router.delete('/user/:id', validateUserToken, async (req, res) => {
+  if (req.user.uuid !== req.params.id) {
+    return res.status(403).json({ error: 'User is not authorized to delete this account' });
+  }
+  try {
+    const result = await User.destroy({ where: { uuid: req.params.id } });
+    if (result !== 1) return res.status(400).json({ errorMessage: 'Encountered error while trying to disable account' });
+    return res.status(200).json({ message: 'Successfully disabled account' });
   } catch (error) {
     return res.status(500).json({ error, errorMessage: 'Encountered unexpected error' });
   }

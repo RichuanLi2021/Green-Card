@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
@@ -7,11 +7,16 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import logo from "../assets/images/icons/logo/white/WhiteShine256px.svg";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Config from "../config/config";
+import logo from "../assets/images/icons/logo/white/WhiteShine256px.svg";
 import "./Account.css";
 
 
@@ -29,6 +34,8 @@ const theme = createTheme({
 export default function SignIn() {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({});
+  const [open, setOpen] = useState(false);
+  const [emailConfirm, setEmailConfirm] = useState("");
 
   useEffect(() => {
     const userUUID = localStorage.getItem('user-uuid');
@@ -71,6 +78,28 @@ export default function SignIn() {
       })
       .catch((error) => console.log(error));
   };
+
+
+  const handleDelete = () => {
+    if (emailConfirm === userData.email) {
+      const userUUID = localStorage.getItem("user-uuid");
+      axios
+        .delete(`${Config.API_URL}/api/users/user/${userUUID}`, { withCredentials: true })
+        .then((response) => {
+          if (response.status === 200) {
+            alert("Account successfully deleted");
+            navigate("/login");
+          }
+        })
+        .catch((error) => {
+          console.error("Failed to delete account:", error);
+        });
+      setOpen(false);
+    } else {
+      alert("Email does not match");
+    }
+  };
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -181,9 +210,47 @@ export default function SignIn() {
             >
               Submit Changes
             </Button>
+
+            <Button
+            fullWidth
+            variant="contained"
+            color="error"
+            sx={{ mt: 1, mb: 1 }}
+            onClick={() => setOpen(true)}
+          >
+            Delete Account
+          </Button>
+            
           </Box>
         </Box>
       </Container>
+
+      <Dialog open={open} onClose={() => setOpen(false)}>
+        <DialogTitle>Confirm Delete Account</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            To delete your account, please enter your registered email address to confirm.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="emailConfirm"
+            label="Email Address"
+            type="email"
+            fullWidth
+            variant="standard"
+            value={emailConfirm}
+            onChange={(e) => setEmailConfirm(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpen(false)}>Discard</Button>
+          <Button onClick={handleDelete} color="error">
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
+
     </ThemeProvider>
   );
 }
