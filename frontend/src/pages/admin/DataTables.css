@@ -8,6 +8,14 @@
     width: 100%;
 }
 
+.drug-table-grid {
+    margin-top: 0px !important;
+}
+
+.admin-item-container > p {
+    font-size: 0.75rem;
+}
+
 @media (max-width: 600px) {
     .css-8k7wf8-MuiDrawer-docked .MuiDrawer-paper {
         width: auto !important; /* Drawer menu uses auto width */
@@ -30,5 +38,11 @@
     }
     body{
       line-height: 15px !important;
+    }
+}
+
+@media (max-width: 1350px) {
+    .drug-dropdown {
+        font-size: 0.8rem !important;
     }
 }

@@ -199,9 +199,9 @@ const DataTables = (props) => {
                 width: "100%",
               }}
         >
-          <Grid container spacing={4} direction="row" sx={{ textAlign: "left"}}>
+          <Grid className="drug-table-grid" container spacing={4} direction="row" sx={{ textAlign: "left"}}>
             <Grid item xs={12} sm={3}>
-              <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
+              <Card className="drug-table-categories" sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
                 {drugList.map(drugCategory => {
                   // Check if data array has only one item
                   if (drugCategory.data.length === 1) {
@@ -233,7 +233,7 @@ const DataTables = (props) => {
                             toggleActiveSubcategory(drugItem.route, isVisible);
                           }}
                         >
-                          <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
+                          <Typography className="drug-dropdown" variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
                             {drugItem.name}
                           </Typography>
                         </Button>
@@ -245,13 +245,13 @@ const DataTables = (props) => {
                       <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
                         <Accordion className="myAccordion">
                           <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
-                            <Typography variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
+                            <Typography className="drug-dropdown" variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
                               {drugCategory.category}
                             </Typography>
                           </AccordionSummary>
                           <AccordionDetails>
                             {drugCategory.data.map(drugItem => (
-                              <div className="item-container" key={drugItem.route}>
+                              <div className="admin-item-container" key={drugItem.route}>
                                 <input
                                   type="checkbox"
                                   id={`${drugItem.route}Checkbox`}
@@ -303,8 +303,10 @@ const DataTables = (props) => {
                         fontSize: "14px",
                         mb: 2,
                         color: "#355944",
+
                       }}
                     >
+                      View, edit, and update the drug tables <br></br>
                       Last Updated: {latestUpdated.toLocaleDateString()} {latestUpdated.toLocaleTimeString()}
                     </Typography>
                   )}
