@@ -16,7 +16,7 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import Config from '../config/config'
+import Config from '../config/config';
 
 const theme = createTheme({
   palette: {
@@ -32,9 +32,14 @@ export default function SignIn() {
   const [occupation, setOccupation] = React.useState('');
   const [showSpecialtyInput, setShowSpecialtyInput] = React.useState(false);
   const [showOccupationInput, setShowOccupationInput] = React.useState(false);
+  const [password, setPassword] = React.useState('');
+  const [confirmPassword, setConfirmPassword] = React.useState('');
+  const [passwordStrength, setPasswordStrength] = React.useState({ message: '', class: '' });
+  const [passwordMatchError, setPasswordMatchError] = React.useState('');
+  const [isButtonDisabled, setIsButtonDisabled] = React.useState(true);
 
   const handleOccupationChange = (event) => {
-    const discipline = event.target.value
+    const discipline = event.target.value;
     setOccupation(discipline);
 
     if (discipline === 'Other') {
@@ -49,8 +54,73 @@ export default function SignIn() {
     }
   };
 
+  const handlePasswordChange = (event) => {
+    const passwordValue = event.target.value;
+    setPassword(passwordValue);
+    const strength = checkPasswordStrength(passwordValue);
+    setPasswordStrength(strength);
+
+    if (confirmPassword && passwordValue !== confirmPassword) {
+      setPasswordMatchError('Passwords do not match');
+    } else {
+      setPasswordMatchError('');
+    }
+  };
+
+  const handleConfirmPasswordChange = (event) => {
+    const confirmPasswordValue = event.target.value;
+    setConfirmPassword(confirmPasswordValue);
+    if (confirmPasswordValue !== password) {
+      setPasswordMatchError('Passwords do not match');
+    } else {
+      setPasswordMatchError('');
+    }
+  };
+
+  const checkPasswordStrength = (password) => {
+    let strength = { message: '', class: '' };
+
+    if (password.length < 6) {
+      strength.message = 'Password is too short';
+      strength.class = 'weak';
+      setIsButtonDisabled(true);
+    } else if (password.length < 8) {
+      strength.message = 'Password is weak';
+      strength.class = 'weak';
+      setIsButtonDisabled(true);
+    } else if (!/[A-Z]/.test(password)) {
+      strength.message = 'Password should include at least one uppercase letter';
+      strength.class = 'medium';
+      setIsButtonDisabled(true);
+    } else if (!/[a-z]/.test(password)) {
+      strength.message = 'Password should include at least one lowercase letter';
+      strength.class = 'medium';
+      setIsButtonDisabled(true);
+    } else if (!/[0-9]/.test(password)) {
+      strength.message = 'Password should include at least one number';
+      strength.class = 'medium';
+      setIsButtonDisabled(true);
+    } else if (!/[!@#$%^&*]/.test(password)) {
+      strength.message = 'Password should include at least one special character';
+      strength.class = 'medium';
+      setIsButtonDisabled(true);
+    } else {
+      strength.message = 'Password is strong';
+      strength.class = 'strong';
+      setIsButtonDisabled(false);
+    }
+
+    return strength;
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (isButtonDisabled) return;
+    if (password !== confirmPassword) {
+      setPasswordMatchError('Passwords do not match');
+      return;
+    }
+
     const dataCredential = new FormData(event.target);
     let discipline = dataCredential.get('discipline') || dataCredential.get('specialty') || dataCredential.get('other-discipline');
     if (discipline === null && occupation) {
@@ -61,7 +131,8 @@ export default function SignIn() {
       lastName: dataCredential.get('lastName'),
       email: dataCredential.get('email'),
       password: dataCredential.get('password'),
-      discipline: discipline
+      discipline: discipline,
+      title: dataCredential.get('title')
     })
       .then(response => {
         if (response.data.message) {
@@ -91,7 +162,7 @@ export default function SignIn() {
             <img src={logo} className={'height-width-5rem'} alt='GPGC Logo'></img>
           </Avatar>
 
-          <Typography component="h1" variant="h5" sx={{mt: 3, mb: 2, color: '#68a783'}}>
+          <Typography component="h1" variant="h5" sx={{ mt: 3, mb: 2, color: '#68a783' }}>
             Register
           </Typography>
 
@@ -137,17 +208,59 @@ export default function SignIn() {
               )}
 
               <Grid item xs={12}>
-                <TextField required fullWidth name="password" label="Password" type="password" id="password" autoComplete="new-password" />
+                <TextField required fullWidth name="title" label="Title" id="title" autoComplete="new-title" />
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField 
+                  required 
+                  fullWidth 
+                  name="password" 
+                  label="Password" 
+                  type="password" 
+                  id="password" 
+                  autoComplete="new-password" 
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
+                <Typography className={passwordStrength.class} sx={{ mt: 1 }}>
+                  {passwordStrength.message}
+                </Typography>
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField 
+                  required 
+                  fullWidth 
+                  name="confirm-password" 
+                  label="Confirm Password" 
+                  type="password" 
+                  id="confirm-password" 
+                  autoComplete="new-password" 
+                  value={confirmPassword}
+                  onChange={handleConfirmPasswordChange}
+                />
+                {passwordMatchError && (
+                  <Typography color="error" sx={{ mt: 1 }}>
+                    {passwordMatchError}
+                  </Typography>
+                )}
               </Grid>
             </Grid>
 
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+            <Button 
+              type="submit" 
+              fullWidth 
+              variant="contained" 
+              sx={{ mt: 3, mb: 2 }} 
+              disabled={isButtonDisabled}
+            >
               Sign Up
             </Button>
 
             <Grid container className='signUpGrid'>
               <Grid item xs>
-                <Link href="/Login" variant="body2" sx={{color:'#68a783'}}>
+                <Link href="/Login" variant="body2" sx={{ color: '#68a783' }}>
                   Already have an Account? | Sign In.
                 </Link>
               </Grid>

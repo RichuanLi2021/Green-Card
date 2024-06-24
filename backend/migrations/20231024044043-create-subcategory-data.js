@@ -28,7 +28,7 @@ module.exports = {
       updatedAt: {
         type: DataTypes.DATE
       }
-    }).then(async () => {
+    }, { charset: 'utf8', collate: 'utf8_general_ci' }).then(async () => {
       await queryInterface.addConstraint('subcategory_data', {
         fields: ['headerID'],
         name: 'many_subcategory_data_to_one_subcategory_header',
