@@ -5,14 +5,16 @@
     top: 64px;
     padding-left: 0 !important;
     padding-right: 0 !important;
-
 }
 
 .main-footer {
-
   position: relative !important ; /* Rc: Stick the footer to the bottom */
-  
 } 
+
+#back-to-top-anchor{
+  height: 0px !important;
+  min-height: 0px !important;
+}
 
 
 .header-container {
