@@ -13,6 +13,7 @@ const validateUserToken = async (req, res, next) => {
     console.log('Valid Token:', validToken); // Log valid token
     if (validToken) {
       req.authenticated = true
+      req.user = validToken; // Attach the decoded token to the req object
       return next()
     } else {
       return res.status(400).json({ error: 'User is not authenticated' })
