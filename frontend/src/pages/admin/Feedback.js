@@ -136,7 +136,7 @@ const ShowFeedback = () =>{
     if(selectedReviews.length === filteredData.length){
       setSelectedReviews([]);
     } else {
-      const newSelected = filteredData.map((feedback, index) => feedback.id || index);
+      const newSelected = filteredData.map((feedback, index) => feedback.uuid || index);
       setSelectedReviews(newSelected);
     }
   };  
