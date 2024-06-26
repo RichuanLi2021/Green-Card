@@ -284,35 +284,41 @@ const DataTables = (props) => {
               <Box className="gray-square">
                 <div>
                   <Box
-                    sx={{
-                      textAlign: "center",
-                      flex: ".8",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                    }}
+                    className="data-table-header"
+                  
                   >
                    
-                  {/* Last Updated Timestamp Display */}
-                  {latestUpdated && (
-                    <Typography
-                      variant="subtitle2"
-                      gutterBottom
-                      sx={{
-                        fontWeight: "bold",
-                        fontSize: "14px",
-                        mb: 2,
-                        color: "#355944",
+                    {/* Last Updated Timestamp Display */}
+                    {latestUpdated && (
+                      <Typography
+                        variant="subtitle2"
+                        gutterBottom
+                        sx={{
+                          fontWeight: "bold",
+                          fontSize: "14px",
+                          mb: 2,
+                          color: "#355944",
 
+                        }}
+                      >
+                        View, edit, and update the drug tables <br></br>
+                        Last Updated: {latestUpdated.toLocaleDateString()} {latestUpdated.toLocaleTimeString()}
+                      </Typography>
+
+                      
+                    )}
+
+                    <Button 
+                      sx={{
+                        justifySelf: "end"
                       }}
-                    >
-                      View, edit, and update the drug tables <br></br>
-                      Last Updated: {latestUpdated.toLocaleDateString()} {latestUpdated.toLocaleTimeString()}
-                    </Typography>
-                  )}
+                      >
+                        test
+                    </Button>
+
                   </Box>
                 </div>
-                <DataDisplay />
+             
                 {selectedDrugs.map(drugName => (
                   
                   <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
