@@ -144,7 +144,8 @@ export default function SignIn() {
               { label: "Discipline:", data: userData.discipline },
               { label: "First Name:", data: userData.firstName },
               { label: "Last Name:", data: userData.lastName },
-              {label: "Title:", data: userData.title}
+              {label: "Title:", data: userData.title},
+              { label: "Subscription Status:", data: "" } // New row for Subscription Status
             ].map((item, index) => (
               <div key={index} style={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '800px' }}>
                 <Typography variant="body2" component="span" sx={{ textAlign: 'left', width: '45%' }}>
@@ -210,6 +211,21 @@ export default function SignIn() {
             >
               Submit Changes
             </Button>
+
+            {userData.User_Roles !== 'admin' && ( // Check if the user is not an admin
+              <Button
+                type="subscribe"
+                fullWidth
+                variant="contained"
+                sx={{
+                  mt: 2,
+                  mb: 2,
+                }}
+              >
+                Subscribe
+              </Button>
+            )}
+
 
             <Button
             fullWidth
