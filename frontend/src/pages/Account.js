@@ -212,7 +212,7 @@ export default function SignIn() {
               Submit Changes
             </Button>
 
-            {userData.User_Roles !== 'admin' && ( // Check if the user is not an admin
+            {userData.title != 'Administrator' && ( // Check if the user is not an admin
               <Button
                 type="subscribe"
                 fullWidth
