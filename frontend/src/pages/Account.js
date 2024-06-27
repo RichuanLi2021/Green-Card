@@ -37,6 +37,7 @@ export default function SignIn() {
   const [open, setOpen] = useState(false);
   const [emailConfirm, setEmailConfirm] = useState("");
 
+
   useEffect(() => {
     const userUUID = localStorage.getItem('user-uuid');
     const userAccess = localStorage.getItem('user-role');
@@ -54,20 +55,20 @@ export default function SignIn() {
         });
     }
   }, []);
-  
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const dataCredential = new FormData(event.target);
 
     axios.post(Config.API_URL + "/api/auth/register", {
-        email: dataCredential.get("email"),
-        password: dataCredential.get("password"),
-        discipline:
-          dataCredential.get("discipline") ||
-          dataCredential.get("specialty") ||
-          dataCredential.get("other-discipline"),
-      })
+      email: dataCredential.get("email"),
+      password: dataCredential.get("password"),
+      discipline:
+        dataCredential.get("discipline") ||
+        dataCredential.get("specialty") ||
+        dataCredential.get("other-discipline"),
+    })
       .then((response) => {
         if (response.data.message) {
           alert(response.data.message);
@@ -125,44 +126,44 @@ export default function SignIn() {
           >
             Edit Account
           </Typography>
-                    
-          <Typography
-          component="div"
-          sx={{
-            color: "black",
-            textAlign: "center",
-            display: "flex", 
-            flexDirection: "column", 
-            alignItems: "center", 
-            justifyContent: "center", 
-          }}
-          >
-          {userData && userData.User_Roles ? (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
-            {[
-              { label: "Email:", data: userData.email },
-              { label: "Discipline:", data: userData.discipline },
-              { label: "First Name:", data: userData.firstName },
-              { label: "Last Name:", data: userData.lastName },
-              {label: "Title:", data: userData.title}
-            ].map((item, index) => (
-              <div key={index} style={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '800px' }}>
-                <Typography variant="body2" component="span" sx={{ textAlign: 'left', width: '45%' }}>
-                  {item.label}
-                </Typography>
-                <Typography variant="body2" component="span" sx={{ textAlign: 'right', width: '55%', fontWeight: 'bold', fontSize: '1.0rem' }}>
-                  {item.data}
-                </Typography>
-              </div>
-            ))}
-          </div>
 
-          ) : (
-          <Typography>
-            Loading...
-          </Typography>
-          )}          
-          
+          <Typography
+            component="div"
+            sx={{
+              color: "black",
+              textAlign: "center",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {userData && userData.User_Roles ? (
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+                {[
+                  { label: "Email:", data: userData.email },
+                  { label: "Discipline:", data: userData.discipline },
+                  { label: "First Name:", data: userData.firstName },
+                  { label: "Last Name:", data: userData.lastName },
+                  { label: "Title:", data: userData.title }
+                ].map((item, index) => (
+                  <div key={index} style={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '800px' }}>
+                    <Typography variant="body2" component="span" sx={{ textAlign: 'left', width: '45%' }}>
+                      {item.label}
+                    </Typography>
+                    <Typography variant="body2" component="span" sx={{ textAlign: 'right', width: '55%', fontWeight: 'bold', fontSize: '1.0rem' }}>
+                      {item.data}
+                    </Typography>
+                  </div>
+                ))}
+              </div>
+
+            ) : (
+              <Typography>
+                Loading...
+              </Typography>
+            )}
+
           </Typography>
 
           <Box
@@ -210,17 +211,18 @@ export default function SignIn() {
             >
               Submit Changes
             </Button>
-
-            <Button
-            fullWidth
-            variant="contained"
-            color="error"
-            sx={{ mt: 1, mb: 1 }}
-            onClick={() => setOpen(true)}
-          >
-            Delete Account
-          </Button>
-            
+            {
+              userData.title !== "Administrator" ?
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="error"
+                  sx={{ mt: 1, mb: 1 }}
+                  onClick={() => setOpen(true)}
+                >
+                  Delete Account
+                </Button> : null
+            }
           </Box>
         </Box>
       </Container>
