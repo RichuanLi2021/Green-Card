@@ -42,7 +42,7 @@ const HomePage = (props) => {
   const drugDisplayRefs = useRef({});
   const [activeSubcategories, setActiveSubcategories] = useState({});
   const [latestUpdated, setLatestUpdated] = useState(null);
-  
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -232,7 +232,9 @@ const HomePage = (props) => {
                           }}
                         >
                           <Typography variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                            {drugItem.name}
+                            {
+                              drugItem.name.endsWith("Medication Table") ? drugItem.name.split("Medication Table")[0]
+                                : drugItem.name}
                           </Typography>
                         </Button>
 
@@ -265,7 +267,10 @@ const HomePage = (props) => {
                                     toggleActiveSubcategory(drugItem.route, shouldDisplay);
                                   }}
                                 >
-                                  {drugItem.name}
+                                  {
+                                    drugItem.name.endsWith("Medication Table") ?
+                                      drugItem.name.split("Medication Table")[0]
+                                      : drugItem.name}
                                 </Typography>
                               </div>
                             ))}
@@ -312,9 +317,9 @@ const HomePage = (props) => {
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                         fontSize: {
-                          xs: '30px', 
-                          sm: '40px', 
-                          md: '48px', 
+                          xs: '30px',
+                          sm: '40px',
+                          md: '48px',
                         },
                       }}
                     >
@@ -362,31 +367,35 @@ const HomePage = (props) => {
                       }}
                     >
                       Dept of Psychiatry, Dalhousie University, Halifax, CANADA
-                      </Typography>
-                    {/* Last Updated Timestamp Display */}
-                  {latestUpdated && (
-                    <Typography
-                      variant="subtitle2"
-                      gutterBottom
-                      sx={{
-                        fontWeight: "bold",
-                        fontSize: "14px",
-                        mb: 2,
-                        color: "#355944",
-                      }}
-                    >
-                      Last Updated: {latestUpdated.toLocaleDateString()} {latestUpdated.toLocaleTimeString()}
                     </Typography>
-                  )}
+                    {/* Last Updated Timestamp Display */}
+                    {latestUpdated && (
+                      <Typography
+                        variant="subtitle2"
+                        gutterBottom
+                        sx={{
+                          fontWeight: "bold",
+                          fontSize: "14px",
+                          mb: 2,
+                          color: "#355944",
+                        }}
+                      >
+                        Last Updated: {latestUpdated.toLocaleDateString()} {latestUpdated.toLocaleTimeString()}
+                      </Typography>
+                    )}
                   </Box>
                 </div>
                 <DataDisplay />
                 {selectedDrugs.map(drugName => (
-                  
+
                   <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
                     <div className="header-container">
                       <div>
-                        <h2>{drugData[drugName]?.description || 'Default Description'}</h2>
+                        <h2>{
+                          drugData[drugName]?.description.endsWith("Medication Table") ?
+                          drugData[drugName]?.description.split("Medication Table")[0] :
+                          drugData[drugName]?.description || 'Default Description'
+                        }</h2>
                       </div>
                       <Button sx={{ backgroundColor: "#96d2b0", color: "#000000" }} onClick={() => toggleActiveSubcategory(drugName, false)}>
                         <CloseIcon />
