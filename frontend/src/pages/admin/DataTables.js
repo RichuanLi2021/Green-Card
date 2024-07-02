@@ -185,6 +185,16 @@ const DataTables = (props) => {
   }
 
 
+  let showEditButton = false;
+
+  function handleEditClick() {
+    showEditButton = true;
+    alert(showEditButton);
+  }
+
+  
+
+
   ScrollTop.propTypes = {
     children: PropTypes.element.isRequired,
     window: PropTypes.func,
@@ -308,13 +318,7 @@ const DataTables = (props) => {
                       
                     )}
 
-                    <Button 
-                      sx={{
-                        justifySelf: "end"
-                      }}
-                      >
-                        test
-                    </Button>
+                    
 
                   </Box>
                 </div>
@@ -322,15 +326,18 @@ const DataTables = (props) => {
                 {selectedDrugs.map(drugName => (
                   
                   <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
-                    <div className="header-container">
+                    <div className="admin-header-container">
                       <div>
                         <h2>{drugData[drugName]?.description || 'Default Description'}</h2>
                       </div>
+                      <Button className="admin-data-table-edit" title="Edit" onClick={handleEditClick}>
+                        Edit
+                      </Button>
                       <Button sx={{ backgroundColor: "#96d2b0", color: "#000000" }} onClick={() => toggleActiveSubcategory(drugName, false)}>
                         <CloseIcon />
                       </Button>
                     </div>
-                    <DataDisplay subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
+                    <DataDisplay showEditButton={showEditButton} subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
                   </div>
                 ))}
               </Box>

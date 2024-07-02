@@ -6,8 +6,9 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { Button } from '@mui/material';
 
-export default function StickyHeadTable({ drugName, subcategoryHeaders }) {
+export default function StickyHeadTable({ drugName, subcategoryHeaders, showEditButton }) {
 
 
   if (!subcategoryHeaders || subcategoryHeaders.length === 0) {
@@ -41,7 +42,11 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders }) {
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
+              {showEditButton && (
+                <TableCell> Edit </TableCell>
+              )}
               {headers.map((header, index) => (
+                
                 <TableCell
                   key={header.id}
                   align={header.align}
@@ -55,7 +60,15 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders }) {
           <TableBody>
             {rows.map((row, rowIndex) => (
               <TableRow hover tabIndex={-1} key={rowIndex}>
+                {showEditButton && (
+                  <TableCell> 
+                    <Button onClick={() => {
+                      alert("test");
+                    } }>Edit</Button>  
+                  </TableCell>
+                )}
                 {headers.map((header, index) => (
+                  
                   <TableCell
                     key={header.id}
                     align={header.align}
@@ -64,6 +77,7 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders }) {
                     {row[header.id]}
                   </TableCell>
                 ))}
+                
               </TableRow>
             ))}
           </TableBody>
