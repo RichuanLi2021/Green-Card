@@ -137,4 +137,44 @@ router.delete('/user/:id', validateUserToken, async (req, res) => {
   }
 });
 
+// Get User's Subscription Status
+router.get('/:id/subscription', validateUserToken, async (req, res) => {
+  try {
+    const user = await User.findOne({
+      attributes: ['subscribed'],
+      where: { uuid: req.params.id }
+    });
+
+    if (!user) {
+      return res.status(404).json({ errorMessage: 'User not found' });
+    }
+
+    return res.status(200).json({ subscribed: user.subscribed });
+  } catch (error) {
+    return res.status(500).json({ error, errorMessage: 'Encountered unexpected error' });
+  }
+});
+
+// Update User's Subscription Status
+router.patch('/:id/subscription', validateUserToken, async (req, res) => {
+  try {
+    const { newSubscriptionStatus } = req.body;
+    const [updated] = await User.update({
+      subscribed: newSubscriptionStatus
+    }, {
+      where: { uuid: req.params.id }
+    });
+
+    if (updated === 0) {
+      return res.status(400).json({ errorMessage: 'Encountered error while updating subscription status' });
+    }
+
+    const message = newSubscriptionStatus ? 'Successfully subscribed.' : 'Successfully unsubscribed.';
+    return res.status(200).json({ message, subscribed: newSubscriptionStatus });
+
+  } catch (error) {
+    return res.status(500).json({ error, errorMessage: 'Encountered unexpected error' });
+  }
+});
+
 module.exports = router;

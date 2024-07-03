@@ -67,6 +67,14 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: { msg: 'User verification cannot be empty' }
       }
     },
+    subscribed: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+      validate: {
+        notNull: { msg: 'Subscription status cannot be null' }
+      }
+    },
     lastLogin: {
       type: DataTypes.DATE,
       validate: {
