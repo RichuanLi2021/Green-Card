@@ -138,27 +138,24 @@ export default function SignIn() {
               justifyContent: "center",
             }}
           >
-          {userData && userData.User_Roles ? (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
-            {[
-              { label: "Email:", data: userData.email },
-              { label: "Discipline:", data: userData.discipline },
-              { label: "First Name:", data: userData.firstName },
-              { label: "Last Name:", data: userData.lastName },
-              {label: "Title:", data: userData.title}
-            ].map((item, index) => (
-              <div key={index} style={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '800px' }}>
-                <Typography variant="body2" component="span" sx={{ textAlign: 'left', width: '45%' }}>
-                  {item.label}
-                </Typography>
-                <Typography variant="body2" component="span" sx={{ textAlign: 'right', width: '55%', fontWeight: 'bold', fontSize: '1.0rem' }}>
-                  {item.data}
-                </Typography>
-              </div>
-            ))}
-          </div>
-
-            ) : (
+            {userData && userData.User_Roles ? (
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+                {[
+                  { label: "Email:", data: userData.email },
+                  { label: "Discipline:", data: userData.discipline },
+                  { label: "First Name:", data: userData.firstName },
+                  { label: "Last Name:", data: userData.lastName },
+                  { label: "Title:", data: userData.title },
+                  { label: "Subscription Status:", }
+                ].map((item, index) => (
+                  <div key={index} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', maxWidth: '800px', borderBottom: '0px solid #ddd', paddingBottom: '8px', marginBottom: '8px' }}>
+                    <Typography variant="body2" component="span" sx={{ width: '100%', fontSize: '1.0rem' }}>
+                      {item.label} {item.data}
+                    </Typography>
+                  </div>
+                ))}
+                </div>
+              ) : (
               <Typography>
                 Loading...
               </Typography>
@@ -211,6 +208,21 @@ export default function SignIn() {
             >
               Submit Changes
             </Button>
+
+            {userData.title !== "Administrator" && (
+              <Button
+                type="subscribe"
+                fullWidth
+                variant="contained"
+                sx={{
+                  mt: 2,
+                  mb: 2,
+                }}
+              >
+                Subscribe
+              </Button>
+            )}
+
 
             <Button
             fullWidth
