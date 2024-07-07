@@ -127,9 +127,7 @@ export default function SignIn() {
             Edit Account
           </Typography>
 
-          <Typography
-            component="div"
-            sx={{
+          <div style={{
               color: "black",
               textAlign: "center",
               display: "flex",
@@ -148,11 +146,14 @@ export default function SignIn() {
                   { label: "Title:", data: userData.title },
                   { label: "Subscription Status:", }
                 ].map((item, index) => (
-                  <div key={index} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', maxWidth: '800px', borderBottom: '0px solid #ddd', paddingBottom: '8px', marginBottom: '8px' }}>
-                    <Typography variant="body2" component="span" sx={{ width: '100%', fontSize: '1.0rem' }}>
-                      {item.label} {item.data}
+                  <Typography component="li" key={index} sx={{ display: 'flex', width: '100%', maxWidth: '800px' }}>
+                    <Typography variant="body2" component="span" sx={{ textAlign: 'left', marginRight: '2rem' }}>
+                      {item.label}
                     </Typography>
-                  </div>
+                    <Typography variant="body2" component="span" sx={{ textAlign: 'left', fontWeight: 'bold', fontSize: '1.0rem' }}>
+                      {item.data}
+                    </Typography>
+                  </Typography>
                 ))}
                 </div>
               ) : (
@@ -160,8 +161,7 @@ export default function SignIn() {
                 Loading...
               </Typography>
             )}
-
-          </Typography>
+          </div>
 
           <Box
             component="form"
