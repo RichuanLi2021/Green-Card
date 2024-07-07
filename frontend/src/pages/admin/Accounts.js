@@ -5,6 +5,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import Config from "../../config/config";
 import "./Accounts.css";
+import ROLE_IDS from "../../config/constants";
+import ToastComponent from "../../components/ToastComponent";
 
 
 const theme = createTheme({
@@ -22,6 +24,8 @@ const Accounts = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCustomers, setSelectedCustomers] = useState([]);
   const selectedListRef = useRef(customersList);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState('');
 
   useEffect(() => {
     const fetchCustomers = async () => {
@@ -61,46 +65,33 @@ const Accounts = () => {
     }
   };
 
-    //Admin priveleges NOT implemented yet as of 03/2024 
-    //functionality only configured to display on console that an user has received admin privileges.
-  const setAdminPrivileges = () => {
+  const handleSetPrivileges = async (newRoleID, successMessage, errorMessage) => {
     if (selectedCustomers.length === 0) {
-        //Suggestion: Display notification for the following:
-        console.log('Please select an user before setting admin status')
-    } else {
-      setSelectedCustomers([]);
-  
-      const selectedCustomersWithAdminPrivileges = selectedCustomers.map((customer) => {
-        return {
-          firstName: customer.firstName,
-          adminPrivilege: true,
-        };
-      });
-      //Suggestion: Display notification for the following: "User has been granted admin privileges"
-      console.log(selectedCustomersWithAdminPrivileges);
-  
+      showToast('Please select a user before setting status', 'error');
+      return;
+    }
+    const selectedCustomersIDs = selectedCustomers.map(customer => customer.User_Roles[0].userID);
+    setSelectedCustomers([]);
+
+    try {
+      const response = await axios.put(`${Config.API_URL}/api/user_roles`, {
+        userIDs: selectedCustomersIDs,
+        newRoleID
+      }, { withCredentials: true });
+      if (response.status === 200) {
+        showToast(successMessage, 'success');
+      }
+    } catch (error) {
+      showToast(errorMessage, 'error');
     }
   };
 
-    //User priveleges NOT implemented yet as of 03/2024 
-    //functionality only configured to display on console that an user has restore its status back to USER.
-  const setUserPrivileges = () => {
-    if (selectedCustomers.length === 0) {
-        //Suggestion: Display notification for the following:
-        console.log('Please select an user before restoring user status')
-    } else {
-    setSelectedCustomers([]);
-    
-    const selectedCustomersWithUserPrivileges = selectedCustomers.map((customer) => {
-        return {
-        firstName: customer.firstName,
-        adminPrivilege: false,
-        };
-    });
-    //Suggestion: Display notification for the following: "User has been granted admin privileges"
-    console.log(selectedCustomersWithUserPrivileges);
-    }
+  const setAdminPrivileges = async () => {
+    await handleSetPrivileges( ROLE_IDS.ADMIN,"Successfully assigned admin privileges","Failed to assign admin privileges");
+  };
 
+  const setUserPrivileges = async () => {
+    await handleSetPrivileges( ROLE_IDS.USER,"Successfully reset to user status","Failed to reset to user status");
   };
 
   const filteredCustomersList = customersList.filter((customer) =>
@@ -108,6 +99,15 @@ const Accounts = () => {
     customer.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
     customer.lastName.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const showToast = (message, type) => {
+    setToastMessage(message);
+    setToastType(type);
+    setTimeout(() => {
+      setToastMessage('');
+      setToastType('');
+    }, 3000);
+  };
 
     return (
       <ThemeProvider theme={theme}>
@@ -182,6 +182,7 @@ const Accounts = () => {
             </Table>
           </TableContainer>
         </div>
+        <ToastComponent message={toastMessage} type={toastType} />
       </ThemeProvider>
     );
   };
