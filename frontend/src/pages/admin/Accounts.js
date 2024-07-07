@@ -5,6 +5,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import Config from "../../config/config";
 import "./Accounts.css";
+import ROLE_IDS from "../../config/constants";
 
 
 const theme = createTheme({
@@ -61,46 +62,33 @@ const Accounts = () => {
     }
   };
 
-    //Admin priveleges NOT implemented yet as of 03/2024 
-    //functionality only configured to display on console that an user has received admin privileges.
-  const setAdminPrivileges = () => {
+  const handleSetPrivileges = async (newRoleID, successMessage, errorMessage) => {
     if (selectedCustomers.length === 0) {
-        //Suggestion: Display notification for the following:
-        console.log('Please select an user before setting admin status')
-    } else {
-      setSelectedCustomers([]);
-  
-      const selectedCustomersWithAdminPrivileges = selectedCustomers.map((customer) => {
-        return {
-          firstName: customer.firstName,
-          adminPrivilege: true,
-        };
-      });
-      //Suggestion: Display notification for the following: "User has been granted admin privileges"
-      console.log(selectedCustomersWithAdminPrivileges);
-  
+      alert('Please select a user before setting status');
+      return;
+    }
+    const selectedCustomersIDs = selectedCustomers.map(customer => customer.User_Roles[0].userID);
+    setSelectedCustomers([]);
+
+    try {
+      const response = await axios.put(`${Config.API_URL}/api/user_roles`, {
+        userIDs: selectedCustomersIDs,
+        newRoleID
+      }, { withCredentials: true });
+      if (response.status === 200) {
+        alert(successMessage);
+      }
+    } catch (error) {
+      alert(errorMessage);
     }
   };
 
-    //User priveleges NOT implemented yet as of 03/2024 
-    //functionality only configured to display on console that an user has restore its status back to USER.
-  const setUserPrivileges = () => {
-    if (selectedCustomers.length === 0) {
-        //Suggestion: Display notification for the following:
-        console.log('Please select an user before restoring user status')
-    } else {
-    setSelectedCustomers([]);
-    
-    const selectedCustomersWithUserPrivileges = selectedCustomers.map((customer) => {
-        return {
-        firstName: customer.firstName,
-        adminPrivilege: false,
-        };
-    });
-    //Suggestion: Display notification for the following: "User has been granted admin privileges"
-    console.log(selectedCustomersWithUserPrivileges);
-    }
+  const setAdminPrivileges = async () => {
+    await handleSetPrivileges( ROLE_IDS.ADMIN,"Admin privileges assigned successfully","Failed to assign admin privileges");
+  };
 
+  const setUserPrivileges = async () => {
+    await handleSetPrivileges( ROLE_IDS.USER,"User status reset successfully","Failed to reset user status");
   };
 
   const filteredCustomersList = customersList.filter((customer) =>
