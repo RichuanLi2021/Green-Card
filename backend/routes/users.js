@@ -11,9 +11,6 @@ router.get('/', validateAdminToken, async (req, res) => {
     await User.findAll({
       include: {
         model: User_Role,
-        attributes: {
-          exclude: ['UserId', 'RoleId']
-        },
         include: {
           model: Role
         }
