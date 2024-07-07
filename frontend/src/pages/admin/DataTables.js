@@ -40,6 +40,7 @@ const DataTables = (props) => {
   const drugDisplayRefs = useRef({});
   const [activeSubcategories, setActiveSubcategories] = useState({});
   const [latestUpdated, setLatestUpdated] = useState(null);
+  const [showEditButton, setShowEditButton] = useState(false);
   
   useEffect(() => {
     const fetchCategories = async () => {
@@ -185,11 +186,9 @@ const DataTables = (props) => {
   }
 
 
-  let showEditButton = false;
 
   function handleEditClick() {
-    showEditButton = true;
-    alert(showEditButton);
+    setShowEditButton(!showEditButton);
   }
 
   
@@ -330,9 +329,19 @@ const DataTables = (props) => {
                       <div>
                         <h2>{drugData[drugName]?.description || 'Default Description'}</h2>
                       </div>
-                      <Button className="admin-data-table-edit" title="Edit" onClick={handleEditClick}>
-                        Edit
-                      </Button>
+
+                      {!showEditButton && (
+                        <Button className="admin-data-table-edit" title="Edit" onClick={handleEditClick}>
+                          Edit
+                        </Button>
+                      )}
+
+                      {showEditButton && (
+                        <Button className="admin-data-table-edit" title="Edit" onClick={handleEditClick}>
+                          Done
+                        </Button>
+                      )}
+
                       <Button sx={{ backgroundColor: "#96d2b0", color: "#000000" }} onClick={() => toggleActiveSubcategory(drugName, false)}>
                         <CloseIcon />
                       </Button>

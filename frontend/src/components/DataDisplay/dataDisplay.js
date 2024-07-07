@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState} from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,9 +7,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Button } from '@mui/material';
+import EditDataTable from '../../pages/admin/EditDataTable';
 
 export default function StickyHeadTable({ drugName, subcategoryHeaders, showEditButton }) {
 
+  const [showEditForm, setShowEditForm] = useState(false);
 
   if (!subcategoryHeaders || subcategoryHeaders.length === 0) {
     return <div className="Liam"></div>;
@@ -34,38 +36,22 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, showEdit
     rows.push(row);
   }
 
+  function handleClickEvent() {
+    setShowEditForm(!showEditForm);
+  }
+
 
 
   return (
+    
     <Paper sx={{ width: '100%', maxWidth: '100%', overflow: 'hidden' }}>
-      <TableContainer>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {showEditButton && (
-                <TableCell> Edit </TableCell>
-              )}
-              {headers.map((header, index) => (
-                
-                <TableCell
-                  key={header.id}
-                  align={header.align}
-                  style={{ backgroundColor: 'white', fontSize: '16px', position: index === 0 ? 'sticky' : 'static', left: index === 0 ? 0 : 'auto', zIndex: index === 0 ? 1 : 'auto' }}
-                >
-                  {header.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row, rowIndex) => (
-              <TableRow hover tabIndex={-1} key={rowIndex}>
+      {!showEditForm && (
+        <TableContainer>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
                 {showEditButton && (
-                  <TableCell> 
-                    <Button onClick={() => {
-                      alert("test");
-                    } }>Edit</Button>  
-                  </TableCell>
+                  <TableCell> Edit </TableCell>
                 )}
                 {headers.map((header, index) => (
                   
@@ -74,16 +60,47 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, showEdit
                     align={header.align}
                     style={{ backgroundColor: 'white', fontSize: '16px', position: index === 0 ? 'sticky' : 'static', left: index === 0 ? 0 : 'auto', zIndex: index === 0 ? 1 : 'auto' }}
                   >
-                    {row[header.id]}
+                    {header.label}
                   </TableCell>
                 ))}
-                
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Paper>
+            </TableHead>
+            <TableBody>
+              {rows.map((row, rowIndex) => (
+                <TableRow hover tabIndex={-1} key={rowIndex}>
+                  {showEditButton && (
+                    <TableCell> 
+                      <Button onClick={handleClickEvent}>Edit</Button>  
+                    </TableCell>
+                  )}
+                  {headers.map((header, index) => (
+                    
+                    <TableCell
+                      key={header.id}
+                      align={header.align}
+                      style={{ backgroundColor: 'white', fontSize: '16px', position: index === 0 ? 'sticky' : 'static', left: index === 0 ? 0 : 'auto', zIndex: index === 0 ? 1 : 'auto' }}
+                    >
+                      {row[header.id]}
+                    </TableCell>
+                  ))}
+                  
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
+      
+      
+      {showEditForm && (
+        <div>
+          <EditDataTable />
+          <Button onClick={handleClickEvent}>Done</Button>
+        </div>
+      )}
 
+    </Paper>
+    
+      
   );
 }
