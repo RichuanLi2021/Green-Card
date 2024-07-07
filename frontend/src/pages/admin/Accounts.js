@@ -6,6 +6,7 @@ import axios from 'axios';
 import Config from "../../config/config";
 import "./Accounts.css";
 import ROLE_IDS from "../../config/constants";
+import ToastComponent from "../../components/ToastComponent";
 
 
 const theme = createTheme({
@@ -23,6 +24,8 @@ const Accounts = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCustomers, setSelectedCustomers] = useState([]);
   const selectedListRef = useRef(customersList);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState('');
 
   useEffect(() => {
     const fetchCustomers = async () => {
@@ -64,7 +67,7 @@ const Accounts = () => {
 
   const handleSetPrivileges = async (newRoleID, successMessage, errorMessage) => {
     if (selectedCustomers.length === 0) {
-      alert('Please select a user before setting status');
+      showToast('Please select a user before setting status', 'error');
       return;
     }
     const selectedCustomersIDs = selectedCustomers.map(customer => customer.User_Roles[0].userID);
@@ -76,19 +79,19 @@ const Accounts = () => {
         newRoleID
       }, { withCredentials: true });
       if (response.status === 200) {
-        alert(successMessage);
+        showToast(successMessage, 'success');
       }
     } catch (error) {
-      alert(errorMessage);
+      showToast(errorMessage, 'error');
     }
   };
 
   const setAdminPrivileges = async () => {
-    await handleSetPrivileges( ROLE_IDS.ADMIN,"Admin privileges assigned successfully","Failed to assign admin privileges");
+    await handleSetPrivileges( ROLE_IDS.ADMIN,"Successfully assigned admin privileges","Failed to assign admin privileges");
   };
 
   const setUserPrivileges = async () => {
-    await handleSetPrivileges( ROLE_IDS.USER,"User status reset successfully","Failed to reset user status");
+    await handleSetPrivileges( ROLE_IDS.USER,"Successfully reset to user status","Failed to reset to user status");
   };
 
   const filteredCustomersList = customersList.filter((customer) =>
@@ -96,6 +99,15 @@ const Accounts = () => {
     customer.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
     customer.lastName.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const showToast = (message, type) => {
+    setToastMessage(message);
+    setToastType(type);
+    setTimeout(() => {
+      setToastMessage('');
+      setToastType('');
+    }, 3000);
+  };
 
     return (
       <ThemeProvider theme={theme}>
@@ -170,6 +182,7 @@ const Accounts = () => {
             </Table>
           </TableContainer>
         </div>
+        <ToastComponent message={toastMessage} type={toastType} />
       </ThemeProvider>
     );
   };
