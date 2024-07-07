@@ -16,7 +16,8 @@ module.exports = {
       },
       userID: {
         allowNull: false,
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        unique: true,
       },
       roleID: {
         allowNull: false,
