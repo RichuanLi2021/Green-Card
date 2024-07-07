@@ -28,4 +28,7 @@ router.use('/subcategory_types', subcategoryTypesRoute);
 const usersRoute = require('./users');
 router.use('/users', usersRoute);
 
+const userRolesRoute = require('./user_roles');
+router.use('/user_roles', userRolesRoute);
+
 module.exports = router;
