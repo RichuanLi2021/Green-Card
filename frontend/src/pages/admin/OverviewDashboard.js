@@ -8,14 +8,14 @@ import "./OverviewDashboard.css";
 
 export default function OverviewDashboard() {
 
-  // const [usersData, setUsersData] = useState([]);
+  const [usersData, setUsersData] = useState([]);
   const [disciplinesData, setDisciplinesData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios.get('http://localhost:8887/api/users')
       .then(response => {
-        // setUsersData(response.data);
+        setUsersData(response.data);
         calculateDisciplines(response.data);
         setLoading(false);
       })
