@@ -6,8 +6,8 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Button } from '@mui/material';
-import EditDataTable from '../../pages/admin/EditDataTable';
+import { Button, TextField } from '@mui/material';
+
 
 export default function StickyHeadTable({ drugName, subcategoryHeaders, showEditButton }) {
 
@@ -72,7 +72,7 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, showEdit
                   <TableRow hover tabIndex={rowIndex} key={rowIndex}>
                     {showEditButton && (
                       <TableCell> 
-                        <Button onClick={function(event){handleClickEvent(); setRowEditNum(rowIndex)}}>Edit</Button>  
+                        <Button onClick={function(event){setRowEditNum(rowIndex); handleClickEvent()}}>Edit</Button>  
                       </TableCell>
                     )}
                     {headers.map((header, index) => (
@@ -90,17 +90,33 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, showEdit
                 ))}
               </TableBody>
             )}
+            {showEditForm && (
+              <TableBody>
+                
+                  <TableRow hover >
+
+                    {headers.map((header, index) => (
+                      
+                      <TableCell
+                        key={header.id}
+                        align={header.align}
+                        style={{ backgroundColor: 'white', fontSize: '16px', position: index === 0 ? 'sticky' : 'static', left: index === 0 ? 0 : 'auto', zIndex: index === 0 ? 1 : 'auto' }}
+                      >
+                        <TextField defaultValue={rows[rowEditNum][header.id]}/>
+                      </TableCell>
+                    ))}
+                    
+                  </TableRow>
+                
+                <Button onClick={handleClickEvent}>Done</Button>
+              </TableBody>
+            )}
           </Table>
         </TableContainer>
       
       
       
-      {showEditForm && (
-        <div>
-          <EditDataTable headers={headers} rowToEdit={rowEditNum} rows={rows}/>
-          <Button onClick={handleClickEvent}>Done</Button>
-        </div>
-      )}
+      
 
     </Paper>
     
