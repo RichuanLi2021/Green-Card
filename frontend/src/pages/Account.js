@@ -101,6 +101,24 @@ export default function SignIn() {
     }
   };
 
+  const handleSubscribe = async () => {
+    try {
+      const response = await axios.patch(`${Config.API_URL}/api/users/${userData.uuid}/subscription`, {
+        newSubscriptionStatus: true,
+      }, { withCredentials: true });
+      if (response.status === 200) {
+        setUserData(prevData => ({
+          ...prevData,
+          subscribed: true
+        }));
+        alert('Successfully subscribed');
+      }
+    } catch (error) {
+      console.error("Failed to update subscription:", error);
+      alert("Failed to subscribe");
+    }
+  };
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -154,7 +172,7 @@ export default function SignIn() {
                       {item.data}
                     </Typography>
                     {!isAdmin && !userData.subscribed && item.label === "Subscription Status:" && (
-                      <Button variant="contained" sx={{ width: '30%', marginLeft: '1rem' }}>
+                      <Button variant="contained" sx={{ width: '30%', marginLeft: '1rem' }} onClick={handleSubscribe}>
                           Subscribe
                       </Button>
                     )}
