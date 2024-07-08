@@ -4,18 +4,24 @@ const bcrypt = require("bcrypt");
 
 // Get All (Admin Only)
 exports.getAllUsers = async (req, res) => {
-    try {
-        const users = await User.findAll({
-          include: {
-            model: User_Role,
-            attributes: { exclude: ['UserId', 'RoleId'] },
-            include: { model: Role }
-          }
-        });
-        return res.status(200).json(users);
-      } catch (error) {
-        return res.status(500).json({ error, errorMessage: 'Encountered unexpected error' });
+  try {
+    await User.findAll({
+      include: {
+        model: User_Role,
+        include: {
+          model: Role
+        }
       }
+    })
+      .then((message) => { 
+        return res.status(200).json(message) 
+      })
+      .catch((error) => { 
+        return res.status(400).json({ error, errorMessage: error['errors'][0].message }) 
+      });
+  } catch (error) {
+    return res.status(500).json({ error, errorMessage: 'Encountered unexpected error' });
+  }
 }
 
 // Get One (User and Admin)
