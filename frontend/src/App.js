@@ -16,9 +16,6 @@ import NavBar from "./components/Navigation";
 import Footer from './components/Footer';
 import Policy from './pages/Policy';
 import ForgotPassword from './pages/ForgotPassword';
-
-
-
 import PrivateRoute from './middleware/PrivateRoute';
 import PublicRoute from './middleware/PublicRoute';
 
@@ -40,12 +37,13 @@ export default function App() {
           <Route path="login" element={<PublicRoute><Login /></PublicRoute>} />
           <Route path="register" element={<PublicRoute><Register /></PublicRoute>} />
           <Route path="policy" element={<PublicRoute><Policy/></PublicRoute>} />
-
+          
 
           <Route path="home" element={<PrivateRoute><Home /></PrivateRoute>} />
           <Route path="account" element={<PrivateRoute><Account/></PrivateRoute>} />
           <Route path="ForgotPassword" element={<PublicRoute><ForgotPassword/></PublicRoute>} />
-
+          //Create 2 new components, one for email verification upon account creation (same page if attempts login while false)
+          //One for password reset feature [Possibly using JSX REACT]
 
           <Route path="admin">
             <Route path="dashboard" element={<AdminDashboard />} />

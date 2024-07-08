@@ -30,6 +30,8 @@ const ForgotPassword = () => {
     event.preventDefault();
     const dataCredential = new FormData(event.target);
 
+
+    //chris change from register to forgot password, from post to put
     axios
       .post(Config.API_URL + "/api/auth/register", {
         email: dataCredential.get("email"),
