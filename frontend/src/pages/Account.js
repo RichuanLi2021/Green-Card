@@ -18,6 +18,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Config from "../config/config";
 import logo from "../assets/images/icons/logo/white/WhiteShine256px.svg";
 import "./Account.css";
+import ROLE_IDS from "../config/constants";
 
 
 
@@ -36,18 +37,17 @@ export default function SignIn() {
   const [userData, setUserData] = useState({});
   const [open, setOpen] = useState(false);
   const [emailConfirm, setEmailConfirm] = useState("");
+  const [isAdmin, setIsAdmin] = React.useState(false);
 
 
   useEffect(() => {
     const userUUID = localStorage.getItem('user-uuid');
-    const userAccess = localStorage.getItem('user-role');
-    console.log('User UUID:', userUUID); // Log and test user UUID
-    console.log('Access: ', userAccess); // log and test user access
     if (userUUID) {
       axios.get(`${Config.API_URL}/api/users/${userUUID}`, { withCredentials: true })
         .then(response => {
           if (response.status === 200) {
             setUserData(response.data);
+            setIsAdmin(response.data?.User_Roles[0]?.roleID === ROLE_IDS.ADMIN);
           }
         })
         .catch(error => {
@@ -137,25 +137,30 @@ export default function SignIn() {
             }}
           >
             {userData && userData.User_Roles ? (
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+              <ul style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
                 {[
                   { label: "Email:", data: userData.email },
                   { label: "Discipline:", data: userData.discipline },
                   { label: "First Name:", data: userData.firstName },
                   { label: "Last Name:", data: userData.lastName },
                   { label: "Title:", data: userData.title },
-                  { label: "Subscription Status:", }
+                  !isAdmin && { label: "Subscription Status:", data: userData.subscribed ? "Active" : "Inactive"}
                 ].map((item, index) => (
-                  <Typography component="li" key={index} sx={{ display: 'flex', width: '100%', maxWidth: '800px' }}>
+                  <Box component="li" key={index} sx={{ display: 'flex', alignItems: 'center', width: '100%', maxWidth: '800px' }}>
                     <Typography variant="body2" component="span" sx={{ textAlign: 'left', marginRight: '2rem' }}>
                       {item.label}
                     </Typography>
                     <Typography variant="body2" component="span" sx={{ textAlign: 'left', fontWeight: 'bold', fontSize: '1.0rem' }}>
                       {item.data}
                     </Typography>
-                  </Typography>
+                    {!isAdmin && !userData.subscribed && item.label === "Subscription Status:" && (
+                      <Button variant="contained" sx={{ width: '30%', marginLeft: '1rem' }}>
+                          Subscribe
+                      </Button>
+                    )}
+                  </Box>
                 ))}
-                </div>
+                </ul>
               ) : (
               <Typography>
                 Loading...
@@ -209,30 +214,18 @@ export default function SignIn() {
               Submit Changes
             </Button>
 
-            {userData.title !== "Administrator" && (
-              <Button
-                type="subscribe"
-                fullWidth
-                variant="contained"
-                sx={{
-                  mt: 2,
-                  mb: 2,
-                }}
-              >
-                Subscribe
-              </Button>
+            {
+              !isAdmin && (
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="error"
+                  sx={{ mt: 1, mb: 1 }}
+                  onClick={() => setOpen(true)}
+                >
+                  Delete Account
+                </Button>
             )}
-
-
-            <Button
-            fullWidth
-            variant="contained"
-            color="error"
-            sx={{ mt: 1, mb: 1 }}
-            onClick={() => setOpen(true)}
-          >
-            Delete Account
-          </Button>
             
           </Box>
         </Box>
