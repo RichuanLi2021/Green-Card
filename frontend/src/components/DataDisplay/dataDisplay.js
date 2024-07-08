@@ -12,6 +12,7 @@ import EditDataTable from '../../pages/admin/EditDataTable';
 export default function StickyHeadTable({ drugName, subcategoryHeaders, showEditButton }) {
 
   const [showEditForm, setShowEditForm] = useState(false);
+  const [rowEditNum, setRowEditNum] = useState();
 
   if (!subcategoryHeaders || subcategoryHeaders.length === 0) {
     return <div className="Liam"></div>;
@@ -45,7 +46,7 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, showEdit
   return (
     
     <Paper sx={{ width: '100%', maxWidth: '100%', overflow: 'hidden' }}>
-      {!showEditForm && (
+      
         <TableContainer>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
@@ -65,36 +66,38 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, showEdit
                 ))}
               </TableRow>
             </TableHead>
-            <TableBody>
-              {rows.map((row, rowIndex) => (
-                <TableRow hover tabIndex={-1} key={rowIndex}>
-                  {showEditButton && (
-                    <TableCell> 
-                      <Button onClick={handleClickEvent}>Edit</Button>  
-                    </TableCell>
-                  )}
-                  {headers.map((header, index) => (
+            {!showEditForm && (
+              <TableBody>
+                {rows.map((row, rowIndex) => (
+                  <TableRow hover tabIndex={rowIndex} key={rowIndex}>
+                    {showEditButton && (
+                      <TableCell> 
+                        <Button onClick={function(event){handleClickEvent(); setRowEditNum(rowIndex)}}>Edit</Button>  
+                      </TableCell>
+                    )}
+                    {headers.map((header, index) => (
+                      
+                      <TableCell
+                        key={header.id}
+                        align={header.align}
+                        style={{ backgroundColor: 'white', fontSize: '16px', position: index === 0 ? 'sticky' : 'static', left: index === 0 ? 0 : 'auto', zIndex: index === 0 ? 1 : 'auto' }}
+                      >
+                        {row[header.id]}
+                      </TableCell>
+                    ))}
                     
-                    <TableCell
-                      key={header.id}
-                      align={header.align}
-                      style={{ backgroundColor: 'white', fontSize: '16px', position: index === 0 ? 'sticky' : 'static', left: index === 0 ? 0 : 'auto', zIndex: index === 0 ? 1 : 'auto' }}
-                    >
-                      {row[header.id]}
-                    </TableCell>
-                  ))}
-                  
-                </TableRow>
-              ))}
-            </TableBody>
+                  </TableRow>
+                ))}
+              </TableBody>
+            )}
           </Table>
         </TableContainer>
-      )}
+      
       
       
       {showEditForm && (
         <div>
-          <EditDataTable />
+          <EditDataTable headers={headers} rowToEdit={rowEditNum} rows={rows}/>
           <Button onClick={handleClickEvent}>Done</Button>
         </div>
       )}
