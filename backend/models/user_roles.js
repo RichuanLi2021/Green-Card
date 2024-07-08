@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {}
 
     toJSON() {
-      return { ...this.get(), id: undefined, userID: undefined, roleID: undefined }
+      return { ...this.get(), id: undefined }
     }
   }
 
@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     userID: {
       allowNull: false,
       type: DataTypes.INTEGER,
+      unique: true,
       validate: {
         notNull: { msg: 'User Role must have a user' },
         notEmpty: { msg: 'User Role user cannot be empty' }

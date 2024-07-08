@@ -203,12 +203,12 @@ const DataTables = (props) => {
     <div className="admin-data-holder">
       <Toolbar id="back-to-top-anchor" /> {/*This tool bar is only used as an anchor to return to the top of the page*/}
       <ThemeProvider theme={theme}>
-        <Container className="admin-data-main-container"  maxWidth={false}
+        <Container className="admin-data-main-container" maxWidth={false}
           sx={{
-                width: "100%",
-              }}
+            width: "100%",
+          }}
         >
-          <Grid className="drug-table-grid" container spacing={4} direction="row" sx={{ textAlign: "left"}}>
+          <Grid className="drug-table-grid" container spacing={4} direction="row" sx={{ textAlign: "left" }}>
             <Grid item xs={12} sm={3}>
               <Card className="drug-table-categories" sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
                 {drugList.map(drugCategory => {
@@ -243,7 +243,10 @@ const DataTables = (props) => {
                           }}
                         >
                           <Typography className="drug-dropdown" variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                            {drugItem.name}
+                            {
+                              drugItem.name.endsWith("Medication Table") ?
+                                drugItem.name.split("Medication Table")[0]
+                                : drugItem.name}
                           </Typography>
                         </Button>
 
@@ -276,7 +279,10 @@ const DataTables = (props) => {
                                     toggleActiveSubcategory(drugItem.route, shouldDisplay);
                                   }}
                                 >
-                                  {drugItem.name}
+                                  {
+                                    drugItem.name.endsWith("Medication Table") ?
+                                      drugItem.name.split("Medication Table")[0]
+                                      : drugItem.name}
                                 </Typography>
                               </div>
                             ))}
@@ -313,21 +319,20 @@ const DataTables = (props) => {
                         View, edit, and update the drug tables <br></br>
                         Last Updated: {latestUpdated.toLocaleDateString()} {latestUpdated.toLocaleTimeString()}
                       </Typography>
-
-                      
                     )}
-
-                    
-
                   </Box>
                 </div>
              
                 {selectedDrugs.map(drugName => (
-                  
+
                   <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
                     <div className="admin-header-container">
                       <div>
-                        <h2>{drugData[drugName]?.description || 'Default Description'}</h2>
+                        <h2>{
+                            drugData[drugName]?.description.endsWith("Medication Table") ?
+                            drugData[drugName]?.description.split("Medication Table")[0] :
+                            drugData[drugName]?.description || 'Default Description'
+                        }</h2>
                       </div>
 
                       {!showEditButton && (
