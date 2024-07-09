@@ -16,6 +16,7 @@ module.exports = {
         password: '$2b$12$A2mZHxpQwxRmsh.e9bMD0uS1q4ukYf3oDuvq7T87tnrjxe35WqfDK', //pass: W3q8&MW1+R;h$ZfKWa;
         verified: true,
         subscribed: true,
+        subscriptionUpdatedAt: new Date(),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -30,6 +31,7 @@ module.exports = {
         password: '$2b$12$lvxPVQZ0EqHzAnqoYXAp3ezapE.r97C22wiGrWDmQVlyfZS3SoK7O', //pass: user123
         verified: true,
         subscribed: false,
+        subscriptionUpdatedAt: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -43,7 +45,8 @@ module.exports = {
         email: 'user2@gpgc.ca', 
         password: '$2b$12$lvxPVQZ0EqHzAnqoYXAp3ezapE.r97C22wiGrWDmQVlyfZS3SoK7O', //pass: user123
         verified: true,
-        subscribed: false,
+        subscribed: true,
+        subscriptionUpdatedAt: new Date(),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -58,6 +61,7 @@ module.exports = {
         password: '$2b$12$lvxPVQZ0EqHzAnqoYXAp3ezapE.r97C22wiGrWDmQVlyfZS3SoK7O', //pass: user123
         verified: true,
         subscribed: false,
+        subscriptionUpdatedAt: null,
         createdAt: new Date(),
         updatedAt: new Date()
       }
