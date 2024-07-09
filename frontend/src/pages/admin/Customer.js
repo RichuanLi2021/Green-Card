@@ -47,6 +47,12 @@ const Customer = () => {
     handleCloseMenu();
   };
 
+  const handleSortBySubscription = () => {
+    const sortedList = [...customersList].sort((a, b) => b.subscribed - a.subscribed);
+    setCustomersList(sortedList);
+    handleCloseMenu();
+  };
+
   const handleReset = () => {
     // Logic to reset any filters or sorting
     setSearchQuery('');
@@ -92,6 +98,7 @@ const Customer = () => {
             >
               <MenuItem onClick={handleSortByDiscipline}>By Discipline</MenuItem>
               <MenuItem onClick={handleSortByTitle}>By Title</MenuItem>
+              <MenuItem onClick={handleSortBySubscription}>By Subscription Status</MenuItem>
               </Menu>
               <Button onClick={handleReset}>Reset</Button>
         </ButtonGroup>
@@ -106,6 +113,7 @@ const Customer = () => {
                   <TableCell>Discipline</TableCell>
                   <TableCell>Title</TableCell>
                   <TableCell>Email</TableCell>
+                  <TableCell>Subscription Status</TableCell>
                   <TableCell>Last Login</TableCell>
                   <TableCell>Date Created</TableCell>
 
@@ -119,6 +127,7 @@ const Customer = () => {
                     <TableCell>{customer.discipline}</TableCell>
                     <TableCell>{customer.title}</TableCell>
                     <TableCell>{customer.email}</TableCell>
+                    <TableCell>{customer.subscribed? "Active" : "Inactive"}</TableCell>
                     <TableCell>{new Date(customer.lastLogin).toLocaleDateString('en-ca')}</TableCell>
                     <TableCell>{new Date(customer.createdAt).toLocaleDateString('en-ca')}</TableCell>
                   </TableRow>
