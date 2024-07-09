@@ -17,6 +17,8 @@ const Customer = () => {
   const [customersList, setCustomersList] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [anchorEl, setAnchorEl] = useState(null); //For handling dropdown menu
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [selectedSubscription, setSelectedSubscription] = useState(null);
 
   const fetchCustomers = async () => {
     try {
@@ -75,6 +77,14 @@ const Customer = () => {
     customer.lastName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const handleClickSubscription = (customer) => {
+    setSelectedSubscription({
+      subscribed: customer.subscribed ? "Yes": "No",
+      updatedAt: customer.subscriptionUpdatedAt,
+    });
+    setPopupOpen(true);
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Box className="customer-form-container">
@@ -127,8 +137,8 @@ const Customer = () => {
                     <TableCell>{customer.discipline}</TableCell>
                     <TableCell>{customer.title}</TableCell>
                     <TableCell>{customer.email}</TableCell>
-                    <TableCell>{customer.subscribed? "Active" : "Inactive"}</TableCell>
-                    <TableCell>{new Date(customer.lastLogin).toLocaleDateString('en-ca')}</TableCell>
+                    <TableCell onClick={() => handleClickSubscription(customer)}>{customer.subscribed? "Active" : "Inactive"}</TableCell>
+                    <TableCell>{customer.lastLogin? new Date(customer.lastLogin).toLocaleDateString('en-ca') : "Never"}</TableCell>
                     <TableCell>{new Date(customer.createdAt).toLocaleDateString('en-ca')}</TableCell>
                   </TableRow>
                 ))}
@@ -136,6 +146,24 @@ const Customer = () => {
             </Table>
           </TableContainer>
         </div>
+        {/*PopUp Modal*/}
+        {popupOpen && (
+            <Box className={'popup-backdrop show-popup'} onClick={() => setPopupOpen(false)} />
+        )}
+        {popupOpen && (
+            <Box className={'popup show-popup'}>
+              <Typography variant='h6' className='title' mb={2} align='center'>
+                Subscription Status Details
+              </Typography>
+              <Typography mb={2}>Subscribed: {selectedSubscription.subscribed}</Typography>
+              <Typography mb={2}>Date: {selectedSubscription.updatedAt? new Date(selectedSubscription.updatedAt).toLocaleDateString('en-ca') : 'N/A'}</Typography>
+              <Box sx={{ m: 1.5, display: 'flex', justifyContent: 'center' }}>
+                <Button sx={{backgroundColor: '#96d2b0', color: 'black'}} onClick={() => setPopupOpen(false)} className='popup-close-button'>
+                  Close
+                </Button>
+              </Box>
+            </Box>
+        )}
       </Box>
     </ThemeProvider>
   );
