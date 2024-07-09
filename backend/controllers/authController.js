@@ -3,6 +3,7 @@ const { createToken } = require('../utils/token')
 const { v4: uuidv4 } = require("uuid")
 const bcrypt = require('bcrypt')
 const env = require('../config/env');
+const crypto = require('crypto');
 
 // Authenticate user login
 exports.userLogin = async (req, res) => {
@@ -123,15 +124,18 @@ exports.forgotPassword = async (req, res) => {
     user.passwordResetTokenExpiry = passwordResetTokenExpiry;
     await user.save();
 
+
+    /*
     // Send email with password reset link containing token
     // Example implementation using Nodemailer:
     const resetLink = `http://example.com/reset-password?token=${passwordResetToken}`;
     await sendPasswordResetEmail(email, resetLink);
+    */
 
-    return res.status(200).json({ message: 'Password reset email sent' });
+    return res.status(200).json({ token: passwordResetToken });
   } catch (error) {
     console.error('Error requesting password reset:', error);
-    return res.status(500).json({ error, errorMessage: 'Encountered unexpected error while requesting password reset' });
+    return res.status(500).json({ error, errorMessage: 'Encountered unexpected error while requesting password reset', error: error.message });
   }
 }
 
