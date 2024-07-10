@@ -36,7 +36,7 @@ const ResetPassword = () => {
 
     try {
       console.log(token.get("token"));
-      await axios.put(`http://localhost:8887/api/auth/reset-password/${token.get("token")}`, {newPassword: password });
+      await axios.put(`http://localhost:8887/api/auth/reset-password/${token.get("token")}`, {newPassword: password, token: token.get("token") });
       setSuccess("Password has been reset successfully.");
       setTimeout(() => {
         navigate("/login");

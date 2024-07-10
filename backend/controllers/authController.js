@@ -145,9 +145,9 @@ exports.forgotPassword = async (req, res) => {
 }
 
 exports.resetPassword = async (req, res) => {
-  const { token } = req.params.token; // Get the token from the request URL parameters
-  console.log(req.params.token);
-  const { password: newPassword } = req.body; // Get the new password from the request body
+  //const { token } = req.params.token; // Get the token from the request URL parameters
+  //console.log(req.params.token);
+  const { newPassword: password, token } = req.body; // Get the new password from the request body
 
   try {
     const user = await User.findOne({ where: { passwordResetToken: token } });
