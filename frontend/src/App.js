@@ -18,6 +18,7 @@ import Policy from './pages/Policy';
 import ForgotPassword from './pages/ForgotPassword';
 import PrivateRoute from './middleware/PrivateRoute';
 import PublicRoute from './middleware/PublicRoute';
+import ResetPassword from './pages/ResetPassword';
 
 
 
@@ -41,9 +42,12 @@ export default function App() {
 
           <Route path="home" element={<PrivateRoute><Home /></PrivateRoute>} />
           <Route path="account" element={<PrivateRoute><Account/></PrivateRoute>} />
-          <Route path="ForgotPassword" element={<PublicRoute><ForgotPassword/></PublicRoute>} />
+          <Route path="forgotpassword" element={<PublicRoute><ForgotPassword/></PublicRoute>} />
+          
           //Create 2 new components, one for email verification upon account creation (same page if attempts login while false)
           //One for password reset feature [Possibly using JSX REACT]
+          <Route path="/reset-password" element={<PublicRoute><ResetPassword /></PublicRoute>} />
+
 
           <Route path="admin">
             <Route path="dashboard" element={<AdminDashboard />} />

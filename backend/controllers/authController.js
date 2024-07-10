@@ -125,6 +125,11 @@ exports.forgotPassword = async (req, res) => {
     await user.save();
 
 
+    // Debug log
+    console.log('Generated token:', passwordResetToken);
+    console.log('Expiry:', passwordResetTokenExpiry);
+
+
     /*
     // Send email with password reset link containing token
     // Example implementation using Nodemailer:
@@ -132,7 +137,7 @@ exports.forgotPassword = async (req, res) => {
     await sendPasswordResetEmail(email, resetLink);
     */
 
-    return res.status(200).json({ token: passwordResetToken });
+    return res.status(200).json({ message: 'Password reset email sent', token: passwordResetToken});
   } catch (error) {
     console.error('Error requesting password reset:', error);
     return res.status(500).json({ error, errorMessage: 'Encountered unexpected error while requesting password reset', error: error.message });
@@ -140,10 +145,20 @@ exports.forgotPassword = async (req, res) => {
 }
 
 exports.resetPassword = async (req, res) => {
-  const { token, newPassword } = req.body;
+  const { token } = req.params.token; // Get the token from the request URL parameters
+  console.log(req.params.token);
+  const { password: newPassword } = req.body; // Get the new password from the request body
 
   try {
     const user = await User.findOne({ where: { passwordResetToken: token } });
+
+   // Debug logs
+   console.log('Token from params:', token);
+   console.log('User found:', user ? user.email : 'No user found');
+   if (user) {
+     console.log('Token expiry:', user.passwordResetTokenExpiry);
+     console.log('Current time:', new Date());
+   }
 
     if (!user || user.passwordResetTokenExpiry < new Date()) {
       return res.status(400).json({ errorMessage: 'Invalid or expired password reset token' });
@@ -151,9 +166,11 @@ exports.resetPassword = async (req, res) => {
 
     // Hash the new password
     const hashedPassword = await bcrypt.hash(newPassword, 12);
+    console.log(hashedPassword + "22222222")
 
     // Update the user's password and clear the reset token and expiry
     user.password = hashedPassword;
+    console.log(user.password);
     user.passwordResetToken = null;
     user.passwordResetTokenExpiry = null;
     await user.save();
@@ -161,6 +178,6 @@ exports.resetPassword = async (req, res) => {
     return res.status(200).json({ message: 'Password has been successfully reset' });
   } catch (error) {
     console.error('Error resetting password:', error);
-    return res.status(500).json({ error, errorMessage: 'Encountered unexpected error while resetting password' });
+    return res.status(500).json({ errorMessage: 'Encountered unexpected error while resetting password', error: error.message });
   }
 }

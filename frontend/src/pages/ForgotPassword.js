@@ -28,16 +28,23 @@ const ForgotPassword = () => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const email = formData.get("email");
-
+  
     try {
-      const response = await axios.put("http://localhost:8887/api/auth/forgot-password", { email });
-      const token = response.data.token;
-      const link = `${window.location.origin}/reset-password?token=${token}`;
-      setResetLink(link);
+      const response = await axios.put(`http://localhost:8887/api/auth/forgot-password`, { email }, { withCredentials: true });
+      
+      const { message, token } = response.data; // Assuming your backend sends back 'token'
+  
+      if (token) {
+        const link = `${window.location.origin}/reset-password?token=${token}`;
+        setResetLink(link);
+      } else {
+        setError("Failed to receive reset token from server.");
+      }
     } catch (error) {
       setError("Failed to send reset link. Please try again.");
     }
   };
+  
 
   return (
     <ThemeProvider theme={theme}>
