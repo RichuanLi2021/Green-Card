@@ -44,8 +44,8 @@ export default function App() {
           <Route path="account" element={<PrivateRoute><Account/></PrivateRoute>} />
           <Route path="forgotpassword" element={<PublicRoute><ForgotPassword/></PublicRoute>} />
           
-          //Create 2 new components, one for email verification upon account creation (same page if attempts login while false)
-          //One for password reset feature [Possibly using JSX REACT]
+          
+
           <Route path="/reset-password" element={<PublicRoute><ResetPassword /></PublicRoute>} />
 
 

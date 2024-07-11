@@ -147,7 +147,7 @@ exports.forgotPassword = async (req, res) => {
 exports.resetPassword = async (req, res) => {
   //const { token } = req.params.token; // Get the token from the request URL parameters
   //console.log(req.params.token);
-  const { newPassword, token } = req.body; // Get the new password from the request body
+  const { newPassword: password, token } = req.body; // Get the new password from the request body
 
   try {
     const user = await User.findOne({ where: { passwordResetToken: token } });
@@ -165,7 +165,7 @@ exports.resetPassword = async (req, res) => {
     }
 
     // Hash the new password
-    const hashedPassword = await bcrypt.hash(newPassword, 12);
+    const hashedPassword = await bcrypt.hash(password, 12);
     console.log(hashedPassword + "22222222")
 
     // Update the user's password and clear the reset token and expiry
