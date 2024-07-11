@@ -22,7 +22,7 @@ const theme = createTheme({
 
 const ForgotPassword = () => {
   const [resetLink, setResetLink] = React.useState("");
-  const [error, setError] = React.useState("");
+  const [setError] = React.useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,7 +32,7 @@ const ForgotPassword = () => {
     try {
       const response = await axios.put(`http://localhost:8887/api/auth/forgot-password`, { email }, { withCredentials: true });
       
-      const { message, token } = response.data; // Assuming your backend sends back 'token'
+      const { token } = response.data; // Assuming your backend sends back 'token'
   
       if (token) {
         const link = `${window.location.origin}/reset-password?token=${token}`;
