@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useParams, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -20,7 +20,7 @@ const theme = createTheme({
 });
 
 const ResetPassword = () => {
-  const [token, setToken] = useSearchParams();
+  const [token] = useSearchParams();
   const navigate = useNavigate();
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
