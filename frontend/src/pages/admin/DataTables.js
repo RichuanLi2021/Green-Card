@@ -40,8 +40,6 @@ const DataTables = (props) => {
   const drugDisplayRefs = useRef({});
   const [activeSubcategories, setActiveSubcategories] = useState({});
   const [latestUpdated, setLatestUpdated] = useState(null);
-
-  const showEditButton = true;
   
   useEffect(() => {
     const fetchCategories = async () => {
@@ -335,7 +333,7 @@ const DataTables = (props) => {
                         <CloseIcon />
                       </Button>
                     </div>
-                    <DataDisplay showEditButton={showEditButton} subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
+                    <DataDisplay subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
                   </div>
                 ))}
               </Box>

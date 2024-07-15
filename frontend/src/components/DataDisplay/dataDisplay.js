@@ -7,12 +7,15 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Button, TextField } from '@mui/material';
+import axios from 'axios';
+import Config from "../../config/config"
 
 
-export default function StickyHeadTable({ drugName, subcategoryHeaders, showEditButton }) {
+export default function StickyHeadTable({ drugName, subcategoryHeaders}) {
 
   const [showEditForm, setShowEditForm] = useState(false);
   const [rowEditNum, setRowEditNum] = useState();
+  const [showEditButton, setShowEditButton] = useState(true);
 
   if (!subcategoryHeaders || subcategoryHeaders.length === 0) {
     return <div className="Liam"></div>;
@@ -22,6 +25,7 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, showEdit
   const headers = subcategoryHeaders.map(header => ({
     id: header.title,
     label: header.title,
+    uuid: header.uuid,
     minWidth: 170
   }));
 
@@ -39,6 +43,23 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, showEdit
 
   function handleClickEvent() {
     setShowEditForm(!showEditForm);
+    setShowEditButton(!showEditButton);
+  }
+
+ 
+  const updateDrugData = async (drugUUID, subcategoryHeaderUUID, dataValue) => {
+    try{
+      const updateData = await axios.put(`${Config.API_URL}/api/subcategory_data/${drugUUID}`, {
+        headerUUID: subcategoryHeaderUUID,  
+        value: dataValue
+      }, {withCredentials: true});
+      if(updateData.status === 200) {
+        alert("success");
+      }
+
+    } catch(error) {
+      console.log(error);
+    }
   }
 
 
@@ -103,6 +124,7 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, showEdit
                         style={{ backgroundColor: 'white', fontSize: '16px', position: index === 0 ? 'sticky' : 'static', left: index === 0 ? 0 : 'auto', zIndex: index === 0 ? 1 : 'auto' }}
                       >
                         <TextField defaultValue={rows[rowEditNum][header.id]}/>
+                        {console.log(subcategoryHeaders[0].Subcategory_Data[0].uuid)}
                       </TableCell>
                     ))}
                     
