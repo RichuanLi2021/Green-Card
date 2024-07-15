@@ -101,6 +101,8 @@ const DataTables = (props) => {
     }
   }, [scrollToDrugName, drugData]); // Depend on scrollToDrugName and drugData
 
+  console.log("drug data is: ", drugData)
+
 
   const toggleActiveSubcategory = (drugName, shouldDisplay) => {
     if (shouldDisplay) {
@@ -112,7 +114,17 @@ const DataTables = (props) => {
       if (!drugData[drugName]) {
         axios.get(`${Config.API_URL}/api/subcategories/${drugName}`, { withCredentials: true })
           .then(response => {
-            setDrugData(prev => ({ ...prev, [drugName]: response.data }));
+            const fetchedData = response.data; //feched data contains all info
+            const formattedHeaders = fetchedData.Subcategory_Headers.map(header => ({
+              title: header.title,
+              uuid: header.uuid,
+              Subcategory_Data: header.Subcategory_Data.map(dataItem => ({
+              value: dataItem.value,
+              uuid: dataItem.uuid
+            }))
+          }));
+            // Update the state with the new formatted headers
+          setDrugData(prev => ({ ...prev, [drugName]: { ...fetchedData, Subcategory_Headers: formattedHeaders } }));
           })
           .catch(error => {
             console.log(error);
@@ -132,11 +144,11 @@ const DataTables = (props) => {
     const checkbox = document.getElementById(`${drugName}Checkbox`);
     if (checkbox) {
       checkbox.checked = shouldDisplay;
-
     }
-
-
   };
+
+  
+
 
 
   const handleCheckboxChange = (drugName, isChecked) => {
@@ -335,7 +347,11 @@ const DataTables = (props) => {
                         <CloseIcon />
                       </Button>
                     </div>
-                    <DataDisplay showEditButton={showEditButton} subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
+                    <DataDisplay 
+                      showEditButton={showEditButton} 
+                      subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} 
+                      drugName={drugName} //subcategory uuid
+                    />
                   </div>
                 ))}
               </Box>
