@@ -62,6 +62,10 @@ module.exports = {
         defaultValue: 0,
         type: DataTypes.BOOLEAN
       },
+      subscriptionUpdatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: null,
+      },
       lastLogin: {
         type: DataTypes.DATE
       },

@@ -4,7 +4,7 @@ const { validateUserToken } = require('../middleware/validateToken')
 const allCategoryController = require ('../controllers/allCategoryController')
 
 // Get All Categories (with subcategories, type, headers, and data)
-router.get('/categories', allCategoryController.getAllCategory)
+router.get('/categories', validateUserToken, allCategoryController.getAllCategory)
 
 // Get All Subcategories (with type, headers, and data)
 router.get('/subcategories', validateUserToken, allCategoryController.getAllSubcatrgories)
