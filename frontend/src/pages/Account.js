@@ -37,7 +37,7 @@ export default function SignIn() {
   const [userData, setUserData] = useState({});
   const [open, setOpen] = useState(false);
   const [emailConfirm, setEmailConfirm] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
 
 
   useEffect(() => {
