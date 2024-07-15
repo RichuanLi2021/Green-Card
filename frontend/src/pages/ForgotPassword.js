@@ -36,7 +36,7 @@ const ForgotPassword = () => {
   
       if (token) {
         const link = `${window.location.origin}/reset-password?token=${token}`;
-        setResetLink(link);
+        //setResetLink(link);//Chris - This generates reset link
       } else {
         setError("Failed to receive reset token from server.");
       }
