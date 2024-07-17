@@ -75,6 +75,13 @@ module.exports = (sequelize, DataTypes) => {
         notNull: { msg: 'Subscription status cannot be null' }
       }
     },
+    subscriptionUpdatedAt: {
+      type: DataTypes.DATE,
+      defaultValue: null,
+      validate: {
+        isDate: { msg: 'User subscribedAt must be a date' }
+      }
+    },
     lastLogin: {
       type: DataTypes.DATE,
       validate: {

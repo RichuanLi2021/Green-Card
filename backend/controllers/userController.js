@@ -122,7 +122,7 @@ exports.updateUser = async (req, res) => {
   // Get User's Subscription Status
   exports.getUserSubscription = async (req, res) => {
     try {
-      const user = await User.findOne({ attributes: ['subscribed'], where: { uuid: req.params.id } });
+      const user = await User.findOne({ attributes: ['subscribed', 'subscriptionUpdatedAt'], where: { uuid: req.params.id } });
       if (!user) return res.status(404).json({ errorMessage: 'User not found' });
       return res.status(200).json({ subscribed: user.subscribed });
     } catch (error) {
@@ -134,7 +134,7 @@ exports.updateUser = async (req, res) => {
   exports.updateUserSubscription = async (req, res) => {
     try {
       const { newSubscriptionStatus } = req.body;
-      const [updated] = await User.update({ subscribed: newSubscriptionStatus }, { where: { uuid: req.params.id } });
+      const [updated] = await User.update({ subscribed: newSubscriptionStatus, subscriptionUpdatedAt: new Date() }, { where: { uuid: req.params.id } });
       if (updated === 0) return res.status(400).json({ errorMessage: 'Encountered error while updating subscription status' });
       const message = newSubscriptionStatus ? 'Successfully subscribed.' : 'Successfully unsubscribed.';
       return res.status(200).json({ message, subscribed: newSubscriptionStatus });
