@@ -101,21 +101,23 @@ export default function SignIn() {
     }
   };
 
-  const handleSubscribe = async () => {
+  const handleUpdateSubscription = async () => {
+    const newSubscriptionStatus = !userData.subscribed;
+    const message = newSubscriptionStatus ? "subscribed" : "unsubscribed";
     try {
       const response = await axios.patch(`${Config.API_URL}/api/users/${userData.uuid}/subscription`, {
-        newSubscriptionStatus: true,
+        newSubscriptionStatus: newSubscriptionStatus,
       }, { withCredentials: true });
       if (response.status === 200) {
         setUserData(prevData => ({
           ...prevData,
-          subscribed: true
+          subscribed: newSubscriptionStatus
         }));
-        alert('Successfully subscribed');
+        alert(`Successfully ${message}!`);
       }
     } catch (error) {
       console.error("Failed to update subscription:", error);
-      alert("Failed to subscribe");
+      alert("Encountered unexpected error");
     }
   };
 
@@ -171,9 +173,9 @@ export default function SignIn() {
                     <Typography variant="body2" component="span" sx={{ textAlign: 'left', fontWeight: 'bold', fontSize: '1.0rem' }}>
                       {item.data}
                     </Typography>
-                    {!isAdmin && !userData.subscribed && item.label === "Subscription Status:" && (
-                      <Button variant="contained" sx={{ width: '30%', marginLeft: '1rem' }} onClick={handleSubscribe}>
-                          Subscribe
+                    {!isAdmin && item.label === "Subscription Status:" && (
+                      <Button variant="contained" sx={{ width: '32%', marginLeft: '1rem' }} onClick={handleUpdateSubscription}>
+                        {userData.subscribed? "Unsubscribe": "Subscribe"}
                       </Button>
                     )}
                   </Box>
