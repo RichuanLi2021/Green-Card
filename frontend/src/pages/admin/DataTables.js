@@ -40,7 +40,7 @@ const DataTables = (props) => {
   const drugDisplayRefs = useRef({});
   const [activeSubcategories, setActiveSubcategories] = useState({});
   const [latestUpdated, setLatestUpdated] = useState(null);
-
+  
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -99,6 +99,8 @@ const DataTables = (props) => {
     }
   }, [scrollToDrugName, drugData]); // Depend on scrollToDrugName and drugData
 
+  console.log("drug data is: ", drugData)
+
 
   const toggleActiveSubcategory = (drugName, shouldDisplay) => {
     if (shouldDisplay) {
@@ -110,7 +112,17 @@ const DataTables = (props) => {
       if (!drugData[drugName]) {
         axios.get(`${Config.API_URL}/api/subcategories/${drugName}`, { withCredentials: true })
           .then(response => {
-            setDrugData(prev => ({ ...prev, [drugName]: response.data }));
+            const fetchedData = response.data; //feched data contains all info
+            const formattedHeaders = fetchedData.Subcategory_Headers.map(header => ({
+              title: header.title,
+              uuid: header.uuid,
+              Subcategory_Data: header.Subcategory_Data.map(dataItem => ({
+              value: dataItem.value,
+              uuid: dataItem.uuid
+            }))
+          }));
+            // Update the state with the new formatted headers
+          setDrugData(prev => ({ ...prev, [drugName]: { ...fetchedData, Subcategory_Headers: formattedHeaders } }));
           })
           .catch(error => {
             console.log(error);
@@ -130,11 +142,11 @@ const DataTables = (props) => {
     const checkbox = document.getElementById(`${drugName}Checkbox`);
     if (checkbox) {
       checkbox.checked = shouldDisplay;
-
     }
-
-
   };
+
+  
+
 
 
   const handleCheckboxChange = (drugName, isChecked) => {
@@ -183,6 +195,8 @@ const DataTables = (props) => {
       </Fade>
     );
   }
+
+  
 
 
   ScrollTop.propTypes = {
@@ -290,15 +304,10 @@ const DataTables = (props) => {
               <Box className="gray-square">
                 <div>
                   <Box
-                    sx={{
-                      textAlign: "center",
-                      flex: ".8",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                    }}
+                    className="data-table-header"
+                  
                   >
-
+                   
                     {/* Last Updated Timestamp Display */}
                     {latestUpdated && (
                       <Typography
@@ -318,11 +327,11 @@ const DataTables = (props) => {
                     )}
                   </Box>
                 </div>
-                <DataDisplay />
+             
                 {selectedDrugs.map(drugName => (
 
                   <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
-                    <div className="header-container">
+                    <div className="admin-header-container">
                       <div>
                         <h2>{
                             drugData[drugName]?.description.endsWith("Medication Table") ?
@@ -331,11 +340,15 @@ const DataTables = (props) => {
                         }</h2>
                       </div>
 
+
                       <Button sx={{ backgroundColor: "#96d2b0", color: "#000000" }} onClick={() => toggleActiveSubcategory(drugName, false)}>
                         <CloseIcon />
                       </Button>
                     </div>
-                    <DataDisplay subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
+                    <DataDisplay 
+                      subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} 
+                      drugName={drugName} //subcategory uuid
+                    />
                   </div>
                 ))}
               </Box>

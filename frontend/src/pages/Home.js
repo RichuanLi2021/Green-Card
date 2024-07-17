@@ -366,7 +366,7 @@ const HomePage = (props) => {
 
                       }}
                     >
-                      Dept of Psychiatry, Dalhousie University, Halifax, CANADA
+                      Department of Psychiatry, Dalhousie University, Halifax, CANADA
                     </Typography>
                     {/* Last Updated Timestamp Display */}
                     {latestUpdated && (

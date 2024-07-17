@@ -50,7 +50,7 @@ const LandingPage = () => {
         PharmD, MSc
       </Typography>
       <Typography variant="subtitle2" gutterBottom align="center" sx={{ ...commonTextStyles }}>
-        Dept of Psychiatry, Dalhousie University, Halifax, CANADA
+        Department of Psychiatry, Dalhousie University, Halifax, CANADA
       </Typography>
       <Grid container spacing={2} justifyContent="center">
         <Grid item>
