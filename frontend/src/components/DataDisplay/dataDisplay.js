@@ -11,11 +11,11 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import Config from '../../config/config';
 
-export default function StickyHeadTable({ drugName, subcategoryHeaders}) {
+export default function StickyHeadTable({ drugName, subcategoryHeaders, displayEdit}) {
   const [showEditForm, setShowEditForm] = useState(false);
   const [rowEditNum, setRowEditNum] = useState(null);
   const [editedValues, setEditedValues] = useState({});
-  const [showEditButton, setShowEditButton] = useState(true);
+  const [showEditButton, setShowEditButton] = useState(displayEdit);
 
   useEffect(() => {
     console.log('drugName:', drugName); // Log the subCategories uuid on console to check its value
@@ -207,4 +207,5 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders}) {
 StickyHeadTable.propTypes = {
   drugName: PropTypes.string.isRequired,
   subcategoryHeaders: PropTypes.array.isRequired,
+  displayEdit: PropTypes.bool.isRequired
 };
