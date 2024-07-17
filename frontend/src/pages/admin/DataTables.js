@@ -346,7 +346,6 @@ const DataTables = (props) => {
                       </Button>
                     </div>
                     <DataDisplay 
-                      showEditButton={false} 
                       subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} 
                       drugName={drugName} //subcategory uuid
                     />
