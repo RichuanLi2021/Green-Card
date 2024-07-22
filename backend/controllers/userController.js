@@ -107,7 +107,10 @@ exports.updateUser = async (req, res) => {
   
   // Delete One (User)
   exports.deleteUser = async (req, res) => {
-    if (req.user.uuid !== req.params.id) {
+    console.log('Req UID:', req.user.uuid);
+    console.log('req param ID:', req.param.id);
+    //
+    if (req.user.uuid !== req.body.uuid) {
       return res.status(403).json({ error: 'User is not authorized to delete this account' });
     }
     try {

@@ -26,18 +26,21 @@ const Accounts = () => {
   const selectedListRef = useRef(customersList);
   const [toastMessage, setToastMessage] = useState('');
   const [toastType, setToastType] = useState('');
+  const [loggedInUser, setLoggedInUser] = useState(null);
 
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
         const response = await axios.get(`${Config.API_URL}/api/users`, { withCredentials: true });
         setCustomersList(response.data);
+        setLoggedInUser(response.data[0]);
       } catch (error) {
         console.error('Error fetching users:', error);
       }
     };
 
     fetchCustomers();
+    setLoggedInUser({id: 1, role: ROLE_IDS.ADMIN });
   }, []);
   
   const handleSearchChange = (event) => {
@@ -67,7 +70,7 @@ const Accounts = () => {
 
   const handleSetPrivileges = async (newRoleID, successMessage, errorMessage) => {
     if (selectedCustomers.length === 0) {
-      showToast('Please select a user before setting status', 'error');
+      showToast('Please select a user before setting status or deleting', 'error');
       return;
     }
     const selectedCustomersIDs = selectedCustomers.map(customer => customer.User_Roles[0].userID);
@@ -75,7 +78,7 @@ const Accounts = () => {
 
     try {
       const response = await axios.put(`${Config.API_URL}/api/user_roles`, {
-        userIDs: selectedCustomersIDs,
+        data: {id: selectedCustomersIDs},
         newRoleID
       }, { withCredentials: true });
       if (response.status === 200) {
@@ -86,6 +89,43 @@ const Accounts = () => {
     }
   };
 
+  const handleDeleteAccounts = async () => {
+    //Check admin UUID against mapping
+    if (selectedCustomers.length === 0) {
+      showToast('Please select a user before setting status or deleting', 'error');
+      return;
+    }
+  
+    const selectedCustomerIDs = selectedCustomers.map(customer => customer.User_Roles[0].uuid);
+    setSelectedCustomers([]);
+  
+    try {
+      const responses = await Promise.all(
+        selectedCustomerIDs.map(async id => {
+          try {
+            const response = await axios.delete(`${Config.API_URL}/api/users/user/${id.uuid}`, {
+              withCredentials: true
+            });
+            return response;
+          } catch (error) {
+            return error.response;
+          }
+        })
+      );
+  
+      const successfulDeletes = responses.filter(response => response.status === 200);
+  
+      if (successfulDeletes.length === selectedCustomers.length) {
+        showToast('Successfully deleted accounts', 'success');
+      } else {
+        showToast('Failed to delete some accounts', 'error');
+      }
+    } catch (error) {
+      showToast('Failed to delete accounts', 'error');
+    }
+  };
+  
+
   const setAdminPrivileges = async () => {
     await handleSetPrivileges( ROLE_IDS.ADMIN,"Successfully assigned admin privileges","Failed to assign admin privileges");
   };
@@ -93,6 +133,8 @@ const Accounts = () => {
   const setUserPrivileges = async () => {
     await handleSetPrivileges( ROLE_IDS.USER,"Successfully reset to user status","Failed to reset to user status");
   };
+
+
 
   const filteredCustomersList = customersList.filter((customer) =>
     customer.email.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -136,6 +178,13 @@ const Accounts = () => {
                 sx={{ backgroundColor: '#96d2b0', color: 'black', mr: 1}}
                 >
                 Reset to User status
+            </Button>
+            <Button
+                variant="contained"
+                onClick={handleDeleteAccounts}
+                sx={{ backgroundColor: '#96d2b0', color: 'black', mr: 1}}
+                >
+                Delete Accounts
             </Button>
           </Box>
           </div>
