@@ -385,7 +385,6 @@ const HomePage = (props) => {
                     )}
                   </Box>
                 </div>
-                <DataDisplay />
                 {selectedDrugs.map(drugName => (
 
                   <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
@@ -401,7 +400,7 @@ const HomePage = (props) => {
                         <CloseIcon />
                       </Button>
                     </div>
-                    <DataDisplay subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
+                    <DataDisplay subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} displayEdit={false} />
                   </div>
                 ))}
               </Box>
