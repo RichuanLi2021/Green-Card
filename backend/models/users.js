@@ -65,6 +65,27 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       validate: {
         notEmpty: { msg: 'User verification cannot be empty' }
+      },
+    },
+    emailVerificationToken: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        notEmpty: { msg: 'Email verification token cannot be empty' }
+      }
+    },
+    passwordResetToken: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        notEmpty: { msg: 'Password reset token cannot be empty' }
+      }
+    },
+    passwordResetTokenExpiry: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      validate: {
+        isDate: { msg: 'Password reset token expiry must be a valid date' }
       }
     },
     subscribed: {

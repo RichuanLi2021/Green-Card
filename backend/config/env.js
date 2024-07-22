@@ -9,5 +9,10 @@ module.exports = {
   "DB_DATABASE": process.env.DB_DATABASE || 'gpgc',
   "DB_USERNAME": process.env.DB_USERNAME || 'root',
   "DB_PASSWORD": process.env.DB_PASSWORD || null,
-  "DB_DIALECT": process.env.DB_DIALECT || 'mysql'
+  "DB_DIALECT": process.env.DB_DIALECT || 'mysql',
+
+  "SMTP_HOST": process.env.SMTP_HOST || 'SMTP SERVER HOSTNAME',
+  "SMTP_PORT": process.env.SMTP_PORT || "587:TLS, 465:SSL",
+  "SMTP_USER": process.env.SMTP_USER || 'your-email@gpgc.com',
+  "SMTP_PASSWORD": process.env.SMTP_PASSWORD || 'your-SMTP-password'
 }

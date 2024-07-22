@@ -16,11 +16,9 @@ import NavBar from "./components/Navigation";
 import Footer from './components/Footer';
 import Policy from './pages/Policy';
 import ForgotPassword from './pages/ForgotPassword';
-
-
-
 import PrivateRoute from './middleware/PrivateRoute';
 import PublicRoute from './middleware/PublicRoute';
+import ResetPassword from './pages/ResetPassword';
 
 
 
@@ -40,11 +38,15 @@ export default function App() {
           <Route path="login" element={<PublicRoute><Login /></PublicRoute>} />
           <Route path="register" element={<PublicRoute><Register /></PublicRoute>} />
           <Route path="policy" element={<PublicRoute><Policy/></PublicRoute>} />
-
+          
 
           <Route path="home" element={<PrivateRoute><Home /></PrivateRoute>} />
           <Route path="account" element={<PrivateRoute><Account/></PrivateRoute>} />
-          <Route path="ForgotPassword" element={<PublicRoute><ForgotPassword/></PublicRoute>} />
+          <Route path="forgotpassword" element={<PublicRoute><ForgotPassword/></PublicRoute>} />
+          
+          
+
+          <Route path="/reset-password" element={<PublicRoute><ResetPassword /></PublicRoute>} />
 
 
           <Route path="admin">

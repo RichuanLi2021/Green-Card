@@ -25,6 +25,7 @@ app.use(helmet());
 app.use("/api", routesIndex);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
 
+
 try {
   sequelize.authenticate()
     .then(() => {

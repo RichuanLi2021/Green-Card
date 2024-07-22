@@ -200,16 +200,12 @@ export default function SignIn() {
           >
             <Grid container spacing={2}>
 
-              <Grid item xs={12}>
-                <TextField fullWidth id="email" label="New Email Address" name="email" autoComplete="email" />
-              </Grid>
-
 
               <Grid item xs={12}>
                 <TextField
                   fullWidth
                   name="password"
-                  label="Change Password"
+                  label="Password"
                   type="password"
                   id="password"
                   autoComplete="new-password"
