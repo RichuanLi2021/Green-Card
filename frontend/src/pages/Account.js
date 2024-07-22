@@ -39,6 +39,7 @@ export default function SignIn() {
   const [emailConfirm, setEmailConfirm] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
   const [subscriptionDialogOpen, setSubscriptionDialogOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
 
   useEffect(() => {
@@ -56,6 +57,10 @@ export default function SignIn() {
         });
     }
   }, []);
+
+  useEffect(() => {
+    setLoading(!userData || !userData.User_Roles);
+  }, [userData]);
 
 
   const handleSubmit = (event) => {
@@ -160,7 +165,7 @@ export default function SignIn() {
               justifyContent: "center",
             }}
           >
-            {userData && userData.User_Roles ? (
+            {!loading ? (
               <ul style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
                 {[
                   { label: "Email:", data: userData.email },
@@ -192,7 +197,7 @@ export default function SignIn() {
             )}
           </div>
 
-          <Box
+          {!loading && <Box
             component="form"
             onSubmit={handleSubmit}
             noValidate
@@ -247,7 +252,7 @@ export default function SignIn() {
                 </Button>
             )}
             
-          </Box>
+          </Box>}
         </Box>
       </Container>
 
