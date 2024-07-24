@@ -7,6 +7,9 @@ import Config from "../../config/config";
 import "./Accounts.css";
 import ROLE_IDS from "../../config/constants";
 import ToastComponent from "../../components/ToastComponent";
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import PersonIcon from '@mui/icons-material/Person';
+import Tooltip from '@mui/material/Tooltip';
 
 
 const theme = createTheme({
@@ -27,16 +30,16 @@ const Accounts = () => {
   const [toastMessage, setToastMessage] = useState('');
   const [toastType, setToastType] = useState('');
 
-  useEffect(() => {
-    const fetchCustomers = async () => {
-      try {
-        const response = await axios.get(`${Config.API_URL}/api/users`, { withCredentials: true });
-        setCustomersList(response.data);
-      } catch (error) {
-        console.error('Error fetching users:', error);
-      }
-    };
+  const fetchCustomers = async () => {
+    try {
+      const response = await axios.get(`${Config.API_URL}/api/users`, { withCredentials: true });
+      setCustomersList(response.data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
+  };
 
+  useEffect(() => {
     fetchCustomers();
   }, []);
   
@@ -84,14 +87,16 @@ const Accounts = () => {
     } catch (error) {
       showToast(errorMessage, 'error');
     }
+
+    await fetchCustomers();
   };
 
   const setAdminPrivileges = async () => {
-    await handleSetPrivileges( ROLE_IDS.ADMIN,"Successfully assigned admin privileges","Failed to assign admin privileges");
+    await handleSetPrivileges( ROLE_IDS.ADMIN,"Successfully granted admin privileges","Failed to grant admin privileges");
   };
 
   const setUserPrivileges = async () => {
-    await handleSetPrivileges( ROLE_IDS.USER,"Successfully reset to user status","Failed to reset to user status");
+    await handleSetPrivileges( ROLE_IDS.USER,"Successfully reset to regular user status","Failed to reset to regular user status");
   };
 
   const filteredCustomersList = customersList.filter((customer) =>
@@ -153,6 +158,7 @@ const Accounts = () => {
               <TableHead>
                 <TableRow>
                   <TableCell padding="checkbox">Select</TableCell>
+                  <TableCell stickyHeader>Role</TableCell>
                   <TableCell stickyHeader>First Name</TableCell>
                   <TableCell stickyHeader>Last Name</TableCell>
                   <TableCell stickyHeader>Discipline</TableCell>
@@ -169,6 +175,17 @@ const Accounts = () => {
                         checked={selectedCustomers.indexOf(customer) !== -1}
                         onChange={(event) => handleSelectReview(customer)}
                     />
+                    </TableCell>
+                    <TableCell>
+                      {
+                        customer.User_Roles[0].roleID === ROLE_IDS.ADMIN ?
+                          <Tooltip placement="top" title="Admin User" arrow>
+                            <ManageAccountsIcon />
+                          </Tooltip> :
+                          <Tooltip placement="top" title="Regular User" arrow>
+                            <PersonIcon />
+                          </Tooltip>
+                      }
                     </TableCell>
                     <TableCell>{customer.firstName }</TableCell>
                     <TableCell>{customer.lastName }</TableCell>
