@@ -124,12 +124,6 @@ exports.forgotPassword = async (req, res) => {
     user.passwordResetTokenExpiry = passwordResetTokenExpiry;
     await user.save();
 
-
-    // Debug log
-    console.log('Generated token:', passwordResetToken);
-    console.log('Expiry:', passwordResetTokenExpiry);
-
-
     /*
     // Send email with password reset link containing token
     // Example implementation using Nodemailer:
@@ -145,32 +139,18 @@ exports.forgotPassword = async (req, res) => {
 }
 
 exports.resetPassword = async (req, res) => {
-  //const { token } = req.params.token; // Get the token from the request URL parameters
-  //console.log(req.params.token);
   const { newPassword: password, token } = req.body; // Get the new password from the request body
 
   try {
     const user = await User.findOne({ where: { passwordResetToken: token } });
-
-   // Debug logs
-   console.log('Token from params:', token);
-   console.log('User found:', user ? user.email : 'No user found');
-   if (user) {
-     console.log('Token expiry:', user.passwordResetTokenExpiry);
-     console.log('Current time:', new Date());
-   }
 
     if (!user || user.passwordResetTokenExpiry < new Date()) {
       return res.status(400).json({ errorMessage: 'Invalid or expired password reset token' });
     }
 
     // Hash the new password
-    const hashedPassword = await bcrypt.hash(password, 12);
-    console.log(hashedPassword + "22222222")
-
     // Update the user's password and clear the reset token and expiry
-    user.password = hashedPassword;
-    console.log(user.password);
+    user.password = await bcrypt.hash(password, 12);
     user.passwordResetToken = null;
     user.passwordResetTokenExpiry = null;
     await user.save();
