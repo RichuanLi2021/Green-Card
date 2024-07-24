@@ -40,6 +40,10 @@ export default function SignIn() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [subscriptionDialogOpen, setSubscriptionDialogOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [passwordStrengthMessage,setPasswordStrengthMessage]= useState("");
 
 
   useEffect(() => {
@@ -63,27 +67,33 @@ export default function SignIn() {
   }, [userData]);
 
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const dataCredential = new FormData(event.target);
+    if (errorMessage || passwordStrengthMessage) return;
 
-    axios.post(Config.API_URL + "/api/auth/register", {
-      email: dataCredential.get("email"),
-      password: dataCredential.get("password"),
-      discipline:
-        dataCredential.get("discipline") ||
-        dataCredential.get("specialty") ||
-        dataCredential.get("other-discipline"),
-    })
-      .then((response) => {
-        if (response.data.message) {
-          alert(response.data.message);
-          navigate("/login");
-        } else {
-          alert(response.data.error);
-        }
-      })
-      .catch((error) => console.log(error));
+    try {
+      const response = await axios.put(`${Config.API_URL}/api/auth/change-password/${userData.uuid}`,
+        { newPassword: password },
+        { withCredentials: true }
+      );
+
+      if (response.data.message) {
+        alert('Successfully changed password. Please login again.');
+        await axios.post(`${Config.API_URL}/api/auth/logout`, {}, { withCredentials: true });
+        localStorage.removeItem('access-token');
+        localStorage.removeItem('user-role');
+        setTimeout(() => {
+          navigate('/login');
+        }, 500);
+      } else {
+        alert(response.data.error);
+      }
+    } catch (error) {
+      console.error('Error changing password:', error);
+      setErrorMessage('An error occurred while changing the password. Please try again.');
+    }
+
+    setErrorMessage('');
   };
 
 
@@ -130,6 +140,37 @@ export default function SignIn() {
     }
   };
 
+  const handlePasswordChange = (event) => {
+    const newPassword = event.target.value;
+    setPassword(newPassword);
+    checkPasswordStrength(newPassword);
+
+    if (newPassword && confirmPassword && newPassword !== confirmPassword) {
+      setErrorMessage('Passwords do not match');
+    } else {
+      setErrorMessage('');
+    }
+  };
+
+  const handleConfirmPasswordChange = (event) => {
+    const newConfirmPassword = event.target.value;
+    setConfirmPassword(newConfirmPassword);
+    if (password && newConfirmPassword && password !== newConfirmPassword) {
+      setErrorMessage('Passwords do not match');
+    } else {
+      setErrorMessage('');
+    }
+  };
+
+  const checkPasswordStrength = (password) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      setPasswordStrengthMessage('Password must be at least 8 characters long and ' +
+          'include at least one uppercase letter, one lowercase letter, one number, and one special character (!@#$%^&*).');
+    } else {
+      setPasswordStrengthMessage('');
+    }
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -209,23 +250,31 @@ export default function SignIn() {
               <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  name="password"
                   label="Password"
                   type="password"
-                  id="password"
-                  autoComplete="new-password"
+                  value={password}
+                  onChange={handlePasswordChange}
                 />
               </Grid>
+              {passwordStrengthMessage && (
+                <Grid item xs={12}>
+                  <Typography color="error">{passwordStrengthMessage}</Typography>
+                </Grid>
+              )}
               <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  name="password"
                   label="Confirm Password"
                   type="password"
-                  id="password"
-                  autoComplete="new-password"
+                  value={confirmPassword}
+                  onChange={handleConfirmPasswordChange}
                 />
               </Grid>
+              {errorMessage && (
+                <Grid item xs={12}>
+                  <Typography color="error">{errorMessage}</Typography>
+                </Grid>
+              )}
             </Grid>
             <Button
               type="submit"
