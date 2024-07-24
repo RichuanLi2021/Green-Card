@@ -43,6 +43,7 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [passwordStrengthMessage,setPasswordStrengthMessage]= useState("");
 
 
   useEffect(() => {
@@ -68,12 +69,7 @@ export default function SignIn() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setErrorMessage('');
-
-    if (password !== confirmPassword) {
-      setErrorMessage('Passwords do not match');
-      return;
-    }
+    if (errorMessage || passwordStrengthMessage) return;
 
     try {
       const response = await axios.put(`${Config.API_URL}/api/auth/change-password/${userData.uuid}`,
@@ -87,8 +83,8 @@ export default function SignIn() {
         localStorage.removeItem('access-token');
         localStorage.removeItem('user-role');
         setTimeout(() => {
-          window.location.href = '/';
-        }, 1000);
+          navigate('/login');
+        }, 500);
       } else {
         alert(response.data.error);
       }
@@ -96,6 +92,8 @@ export default function SignIn() {
       console.error('Error changing password:', error);
       setErrorMessage('An error occurred while changing the password. Please try again.');
     }
+
+    setErrorMessage('');
   };
 
 
@@ -142,6 +140,37 @@ export default function SignIn() {
     }
   };
 
+  const handlePasswordChange = (event) => {
+    const newPassword = event.target.value;
+    setPassword(newPassword);
+    checkPasswordStrength(newPassword);
+
+    if (newPassword && confirmPassword && newPassword !== confirmPassword) {
+      setErrorMessage('Passwords do not match');
+    } else {
+      setErrorMessage('');
+    }
+  };
+
+  const handleConfirmPasswordChange = (event) => {
+    const newConfirmPassword = event.target.value;
+    setConfirmPassword(newConfirmPassword);
+    if (password && newConfirmPassword && password !== newConfirmPassword) {
+      setErrorMessage('Passwords do not match');
+    } else {
+      setErrorMessage('');
+    }
+  };
+
+  const checkPasswordStrength = (password) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      setPasswordStrengthMessage('Password must be at least 8 characters long and ' +
+          'include at least one uppercase letter, one lowercase letter, one number, and one special character (!@#$%^&*).');
+    } else {
+      setPasswordStrengthMessage('');
+    }
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -224,16 +253,21 @@ export default function SignIn() {
                   label="Password"
                   type="password"
                   value={password}
-                  onChange={(event) => setPassword(event.target.value)}
+                  onChange={handlePasswordChange}
                 />
               </Grid>
+              {passwordStrengthMessage && (
+                <Grid item xs={12}>
+                  <Typography color="error">{passwordStrengthMessage}</Typography>
+                </Grid>
+              )}
               <Grid item xs={12}>
                 <TextField
                   fullWidth
                   label="Confirm Password"
                   type="password"
                   value={confirmPassword}
-                  onChange={(event) => setConfirmPassword(event.target.value)}
+                  onChange={handleConfirmPasswordChange}
                 />
               </Grid>
               {errorMessage && (
