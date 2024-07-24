@@ -74,6 +74,12 @@ const Accounts = () => {
       return;
     }
     const selectedCustomersIDs = selectedCustomers.map(customer => customer.User_Roles[0].userID);
+
+    const confirmationMessage = `Are you sure you want to ${newRoleID === ROLE_IDS.ADMIN ?
+        'grant admin privileges to the selected accounts' : 'reset the selected accounts to regular user status'}?`;
+    const confirmed = window.confirm(confirmationMessage);
+    if (!confirmed) return;
+
     setSelectedCustomers([]);
 
     try {
