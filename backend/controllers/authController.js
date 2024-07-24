@@ -161,3 +161,16 @@ exports.resetPassword = async (req, res) => {
     return res.status(500).json({ errorMessage: 'Encountered unexpected error while resetting password', error: error.message });
   }
 }
+
+exports.changePassword = async (req, res) => {
+    const { newPassword } = req.body;
+    try {
+        const user = await User.findOne({ where: { uuid: req.params.uuid } });
+        user.password = await bcrypt.hash(newPassword, 12);
+        await user.save();
+        return res.status(200).json({ message: 'Password has been successfully changed' });
+    } catch (error) {
+        console.error('Error resetting password:', error);
+        return res.status(500).json({ errorMessage: 'Encountered unexpected error while resetting password', error: error.message });
+    }
+}
