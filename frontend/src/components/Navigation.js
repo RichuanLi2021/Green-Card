@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import "./Navigation.css"
 import {
   AppBar,
   Toolbar,
@@ -34,7 +35,7 @@ const Navbar = () => {
   const handleMobileMenuOpen = (event) => { setAnchorEl(event.currentTarget) };
 
   const handleMobileMenuClose = () => { setAnchorEl(null) };
-  const [toastMessage, setToastMessage] = useState('');  
+  const [toastMessage, setToastMessage] = useState('');
   const [toastType, setToastType] = useState('');
 
   const showToast = (message, type) => {
@@ -51,7 +52,7 @@ const Navbar = () => {
       axios.post(`${Config.API_URL}/api/auth/logout`, {}, { withCredentials: true })
         .then(response => {
           if (response.data.message) {
-            showToast(response.data.message , 'success');
+            showToast(response.data.message, 'success');
             localStorage.removeItem('access-token');
             localStorage.removeItem('user-role');
             setTimeout(() => {
@@ -91,32 +92,32 @@ const Navbar = () => {
     if (isLoggedIn) {
       return (
         <div className="navbar__menu">
-          {userRole === "admin" &&(
-          <Button component={Link} to="admin/dashboard" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
-          Dashboard
-          </Button>
+          {userRole === "admin" && (
+            <Button component={Link} to="admin/dashboard" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
+              Dashboard
+            </Button>
           )}
           <Button component={Link} to="/account" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
             Account
           </Button>
           <Button onClick={handleLogout} component={Link} to="/" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
-          Logout
+            Logout
           </Button>
         </div>
-        
+
       )
     } else {
       return (
         <div className="navbar__menu">
-          
-          
-          <Button component={Link} to="/login" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
-            Login
-          </Button>
 
-          <Button component={Link} to="/register" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
+
+          {/* <Button component={Link} to="/login" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
+            Login
+          </Button> */}
+
+          {/* <Button component={Link} to="/register" sx={{ color: '#000', fontSize: isMobile ? '0.6rem' : '0.7rem' }}>
             Register
-          </Button>
+          </Button> */}
         </div>
       )
     }
@@ -125,14 +126,14 @@ const Navbar = () => {
   const displayMobileButtons = () => {
     if (isLoggedIn) {
       return (
-       
+
         <Menu id="menu-appbar" anchorEl={anchorEl} open={open} onClose={handleMobileMenuClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }} transformOrigin={{ vertical: 'top', horizontal: 'right' }} sx={{ marginTop: '40px' }}>
-          {userRole === "admin" &&(
-          <Button component={Link} to="admin/dashboard" sx={{ color: '#000'}}>
-          Dashboard
-          </Button>
+          {userRole === "admin" && (
+            <Button component={Link} to="admin/dashboard" sx={{ color: '#000' }}>
+              Dashboard
+            </Button>
           )}
-          
+
           <MenuItem onClick={handleMobileMenuClose}>
             <Button component={Link} to="/account" sx={{ color: '#000' }}>
               Account
@@ -155,7 +156,7 @@ const Navbar = () => {
         </MenuItem>
 
         <MenuItem onClick={handleMobileMenuClose}>
-          <Button component={Link} to="/register" sx={{ color: '#000'}}>
+          <Button component={Link} to="/register" sx={{ color: '#000' }}>
             Register
           </Button>
         </MenuItem>
@@ -164,27 +165,27 @@ const Navbar = () => {
   }
 
   return (
-    <AppBar style={{ boxShadow: "none"}}>
+    <AppBar style={{ boxShadow: "none" }}>
       <Toolbar sx={{ backgroundColor: '#96d2b0' }}>
 
-        <Link to={ isLoggedIn ? '/home' : '/' }>
-          <img src={logo} className="navbar_logo" alt="GPGC Logo"/>
+        <Link to={isLoggedIn ? '/home' : '/'}>
+          <img src={logo} className="navbar_logo" alt="GPGC Logo" />
         </Link>
 
         <Typography className="web-title" sx={{ flexGrow: 1, color: '#000', textDecoration: 'none' }}>
-          <Link to={ isLoggedIn ? '/home' : '/' } className={'navigation-title'} >Geriatric Psychotropic Green Card</Link>
+          <Link to={isLoggedIn ? '/home' : '/'} className={'navigation-title'} >Geriatric Psychotropic Green Card</Link>
         </Typography>
 
         {userRole === "admin" && (
-            <Badge
-                onClick={ handleAlertClick }
-                badgeContent={ showFeedbackAlter ? unreviewedCount : 0 }
-                variant="dot"
-                color="warning"
-                sx={{ mr: 1, cursor: 'pointer' }}
-            >
-              <MailIcon color="action" />
-            </Badge>
+          <Badge
+            onClick={handleAlertClick}
+            badgeContent={showFeedbackAlter ? unreviewedCount : 0}
+            variant="dot"
+            color="warning"
+            sx={{ mr: 1, cursor: 'pointer' }}
+          >
+            <MailIcon color="action" />
+          </Badge>
         )}
 
         {/* Mobile Hamburger Button */}
@@ -192,13 +193,13 @@ const Navbar = () => {
           <MenuIcon />
         </IconButton>
 
-        { displayMobileButtons() }
+        {displayMobileButtons()}
 
-        { displayDesktopButtons() }
+        {displayDesktopButtons()}
         <ToastComponent message={toastMessage} type={toastType} />
       </Toolbar>
     </AppBar>
-    
+
   )
 }
 
