@@ -40,6 +40,9 @@ export default function SignIn() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [subscriptionDialogOpen, setSubscriptionDialogOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
 
   useEffect(() => {
@@ -63,27 +66,36 @@ export default function SignIn() {
   }, [userData]);
 
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const dataCredential = new FormData(event.target);
+    setErrorMessage('');
 
-    axios.post(Config.API_URL + "/api/auth/register", {
-      email: dataCredential.get("email"),
-      password: dataCredential.get("password"),
-      discipline:
-        dataCredential.get("discipline") ||
-        dataCredential.get("specialty") ||
-        dataCredential.get("other-discipline"),
-    })
-      .then((response) => {
-        if (response.data.message) {
-          alert(response.data.message);
-          navigate("/login");
-        } else {
-          alert(response.data.error);
-        }
-      })
-      .catch((error) => console.log(error));
+    if (password !== confirmPassword) {
+      setErrorMessage('Passwords do not match');
+      return;
+    }
+
+    try {
+      const response = await axios.put(`${Config.API_URL}/api/auth/change-password/${userData.uuid}`,
+        { newPassword: password },
+        { withCredentials: true }
+      );
+
+      if (response.data.message) {
+        alert('Successfully changed password. Please login again.');
+        await axios.post(`${Config.API_URL}/api/auth/logout`, {}, { withCredentials: true });
+        localStorage.removeItem('access-token');
+        localStorage.removeItem('user-role');
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 1000);
+      } else {
+        alert(response.data.error);
+      }
+    } catch (error) {
+      console.error('Error changing password:', error);
+      setErrorMessage('An error occurred while changing the password. Please try again.');
+    }
   };
 
 
@@ -209,23 +221,26 @@ export default function SignIn() {
               <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  name="password"
                   label="Password"
                   type="password"
-                  id="password"
-                  autoComplete="new-password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  name="password"
                   label="Confirm Password"
                   type="password"
-                  id="password"
-                  autoComplete="new-password"
+                  value={confirmPassword}
+                  onChange={(event) => setConfirmPassword(event.target.value)}
                 />
               </Grid>
+              {errorMessage && (
+                <Grid item xs={12}>
+                  <Typography color="error">{errorMessage}</Typography>
+                </Grid>
+              )}
             </Grid>
             <Button
               type="submit"
