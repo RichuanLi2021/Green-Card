@@ -5,7 +5,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "./DataTables.css";
-import DataDisplay from '../../components/DataDisplay/dataDisplay';
+import DataDisplay from "../admin/AdminDataDisplay";
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Config from "../../config/config";
