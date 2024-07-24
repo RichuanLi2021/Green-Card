@@ -246,12 +246,27 @@ const HomePage = (props) => {
                       <Accordion className="myAccordion">
                         <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
                           <Typography variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                            {drugCategory.category}
+                          { 
+       (() => {
+        let categoryName = drugCategory.category;
+
+        // Additional condition to replace "test" with "test2"
+        if (categoryName === "Neuropsychiatric Symptoms on Dementia") {
+          categoryName = "Neuropsychiatric Symptoms of Dementia";
+        }
+
+        return categoryName;
+      })()
+    }
+                          
                           </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                          {drugCategory.data.map(drugItem => {
-                            const cleanName = drugItem.name.replace(drugCategory.category, '').trim();
+                            {drugCategory.data.map(drugItem => {
+                              let cleanName = drugItem.name.replace(drugCategory.category, '').trim();
+                            
+                              
+                              
                             return (
                               <div className="item-container" key={drugItem.route}>
                                 <input
