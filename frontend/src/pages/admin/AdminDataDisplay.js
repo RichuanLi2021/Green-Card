@@ -6,27 +6,48 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Button, TextField } from '@mui/material';
+import { Button, IconButton, TextField} from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 import Config from '../../config/config';
+import './AdminDataDisplay.css';
 
 export default function StickyHeadTable({ drugName, subcategoryHeaders, displayEdit}) {
   const [showEditForm, setShowEditForm] = useState(false);
   const [rowEditNum, setRowEditNum] = useState(null);
+  const [rowDeleteNum, setRowDeleteNum] = useState();
+  const [deleteDataUUID, setDeleteDataUUID] = useState([]); //array of the UUID for deletion
   const [editedValues, setEditedValues] = useState({});
   const [showEditButton, setShowEditButton] = useState(displayEdit);
+  const [rows, setRows] = useState([]);
 
+
+  // Initialize rows of the table using subcategoryHeaders passed to the component
   useEffect(() => {
-    console.log('drugName:', drugName); // Log the subCategories uuid on console to check its value
-  }, [drugName]);
+    if (subcategoryHeaders?.length > 0) {
+      const numberOfRows = subcategoryHeaders[0]?.Subcategory_Data.length;
+      const newRows = [];
+
+      for (let i = 0; i < numberOfRows; i++) {
+        let row = {};
+        subcategoryHeaders?.forEach(header => {
+          row[header.title] = {
+            value: header.Subcategory_Data[i]?.value || '-',
+            uuid: header.Subcategory_Data[i]?.uuid || null
+          };
+        });
+        newRows.push(row);
+      }
+      setRows(newRows);
+    }
+  }, [subcategoryHeaders]);
 
   if (!subcategoryHeaders || subcategoryHeaders.length === 0) {
     return <div className="Liam"></div>;
   }
 
   // Initialize the column of the table: Table Header with its data
-  const headers = subcategoryHeaders.map(header => ({
+   const headers = subcategoryHeaders.map(header => ({
     id: header.title,
     uuid: header.uuid, 
     label: header.title, 
@@ -34,30 +55,9 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, displayE
     minWidth: 170
   }));
 
-  console.log("header is: ", headers)
-  
-
-  // Generate rows of the table by aligning data across subcategories
-  const rows = [];
-  const numberOfRows = subcategoryHeaders[0].Subcategory_Data.length;
-
-  for (let i = 0; i < numberOfRows; i++) {
-    let row = {};
-    subcategoryHeaders.forEach(header => {
-      row[header.title] = {
-       value: header.Subcategory_Data[i]?.value || '-',
-       uuid: header.Subcategory_Data[i]?.uuid || null
-      }
-    });
-    rows.push(row);
-  }
-
-  //Check teh rows
-  console.log("current rows are:", rows);
-
   const handleClickEvent = () => {
     setShowEditForm(!showEditForm);
-    setShowEditButton(!showEditButton)
+    setShowEditButton(!showEditButton);
   };
 
   const handleInputChange = (e, headerId) => {
@@ -69,7 +69,6 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, displayE
   };
 
   const handleSave = async () => {
-    // Compare input values with initial fetched values
     const updatedData = subcategoryHeaders
       .filter(header => {
         const currentValue = rows[rowEditNum][header.title];
@@ -86,20 +85,30 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, displayE
         };
       });
 
+    // Update rows using edited values for re-rendering purposes
+    const newRows = [...rows];
+    newRows[rowEditNum] = {
+      ...newRows[rowEditNum],
+      ...Object.fromEntries(
+          updatedData.map(header => [header.title, { value: header.value, uuid: header.valueUUID }])
+      )
+    };
+    setRows(newRows);
+
     if (updatedData.length === 0) {
-      console.log('No changes to the current data');
       handleClickEvent();
       return;
     }
-
-    console.log("changes: ", updatedData)
   
     try {
       await Promise.all(updatedData.map(async (data) => {
-        console.log("sending data :", data)
         const response = await axios.put(`${Config.API_URL}/api/subcategory_data/${data.valueUUID}`, data, { withCredentials: true });
-        console.log("response is:", response)
+        if (response.status === 200){
+          alert("successfully saved!")
+        }
       }));
+
+      
     
       // Optionally update local state or re-fetch data to reflect changes
     } catch (error) {
@@ -109,6 +118,18 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, displayE
   
     handleClickEvent();
   };
+
+  const handleDelete = () => {
+    subcategoryHeaders
+      .map(header => {
+        const deleteItem = rows[rowDeleteNum][header.Name]
+        console.log(deleteItem)
+        return deleteItem;
+      })
+
+    console.log(deleteDataUUID)
+    
+  }
 
 
   return (
@@ -133,6 +154,8 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, displayE
                   {header.label}
                 </TableCell>
               ))}
+              {showEditButton && <TableCell/>} 
+              {/* This would be where the header for the delete column goes. No header needed because of icons. This is necesarry for the table to be formatted correctly */}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -169,6 +192,19 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, displayE
                         </div>
                     </TableCell>
                   ))}
+
+                  <TableCell>
+                    <IconButton 
+                      aria-label="delete" 
+                      size="large" 
+                      onClick={() => {
+                        setRowDeleteNum(rowIndex);
+                        handleDelete();
+                      }}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </TableCell>
                 </TableRow>
               ))}
             {showEditForm && (
@@ -203,9 +239,3 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, displayE
     </Paper>
   );
 }
-
-StickyHeadTable.propTypes = {
-  drugName: PropTypes.string.isRequired,
-  subcategoryHeaders: PropTypes.array.isRequired,
-  displayEdit: PropTypes.bool.isRequired
-};

@@ -99,8 +99,6 @@ const DataTables = (props) => {
     }
   }, [scrollToDrugName, drugData]); // Depend on scrollToDrugName and drugData
 
-  console.log("drug data is: ", drugData)
-
 
   const toggleActiveSubcategory = (drugName, shouldDisplay) => {
     if (shouldDisplay) {
