@@ -236,6 +236,15 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, displayE
                   </TableCell>
                 </TableRow>
               ))}
+            {!showEditForm && 
+              <TableRow className='addNewRow'>
+                <TableCell></TableCell>
+                <TableCell className='addNewText'>Add new entry here</TableCell>
+                <TableCell className='addNewBtn'>
+                  <Button size='large'className='addBtn'> + </Button>
+                </TableCell>
+              </TableRow>
+            }
             {showEditForm && (
               <TableRow hover>
                 {headers.map((header, index) => (
