@@ -99,9 +99,6 @@ const DataTables = (props) => {
     }
   }, [scrollToDrugName, drugData]); // Depend on scrollToDrugName and drugData
 
-  console.log("drug data is: ", drugData)
-
-
   const toggleActiveSubcategory = (drugName, shouldDisplay) => {
     if (shouldDisplay) {
       //Ensure the drug is added to the selectedDrugs only if it's not already there
