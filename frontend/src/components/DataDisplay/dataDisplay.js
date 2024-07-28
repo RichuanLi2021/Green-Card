@@ -11,7 +11,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import Config from '../../config/config';
 
-export default function StickyHeadTable({ drugName, subcategoryHeaders, displayEdit}) {
+export default function StickyHeadTable({ subcategoryHeaders, displayEdit}) {
   const [showEditForm, setShowEditForm] = useState(false);
   const [rowEditNum, setRowEditNum] = useState(null);
   const [editedValues, setEditedValues] = useState({});
@@ -211,6 +211,5 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, displayE
 }
 
 StickyHeadTable.propTypes = {
-  drugName: PropTypes.string.isRequired,
   subcategoryHeaders: PropTypes.array.isRequired,
 };
