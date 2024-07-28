@@ -39,6 +39,22 @@ export default function StickyHeadTable({ subcategoryHeaders, displayEdit}) {
     }
   }, [subcategoryHeaders]);
 
+  useEffect(() => {
+    if (rows.length === 0) return;
+    const sortedRows = [...rows].sort((a, b) => {
+      const nameA = a["Name"]?.value?.toUpperCase();
+      const nameB = b["Name"]?.value?.toUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    setRows(sortedRows);
+  }, [rows]);
+
   if (!subcategoryHeaders || subcategoryHeaders.length === 0) {
     return <div className="Liam"></div>;
   }
