@@ -15,11 +15,11 @@ import './AdminDataDisplay.css';
 export default function StickyHeadTable({ drugName, subcategoryHeaders, displayEdit}) {
   const [showEditForm, setShowEditForm] = useState(false);
   const [rowEditNum, setRowEditNum] = useState(null);
-  const [rowDeleteNum, setRowDeleteNum] = useState();
-  const [deleteDataUUID, setDeleteDataUUID] = useState([]); //array of the UUID for deletion
+  const [rowDeleteNum, setRowDeleteNum] = useState(null);
   const [editedValues, setEditedValues] = useState({});
   const [showEditButton, setShowEditButton] = useState(displayEdit);
   const [rows, setRows] = useState([]);
+  let deleteDataUUID = [] //array of the UUID for deletion
 
 
   // Initialize rows of the table using subcategoryHeaders passed to the component
@@ -119,15 +119,44 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, displayE
     handleClickEvent();
   };
 
-  const handleDelete = () => {
-    subcategoryHeaders
-      .map(header => {
-        const deleteItem = rows[rowDeleteNum][header.Name]
-        console.log(deleteItem)
-        return deleteItem;
+  const handleDelete = async () => {
+    try{
+      
+      const deleteRow = subcategoryHeaders
+        .map(header => {
+          const item = rows[rowDeleteNum][header.title]
+          console.log(item);
+          return item
+        })
+
+      deleteDataUUID = deleteRow.map(element => {
+        const itemUUID = element.uuid;
+        return itemUUID
       })
 
-    console.log(deleteDataUUID)
+      console.log(deleteDataUUID)
+
+
+      try{
+        await Promise.all(deleteDataUUID.map(async (data) => {
+          const response = await axios.delete(`${Config.API_URL}/api/subcategory_data/${data}`, data, { withCredentials: true });
+          if (response.status === 200){
+            alert("successfully deleted!")
+          }
+        }))
+
+      }
+
+      catch (error) {
+        console.error('Error deleting data:', error);
+        console.error('Response:', error.response?.data);
+      }
+
+    } catch (e) {
+      alert("Error - please try again")
+    }
+    
+
     
   }
 
