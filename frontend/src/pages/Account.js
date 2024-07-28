@@ -69,7 +69,7 @@ export default function SignIn() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (errorMessage || passwordStrengthMessage) return;
+    if (errorMessage || passwordStrengthMessage || !password) return;
 
     try {
       const response = await axios.put(`${Config.API_URL}/api/auth/change-password/${userData.uuid}`,
@@ -164,7 +164,7 @@ export default function SignIn() {
 
   const checkPasswordStrength = (password) => {
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-    if (!passwordRegex.test(password)) {
+    if (password && !passwordRegex.test(password)) {
       setPasswordStrengthMessage('Password must be at least 8 characters long and ' +
           'include at least one uppercase letter, one lowercase letter, one number, and one special character (!@#$%^&*).');
     } else {
