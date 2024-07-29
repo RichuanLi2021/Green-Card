@@ -12,13 +12,13 @@ import axios from 'axios';
 import Config from '../../config/config';
 import './AdminDataDisplay.css';
 
-export default function StickyHeadTable({ subcategoryHeaders, displayEdit}) {
+export default function StickyHeadTable({ subcategoryHeaders }) {
   const [showEditForm, setShowEditForm] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
   const [rowEditNum, setRowEditNum] = useState(null);
   const [rowDeleteNum, setRowDeleteNum] = useState(null);
   const [editedValues, setEditedValues] = useState({});
-  const [showEditButton, setShowEditButton] = useState(displayEdit);
+  const [showEditButton, setShowEditButton] = useState(true);
   const [rows, setRows] = useState([]);
   const [editRowDefaultValues, setEditRowDefaultValues] = useState({});
   let deleteDataUUID = [] //array of the UUID for deletion

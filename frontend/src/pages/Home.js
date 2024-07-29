@@ -400,7 +400,7 @@ const HomePage = (props) => {
                         <CloseIcon />
                       </Button>
                     </div>
-                    <DataDisplay subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} displayEdit={false} />
+                    <DataDisplay subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
                   </div>
                 ))}
               </Box>

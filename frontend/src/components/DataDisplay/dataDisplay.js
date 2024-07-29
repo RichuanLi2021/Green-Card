@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-export default function StickyHeadTable({ drugName, subcategoryHeaders }) {
+export default function StickyHeadTable({ subcategoryHeaders }) {
 
 
   if (!subcategoryHeaders || subcategoryHeaders.length === 0) {
@@ -53,7 +53,13 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, rowIndex) => (
+            {rows.slice().sort((a, b) => {
+              const nameA = a["Name"]?.value?.toUpperCase();
+              const nameB = b["Name"]?.value?.toUpperCase();
+              if (nameA < nameB) return -1;
+              if (nameA > nameB) return 1;
+              return 0;
+            }).map((row, rowIndex) => (
               <TableRow hover tabIndex={-1} key={rowIndex}>
                 {headers.map((header, index) => (
                   <TableCell
