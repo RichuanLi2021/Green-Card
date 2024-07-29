@@ -8,9 +8,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Button, IconButton, TextField} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
 import axios from 'axios';
 import Config from '../../config/config';
-import './AdminDataDisplay.css';
 
 export default function StickyHeadTable({ subcategoryHeaders }) {
   const [showEditForm, setShowEditForm] = useState(false);
@@ -144,7 +144,7 @@ export default function StickyHeadTable({ subcategoryHeaders }) {
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              {showEditButton && <TableCell>Edit</TableCell>}
+              {showEditButton && <TableCell/>}
               {headers.map((header, index) => (
                 <TableCell
                   key={header.id}
@@ -215,11 +215,24 @@ export default function StickyHeadTable({ subcategoryHeaders }) {
                 </TableRow>
               ))}
             {!showEditForm && 
-              <TableRow className='addNewRow'>
-                <TableCell></TableCell>
-                <TableCell className='addNewText'>Add new entry here</TableCell>
-                <TableCell className='addNewBtn'>
-                  <Button size='large'className='addBtn'> + </Button>
+              <TableRow>
+                <TableCell colSpan={headers.length + 2} sx={{ textAlign: 'center' }}>
+                  <Button
+                      variant="contained"
+                      size="large"
+                      sx={{
+                        backgroundColor: '#89cea7',
+                        color: '#000',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: '100%',
+                        '&:hover': { backgroundColor: '#89cea7'}
+                      }}
+                      startIcon={<AddIcon />}
+                  >
+                    Add new entry
+                  </Button>
                 </TableCell>
               </TableRow>
             }
