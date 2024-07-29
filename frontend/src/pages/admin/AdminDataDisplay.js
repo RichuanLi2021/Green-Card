@@ -14,6 +14,7 @@ import './AdminDataDisplay.css';
 
 export default function StickyHeadTable({ drugName, subcategoryHeaders, displayEdit}) {
   const [showEditForm, setShowEditForm] = useState(false);
+  const [showAddForm, setShowAddForm] = useState(false);
   const [rowEditNum, setRowEditNum] = useState(null);
   const [rowDeleteNum, setRowDeleteNum] = useState(null);
   const [editedValues, setEditedValues] = useState({});
@@ -139,11 +140,9 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, displayE
 
       try{
         await Promise.all(deleteDataUUID.map(async (data) => {
-          const response = await axios.delete(`${Config.API_URL}/api/subcategory_data/${data}`, data, { withCredentials: true });
-          if (response.status === 200){
-            alert("successfully deleted!")
-          }
+          await axios.delete(`${Config.API_URL}/api/subcategory_data/${data}`, { withCredentials: true });
         }))
+        alert("Successfully Deleted")
 
       }
 
@@ -271,6 +270,34 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, displayE
                 </TableCell>
               </TableRow>
             )}
+
+            {showAddForm && (
+              <TableRow hover>
+              {headers.map((header, index) => (
+                  <TableCell
+                    key={header.data}
+                    align={header.align}
+                    style={{
+                      backgroundColor: 'white',
+                      fontSize: '16px',
+                      position: index === 0 ? 'sticky' : 'static',
+                      left: index === 0 ? 0 : 'auto',
+                      zIndex: index === 0 ? 1 : 'auto'
+                    }}
+                  >
+                    <TextField
+                      defaultValue={rows[rowEditNum][header.id]?.value}
+                      onChange={e => handleInputChange(e, header.id)}
+                    />
+                  </TableCell>
+                  ))}
+                  <TableCell>
+                    <Button onClick={ () => {alert("test")}}>Save</Button>
+                    <Button onClick={handleClickEvent}>Cancel</Button>
+                  </TableCell>
+              </TableRow>
+            )}
+
           </TableBody>
         </Table>
       </TableContainer>

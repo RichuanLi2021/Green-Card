@@ -2,7 +2,7 @@
 const { rateLimit: rateLimiter } = require('express-rate-limit')
 
 module.exports = rateLimiter({
-  limit: 10, // Number of requests allowed within a duration
+  limit: 20, // Number of requests allowed within a duration
   legacyHeaders: false, // False: Disabled `X-RateLimit-*` headers; True: Enabled `X-RateLimit-*` headers
   message: async (req, res) => {
     return res.status(429).json({ message: 'Too many requests!' })
