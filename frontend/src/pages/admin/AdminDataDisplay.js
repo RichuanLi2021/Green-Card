@@ -12,7 +12,7 @@ import axios from 'axios';
 import Config from '../../config/config';
 import './AdminDataDisplay.css';
 
-export default function StickyHeadTable({ drugName, subcategoryHeaders, displayEdit}) {
+export default function StickyHeadTable({ subcategoryHeaders, displayEdit}) {
   const [showEditForm, setShowEditForm] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
   const [rowEditNum, setRowEditNum] = useState(null);
@@ -20,6 +20,7 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, displayE
   const [editedValues, setEditedValues] = useState({});
   const [showEditButton, setShowEditButton] = useState(displayEdit);
   const [rows, setRows] = useState([]);
+  const [editRowDefaultValues, setEditRowDefaultValues] = useState({});
   let deleteDataUUID = [] //array of the UUID for deletion
 
 
@@ -30,7 +31,7 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, displayE
       const newRows = [];
 
       for (let i = 0; i < numberOfRows; i++) {
-        let row = {};
+        let row = { originalIndex: i };
         subcategoryHeaders?.forEach(header => {
           row[header.title] = {
             value: header.Subcategory_Data[i]?.value || '-',
@@ -103,16 +104,15 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, displayE
   
     try {
       await Promise.all(updatedData.map(async (data) => {
-        const response = await axios.put(`${Config.API_URL}/api/subcategory_data/${data.valueUUID}`, data, { withCredentials: true });
-        if (response.status === 200){
-          alert("successfully saved!")
-        }
+        await axios.put(`${Config.API_URL}/api/subcategory_data/${data.valueUUID}`, data, { withCredentials: true });
       }));
 
+      alert("Successfully saved!")
       
     
       // Optionally update local state or re-fetch data to reflect changes
     } catch (error) {
+      alert("Encountered an error saving data");
       console.error('Error saving data:', error);
       console.error('Response:', error.response?.data);
     }
@@ -188,13 +188,20 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, displayE
           </TableHead>
           <TableBody>
             {!showEditForm &&
-              rows.map((row, rowIndex) => (
-                <TableRow hover tabIndex={rowIndex} key={rowIndex}>
+              rows.slice().sort((a, b) => {
+                const nameA = a["Name"]?.value?.toUpperCase();
+                const nameB = b["Name"]?.value?.toUpperCase();
+                if (nameA < nameB) return -1;
+                if (nameA > nameB) return 1;
+                return 0;
+              }).map((row) => (
+              <TableRow hover tabIndex={row.originalIndex} key={row.originalIndex}>
                   {showEditButton && (
                     <TableCell>
                       <Button
                         onClick={() => {
-                          setRowEditNum(rowIndex);
+                          setRowEditNum(row.originalIndex);
+                          setEditRowDefaultValues(rows[row.originalIndex]);
                           handleClickEvent();
                         }}
                       >
@@ -226,7 +233,7 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, displayE
                       aria-label="delete" 
                       size="large" 
                       onClick={() => {
-                        setRowDeleteNum(rowIndex);
+                        // setRowDeleteNum(rowIndex);
                         handleDelete();
                       }}
                     >
@@ -259,7 +266,7 @@ export default function StickyHeadTable({ drugName, subcategoryHeaders, displayE
                     }}
                   >
                     <TextField
-                      defaultValue={rows[rowEditNum][header.id]?.value}
+                      defaultValue={editRowDefaultValues[header.id]?.value}
                       onChange={e => handleInputChange(e, header.id)}
                     />
                   </TableCell>
