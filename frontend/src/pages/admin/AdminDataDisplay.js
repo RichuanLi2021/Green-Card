@@ -16,12 +16,10 @@ export default function StickyHeadTable({ subcategoryHeaders }) {
   const [showEditForm, setShowEditForm] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
   const [rowEditNum, setRowEditNum] = useState(null);
-  const [rowDeleteNum, setRowDeleteNum] = useState(null);
   const [editedValues, setEditedValues] = useState({});
   const [showEditButton, setShowEditButton] = useState(true);
   const [rows, setRows] = useState([]);
   const [editRowDefaultValues, setEditRowDefaultValues] = useState({});
-  let deleteDataUUID = [] //array of the UUID for deletion
 
 
   // Initialize rows of the table using subcategoryHeaders passed to the component
@@ -108,9 +106,7 @@ export default function StickyHeadTable({ subcategoryHeaders }) {
       }));
 
       alert("Successfully saved!")
-      
-    
-      // Optionally update local state or re-fetch data to reflect changes
+
     } catch (error) {
       alert("Encountered an error saving data");
       console.error('Error saving data:', error);
@@ -120,43 +116,25 @@ export default function StickyHeadTable({ subcategoryHeaders }) {
     handleClickEvent();
   };
 
-  const handleDelete = async () => {
+  const handleDelete = async (rowIndex) => {
     try{
-      
-      const deleteRow = subcategoryHeaders
-        .map(header => {
-          const item = rows[rowDeleteNum][header.title]
-          console.log(item);
-          return item
-        })
+      const deleteDataUUID = subcategoryHeaders
+        .map(header => rows[rowIndex]?.[header.title]?.uuid).filter(uuid => uuid);
 
-      deleteDataUUID = deleteRow.map(element => {
-        const itemUUID = element.uuid;
-        return itemUUID
-      })
+      await Promise.all(deleteDataUUID.map(uuid =>
+        axios.delete(`${Config.API_URL}/api/subcategory_data/${uuid}`, { withCredentials: true })
+      ));
 
-      console.log(deleteDataUUID)
+      alert("Successfully deleted!");
 
+      // Update rows for re-rendering
+      const newRows = rows.filter((_, i) => i !== rowIndex);
+      setRows(newRows);
 
-      try{
-        await Promise.all(deleteDataUUID.map(async (data) => {
-          await axios.delete(`${Config.API_URL}/api/subcategory_data/${data}`, { withCredentials: true });
-        }))
-        alert("Successfully Deleted")
-
-      }
-
-      catch (error) {
-        console.error('Error deleting data:', error);
-        console.error('Response:', error.response?.data);
-      }
-
-    } catch (e) {
-      alert("Error - please try again")
+    } catch (error) {
+      console.error('Error deleting data:', error);
+      alert("Encountered an error deleting data");
     }
-    
-
-    
   }
 
 
@@ -222,9 +200,6 @@ export default function StickyHeadTable({ subcategoryHeaders }) {
                       }}
                     >
                       {row[header.id]?.value}
-                       <div style={{ display: 'none' }}>
-                        {row[header.id]?.uuid}
-                        </div>
                     </TableCell>
                   ))}
 
@@ -232,10 +207,7 @@ export default function StickyHeadTable({ subcategoryHeaders }) {
                     <IconButton 
                       aria-label="delete" 
                       size="large" 
-                      onClick={() => {
-                        setRowDeleteNum(row.originalIndex);
-                        handleDelete();
-                      }}
+                      onClick={() => handleDelete(row.originalIndex)}
                     >
                       <DeleteIcon />
                     </IconButton>
