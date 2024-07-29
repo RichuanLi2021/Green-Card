@@ -68,7 +68,7 @@ export default function StickyHeadTable({ subcategoryHeaders }) {
     }));
   };
 
-  const handleSave = async () => {
+  const handleUpdateRow = async () => {
     const updatedData = subcategoryHeaders
       .filter(header => {
         const currentValue = rows[rowEditNum][header.title];
@@ -112,8 +112,52 @@ export default function StickyHeadTable({ subcategoryHeaders }) {
       console.error('Error saving data:', error);
       console.error('Response:', error.response?.data);
     }
-  
+
+    setEditedValues({});
     handleClickEvent();
+  };
+
+  const handleCreateRow = async () => {
+    if (Object.keys(editedValues).length < headers.length) {
+      alert("Please fill out all fields.");
+      return;
+    }
+    const newRowData = subcategoryHeaders.map(header => {
+      return {
+        title: header.title,
+        headerUUID: header.uuid,
+        value: editedValues[header.title],
+      }
+    })
+
+    // Update rows using edited values for re-rendering purposes
+    setRows(prevRows => [
+      ...prevRows, {
+        originalIndex: prevRows.length,
+        ...Object.fromEntries(
+          newRowData.map(header => [header.title, { value: header.value, uuid: null }])
+        ),
+      },
+    ]);
+
+    try {
+      await Promise.all(newRowData.map(async (data) => {
+        await axios.post(`${Config.API_URL}/api/subcategory_data`, data, { withCredentials: true });
+      }));
+
+      alert("Successfully saved!")
+    } catch (error) {
+      alert("Encountered an error saving data");
+      console.error('Error saving data:', error);
+    }
+
+    setEditedValues({});
+    setShowAddForm(false);
+    handleClickEvent();
+  };
+
+  const handleSave = async () => {
+    showAddForm ? await handleCreateRow() : await handleUpdateRow();
   };
 
   const handleDelete = async (rowIndex) => {
@@ -230,6 +274,10 @@ export default function StickyHeadTable({ subcategoryHeaders }) {
                         '&:hover': { backgroundColor: '#89cea7'}
                       }}
                       startIcon={<AddIcon />}
+                      onClick={() => {
+                        handleClickEvent();
+                        setShowAddForm(true);
+                      }}
                   >
                     Add new entry
                   </Button>
@@ -251,42 +299,18 @@ export default function StickyHeadTable({ subcategoryHeaders }) {
                     }}
                   >
                     <TextField
-                      defaultValue={editRowDefaultValues[header.id]?.value}
+                      defaultValue={showAddForm ? null : editRowDefaultValues[header.id]?.value}
                       onChange={e => handleInputChange(e, header.id)}
                     />
                   </TableCell>
                 ))}
                 <TableCell>
                   <Button onClick={handleSave}>Save</Button>
-                  <Button onClick={handleClickEvent}>Cancel</Button>
+                  <Button onClick={()=> {
+                    if (showAddForm) setShowAddForm(false);
+                    handleClickEvent();
+                  }}>Cancel</Button>
                 </TableCell>
-              </TableRow>
-            )}
-
-            {showAddForm && (
-              <TableRow hover>
-              {headers.map((header, index) => (
-                  <TableCell
-                    key={header.data}
-                    align={header.align}
-                    style={{
-                      backgroundColor: 'white',
-                      fontSize: '16px',
-                      position: index === 0 ? 'sticky' : 'static',
-                      left: index === 0 ? 0 : 'auto',
-                      zIndex: index === 0 ? 1 : 'auto'
-                    }}
-                  >
-                    <TextField
-                      defaultValue={rows[rowEditNum][header.id]?.value}
-                      onChange={e => handleInputChange(e, header.id)}
-                    />
-                  </TableCell>
-                  ))}
-                  <TableCell>
-                    <Button onClick={ () => {alert("test")}}>Save</Button>
-                    <Button onClick={handleClickEvent}>Cancel</Button>
-                  </TableCell>
               </TableRow>
             )}
 
