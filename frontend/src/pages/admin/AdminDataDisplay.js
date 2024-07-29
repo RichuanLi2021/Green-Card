@@ -233,7 +233,7 @@ export default function StickyHeadTable({ subcategoryHeaders, displayEdit}) {
                       aria-label="delete" 
                       size="large" 
                       onClick={() => {
-                        // setRowDeleteNum(rowIndex);
+                        setRowDeleteNum(row.originalIndex);
                         handleDelete();
                       }}
                     >
