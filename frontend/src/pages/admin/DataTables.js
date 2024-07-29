@@ -245,10 +245,19 @@ const DataTables = (props) => {
                           }}
                         >
                           <Typography className="drug-dropdown" variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                            {
-                              drugItem.name.endsWith("Medication Table") ?
-                                drugItem.name.split("Medication Table")[0]
-                                : drugItem.name}
+                          {
+    (() => {
+      let name = drugItem.name.endsWith("Medication Table")
+        ? drugItem.name.split("Medication Table")[0]
+        : drugItem.name;
+
+      if (name.includes(" on Dementia")) {
+        name = name.replace(" on Dementia", " of Dementia");
+      }
+
+      return name;
+    })()
+  }
                           </Typography>
                         </Button>
 
@@ -281,10 +290,19 @@ const DataTables = (props) => {
                                     toggleActiveSubcategory(drugItem.route, shouldDisplay);
                                   }}
                                 >
-                                  {
-                                    drugItem.name.endsWith("Medication Table") ?
-                                      drugItem.name.split("Medication Table")[0]
-                                      : drugItem.name}
+                                 {
+    (() => {
+      let name = drugItem.name.endsWith("Medication Table")
+        ? drugItem.name.split("Medication Table")[0]
+        : drugItem.name;
+
+      if (name.includes(" on Dementia")) {
+        name = name.replace(" on Dementia", " of Dementia");
+      }
+
+      return name;
+    })()
+  }
                                 </Typography>
                               </div>
                             ))}
@@ -330,11 +348,21 @@ const DataTables = (props) => {
                   <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
                     <div className="admin-header-container">
                       <div>
-                        <h2>{
-                            drugData[drugName]?.description.endsWith("Medication Table") ?
-                            drugData[drugName]?.description.split("Medication Table")[0] :
-                            drugData[drugName]?.description || 'Default Description'
-                        }</h2>
+                      <h2>
+  {
+    (() => {
+      let description = drugData[drugName]?.description.endsWith("Medication Table")
+        ? drugData[drugName]?.description.split("Medication Table")[0]
+        : drugData[drugName]?.description || 'Default Description';
+
+      if (description.includes(" on Dementia")) {
+        description = description.replace(" on Dementia", " of Dementia");
+      }
+
+      return description;
+    })()
+  }
+</h2>
                       </div>
 
 
