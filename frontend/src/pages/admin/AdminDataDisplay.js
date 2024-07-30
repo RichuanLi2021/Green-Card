@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -23,24 +23,28 @@ export default function StickyHeadTable({ subcategoryUUID }) {
   const [subcategoryHeaders, setSubcategoryHeaders] = useState([]);
 
   // Fetch data using this subcategory's uuid and store to `subcategoryHeaders`
-  const fetchSubcategoryData = async () => {
-    const response = await axios.get(`${Config.API_URL}/api/subcategories/${subcategoryUUID}`, { withCredentials: true });
-    const formattedHeaders = response.data.Subcategory_Headers.map(header => ({
-      title: header.title,
-      uuid: header.uuid,
-      Subcategory_Data: header.Subcategory_Data.map(dataItem => ({
-        value: dataItem.value,
-        uuid: dataItem.uuid
-      }))
-    }));
-    setSubcategoryHeaders(formattedHeaders);
-  };
+  const fetchSubcategoryData = useCallback(async () => {
+    try {
+      const response = await axios.get(`${Config.API_URL}/api/subcategories/${subcategoryUUID}`, { withCredentials: true });
+      const formattedHeaders = response.data.Subcategory_Headers.map(header => ({
+        title: header.title,
+        uuid: header.uuid,
+        Subcategory_Data: header.Subcategory_Data.map(dataItem => ({
+          value: dataItem.value,
+          uuid: dataItem.uuid
+        }))
+      }));
+      setSubcategoryHeaders(formattedHeaders);
+    } catch (error) {
+      console.error('Error fetching subcategory data:', error);
+    }
+  }, [subcategoryUUID]);
 
   useEffect(() => {
     if (subcategoryUUID) {
       fetchSubcategoryData();
     }
-  }, [subcategoryUUID]);
+  }, [subcategoryUUID, fetchSubcategoryData]);
 
   // Update rows of the table for re-rendering if subcategoryHeaders have changed
   useEffect(() => {
