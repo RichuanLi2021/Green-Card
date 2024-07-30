@@ -12,7 +12,7 @@ import AddIcon from '@mui/icons-material/Add';
 import axios from 'axios';
 import Config from '../../config/config';
 
-export default function StickyHeadTable({ subcategoryHeaders }) {
+export default function StickyHeadTable({ subcategoryUUID }) {
   const [showEditForm, setShowEditForm] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
   const [rowEditNum, setRowEditNum] = useState(null);
@@ -20,9 +20,29 @@ export default function StickyHeadTable({ subcategoryHeaders }) {
   const [showEditButton, setShowEditButton] = useState(true);
   const [rows, setRows] = useState([]);
   const [editRowDefaultValues, setEditRowDefaultValues] = useState({});
+  const [subcategoryHeaders, setSubcategoryHeaders] = useState([]);
 
+  // Fetch data using this subcategory's uuid and store to `subcategoryHeaders`
+  const fetchSubcategoryData = async () => {
+    const response = await axios.get(`${Config.API_URL}/api/subcategories/${subcategoryUUID}`, { withCredentials: true });
+    const formattedHeaders = response.data.Subcategory_Headers.map(header => ({
+      title: header.title,
+      uuid: header.uuid,
+      Subcategory_Data: header.Subcategory_Data.map(dataItem => ({
+        value: dataItem.value,
+        uuid: dataItem.uuid
+      }))
+    }));
+    setSubcategoryHeaders(formattedHeaders);
+  };
 
-  // Initialize rows of the table using subcategoryHeaders passed to the component
+  useEffect(() => {
+    if (subcategoryUUID) {
+      fetchSubcategoryData();
+    }
+  }, [subcategoryUUID]);
+
+  // Update rows of the table for re-rendering if subcategoryHeaders have changed
   useEffect(() => {
     if (subcategoryHeaders?.length > 0) {
       const numberOfRows = subcategoryHeaders[0]?.Subcategory_Data.length;
@@ -85,16 +105,6 @@ export default function StickyHeadTable({ subcategoryHeaders }) {
         };
       });
 
-    // Update rows using edited values for re-rendering purposes
-    const newRows = [...rows];
-    newRows[rowEditNum] = {
-      ...newRows[rowEditNum],
-      ...Object.fromEntries(
-          updatedData.map(header => [header.title, { value: header.value, uuid: header.valueUUID }])
-      )
-    };
-    setRows(newRows);
-
     if (updatedData.length === 0) {
       handleClickEvent();
       return;
@@ -130,16 +140,6 @@ export default function StickyHeadTable({ subcategoryHeaders }) {
       }
     })
 
-    // Update rows using edited values for re-rendering purposes
-    setRows(prevRows => [
-      ...prevRows, {
-        originalIndex: prevRows.length,
-        ...Object.fromEntries(
-          newRowData.map(header => [header.title, { value: header.value, uuid: null }])
-        ),
-      },
-    ]);
-
     try {
       await Promise.all(newRowData.map(async (data) => {
         await axios.post(`${Config.API_URL}/api/subcategory_data`, data, { withCredentials: true });
@@ -158,27 +158,23 @@ export default function StickyHeadTable({ subcategoryHeaders }) {
 
   const handleSave = async () => {
     showAddForm ? await handleCreateRow() : await handleUpdateRow();
+    await fetchSubcategoryData();
   };
 
   const handleDelete = async (rowIndex) => {
-    try{
+    const confirmation = window.confirm('Are you sure you want to delete this row?');
+    if (!confirmation) return;
+    try {
       const deleteDataUUID = subcategoryHeaders
-        .map(header => rows[rowIndex]?.[header.title]?.uuid).filter(uuid => uuid);
-
-      await Promise.all(deleteDataUUID.map(uuid =>
-        axios.delete(`${Config.API_URL}/api/subcategory_data/${uuid}`, { withCredentials: true })
-      ));
-
+        .map(header => rows[rowIndex]?.[header.title]?.uuid).filter(uuid => uuid)
+      await Promise.all(deleteDataUUID
+        .map(uuid => axios.delete(`${Config.API_URL}/api/subcategory_data/${uuid}`, { withCredentials: true })));
       alert("Successfully deleted!");
-
-      // Update rows for re-rendering
-      const newRows = rows.filter((_, i) => i !== rowIndex);
-      setRows(newRows);
-
     } catch (error) {
       console.error('Error deleting data:', error);
       alert("Encountered an error deleting data");
     }
+    await fetchSubcategoryData();
   }
 
 
@@ -246,12 +242,13 @@ export default function StickyHeadTable({ subcategoryHeaders }) {
                       {row[header.id]?.value}
                     </TableCell>
                   ))}
-
                   <TableCell>
                     <IconButton 
                       aria-label="delete" 
                       size="large" 
-                      onClick={() => handleDelete(row.originalIndex)}
+                      onClick={async () => {
+                        await handleDelete(row.originalIndex);
+                      }}
                     >
                       <DeleteIcon />
                     </IconButton>

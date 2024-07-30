@@ -123,7 +123,7 @@ const DataTables = (props) => {
           setDrugData(prev => ({ ...prev, [drugName]: { ...fetchedData, Subcategory_Headers: formattedHeaders } }));
           })
           .catch(error => {
-            console.log(error);
+            console.error(error);
           });
       }
     }
@@ -343,8 +343,8 @@ const DataTables = (props) => {
                         <CloseIcon />
                       </Button>
                     </div>
-                    <DataDisplay 
-                      subcategoryHeaders={drugData[drugName]?.Subcategory_Headers}
+                    <DataDisplay
+                      subcategoryUUID={drugName}
                     />
                   </div>
                 ))}
