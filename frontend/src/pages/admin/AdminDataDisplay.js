@@ -66,15 +66,6 @@ export default function StickyHeadTable({ subcategoryUUID }) {
     return <div className="Liam"></div>;
   }
 
-  // Initialize the column of the table: Table Header with its data
-   const headers = subcategoryHeaders.map(header => ({
-    id: header.title,
-    uuid: header.uuid, 
-    label: header.title, 
-    data: header.Subcategory_Data, //Subcategory_Data contains the cell's value and uuid
-    minWidth: 170
-  }));
-
   const handleClickEvent = () => {
     setShowEditForm(!showEditForm);
     setShowEditButton(!showEditButton);
@@ -128,7 +119,7 @@ export default function StickyHeadTable({ subcategoryUUID }) {
   };
 
   const handleCreateRow = async () => {
-    if (Object.keys(editedValues).length < headers.length) {
+    if (Object.keys(editedValues).length < subcategoryHeaders.length) {
       alert("Please fill out all fields.");
       return;
     }
@@ -185,9 +176,9 @@ export default function StickyHeadTable({ subcategoryUUID }) {
           <TableHead>
             <TableRow>
               {showEditButton && <TableCell/>}
-              {headers.map((header, index) => (
+              {subcategoryHeaders.map((header, index) => (
                 <TableCell
-                  key={header.id}
+                  key={header.title}
                   align={header.align}
                   style={{
                     backgroundColor: 'white',
@@ -197,7 +188,7 @@ export default function StickyHeadTable({ subcategoryUUID }) {
                     zIndex: index === 0 ? 1 : 'auto'
                   }}
                 >
-                  {header.label}
+                  {header.title}
                 </TableCell>
               ))}
               {showEditButton && <TableCell/>} 
@@ -227,9 +218,9 @@ export default function StickyHeadTable({ subcategoryUUID }) {
                       </Button>
                     </TableCell>
                   )}
-                  {headers.map((header, index) => (
+                  {subcategoryHeaders.map((header, index) => (
                     <TableCell
-                      key={header.id}
+                      key={`values-${header.title}`}
                       align={header.align}
                       style={{
                         backgroundColor: 'white',
@@ -239,7 +230,7 @@ export default function StickyHeadTable({ subcategoryUUID }) {
                         zIndex: index === 0 ? 1 : 'auto'
                       }}
                     >
-                      {row[header.id]?.value}
+                      {row[header.title]?.value}
                     </TableCell>
                   ))}
                   <TableCell>
@@ -257,7 +248,7 @@ export default function StickyHeadTable({ subcategoryUUID }) {
               ))}
             {!showEditForm && 
               <TableRow>
-                <TableCell colSpan={headers.length + 2} sx={{ textAlign: 'center' }}>
+                <TableCell colSpan={subcategoryHeaders.length + 2} sx={{ textAlign: 'center' }}>
                   <Button
                       variant="contained"
                       size="large"
@@ -283,9 +274,9 @@ export default function StickyHeadTable({ subcategoryUUID }) {
             }
             {showEditForm && (
               <TableRow hover>
-                {headers.map((header, index) => (
+                {subcategoryHeaders.map((header, index) => (
                   <TableCell
-                    key={header.data}
+                    key={`btn-${header.title}`}
                     align={header.align}
                     style={{
                       backgroundColor: 'white',
@@ -296,8 +287,8 @@ export default function StickyHeadTable({ subcategoryUUID }) {
                     }}
                   >
                     <TextField
-                      defaultValue={showAddForm ? null : editRowDefaultValues[header.id]?.value}
-                      onChange={e => handleInputChange(e, header.id)}
+                      defaultValue={showAddForm ? null : editRowDefaultValues[header.title]?.value}
+                      onChange={e => handleInputChange(e, header.title)}
                     />
                   </TableCell>
                 ))}
