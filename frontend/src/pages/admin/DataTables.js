@@ -5,7 +5,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "./DataTables.css";
-import DataDisplay from '../../components/DataDisplay/dataDisplay';
+import DataDisplay from "../admin/AdminDataDisplay";
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Config from "../../config/config";
@@ -99,6 +99,7 @@ const DataTables = (props) => {
     }
   }, [scrollToDrugName, drugData]); // Depend on scrollToDrugName and drugData
 
+
   const toggleActiveSubcategory = (drugName, shouldDisplay) => {
     if (shouldDisplay) {
       //Ensure the drug is added to the selectedDrugs only if it's not already there
@@ -122,7 +123,7 @@ const DataTables = (props) => {
           setDrugData(prev => ({ ...prev, [drugName]: { ...fetchedData, Subcategory_Headers: formattedHeaders } }));
           })
           .catch(error => {
-            console.log(error);
+            console.error(error);
           });
       }
     }
@@ -370,9 +371,8 @@ const DataTables = (props) => {
                         <CloseIcon />
                       </Button>
                     </div>
-                    <DataDisplay 
-                      subcategoryHeaders={drugData[drugName]?.Subcategory_Headers}
-                      displayEdit={true}
+                    <DataDisplay
+                      subcategoryUUID={drugName}
                     />
                   </div>
                 ))}

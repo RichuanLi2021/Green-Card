@@ -78,6 +78,7 @@ module.exports = {
       { uuid: uuidv4(), headerID: 54, value: 'First line treatment: CBT-i (www.mysleepwell.ca)', createdAt: new Date(), updatedAt: new Date() },
       { uuid: uuidv4(), headerID: 54, value: '2nd line treatment: sedatives (if CBTi failure)', createdAt: new Date(), updatedAt: new Date() },
       { uuid: uuidv4(), headerID: 54, value: 'NNT with a sedative-hypnotic for improved sleep = 13, NNH = 6', createdAt: new Date(), updatedAt: new Date() },
+      { uuid: uuidv4(), headerID: 54, value: '-', createdAt: new Date(), updatedAt: new Date() },
 
       { uuid: uuidv4(), headerID: 55, value: 'Avoid starting if possible', createdAt: new Date(), updatedAt: new Date() },
       { uuid: uuidv4(), headerID: 55, value: 'Set end date', createdAt: new Date(), updatedAt: new Date() },
@@ -87,9 +88,12 @@ module.exports = {
       { uuid: uuidv4(), headerID: 56, value: 'Low dose, intermittent use', createdAt: new Date(), updatedAt: new Date() },
       { uuid: uuidv4(), headerID: 56, value: 'Time-limited', createdAt: new Date(), updatedAt: new Date() },
       { uuid: uuidv4(), headerID: 56, value: 'Co-start safer interventions (CBTi)', createdAt: new Date(), updatedAt: new Date() },
+      { uuid: uuidv4(), headerID: 56, value: '-', createdAt: new Date(), updatedAt: new Date() },
 
       { uuid: uuidv4(), headerID: 57, value: 'Gradual taper', createdAt: new Date(), updatedAt: new Date() },
       { uuid: uuidv4(), headerID: 57, value: 'Add CBTi to support', createdAt: new Date(), updatedAt: new Date() },
+      { uuid: uuidv4(), headerID: 57, value: '-', createdAt: new Date(), updatedAt: new Date() },
+      { uuid: uuidv4(), headerID: 57, value: '-', createdAt: new Date(), updatedAt: new Date() },
 
       { uuid: uuidv4(), headerID: 58, value: '4 to 12', createdAt: new Date(), updatedAt: new Date() },
       { uuid: uuidv4(), headerID: 58, value: '12 to 24', createdAt: new Date(), updatedAt: new Date() },

@@ -153,6 +153,7 @@ module.exports = {
       // Antidepressants - Clinical Guide
       //For Inadequate Response
       { uuid: uuidv4(), headerID: 8, value: 'Switching is preferred over augmentation (↓ risk of falls)', createdAt: new Date(), updatedAt: new Date() },
+      { uuid: uuidv4(), headerID: 8, value: '-', createdAt: new Date(), updatedAt: new Date() },
 
       { uuid: uuidv4(), headerID: 9, value: 'Single episode: ≥ 2 years', createdAt: new Date(), updatedAt: new Date() },
       { uuid: uuidv4(), headerID: 9, value: 'Multiple episodes: ongoing (preventative)', createdAt: new Date(), updatedAt: new Date() },

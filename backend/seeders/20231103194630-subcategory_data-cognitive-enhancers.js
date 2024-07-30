@@ -99,6 +99,9 @@ module.exports = {
       { uuid: uuidv4(), headerID: 41, value: 'COPD (severe)',                createdAt: new Date(), updatedAt: new Date() },
       { uuid: uuidv4(), headerID: 41, value: 'Anticholinergic medication',   createdAt: new Date(), updatedAt: new Date() },
       { uuid: uuidv4(), headerID: 41, value: 'CrCI < 15ml/min(memantine)',   createdAt: new Date(), updatedAt: new Date() },
+      { uuid: uuidv4(), headerID: 41, value: '-',                            createdAt: new Date(), updatedAt: new Date() },
+      { uuid: uuidv4(), headerID: 41, value: '-',                            createdAt: new Date(), updatedAt: new Date() },
+      { uuid: uuidv4(), headerID: 41, value: '-',                            createdAt: new Date(), updatedAt: new Date() },
 
       { uuid: uuidv4(), headerID: 42, value: 'Intolerance 10-20%',  createdAt: new Date(), updatedAt: new Date() },
       { uuid: uuidv4(), headerID: 42, value: 'Nausea, vomiting',    createdAt: new Date(), updatedAt: new Date() },
@@ -118,9 +121,14 @@ module.exports = {
       { uuid: uuidv4(), headerID: 43, value: 'Sedation',         createdAt: new Date(), updatedAt: new Date() },
       { uuid: uuidv4(), headerID: 43, value: 'Anxiety',          createdAt: new Date(), updatedAt: new Date() },
       { uuid: uuidv4(), headerID: 43, value: 'Hallucinations',   createdAt: new Date(), updatedAt: new Date() },
+      { uuid: uuidv4(), headerID: 43, value: '-',                createdAt: new Date(), updatedAt: new Date() },
+      { uuid: uuidv4(), headerID: 43, value: '-',                createdAt: new Date(), updatedAt: new Date() },
+      { uuid: uuidv4(), headerID: 43, value: '-',                createdAt: new Date(), updatedAt: new Date() },
 
       //Cognitive Enhancers - Clinical Guide
       { uuid: uuidv4(), headerID: 44, value: 'Ensuring resting HR > 50', createdAt: new Date(), updatedAt: new Date() },
+      { uuid: uuidv4(), headerID: 44, value: '-',                        createdAt: new Date(), updatedAt: new Date() },
+      { uuid: uuidv4(), headerID: 44, value: '-',                        createdAt: new Date(), updatedAt: new Date() },
 
       { uuid: uuidv4(), headerID: 45, value: 'Cognition',                           createdAt: new Date(), updatedAt: new Date() },
       { uuid: uuidv4(), headerID: 45, value: 'Global Functioning',                  createdAt: new Date(), updatedAt: new Date() },
