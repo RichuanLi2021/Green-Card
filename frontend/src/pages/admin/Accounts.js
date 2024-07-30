@@ -90,7 +90,7 @@ const Accounts = () => {
   };
 
   const handleDeleteAccounts = async () => {
-    //Check admin UUID against mapping
+    
     if (selectedCustomers.length === 0) {
       showToast('Please select a user before setting status or deleting', 'error');
       return;
@@ -98,12 +98,23 @@ const Accounts = () => {
   
     const selectedCustomerIDs = selectedCustomers.map(customer => customer.User_Roles[0].uuid);
     setSelectedCustomers([]);
-  
+    
+    const selectedCustomerRoleIDs = selectedCustomers.map(customer => customer.User_Roles[0].roleID);
+    if (selectedCustomerRoleIDs.includes(ROLE_IDS.ADMIN)){
+      showToast('Cannot delete admin accounts', 'error');
+    }
+
+    let notSelf = selectedCustomerIDs.includes(loggedInUser.uuid);
+    if(notSelf){
+      showToast('Cannot delete admin account', 'error');
+      return;
+    }
+
     try {
       const responses = await Promise.all(
         selectedCustomerIDs.map(async id => {
           try {
-            const response = await axios.delete(`${Config.API_URL}/api/users/user/${id.uuid}`, {
+            const response = await axios.delete(`${Config.API_URL}/api/users/user/${id}`, {
               withCredentials: true
             });
             return response;
