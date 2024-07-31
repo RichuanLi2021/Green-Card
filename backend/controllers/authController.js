@@ -3,6 +3,7 @@ const { createToken } = require('../utils/token')
 const { v4: uuidv4 } = require("uuid")
 const bcrypt = require('bcrypt')
 const env = require('../config/env');
+const crypto = require('crypto');
 
 // Authenticate user login
 exports.userLogin = async (req, res) => {
@@ -103,4 +104,73 @@ exports.userRegister = async (req, res) => {
         } catch (error) {
           return res.status(500).json({ error, errorMessage: 'Encountered unexpected error while registering account' })
         }
+}
+
+exports.forgotPassword = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const user = await User.findOne({ where: { email } });
+    if (!user) {
+      return res.status(404).json({ errorMessage: 'User not found' });
+    }
+
+    // Generate a password reset token and set expiry
+    const passwordResetToken = crypto.randomBytes(20).toString('hex');
+    const passwordResetTokenExpiry = new Date(Date.now() + 3600000); // Token expires in 1 hour
+
+    // Save the token and expiry to the user record
+    user.passwordResetToken = passwordResetToken;
+    user.passwordResetTokenExpiry = passwordResetTokenExpiry;
+    await user.save();
+
+    /*
+    // Send email with password reset link containing token
+    // Example implementation using Nodemailer:
+    const resetLink = `http://example.com/reset-password?token=${passwordResetToken}`;
+    await sendPasswordResetEmail(email, resetLink);
+    */
+
+    return res.status(200).json({ message: 'Password reset email sent', token: passwordResetToken});
+  } catch (error) {
+    console.error('Error requesting password reset:', error);
+    return res.status(500).json({ error, errorMessage: 'Encountered unexpected error while requesting password reset', error: error.message });
+  }
+}
+
+exports.resetPassword = async (req, res) => {
+  const { newPassword: password, token } = req.body; // Get the new password from the request body
+
+  try {
+    const user = await User.findOne({ where: { passwordResetToken: token } });
+
+    if (!user || user.passwordResetTokenExpiry < new Date()) {
+      return res.status(400).json({ errorMessage: 'Invalid or expired password reset token' });
+    }
+
+    // Hash the new password
+    // Update the user's password and clear the reset token and expiry
+    user.password = await bcrypt.hash(password, 12);
+    user.passwordResetToken = null;
+    user.passwordResetTokenExpiry = null;
+    await user.save();
+
+    return res.status(200).json({ message: 'Password has been successfully reset' });
+  } catch (error) {
+    console.error('Error resetting password:', error);
+    return res.status(500).json({ errorMessage: 'Encountered unexpected error while resetting password', error: error.message });
+  }
+}
+
+exports.changePassword = async (req, res) => {
+    const { newPassword } = req.body;
+    try {
+        const user = await User.findOne({ where: { uuid: req.params.uuid } });
+        user.password = await bcrypt.hash(newPassword, 12);
+        await user.save();
+        return res.status(200).json({ message: 'Password has been successfully changed' });
+    } catch (error) {
+        console.error('Error resetting password:', error);
+        return res.status(500).json({ errorMessage: 'Encountered unexpected error while resetting password', error: error.message });
+    }
 }

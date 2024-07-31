@@ -5,7 +5,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "./DataTables.css";
-import DataDisplay from '../../components/DataDisplay/dataDisplay';
+import DataDisplay from "../admin/AdminDataDisplay";
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Config from "../../config/config";
@@ -110,10 +110,20 @@ const DataTables = (props) => {
       if (!drugData[drugName]) {
         axios.get(`${Config.API_URL}/api/subcategories/${drugName}`, { withCredentials: true })
           .then(response => {
-            setDrugData(prev => ({ ...prev, [drugName]: response.data }));
+            const fetchedData = response.data; //feched data contains all info
+            const formattedHeaders = fetchedData.Subcategory_Headers.map(header => ({
+              title: header.title,
+              uuid: header.uuid,
+              Subcategory_Data: header.Subcategory_Data.map(dataItem => ({
+                value: dataItem.value,
+                uuid: dataItem.uuid
+              }))
+            }));
+            // Update the state with the new formatted headers
+            setDrugData(prev => ({ ...prev, [drugName]: { ...fetchedData, Subcategory_Headers: formattedHeaders } }));
           })
           .catch(error => {
-            console.log(error);
+            console.error(error);
           });
       }
     }
@@ -130,11 +140,11 @@ const DataTables = (props) => {
     const checkbox = document.getElementById(`${drugName}Checkbox`);
     if (checkbox) {
       checkbox.checked = shouldDisplay;
-
     }
-
-
   };
+
+
+
 
 
   const handleCheckboxChange = (drugName, isChecked) => {
@@ -183,6 +193,8 @@ const DataTables = (props) => {
       </Fade>
     );
   }
+
+
 
 
   ScrollTop.propTypes = {
@@ -235,9 +247,18 @@ const DataTables = (props) => {
                         >
                           <Typography className="drug-dropdown" variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
                             {
-                              drugItem.name.endsWith("Medication Table") ?
-                                drugItem.name.split("Medication Table")[0]
-                                : drugItem.name}
+                              (() => {
+                                let name = drugItem.name.endsWith("Medication Table")
+                                  ? drugItem.name.split("Medication Table")[0]
+                                  : drugItem.name;
+
+                                if (name.includes(" on Dementia")) {
+                                  name = name.replace(" on Dementia", " of Dementia");
+                                }
+
+                                return name;
+                              })()
+                            }
                           </Typography>
                         </Button>
 
@@ -271,9 +292,18 @@ const DataTables = (props) => {
                                   }}
                                 >
                                   {
-                                    drugItem.name.endsWith("Medication Table") ?
-                                      drugItem.name.split("Medication Table")[0]
-                                      : drugItem.name}
+                                    (() => {
+                                      let name = drugItem.name.endsWith("Medication Table")
+                                        ? drugItem.name.split("Medication Table")[0]
+                                        : drugItem.name;
+
+                                      if (name.includes(" on Dementia")) {
+                                        name = name.replace(" on Dementia", " of Dementia");
+                                      }
+
+                                      return name;
+                                    })()
+                                  }
                                 </Typography>
                               </div>
                             ))}
@@ -290,13 +320,8 @@ const DataTables = (props) => {
               <Box className="gray-square">
                 <div>
                   <Box
-                    sx={{
-                      textAlign: "center",
-                      flex: ".8",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                    }}
+                    className="data-table-header"
+
                   >
 
                     {/* Last Updated Timestamp Display */}
@@ -318,24 +343,37 @@ const DataTables = (props) => {
                     )}
                   </Box>
                 </div>
-                <DataDisplay />
+
                 {selectedDrugs.map(drugName => (
 
-                  <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
-                    <div className="header-container">
+                  <div className="grid" style={{ padding: "1.5%" }} key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
+                    <div className="admin-header-container">
                       <div>
-                        <h2>{
-                            drugData[drugName]?.description.endsWith("Medication Table") ?
-                            drugData[drugName]?.description.split("Medication Table")[0] :
-                            drugData[drugName]?.description || 'Default Description'
-                        }</h2>
+                        <h2>
+                          {
+                            (() => {
+                              let description = drugData[drugName]?.description.endsWith("Medication Table")
+                                ? drugData[drugName]?.description.split("Medication Table")[0]
+                                : drugData[drugName]?.description || 'Default Description';
+
+                              if (description.includes(" on Dementia")) {
+                                description = description.replace(" on Dementia", " of Dementia");
+                              }
+
+                              return description;
+                            })()
+                          }
+                        </h2>
                       </div>
+
 
                       <Button sx={{ backgroundColor: "#96d2b0", color: "#000000" }} onClick={() => toggleActiveSubcategory(drugName, false)}>
                         <CloseIcon />
                       </Button>
                     </div>
-                    <DataDisplay subcategoryHeaders={drugData[drugName]?.Subcategory_Headers} />
+                    <DataDisplay
+                      subcategoryUUID={drugName}
+                    />
                   </div>
                 ))}
               </Box>

@@ -38,6 +38,12 @@ export default function SignIn() {
   const [open, setOpen] = useState(false);
   const [emailConfirm, setEmailConfirm] = useState("");
   const [isAdmin, setIsAdmin] = useState(true);
+  const [subscriptionDialogOpen, setSubscriptionDialogOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [passwordStrengthMessage,setPasswordStrengthMessage]= useState("");
 
 
   useEffect(() => {
@@ -56,28 +62,38 @@ export default function SignIn() {
     }
   }, []);
 
+  useEffect(() => {
+    setLoading(!userData || !userData.User_Roles);
+  }, [userData]);
 
-  const handleSubmit = (event) => {
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const dataCredential = new FormData(event.target);
+    if (errorMessage || passwordStrengthMessage || !password) return;
 
-    axios.post(Config.API_URL + "/api/auth/register", {
-      email: dataCredential.get("email"),
-      password: dataCredential.get("password"),
-      discipline:
-        dataCredential.get("discipline") ||
-        dataCredential.get("specialty") ||
-        dataCredential.get("other-discipline"),
-    })
-      .then((response) => {
-        if (response.data.message) {
-          alert(response.data.message);
-          navigate("/login");
-        } else {
-          alert(response.data.error);
-        }
-      })
-      .catch((error) => console.log(error));
+    try {
+      const response = await axios.put(`${Config.API_URL}/api/auth/change-password/${userData.uuid}`,
+        { newPassword: password },
+        { withCredentials: true }
+      );
+
+      if (response.data.message) {
+        alert('Successfully changed password. Please login again.');
+        await axios.post(`${Config.API_URL}/api/auth/logout`, {}, { withCredentials: true });
+        localStorage.removeItem('access-token');
+        localStorage.removeItem('user-role');
+        setTimeout(() => {
+          navigate('/login');
+        }, 500);
+      } else {
+        alert(response.data.error);
+      }
+    } catch (error) {
+      console.error('Error changing password:', error);
+      setErrorMessage('An error occurred while changing the password. Please try again.');
+    }
+
+    setErrorMessage('');
   };
 
 
@@ -101,24 +117,60 @@ export default function SignIn() {
     }
   };
 
-  const handleSubscribe = async () => {
+  const handleUpdateSubscription = async () => {
+    setSubscriptionDialogOpen(false);
+
+    const newSubscriptionStatus = !userData.subscribed;
+    const message = newSubscriptionStatus ? "subscribed" : "unsubscribed";
+
     try {
       const response = await axios.patch(`${Config.API_URL}/api/users/${userData.uuid}/subscription`, {
-        newSubscriptionStatus: true,
+        newSubscriptionStatus: newSubscriptionStatus,
       }, { withCredentials: true });
       if (response.status === 200) {
         setUserData(prevData => ({
           ...prevData,
-          subscribed: true
+          subscribed: newSubscriptionStatus
         }));
-        alert('Successfully subscribed');
+        alert(`Successfully ${message}!`);
       }
     } catch (error) {
       console.error("Failed to update subscription:", error);
-      alert("Failed to subscribe");
+      alert("Encountered unexpected error");
     }
   };
 
+  const handlePasswordChange = (event) => {
+    const newPassword = event.target.value;
+    setPassword(newPassword);
+    checkPasswordStrength(newPassword);
+
+    if (newPassword && confirmPassword && newPassword !== confirmPassword) {
+      setErrorMessage('Passwords do not match');
+    } else {
+      setErrorMessage('');
+    }
+  };
+
+  const handleConfirmPasswordChange = (event) => {
+    const newConfirmPassword = event.target.value;
+    setConfirmPassword(newConfirmPassword);
+    if (password && newConfirmPassword && password !== newConfirmPassword) {
+      setErrorMessage('Passwords do not match');
+    } else {
+      setErrorMessage('');
+    }
+  };
+
+  const checkPasswordStrength = (password) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    if (password && !passwordRegex.test(password)) {
+      setPasswordStrengthMessage('Password must be at least 8 characters long and ' +
+          'include at least one uppercase letter, one lowercase letter, one number, and one special character (!@#$%^&*).');
+    } else {
+      setPasswordStrengthMessage('');
+    }
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -154,7 +206,7 @@ export default function SignIn() {
               justifyContent: "center",
             }}
           >
-            {userData && userData.User_Roles ? (
+            {!loading ? (
               <ul style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
                 {[
                   { label: "Email:", data: userData.email },
@@ -171,9 +223,9 @@ export default function SignIn() {
                     <Typography variant="body2" component="span" sx={{ textAlign: 'left', fontWeight: 'bold', fontSize: '1.0rem' }}>
                       {item.data}
                     </Typography>
-                    {!isAdmin && !userData.subscribed && item.label === "Subscription Status:" && (
-                      <Button variant="contained" sx={{ width: '30%', marginLeft: '1rem' }} onClick={handleSubscribe}>
-                          Subscribe
+                    {!isAdmin && item.label === "Subscription Status:" && (
+                      <Button variant="contained" sx={{ width: '32%', marginLeft: '1rem' }} onClick={() => setSubscriptionDialogOpen(true)}>
+                        {userData.subscribed? "Unsubscribe": "Subscribe"}
                       </Button>
                     )}
                   </Box>
@@ -186,7 +238,7 @@ export default function SignIn() {
             )}
           </div>
 
-          <Box
+          {!loading && <Box
             component="form"
             onSubmit={handleSubmit}
             noValidate
@@ -201,20 +253,29 @@ export default function SignIn() {
                   name="password"
                   label="Password"
                   type="password"
-                  id="password"
-                  autoComplete="new-password"
+                  value={password}
+                  onChange={handlePasswordChange}
                 />
               </Grid>
+              {passwordStrengthMessage && (
+                <Grid item xs={12}>
+                  <Typography color="error">{passwordStrengthMessage}</Typography>
+                </Grid>
+              )}
               <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  name="password"
                   label="Confirm Password"
                   type="password"
-                  id="password"
-                  autoComplete="new-password"
+                  value={confirmPassword}
+                  onChange={handleConfirmPasswordChange}
                 />
               </Grid>
+              {errorMessage && (
+                <Grid item xs={12}>
+                  <Typography color="error">{errorMessage}</Typography>
+                </Grid>
+              )}
             </Grid>
             <Button
               type="submit"
@@ -241,7 +302,7 @@ export default function SignIn() {
                 </Button>
             )}
             
-          </Box>
+          </Box>}
         </Box>
       </Container>
 
@@ -270,6 +331,24 @@ export default function SignIn() {
           </Button>
         </DialogActions>
       </Dialog>
+
+      <Dialog open={subscriptionDialogOpen} onClose={() => setSubscriptionDialogOpen(false)}>
+        <DialogTitle>Confirmation</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            {"Are you sure you want to " + (userData.subscribed? "unsubscribe": "subscribe") + "?"}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setSubscriptionDialogOpen(false)}>
+            Cancel
+          </Button>
+          <Button onClick={handleUpdateSubscription} color="error">
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
+
 
     </ThemeProvider>
   );

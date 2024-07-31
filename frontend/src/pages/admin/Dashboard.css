@@ -6,7 +6,7 @@
 .admin-root-container {
     width: 85%;
     display: flex;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 main {

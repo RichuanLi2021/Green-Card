@@ -75,24 +75,25 @@ exports.createOneSubData = async(req, res) => {
 
 //Update one
 exports.updateSubData = async(req, res) => {
-    const { headerUUID, value } = req.body
+    const { headerUUID, value} = req.body
     // Sanitize and validate
 
     try {
       const subcategory_header = await Subcategory_Header.findOne({
-        where: { uuid: headerUUID }
-      }).catch(() => { return res.status(400).json({ errorMessage: 'Subcategory header does not exist' }) })
+        where: { uuid: headerUUID}
+      }).catch(() => { 
+        return res.status(400).json({ 
+          errorMessage: 'Subcategory header does not exist' 
+        }) 
+      })
 
       await Subcategory_Data.update({
         headerID: subcategory_header.id,
-        value: value,
+        value: value
       }, {
         where: { uuid: req.params.id }
       })
-        .then((result) => {
-          if (result !== 1) return res.status(400).json({ errorMessage: 'Encountered error while updating subcategory data' })
-          return res.status(200).json({ message: 'Successfully updated subcategory data' })
-        })
+        .then(() => {return res.status(200).json({ message: 'Successfully updated subcategory data' })})
         .catch((error) => { return res.status(400).json({ error, errorMessage: error['errors'][0].message }) })
       } catch (error) {
         return res.status(500).json({ error, errorMessage: 'Encountered unexpected error while updating subcategory data' })

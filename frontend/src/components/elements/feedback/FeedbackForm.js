@@ -98,7 +98,17 @@ import ToastComponent from '../../ToastComponent'; // Adjust the import path as 
 
 
 
-    <FormControlLabel control={<Checkbox checked={additionalCheckbox} onChange={handleSubscribe} />} label="Subscribe to email services" />
+      <div>
+        <FormControlLabel
+          control={
+            <Checkbox 
+              checked={additionalCheckbox} 
+              onChange={handleSubscribe} 
+            />
+          }
+          label="Request for response"
+        />
+      </div>
     </>
             )}
     <FormLabel component="legend">Rate your experience</FormLabel>

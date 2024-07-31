@@ -33,6 +33,21 @@ module.exports = {
         type: DataTypes.STRING,
         unique: true
       },
+      emailVerificationToken: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        defaultValue: null
+      },
+      passwordResetToken: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        defaultValue: null
+      },
+      passwordResetTokenExpiry: {
+        type: DataTypes.DATE,
+        allowNull: true,
+        defaultValue: null
+      },
       password: {
         allowNull: false,
         type: DataTypes.STRING

@@ -16,6 +16,29 @@
     font-size: 0.75rem;
 }
 
+.data-table-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.admin-header-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-data-table-edit {
+    border: 1px solid #96d2b0 !important;
+    background-color: #96d2b0 !important;
+    color: black !important;
+
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+}
+
 @media (max-width: 600px) {
     .css-8k7wf8-MuiDrawer-docked .MuiDrawer-paper {
         width: auto !important; /* Drawer menu uses auto width */
