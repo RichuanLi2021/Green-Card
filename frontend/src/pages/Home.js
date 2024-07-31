@@ -243,55 +243,55 @@ const HomePage = (props) => {
                   } else {
                     return (
                       <CardContent sx={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-                      <Accordion className="myAccordion">
-                        <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
-                          <Typography variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                          { 
-       (() => {
-        let categoryName = drugCategory.category;
+                        <Accordion className="myAccordion">
+                          <AccordionSummary sx={{ alignSelf: "center" }} expandIcon={<ExpandMoreIcon />}>
+                            <Typography variant="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
+                              {
+                                (() => {
+                                  let categoryName = drugCategory.category;
 
-        // Additional condition to replace "test" with "test2"
-        if (categoryName === "Neuropsychiatric Symptoms on Dementia") {
-          categoryName = "Neuropsychiatric Symptoms of Dementia";
-        }
+                                  // Additional condition to replace "test" with "test2"
+                                  if (categoryName === "Neuropsychiatric Symptoms on Dementia") {
+                                    categoryName = "Neuropsychiatric Symptoms of Dementia";
+                                  }
 
-        return categoryName;
-      })()
-    }
-                          
-                          </Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
+                                  return categoryName;
+                                })()
+                              }
+
+                            </Typography>
+                          </AccordionSummary>
+                          <AccordionDetails>
                             {drugCategory.data.map(drugItem => {
                               let cleanName = drugItem.name.replace(drugCategory.category, '').trim();
-                            
-                              
-                              
-                            return (
-                              <div className="item-container" key={drugItem.route}>
-                                <input
-                                  type="checkbox"
-                                  id={`${drugItem.route}Checkbox`}
-                                  style={{ visibility: "hidden" }}
-                                  onChange={(e) => handleCheckboxChange(drugItem.route, e.target.checked)}
-                                  checked={activeSubcategories[drugItem.route] || false}
-                                />
-                                <Typography
-                                  className={`myStyledButton ${activeSubcategories[drugItem.route] ? 'activeButton' : ''}`}
-                                  sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
-                                  onClick={() => {
-                                    const shouldDisplay = !activeSubcategories[drugItem.route];
-                                    toggleActiveSubcategory(drugItem.route, shouldDisplay);
-                                  }}
-                                >
-                                  {cleanName}
-                                </Typography>
-                              </div>
-                            );
-                          })}
-                        </AccordionDetails>
-                      </Accordion>
-                    </CardContent>
+
+
+
+                              return (
+                                <div className="item-container" key={drugItem.route}>
+                                  <input
+                                    type="checkbox"
+                                    id={`${drugItem.route}Checkbox`}
+                                    style={{ visibility: "hidden" }}
+                                    onChange={(e) => handleCheckboxChange(drugItem.route, e.target.checked)}
+                                    checked={activeSubcategories[drugItem.route] || false}
+                                  />
+                                  <Typography
+                                    className={`myStyledButton ${activeSubcategories[drugItem.route] ? 'activeButton' : ''}`}
+                                    sx={{ fontWeight: 300, fontSize: "1rem", cursor: "pointer" }}
+                                    onClick={() => {
+                                      const shouldDisplay = !activeSubcategories[drugItem.route];
+                                      toggleActiveSubcategory(drugItem.route, shouldDisplay);
+                                    }}
+                                  >
+                                    {cleanName}
+                                  </Typography>
+                                </div>
+                              );
+                            })}
+                          </AccordionDetails>
+                        </Accordion>
+                      </CardContent>
                     );
                   }
                 })}
@@ -402,13 +402,13 @@ const HomePage = (props) => {
                 </div>
                 {selectedDrugs.map(drugName => (
 
-                  <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
+                  <div className="grid" style={{ padding: "1.5%" }} key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
                     <div className="header-container">
                       <div>
                         <h2>{
                           drugData[drugName]?.description.endsWith("Medication Table") ?
-                          drugData[drugName]?.description.split("Medication Table")[0] :
-                          drugData[drugName]?.description || 'Default Description'
+                            drugData[drugName]?.description.split("Medication Table")[0] :
+                            drugData[drugName]?.description || 'Default Description'
                         }</h2>
                       </div>
                       <Button sx={{ backgroundColor: "#96d2b0", color: "#000000" }} onClick={() => toggleActiveSubcategory(drugName, false)}>

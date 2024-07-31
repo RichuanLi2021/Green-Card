@@ -40,7 +40,7 @@ const DataTables = (props) => {
   const drugDisplayRefs = useRef({});
   const [activeSubcategories, setActiveSubcategories] = useState({});
   const [latestUpdated, setLatestUpdated] = useState(null);
-  
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -115,12 +115,12 @@ const DataTables = (props) => {
               title: header.title,
               uuid: header.uuid,
               Subcategory_Data: header.Subcategory_Data.map(dataItem => ({
-              value: dataItem.value,
-              uuid: dataItem.uuid
-            }))
-          }));
+                value: dataItem.value,
+                uuid: dataItem.uuid
+              }))
+            }));
             // Update the state with the new formatted headers
-          setDrugData(prev => ({ ...prev, [drugName]: { ...fetchedData, Subcategory_Headers: formattedHeaders } }));
+            setDrugData(prev => ({ ...prev, [drugName]: { ...fetchedData, Subcategory_Headers: formattedHeaders } }));
           })
           .catch(error => {
             console.error(error);
@@ -143,7 +143,7 @@ const DataTables = (props) => {
     }
   };
 
-  
+
 
 
 
@@ -194,7 +194,7 @@ const DataTables = (props) => {
     );
   }
 
-  
+
 
 
   ScrollTop.propTypes = {
@@ -246,19 +246,19 @@ const DataTables = (props) => {
                           }}
                         >
                           <Typography className="drug-dropdown" variant="h5" component="h1" sx={{ fontWeight: 400, fontSize: "1.25rem" }}>
-                          {
-    (() => {
-      let name = drugItem.name.endsWith("Medication Table")
-        ? drugItem.name.split("Medication Table")[0]
-        : drugItem.name;
+                            {
+                              (() => {
+                                let name = drugItem.name.endsWith("Medication Table")
+                                  ? drugItem.name.split("Medication Table")[0]
+                                  : drugItem.name;
 
-      if (name.includes(" on Dementia")) {
-        name = name.replace(" on Dementia", " of Dementia");
-      }
+                                if (name.includes(" on Dementia")) {
+                                  name = name.replace(" on Dementia", " of Dementia");
+                                }
 
-      return name;
-    })()
-  }
+                                return name;
+                              })()
+                            }
                           </Typography>
                         </Button>
 
@@ -291,19 +291,19 @@ const DataTables = (props) => {
                                     toggleActiveSubcategory(drugItem.route, shouldDisplay);
                                   }}
                                 >
-                                 {
-    (() => {
-      let name = drugItem.name.endsWith("Medication Table")
-        ? drugItem.name.split("Medication Table")[0]
-        : drugItem.name;
+                                  {
+                                    (() => {
+                                      let name = drugItem.name.endsWith("Medication Table")
+                                        ? drugItem.name.split("Medication Table")[0]
+                                        : drugItem.name;
 
-      if (name.includes(" on Dementia")) {
-        name = name.replace(" on Dementia", " of Dementia");
-      }
+                                      if (name.includes(" on Dementia")) {
+                                        name = name.replace(" on Dementia", " of Dementia");
+                                      }
 
-      return name;
-    })()
-  }
+                                      return name;
+                                    })()
+                                  }
                                 </Typography>
                               </div>
                             ))}
@@ -321,9 +321,9 @@ const DataTables = (props) => {
                 <div>
                   <Box
                     className="data-table-header"
-                  
+
                   >
-                   
+
                     {/* Last Updated Timestamp Display */}
                     {latestUpdated && (
                       <Typography
@@ -343,27 +343,27 @@ const DataTables = (props) => {
                     )}
                   </Box>
                 </div>
-             
+
                 {selectedDrugs.map(drugName => (
 
-                  <div className="grid" key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
+                  <div className="grid" style={{ padding: "1.5%" }} key={drugName} ref={el => drugDisplayRefs.current[drugName] = el}>
                     <div className="admin-header-container">
                       <div>
-                      <h2>
-  {
-    (() => {
-      let description = drugData[drugName]?.description.endsWith("Medication Table")
-        ? drugData[drugName]?.description.split("Medication Table")[0]
-        : drugData[drugName]?.description || 'Default Description';
+                        <h2>
+                          {
+                            (() => {
+                              let description = drugData[drugName]?.description.endsWith("Medication Table")
+                                ? drugData[drugName]?.description.split("Medication Table")[0]
+                                : drugData[drugName]?.description || 'Default Description';
 
-      if (description.includes(" on Dementia")) {
-        description = description.replace(" on Dementia", " of Dementia");
-      }
+                              if (description.includes(" on Dementia")) {
+                                description = description.replace(" on Dementia", " of Dementia");
+                              }
 
-      return description;
-    })()
-  }
-</h2>
+                              return description;
+                            })()
+                          }
+                        </h2>
                       </div>
 
 
