@@ -96,7 +96,7 @@ const Accounts = () => {
       return;
     }
   
-    const selectedCustomerIDs = selectedCustomers.map(customer => customer.User_Roles[0].uuid);
+    const selectedCustomerIDs = selectedCustomers.map(customer => customer.uuid);
     setSelectedCustomers([]);
     
     const selectedCustomerRoleIDs = selectedCustomers.map(customer => customer.User_Roles[0].roleID);
