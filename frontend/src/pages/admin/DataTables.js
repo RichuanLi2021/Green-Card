@@ -385,7 +385,7 @@ const DataTables = (props) => {
       <React.Fragment>
         <CssBaseline />
         <ScrollTop {...props}>
-          <Fab size="small" aria-label="scroll back to top">
+          <Fab size="small" aria-label="scroll back to top" sx={{ backgroundColor: "#96d2b0" }}>
             <KeyboardArrowUpIcon />
           </Fab>
         </ScrollTop>
