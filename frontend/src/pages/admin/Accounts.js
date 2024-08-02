@@ -7,9 +7,6 @@ import Config from "../../config/config";
 import "./Accounts.css";
 import ROLE_IDS from "../../config/constants";
 import ToastComponent from "../../components/ToastComponent";
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import PersonIcon from '@mui/icons-material/Person';
-import Tooltip from '@mui/material/Tooltip';
 
 
 const theme = createTheme({
@@ -31,7 +28,6 @@ const Accounts = () => {
   const [toastType, setToastType] = useState('');
   const [loggedInUser, setLoggedInUser] = useState(null);
 
-  useEffect(() => {
     const fetchCustomers = async () => {
       try {
         const response = await axios.get(`${Config.API_URL}/api/users`, { withCredentials: true });
@@ -78,12 +74,6 @@ const Accounts = () => {
       return;
     }
     const selectedCustomersIDs = selectedCustomers.map(customer => customer.User_Roles[0].userID);
-
-    const confirmationMessage = `Are you sure you want to ${newRoleID === ROLE_IDS.ADMIN ?
-        'grant admin privileges to the selected accounts' : 'reset the selected accounts to regular user status'}?`;
-    const confirmed = window.confirm(confirmationMessage);
-    if (!confirmed) return;
-
     setSelectedCustomers([]);
 
     try {
@@ -97,8 +87,6 @@ const Accounts = () => {
     } catch (error) {
       showToast(errorMessage, 'error');
     }
-
-    await fetchCustomers();
   };
 
   const handleDeleteAccounts = async () => {
@@ -150,11 +138,11 @@ const Accounts = () => {
   
 
   const setAdminPrivileges = async () => {
-    await handleSetPrivileges( ROLE_IDS.ADMIN,"Successfully granted admin privileges","Failed to grant admin privileges");
+    await handleSetPrivileges( ROLE_IDS.ADMIN,"Successfully assigned admin privileges","Failed to assign admin privileges");
   };
 
   const setUserPrivileges = async () => {
-    await handleSetPrivileges( ROLE_IDS.USER,"Successfully reset to regular user status","Failed to reset to regular user status");
+    await handleSetPrivileges( ROLE_IDS.USER,"Successfully reset to user status","Failed to reset to user status");
   };
 
 
@@ -225,7 +213,6 @@ const Accounts = () => {
               <TableHead>
                 <TableRow>
                   <TableCell padding="checkbox">Select</TableCell>
-                  <TableCell stickyHeader>Role</TableCell>
                   <TableCell stickyHeader>First Name</TableCell>
                   <TableCell stickyHeader>Last Name</TableCell>
                   <TableCell stickyHeader>Discipline</TableCell>
@@ -243,17 +230,6 @@ const Accounts = () => {
                         onChange={(event) => handleSelectReview(customer)}
                     />
                     </TableCell>
-                    <TableCell>
-                      {
-                        customer.User_Roles[0].roleID === ROLE_IDS.ADMIN ?
-                          <Tooltip placement="top" title="Admin User" arrow>
-                            <ManageAccountsIcon />
-                          </Tooltip> :
-                          <Tooltip placement="top" title="Regular User" arrow>
-                            <PersonIcon />
-                          </Tooltip>
-                      }
-                    </TableCell>
                     <TableCell>{customer.firstName }</TableCell>
                     <TableCell>{customer.lastName }</TableCell>
                     <TableCell>{customer.discipline}</TableCell>
@@ -269,7 +245,7 @@ const Accounts = () => {
         <ToastComponent message={toastMessage} type={toastType} />
       </ThemeProvider>
     );
-  });
-}
+  };
+
   
   export default Accounts;
