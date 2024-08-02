@@ -296,7 +296,7 @@ export default function SignIn() {
                   sx={{
                     mt: 1,
                     mb: 1,
-                    color: "#96d2b0", // Change this to match your theme's green color
+                    color: "#96d2b0",
                     textDecoration: 'underline',
                   }}
                   onClick={() => setOpen(true)}
