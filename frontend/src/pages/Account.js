@@ -43,7 +43,7 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [passwordStrengthMessage,setPasswordStrengthMessage]= useState("");
+  const [passwordStrengthMessage, setPasswordStrengthMessage] = useState("");
 
 
   useEffect(() => {
@@ -166,7 +166,7 @@ export default function SignIn() {
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
     if (password && !passwordRegex.test(password)) {
       setPasswordStrengthMessage('Password must be at least 8 characters long and ' +
-          'include at least one uppercase letter, one lowercase letter, one number, and one special character (!@#$%^&*).');
+        'include at least one uppercase letter, one lowercase letter, one number, and one special character (!@#$%^&*).');
     } else {
       setPasswordStrengthMessage('');
     }
@@ -198,13 +198,13 @@ export default function SignIn() {
           </Typography>
 
           <div style={{
-              color: "black",
-              textAlign: "center",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+            color: "black",
+            textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
           >
             {!loading ? (
               <ul style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
@@ -214,7 +214,7 @@ export default function SignIn() {
                   { label: "First Name:", data: userData.firstName },
                   { label: "Last Name:", data: userData.lastName },
                   { label: "Title:", data: userData.title },
-                  !isAdmin && { label: "Subscription Status:", data: userData.subscribed ? "Active" : "Inactive"}
+                  !isAdmin && { label: "Subscription Status:", data: userData.subscribed ? "Active" : "Inactive" }
                 ].map((item, index) => (
                   <Box component="li" key={index} sx={{ display: 'flex', alignItems: 'center', width: '100%', maxWidth: '800px' }}>
                     <Typography variant="body2" component="span" sx={{ textAlign: 'left', marginRight: '2rem' }}>
@@ -225,13 +225,13 @@ export default function SignIn() {
                     </Typography>
                     {!isAdmin && item.label === "Subscription Status:" && (
                       <Button variant="contained" sx={{ width: '32%', marginLeft: '1rem' }} onClick={() => setSubscriptionDialogOpen(true)}>
-                        {userData.subscribed? "Unsubscribe": "Subscribe"}
+                        {userData.subscribed ? "Unsubscribe" : "Subscribe"}
                       </Button>
                     )}
                   </Box>
                 ))}
-                </ul>
-              ) : (
+              </ul>
+            ) : (
               <Typography>
                 Loading...
               </Typography>
@@ -293,15 +293,19 @@ export default function SignIn() {
               !isAdmin && (
                 <Button
                   fullWidth
-                  variant="contained"
-                  color="error"
-                  sx={{ mt: 1, mb: 1 }}
+                  variant="text"
+                  sx={{
+                    mt: 1,
+                    mb: 1,
+                    color: "#96d2b0",
+                    textDecoration: 'underline',
+                  }}
                   onClick={() => setOpen(true)}
                 >
                   Delete Account
                 </Button>
-            )}
-            
+              )}
+
           </Box>}
         </Box>
       </Container>
@@ -336,7 +340,7 @@ export default function SignIn() {
         <DialogTitle>Confirmation</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            {"Are you sure you want to " + (userData.subscribed? "unsubscribe": "subscribe") + "?"}
+            {"Are you sure you want to " + (userData.subscribed ? "unsubscribe" : "subscribe") + "?"}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
