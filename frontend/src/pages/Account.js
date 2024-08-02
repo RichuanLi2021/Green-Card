@@ -37,7 +37,7 @@ export default function SignIn() {
   const [userData, setUserData] = useState({});
   const [open, setOpen] = useState(false);
   const [emailConfirm, setEmailConfirm] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
   const [subscriptionDialogOpen, setSubscriptionDialogOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [password, setPassword] = useState("");
@@ -250,6 +250,7 @@ export default function SignIn() {
               <Grid item xs={12}>
                 <TextField
                   fullWidth
+                  name="password"
                   label="Password"
                   type="password"
                   value={password}

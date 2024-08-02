@@ -107,12 +107,14 @@ exports.updateUser = async (req, res) => {
   
   // Delete One (User)
   exports.deleteUser = async (req, res) => {
-    if (req.user.uuid !== req.params.id) {
-      return res.status(403).json({ error: 'User is not authorized to delete this account' });
+    console.log('Req UID:', req.user.uuid);
+    
+    if (req.user.uuid === req.params.id) {
+      return res.status(403).json({ error: 'Please refer to accounts page for self-deletion' });
     }
     try {
       const result = await User.destroy({ where: { uuid: req.params.id } });
-      if (result !== 1) return res.status(400).json({ errorMessage: 'Encountered error while trying to disable account' });
+      
       return res.status(200).json({ message: 'Successfully disabled account' });
     } catch (error) {
       return res.status(500).json({ error, errorMessage: 'Encountered unexpected error' });
